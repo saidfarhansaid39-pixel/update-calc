@@ -1,0 +1,71 @@
+# Ignore everything by default
+/*
+
+# Then explicitly allow what we need
+!/.gitignore
+!/.npmrc
+!/AGENTS.md
+!/AUDIT_REPORT.md
+!/package.json
+!/pnpm-lock.yaml
+!/package-lock.json
+!/tsconfig.json
+!/next.config.mjs
+!/tailwind.config.ts
+!/postcss.config.js
+!/vitest.workspace.ts
+!/src/
+!/packages/
+!/prisma/
+!/public/
+!/scripts/
+!/messages/
+!/content/
+
+# Allow specific root-level files (scripts, docs)
+!/_count_defs.js
+!/add-entries.ps1
+!/conversion-registry-entries.txt
+!/enhance_data.json
+!/enhance_placeholders.js
+!/extract_data.js
+!/runner.js
+!/runner.ps1
+!/registry-header.txt
+!/check_meta.js
+!/test_meta.js
+!/start_and_check.js
+!/per-calc-content-template.js
+
+# Allow root-level doc files
+!/PRD-CalculatorUniverseX.md
+
+# Still exclude node_modules and build output
+node_modules/
+.next/
+out/
+*.log
+*.txt
+.env
+.env.local
+.env.*.local
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.tsbuildinfo
+prisma/dev.db
+prisma/dev.db-journal
+.turbopack/
+public/search-index/
+packages/calculator-registry/dist/
+
+# Stale src artifacts from pnpm hoisting
+src/index.*
+src/loader.*
+src/minify.*
+src/plugins/
+src/runtime/
+src/utils.*
+src/interface.*
+src/scratch_student_loan.js

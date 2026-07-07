@@ -1,0 +1,589 @@
+[
+  {
+    "slug": "day-of-year",
+    "title": "Day of Year Calculator",
+    "description": "Free Day of Year Calculator — Find the day number of any date in the calendar year and remaining days.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "day of year",
+      "ordinal",
+      "calendar",
+      "julian",
+      "date"
+    ]
+  },
+  {
+    "slug": "week-number-calc",
+    "title": "Week Number Calculator",
+    "description": "Free Week Number Calculator — Find the ISO week number for any date in the calendar year.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "week number",
+      "ISO",
+      "calendar",
+      "week",
+      "date"
+    ]
+  },
+  {
+    "slug": "quarter-finder",
+    "title": "Quarter Finder Calculator",
+    "description": "Free Quarter Finder Calculator — Find which fiscal or calendar quarter a date falls in with year info.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "quarter",
+      "fiscal",
+      "calendar",
+      "reporting",
+      "date"
+    ]
+  },
+  {
+    "slug": "season-finder",
+    "title": "Season Finder Calculator",
+    "description": "Free Season Finder Calculator — Find the astronomical or meteorological season for any date in either hemisphere.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "season",
+      "astronomical",
+      "meteorological",
+      "hemisphere",
+      "calendar"
+    ]
+  },
+  {
+    "slug": "week-number",
+    "title": "Week Number",
+    "description": "Free Week Number — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "week number",
+      "ISO",
+      "calendar"
+    ]
+  },
+  {
+    "slug": "leap-year-check",
+    "title": "Leap Year Check",
+    "description": "Free Leap Year Check — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "leap year",
+      "check",
+      "February 29"
+    ]
+  },
+  {
+    "slug": "quarter-of-year",
+    "title": "Quarter of Year",
+    "description": "Free Quarter of Year — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "quarter",
+      "fiscal",
+      "calendar"
+    ]
+  },
+  {
+    "slug": "half-birthday",
+    "title": "Half Birthday",
+    "description": "Free Half Birthday — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "half birthday",
+      "6 months",
+      "celebration"
+    ]
+  },
+  {
+    "slug": "anniversary-calc",
+    "title": "Anniversary Calculator",
+    "description": "Free Anniversary Calculator — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "anniversary",
+      "years",
+      "date"
+    ]
+  },
+  {
+    "slug": "months-between",
+    "title": "Months Between Dates",
+    "description": "Free Months Between Dates — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "months",
+      "between",
+      "duration"
+    ]
+  },
+  {
+    "slug": "years-between",
+    "title": "Years Between Dates",
+    "description": "Free Years Between Dates — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "years",
+      "between",
+      "duration"
+    ]
+  },
+  {
+    "slug": "date-of-easter",
+    "title": "Date of Easter",
+    "description": "Free Date of Easter — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Easter",
+      "Paschal",
+      "computed"
+    ]
+  },
+  {
+    "slug": "date-of-passover",
+    "title": "Date of Passover",
+    "description": "Free Date of Passover — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Passover",
+      "Pesach",
+      "Hebrew"
+    ]
+  },
+  {
+    "slug": "ramadan-start",
+    "title": "Ramadan Start",
+    "description": "Free Ramadan Start — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Ramadan",
+      "Islamic",
+      "Hijri"
+    ]
+  },
+  {
+    "slug": "hanukkah-dates",
+    "title": "Hanukkah Dates",
+    "description": "Free Hanukkah Dates — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Hanukkah",
+      "Chanukah",
+      "Jewish"
+    ]
+  },
+  {
+    "slug": "date-of-thanksgiving",
+    "title": "Thanksgiving Date",
+    "description": "Free Thanksgiving Date — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Thanksgiving",
+      "fourth Thursday",
+      "November"
+    ]
+  },
+  {
+    "slug": "memorial-day-date",
+    "title": "Memorial Day Date",
+    "description": "Free Memorial Day Date — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Memorial Day",
+      "last Monday",
+      "May"
+    ]
+  },
+  {
+    "slug": "labor-day-date",
+    "title": "Labor Day Date",
+    "description": "Free Labor Day Date — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Labor Day",
+      "first Monday",
+      "September"
+    ]
+  },
+  {
+    "slug": "mothers-day-date",
+    "title": "Mothers Day Date",
+    "description": "Free Mothers Day Date — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Mothers Day",
+      "second Sunday",
+      "May"
+    ]
+  },
+  {
+    "slug": "fathers-day-date",
+    "title": "Fathers Day Date",
+    "description": "Free Fathers Day Date — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Fathers Day",
+      "third Sunday",
+      "June"
+    ]
+  },
+  {
+    "slug": "daylight-savings-start",
+    "title": "DST Start Date",
+    "description": "Free DST Start Date — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Daylight Saving",
+      "start",
+      "spring forward"
+    ]
+  },
+  {
+    "slug": "daylight-savings-end",
+    "title": "DST End Date",
+    "description": "Free DST End Date — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Daylight Saving",
+      "end",
+      "fall back"
+    ]
+  },
+  {
+    "slug": "solstice-date",
+    "title": "Solstice Date",
+    "description": "Free Solstice Date — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "solstice",
+      "June",
+      "December"
+    ]
+  },
+  {
+    "slug": "equinox-date",
+    "title": "Equinox Date",
+    "description": "Free Equinox Date — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "equinox",
+      "March",
+      "September"
+    ]
+  },
+  {
+    "slug": "billing-cycle",
+    "title": "Billing Cycle",
+    "description": "Free Billing Cycle — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "billing",
+      "cycle",
+      "days",
+      "statement"
+    ]
+  },
+  {
+    "slug": "invoice-due-date",
+    "title": "Invoice Due Date",
+    "description": "Free Invoice Due Date — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "invoice",
+      "due date",
+      "net 30",
+      "net 60"
+    ]
+  },
+  {
+    "slug": "grace-period",
+    "title": "Grace Period",
+    "description": "Free Grace Period — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "grace period",
+      "days",
+      "late payment"
+    ]
+  },
+  {
+    "slug": "lease-term",
+    "title": "Lease Term",
+    "description": "Free Lease Term — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "lease",
+      "term",
+      "months",
+      "end date"
+    ]
+  },
+  {
+    "slug": "subscription-renewal",
+    "title": "Subscription Renewal",
+    "description": "Free Subscription Renewal — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "subscription",
+      "renewal",
+      "auto-renew"
+    ]
+  },
+  {
+    "slug": "warranty-expiration",
+    "title": "Warranty Expiration",
+    "description": "Free Warranty Expiration — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "warranty",
+      "expiration",
+      "coverage"
+    ]
+  },
+  {
+    "slug": "project-milestone",
+    "title": "Project Milestone",
+    "description": "Free Project Milestone — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "project",
+      "milestone",
+      "timeline"
+    ]
+  },
+  {
+    "slug": "gantt-timeline",
+    "title": "Gantt Timeline",
+    "description": "Free Gantt Timeline — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Gantt",
+      "timeline",
+      "duration"
+    ]
+  },
+  {
+    "slug": "interval-timer",
+    "title": "Interval Timer",
+    "description": "Free Interval Timer — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "interval",
+      "timer",
+      "HIIT"
+    ]
+  },
+  {
+    "slug": "stopwatch-lap",
+    "title": "Stopwatch Lap",
+    "description": "Free Stopwatch Lap — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "stopwatch",
+      "lap",
+      "split"
+    ]
+  },
+  {
+    "slug": "time-addition",
+    "title": "Time Addition",
+    "description": "Free Time Addition — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "add",
+      "time",
+      "hours minutes"
+    ]
+  },
+  {
+    "slug": "time-subtraction",
+    "title": "Time Subtraction",
+    "description": "Free Time Subtraction — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "subtract",
+      "time",
+      "hours minutes"
+    ]
+  },
+  {
+    "slug": "metric-time",
+    "title": "Metric Time",
+    "description": "Free Metric Time — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "metric",
+      "decimal",
+      "time"
+    ]
+  },
+  {
+    "slug": "swatch-internet-time",
+    "title": "Swatch Internet Time",
+    "description": "Free Swatch Internet Time — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Swatch",
+      "beats",
+      ".beat"
+    ]
+  },
+  {
+    "slug": "unix-timestamp",
+    "title": "Unix Timestamp",
+    "description": "Free Unix Timestamp — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Unix",
+      "timestamp",
+      "epoch"
+    ]
+  },
+  {
+    "slug": "julian-date",
+    "title": "Julian Date",
+    "description": "Free Julian Date — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Julian",
+      "day",
+      "astronomy"
+    ]
+  },
+  {
+    "slug": "modified-julian-date",
+    "title": "Modified Julian Date",
+    "description": "Free Modified Julian Date — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "MJD",
+      "Julian",
+      "astronomy"
+    ]
+  },
+  {
+    "slug": "gregorian-hijri",
+    "title": "Gregorian to Hijri",
+    "description": "Free Gregorian to Hijri — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Gregorian",
+      "Hijri",
+      "Islamic"
+    ]
+  },
+  {
+    "slug": "hijri-gregorian",
+    "title": "Hijri to Gregorian",
+    "description": "Free Hijri to Gregorian — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Hijri",
+      "Gregorian",
+      "converter"
+    ]
+  },
+  {
+    "slug": "gregorian-hebrew",
+    "title": "Gregorian to Hebrew",
+    "description": "Free Gregorian to Hebrew — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Gregorian",
+      "Hebrew",
+      "Jewish"
+    ]
+  },
+  {
+    "slug": "hebrew-gregorian",
+    "title": "Hebrew to Gregorian",
+    "description": "Free Hebrew to Gregorian — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Hebrew",
+      "Gregorian",
+      "converter"
+    ]
+  },
+  {
+    "slug": "gregorian-chinese",
+    "title": "Gregorian to Chinese",
+    "description": "Free Gregorian to Chinese — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Gregorian",
+      "Chinese",
+      "lunar"
+    ]
+  },
+  {
+    "slug": "indian-national-calendar",
+    "title": "Indian National Calendar",
+    "description": "Free Indian National Calendar — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Saka",
+      "Indian",
+      "calendar"
+    ]
+  },
+  {
+    "slug": "buddhist-calendar",
+    "title": "Buddhist Calendar",
+    "description": "Free Buddhist Calendar — Plan your schedule and track time with precision. Ideal for project managers and planners.",
+    "hubSlug": "date-time-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Buddhist",
+      "calendar",
+      "Thai"
+    ]
+  }
+]

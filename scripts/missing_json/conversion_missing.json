@@ -1,0 +1,4322 @@
+[
+  {
+    "slug": "speed-converter",
+    "title": "Speed Converter",
+    "description": "Free Speed Converter — Convert between mph, kmh, knots, mach, and fps for any speed measurement.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "speed",
+      "converter",
+      "mph",
+      "kmh",
+      "knots"
+    ]
+  },
+  {
+    "slug": "pressure-converter",
+    "title": "Pressure Converter",
+    "description": "Free Pressure Converter — Convert between PSI, bar, kPa, atm, mmHg, and pascals instantly.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pressure",
+      "converter",
+      "PSI",
+      "bar",
+      "kPa"
+    ]
+  },
+  {
+    "slug": "energy-converter",
+    "title": "Energy Converter",
+    "description": "Free Energy Converter — Convert between joules, calories, kWh, BTU, eV, and foot-pounds.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "energy",
+      "converter",
+      "joules",
+      "calories",
+      "BTU"
+    ]
+  },
+  {
+    "slug": "power-converter",
+    "title": "Power Converter",
+    "description": "Free Power Converter — Convert between watts, horsepower, BTU/hr, kilowatts, and tons of refrigeration.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "power",
+      "converter",
+      "watts",
+      "horsepower",
+      "kW"
+    ]
+  },
+  {
+    "slug": "digital-converter",
+    "title": "Digital Storage Converter",
+    "description": "Free Digital Storage Converter — Convert between bits, bytes, KB, MB, GB, TB, PB, and more.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "digital",
+      "storage",
+      "converter",
+      "bytes",
+      "GB"
+    ]
+  },
+  {
+    "slug": "time-converter",
+    "title": "Time Converter",
+    "description": "Free Time Converter — Convert between seconds, minutes, hours, days, weeks, months, and years.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "time",
+      "converter",
+      "hours",
+      "days",
+      "minutes"
+    ]
+  },
+  {
+    "slug": "frequency-converter",
+    "title": "Frequency Converter",
+    "description": "Free Frequency Converter — Convert between hertz, kilohertz, megahertz, gigahertz, and RPM.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "frequency",
+      "converter",
+      "Hz",
+      "MHz",
+      "RPM"
+    ]
+  },
+  {
+    "slug": "wavelength-converter",
+    "title": "Wavelength Converter",
+    "description": "Free Wavelength Converter — Convert between wavelength and frequency for electromagnetic waves.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "wavelength",
+      "frequency",
+      "light",
+      "electromagnetic",
+      "converter"
+    ]
+  },
+  {
+    "slug": "radiation-converter",
+    "title": "Radiation Converter",
+    "description": "Free Radiation Converter — Convert between gray, sievert, rad, rem, and becquerel units.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "radiation",
+      "converter",
+      "gray",
+      "sievert",
+      "becquerel"
+    ]
+  },
+  {
+    "slug": "angle-converter",
+    "title": "Angle Converter",
+    "description": "Free Angle Converter — Convert between degrees, radians, gradians, and minutes of arc.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "angle",
+      "converter",
+      "degrees",
+      "radians",
+      "gradians"
+    ]
+  },
+  {
+    "slug": "volume-converter",
+    "title": "Volume Converter",
+    "description": "Free Volume Converter — Convert between liters, gallons, quarts, pints, cups, mL, and cubic units.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "volume",
+      "converter",
+      "liters",
+      "gallons",
+      "cups"
+    ]
+  },
+  {
+    "slug": "area-converter",
+    "title": "Area Converter",
+    "description": "Free Area Converter — Convert between square feet, square meters, acres, hectares, and square miles.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "area",
+      "converter",
+      "sq ft",
+      "acres",
+      "hectares"
+    ]
+  },
+  {
+    "slug": "density-converter",
+    "title": "Density Converter",
+    "description": "Free Density Converter — Convert between kg/m3, g/cm3, lb/ft3, and specific gravity units.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "density",
+      "converter",
+      "specific gravity",
+      "kg/m3",
+      "lb/ft3"
+    ]
+  },
+  {
+    "slug": "viscosity-converter",
+    "title": "Viscosity Converter",
+    "description": "Free Viscosity Converter — Convert between poise, stokes, centipoise, and Saybolt universal seconds.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "viscosity",
+      "converter",
+      "poise",
+      "stokes",
+      "Saybolt"
+    ]
+  },
+  {
+    "slug": "conductivity-converter",
+    "title": "Thermal Conductivity Converter",
+    "description": "Free Thermal Conductivity Converter — Convert between W/mK, BTU/hrftF, and cal/cmsC.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "thermal conductivity",
+      "converter",
+      "W/mK",
+      "BTU",
+      "heat transfer"
+    ]
+  },
+  {
+    "slug": "force-converter",
+    "title": "Force Converter",
+    "description": "Free Force Converter — Convert between newtons, pounds-force, dynes, and kilogram-force.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "force",
+      "converter",
+      "newtons",
+      "pounds",
+      "dynes"
+    ]
+  },
+  {
+    "slug": "torque-converter",
+    "title": "Torque Converter",
+    "description": "Free Torque Converter — Convert between lb-ft, Nm, kg-cm, and in-lbs for torque measurements.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "torque",
+      "converter",
+      "lb-ft",
+      "Nm",
+      "in-lbs"
+    ]
+  },
+  {
+    "slug": "voltage-converter",
+    "title": "Voltage Converter",
+    "description": "Free Voltage Converter — Convert between volts, millivolts, kilovolts, and statvolts for electrical measurements.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "voltage",
+      "converter",
+      "volts",
+      "millivolts",
+      "electrical"
+    ]
+  },
+  {
+    "slug": "current-converter",
+    "title": "Current Converter",
+    "description": "Free Current Converter — Convert between amps, milliamps, microamps, and kiloamps for electrical current.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "current",
+      "converter",
+      "amps",
+      "milliamps",
+      "electrical"
+    ]
+  },
+  {
+    "slug": "resistance-converter",
+    "title": "Resistance Converter",
+    "description": "Free Resistance Converter — Convert between ohms, kilo-ohms, mega-ohms, and milliohms.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "resistance",
+      "converter",
+      "ohms",
+      "kilo-ohms",
+      "electrical"
+    ]
+  },
+  {
+    "slug": "capacitance-converter",
+    "title": "Capacitance Converter",
+    "description": "Free Capacitance Converter — Convert between farads, microfarads, nanofarads, and picofarads.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "capacitance",
+      "converter",
+      "farads",
+      "microfarads",
+      "electrical"
+    ]
+  },
+  {
+    "slug": "inductance-converter",
+    "title": "Inductance Converter",
+    "description": "Free Inductance Converter — Convert between henries, millihenries, and microhenries for inductors.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "inductance",
+      "converter",
+      "henries",
+      "millihenries",
+      "electrical"
+    ]
+  },
+  {
+    "slug": "magnetism-converter",
+    "title": "Magnetism Converter",
+    "description": "Free Magnetism Converter — Convert between tesla, gauss, weber, and maxwell for magnetic fields.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "magnetism",
+      "converter",
+      "tesla",
+      "gauss",
+      "weber"
+    ]
+  },
+  {
+    "slug": "illuminance-converter",
+    "title": "Illuminance Converter",
+    "description": "Free Illuminance Converter — Convert between lux, foot-candles, lumens, and candela units.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "illuminance",
+      "converter",
+      "lux",
+      "foot-candles",
+      "lumens"
+    ]
+  },
+  {
+    "slug": "fuel-converter",
+    "title": "Fuel Economy Converter",
+    "description": "Free Fuel Economy Converter — Convert between MPG, L/100km, km/L, and MPG imperial for fuel efficiency.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "fuel economy",
+      "converter",
+      "MPG",
+      "L/100km",
+      "efficiency"
+    ]
+  },
+  {
+    "slug": "cooking-weight",
+    "title": "Cooking Weight Converter",
+    "description": "Free Cooking Weight Converter — Convert cooking ingredient weights between grams, ounces, pounds, and cups by ingredient.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "cooking",
+      "weight",
+      "converter",
+      "grams",
+      "cups"
+    ]
+  },
+  {
+    "slug": "cooking-volume",
+    "title": "Cooking Volume Converter",
+    "description": "Free Cooking Volume Converter — Convert recipe volumes between cups, tablespoons, teaspoons, mL, and fluid ounces.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "cooking",
+      "volume",
+      "converter",
+      "cups",
+      "tablespoons"
+    ]
+  },
+  {
+    "slug": "baking-converter",
+    "title": "Baking Measurement Converter",
+    "description": "Free Baking Measurement Converter — Convert baking ingredient measurements by weight and volume with ingredient density.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "baking",
+      "converter",
+      "measurements",
+      "flour",
+      "sugar"
+    ]
+  },
+  {
+    "slug": "shoe-size-converter",
+    "title": "Shoe Size Converter",
+    "description": "Free Shoe Size Converter — Convert shoe sizes between US, UK, EU, and Japanese sizing systems.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "shoe size",
+      "converter",
+      "US",
+      "UK",
+      "EU"
+    ]
+  },
+  {
+    "slug": "ring-size-converter",
+    "title": "Ring Size Converter",
+    "description": "Free Ring Size Converter — Convert ring sizes between US, UK, EU, and Japanese sizing standards.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "ring size",
+      "converter",
+      "jewelry",
+      "US",
+      "UK"
+    ]
+  },
+  {
+    "slug": "bra-size-converter",
+    "title": "Bra Size Converter",
+    "description": "Free Bra Size Converter — Convert bra sizes between US, UK, EU, and Australian sizing systems.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "bra size",
+      "converter",
+      "lingerie",
+      "US",
+      "UK"
+    ]
+  },
+  {
+    "slug": "clothing-size-converter",
+    "title": "Clothing Size Converter",
+    "description": "Free Clothing Size Converter — Convert clothing sizes between US, UK, EU, and international standards.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "clothing size",
+      "converter",
+      "apparel",
+      "international",
+      "US"
+    ]
+  },
+  {
+    "slug": "paper-size-converter",
+    "title": "Paper Size Converter",
+    "description": "Free Paper Size Converter — Convert between A series, B series, US letter, legal, and tabloid paper sizes.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "paper size",
+      "converter",
+      "A4",
+      "letter",
+      "legal"
+    ]
+  },
+  {
+    "slug": "font-converter",
+    "title": "Font Unit Converter",
+    "description": "Free Font Unit Converter — Convert between px, pt, em, rem, percent, and vw font size units for web design.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "font",
+      "converter",
+      "px",
+      "em",
+      "rem"
+    ]
+  },
+  {
+    "slug": "blood-alcohol-converter",
+    "title": "Blood Alcohol Converter",
+    "description": "Free Blood Alcohol Converter — Convert BAC between percentage, mg/dL, mmol/L, and promille units.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "BAC",
+      "blood alcohol",
+      "converter",
+      "promille",
+      "mg/dL"
+    ]
+  },
+  {
+    "slug": "cholesterol-converter",
+    "title": "Cholesterol Converter",
+    "description": "Free Cholesterol Converter — Convert cholesterol between mg/dL and mmol/L for medical testing.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "cholesterol",
+      "converter",
+      "mg/dL",
+      "mmol/L",
+      "medical"
+    ]
+  },
+  {
+    "slug": "glucose-converter",
+    "title": "Glucose Converter",
+    "description": "Free Glucose Converter — Convert blood glucose between mg/dL and mmol/L for diabetes management.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "glucose",
+      "blood sugar",
+      "converter",
+      "mg/dL",
+      "mmol/L"
+    ]
+  },
+  {
+    "slug": "creatinine-converter",
+    "title": "Creatinine Converter",
+    "description": "Free Creatinine Converter — Convert creatinine between mg/dL and umol/L for kidney function testing.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "creatinine",
+      "converter",
+      "mg/dL",
+      "umol/L",
+      "kidney"
+    ]
+  },
+  {
+    "slug": "currency-converter",
+    "title": "Currency Converter",
+    "description": "Free Currency Converter — Convert between world currencies using current exchange rates for travel and business.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "currency",
+      "converter",
+      "exchange rate",
+      "forex",
+      "money"
+    ]
+  },
+  {
+    "slug": "crypto-converter",
+    "title": "Cryptocurrency Converter",
+    "description": "Free Cryptocurrency Converter — Convert between Bitcoin, Ethereum, and other cryptocurrencies to fiat currency.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "crypto",
+      "Bitcoin",
+      "Ethereum",
+      "converter",
+      "blockchain"
+    ]
+  },
+  {
+    "slug": "carat-weight",
+    "title": "Carat Weight",
+    "description": "Free Carat Weight — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "carat",
+      "gemstone",
+      "weight"
+    ]
+  },
+  {
+    "slug": "gold-purity",
+    "title": "Gold Purity",
+    "description": "Free Gold Purity — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "gold",
+      "karat",
+      "purity"
+    ]
+  },
+  {
+    "slug": "silver-purity",
+    "title": "Silver Purity",
+    "description": "Free Silver Purity — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "silver",
+      "sterling",
+      "fineness"
+    ]
+  },
+  {
+    "slug": "fabric-yardage",
+    "title": "Fabric Yardage",
+    "description": "Free Fabric Yardage — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "fabric",
+      "yardage",
+      "textile"
+    ]
+  },
+  {
+    "slug": "yarn-weight",
+    "title": "Yarn Weight",
+    "description": "Free Yarn Weight — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "yarn",
+      "knitting",
+      "crochet"
+    ]
+  },
+  {
+    "slug": "thread-count",
+    "title": "Thread Count",
+    "description": "Free Thread Count — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "thread",
+      "fabric",
+      "weave"
+    ]
+  },
+  {
+    "slug": "candlepower",
+    "title": "Candlepower",
+    "description": "Free Candlepower — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "candlepower",
+      "lumens",
+      "light"
+    ]
+  },
+  {
+    "slug": "lumens-to-lux",
+    "title": "Lumens to Lux",
+    "description": "Free Lumens to Lux — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "lumens",
+      "lux",
+      "illuminance"
+    ]
+  },
+  {
+    "slug": "nit-luminance",
+    "title": "Nits to Luminance",
+    "description": "Free Nits to Luminance — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "nits",
+      "brightness",
+      "display"
+    ]
+  },
+  {
+    "slug": "decibel-spl",
+    "title": "Decibel SPL",
+    "description": "Free Decibel SPL — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "decibel",
+      "sound",
+      "noise"
+    ]
+  },
+  {
+    "slug": "sone-scale",
+    "title": "Sone Loudness",
+    "description": "Free Sone Loudness — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "sone",
+      "decibel",
+      "loudness"
+    ]
+  },
+  {
+    "slug": "frequency-pitch",
+    "title": "Frequency to Pitch",
+    "description": "Free Frequency to Pitch — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "frequency",
+      "pitch",
+      "music"
+    ]
+  },
+  {
+    "slug": "bpm-delay",
+    "title": "BPM to Delay",
+    "description": "Free BPM to Delay — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "BPM",
+      "milliseconds",
+      "delay"
+    ]
+  },
+  {
+    "slug": "sample-rate",
+    "title": "Sample Rate",
+    "description": "Free Sample Rate — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "kHz",
+      "audio",
+      "digital"
+    ]
+  },
+  {
+    "slug": "ppi-dpi",
+    "title": "PPI to DPI",
+    "description": "Free PPI to DPI — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "PPI",
+      "DPI",
+      "resolution"
+    ]
+  },
+  {
+    "slug": "megapixel",
+    "title": "Megapixel",
+    "description": "Free Megapixel — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "megapixel",
+      "camera",
+      "resolution"
+    ]
+  },
+  {
+    "slug": "aspect-ratio",
+    "title": "Aspect Ratio",
+    "description": "Free Aspect Ratio — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "aspect ratio",
+      "screen",
+      "video"
+    ]
+  },
+  {
+    "slug": "focal-equiv",
+    "title": "Focal Length Equivalent",
+    "description": "Free Focal Length Equivalent — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "focal length",
+      "35mm",
+      "camera"
+    ]
+  },
+  {
+    "slug": "aperture-stop",
+    "title": "Aperture Stop",
+    "description": "Free Aperture Stop — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "f-stop",
+      "exposure",
+      "aperture"
+    ]
+  },
+  {
+    "slug": "ev-lux",
+    "title": "EV to Lux",
+    "description": "Free EV to Lux — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "exposure value",
+      "lux",
+      "light"
+    ]
+  },
+  {
+    "slug": "iso-speed",
+    "title": "ISO to Speed",
+    "description": "Free ISO to Speed — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "ISO",
+      "film speed",
+      "ASA"
+    ]
+  },
+  {
+    "slug": "white-balance",
+    "title": "White Balance",
+    "description": "Free White Balance — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "white balance",
+      "Kelvin",
+      "photography"
+    ]
+  },
+  {
+    "slug": "cmyk-rgb",
+    "title": "CMYK to RGB",
+    "description": "Free CMYK to RGB — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "CMYK",
+      "RGB",
+      "color"
+    ]
+  },
+  {
+    "slug": "hex-rgb",
+    "title": "HEX to RGB",
+    "description": "Free HEX to RGB — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "HEX",
+      "RGB",
+      "web color"
+    ]
+  },
+  {
+    "slug": "rgb-hsl",
+    "title": "RGB to HSL",
+    "description": "Free RGB to HSL — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "RGB",
+      "HSL",
+      "color"
+    ]
+  },
+  {
+    "slug": "lab-rgb",
+    "title": "LAB to RGB",
+    "description": "Free LAB to RGB — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "LAB",
+      "RGB",
+      "color profile"
+    ]
+  },
+  {
+    "slug": "pantone-hex",
+    "title": "Pantone to HEX",
+    "description": "Free Pantone to HEX — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "Pantone",
+      "HEX",
+      "color"
+    ]
+  },
+  {
+    "slug": "rake-angle",
+    "title": "Rake Angle",
+    "description": "Free Rake Angle — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "rake",
+      "cutting",
+      "tool"
+    ]
+  },
+  {
+    "slug": "morse-taper",
+    "title": "Morse Taper",
+    "description": "Free Morse Taper — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "Morse taper",
+      "machine"
+    ]
+  },
+  {
+    "slug": "thread-pitch",
+    "title": "Thread Pitch",
+    "description": "Free Thread Pitch — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "thread",
+      "TPI",
+      "screw"
+    ]
+  },
+  {
+    "slug": "bolt-strength",
+    "title": "Bolt Strength",
+    "description": "Free Bolt Strength — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "bolt",
+      "grade",
+      "tensile"
+    ]
+  },
+  {
+    "slug": "washer-size",
+    "title": "Washer Size",
+    "description": "Free Washer Size — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "washer",
+      "ANSI",
+      "fastener"
+    ]
+  },
+  {
+    "slug": "nut-dimensions",
+    "title": "Nut Dimensions",
+    "description": "Free Nut Dimensions — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "nut",
+      "hex",
+      "dimensions"
+    ]
+  },
+  {
+    "slug": "oil-viscosity",
+    "title": "Oil Viscosity",
+    "description": "Free Oil Viscosity — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "SAE",
+      "oil",
+      "viscosity"
+    ]
+  },
+  {
+    "slug": "coolant-mix",
+    "title": "Coolant Mixture",
+    "description": "Free Coolant Mixture — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "coolant",
+      "antifreeze",
+      "ratio"
+    ]
+  },
+  {
+    "slug": "battery-charge",
+    "title": "Battery Charge Time",
+    "description": "Free Battery Charge Time — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "battery",
+      "charge",
+      "Ah"
+    ]
+  },
+  {
+    "slug": "battery-wh",
+    "title": "Battery Watt-Hours",
+    "description": "Free Battery Watt-Hours — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "watt-hours",
+      "battery",
+      "capacity"
+    ]
+  },
+  {
+    "slug": "battery-life",
+    "title": "Battery Life",
+    "description": "Free Battery Life — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "battery life",
+      "mA",
+      "hours"
+    ]
+  },
+  {
+    "slug": "solar-wattage",
+    "title": "Solar Wattage",
+    "description": "Free Solar Wattage — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "solar",
+      "PV",
+      "wattage"
+    ]
+  },
+  {
+    "slug": "inverter-size",
+    "title": "Inverter Sizing",
+    "description": "Free Inverter Sizing — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "inverter",
+      "solar",
+      "power"
+    ]
+  },
+  {
+    "slug": "wire-awg",
+    "title": "Wire AWG",
+    "description": "Free Wire AWG — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "AWG",
+      "wire",
+      "diameter"
+    ]
+  },
+  {
+    "slug": "wire-resistance",
+    "title": "Wire Resistance",
+    "description": "Free Wire Resistance — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "wire",
+      "resistance",
+      "copper"
+    ]
+  },
+  {
+    "slug": "pcb-trace",
+    "title": "PCB Trace Width",
+    "description": "Free PCB Trace Width — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "PCB",
+      "trace",
+      "current"
+    ]
+  },
+  {
+    "slug": "antenna-length",
+    "title": "Antenna Length",
+    "description": "Free Antenna Length — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "antenna",
+      "wavelength",
+      "dipole"
+    ]
+  },
+  {
+    "slug": "vswr",
+    "title": "VSWR",
+    "description": "Free VSWR — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "VSWR",
+      "SWR",
+      "antenna"
+    ]
+  },
+  {
+    "slug": "capacitor-code",
+    "title": "Capacitor Code",
+    "description": "Free Capacitor Code — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "capacitor",
+      "pF",
+      "code"
+    ]
+  },
+  {
+    "slug": "resistor-band",
+    "title": "Resistor Band",
+    "description": "Free Resistor Band — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "resistor",
+      "color band",
+      "ohm"
+    ]
+  },
+  {
+    "slug": "transformer-turns",
+    "title": "Transformer Turns",
+    "description": "Free Transformer Turns — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "transformer",
+      "turns",
+      "voltage"
+    ]
+  },
+  {
+    "slug": "opamp-gain",
+    "title": "Op-Amp Gain",
+    "description": "Free Op-Amp Gain — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "op-amp",
+      "gain",
+      "feedback"
+    ]
+  },
+  {
+    "slug": "555-timer",
+    "title": "555 Timer",
+    "description": "Free 555 Timer — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "555",
+      "timer",
+      "astable"
+    ]
+  },
+  {
+    "slug": "pwm-duty",
+    "title": "PWM Duty Cycle",
+    "description": "Free PWM Duty Cycle — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "PWM",
+      "duty cycle",
+      "frequency"
+    ]
+  },
+  {
+    "slug": "led-resistor",
+    "title": "LED Resistor",
+    "description": "Free LED Resistor — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "LED",
+      "current",
+      "resistor"
+    ]
+  },
+  {
+    "slug": "stepper-motor",
+    "title": "Stepper Motor",
+    "description": "Free Stepper Motor — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "stepper",
+      "motor",
+      "step angle"
+    ]
+  },
+  {
+    "slug": "hydraulic-force",
+    "title": "Hydraulic Force",
+    "description": "Free Hydraulic Force — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "hydraulic",
+      "cylinder",
+      "force"
+    ]
+  },
+  {
+    "slug": "pneumatic-force",
+    "title": "Pneumatic Force",
+    "description": "Free Pneumatic Force — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pneumatic",
+      "cylinder",
+      "force"
+    ]
+  },
+  {
+    "slug": "orifice-flow",
+    "title": "Orifice Flow",
+    "description": "Free Orifice Flow — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "orifice",
+      "nozzle",
+      "flow"
+    ]
+  },
+  {
+    "slug": "weir-flow",
+    "title": "Weir Flow",
+    "description": "Free Weir Flow — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "weir",
+      "open channel",
+      "flow"
+    ]
+  },
+  {
+    "slug": "manning-n",
+    "title": "Manning n",
+    "description": "Free Manning n — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "Manning",
+      "roughness",
+      "channel"
+    ]
+  },
+  {
+    "slug": "hazen-williams",
+    "title": "Hazen-Williams",
+    "description": "Free Hazen-Williams — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "Hazen-Williams",
+      "pipe",
+      "friction"
+    ]
+  },
+  {
+    "slug": "darcy-weisbach",
+    "title": "Darcy-Weisbach",
+    "description": "Free Darcy-Weisbach — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "Darcy-Weisbach",
+      "head loss"
+    ]
+  },
+  {
+    "slug": "pump-head",
+    "title": "Pump Head",
+    "description": "Free Pump Head — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pump",
+      "NPSH",
+      "head"
+    ]
+  },
+  {
+    "slug": "heat-exchanger",
+    "title": "Heat Exchanger LMTD",
+    "description": "Free Heat Exchanger LMTD — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "LMTD",
+      "heat exchanger",
+      "temperature"
+    ]
+  },
+  {
+    "slug": "boiling-altitude",
+    "title": "Boiling Point Altitude",
+    "description": "Free Boiling Point Altitude — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "boiling point",
+      "altitude"
+    ]
+  },
+  {
+    "slug": "humidity-dew",
+    "title": "Humidity to Dew Point",
+    "description": "Free Humidity to Dew Point — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "humidity",
+      "dew point",
+      "air"
+    ]
+  },
+  {
+    "slug": "enthalpy-air",
+    "title": "Enthalpy of Air",
+    "description": "Free Enthalpy of Air — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "enthalpy",
+      "air",
+      "HVAC"
+    ]
+  },
+  {
+    "slug": "psychrometric",
+    "title": "Psychrometric",
+    "description": "Free Psychrometric — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "psychrometric",
+      "wet bulb",
+      "HVAC"
+    ]
+  },
+  {
+    "slug": "fan-law",
+    "title": "Fan Laws",
+    "description": "Free Fan Laws — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "fan",
+      "affinity",
+      "CFM",
+      "RPM"
+    ]
+  },
+  {
+    "slug": "pump-affinity",
+    "title": "Pump Affinity",
+    "description": "Free Pump Affinity — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pump",
+      "affinity laws",
+      "RPM"
+    ]
+  },
+  {
+    "slug": "belt-length",
+    "title": "Belt Length",
+    "description": "Free Belt Length — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "belt",
+      "pulley",
+      "length"
+    ]
+  },
+  {
+    "slug": "chain-length",
+    "title": "Chain Length",
+    "description": "Free Chain Length — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "chain",
+      "sprocket",
+      "pitch"
+    ]
+  },
+  {
+    "slug": "gear-ratio",
+    "title": "Gear Ratio",
+    "description": "Free Gear Ratio — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "gear ratio",
+      "teeth",
+      "RPM"
+    ]
+  },
+  {
+    "slug": "spring-rate",
+    "title": "Spring Rate",
+    "description": "Free Spring Rate — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "spring",
+      "coil",
+      "rate"
+    ]
+  },
+  {
+    "slug": "beam-deflection",
+    "title": "Beam Deflection",
+    "description": "Free Beam Deflection — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "beam",
+      "deflection",
+      "load"
+    ]
+  },
+  {
+    "slug": "column-buckling",
+    "title": "Column Buckling",
+    "description": "Free Column Buckling — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "column",
+      "buckling",
+      "Euler"
+    ]
+  },
+  {
+    "slug": "pipe-weight",
+    "title": "Pipe Weight",
+    "description": "Free Pipe Weight — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pipe",
+      "schedule",
+      "weight"
+    ]
+  },
+  {
+    "slug": "flange-rating",
+    "title": "Flange Rating",
+    "description": "Free Flange Rating — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "flange",
+      "pressure",
+      "class"
+    ]
+  },
+  {
+    "slug": "concrete-mix",
+    "title": "Concrete Mix",
+    "description": "Free Concrete Mix — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "concrete",
+      "mix",
+      "proportion"
+    ]
+  },
+  {
+    "slug": "rebar-development",
+    "title": "Rebar Development",
+    "description": "Free Rebar Development — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "rebar",
+      "development",
+      "splice"
+    ]
+  },
+  {
+    "slug": "soil-bearing",
+    "title": "Soil Bearing",
+    "description": "Free Soil Bearing — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "soil",
+      "bearing",
+      "capacity"
+    ]
+  },
+  {
+    "slug": "pile-capacity",
+    "title": "Pile Capacity",
+    "description": "Free Pile Capacity — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pile",
+      "bearing",
+      "capacity"
+    ]
+  },
+  {
+    "slug": "slope-stability",
+    "title": "Slope Stability",
+    "description": "Free Slope Stability — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "slope",
+      "stability",
+      "factor"
+    ]
+  },
+  {
+    "slug": "seismic-shear",
+    "title": "Seismic Shear",
+    "description": "Free Seismic Shear — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "seismic",
+      "base shear",
+      "IBC"
+    ]
+  },
+  {
+    "slug": "wind-pressure",
+    "title": "Wind Pressure",
+    "description": "Free Wind Pressure — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "wind",
+      "pressure",
+      "ASCE"
+    ]
+  },
+  {
+    "slug": "heat-loss",
+    "title": "Heat Loss Building",
+    "description": "Free Heat Loss Building — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "heat loss",
+      "U-value",
+      "building"
+    ]
+  },
+  {
+    "slug": "cooling-load",
+    "title": "Cooling Load",
+    "description": "Free Cooling Load — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "cooling",
+      "BTU",
+      "HVAC"
+    ]
+  },
+  {
+    "slug": "duct-size",
+    "title": "Duct Size",
+    "description": "Free Duct Size — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "duct",
+      "CFM",
+      "friction"
+    ]
+  },
+  {
+    "slug": "chiller-tonnage",
+    "title": "Chiller Tonnage",
+    "description": "Free Chiller Tonnage — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "chiller",
+      "tonnage",
+      "cooling"
+    ]
+  },
+  {
+    "slug": "boiler-hp",
+    "title": "Boiler Horsepower",
+    "description": "Free Boiler Horsepower — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "boiler",
+      "horsepower",
+      "BTU"
+    ]
+  },
+  {
+    "slug": "crane-capacity",
+    "title": "Crane Capacity",
+    "description": "Free Crane Capacity — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "crane",
+      "boom",
+      "load"
+    ]
+  },
+  {
+    "slug": "conveyor-speed",
+    "title": "Conveyor Speed",
+    "description": "Free Conveyor Speed — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "conveyor",
+      "belt",
+      "RPM"
+    ]
+  },
+  {
+    "slug": "air-compressor",
+    "title": "Air Compressor",
+    "description": "Free Air Compressor — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "air compressor",
+      "CFM",
+      "PSI"
+    ]
+  },
+  {
+    "slug": "vacuum-flow",
+    "title": "Vacuum Pump Flow",
+    "description": "Free Vacuum Pump Flow — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "vacuum",
+      "pump",
+      "torr"
+    ]
+  },
+  {
+    "slug": "gear-module",
+    "title": "Gear Module",
+    "description": "Free Gear Module — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "gear",
+      "module",
+      "metric"
+    ]
+  },
+  {
+    "slug": "gear-diametral",
+    "title": "Gear Diametral Pitch",
+    "description": "Free Gear Diametral Pitch — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "diametral pitch",
+      "gear",
+      "DP"
+    ]
+  },
+  {
+    "slug": "cmm-to-inches",
+    "title": "CMM to Inches",
+    "description": "Free CMM to Inches — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "CMM",
+      "inches",
+      "converter"
+    ]
+  },
+  {
+    "slug": "meters-to-furlongs",
+    "title": "Meters to Furlongs",
+    "description": "Free Meters to Furlongs — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "meters",
+      "furlongs",
+      "length"
+    ]
+  },
+  {
+    "slug": "hands-centimeters",
+    "title": "Hands to Centimeters",
+    "description": "Free Hands to Centimeters — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "hands",
+      "cm",
+      "horse"
+    ]
+  },
+  {
+    "slug": "points-millimeters",
+    "title": "Points to Millimeters",
+    "description": "Free Points to Millimeters — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "points",
+      "mm",
+      "typography"
+    ]
+  },
+  {
+    "slug": "picas-centimeters",
+    "title": "Picas to Centimeters",
+    "description": "Free Picas to Centimeters — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "picas",
+      "cm",
+      "typography"
+    ]
+  },
+  {
+    "slug": "cubic-yards-liters",
+    "title": "Cubic Yards to Liters",
+    "description": "Free Cubic Yards to Liters — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "cubic yards",
+      "liters",
+      "volume"
+    ]
+  },
+  {
+    "slug": "acre-feet-gallons",
+    "title": "Acre-Feet to Gallons",
+    "description": "Free Acre-Feet to Gallons — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "acre-feet",
+      "gallons",
+      "water"
+    ]
+  },
+  {
+    "slug": "barrels-gallons",
+    "title": "Barrels to Gallons",
+    "description": "Free Barrels to Gallons — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "barrels",
+      "gallons",
+      "oil"
+    ]
+  },
+  {
+    "slug": "pecks-liters",
+    "title": "Pecks to Liters",
+    "description": "Free Pecks to Liters — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pecks",
+      "liters",
+      "volume"
+    ]
+  },
+  {
+    "slug": "bushels-liters",
+    "title": "Bushels to Liters",
+    "description": "Free Bushels to Liters — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "bushels",
+      "liters",
+      "volume"
+    ]
+  },
+  {
+    "slug": "hogsheads-liters",
+    "title": "Hogsheads to Liters",
+    "description": "Free Hogsheads to Liters — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "hogsheads",
+      "liters",
+      "volume"
+    ]
+  },
+  {
+    "slug": "firkins-liters",
+    "title": "Firkins to Liters",
+    "description": "Free Firkins to Liters — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "firkins",
+      "liters",
+      "ale"
+    ]
+  },
+  {
+    "slug": "gills-milliliters",
+    "title": "Gills to Milliliters",
+    "description": "Free Gills to Milliliters — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "gills",
+      "ml",
+      "volume"
+    ]
+  },
+  {
+    "slug": "jiggers-ml",
+    "title": "Jiggers to ML",
+    "description": "Free Jiggers to ML — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "jiggers",
+      "ml",
+      "cocktail"
+    ]
+  },
+  {
+    "slug": "dash-ml",
+    "title": "Dash to ML",
+    "description": "Free Dash to ML — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "dash",
+      "ml",
+      "cocktail"
+    ]
+  },
+  {
+    "slug": "pinch-ml",
+    "title": "Pinch to ML",
+    "description": "Free Pinch to ML — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pinch",
+      "ml",
+      "cooking"
+    ]
+  },
+  {
+    "slug": "smidgen-ml",
+    "title": "Smidgen to ML",
+    "description": "Free Smidgen to ML — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "smidgen",
+      "ml",
+      "cooking"
+    ]
+  },
+  {
+    "slug": "drop-ml",
+    "title": "Drop to ML",
+    "description": "Free Drop to ML — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "drop",
+      "ml",
+      "volume"
+    ]
+  },
+  {
+    "slug": "dram-ml",
+    "title": "Dram to ML",
+    "description": "Free Dram to ML — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "dram",
+      "ml",
+      "apothecary"
+    ]
+  },
+  {
+    "slug": "scruple-grams",
+    "title": "Scruple to Grams",
+    "description": "Free Scruple to Grams — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "scruple",
+      "grams",
+      "apothecary"
+    ]
+  },
+  {
+    "slug": "pennyweight-grams",
+    "title": "Pennyweight to Grams",
+    "description": "Free Pennyweight to Grams — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pennyweight",
+      "grams",
+      "precious"
+    ]
+  },
+  {
+    "slug": "troy-ounces-grams",
+    "title": "Troy Ounces to Grams",
+    "description": "Free Troy Ounces to Grams — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "troy ounces",
+      "grams",
+      "gold"
+    ]
+  },
+  {
+    "slug": "troy-pounds-kg",
+    "title": "Troy Pounds to KG",
+    "description": "Free Troy Pounds to KG — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "troy pounds",
+      "kg",
+      "precious"
+    ]
+  },
+  {
+    "slug": "slugs-kg",
+    "title": "Slugs to KG",
+    "description": "Free Slugs to KG — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "slugs",
+      "kg",
+      "mass"
+    ]
+  },
+  {
+    "slug": "atomic-mass-units",
+    "title": "Atomic Mass Units to KG",
+    "description": "Free Atomic Mass Units to KG — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "amu",
+      "kg",
+      "atomic mass"
+    ]
+  },
+  {
+    "slug": "dalton-grams",
+    "title": "Dalton to Grams",
+    "description": "Free Dalton to Grams — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "dalton",
+      "grams",
+      "molecular"
+    ]
+  },
+  {
+    "slug": "planck-mass-kg",
+    "title": "Planck Mass to KG",
+    "description": "Free Planck Mass to KG — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "Planck mass",
+      "kg",
+      "physics"
+    ]
+  },
+  {
+    "slug": "electron-mass-kg",
+    "title": "Electron Mass to KG",
+    "description": "Free Electron Mass to KG — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "electron mass",
+      "kg",
+      "physics"
+    ]
+  },
+  {
+    "slug": "proton-mass-kg",
+    "title": "Proton Mass to KG",
+    "description": "Free Proton Mass to KG — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "proton mass",
+      "kg",
+      "physics"
+    ]
+  },
+  {
+    "slug": "neutron-mass-kg",
+    "title": "Neutron Mass to KG",
+    "description": "Free Neutron Mass to KG — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "neutron mass",
+      "kg",
+      "physics"
+    ]
+  },
+  {
+    "slug": "metric-tons-short-tons",
+    "title": "Metric Tons to Short Tons",
+    "description": "Free Metric Tons to Short Tons — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "metric ton",
+      "short ton",
+      "weight"
+    ]
+  },
+  {
+    "slug": "long-tons-metric-tons",
+    "title": "Long Tons to Metric Tons",
+    "description": "Free Long Tons to Metric Tons — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "long ton",
+      "metric ton",
+      "UK"
+    ]
+  },
+  {
+    "slug": "newtons-kg-force",
+    "title": "Newtons to KG-Force",
+    "description": "Free Newtons to KG-Force — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "newtons",
+      "kgf",
+      "force"
+    ]
+  },
+  {
+    "slug": "poundals-newtons",
+    "title": "Poundals to Newtons",
+    "description": "Free Poundals to Newtons — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "poundals",
+      "newtons",
+      "force"
+    ]
+  },
+  {
+    "slug": "kips-newtons",
+    "title": "Kips to Newtons",
+    "description": "Free Kips to Newtons — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "kips",
+      "newtons",
+      "force"
+    ]
+  },
+  {
+    "slug": "sthene-newtons",
+    "title": "Sthene to Newtons",
+    "description": "Free Sthene to Newtons — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "sthene",
+      "newtons",
+      "force"
+    ]
+  },
+  {
+    "slug": "ounce-force-newtons",
+    "title": "Ounce-Force to Newtons",
+    "description": "Free Ounce-Force to Newtons — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "ounce-force",
+      "newtons",
+      "force"
+    ]
+  },
+  {
+    "slug": "pound-force-newtons",
+    "title": "Pound-Force to Newtons",
+    "description": "Free Pound-Force to Newtons — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "lbf",
+      "newtons",
+      "force"
+    ]
+  },
+  {
+    "slug": "ergs-joules",
+    "title": "Ergs to Joules",
+    "description": "Free Ergs to Joules — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "ergs",
+      "joules",
+      "energy"
+    ]
+  },
+  {
+    "slug": "foot-poundals-joules",
+    "title": "Foot-Poundals to Joules",
+    "description": "Free Foot-Poundals to Joules — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "foot-poundals",
+      "joules",
+      "energy"
+    ]
+  },
+  {
+    "slug": "thermie-joules",
+    "title": "Thermie to Joules",
+    "description": "Free Thermie to Joules — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "thermie",
+      "joules",
+      "heat"
+    ]
+  },
+  {
+    "slug": "quad-btu",
+    "title": "Quad to BTU",
+    "description": "Free Quad to BTU — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "quad",
+      "BTU",
+      "energy"
+    ]
+  },
+  {
+    "slug": "rydberg-ev",
+    "title": "Rydberg to eV",
+    "description": "Free Rydberg to eV — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Rydberg",
+      "eV",
+      "energy"
+    ]
+  },
+  {
+    "slug": "hartree-ev",
+    "title": "Hartree to eV",
+    "description": "Free Hartree to eV — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Hartree",
+      "eV",
+      "energy"
+    ]
+  },
+  {
+    "slug": "watt-second-joules",
+    "title": "Watt-Seconds to Joules",
+    "description": "Free Watt-Seconds to Joules — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "watt-seconds",
+      "joules",
+      "energy"
+    ]
+  },
+  {
+    "slug": "kilogram-tnt-joules",
+    "title": "kg TNT to Joules",
+    "description": "Free kg TNT to Joules — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "TNT",
+      "joules",
+      "explosive"
+    ]
+  },
+  {
+    "slug": "ton-tnt-joules",
+    "title": "Ton TNT to Joules",
+    "description": "Free Ton TNT to Joules — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "TNT",
+      "joules",
+      "megaton"
+    ]
+  },
+  {
+    "slug": "btu-therm",
+    "title": "BTU to Therm",
+    "description": "Free BTU to Therm — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "BTU",
+      "therm",
+      "gas"
+    ]
+  },
+  {
+    "slug": "ccf-therm",
+    "title": "CCF to Therm",
+    "description": "Free CCF to Therm — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "CCF",
+      "therm",
+      "natural gas"
+    ]
+  },
+  {
+    "slug": "mcf-btu",
+    "title": "MCF to BTU",
+    "description": "Free MCF to BTU — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "MCF",
+      "BTU",
+      "gas"
+    ]
+  },
+  {
+    "slug": "r-value-si",
+    "title": "R-Value SI to Imperial",
+    "description": "Free R-Value SI to Imperial — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "R-value",
+      "SI",
+      "imperial"
+    ]
+  },
+  {
+    "slug": "u-value-si",
+    "title": "U-Value SI to Imperial",
+    "description": "Free U-Value SI to Imperial — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "U-value",
+      "SI",
+      "imperial"
+    ]
+  },
+  {
+    "slug": "clo-si",
+    "title": "Clo to SI",
+    "description": "Free Clo to SI — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "clo",
+      "thermal",
+      "insulation"
+    ]
+  },
+  {
+    "slug": "perm-si",
+    "title": "Perm to SI",
+    "description": "Free Perm to SI — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "perm",
+      "vapor",
+      "permeability"
+    ]
+  },
+  {
+    "slug": "curie-becquerel",
+    "title": "Curie to Becquerel",
+    "description": "Free Curie to Becquerel — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "curie",
+      "becquerel",
+      "radiation"
+    ]
+  },
+  {
+    "slug": "roentgen-coulombs",
+    "title": "Roentgen to Coulombs",
+    "description": "Free Roentgen to Coulombs — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "roentgen",
+      "coulombs",
+      "radiation"
+    ]
+  },
+  {
+    "slug": "rad-gray",
+    "title": "Rad to Gray",
+    "description": "Free Rad to Gray — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "rad",
+      "gray",
+      "absorbed dose"
+    ]
+  },
+  {
+    "slug": "rem-sievert",
+    "title": "Rem to Sievert",
+    "description": "Free Rem to Sievert — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "rem",
+      "sievert",
+      "equivalent dose"
+    ]
+  },
+  {
+    "slug": "rontgen-sievert",
+    "title": "Rontgen to Sievert",
+    "description": "Free Rontgen to Sievert — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "rontgen",
+      "sievert",
+      "exposure"
+    ]
+  },
+  {
+    "slug": "lux-footcandle",
+    "title": "Lux to Foot-Candle",
+    "description": "Free Lux to Foot-Candle — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "lux",
+      "foot-candle",
+      "illuminance"
+    ]
+  },
+  {
+    "slug": "stilb-nit",
+    "title": "Stilb to Nit",
+    "description": "Free Stilb to Nit — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "stilb",
+      "nit",
+      "luminance"
+    ]
+  },
+  {
+    "slug": "apostilb-nit",
+    "title": "Apostilb to Nit",
+    "description": "Free Apostilb to Nit — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "apostilb",
+      "nit",
+      "luminance"
+    ]
+  },
+  {
+    "slug": "lambert-nit",
+    "title": "Lambert to Nit",
+    "description": "Free Lambert to Nit — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "lambert",
+      "nit",
+      "luminance"
+    ]
+  },
+  {
+    "slug": "footlambert-nit",
+    "title": "Footlambert to Nit",
+    "description": "Free Footlambert to Nit — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "footlambert",
+      "nit",
+      "luminance"
+    ]
+  },
+  {
+    "slug": "candela-lumens",
+    "title": "Candela to Lumens",
+    "description": "Free Candela to Lumens — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "candela",
+      "lumens",
+      "light"
+    ]
+  },
+  {
+    "slug": "millimho-siemens",
+    "title": "Millimho to Siemens",
+    "description": "Free Millimho to Siemens — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "millimho",
+      "siemens",
+      "conductance"
+    ]
+  },
+  {
+    "slug": "mho-siemens",
+    "title": "Mho to Siemens",
+    "description": "Free Mho to Siemens — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "mho",
+      "siemens",
+      "conductance"
+    ]
+  },
+  {
+    "slug": "abohm-ohm",
+    "title": "Abohm to Ohm",
+    "description": "Free Abohm to Ohm — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "abohm",
+      "ohm",
+      "resistance"
+    ]
+  },
+  {
+    "slug": "statohm-ohm",
+    "title": "Statohm to Ohm",
+    "description": "Free Statohm to Ohm — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "statohm",
+      "ohm",
+      "resistance"
+    ]
+  },
+  {
+    "slug": "abfarad-farad",
+    "title": "Abfarad to Farad",
+    "description": "Free Abfarad to Farad — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "abfarad",
+      "farad",
+      "capacitance"
+    ]
+  },
+  {
+    "slug": "statfarad-farad",
+    "title": "Statfarad to Farad",
+    "description": "Free Statfarad to Farad — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "statfarad",
+      "farad",
+      "capacitance"
+    ]
+  },
+  {
+    "slug": "abhenry-henry",
+    "title": "Abhenry to Henry",
+    "description": "Free Abhenry to Henry — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "abhenry",
+      "henry",
+      "inductance"
+    ]
+  },
+  {
+    "slug": "stathenry-henry",
+    "title": "Stathenry to Henry",
+    "description": "Free Stathenry to Henry — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "stathenry",
+      "henry",
+      "inductance"
+    ]
+  },
+  {
+    "slug": "weber-maxwell",
+    "title": "Weber to Maxwell",
+    "description": "Free Weber to Maxwell — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "weber",
+      "maxwell",
+      "magnetic flux"
+    ]
+  },
+  {
+    "slug": "tesla-gauss",
+    "title": "Tesla to Gauss",
+    "description": "Free Tesla to Gauss — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "tesla",
+      "gauss",
+      "magnetic field"
+    ]
+  },
+  {
+    "slug": "oersted-amp-meter",
+    "title": "Oersted to A/m",
+    "description": "Free Oersted to A/m — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "oersted",
+      "A/m",
+      "magnetic field"
+    ]
+  },
+  {
+    "slug": "gilbert-amp-turn",
+    "title": "Gilbert to Amp-Turn",
+    "description": "Free Gilbert to Amp-Turn — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "gilbert",
+      "amp-turn",
+      "magnetomotive"
+    ]
+  },
+  {
+    "slug": "maxwell-weber",
+    "title": "Maxwell to Weber",
+    "description": "Free Maxwell to Weber — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "maxwell",
+      "weber",
+      "magnetic flux"
+    ]
+  },
+  {
+    "slug": "gamma-tesla",
+    "title": "Gamma to Tesla",
+    "description": "Free Gamma to Tesla — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "gamma",
+      "tesla",
+      "magnetic"
+    ]
+  },
+  {
+    "slug": "mho-cm-conductivity",
+    "title": "Mho/cm to S/m",
+    "description": "Free Mho/cm to S/m — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "mho/cm",
+      "S/m",
+      "conductivity"
+    ]
+  },
+  {
+    "slug": "ohm-cm-resistivity",
+    "title": "Ohm-cm to Ohm-m",
+    "description": "Free Ohm-cm to Ohm-m — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "ohm-cm",
+      "ohm-m",
+      "resistivity"
+    ]
+  },
+  {
+    "slug": "permil-conductivity",
+    "title": "Permil to S/m",
+    "description": "Free Permil to S/m — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "permil",
+      "S/m",
+      "conductivity"
+    ]
+  },
+  {
+    "slug": "reichmann-scale",
+    "title": "Reichmann Scale",
+    "description": "Free Reichmann Scale — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Reichmann",
+      "color",
+      "gem"
+    ]
+  },
+  {
+    "slug": "mohs-hardness",
+    "title": "Mohs Hardness",
+    "description": "Free Mohs Hardness — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Mohs",
+      "hardness",
+      "mineral"
+    ]
+  },
+  {
+    "slug": "vickers-hardness",
+    "title": "Vickers Hardness",
+    "description": "Free Vickers Hardness — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Vickers",
+      "hardness",
+      "HV"
+    ]
+  },
+  {
+    "slug": "brinell-hardness",
+    "title": "Brinell Hardness",
+    "description": "Free Brinell Hardness — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Brinell",
+      "hardness",
+      "HB"
+    ]
+  },
+  {
+    "slug": "rockwell-hardness",
+    "title": "Rockwell Hardness",
+    "description": "Free Rockwell Hardness — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Rockwell",
+      "hardness",
+      "HRC"
+    ]
+  },
+  {
+    "slug": "shore-hardness",
+    "title": "Shore Hardness",
+    "description": "Free Shore Hardness — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Shore",
+      "hardness",
+      "durometer"
+    ]
+  },
+  {
+    "slug": "beaufort-scale",
+    "title": "Beaufort Scale",
+    "description": "Free Beaufort Scale — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Beaufort",
+      "wind",
+      "scale"
+    ]
+  },
+  {
+    "slug": "saffir-simpson",
+    "title": "Saffir-Simpson Scale",
+    "description": "Free Saffir-Simpson Scale — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Saffir-Simpson",
+      "hurricane",
+      "category"
+    ]
+  },
+  {
+    "slug": "fujita-scale",
+    "title": "Fujita Scale",
+    "description": "Free Fujita Scale — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Fujita",
+      "tornado",
+      "scale"
+    ]
+  },
+  {
+    "slug": "richter-scale",
+    "title": "Richter Scale",
+    "description": "Free Richter Scale — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Richter",
+      "magnitude",
+      "earthquake"
+    ]
+  },
+  {
+    "slug": "mercalli-scale",
+    "title": "Mercalli Scale",
+    "description": "Free Mercalli Scale — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Mercalli",
+      "intensity",
+      "earthquake"
+    ]
+  },
+  {
+    "slug": "modified-mercalli",
+    "title": "Modified Mercalli",
+    "description": "Free Modified Mercalli — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Mercalli",
+      "earthquake",
+      "intensity"
+    ]
+  },
+  {
+    "slug": "tsunami-runup",
+    "title": "Tsunami Runup",
+    "description": "Free Tsunami Runup — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "tsunami",
+      "runup",
+      "inundation"
+    ]
+  },
+  {
+    "slug": "avalanche-risk",
+    "title": "Avalanche Risk",
+    "description": "Free Avalanche Risk — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "avalanche",
+      "risk",
+      "snow"
+    ]
+  },
+  {
+    "slug": "fire-danger",
+    "title": "Fire Danger Index",
+    "description": "Free Fire Danger Index — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "fire",
+      "danger",
+      "index"
+    ]
+  },
+  {
+    "slug": "drought-index",
+    "title": "Drought Index",
+    "description": "Free Drought Index — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "drought",
+      "PDSI",
+      "Palmer"
+    ]
+  },
+  {
+    "slug": "air-quality",
+    "title": "Air Quality Index",
+    "description": "Free Air Quality Index — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "AQI",
+      "air quality",
+      "EPA"
+    ]
+  },
+  {
+    "slug": "uvi-index",
+    "title": "UV Index",
+    "description": "Free UV Index — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "UV",
+      "index",
+      "sun exposure"
+    ]
+  },
+  {
+    "slug": "heat-index",
+    "title": "Heat Index",
+    "description": "Free Heat Index — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "heat index",
+      "temperature",
+      "humidity"
+    ]
+  },
+  {
+    "slug": "wind-chill",
+    "title": "Wind Chill",
+    "description": "Free Wind Chill — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "wind chill",
+      "temperature",
+      "wind"
+    ]
+  },
+  {
+    "slug": "humidex",
+    "title": "Humidex",
+    "description": "Free Humidex — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "humidex",
+      "heat",
+      "humidity"
+    ]
+  },
+  {
+    "slug": "wbgt",
+    "title": "WBGT Heat Stress",
+    "description": "Free WBGT Heat Stress — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "WBGT",
+      "heat stress",
+      "outdoor"
+    ]
+  },
+  {
+    "slug": "thom-disc-comfort",
+    "title": "Thom Discomfort Index",
+    "description": "Free Thom Discomfort Index — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Thom",
+      "discomfort",
+      "heat"
+    ]
+  },
+  {
+    "slug": "steadman-apparent",
+    "title": "Steadman Apparent Temp",
+    "description": "Free Steadman Apparent Temp — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "apparent temp",
+      "Steadman",
+      "heat"
+    ]
+  },
+  {
+    "slug": "wet-bulb-globe",
+    "title": "Wet Bulb Globe",
+    "description": "Free Wet Bulb Globe — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "wet bulb",
+      "temperature",
+      "outdoor"
+    ]
+  },
+  {
+    "slug": "suntime-calc",
+    "title": "Sunrise Sunset Time",
+    "description": "Free Sunrise Sunset Time — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "sunrise",
+      "sunset",
+      "time"
+    ]
+  },
+  {
+    "slug": "solar-noon",
+    "title": "Solar Noon",
+    "description": "Free Solar Noon — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "solar noon",
+      "sun",
+      "time"
+    ]
+  },
+  {
+    "slug": "golden-hour",
+    "title": "Golden Hour",
+    "description": "Free Golden Hour — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "golden hour",
+      "photography",
+      "sun"
+    ]
+  },
+  {
+    "slug": "twilight-times",
+    "title": "Twilight Times",
+    "description": "Free Twilight Times — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "twilight",
+      "civil",
+      "nautical"
+    ]
+  },
+  {
+    "slug": "blue-hour",
+    "title": "Blue Hour",
+    "description": "Free Blue Hour — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "blue hour",
+      "photography",
+      "twilight"
+    ]
+  },
+  {
+    "slug": "photoperiod",
+    "title": "Photoperiod",
+    "description": "Free Photoperiod — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "day length",
+      "sunlight",
+      "hours"
+    ]
+  },
+  {
+    "slug": "solar-elevation",
+    "title": "Solar Elevation",
+    "description": "Free Solar Elevation — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "solar elevation",
+      "sun angle"
+    ]
+  },
+  {
+    "slug": "solar-azimuth",
+    "title": "Solar Azimuth",
+    "description": "Free Solar Azimuth — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "solar azimuth",
+      "sun",
+      "compass"
+    ]
+  },
+  {
+    "slug": "equinox-solstice",
+    "title": "Equinox Solstice",
+    "description": "Free Equinox Solstice — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "equinox",
+      "solstice",
+      "date"
+    ]
+  },
+  {
+    "slug": "analemma",
+    "title": "Analemma",
+    "description": "Free Analemma — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "analemma",
+      "sun",
+      "equation of time"
+    ]
+  },
+  {
+    "slug": "equation-of-time",
+    "title": "Equation of Time",
+    "description": "Free Equation of Time — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "equation of time",
+      "solar",
+      "clock"
+    ]
+  },
+  {
+    "slug": "lunar-distance",
+    "title": "Lunar Distance",
+    "description": "Free Lunar Distance — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "moon",
+      "distance",
+      "km"
+    ]
+  },
+  {
+    "slug": "lunar-diameter",
+    "title": "Lunar Diameter",
+    "description": "Free Lunar Diameter — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "moon",
+      "diameter",
+      "apparent"
+    ]
+  },
+  {
+    "slug": "solar-diameter",
+    "title": "Solar Diameter",
+    "description": "Free Solar Diameter — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "sun",
+      "diameter",
+      "apparent"
+    ]
+  },
+  {
+    "slug": "planetary-diameter",
+    "title": "Planetary Diameter",
+    "description": "Free Planetary Diameter — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "planet",
+      "diameter",
+      "apparent"
+    ]
+  },
+  {
+    "slug": "star-magnitude",
+    "title": "Star Magnitude",
+    "description": "Free Star Magnitude — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "apparent magnitude",
+      "star",
+      "brightness"
+    ]
+  },
+  {
+    "slug": "absolute-magnitude",
+    "title": "Absolute Magnitude",
+    "description": "Free Absolute Magnitude — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "absolute magnitude",
+      "star",
+      "luminosity"
+    ]
+  },
+  {
+    "slug": "parallax-distance",
+    "title": "Parallax to Distance",
+    "description": "Free Parallax to Distance — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "parallax",
+      "parsec",
+      "distance"
+    ]
+  },
+  {
+    "slug": "redshift-distance",
+    "title": "Redshift to Distance",
+    "description": "Free Redshift to Distance — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "redshift",
+      "distance",
+      "cosmology"
+    ]
+  },
+  {
+    "slug": "light-travel",
+    "title": "Light Travel Time",
+    "description": "Free Light Travel Time — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "light year",
+      "distance",
+      "travel time"
+    ]
+  },
+  {
+    "slug": "au-distance",
+    "title": "AU to KM",
+    "description": "Free AU to KM — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "astronomical unit",
+      "AU",
+      "km"
+    ]
+  },
+  {
+    "slug": "parsec-ly",
+    "title": "Parsec to Light Years",
+    "description": "Free Parsec to Light Years — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "parsec",
+      "light year",
+      "distance"
+    ]
+  },
+  {
+    "slug": "orbital-period",
+    "title": "Orbital Period",
+    "description": "Free Orbital Period — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "orbit",
+      "period",
+      "Kepler"
+    ]
+  },
+  {
+    "slug": "escape-velocity",
+    "title": "Escape Velocity",
+    "description": "Free Escape Velocity — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "escape velocity",
+      "gravity",
+      "planet"
+    ]
+  },
+  {
+    "slug": "synodic-period",
+    "title": "Synodic Period",
+    "description": "Free Synodic Period — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "synodic",
+      "period",
+      "planet"
+    ]
+  },
+  {
+    "slug": "solar-mass",
+    "title": "Solar Mass",
+    "description": "Free Solar Mass — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "solar mass",
+      "M☉",
+      "astronomy"
+    ]
+  },
+  {
+    "slug": "earth-mass",
+    "title": "Earth Mass",
+    "description": "Free Earth Mass — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Earth mass",
+      "M⊕",
+      "astronomy"
+    ]
+  },
+  {
+    "slug": "jupiter-mass",
+    "title": "Jupiter Mass",
+    "description": "Free Jupiter Mass — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Jupiter mass",
+      "M♃",
+      "astronomy"
+    ]
+  },
+  {
+    "slug": "lunar-mass",
+    "title": "Lunar Mass",
+    "description": "Free Lunar Mass — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "lunar mass",
+      "moon",
+      "astronomy"
+    ]
+  },
+  {
+    "slug": "habitable-zone",
+    "title": "Habitable Zone",
+    "description": "Free Habitable Zone — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "habitable zone",
+      "Goldilocks",
+      "exoplanet"
+    ]
+  },
+  {
+    "slug": "tidal-force",
+    "title": "Tidal Force",
+    "description": "Free Tidal Force — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "tidal force",
+      "gravity",
+      "moon"
+    ]
+  },
+  {
+    "slug": "roche-limit",
+    "title": "Roche Limit",
+    "description": "Free Roche Limit — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Roche limit",
+      "tidal",
+      "disruption"
+    ]
+  },
+  {
+    "slug": "hill-sphere",
+    "title": "Hill Sphere",
+    "description": "Free Hill Sphere — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Hill sphere",
+      "gravity",
+      "influence"
+    ]
+  },
+  {
+    "slug": "albedo-calc",
+    "title": "Albedo",
+    "description": "Free Albedo — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "albedo",
+      "reflectivity",
+      "surface"
+    ]
+  },
+  {
+    "slug": "blackbody-temp",
+    "title": "Blackbody Temperature",
+    "description": "Free Blackbody Temperature — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "blackbody",
+      "temperature",
+      "radiation"
+    ]
+  },
+  {
+    "slug": "planck-law",
+    "title": "Planck Law",
+    "description": "Free Planck Law — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Planck",
+      "radiation",
+      "spectrum"
+    ]
+  },
+  {
+    "slug": "wien-law",
+    "title": "Wien Displacement",
+    "description": "Free Wien Displacement — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Wien",
+      "displacement",
+      "wavelength"
+    ]
+  },
+  {
+    "slug": "stefan-boltzmann",
+    "title": "Stefan-Boltzmann",
+    "description": "Free Stefan-Boltzmann — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Stefan-Boltzmann",
+      "radiation",
+      "power"
+    ]
+  },
+  {
+    "slug": "jeans-mass",
+    "title": "Jeans Mass",
+    "description": "Free Jeans Mass — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Jeans mass",
+      "collapse",
+      "star formation"
+    ]
+  },
+  {
+    "slug": "chandrasekhar-limit",
+    "title": "Chandrasekhar Limit",
+    "description": "Free Chandrasekhar Limit — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Chandrasekhar",
+      "limit",
+      "white dwarf"
+    ]
+  },
+  {
+    "slug": "tolan-oppenheimer",
+    "title": "Tolman-Oppenheimer-Volkoff",
+    "description": "Free Tolman-Oppenheimer-Volkoff — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "TOV",
+      "limit",
+      "neutron star"
+    ]
+  },
+  {
+    "slug": "schwarzschild-radius",
+    "title": "Schwarzschild Radius",
+    "description": "Free Schwarzschild Radius — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Schwarzschild",
+      "radius",
+      "black hole"
+    ]
+  },
+  {
+    "slug": "eddington-luminosity",
+    "title": "Eddington Luminosity",
+    "description": "Free Eddington Luminosity — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Eddington",
+      "luminosity",
+      "limit"
+    ]
+  },
+  {
+    "slug": "magnification-optics",
+    "title": "Magnification Optics",
+    "description": "Free Magnification Optics — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "magnification",
+      "optics",
+      "lens"
+    ]
+  },
+  {
+    "slug": "numerical-aperture",
+    "title": "Numerical Aperture",
+    "description": "Free Numerical Aperture — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "numerical aperture",
+      "NA",
+      "microscope"
+    ]
+  },
+  {
+    "slug": "fresnel-lens",
+    "title": "Fresnel Lens",
+    "description": "Free Fresnel Lens — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Fresnel",
+      "lens",
+      "focal"
+    ]
+  },
+  {
+    "slug": "diopter-focal",
+    "title": "Diopter to Focal",
+    "description": "Free Diopter to Focal — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "diopter",
+      "focal length",
+      "lens"
+    ]
+  },
+  {
+    "slug": "prism-deviation",
+    "title": "Prism Deviation",
+    "description": "Free Prism Deviation — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "prism",
+      "deviation",
+      "angle"
+    ]
+  },
+  {
+    "slug": "polarization-angle",
+    "title": "Polarization Angle",
+    "description": "Free Polarization Angle — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "polarization",
+      "Brewster",
+      "angle"
+    ]
+  },
+  {
+    "slug": "birefringence",
+    "title": "Birefringence",
+    "description": "Free Birefringence — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "birefringence",
+      "double refraction"
+    ]
+  },
+  {
+    "slug": "interference-fringe",
+    "title": "Interference Fringe",
+    "description": "Free Interference Fringe — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "interference",
+      "fringe",
+      "Young"
+    ]
+  },
+  {
+    "slug": "coherence-length",
+    "title": "Coherence Length",
+    "description": "Free Coherence Length — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "coherence",
+      "length",
+      "laser"
+    ]
+  },
+  {
+    "slug": "laser-pulse-energy",
+    "title": "Laser Pulse Energy",
+    "description": "Free Laser Pulse Energy — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "laser",
+      "pulse",
+      "energy",
+      "J"
+    ]
+  },
+  {
+    "slug": "laser-spot-size",
+    "title": "Laser Spot Size",
+    "description": "Free Laser Spot Size — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "laser",
+      "spot",
+      "size",
+      "beam"
+    ]
+  },
+  {
+    "slug": "m2-beam-quality",
+    "title": "M² Beam Quality",
+    "description": "Free M² Beam Quality — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "M²",
+      "beam quality",
+      "laser"
+    ]
+  },
+  {
+    "slug": "q-factor",
+    "title": "Q Factor",
+    "description": "Free Q Factor — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Q factor",
+      "resonance",
+      "bandwidth"
+    ]
+  },
+  {
+    "slug": "coupling-coefficient",
+    "title": "Coupling Coefficient",
+    "description": "Free Coupling Coefficient — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "coupling",
+      "coefficient",
+      "cavity"
+    ]
+  },
+  {
+    "slug": "skin-depth",
+    "title": "Skin Depth",
+    "description": "Free Skin Depth — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "skin depth",
+      "conductor",
+      "frequency"
+    ]
+  },
+  {
+    "slug": "antenna-gain",
+    "title": "Antenna Gain",
+    "description": "Free Antenna Gain — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "antenna gain",
+      "dBi",
+      "dBd"
+    ]
+  },
+  {
+    "slug": "eirp",
+    "title": "EIRP",
+    "description": "Free EIRP — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "EIRP",
+      "transmit",
+      "power"
+    ]
+  },
+  {
+    "slug": "path-loss",
+    "title": "Path Loss",
+    "description": "Free Path Loss — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "path loss",
+      "Friis",
+      "distance"
+    ]
+  },
+  {
+    "slug": "link-budget",
+    "title": "Link Budget",
+    "description": "Free Link Budget — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "link budget",
+      "margin",
+      "RF"
+    ]
+  },
+  {
+    "slug": "noise-figure",
+    "title": "Noise Figure",
+    "description": "Free Noise Figure — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "noise figure",
+      "NF",
+      "amplifier"
+    ]
+  },
+  {
+    "slug": "ip3-calculator",
+    "title": "IP3 Third Order Intercept",
+    "description": "Free IP3 Third Order Intercept — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "IP3",
+      "intercept",
+      "linearity"
+    ]
+  },
+  {
+    "slug": "p1db",
+    "title": "P1dB Compression",
+    "description": "Free P1dB Compression — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "P1dB",
+      "compression",
+      "amplifier"
+    ]
+  },
+  {
+    "slug": "s-parameters",
+    "title": "S-Parameters",
+    "description": "Free S-Parameters — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "S-parameters",
+      "scattering",
+      "RF"
+    ]
+  },
+  {
+    "slug": "smith-chart",
+    "title": "Smith Chart",
+    "description": "Free Smith Chart — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Smith chart",
+      "impedance",
+      "matching"
+    ]
+  },
+  {
+    "slug": "stub-match",
+    "title": "Stub Matching",
+    "description": "Free Stub Matching — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "stub",
+      "matching",
+      "transmission"
+    ]
+  },
+  {
+    "slug": "microstrip-width",
+    "title": "Microstrip Width",
+    "description": "Free Microstrip Width — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "microstrip",
+      "width",
+      "impedance"
+    ]
+  },
+  {
+    "slug": "coax-impedance",
+    "title": "Coax Impedance",
+    "description": "Free Coax Impedance — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "coax",
+      "impedance",
+      "cable"
+    ]
+  },
+  {
+    "slug": "twisted-pair",
+    "title": "Twisted Pair",
+    "description": "Free Twisted Pair — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "twisted pair",
+      "impedance",
+      "Ethernet"
+    ]
+  },
+  {
+    "slug": "cat-cable-length",
+    "title": "Cat Cable Length",
+    "description": "Free Cat Cable Length — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Cat5",
+      "Cat6",
+      "cable",
+      "length"
+    ]
+  },
+  {
+    "slug": "fiber-attenuation",
+    "title": "Fiber Attenuation",
+    "description": "Free Fiber Attenuation — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "fiber",
+      "attenuation",
+      "dB/km"
+    ]
+  },
+  {
+    "slug": "fiber-dispersion",
+    "title": "Fiber Dispersion",
+    "description": "Free Fiber Dispersion — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "fiber",
+      "dispersion",
+      "chromatic"
+    ]
+  },
+  {
+    "slug": "fiber-bandwidth",
+    "title": "Fiber Bandwidth",
+    "description": "Free Fiber Bandwidth — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "fiber",
+      "bandwidth",
+      "distance"
+    ]
+  },
+  {
+    "slug": "otdr-trace",
+    "title": "OTDR Trace",
+    "description": "Free OTDR Trace — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "OTDR",
+      "trace",
+      "fiber",
+      "length"
+    ]
+  },
+  {
+    "slug": "rain-attenuation",
+    "title": "Rain Attenuation",
+    "description": "Free Rain Attenuation — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "rain",
+      "attenuation",
+      "satellite"
+    ]
+  },
+  {
+    "slug": "atmospheric-absorption",
+    "title": "Atmospheric Absorption",
+    "description": "Free Atmospheric Absorption — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "atmospheric",
+      "absorption",
+      "signal"
+    ]
+  },
+  {
+    "slug": "fresnel-zone",
+    "title": "Fresnel Zone",
+    "description": "Free Fresnel Zone — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Fresnel zone",
+      "clearance",
+      "RF"
+    ]
+  },
+  {
+    "slug": "tower-height",
+    "title": "Tower Height",
+    "description": "Free Tower Height — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "tower",
+      "height",
+      "line of sight"
+    ]
+  },
+  {
+    "slug": "earth-bulge",
+    "title": "Earth Bulge",
+    "description": "Free Earth Bulge — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "earth bulge",
+      "horizon",
+      "radio"
+    ]
+  },
+  {
+    "slug": "radio-horizon",
+    "title": "Radio Horizon",
+    "description": "Free Radio Horizon — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "radio horizon",
+      "distance",
+      "antenna"
+    ]
+  },
+  {
+    "slug": "radar-range",
+    "title": "Radar Range",
+    "description": "Free Radar Range — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "radar",
+      "range",
+      "equation"
+    ]
+  },
+  {
+    "slug": "radar-cross-section",
+    "title": "Radar Cross Section",
+    "description": "Free Radar Cross Section — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "RCS",
+      "radar",
+      "target"
+    ]
+  },
+  {
+    "slug": "sonar-range",
+    "title": "Sonar Range",
+    "description": "Free Sonar Range — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "sonar",
+      "range",
+      "depth"
+    ]
+  },
+  {
+    "slug": "underwater-sound",
+    "title": "Underwater Sound",
+    "description": "Free Underwater Sound — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "sound",
+      "water",
+      "velocity"
+    ]
+  },
+  {
+    "slug": "water-depth-pressure",
+    "title": "Water Depth to Pressure",
+    "description": "Free Water Depth to Pressure — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "water depth",
+      "pressure",
+      "diving"
+    ]
+  },
+  {
+    "slug": "dive-decompression",
+    "title": "Dive Decompression",
+    "description": "Free Dive Decompression — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "dive",
+      "decompression",
+      "depth"
+    ]
+  },
+  {
+    "slug": "nitrox-mix",
+    "title": "Nitrox Mix",
+    "description": "Free Nitrox Mix — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "nitrox",
+      "EANx",
+      "diving"
+    ]
+  },
+  {
+    "slug": "air-density-altitude",
+    "title": "Air Density Altitude",
+    "description": "Free Air Density Altitude — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "air density",
+      "altitude",
+      "aviation"
+    ]
+  },
+  {
+    "slug": "airspeed-conversion",
+    "title": "Airspeed Conversion",
+    "description": "Free Airspeed Conversion — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "IAS",
+      "TAS",
+      "CAS",
+      "airspeed"
+    ]
+  },
+  {
+    "slug": "altimeter-setting",
+    "title": "Altimeter Setting",
+    "description": "Free Altimeter Setting — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "altimeter",
+      "setting",
+      "pressure"
+    ]
+  },
+  {
+    "slug": "density-altitude",
+    "title": "Density Altitude",
+    "description": "Free Density Altitude — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "density altitude",
+      "DA",
+      "aviation"
+    ]
+  },
+  {
+    "slug": "true-altitude",
+    "title": "True Altitude",
+    "description": "Free True Altitude — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "true altitude",
+      "pressure",
+      "temperature"
+    ]
+  },
+  {
+    "slug": "crosswind-component",
+    "title": "Crosswind Component",
+    "description": "Free Crosswind Component — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "crosswind",
+      "headwind",
+      "runway"
+    ]
+  },
+  {
+    "slug": "headwind-component",
+    "title": "Headwind Component",
+    "description": "Free Headwind Component — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "headwind",
+      "tailwind",
+      "runway"
+    ]
+  },
+  {
+    "slug": "wind-correction",
+    "title": "Wind Correction Angle",
+    "description": "Free Wind Correction Angle — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "wind correction",
+      "WCA",
+      "navigation"
+    ]
+  },
+  {
+    "slug": "fuel-burn",
+    "title": "Fuel Burn",
+    "description": "Free Fuel Burn — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "fuel burn",
+      "aviation",
+      "endurance"
+    ]
+  },
+  {
+    "slug": "great-circle",
+    "title": "Great Circle Distance",
+    "description": "Free Great Circle Distance — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "great circle",
+      "distance",
+      "navigation"
+    ]
+  },
+  {
+    "slug": "rhumb-line",
+    "title": "Rhumb Line",
+    "description": "Free Rhumb Line — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "rhumb line",
+      "loxodrome",
+      "navigation"
+    ]
+  },
+  {
+    "slug": "magnetic-variation",
+    "title": "Magnetic Variation",
+    "description": "Free Magnetic Variation — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "magnetic variation",
+      "declination",
+      "compass"
+    ]
+  },
+  {
+    "slug": "true-north",
+    "title": "True North Correction",
+    "description": "Free True North Correction — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "true north",
+      "magnetic",
+      "compass"
+    ]
+  },
+  {
+    "slug": "nautical-mile-km",
+    "title": "Nautical Mile to KM",
+    "description": "Free Nautical Mile to KM — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "nautical mile",
+      "NM",
+      "km"
+    ]
+  },
+  {
+    "slug": "cable-length",
+    "title": "Cable Length",
+    "description": "Free Cable Length — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "cable length",
+      "nautical",
+      "fathom"
+    ]
+  },
+  {
+    "slug": "ship-displacement",
+    "title": "Ship Displacement",
+    "description": "Free Ship Displacement — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "displacement",
+      "tonnage",
+      "ship"
+    ]
+  },
+  {
+    "slug": "container-load",
+    "title": "Container Load",
+    "description": "Free Container Load — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "container",
+      "TEU",
+      "shipping"
+    ]
+  },
+  {
+    "slug": "pallet-load",
+    "title": "Pallet Load",
+    "description": "Free Pallet Load — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "pallet",
+      "load",
+      "shipping"
+    ]
+  },
+  {
+    "slug": "shipping-volume",
+    "title": "Shipping Volume",
+    "description": "Free Shipping Volume — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "shipping",
+      "CBM",
+      "volume"
+    ]
+  },
+  {
+    "slug": "cargo-density",
+    "title": "Cargo Density",
+    "description": "Free Cargo Density — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "cargo",
+      "density",
+      "stowage"
+    ]
+  },
+  {
+    "slug": "port-draft",
+    "title": "Port Draft",
+    "description": "Free Port Draft — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "draft",
+      "depth",
+      "port",
+      "ship"
+    ]
+  },
+  {
+    "slug": "anchoring-scope",
+    "title": "Anchoring Scope",
+    "description": "Free Anchoring Scope — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "anchor",
+      "scope",
+      "chain",
+      "depth"
+    ]
+  },
+  {
+    "slug": "mooring-line",
+    "title": "Mooring Line",
+    "description": "Free Mooring Line — Fast and accurate unit conversion tool. Perfect for students, travelers, engineers, and professionals.",
+    "hubSlug": "conversion-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "mooring",
+      "line",
+      "tension",
+      "load"
+    ]
+  }
+]

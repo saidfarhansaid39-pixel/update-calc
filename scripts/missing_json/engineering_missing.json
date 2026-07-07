@@ -1,0 +1,718 @@
+[
+  {
+    "slug": "gerber-parabola",
+    "title": "Gerber Parabola",
+    "description": "Free Gerber Parabola — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "Gerber",
+      "fatigue",
+      "parabola",
+      "mean stress"
+    ]
+  },
+  {
+    "slug": "shell-buckling",
+    "title": "Shell Buckling",
+    "description": "Free Shell Buckling — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "shell",
+      "buckling",
+      "cylindrical",
+      "pressure"
+    ]
+  },
+  {
+    "slug": "minor-losses",
+    "title": "Minor Losses Pipe",
+    "description": "Free Minor Losses Pipe — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "minor loss",
+      "elbow",
+      "valve",
+      "K factor"
+    ]
+  },
+  {
+    "slug": "pipe-network",
+    "title": "Pipe Network Hardy Cross",
+    "description": "Free Pipe Network Hardy Cross — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "pipe network",
+      "Hardy Cross",
+      "head loss",
+      "loop"
+    ]
+  },
+  {
+    "slug": "sediment-transport",
+    "title": "Sediment Transport",
+    "description": "Free Sediment Transport — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "sediment",
+      "Shields",
+      "bed load",
+      "suspended"
+    ]
+  },
+  {
+    "slug": "mixing-tank",
+    "title": "Mixing Tank",
+    "description": "Free Mixing Tank — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "mixing",
+      "tank",
+      "time",
+      "concentration"
+    ]
+  },
+  {
+    "slug": "heat-transfer-conduction",
+    "title": "Conduction Heat Transfer",
+    "description": "Free Conduction Heat Transfer — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "conduction",
+      "Fourier",
+      "heat flux",
+      "thermal"
+    ]
+  },
+  {
+    "slug": "heat-transfer-convection",
+    "title": "Convection Heat Transfer",
+    "description": "Free Convection Heat Transfer — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "convection",
+      "Newton",
+      "heat transfer coefficient"
+    ]
+  },
+  {
+    "slug": "heat-transfer-radiation",
+    "title": "Radiation Heat Transfer",
+    "description": "Free Radiation Heat Transfer — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "radiation",
+      "Stefan-Boltzmann",
+      "emissivity",
+      "view factor"
+    ]
+  },
+  {
+    "slug": "fins-heat-transfer",
+    "title": "Fins Heat Transfer",
+    "description": "Free Fins Heat Transfer — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "fin",
+      "efficiency",
+      "extended surface",
+      "temperature"
+    ]
+  },
+  {
+    "slug": "heat-exchanger-ntu",
+    "title": "Heat Exchanger NTU",
+    "description": "Free Heat Exchanger NTU — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "NTU",
+      "effectiveness",
+      "heat exchanger",
+      "LMTD"
+    ]
+  },
+  {
+    "slug": "heat-exchanger-lmtd",
+    "title": "Heat Exchanger LMTD",
+    "description": "Free Heat Exchanger LMTD — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "LMTD",
+      "counterflow",
+      "parallel",
+      "heat exchanger"
+    ]
+  },
+  {
+    "slug": "transient-heat",
+    "title": "Transient Heat Conduction",
+    "description": "Free Transient Heat Conduction — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "transient",
+      "lumped",
+      "Biot",
+      "Fourier number"
+    ]
+  },
+  {
+    "slug": "refrigeration-cycle",
+    "title": "Refrigeration Cycle",
+    "description": "Free Refrigeration Cycle — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "refrigeration",
+      "COP",
+      "Carnot",
+      "vapor compression"
+    ]
+  },
+  {
+    "slug": "diffuser-flow",
+    "title": "Diffuser Flow",
+    "description": "Free Diffuser Flow — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "diffuser",
+      "pressure",
+      "recovery",
+      "velocity"
+    ]
+  },
+  {
+    "slug": "fan-map",
+    "title": "Fan Performance Map",
+    "description": "Free Fan Performance Map — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "fan",
+      "performance",
+      "map",
+      "flow coefficient"
+    ]
+  },
+  {
+    "slug": "pump-map",
+    "title": "Pump Performance Map",
+    "description": "Free Pump Performance Map — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "pump",
+      "curve",
+      "head",
+      "flow",
+      "efficiency"
+    ]
+  },
+  {
+    "slug": "compressor-map",
+    "title": "Compressor Map",
+    "description": "Free Compressor Map — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "compressor",
+      "map",
+      "surge",
+      "choke"
+    ]
+  },
+  {
+    "slug": "gas-turbine",
+    "title": "Gas Turbine Brayton",
+    "description": "Free Gas Turbine Brayton — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "gas turbine",
+      "Brayton",
+      "pressure ratio",
+      "efficiency"
+    ]
+  },
+  {
+    "slug": "steam-cycle",
+    "title": "Steam Rankine Cycle",
+    "description": "Free Steam Rankine Cycle — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Rankine",
+      "steam",
+      "efficiency",
+      "reheat"
+    ]
+  },
+  {
+    "slug": "cogeneration",
+    "title": "Cogeneration",
+    "description": "Free Cogeneration — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "cogeneration",
+      "CHP",
+      "heat",
+      "power"
+    ]
+  },
+  {
+    "slug": "chiller-performance",
+    "title": "Chiller Performance",
+    "description": "Free Chiller Performance — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "chiller",
+      "COP",
+      "EER",
+      "kW/ton"
+    ]
+  },
+  {
+    "slug": "cooling-tower",
+    "title": "Cooling Tower",
+    "description": "Free Cooling Tower — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "cooling tower",
+      "approach",
+      "range",
+      "evaporation"
+    ]
+  },
+  {
+    "slug": "hvac-heating",
+    "title": "HVAC Heating Load",
+    "description": "Free HVAC Heating Load — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "HVAC",
+      "heating load",
+      "degree day",
+      "heat loss"
+    ]
+  },
+  {
+    "slug": "duct-design",
+    "title": "Duct Design Equal Friction",
+    "description": "Free Duct Design Equal Friction — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "duct",
+      "equal friction",
+      "velocity",
+      "pressure"
+    ]
+  },
+  {
+    "slug": "air-handler",
+    "title": "Air Handler Sizing",
+    "description": "Free Air Handler Sizing — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "AHU",
+      "air handler",
+      "CFM",
+      "coil"
+    ]
+  },
+  {
+    "slug": "vav-box",
+    "title": "VAV Box Sizing",
+    "description": "Free VAV Box Sizing — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "VAV",
+      "variable air volume",
+      "box",
+      "minimum"
+    ]
+  },
+  {
+    "slug": "differential-settling",
+    "title": "Differential Settling",
+    "description": "Free Differential Settling — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "sedimentation",
+      "Stokes",
+      "settling",
+      "velocity"
+    ]
+  },
+  {
+    "slug": "cyclone-separator",
+    "title": "Cyclone Separator",
+    "description": "Free Cyclone Separator — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "cyclone",
+      "separator",
+      "cut diameter",
+      "efficiency"
+    ]
+  },
+  {
+    "slug": "baghouse-filter",
+    "title": "Baghouse Filter",
+    "description": "Free Baghouse Filter — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "baghouse",
+      "filter",
+      "air-to-cloth",
+      "pressure drop"
+    ]
+  },
+  {
+    "slug": "electrostatic-precipitator",
+    "title": "Electrostatic Precipitator",
+    "description": "Free Electrostatic Precipitator — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "ESP",
+      "precipitator",
+      "migration",
+      "voltage"
+    ]
+  },
+  {
+    "slug": "chemical-reactor-cstr",
+    "title": "CSTR Reactor",
+    "description": "Free CSTR Reactor — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "CSTR",
+      "continuous",
+      "stirred tank",
+      "residence"
+    ]
+  },
+  {
+    "slug": "chemical-reactor-pfr",
+    "title": "PFR Reactor",
+    "description": "Free PFR Reactor — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "PFR",
+      "plug flow",
+      "conversion",
+      "length"
+    ]
+  },
+  {
+    "slug": "batch-reactor",
+    "title": "Batch Reactor",
+    "description": "Free Batch Reactor — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "batch",
+      "reactor",
+      "conversion",
+      "time"
+    ]
+  },
+  {
+    "slug": "catalyst-bed",
+    "title": "Catalyst Bed",
+    "description": "Free Catalyst Bed — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "catalyst",
+      "bed",
+      "pressure drop",
+      "Ergun"
+    ]
+  },
+  {
+    "slug": "distillation-column",
+    "title": "Distillation Column McCabe-Thiele",
+    "description": "Free Distillation Column McCabe-Thiele — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "distillation",
+      "McCabe-Thiele",
+      "stages",
+      "reflux"
+    ]
+  },
+  {
+    "slug": "absorption-column",
+    "title": "Absorption Column",
+    "description": "Free Absorption Column — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "absorption",
+      "packed",
+      "height",
+      "transfer unit"
+    ]
+  },
+  {
+    "slug": "extraction-calc",
+    "title": "Liquid-Liquid Extraction",
+    "description": "Free Liquid-Liquid Extraction — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "extraction",
+      "solvent",
+      "distribution",
+      "stage"
+    ]
+  },
+  {
+    "slug": "adsorption-column",
+    "title": "Adsorption Column",
+    "description": "Free Adsorption Column — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "adsorption",
+      "breakthrough",
+      "Langmuir",
+      "Freundlich"
+    ]
+  },
+  {
+    "slug": "membrane-separation",
+    "title": "Membrane Separation",
+    "description": "Free Membrane Separation — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "membrane",
+      "reverse osmosis",
+      "flux",
+      "rejection"
+    ]
+  },
+  {
+    "slug": "crystallization",
+    "title": "Crystallization",
+    "description": "Free Crystallization — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "crystallization",
+      "yield",
+      "supersaturation",
+      "mass balance"
+    ]
+  },
+  {
+    "slug": "drying-calc",
+    "title": "Drying Rate",
+    "description": "Free Drying Rate — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "drying",
+      "rate",
+      "moisture",
+      "constant rate"
+    ]
+  },
+  {
+    "slug": "filtration-calc",
+    "title": "Filtration",
+    "description": "Free Filtration — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "filtration",
+      "pressure",
+      "cake",
+      "Ruth"
+    ]
+  },
+  {
+    "slug": "centrifugation",
+    "title": "Centrifugation",
+    "description": "Free Centrifugation — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "centrifuge",
+      "g-force",
+      "RPM",
+      "separation"
+    ]
+  },
+  {
+    "slug": "mixer-design",
+    "title": "Mixer Design",
+    "description": "Free Mixer Design — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "mixer",
+      "impeller",
+      "power number",
+      "Reynolds"
+    ]
+  },
+  {
+    "slug": "agitated-vessel",
+    "title": "Agitated Vessel",
+    "description": "Free Agitated Vessel — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "agitation",
+      "vessel",
+      "blending",
+      "suspension"
+    ]
+  },
+  {
+    "slug": "pinch-analysis",
+    "title": "Pinch Analysis",
+    "description": "Free Pinch Analysis — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "pinch",
+      "analysis",
+      "heat integration",
+      "target"
+    ]
+  },
+  {
+    "slug": "mass-balance",
+    "title": "Mass Balance",
+    "description": "Free Mass Balance — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "mass balance",
+      "steady state",
+      "streams",
+      "split"
+    ]
+  },
+  {
+    "slug": "energy-balance",
+    "title": "Energy Balance",
+    "description": "Free Energy Balance — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "energy balance",
+      "steady state",
+      "enthalpy",
+      "stream"
+    ]
+  },
+  {
+    "slug": "process-control-pid",
+    "title": "PID Tuning",
+    "description": "Free PID Tuning — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "PID",
+      "Ziegler-Nichols",
+      "Cohen-Coon",
+      "tuning"
+    ]
+  },
+  {
+    "slug": "process-control-loop",
+    "title": "Control Loop Stability",
+    "description": "Free Control Loop Stability — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "control",
+      "loop",
+      "stability",
+      "gain margin"
+    ]
+  },
+  {
+    "slug": "block-diagram",
+    "title": "Block Diagram Reduction",
+    "description": "Free Block Diagram Reduction — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "block diagram",
+      "reduction",
+      "Mason",
+      "transfer function"
+    ]
+  },
+  {
+    "slug": "bode-plot",
+    "title": "Bode Plot",
+    "description": "Free Bode Plot — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Bode",
+      "plot",
+      "gain",
+      "phase",
+      "margin"
+    ]
+  },
+  {
+    "slug": "nyquist-plot",
+    "title": "Nyquist Plot",
+    "description": "Free Nyquist Plot — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Nyquist",
+      "stability",
+      "encirclement",
+      "gain margin"
+    ]
+  },
+  {
+    "slug": "root-locus",
+    "title": "Root Locus",
+    "description": "Free Root Locus — Engineering reference tool for quick, accurate calculations. Essential for engineers.",
+    "hubSlug": "engineering-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "root locus",
+      "gain",
+      "poles",
+      "stability"
+    ]
+  }
+]

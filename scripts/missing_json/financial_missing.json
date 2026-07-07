@@ -1,0 +1,164 @@
+[
+  {
+    "slug": "401k-calculator",
+    "title": "401k Calculator",
+    "description": "Free 401k Calculator — Calculate your 401k retirement savings growth. Plan your retirement with our detailed financial tool featuring 401k, retirement, savings. Get accurate personalized results charts and actionable insights for your unique situation. Perfect for homeowners investors and financial planners.",
+    "hubSlug": "financial-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "401k",
+      "retirement",
+      "savings",
+      "finance",
+      "calculator free",
+      "money tool",
+      "financial planning",
+      "budget tool",
+      "online calculator"
+    ]
+  },
+  {
+    "slug": "403b-calculator",
+    "title": "403b Calculator",
+    "description": "Free 403b Calculator — Calculate 403b retirement savings growth. Plan your retirement with our detailed financial tool featuring 403b, retirement, non-profit. Get accurate personalized results charts and actionable insights for your unique situation. Perfect for homeowners investors and financial planners.",
+    "hubSlug": "financial-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "403b",
+      "retirement",
+      "non-profit",
+      "finance",
+      "calculator free",
+      "money tool",
+      "financial planning",
+      "budget tool",
+      "online calculator"
+    ]
+  },
+  {
+    "slug": "457-calculator",
+    "title": "457 Calculator",
+    "description": "Free 457 Calculator — Calculate 457 retirement savings growth. Plan your retirement with our detailed financial tool featuring 457, deferred comp, government. Get accurate personalized results charts and actionable insights for your unique situation. Perfect for homeowners investors and financial planners.",
+    "hubSlug": "financial-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "457",
+      "deferred comp",
+      "government",
+      "finance",
+      "calculator free",
+      "money tool",
+      "financial planning",
+      "budget tool",
+      "online calculator"
+    ]
+  },
+  {
+    "slug": "50-30-20-budget",
+    "title": "50/30/20 Budget",
+    "description": "Free 50/30/20 Budget Calculator — Apply the 50/30/20 budgeting rule. Take control of your budget with our detailed financial tool featuring 50/30/20, needs, wants. Get accurate personalized results charts and actionable insights for your unique situation. Perfect for homeowners investors and financial planners.",
+    "hubSlug": "financial-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "50/30/20",
+      "budget",
+      "needs",
+      "finance",
+      "calculator free",
+      "money tool",
+      "financial planning",
+      "budget tool",
+      "online calculator"
+    ]
+  },
+  {
+    "slug": "529-calculator",
+    "title": "529 Calculator",
+    "description": "Free 529 Calculator — Calculate 529 plan savings growth for education. Maximize savings with our detailed financial tool featuring 529, education, tax-advantaged. Get accurate personalized results charts and actionable insights for your unique situation. Perfect for homeowners investors and financial planners.",
+    "hubSlug": "financial-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "529",
+      "education",
+      "tax-advantaged",
+      "finance",
+      "calculator free",
+      "money tool",
+      "financial planning",
+      "budget tool",
+      "online calculator"
+    ]
+  },
+  {
+    "slug": "1031-exchange",
+    "title": "1031 Exchange",
+    "description": "Free 1031 Exchange — Smart financial planning tool. Essential for investors, homeowners, and financial professionals.",
+    "hubSlug": "financial-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "1031",
+      "like kind",
+      "exchange"
+    ]
+  },
+  {
+    "slug": "457-plan",
+    "title": "457b Plan",
+    "description": "Free 457b Plan — Smart financial planning tool. Essential for investors, homeowners, and financial professionals.",
+    "hubSlug": "financial-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "457b",
+      "deferred comp",
+      "retirement"
+    ]
+  },
+  {
+    "slug": "403b-plan",
+    "title": "403b Plan",
+    "description": "Free 403b Plan — Smart financial planning tool. Essential for investors, homeowners, and financial professionals.",
+    "hubSlug": "financial-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "403b",
+      "nonprofit",
+      "TSA"
+    ]
+  },
+  {
+    "slug": "72t-sepp",
+    "title": "72t SEPP",
+    "description": "Free 72t SEPP — Smart financial planning tool. Essential for investors, homeowners, and financial professionals.",
+    "hubSlug": "financial-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "72t",
+      "SEPP",
+      "early withdrawal"
+    ]
+  },
+  {
+    "slug": "529-prepaid",
+    "title": "529 Prepaid Tuition",
+    "description": "Free 529 Prepaid Tuition — Smart financial planning tool. Essential for investors, homeowners, and financial professionals.",
+    "hubSlug": "financial-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "529",
+      "prepaid",
+      "tuition"
+    ]
+  },
+  {
+    "slug": "529-savings-plan",
+    "title": "529 Savings Plan",
+    "description": "Free 529 Savings Plan — Smart financial planning tool. Essential for investors, homeowners, and financial professionals.",
+    "hubSlug": "financial-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "529",
+      "savings",
+      "education"
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "name": "JDCALC",
+  "short_name": "JDCALC",
+  "description": "Precision calculators for finance, health, math, science, and everyday life.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#1a3a8a",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "48x48 72x72 96x96 128x128 256x256",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["utilities", "finance", "health", "education"],
+  "lang": "en-US",
+  "scope": "/"
+}

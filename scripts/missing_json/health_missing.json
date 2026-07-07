@@ -1,0 +1,28 @@
+[
+  {
+    "slug": "3-site-skinfold",
+    "title": "3-Site Skinfold",
+    "description": "Free 3-Site Skinfold — Essential health assessment tool for accurate health metrics. Perfect for patients and healthcare providers.",
+    "hubSlug": "health-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "skinfold",
+      "3-site",
+      "Jackson",
+      "Pollock"
+    ]
+  },
+  {
+    "slug": "7-site-skinfold",
+    "title": "7-Site Skinfold",
+    "description": "Free 7-Site Skinfold — Essential health assessment tool for accurate health metrics. Perfect for patients and healthcare providers.",
+    "hubSlug": "health-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "skinfold",
+      "7-site",
+      "Jackson",
+      "Pollock"
+    ]
+  }
+]

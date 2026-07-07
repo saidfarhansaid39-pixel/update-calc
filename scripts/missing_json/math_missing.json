@@ -1,0 +1,98 @@
+[
+  {
+    "slug": "30-60-90-triangle",
+    "title": "30-60-90 Triangle Calculator",
+    "description": "Free 30-60-90 Triangle Calculator — Solve special right triangles with 30 60 and 90 degree angles. Find side lengths ratios and trigonometric values instantly. Essential for geometry students and trigonometry applications.",
+    "hubSlug": "math-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "30-60-90",
+      "special triangle",
+      "right triangle",
+      "geometry",
+      "triangle solver",
+      "math tool",
+      "trigonometry",
+      "side ratios"
+    ]
+  },
+  {
+    "slug": "45-45-90-triangle",
+    "title": "45-45-90 Triangle Calculator",
+    "description": "Free 45-45-90 Triangle Calculator — Solve isosceles right triangles with 45 45 and 90 degree angles. Find hypotenuse leg lengths and ratios instantly. Perfect for geometry students and trigonometry basics.",
+    "hubSlug": "math-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "45-45-90",
+      "isosceles right",
+      "special triangle",
+      "geometry",
+      "triangle solver",
+      "math tool",
+      "trigonometry",
+      "side ratios"
+    ]
+  },
+  {
+    "slug": "2x2-matrix-calculator",
+    "title": "2x2 Matrix Calculator",
+    "description": "Free 2x2 Matrix Calculator — Perform determinant inverse and multiplication on 2x2 matrices with instant results. Features easy input grid with formula display. Perfect for linear algebra students and quick matrix computations.",
+    "hubSlug": "math-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "2x2 matrix",
+      "determinant",
+      "inverse",
+      "linear algebra",
+      "math tool",
+      "matrix operations",
+      "square matrix",
+      "two by two"
+    ]
+  },
+  {
+    "slug": "3x3-matrix-calculator",
+    "title": "3x3 Matrix Calculator",
+    "description": "Free 3x3 Matrix Calculator — Compute determinant inverse and adjugate of 3x3 matrices using cofactor expansion. Features step-by-step calculation with formula reference. Essential for linear algebra and 3D graphics transformations.",
+    "hubSlug": "math-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "3x3 matrix",
+      "determinant",
+      "inverse",
+      "linear algebra",
+      "math tool",
+      "matrix operations",
+      "cofactor",
+      "three by three"
+    ]
+  },
+  {
+    "slug": "30-60-90-calc",
+    "title": "30-60-90 Triangle Calculator",
+    "description": "Free 30-60-90 Triangle Calculator — Calculate the sides and area of a 30-60-90 right triangle from any side.",
+    "hubSlug": "math-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "30-60-90",
+      "triangle",
+      "special right",
+      "trigonometry",
+      "geometry"
+    ]
+  },
+  {
+    "slug": "45-45-90-calc",
+    "title": "45-45-90 Triangle Calculator",
+    "description": "Free 45-45-90 Triangle Calculator — Calculate the sides and area of an isosceles right triangle from any side.",
+    "hubSlug": "math-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "45-45-90",
+      "triangle",
+      "isosceles right",
+      "trigonometry",
+      "geometry"
+    ]
+  }
+]

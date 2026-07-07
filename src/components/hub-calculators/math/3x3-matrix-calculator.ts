@@ -1,0 +1,15 @@
+import { z } from 'zod'
+import { n, step, numField, selectField, num2Schema, num3Schema, textField, fact, gcd, ni } from '../../../lib/hub-helpers'
+import type { CalcDef } from '../../../lib/generic-fallback'
+
+const calcDef: CalcDef = {
+    schema: z.object({ a: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Must be a number'), b: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Must be a number'), c: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Must be a number'), d: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Must be a number'), e: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Must be a number'), f: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Must be a number'), g: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Must be a number'), h: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Must be a number'), i: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Must be a number'), op: z.string().min(1) }),
+    fields: [numField('a', 'Row1-Col1'), numField('b', 'Row1-Col2'), numField('c', 'Row1-Col3'), numField('d', 'Row2-Col1'), numField('e', 'Row2-Col2'), numField('f', 'Row2-Col3'), numField('g', 'Row3-Col1'), numField('h', 'Row3-Col2'), numField('i', 'Row3-Col3'), selectField('op','Operation',[{value:'determinant',label:'Determinant'},{value:'inverse',label:'Inverse'},{value:'transpose',label:'Transpose'}])],
+    defaults: { a: '1', b: '0', c: '0', d: '0', e: '1', f: '0', g: '0', h: '0', i: '1', op: 'determinant' },
+    compute: (v) => { const a=n(v.a),b=n(v.b),c=n(v.c),d=n(v.d),e=n(v.e),f=n(v.f),g=n(v.g),h=n(v.h),i=n(v.i),op=v.op||'determinant'; const det=a*(e*i-f*h)-b*(d*i-f*g)+c*(d*h-e*g); if(op==='determinant'){return { result:det, label:'Determinant', steps:[step('Cofactor Expansion:',`det = ${a}(${e}·${i}-${f}·${h}) - ${b}(${d}·${i}-${f}·${g}) + ${c}(${d}·${h}-${e}·${g})`),step('Result:','det = '+det)] } }; if(op==='transpose'){return { result:`[[${a},${d},${g}],[${b},${e},${h}],[${c},${f},${i}]]`, label:'Transpose', steps:[step('Row 1:',`${a}, ${d}, ${g}`),step('Row 2:',`${b}, ${e}, ${h}`),step('Row 3:',`${c}, ${f}, ${i}`)] } }; if(det===0)return { result:'Matrix is singular', label:'No inverse' }; const c11=(e*i-f*h),c12=-(d*i-f*g),c13=(d*h-e*g),c21=-(b*i-c*h),c22=(a*i-c*g),c23=-(a*h-b*g),c31=(b*f-c*e),c32=-(a*f-c*d),c33=(a*e-b*d); const ia=c11/det,ib=c21/det,ic=c31/det,id=c12/det,ie=c22/det,ig=c23/det,ih=c13/det,ii=c32/det,ij=c33/det; return { result:det, label:'Inverse', steps:[step('Determinant:','det = '+det)], extras:[{label:'a⁻¹',value:ia.toFixed(4)},{label:'b⁻¹',value:ib.toFixed(4)},{label:'c⁻¹',value:ic.toFixed(4)},{label:'d⁻¹',value:id.toFixed(4)},{label:'e⁻¹',value:ie.toFixed(4)},{label:'f⁻¹',value:ig.toFixed(4)},{label:'g⁻¹',value:ih.toFixed(4)},{label:'h⁻¹',value:ii.toFixed(4)},{label:'i⁻¹',value:ij.toFixed(4)}] } },
+    formula: 'det = a(ei - fh) - b(di - fg) + c(dh - eg)',
+    description: '3×3 matrix: determinant, inverse, and transpose with cofactor expansion.',
+    interpretation: 'The result of the selected 3×3 matrix operation.'
+}
+
+export default calcDef

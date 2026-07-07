@@ -1,0 +1,14 @@
+import { z } from 'zod'
+import { n, parseList } from '../../../lib/statistics-utils'
+import type { CalcDef } from '../../../lib/generic-fallback'
+
+const calcDef: CalcDef = {
+  schema: z.object({ values: z.string().min(1, 'Required'), period: z.string().min(1).refine(v => { const n = parseInt(v); return n >= 2 && n <= 52 }, '2-52'), periods: z.string().min(1).refine(v => { const n = parseInt(v); return n >= 1 && n <= 52 }, '1-52'), alpha: z.string().min(1).refine(v => { const a = parseFloat(v); return a > 0 && a < 1 }, '0-1') }),
+  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'number', step: 'any' }, { name: 'period', label: 'Seasonal Period', type: 'number', min: 2, max: 52, step: '1' }, { name: 'periods', label: 'Periods to Forecast', type: 'number', min: 1, max: 52, step: '1' }, { name: 'alpha', label: 'Alpha (level)', type: 'number', min: 0.01, max: 0.99, step: '0.05' }],
+  compute: (v) => { const nums = parseList(v.values); const per = Math.round(n(v.period)); const h = Math.round(n(v.periods)); const alpha = n(v.alpha); if (nums.length < Math.max(2, per + 2) || per === 0) return { result: `Need ${Math.max(2, per + 2)}+ values`, label: '', unit: '', steps: [] }; const level: number[] = [nums[0]]; const trend: number[] = [nums[1] - nums[0]]; const seasonal: number[] = []; for (let i = 0; i < per; i++) seasonal.push(nums[i] - nums[0]); for (let i = 1; i < nums.length; i++) { const prevLevel = level[level.length - 1]; const prevTrend = trend[trend.length - 1]; const sIdx = (i - 1) % per; const newLevel = alpha * (nums[i] - seasonal[sIdx]) + (1 - alpha) * (prevLevel + prevTrend); level.push(newLevel); const beta = 0.1; trend.push(beta * (newLevel - prevLevel) + (1 - beta) * prevTrend); const gamma = 0.1; seasonal[i % per] = gamma * (nums[i] - newLevel) + (1 - gamma) * seasonal[sIdx] }; const lastLvl = level[level.length - 1]; const lastTrd = trend[trend.length - 1]; const forecasts = Array.from({ length: h }, (_, i) => lastLvl + (i + 1) * lastTrd + seasonal[(nums.length + i) % per]); return { result: forecasts.map(f => f.toFixed(2)).join(', '), label: 'Holt-Winters Forecasts', unit: '', steps: [{ label: 'Last level', value: `${lastLvl.toFixed(4)}` }, { label: 'Last trend', value: `${lastTrd.toFixed(4)}` }, { label: 'Next forecast', value: `${forecasts[0].toFixed(4)}` }] } },
+  description: 'Holt-Winters exponential smoothing extends simple smoothing with trend and seasonal components (triple exponential smoothing).',
+  formula: 'Level: Lₜ = α(Yₜ-Sₜ₋ₚ)+(1-α)(Lₜ₋₁+Tₜ₋₁), Trend: Tₜ = β(Lₜ-Lₜ₋₁)+(1-β)Tₜ₋₁, Seasonal: Sₜ = γ(Yₜ-Lₜ)+(1-γ)Sₜ₋ₚ',
+  interpretation: 'Alpha controls level smoothing, beta controls trend smoothing, gamma controls seasonal smoothing. Values near 1 give more weight to recent observations.'
+}
+
+export default calcDef

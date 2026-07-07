@@ -1,0 +1,13 @@
+import { z } from 'zod'
+import type { CalcDef } from '../../../lib/generic-fallback'
+
+const calcDef: CalcDef = {
+  schema: z.object({ salary: z.string().min(1, 'Required').refine(v => parseFloat(v) > 0, '>0'), contribPct: z.string().min(1, 'Required').refine(v => parseFloat(v) >= 0 && parseFloat(v) <= 100, '0-100'), employerMatchPct: z.string().min(1, 'Required').refine(v => parseFloat(v) >= 0 && parseFloat(v) <= 100, '0-100'), currentBalance: z.string().min(1, 'Required').refine(v => parseFloat(v) >= 0, '>=0'), returnRate: z.string().min(1, 'Required').refine(v => parseFloat(v) >= 0 && parseFloat(v) <= 30, '0-30'), years: z.string().min(1, 'Required').refine(v => parseInt(v) > 0 && parseInt(v) <= 60, '1-60') }),
+  fields: [{ name: 'salary', label: 'Annual Salary ($)', type: 'number', min: 0, step: '1000' }, { name: 'contribPct', label: 'Your Contribution (%)', type: 'number', min: 0, max: 100, step: '0.5' }, { name: 'employerMatchPct', label: 'Employer Match (%)', type: 'number', min: 0, max: 100, step: '0.5' }, { name: 'currentBalance', label: 'Current Balance ($)', type: 'number', min: 0, step: '100' }, { name: 'returnRate', label: 'Expected Return (%)', type: 'number', min: 0, max: 30, step: '0.1' }, { name: 'years', label: 'Years Until Retirement', type: 'number', min: 1, max: 60, step: '1' }],
+  compute: (v) => { const sal = parseFloat(v.salary) || 0; const cp = parseFloat(v.contribPct) || 0; const emp = parseFloat(v.employerMatchPct) || 0; const cb = parseFloat(v.currentBalance) || 0; const rr = parseFloat(v.returnRate) || 0; const y = parseInt(v.years) || 1; const yourContrib = sal * (cp / 100); const matchContrib = sal * (emp / 100); const totalAnnual = yourContrib + matchContrib; const mr = rr / 100 / 12; const m = y * 12; let fv = cb; if (mr > 0) fv = cb * Math.pow(1 + mr, m) + (totalAnnual / 12) * ((Math.pow(1 + mr, m) - 1) / mr); else fv = cb + totalAnnual * y; return { result: fv, label: 'Projected 403(b) Balance', unit: '$', steps: [{ label: 'Your Contribution/yr', value: `$${yourContrib.toFixed(2)}` }, { label: 'Employer Match/yr', value: `$${matchContrib.toFixed(2)}` }, { label: 'Current Balance', value: `$${cb.toFixed(2)}` }, { label: 'Projected Balance', value: `$${fv.toFixed(2)}` }] } },
+  description: 'A 403(b) plan is a tax-advantaged retirement plan for employees of public schools, hospitals, and non-profit organizations, similar to a 401(k).',
+  formula: 'FV = PV(1+r)^n + PMT × ((1+r)^n - 1)/r where PMT = salary × (your% + employer%)',
+  interpretation: '403(b) plans offer tax-deferred growth with employer matching. Contribution limits for 2025-2026 are $23,000 base plus $7,500 catch-up for age 50+.'
+}
+
+export default calcDef

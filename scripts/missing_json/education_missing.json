@@ -1,0 +1,138 @@
+[
+  {
+    "slug": "scholarship-calc",
+    "title": "Scholarship Calculator",
+    "description": "Free Scholarship Calculator — Estimate scholarship eligibility and award amounts based on academics and merit.",
+    "hubSlug": "education-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "scholarship",
+      "merit",
+      "academic",
+      "financial aid",
+      "award"
+    ]
+  },
+  {
+    "slug": "recommendation-requests",
+    "title": "Recommendation Requests",
+    "description": "Free Recommendation Requests — Academic planning and assessment tool for students, teachers, and administrators.",
+    "hubSlug": "education-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "recommendation",
+      "teacher",
+      "college"
+    ]
+  },
+  {
+    "slug": "corneil-notes",
+    "title": "Cornell Notes",
+    "description": "Free Cornell Notes — Academic planning and assessment tool for students, teachers, and administrators.",
+    "hubSlug": "education-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Cornell",
+      "notes",
+      "format",
+      "review"
+    ]
+  },
+  {
+    "slug": "flashcard-ratings",
+    "title": "Flashcard Ratings",
+    "description": "Free Flashcard Ratings — Academic planning and assessment tool for students, teachers, and administrators.",
+    "hubSlug": "education-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "flashcard",
+      "ratings",
+      "SM-2",
+      "algorithm"
+    ]
+  },
+  {
+    "slug": "lab-notebook",
+    "title": "Lab Notebook",
+    "description": "Free Lab Notebook — Academic planning and assessment tool for students, teachers, and administrators.",
+    "hubSlug": "education-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "lab notebook",
+      "pages",
+      "sections"
+    ]
+  },
+  {
+    "slug": "quiz-generator",
+    "title": "Quiz Generator",
+    "description": "Free Quiz Generator — Academic planning and assessment tool for students, teachers, and administrators.",
+    "hubSlug": "education-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "quiz",
+      "multiple choice",
+      "questions"
+    ]
+  },
+  {
+    "slug": "test-builder",
+    "title": "Test Builder",
+    "description": "Free Test Builder — Academic planning and assessment tool for students, teachers, and administrators.",
+    "hubSlug": "education-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "test",
+      "builder",
+      "rubric"
+    ]
+  },
+  {
+    "slug": "unit-test-builder",
+    "title": "Unit Test Builder",
+    "description": "Free Unit Test Builder — Academic planning and assessment tool for students, teachers, and administrators.",
+    "hubSlug": "education-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "unit test",
+      "questions",
+      "topics"
+    ]
+  },
+  {
+    "slug": "504-plan",
+    "title": "504 Plan",
+    "description": "Free 504 Plan — Academic planning and assessment tool for students, teachers, and administrators.",
+    "hubSlug": "education-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "504 plan",
+      "accommodations",
+      "ADA"
+    ]
+  },
+  {
+    "slug": "lexile-score",
+    "title": "Lexile Score",
+    "description": "Free Lexile Score — Academic planning and assessment tool for students, teachers, and administrators.",
+    "hubSlug": "education-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "Lexile",
+      "reading",
+      "measure"
+    ]
+  },
+  {
+    "slug": "typing-speed-test",
+    "title": "Typing Speed Test",
+    "description": "Free Typing Speed Test — Academic planning and assessment tool for students, teachers, and administrators.",
+    "hubSlug": "education-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "typing",
+      "WPM",
+      "accuracy"
+    ]
+  }
+]

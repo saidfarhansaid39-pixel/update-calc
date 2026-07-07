@@ -1,0 +1,1137 @@
+[
+  {
+    "slug": "protein-calculator-calc",
+    "title": "Protein Intake Calculator",
+    "description": "Free Protein Intake Calculator — Calculate daily protein needs based on weight, activity level, and fitness goals.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "protein",
+      "intake",
+      "diet",
+      "muscle",
+      "nutrition"
+    ]
+  },
+  {
+    "slug": "carb-calculator-calc",
+    "title": "Carbohydrate Calculator",
+    "description": "Free Carbohydrate Calculator — Calculate daily carb needs based on energy expenditure and dietary preferences.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "carbohydrate",
+      "carbs",
+      "diet",
+      "energy",
+      "nutrition"
+    ]
+  },
+  {
+    "slug": "fat-intake-calc",
+    "title": "Fat Intake Calculator",
+    "description": "Free Fat Intake Calculator — Calculate daily fat requirements based on caloric intake and dietary goals.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "fat",
+      "intake",
+      "dietary fat",
+      "nutrition",
+      "macros"
+    ]
+  },
+  {
+    "slug": "fiber-calculator-calc",
+    "title": "Fiber Intake Calculator",
+    "description": "Free Fiber Intake Calculator — Calculate daily fiber needs based on age, gender, and caloric intake.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "fiber",
+      "dietary fiber",
+      "digestive",
+      "nutrition",
+      "intake"
+    ]
+  },
+  {
+    "slug": "sugar-intake-calc",
+    "title": "Sugar Intake Calculator",
+    "description": "Free Sugar Intake Calculator — Calculate recommended daily sugar limits and track added sugar consumption.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "sugar",
+      "added sugar",
+      "intake",
+      "diet",
+      "WHO"
+    ]
+  },
+  {
+    "slug": "sodium-calculator-calc",
+    "title": "Sodium Intake Calculator",
+    "description": "Free Sodium Intake Calculator — Calculate daily sodium intake and compare to recommended limits for heart health.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "sodium",
+      "salt",
+      "intake",
+      "heart health",
+      "blood pressure"
+    ]
+  },
+  {
+    "slug": "potassium-calc",
+    "title": "Potassium Intake Calculator",
+    "description": "Free Potassium Intake Calculator — Calculate daily potassium needs based on diet, activity, and health conditions.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "potassium",
+      "electrolyte",
+      "mineral",
+      "nutrition",
+      "intake"
+    ]
+  },
+  {
+    "slug": "calcium-calculator-calc",
+    "title": "Calcium Intake Calculator",
+    "description": "Free Calcium Intake Calculator — Calculate daily calcium requirements based on age, gender, and bone health.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "calcium",
+      "bone health",
+      "dairy",
+      "nutrition",
+      "supplement"
+    ]
+  },
+  {
+    "slug": "iron-intake-calc",
+    "title": "Iron Intake Calculator",
+    "description": "Free Iron Intake Calculator — Calculate daily iron needs based on age, gender, and dietary sources.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "iron",
+      "hemoglobin",
+      "anemia",
+      "nutrition",
+      "intake"
+    ]
+  },
+  {
+    "slug": "vitamin-d-calc",
+    "title": "Vitamin D Calculator",
+    "description": "Free Vitamin D Calculator — Calculate daily vitamin D needs based on sun exposure, skin type, and location.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "vitamin D",
+      "sun",
+      "supplement",
+      "bone",
+      "nutrition"
+    ]
+  },
+  {
+    "slug": "vitamin-b12-calc",
+    "title": "Vitamin B12 Calculator",
+    "description": "Free Vitamin B12 Calculator — Calculate vitamin B12 intake and identify deficiency risk based on diet.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "vitamin B12",
+      "cobalamin",
+      "deficiency",
+      "vegan",
+      "nutrition"
+    ]
+  },
+  {
+    "slug": "magnesium-calc",
+    "title": "Magnesium Calculator",
+    "description": "Free Magnesium Calculator — Calculate daily magnesium needs based on age, gender, and activity level.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "magnesium",
+      "mineral",
+      "electrolyte",
+      "nutrition",
+      "supplement"
+    ]
+  },
+  {
+    "slug": "zinc-calculator",
+    "title": "Zinc Intake Calculator",
+    "description": "Free Zinc Intake Calculator — Calculate daily zinc requirements based on diet and health conditions.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "zinc",
+      "immune",
+      "mineral",
+      "nutrition",
+      "intake"
+    ]
+  },
+  {
+    "slug": "omega3-calculator",
+    "title": "Omega-3 Intake Calculator",
+    "description": "Free Omega-3 Intake Calculator — Calculate daily omega-3 fatty acid needs based on health goals.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "omega-3",
+      "EPA",
+      "DHA",
+      "fish oil",
+      "nutrition"
+    ]
+  },
+  {
+    "slug": "water-calculator",
+    "title": "Water Intake Calculator",
+    "description": "Free Water Intake Calculator — Calculate daily water needs based on weight, activity, and climate conditions.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "water",
+      "hydration",
+      "intake",
+      "daily",
+      "fluid"
+    ]
+  },
+  {
+    "slug": "coffee-caffeine-calc",
+    "title": "Caffeine Calculator",
+    "description": "Free Caffeine Calculator — Calculate caffeine content in coffee, tea, and energy drinks with safe limits.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "caffeine",
+      "coffee",
+      "energy",
+      "stimulant",
+      "intake"
+    ]
+  },
+  {
+    "slug": "alcohol-calorie-calc",
+    "title": "Alcohol Calorie Calculator",
+    "description": "Free Alcohol Calorie Calculator — Calculate calories from alcoholic beverages based on drink type and serving size.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "alcohol",
+      "calories",
+      "beer",
+      "wine",
+      "cocktail"
+    ]
+  },
+  {
+    "slug": "meal-planner-calc",
+    "title": "Meal Planner Calculator",
+    "description": "Free Meal Planner Calculator — Plan balanced meals with macronutrient distribution and calorie targets.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "meal planner",
+      "macros",
+      "calories",
+      "balanced",
+      "diet"
+    ]
+  },
+  {
+    "slug": "recipe-scaler",
+    "title": "Recipe Scaler Calculator",
+    "description": "Free Recipe Scaler Calculator — Scale recipe ingredient quantities up or down for desired number of servings.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "recipe",
+      "scaler",
+      "servings",
+      "ingredients",
+      "cooking"
+    ]
+  },
+  {
+    "slug": "substitution-calc",
+    "title": "Ingredient Substitution Calculator",
+    "description": "Free Ingredient Substitution Calculator — Find suitable ingredient substitutions based on function, flavor, and dietary needs.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "substitution",
+      "ingredient",
+      "replacement",
+      "cooking",
+      "baking"
+    ]
+  },
+  {
+    "slug": "recipe-cost-calc",
+    "title": "Recipe Cost",
+    "description": "Free Recipe Cost — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "recipe",
+      "cost",
+      "per batch",
+      "ingredient"
+    ]
+  },
+  {
+    "slug": "cost-per-serving",
+    "title": "Cost Per Serving",
+    "description": "Free Cost Per Serving — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "cost",
+      "serving",
+      "portion",
+      "meal"
+    ]
+  },
+  {
+    "slug": "ingredient-substitution",
+    "title": "Ingredient Substitution",
+    "description": "Free Ingredient Substitution — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "substitution",
+      "swap",
+      "replace",
+      "cooking"
+    ]
+  },
+  {
+    "slug": "baking-conversion",
+    "title": "Baking Conversion",
+    "description": "Free Baking Conversion — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "baking",
+      "cups",
+      "grams",
+      "flour",
+      "sugar"
+    ]
+  },
+  {
+    "slug": "flour-substitution",
+    "title": "Flour Substitution",
+    "description": "Free Flour Substitution — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "flour",
+      "substitution",
+      "gluten",
+      "all-purpose"
+    ]
+  },
+  {
+    "slug": "sugar-substitution",
+    "title": "Sugar Substitution",
+    "description": "Free Sugar Substitution — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "sugar",
+      "substitute",
+      "stevia",
+      "splenda"
+    ]
+  },
+  {
+    "slug": "oil-substitution",
+    "title": "Oil Substitution",
+    "description": "Free Oil Substitution — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "oil",
+      "substitute",
+      "butter",
+      "applesauce"
+    ]
+  },
+  {
+    "slug": "dairy-substitution",
+    "title": "Dairy Substitution",
+    "description": "Free Dairy Substitution — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "dairy",
+      "milk",
+      "substitute",
+      "almond",
+      "soy"
+    ]
+  },
+  {
+    "slug": "egg-substitution",
+    "title": "Egg Substitution",
+    "description": "Free Egg Substitution — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "egg",
+      "substitute",
+      "flax",
+      "chia",
+      "vegan"
+    ]
+  },
+  {
+    "slug": "spice-substitution",
+    "title": "Spice Substitution",
+    "description": "Free Spice Substitution — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "spice",
+      "substitute",
+      "swap",
+      "ratio"
+    ]
+  },
+  {
+    "slug": "herb-substitution",
+    "title": "Herb Substitution",
+    "description": "Free Herb Substitution — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "herb",
+      "dried",
+      "fresh",
+      "substitute",
+      "ratio"
+    ]
+  },
+  {
+    "slug": "salt-substitution",
+    "title": "Salt Substitution",
+    "description": "Free Salt Substitution — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "salt",
+      "substitute",
+      "low sodium",
+      "potassium"
+    ]
+  },
+  {
+    "slug": "gluten-free-flour",
+    "title": "Gluten Free Flour Mix",
+    "description": "Free Gluten Free Flour Mix — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "gluten free",
+      "flour",
+      "blend",
+      "baking"
+    ]
+  },
+  {
+    "slug": "yeast-conversion",
+    "title": "Yeast Conversion",
+    "description": "Free Yeast Conversion — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "yeast",
+      "active dry",
+      "instant",
+      "fresh",
+      "ratio"
+    ]
+  },
+  {
+    "slug": "sourdough-starter",
+    "title": "Sourdough Starter",
+    "description": "Free Sourdough Starter — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "sourdough",
+      "starter",
+      "feeding",
+      "hydration"
+    ]
+  },
+  {
+    "slug": "sourdough-hydration",
+    "title": "Sourdough Hydration",
+    "description": "Free Sourdough Hydration — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "sourdough",
+      "hydration",
+      "dough",
+      "baker percentage"
+    ]
+  },
+  {
+    "slug": "baker-percentage",
+    "title": "Baker Percentage",
+    "description": "Free Baker Percentage — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "baker",
+      "percentage",
+      "formula",
+      "flour",
+      "baking"
+    ]
+  },
+  {
+    "slug": "dough-hydration",
+    "title": "Dough Hydration",
+    "description": "Free Dough Hydration — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "dough",
+      "hydration",
+      "ratio",
+      "bread"
+    ]
+  },
+  {
+    "slug": "bread-flour-ratio",
+    "title": "Bread Flour Ratio",
+    "description": "Free Bread Flour Ratio — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "bread",
+      "flour",
+      "water",
+      "yeast",
+      "salt",
+      "ratio"
+    ]
+  },
+  {
+    "slug": "pizza-dough-calc",
+    "title": "Pizza Dough",
+    "description": "Free Pizza Dough — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pizza",
+      "dough",
+      "ball",
+      "size",
+      "hydration"
+    ]
+  },
+  {
+    "slug": "pasta-serving",
+    "title": "Pasta Serving Size",
+    "description": "Free Pasta Serving Size — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pasta",
+      "serving",
+      "dry",
+      "cooked",
+      "ounces"
+    ]
+  },
+  {
+    "slug": "rice-serving",
+    "title": "Rice Serving Size",
+    "description": "Free Rice Serving Size — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "rice",
+      "serving",
+      "dry",
+      "cooked",
+      "uncooked"
+    ]
+  },
+  {
+    "slug": "rice-water-ratio",
+    "title": "Rice Water Ratio",
+    "description": "Free Rice Water Ratio — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "rice",
+      "water",
+      "ratio",
+      "white",
+      "brown"
+    ]
+  },
+  {
+    "slug": "quinoa-cooking",
+    "title": "Quinoa Cooking",
+    "description": "Free Quinoa Cooking — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "quinoa",
+      "water",
+      "ratio",
+      "cooking",
+      "time"
+    ]
+  },
+  {
+    "slug": "oatmeal-ratio",
+    "title": "Oatmeal Ratio",
+    "description": "Free Oatmeal Ratio — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "oatmeal",
+      "rolled",
+      "steel cut",
+      "ratio"
+    ]
+  },
+  {
+    "slug": "chicken-temp",
+    "title": "Chicken Temperature",
+    "description": "Free Chicken Temperature — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "chicken",
+      "temperature",
+      "165°F",
+      "food safety"
+    ]
+  },
+  {
+    "slug": "beef-temp",
+    "title": "Beef Temperature",
+    "description": "Free Beef Temperature — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "beef",
+      "doneness",
+      "steak",
+      "roast",
+      "internal"
+    ]
+  },
+  {
+    "slug": "pork-temp",
+    "title": "Pork Temperature",
+    "description": "Free Pork Temperature — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "pork",
+      "temperature",
+      "145°F",
+      "safety"
+    ]
+  },
+  {
+    "slug": "fish-temp",
+    "title": "Fish Temperature",
+    "description": "Free Fish Temperature — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "fish",
+      "temperature",
+      "145°F",
+      "flakes"
+    ]
+  },
+  {
+    "slug": "turkey-temp",
+    "title": "Turkey Temperature",
+    "description": "Free Turkey Temperature — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "turkey",
+      "temperature",
+      "165°F",
+      "stuffing"
+    ]
+  },
+  {
+    "slug": "oven-cooking-time",
+    "title": "Oven Cooking Time",
+    "description": "Free Oven Cooking Time — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "oven",
+      "time",
+      "meat",
+      "minutes per pound"
+    ]
+  },
+  {
+    "slug": "convection-conversion",
+    "title": "Convection Oven Conversion",
+    "description": "Free Convection Oven Conversion — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "convection",
+      "temperature",
+      "bake",
+      "roast"
+    ]
+  },
+  {
+    "slug": "air-fryer-conversion",
+    "title": "Air Fryer Conversion",
+    "description": "Free Air Fryer Conversion — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "air fryer",
+      "temperature",
+      "time",
+      "traditional"
+    ]
+  },
+  {
+    "slug": "slow-cooker-conversion",
+    "title": "Slow Cooker Conversion",
+    "description": "Free Slow Cooker Conversion — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "slow cooker",
+      "high",
+      "low",
+      "cooking time"
+    ]
+  },
+  {
+    "slug": "pressure-cooker-time",
+    "title": "Pressure Cooker Time",
+    "description": "Free Pressure Cooker Time — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "pressure cooker",
+      "Instant Pot",
+      "time",
+      "high pressure"
+    ]
+  },
+  {
+    "slug": "microwave-cooking",
+    "title": "Microwave Cooking Time",
+    "description": "Free Microwave Cooking Time — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "microwave",
+      "time",
+      "power",
+      "temperature"
+    ]
+  },
+  {
+    "slug": "grill-temperature",
+    "title": "Grill Temperature",
+    "description": "Free Grill Temperature — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "grill",
+      "temp",
+      "direct",
+      "indirect",
+      "zone"
+    ]
+  },
+  {
+    "slug": "smoker-time",
+    "title": "Smoker Time",
+    "description": "Free Smoker Time — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "smoker",
+      "time",
+      "meat",
+      "low and slow"
+    ]
+  },
+  {
+    "slug": "marinade-calc",
+    "title": "Marinade Calculator",
+    "description": "Free Marinade Calculator — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "marinade",
+      "recipe",
+      "ratio",
+      "acid",
+      "oil"
+    ]
+  },
+  {
+    "slug": "brine-calc",
+    "title": "Brine Calculator",
+    "description": "Free Brine Calculator — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "brine",
+      "salt",
+      "sugar",
+      "water",
+      "ratio"
+    ]
+  },
+  {
+    "slug": "rub-calc",
+    "title": "Dry Rub Calculator",
+    "description": "Free Dry Rub Calculator — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "dry rub",
+      "spice",
+      "batch",
+      "quantity"
+    ]
+  },
+  {
+    "slug": "sauce-calc",
+    "title": "Sauce Calculator",
+    "description": "Free Sauce Calculator — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "sauce",
+      "recipe",
+      "scale",
+      "yield"
+    ]
+  },
+  {
+    "slug": "portion-scaling",
+    "title": "Portion Scaling",
+    "description": "Free Portion Scaling — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "portion",
+      "scale",
+      "recipe",
+      "servings"
+    ]
+  },
+  {
+    "slug": "batch-scaling",
+    "title": "Batch Scaling",
+    "description": "Free Batch Scaling — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "batch",
+      "scale",
+      "multiplier",
+      "ingredients"
+    ]
+  },
+  {
+    "slug": "sheet-pan-serving",
+    "title": "Sheet Pan Portions",
+    "description": "Free Sheet Pan Portions — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "sheet pan",
+      "serving",
+      "baking",
+      "pan size"
+    ]
+  },
+  {
+    "slug": "cake-batter",
+    "title": "Cake Batter",
+    "description": "Free Cake Batter — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "cake",
+      "batter",
+      "pan",
+      "volume",
+      "adjust"
+    ]
+  },
+  {
+    "slug": "cake-pan-size",
+    "title": "Cake Pan Size",
+    "description": "Free Cake Pan Size — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "cake pan",
+      "volume",
+      "baking",
+      "dimensions"
+    ]
+  },
+  {
+    "slug": "baking-dish-volume",
+    "title": "Baking Dish Volume",
+    "description": "Free Baking Dish Volume — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "baking",
+      "dish",
+      "volume",
+      "casserole"
+    ]
+  },
+  {
+    "slug": "loaf-pan",
+    "title": "Loaf Pan Size",
+    "description": "Free Loaf Pan Size — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "loaf pan",
+      "bread",
+      "volume",
+      "baking"
+    ]
+  },
+  {
+    "slug": "muffin-tin",
+    "title": "Muffin Tin Portions",
+    "description": "Free Muffin Tin Portions — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "muffin",
+      "tin",
+      "batter",
+      "size"
+    ]
+  },
+  {
+    "slug": "cupcake-icing",
+    "title": "Cupcake Icing",
+    "description": "Free Cupcake Icing — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "cupcake",
+      "icing",
+      "frosting",
+      "quantity"
+    ]
+  },
+  {
+    "slug": "cookie-dough",
+    "title": "Cookie Dough Portions",
+    "description": "Free Cookie Dough Portions — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "cookie",
+      "dough",
+      "scoop",
+      "batch"
+    ]
+  },
+  {
+    "slug": "pie-crust",
+    "title": "Pie Crust",
+    "description": "Free Pie Crust — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "pie",
+      "crust",
+      "dough",
+      "single",
+      "double"
+    ]
+  },
+  {
+    "slug": "cream-puff",
+    "title": "Cream Puff",
+    "description": "Free Cream Puff — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "cream puff",
+      "choux",
+      "pastry",
+      "batch"
+    ]
+  },
+  {
+    "slug": "cheesecake-batter",
+    "title": "Cheesecake Batter",
+    "description": "Free Cheesecake Batter — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "cheesecake",
+      "batter",
+      "pan",
+      "water bath"
+    ]
+  },
+  {
+    "slug": "macaron-calc",
+    "title": "Macaron Calculator",
+    "description": "Free Macaron Calculator — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "macaron",
+      "French",
+      "Italian",
+      "recipe"
+    ]
+  },
+  {
+    "slug": "ganache-ratio",
+    "title": "Ganache Ratio",
+    "description": "Free Ganache Ratio — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "ganache",
+      "chocolate",
+      "cream",
+      "coating",
+      "filling"
+    ]
+  },
+  {
+    "slug": "buttercream",
+    "title": "Buttercream",
+    "description": "Free Buttercream — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "buttercream",
+      "frosting",
+      "butter",
+      "sugar",
+      "ratio"
+    ]
+  },
+  {
+    "slug": "canning-time",
+    "title": "Canning Time",
+    "description": "Free Canning Time — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "canning",
+      "pressure",
+      "water bath",
+      "altitude"
+    ]
+  },
+  {
+    "slug": "pickling-brine",
+    "title": "Pickling Brine",
+    "description": "Free Pickling Brine — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "pickling",
+      "vinegar",
+      "salt",
+      "brine",
+      "ratio"
+    ]
+  },
+  {
+    "slug": "fermentation-salt",
+    "title": "Fermentation Salt",
+    "description": "Free Fermentation Salt — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "fermentation",
+      "salt",
+      "brine",
+      "lacto"
+    ]
+  },
+  {
+    "slug": "cheese-making",
+    "title": "Cheese Making",
+    "description": "Free Cheese Making — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "cheese",
+      "milk",
+      "rennet",
+      "yield"
+    ]
+  },
+  {
+    "slug": "ice-cream-base",
+    "title": "Ice Cream Base",
+    "description": "Free Ice Cream Base — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "ice cream",
+      "custard",
+      "mix",
+      "freezer"
+    ]
+  },
+  {
+    "slug": "coffee-brew-ratio",
+    "title": "Coffee Brew Ratio",
+    "description": "Free Coffee Brew Ratio — Nutrition and cooking calculator for healthy meal planning and dietary choices.",
+    "hubSlug": "food-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "coffee",
+      "ratio",
+      "water",
+      "ground",
+      "grams"
+    ]
+  }
+]

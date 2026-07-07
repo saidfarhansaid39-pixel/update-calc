@@ -1,0 +1,13 @@
+import { z } from 'zod'
+import type { CalcDef } from '../../../lib/generic-fallback'
+
+const calcDef: CalcDef = {
+  schema: z.object({ waistCircumference: z.string().min(1,'Required').refine(v=>parseFloat(v)>0,'>0'), triglycerides: z.string().min(1,'Required').refine(v=>parseFloat(v)>=0,'>=0'), hdl: z.string().min(1,'Required').refine(v=>parseFloat(v)>=0,'>=0'), systolicBP: z.string().min(1,'Required').refine(v=>parseFloat(v)>=0,'>=0'), fastingGlucose: z.string().min(1,'Required').refine(v=>parseFloat(v)>=0,'>=0') }),
+  fields: [{ name:'waistCircumference', label:'Waist Circumference (cm)', type:'number', min:0, step:'1' }, { name:'triglycerides', label:'Triglycerides (mg/dL)', type:'number', min:0, step:'1' }, { name:'hdl', label:'HDL (mg/dL)', type:'number', min:0, step:'1' }, { name:'systolicBP', label:'Systolic BP (mmHg)', type:'number', min:0, step:'1' }, { name:'fastingGlucose', label:'Fasting Glucose (mg/dL)', type:'number', min:0, step:'1' }],
+  compute: (v) => { const wc=parseFloat(v.waistCircumference)||100; const tg=parseFloat(v.triglycerides)||150; const hdl=parseFloat(v.hdl)||40; const sbp=parseFloat(v.systolicBP)||130; const glu=parseFloat(v.fastingGlucose)||100; let criteria=0; const details=[]; if(wc>=88||wc>=102){criteria++;details.push('Waist↑')} else details.push('Waist✓'); if(tg>=150){criteria++;details.push('TG↑')} else details.push('TG✓'); if(hdl<40||hdl<50){criteria++;details.push('HDL↓')} else details.push('HDL✓'); if(sbp>=130){criteria++;details.push('BP↑')} else details.push('BP✓'); if(glu>=100){criteria++;details.push('Glucose↑')} else details.push('Glucose✓'); const hasMetSyn=criteria>=3; return { result:criteria, label:'MetS Criteria Met', unit:'/5', steps:[{ label:'Waist Circumference', value:wc.toFixed(0)+' cm '+(wc>=88||wc>=102?'Met':'Normal') },{ label:'Triglycerides', value:tg.toFixed(0)+' mg/dL '+(tg>=150?'Met':'Normal') },{ label:'HDL', value:hdl.toFixed(0)+' mg/dL '+((hdl<40||hdl<50)?'Met':'Normal') },{ label:'Systolic BP', value:sbp.toFixed(0)+' mmHg '+(sbp>=130?'Met':'Normal') },{ label:'Fasting Glucose', value:glu.toFixed(0)+' mg/dL '+(glu>=100?'Met':'Normal') },{ label:'MetSyn Criteria', value:criteria.toFixed(0)+'/5' },{ label:'Diagnosis', value:hasMetSyn?'Metabolic Syndrome Present':'No Metabolic Syndrome' }] } },
+  description: 'Metabolic syndrome assessment per NCEP ATP III criteria—5 cardiometabolic risk factors.',
+  formula: 'ATP III: ≥3 of 5 criteria (elevated waist, TG≥150, low HDL, BP≥130, glucose≥100). HDL thresholds: <40(m)/<50(f).',
+  interpretation: '≥3 criteria = metabolic syndrome diagnosis. Each criterion carries independent cardiovascular and diabetes risk.'
+}
+
+export default calcDef

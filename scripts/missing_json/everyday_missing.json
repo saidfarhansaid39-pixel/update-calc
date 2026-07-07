@@ -1,0 +1,5376 @@
+[
+  {
+    "slug": "clothing-size-calculator",
+    "title": "Clothing Size Calculator",
+    "description": "Free Clothing Size Calculator — Convert clothing sizes US/UK/EU. Simplify clothing size calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "clothing size",
+      "size converter",
+      "US to EU",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "ring-size-calculator",
+    "title": "Ring Size Calculator",
+    "description": "Free Ring Size Calculator — Measure ring size from circumference. Simplify ring size calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "ring size",
+      "jewelry",
+      "ring measurement",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "cooking-time-calculator",
+    "title": "Cooking Time Calculator",
+    "description": "Free Cooking Time Calculator — Calculate cooking times by weight. Simplify cooking time calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "cooking time",
+      "recipe",
+      "turkey",
+      "roast",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "marathon-pace-calculator",
+    "title": "Marathon Pace Calculator",
+    "description": "Free Marathon Pace Calculator — Calculate marathon finishing time. Simplify marathon calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "marathon",
+      "pace",
+      "running",
+      "race time",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "swim-pace-calculator",
+    "title": "Swim Pace Calculator",
+    "description": "Free Swim Pace Calculator — Calculate swim pace per 100m. Simplify swim pace calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "swim pace",
+      "swimming",
+      "pool",
+      "lap speed",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "bike-pace-calculator",
+    "title": "Bike Pace Calculator",
+    "description": "Free Bike Pace Calculator — Calculate cycling speed and time. Simplify cycling calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "cycling",
+      "bike speed",
+      "pace",
+      "cycling",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "triathlon-pace-calculator",
+    "title": "Triathlon Pace Calculator",
+    "description": "Free Triathlon Pace Calculator — Calculate triathlon split times. Simplify triathlon calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "triathlon",
+      "swim",
+      "bike",
+      "run",
+      "race",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "step-counter-calculator",
+    "title": "Step Counter Calculator",
+    "description": "Free Step Counter Calculator — Convert steps to distance. Simplify steps calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "steps",
+      "walking",
+      "distance",
+      "pedometer",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "water-intake-calculator",
+    "title": "Water Intake Calculator",
+    "description": "Free Water Intake Calculator — Calculate daily water intake needed. Simplify water calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "water",
+      "hydration",
+      "daily water",
+      "drink",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "caffeine-calculator",
+    "title": "Caffeine Calculator",
+    "description": "Free Caffeine Calculator — Calculate caffeine from coffee and drinks. Simplify caffeine calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "caffeine",
+      "coffee",
+      "energy drink",
+      "intake",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "alcohol-calculator",
+    "title": "Alcohol Calculator",
+    "description": "Free Alcohol Calculator — Calculate alcohol content and ABV. Simplify alcohol calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "alcohol",
+      "ABV",
+      "drink",
+      "blood alcohol",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "blood-alcohol-calculator",
+    "title": "BAC Calculator",
+    "description": "Free BAC Calculator — Estimate blood alcohol content. Simplify BAC calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "BAC",
+      "blood alcohol",
+      "DUI",
+      "alcohol",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "smoking-cost-calculator",
+    "title": "Smoking Cost Calculator",
+    "description": "Free Smoking Cost Calculator — Calculate lifetime cost of smoking. Simplify smoking calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "smoking",
+      "cigarettes",
+      "cost",
+      "quit smoking",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "coffee-cost-calculator",
+    "title": "Coffee Cost Calculator",
+    "description": "Free Coffee Cost Calculator — Calculate annual coffee spending. Simplify coffee calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "coffee",
+      "coffee cost",
+      "latte factor",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "pet-food-calculator",
+    "title": "Pet Food Calculator",
+    "description": "Free Pet Food Calculator — Calculate pet food portions. Simplify pet food calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pet food",
+      "dog food",
+      "cat food",
+      "feeding",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "pet-age-calculator",
+    "title": "Pet Age Calculator",
+    "description": "Free Pet Age Calculator — Convert pet years to human years. Simplify pet age calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pet age",
+      "dog years",
+      "cat years",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "party-planner-calculator",
+    "title": "Party Planner Calculator",
+    "description": "Free Party Planner Calculator — Calculate food and drinks for parties. Simplify party calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "party",
+      "planning",
+      "catering",
+      "guests",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "wedding-budget-calculator",
+    "title": "Wedding Budget Calculator",
+    "description": "Free Wedding Budget Calculator — Plan wedding budget across categories. Simplify wedding calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "wedding",
+      "budget",
+      "wedding planning",
+      "cost",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "moving-cost-calculator",
+    "title": "Moving Cost Calculator",
+    "description": "Free Moving Cost Calculator — Estimate moving costs. Simplify moving calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "moving",
+      "relocation",
+      "moving cost",
+      "movers",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "cleaning-time-calculator",
+    "title": "Cleaning Time Calculator",
+    "description": "Free Cleaning Time Calculator — Estimate time to clean rooms. Simplify cleaning calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "cleaning",
+      "house cleaning",
+      "chores",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "laundry-cost-calculator",
+    "title": "Laundry Cost Calculator",
+    "description": "Free Laundry Cost Calculator — Calculate cost per laundry load. Simplify laundry calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "laundry",
+      "washing",
+      "energy cost",
+      "detergent",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "electricity-bill-calculator",
+    "title": "Electricity Bill Calculator",
+    "description": "Free Electricity Bill Calculator — Calculate monthly electricity bill. Simplify electricity calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "electricity",
+      "bill",
+      "power usage",
+      "kWh",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "appliance-cost-calculator",
+    "title": "Appliance Cost Calculator",
+    "description": "Free Appliance Cost Calculator — Calculate operating cost of appliances. Simplify appliance calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "appliance",
+      "energy cost",
+      "electricity",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "water-bill-calculator",
+    "title": "Water Bill Calculator",
+    "description": "Free Water Bill Calculator — Calculate estimated water bill. Simplify water bill calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "water bill",
+      "water usage",
+      "utility",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "internet-speed-calculator",
+    "title": "Internet Speed Calculator",
+    "description": "Free Internet Speed Calculator — Calculate speed requirements. Simplify internet speed calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "internet speed",
+      "bandwidth",
+      "streaming",
+      "gaming",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "data-usage-calculator",
+    "title": "Data Usage Calculator",
+    "description": "Free Data Usage Calculator — Calculate mobile data usage. Simplify data usage calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "data usage",
+      "mobile data",
+      "streaming",
+      "GB",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "cell-phone-cost-calculator",
+    "title": "Cell Phone Cost Calculator",
+    "description": "Free Cell Phone Cost Calculator — Calculate total phone plan cost. Simplify cell phone calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "cell phone",
+      "phone plan",
+      "mobile cost",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "streaming-cost-calculator",
+    "title": "Streaming Cost Calculator",
+    "description": "Free Streaming Cost Calculator — Calculate streaming subscription costs. Simplify streaming calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "streaming",
+      "Netflix",
+      "subscription",
+      "monthly cost",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "subscription-calculator",
+    "title": "Subscription Cost Calculator",
+    "description": "Free Subscription Cost Calculator — Calculate total subscription costs. Simplify subscription calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "subscription",
+      "annual cost",
+      "monthly fees",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "grocery-budget-calculator",
+    "title": "Grocery Budget Calculator",
+    "description": "Free Grocery Budget Calculator — Plan weekly grocery budget. Simplify grocery calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "grocery",
+      "food budget",
+      "meal planning",
+      "shopping",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "dining-out-calculator",
+    "title": "Dining Out Calculator",
+    "description": "Free Dining Out Calculator — Track restaurant spending. Simplify dining calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "dining",
+      "restaurant",
+      "eating out",
+      "savings",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "gym-cost-calculator",
+    "title": "Gym Cost Calculator",
+    "description": "Free Gym Cost Calculator — Calculate per-visit gym cost. Simplify gym calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "gym",
+      "membership",
+      "fitness",
+      "cost",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "home-maintenance-calculator",
+    "title": "Home Maintenance Calculator",
+    "description": "Free Home Maintenance Calculator — Budget annual maintenance costs. Simplify home maintenance calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "home maintenance",
+      "repair budget",
+      "home ownership",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "car-payment-calculator",
+    "title": "Car Payment Calculator",
+    "description": "Free Car Payment Calculator — Calculate monthly car payment. Simplify car payment calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "car payment",
+      "auto loan",
+      "monthly payment",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "car-cost-calculator",
+    "title": "Car Cost Calculator",
+    "description": "Free Car Cost Calculator — Calculate total car ownership cost. Simplify car cost calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "car cost",
+      "ownership",
+      "insurance",
+      "maintenance",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "commute-cost-calculator",
+    "title": "Commute Cost Calculator",
+    "description": "Free Commute Cost Calculator — Calculate daily commute costs. Simplify commute calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "commute",
+      "transportation",
+      "gas cost",
+      "public transit",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "tire-size-calculator",
+    "title": "Tire Size Calculator",
+    "description": "Free Tire Size Calculator — Calculate tire dimensions and speedometer. Simplify tire size calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "tire size",
+      "tire conversion",
+      "speedometer",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "lottery-calculator",
+    "title": "Lottery Calculator",
+    "description": "Free Lottery Calculator — Calculate lottery odds and EV. Simplify lottery calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "lottery",
+      "odds",
+      "expected value",
+      "jackpot",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "battery-life-calculator",
+    "title": "Battery Life Calculator",
+    "description": "Free Battery Life Calculator — Calculate battery life from mAh. Simplify battery calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "battery",
+      "battery life",
+      "mAh",
+      "power",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "photo-resolution-calculator",
+    "title": "Photo Resolution Calculator",
+    "description": "Free Photo Resolution Calculator — Calculate print size from resolution. Simplify photo calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "photo",
+      "resolution",
+      "DPI",
+      "print size",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "file-size-calculator",
+    "title": "File Size Calculator",
+    "description": "Free File Size Calculator — Calculate file transfer time. Simplify file size calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "file size",
+      "transfer time",
+      "download",
+      "upload",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "download-time-calculator",
+    "title": "Download Time Calculator",
+    "description": "Free Download Time Calculator — Calculate download time. Simplify download calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "download",
+      "download time",
+      "internet speed",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "upload-time-calculator",
+    "title": "Upload Time Calculator",
+    "description": "Free Upload Time Calculator — Calculate upload time. Simplify upload calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "upload",
+      "upload time",
+      "internet speed",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "hex-color-calculator",
+    "title": "Hex Color Calculator",
+    "description": "Free Hex Color Calculator — Convert hex, RGB, and HSL colors. Simplify hex color calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "hex color",
+      "RGB",
+      "HSL",
+      "color converter",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "prime-number-checker",
+    "title": "Prime Number Checker",
+    "description": "Free Prime Number Checker — Check if a number is prime. Simplify prime number calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "prime number",
+      "is prime",
+      "number theory",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "calories-burned-activity-calculator",
+    "title": "Calories Burned by Activity",
+    "description": "Free Calories Burned by Activity — Estimate calories burned for activities. Simplify calories burned calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "calories burned",
+      "MET",
+      "exercise",
+      "fitness",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "fast-food-calculator",
+    "title": "Fast Food Calculator",
+    "description": "Free Fast Food Calculator — Calculate fast food calories and cost. Simplify fast food calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "fast food",
+      "calories",
+      "cost",
+      "meal",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "electric-vehicle-calculator",
+    "title": "EV Range Calculator",
+    "description": "Free EV Range Calculator — Calculate electric vehicle range. Simplify EV calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "EV",
+      "electric car",
+      "range",
+      "charging",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "carbon-footprint-calculator",
+    "title": "Carbon Footprint Calculator",
+    "description": "Free Carbon Footprint Calculator — Estimate your carbon footprint. Simplify carbon footprint calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "carbon footprint",
+      "CO2",
+      "environment",
+      "sustainability",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "salary-to-hourly",
+    "title": "Salary to Hourly",
+    "description": "Free Salary to Hourly — Convert annual salary to hourly wage. Simplify salary conversion calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "salary",
+      "hourly",
+      "wage",
+      "income",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "hourly-to-salary",
+    "title": "Hourly to Salary",
+    "description": "Free Hourly to Salary — Convert hourly wage to annual salary. Simplify salary conversion calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "hourly",
+      "salary",
+      "annual",
+      "wage",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "overtime-calculator",
+    "title": "Overtime Calculator",
+    "description": "Free Overtime Calculator — Calculate overtime pay based on regular rate. Simplify overtime calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "overtime",
+      "pay",
+      "wage",
+      "time and a half",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "commission-calculator",
+    "title": "Commission Calculator",
+    "description": "Free Commission Calculator — Calculate commission earnings from sales. Simplify commission calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "commission",
+      "sales",
+      "earnings",
+      "rate",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "freelance-rate-calculator",
+    "title": "Freelance Rate Calculator",
+    "description": "Free Freelance Rate Calculator — Calculate optimal freelance hourly rates. Simplify freelance rate calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "freelance",
+      "rate",
+      "hourly",
+      "project",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "bill-splitting",
+    "title": "Bill Splitting",
+    "description": "Free Bill Splitting — Split bills and expenses evenly. Simplify bill splitting calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "split bill",
+      "expenses",
+      "shared",
+      "roommates",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "utility-cost-estimator",
+    "title": "Utility Cost Estimator",
+    "description": "Free Utility Cost Estimator — Estimate monthly utility costs. Simplify utility cost calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "utility",
+      "cost",
+      "electric",
+      "gas",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "dog-years-to-human",
+    "title": "Dog Years Calculator",
+    "description": "Free Dog Years Calculator — Convert dog age to human years. Simplify pet age calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "dog years",
+      "pet age",
+      "canine",
+      "human years",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "cat-years-to-human",
+    "title": "Cat Years Calculator",
+    "description": "Free Cat Years Calculator — Convert cat age to human years. Simplify pet age calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "cat years",
+      "pet age",
+      "feline",
+      "human years",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "human-age-in-dog-years",
+    "title": "Human Age in Dog Years",
+    "description": "Free Human Age in Dog Years — Convert human age to dog years. Simplify age conversion calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "human years",
+      "dog years",
+      "age",
+      "conversion",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "sleep-calculator",
+    "title": "Sleep Calculator",
+    "description": "Free Sleep Calculator — Calculate optimal bedtime and wake time. Simplify sleep calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "sleep",
+      "bedtime",
+      "wake",
+      "cycles",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "nap-timing-calculator",
+    "title": "Nap Calculator",
+    "description": "Free Nap Calculator — Calculate ideal nap duration and timing. Simplify nap calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "nap",
+      "sleep",
+      "power nap",
+      "rest",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "steps-to-miles",
+    "title": "Steps to Miles",
+    "description": "Free Steps to Miles — Convert steps to miles walked. Simplify steps conversion calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "steps",
+      "miles",
+      "walking",
+      "distance",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "steps-to-km",
+    "title": "Steps to KM",
+    "description": "Free Steps to KM — Convert steps to kilometers. Simplify steps conversion calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "steps",
+      "km",
+      "kilometers",
+      "walking",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "walking-calorie-calculator",
+    "title": "Walking Calorie Calculator",
+    "description": "Free Walking Calorie Calculator — Calculate calories burned while walking. Simplify walking calorie calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "walking",
+      "calories",
+      "burned",
+      "exercise",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "running-calorie-calculator",
+    "title": "Running Calorie Calculator",
+    "description": "Free Running Calorie Calculator — Calculate calories burned while running. Simplify running calorie calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "running",
+      "calories",
+      "burned",
+      "jogging",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "cycling-calorie-calculator",
+    "title": "Cycling Calorie Calculator",
+    "description": "Free Cycling Calorie Calculator — Calculate calories burned while cycling. Simplify cycling calorie calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "cycling",
+      "calories",
+      "burned",
+      "biking",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "swimming-calorie-calculator",
+    "title": "Swimming Calorie Calculator",
+    "description": "Free Swimming Calorie Calculator — Calculate calories burned while swimming. Simplify swimming calorie calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "swimming",
+      "calories",
+      "burned",
+      "pool",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "yoga-calorie-calculator",
+    "title": "Yoga Calorie Calculator",
+    "description": "Free Yoga Calorie Calculator — Calculate calories burned during yoga. Simplify yoga calorie calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "yoga",
+      "calories",
+      "burned",
+      "stretching",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "desk-ergonomics-calculator",
+    "title": "Desk Ergonomics Calculator",
+    "description": "Free Desk Ergonomics Calculator — Calculate optimal desk setup dimensions. Simplify ergonomics calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "desk",
+      "ergonomics",
+      "posture",
+      "office",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "standing-desk-height",
+    "title": "Standing Desk Height",
+    "description": "Free Standing Desk Height — Calculate ideal standing desk height. Simplify standing desk calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "standing desk",
+      "height",
+      "ergonomics",
+      "office",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "monitor-height-calculator",
+    "title": "Monitor Height Calculator",
+    "description": "Free Monitor Height Calculator — Calculate optimal monitor height. Simplify monitor height calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "monitor",
+      "height",
+      "ergonomics",
+      "screen",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "tv-size-distance-calculator",
+    "title": "TV Size Calculator",
+    "description": "Free TV Size Calculator — Calculate optimal TV size and viewing distance. Simplify TV size calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "TV",
+      "size",
+      "distance",
+      "theater",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "projector-screen-size",
+    "title": "Projector Screen Size",
+    "description": "Free Projector Screen Size — Calculate projector screen dimensions. Simplify projector screen calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "projector",
+      "screen",
+      "size",
+      "home theater",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "room-paint-calculator",
+    "title": "Room Paint Calculator",
+    "description": "Free Room Paint Calculator — Calculate paint needed for walls. Simplify paint calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "paint",
+      "walls",
+      "room",
+      "coverage",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "wallpaper-rolls-calculator",
+    "title": "Wallpaper Calculator",
+    "description": "Free Wallpaper Calculator — Calculate wallpaper rolls needed. Simplify wallpaper calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "wallpaper",
+      "rolls",
+      "walls",
+      "room",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "tile-calculator",
+    "title": "Tile Calculator",
+    "description": "Free Tile Calculator — Calculate tiles needed for floor or wall. Simplify tile calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "tile",
+      "flooring",
+      "walls",
+      "square footage",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "flooring-material-calculator",
+    "title": "Flooring Calculator",
+    "description": "Free Flooring Calculator — Calculate flooring material needed. Simplify flooring calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "flooring",
+      "square footage",
+      "material",
+      "room",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "carpet-room-calculator",
+    "title": "Carpet Calculator",
+    "description": "Free Carpet Calculator — Calculate carpet needed for rooms. Simplify carpet calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "carpet",
+      "square footage",
+      "room",
+      "flooring",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "rug-size-calculator",
+    "title": "Rug Size Calculator",
+    "description": "Free Rug Size Calculator — Calculate ideal rug size for rooms. Simplify rug size calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "rug",
+      "size",
+      "room",
+      "decor",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "curtain-length-calculator",
+    "title": "Curtain Length Calculator",
+    "description": "Free Curtain Length Calculator — Calculate curtain and drapery length. Simplify curtain length calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "curtain",
+      "length",
+      "drapes",
+      "window",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "furniture-arrangement",
+    "title": "Furniture Arrangement",
+    "description": "Free Furniture Arrangement — Plan furniture layout for rooms. Simplify furniture arrangement calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "furniture",
+      "layout",
+      "room",
+      "design",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "stairs-calculator",
+    "title": "Stairs Calculator",
+    "description": "Free Stairs Calculator — Calculate stair dimensions and materials. Simplify stair calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "stairs",
+      "staircase",
+      "rise",
+      "run",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "deck-material-calculator",
+    "title": "Deck Calculator",
+    "description": "Free Deck Calculator — Calculate deck building materials. Simplify deck calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "deck",
+      "lumber",
+      "outdoor",
+      "building",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "fence-materials-calculator",
+    "title": "Fence Calculator",
+    "description": "Free Fence Calculator — Calculate fence materials needed. Simplify fence calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "fence",
+      "panels",
+      "posts",
+      "yard",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "garden-soil-calculator",
+    "title": "Garden Soil Calculator",
+    "description": "Free Garden Soil Calculator — Calculate soil needed for garden beds. Simplify garden soil calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "soil",
+      "garden",
+      "raised bed",
+      "cubic feet",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "mulch-calculator",
+    "title": "Mulch Calculator",
+    "description": "Free Mulch Calculator — Calculate mulch needed for garden. Simplify mulch calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "mulch",
+      "garden",
+      "landscaping",
+      "coverage",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "garden-compost-calculator",
+    "title": "Compost Calculator",
+    "description": "Free Compost Calculator — Calculate compost needed for garden. Simplify compost calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "compost",
+      "garden",
+      "soil",
+      "organic",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "seed-spacing-calculator",
+    "title": "Seed Spacing Calculator",
+    "description": "Free Seed Spacing Calculator — Calculate seed spacing for garden. Simplify seed spacing calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "seed",
+      "spacing",
+      "garden",
+      "planting",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "plant-spacing-calculator",
+    "title": "Plant Spacing Calculator",
+    "description": "Free Plant Spacing Calculator — Calculate plant spacing for garden beds. Simplify plant spacing calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "plant",
+      "spacing",
+      "garden",
+      "layout",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "crop-yield-calculator",
+    "title": "Crop Yield Calculator",
+    "description": "Free Crop Yield Calculator — Estimate crop yield per area. Simplify crop yield calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "crop",
+      "yield",
+      "harvest",
+      "garden",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "aquarium-volume-calculator",
+    "title": "Aquarium Volume Calculator",
+    "description": "Free Aquarium Volume Calculator — Calculate aquarium water volume. Simplify aquarium volume calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "aquarium",
+      "volume",
+      "gallons",
+      "fish tank",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "aquarium-heater-calculator",
+    "title": "Aquarium Heater Calculator",
+    "description": "Free Aquarium Heater Calculator — Calculate heater wattage for aquarium. Simplify aquarium heater calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "aquarium",
+      "heater",
+      "wattage",
+      "fish tank",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "aquarium-lighting-calculator",
+    "title": "Aquarium Lighting Calculator",
+    "description": "Free Aquarium Lighting Calculator — Calculate lighting needs for aquarium. Simplify aquarium lighting calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "aquarium",
+      "lighting",
+      "LED",
+      "fish tank",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-laundry-cost",
+    "title": "Laundry Cost",
+    "description": "Free Laundry Cost — Calculate laundry cost for daily life. Simplify laundry cost calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "laundry cost",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-cleaning-supplies",
+    "title": "Cleaning Supplies",
+    "description": "Free Cleaning Supplies — Calculate cleaning supplies for daily life. Simplify cleaning supplies calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "cleaning supplies",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-moving-cost",
+    "title": "Moving Cost",
+    "description": "Free Moving Cost — Calculate moving cost for daily life. Simplify moving cost calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "moving cost",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-storage-cost",
+    "title": "Storage Cost",
+    "description": "Free Storage Cost — Calculate storage cost for daily life. Simplify storage cost calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "storage cost",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-delivery-fee",
+    "title": "Delivery Fee",
+    "description": "Free Delivery Fee — Calculate delivery fee for daily life. Simplify delivery fee calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "delivery fee",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-catering-cost",
+    "title": "Catering Cost",
+    "description": "Free Catering Cost — Calculate catering cost for daily life. Simplify catering cost calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "catering cost",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-party-planner",
+    "title": "Party Planner",
+    "description": "Free Party Planner — Calculate party planner for daily life. Simplify party planner calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "party planner",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-grocery-budget",
+    "title": "Grocery Budget",
+    "description": "Free Grocery Budget — Calculate grocery budget for daily life. Simplify grocery budget calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "grocery budget",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-meal-prep",
+    "title": "Meal Prep",
+    "description": "Free Meal Prep — Calculate meal prep for daily life. Simplify meal prep calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "meal prep",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-leftover-calc",
+    "title": "Leftover Calculator",
+    "description": "Free Leftover Calculator — Calculate leftover calc for daily life. Simplify leftover calc calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "leftover calc",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-pizza-calc",
+    "title": "Pizza Calculator",
+    "description": "Free Pizza Calculator — Calculate pizza calc for daily life. Simplify pizza calc calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pizza calc",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-coffee-calc",
+    "title": "Coffee Calculator",
+    "description": "Free Coffee Calculator — Calculate coffee calc for daily life. Simplify coffee calc calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "coffee calc",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-takeout-calc",
+    "title": "Takeout Calculator",
+    "description": "Free Takeout Calculator — Calculate takeout calc for daily life. Simplify takeout calc calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "takeout calc",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-utility-bill",
+    "title": "Utility Bill",
+    "description": "Free Utility Bill — Calculate utility bill for daily life. Simplify utility bill calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "utility bill",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-phone-bill",
+    "title": "Phone Bill",
+    "description": "Free Phone Bill — Calculate phone bill for daily life. Simplify phone bill calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "phone bill",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-internet-cost",
+    "title": "Internet Cost",
+    "description": "Free Internet Cost — Calculate internet cost for daily life. Simplify internet cost calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "internet cost",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-subscription-cost",
+    "title": "Subscription Cost",
+    "description": "Free Subscription Cost — Calculate subscription cost for daily life. Simplify subscription cost calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "subscription cost",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-pet-cost",
+    "title": "Pet Cost",
+    "description": "Free Pet Cost — Calculate pet cost for daily life. Simplify pet cost calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pet cost",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-childcare-cost",
+    "title": "Childcare Cost",
+    "description": "Free Childcare Cost — Calculate childcare cost for daily life. Simplify childcare cost calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "childcare cost",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "auto-commute-cost",
+    "title": "Commute Cost",
+    "description": "Free Commute Cost — Calculate commute cost for daily life. Simplify commute cost calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "commute cost",
+      "everyday",
+      "practical",
+      "daily life",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "flight-carbon-offset",
+    "title": "Flight Carbon Offset Calculator",
+    "description": "Free Flight Carbon Offset Calculator — Estimate the carbon footprint of your flight based on distance, class, and passengers. Calculate offset needs for eco-conscious travel planning.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "carbon offset",
+      "flight emissions",
+      "eco travel",
+      "carbon footprint",
+      "sustainable travel",
+      "environment"
+    ]
+  },
+  {
+    "slug": "trip-cost-calculator",
+    "title": "Trip Cost Calculator",
+    "description": "Free Trip Cost Calculator — Estimate total trip expenses including transportation, accommodation, food, and activities. Plan your travel budget with accurate cost projections.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "trip cost",
+      "travel budget",
+      "vacation cost",
+      "travel planning",
+      "expenses",
+      "budget"
+    ]
+  },
+  {
+    "slug": "fuel-cost-calculator",
+    "title": "Fuel Cost Calculator",
+    "description": "Free Fuel Cost Calculator — Calculate fuel costs for road trips based on distance, fuel efficiency, and gas prices. Plan driving budgets with accurate fuel expense estimates.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "fuel cost",
+      "gas cost",
+      "road trip",
+      "driving",
+      "fuel efficiency",
+      "travel"
+    ]
+  },
+  {
+    "slug": "hotel-cost-calculator",
+    "title": "Hotel Cost Calculator",
+    "description": "Free Hotel Cost Calculator — Compare hotel costs across different options including taxes and resort fees. Find the best accommodation value for your travel needs.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "hotel cost",
+      "accommodation",
+      "lodging",
+      "travel",
+      "hotel price",
+      "vacation"
+    ]
+  },
+  {
+    "slug": "rental-car-cost-calculator",
+    "title": "Rental Car Cost Calculator",
+    "description": "Free Rental Car Cost Calculator — Estimate total rental car expenses including daily rates, insurance, fuel, and mileage. Compare rental options for your trip.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "rental car",
+      "car hire",
+      "travel cost",
+      "vehicle rental",
+      "trip budget",
+      "transportation"
+    ]
+  },
+  {
+    "slug": "exchange-rate-calculator",
+    "title": "Exchange Rate Calculator",
+    "description": "Free Exchange Rate Calculator — Convert currencies at current exchange rates for international travel. Get accurate currency conversions for budgeting abroad.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "exchange rate",
+      "currency",
+      "foreign exchange",
+      "travel money",
+      "FX",
+      "conversion"
+    ]
+  },
+  {
+    "slug": "travel-budget-calculator",
+    "title": "Travel Budget Calculator",
+    "description": "Free Travel Budget Calculator — Plan and track your complete travel budget across all expense categories. Stay on budget with comprehensive trip cost planning.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "travel budget",
+      "vacation budget",
+      "trip planner",
+      "travel expenses",
+      "budgeting",
+      "holiday"
+    ]
+  },
+  {
+    "slug": "packing-volume-calculator",
+    "title": "Packing Volume Calculator",
+    "description": "Free Packing Volume Calculator — Estimate luggage volume needed based on items, duration, and destination. Pack efficiently with optimal baggage space utilization.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "packing",
+      "luggage volume",
+      "suitcase",
+      "travel packing",
+      "baggage",
+      "carry on"
+    ]
+  },
+  {
+    "slug": "baggage-allowance-calculator",
+    "title": "Baggage Allowance Calculator",
+    "description": "Free Baggage Allowance Calculator — Calculate baggage fees and weight allowances across major airlines. Avoid overweight baggage charges with accurate pre-flight planning.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "baggage",
+      "luggage allowance",
+      "airline fees",
+      "checked bag",
+      "travel",
+      "overweight"
+    ]
+  },
+  {
+    "slug": "currency-converter-quick",
+    "title": "Quick Currency Converter",
+    "description": "Free Quick Currency Converter — Instantly convert between major world currencies with real-time rates. Fast currency conversion for international shoppers and travelers.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "currency converter",
+      "money converter",
+      "forex",
+      "exchange",
+      "travel money",
+      "conversion"
+    ]
+  },
+  {
+    "slug": "rent-affordability",
+    "title": "Rent Affordability Calculator",
+    "description": "Free Rent Affordability Calculator — Determine how much rent you can afford based on income, expenses, and location. Follow the 30% rule and find your ideal rental budget.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "rent affordability",
+      "rent budget",
+      "housing",
+      "apartment",
+      "rental income",
+      "budgeting"
+    ]
+  },
+  {
+    "slug": "mortgage-affordability",
+    "title": "Mortgage Affordability Calculator",
+    "description": "Free Mortgage Affordability Calculator — Estimate how much house you can afford based on income, debt, and down payment. Get pre-approved with confidence using realistic affordability estimates.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "mortgage",
+      "home affordability",
+      "house buying",
+      "loan amount",
+      "housing budget",
+      "real estate"
+    ]
+  },
+  {
+    "slug": "home-buying-cost",
+    "title": "Home Buying Cost Calculator",
+    "description": "Free Home Buying Cost Calculator — Calculate all costs associated with buying a home including down payment, closing costs, and moving expenses. Plan your home purchase with comprehensive cost estimates.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "home buying",
+      "closing costs",
+      "down payment",
+      "home purchase",
+      "real estate",
+      "mortgage"
+    ]
+  },
+  {
+    "slug": "utility-cost",
+    "title": "Utility Cost Calculator",
+    "description": "Free Utility Cost Calculator — Estimate monthly utility costs for electricity, gas, water, internet, and trash based on home size and location. Budget for recurring household expenses.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "utility cost",
+      "electric bill",
+      "gas bill",
+      "water bill",
+      "household expenses",
+      "budgeting"
+    ]
+  },
+  {
+    "slug": "light-bulb-savings",
+    "title": "Light Bulb Savings Calculator",
+    "description": "Free Light Bulb Savings Calculator — Compare LED, CFL, and incandescent bulb costs and energy savings. Find the most cost-effective lighting for your home.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "light bulb",
+      "LED savings",
+      "energy efficient",
+      "lighting cost",
+      "CFL vs LED",
+      "home savings"
+    ]
+  },
+  {
+    "slug": "thermostat-savings",
+    "title": "Thermostat Savings Calculator",
+    "description": "Free Thermostat Savings Calculator — Calculate energy savings from adjusting your thermostat settings. Optimize HVAC usage for comfort and lower energy bills year-round.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "thermostat",
+      "HVAC savings",
+      "energy savings",
+      "temperature",
+      "heating cost",
+      "cooling cost"
+    ]
+  },
+  {
+    "slug": "coupon-savings",
+    "title": "Coupon Savings Calculator",
+    "description": "Free Coupon Savings Calculator — Calculate total savings when using coupons and promo codes on purchases. Track your coupon savings and stack discounts for maximum value.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "coupon savings",
+      "discount",
+      "promo code",
+      "saving money",
+      "shopping",
+      "deals"
+    ]
+  },
+  {
+    "slug": "buy-one-get-one",
+    "title": "Buy One Get One Calculator",
+    "description": "Free Buy One Get One Calculator — Calculate the effective unit price on BOGO and multi-buy promotions. Determine real savings on buy-one-get-one-free and similar offers.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "BOGO",
+      "buy one get one",
+      "multi buy",
+      "promotions",
+      "shopping deals",
+      "savings"
+    ]
+  },
+  {
+    "slug": "price-per-ounce",
+    "title": "Price Per Ounce Calculator",
+    "description": "Free Price Per Ounce Calculator — Calculate the cost per ounce of products for easy price comparison. Find the best value when shopping for groceries and household items.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "price per ounce",
+      "per oz",
+      "unit pricing",
+      "grocery comparison",
+      "value",
+      "shopping"
+    ]
+  },
+  {
+    "slug": "price-per-pound",
+    "title": "Price Per Pound Calculator",
+    "description": "Free Price Per Pound Calculator — Determine the cost per pound of products for bulk buying decisions. Compare bulk and packaged goods by pound price.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "price per pound",
+      "per lb",
+      "bulk buying",
+      "unit price",
+      "grocery",
+      "value"
+    ]
+  },
+  {
+    "slug": "price-comparison",
+    "title": "Price Comparison Calculator",
+    "description": "Free Price Comparison Calculator — Compare prices across different products, sizes, and stores to find the best deal. Make informed purchasing decisions with side-by-side price analysis.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "price comparison",
+      "compare prices",
+      "best deal",
+      "shopping",
+      "value",
+      "savings"
+    ]
+  },
+  {
+    "slug": "cost-per-use",
+    "title": "Cost Per Use Calculator",
+    "description": "Free Cost Per Use Calculator — Calculate the true cost per use of products and services over their lifetime. Make smarter buying decisions by understanding long-term value.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "cost per use",
+      "CPPU",
+      "value per use",
+      "long term cost",
+      "durable goods",
+      "investment"
+    ]
+  },
+  {
+    "slug": "subscription-savings",
+    "title": "Subscription Savings Calculator",
+    "description": "Free Subscription Savings Calculator — Compare monthly, annual, and multi-year subscription pricing to find the best deal. Optimize recurring payments for streaming, software, and services.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "subscription",
+      "annual vs monthly",
+      "recurring payment",
+      "streaming cost",
+      "membership",
+      "savings"
+    ]
+  },
+  {
+    "slug": "bundle-savings",
+    "title": "Bundle Savings Calculator",
+    "description": "Free Bundle Savings Calculator — Calculate savings from bundling products or services versus buying separately. Determine if package deals and bundles are worth the cost.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "bundle savings",
+      "package deal",
+      "bundle vs separate",
+      "service bundling",
+      "savings",
+      "value"
+    ]
+  },
+  {
+    "slug": "pomodoro-timer",
+    "title": "Pomodoro Timer Calculator",
+    "description": "Free Pomodoro Timer Calculator — Plan your work sessions using the Pomodoro Technique with customizable focus and break intervals. Boost productivity with timed work sprints.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "Pomodoro",
+      "timer",
+      "productivity",
+      "focus",
+      "time management",
+      "work sessions"
+    ]
+  },
+  {
+    "slug": "productivity-score",
+    "title": "Productivity Score Calculator",
+    "description": "Free Productivity Score Calculator — Measure your daily productivity based on tasks completed, time spent, and goals achieved. Track and improve your personal efficiency.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "productivity",
+      "efficiency",
+      "task completion",
+      "time tracking",
+      "work metrics",
+      "self improvement"
+    ]
+  },
+  {
+    "slug": "time-blocking",
+    "title": "Time Blocking Calculator",
+    "description": "Free Time Blocking Calculator — Schedule your day into focused time blocks for different activities and priorities. Organize your calendar for maximum productivity.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "time blocking",
+      "schedule",
+      "calendar",
+      "deep work",
+      "task management",
+      "planning"
+    ]
+  },
+  {
+    "slug": "meeting-cost",
+    "title": "Meeting Cost Calculator",
+    "description": "Free Meeting Cost Calculator — Calculate the real cost of meetings based on attendee salaries and duration. Determine if your meetings are worth the investment.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "meeting cost",
+      "meeting expense",
+      "workplace cost",
+      "salary cost",
+      "business",
+      "productivity"
+    ]
+  },
+  {
+    "slug": "commute-cost",
+    "title": "Commute Cost Calculator",
+    "description": "Free Commute Cost Calculator — Calculate the true cost of your daily commute including fuel, wear and tear, and time value. Evaluate remote work savings and commuting alternatives.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "commute cost",
+      "driving cost",
+      "transportation",
+      "work commute",
+      "gas cost",
+      "remote work"
+    ]
+  },
+  {
+    "slug": "work-hours-tracker",
+    "title": "Work Hours Tracker",
+    "description": "Free Work Hours Tracker — Track your daily and weekly work hours including breaks and overtime. Monitor your work schedule for better time management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "work hours",
+      "time tracker",
+      "overtime",
+      "work schedule",
+      "hour tracking",
+      "timesheet"
+    ]
+  },
+  {
+    "slug": "billable-hours",
+    "title": "Billable Hours Calculator",
+    "description": "Free Billable Hours Calculator — Calculate billable hours and total invoice amounts based on hourly rates and time spent. Essential for freelancers and consultants managing client billing.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "billable hours",
+      "invoice",
+      "hourly rate",
+      "freelance",
+      "consulting",
+      "time billing"
+    ]
+  },
+  {
+    "slug": "project-deadline",
+    "title": "Project Deadline Calculator",
+    "description": "Free Project Deadline Calculator — Calculate project deadlines based on scope, resources, and available work days. Plan realistic timelines and manage delivery expectations.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "project deadline",
+      "timeline",
+      "delivery date",
+      "project planning",
+      "due date",
+      "scheduling"
+    ]
+  },
+  {
+    "slug": "task-estimation",
+    "title": "Task Estimation Calculator",
+    "description": "Free Task Estimation Calculator — Estimate task completion times using optimistic, pessimistic, and most likely scenarios. Apply PERT and three-point estimation techniques.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "task estimation",
+      "PERT",
+      "three point",
+      "time estimate",
+      "project management",
+      "planning"
+    ]
+  },
+  {
+    "slug": "priority-matrix",
+    "title": "Priority Matrix Calculator",
+    "description": "Free Priority Matrix Calculator — Prioritize tasks using the Eisenhower Matrix based on urgency and importance. Focus on what matters most with structured task prioritization.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "priority matrix",
+      "Eisenhower matrix",
+      "task priority",
+      "urgent important",
+      "time management",
+      "productivity"
+    ]
+  },
+  {
+    "slug": "random-number-generator",
+    "title": "Random Number Generator",
+    "description": "Free Random Number Generator — Generate random numbers within any range for games, sampling, and decision making. True random number generation with customizable parameters.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "random number",
+      "RNG",
+      "lottery pick",
+      "randomizer",
+      "random selection",
+      "number generator"
+    ]
+  },
+  {
+    "slug": "lottery-odds",
+    "title": "Lottery Odds Calculator",
+    "description": "Free Lottery Odds Calculator — Calculate the odds of winning various lottery games including Powerball and Mega Millions. Understand your chances before buying tickets.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "lottery odds",
+      "Powerball",
+      "Mega Millions",
+      "winning chances",
+      "probability",
+      "gambling"
+    ]
+  },
+  {
+    "slug": "password-strength",
+    "title": "Password Strength Checker",
+    "description": "Free Password Strength Checker — Evaluate password strength based on length, complexity, and common pattern detection. Create secure passwords with real-time strength feedback.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "password strength",
+      "security",
+      "password checker",
+      "cybersecurity",
+      "strong password",
+      "online safety"
+    ]
+  },
+  {
+    "slug": "color-picker",
+    "title": "Color Picker Tool",
+    "description": "Free Color Picker Tool — Pick and convert colors between HEX, RGB, HSL, and CMYK formats. Find the perfect color for your design projects with an intuitive color picker.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "color picker",
+      "HEX",
+      "RGB",
+      "color converter",
+      "design tool",
+      "web color"
+    ]
+  },
+  {
+    "slug": "quick-unit-converter",
+    "title": "Quick Unit Converter",
+    "description": "Free Quick Unit Converter — Instantly convert between common units for length, weight, volume, and temperature. Fast everyday unit conversions in one convenient tool.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "unit converter",
+      "quick convert",
+      "length converter",
+      "weight converter",
+      "everyday tool",
+      "conversion"
+    ]
+  },
+  {
+    "slug": "mood-tracker",
+    "title": "Mood Tracker",
+    "description": "Free Mood Tracker — Log and track your daily mood patterns over time. Identify emotional trends and triggers for better mental well-being.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "mood tracker",
+      "emotions",
+      "daily mood",
+      "mental health",
+      "journal",
+      "wellness"
+    ]
+  },
+  {
+    "slug": "habit-tracker",
+    "title": "Habit Tracker",
+    "description": "Free Habit Tracker — Track daily habits and monitor your consistency over weeks and months. Build better habits with visual progress tracking.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "habit tracker",
+      "daily habits",
+      "habit building",
+      "consistency",
+      "self improvement",
+      "routine"
+    ]
+  },
+  {
+    "slug": "daily-affirmation",
+    "title": "Daily Affirmation Generator",
+    "description": "Free Daily Affirmation Generator — Generate positive daily affirmations for motivation and self-confidence. Start your day with uplifting personalized affirmations.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "affirmation",
+      "daily affirmation",
+      "positive thinking",
+      "motivation",
+      "self care",
+      "mindfulness"
+    ]
+  },
+  {
+    "slug": "gratitude-prompt",
+    "title": "Gratitude Journal Prompt",
+    "description": "Free Gratitude Journal Prompt — Generate thoughtful gratitude journal prompts to practice daily gratitude. Improve mental well-being through regular gratitude reflection.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "gratitude",
+      "journal prompt",
+      "gratitude journal",
+      "mindfulness",
+      "well being",
+      "reflection"
+    ]
+  },
+  {
+    "slug": "flight-carbon",
+    "title": "Flight Carbon Calculator",
+    "description": "Free Flight Carbon Calculator - Calculate carbon footprint for flights based on distance and class Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "flight-carbon",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "currency-travel",
+    "title": "Travel Currency Calculator",
+    "description": "Free Travel Currency Calculator - Convert travel money between currencies at live exchange rates Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "currency-travel",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "weather-comparison",
+    "title": "Weather Comparison Calculator",
+    "description": "Free Weather Comparison Calculator - Compare weather conditions between cities for travel planning Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "weather-comparison",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "luggage-size",
+    "title": "Luggage Size Calculator",
+    "description": "Free Luggage Size Calculator - Calculate luggage dimensions and volume for airline carry-on compliance Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "luggage-size",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "toll-calculator",
+    "title": "Toll Calculator",
+    "description": "Free Toll Calculator - Calculate toll road costs for road trips and daily commutes Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "toll-calculator",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "parking-cost",
+    "title": "Parking Cost Calculator",
+    "description": "Free Parking Cost Calculator - Calculate parking fees for airports garages and city parking Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "parking-cost",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "rental-car-calculator",
+    "title": "Rental Car Calculator",
+    "description": "Free Rental Car Calculator - Calculate rental car cost including insurance fees and mileage charges Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "rental-car-calculator",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "decluttering-calculator",
+    "title": "Decluttering Calculator",
+    "description": "Free Decluttering Calculator - Calculate decluttering progress for home organization projects Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "decluttering-calculator",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "home-inventory",
+    "title": "Home Inventory Calculator",
+    "description": "Free Home Inventory Calculator - Calculate home inventory value for insurance and organization purposes Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "home-inventory",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "moving-checklist",
+    "title": "Moving Checklist Calculator",
+    "description": "Free Moving Checklist Calculator - Calculate moving timeline and task completion for relocation planning Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "moving-checklist",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "apartment-search",
+    "title": "Apartment Search Calculator",
+    "description": "Free Apartment Search Calculator - Calculate apartment search budget for rent utilities and deposits Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "apartment-search",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "room-size-calculator",
+    "title": "Room Size Calculator",
+    "description": "Free Room Size Calculator - Calculate room square footage for furniture layout and space planning Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "room-size-calculator",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "curtain-size",
+    "title": "Curtain Size Calculator",
+    "description": "Free Curtain Size Calculator - Calculate curtain panel width and drop for window treatments Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "curtain-size",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "rug-size",
+    "title": "Rug Size Calculator",
+    "description": "Free Rug Size Calculator - Calculate rug dimensions for living room dining room and bedroom layouts Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "rug-size",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "furniture-layout",
+    "title": "Furniture Layout Calculator",
+    "description": "Free Furniture Layout Calculator - Calculate furniture arrangement spacing and traffic flow for rooms Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "furniture-layout",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "declutter-konmari",
+    "title": "KonMari Decluttering Calculator",
+    "description": "Free KonMari Decluttering Calculator - Calculate decluttering progress using KonMari method by category Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "declutter-konmari",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "home-organization",
+    "title": "Home Organization Calculator",
+    "description": "Free Home Organization Calculator - Calculate closet pantry and garage organization system requirements Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "home-organization",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "storage-needs",
+    "title": "Storage Calculator",
+    "description": "Free Storage Calculator - Calculate storage unit size for household items during moving or renovation Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "storage-needs",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "closet-organizer",
+    "title": "Closet Organizer Calculator",
+    "description": "Free Closet Organizer Calculator - Calculate closet shelving rod and drawer configurations for organized storage Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "closet-organizer",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "garage-organizer",
+    "title": "Garage Organizer Calculator",
+    "description": "Free Garage Organizer Calculator - Calculate garage storage wall systems and overhead shelves for organization Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "garage-organizer",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "shed-organizer",
+    "title": "Shed Organizer Calculator",
+    "description": "Free Shed Organizer Calculator - Calculate shed storage racks hooks and shelves for tool organization Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "shed-organizer",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "workshop-layout",
+    "title": "Workshop Layout Calculator",
+    "description": "Free Workshop Layout Calculator - Calculate workshop bench tool storage and aisle space for efficient layout Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "workshop-layout",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "pet-vaccination",
+    "title": "Pet Vaccination Calculator",
+    "description": "Free Pet Vaccination Calculator - Calculate pet vaccination schedule and booster timing for dogs and cats Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pet-vaccination",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "pet-microchip",
+    "title": "Pet Microchip Calculator",
+    "description": "Free Pet Microchip Calculator - Calculate pet microchip registration and recovery information tracking Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pet-microchip",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "pet-grooming",
+    "title": "Pet Grooming Calculator",
+    "description": "Free Pet Grooming Calculator - Calculate pet grooming schedule and service costs for dogs and cats Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pet-grooming",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "pet-sitting",
+    "title": "Pet Sitting Calculator",
+    "description": "Free Pet Sitting Calculator - Calculate pet sitting costs and duration for travel pet care Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pet-sitting",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "pet-boarding",
+    "title": "Pet Boarding Calculator",
+    "description": "Free Pet Boarding Calculator - Calculate pet boarding costs and duration for kennel and pet hotel stays Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pet-boarding",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "dog-walking",
+    "title": "Dog Walking Calculator",
+    "description": "Free Dog Walking Calculator - Calculate dog walking distance duration and calorie burn estimates Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "dog-walking",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "dog-training",
+    "title": "Dog Training Calculator",
+    "description": "Free Dog Training Calculator - Calculate dog training schedule and progress tracking for obedience classes Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "dog-training",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "aquarium-size",
+    "title": "Aquarium Size Calculator",
+    "description": "Free Aquarium Size Calculator - Calculate aquarium volume and fish stocking levels for home aquariums Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "aquarium-size",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "container-garden",
+    "title": "Container Garden Calculator",
+    "description": "Free Container Garden Calculator - Calculate pot size and soil volume for container vegetable gardening Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "container-garden",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "vertical-garden",
+    "title": "Vertical Garden Calculator",
+    "description": "Free Vertical Garden Calculator - Calculate vertical garden panel size and plant pocket spacing Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "vertical-garden",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "seed-starting",
+    "title": "Seed Starting Calculator",
+    "description": "Free Seed Starting Calculator - Calculate seed starting schedule and indoor seed germination requirements Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "seed-starting",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "transplanting",
+    "title": "Transplanting Calculator",
+    "description": "Free Transplanting Calculator - Calculate transplant timing and spacing for garden seedling placement Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "transplanting",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "crop-rotation",
+    "title": "Crop Rotation Calculator",
+    "description": "Free Crop Rotation Calculator - Calculate crop rotation plan for 4-year garden bed rotation cycles Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "crop-rotation",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "companion-planting",
+    "title": "Companion Planting Calculator",
+    "description": "Free Companion Planting Calculator - Calculate companion planting combinations for vegetable garden compatibility Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "companion-planting",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "trellis-calculator",
+    "title": "Trellis Calculator",
+    "description": "Free Trellis Calculator - Calculate trellis dimensions and support spacing for climbing vegetables Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "trellis-calculator",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "herb-garden",
+    "title": "Herb Garden Calculator",
+    "description": "Free Herb Garden Calculator - Calculate herb garden layout and plant spacing for culinary herbs Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "herb-garden",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "indoor-herbs",
+    "title": "Indoor Herb Calculator",
+    "description": "Free Indoor Herb Calculator - Calculate indoor herb garden pot size and lighting requirements Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "indoor-herbs",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "microgreens",
+    "title": "Microgreens Calculator",
+    "description": "Free Microgreens Calculator - Calculate microgreens tray size and seed density for indoor growing Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "microgreens",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "worm-bin",
+    "title": "Worm Bin Calculator",
+    "description": "Free Worm Bin Calculator - Calculate worm bin size and bedding requirements for vermicomposting Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "worm-bin",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "greenhouse-size",
+    "title": "Greenhouse Size Calculator",
+    "description": "Free Greenhouse Size Calculator - Calculate greenhouse dimensions and glazing for year-round growing Simplify everyday calculations for daily life. Quick accurate and easy to use with practical results you can apply immediately. Perfect for household budgeting shopping meal planning and lifestyle management.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "greenhouse-size",
+      "daily life",
+      "practical",
+      "household",
+      "lifestyle",
+      "quick calculator",
+      "useful tool"
+    ]
+  },
+  {
+    "slug": "laundry-cost-calc",
+    "title": "Laundry Cost Calculator",
+    "description": "Free Laundry Cost Calculator — Calculate the cost per load of laundry including detergent, electricity, water, and machine depreciation.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "laundry",
+      "cost per load",
+      "detergent",
+      "utilities",
+      "household"
+    ]
+  },
+  {
+    "slug": "dry-cleaning-cost",
+    "title": "Dry Cleaning Cost Calculator",
+    "description": "Free Dry Cleaning Cost Calculator — Estimate dry cleaning costs for various garments based on fabric type and cleaning method.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "dry cleaning",
+      "garment care",
+      "cost estimate",
+      "clothing",
+      "cleaning"
+    ]
+  },
+  {
+    "slug": "home-cleaning-cost",
+    "title": "Home Cleaning Cost Calculator",
+    "description": "Free Home Cleaning Cost Calculator — Calculate house cleaning costs based on square footage, rooms, and cleaning frequency.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "home cleaning",
+      "housekeeping",
+      "cost estimate",
+      "maintenance",
+      "household"
+    ]
+  },
+  {
+    "slug": "move-cost-calc",
+    "title": "Moving Cost Calculator",
+    "description": "Free Moving Cost Calculator — Estimate moving costs including truck rental, packing supplies, labor, and distance factors.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "moving",
+      "relocation",
+      "cost estimate",
+      "truck rental",
+      "logistics"
+    ]
+  },
+  {
+    "slug": "storage-unit-cost",
+    "title": "Storage Unit Cost Calculator",
+    "description": "Free Storage Unit Cost Calculator — Calculate storage unit costs based on size, location, climate control, and rental duration.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "storage",
+      "self storage",
+      "cost",
+      "rental",
+      "unit size"
+    ]
+  },
+  {
+    "slug": "pet-ownership-cost",
+    "title": "Pet Ownership Cost Calculator",
+    "description": "Free Pet Ownership Cost Calculator — Estimate annual pet expenses including food, vet visits, supplies, and insurance.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pet",
+      "ownership",
+      "cost",
+      "dog",
+      "cat"
+    ]
+  },
+  {
+    "slug": "childcare-cost-calc",
+    "title": "Childcare Cost Calculator",
+    "description": "Free Childcare Cost Calculator — Calculate daycare and nanny costs based on hours, age, and location.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "childcare",
+      "daycare",
+      "nanny",
+      "cost",
+      "child"
+    ]
+  },
+  {
+    "slug": "college-savings-calc",
+    "title": "College Savings Calculator",
+    "description": "Free College Savings Calculator — Calculate required monthly savings to reach college fund goals considering tuition inflation.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "college",
+      "savings",
+      "529 plan",
+      "education fund",
+      "tuition"
+    ]
+  },
+  {
+    "slug": "emergency-fund-calc",
+    "title": "Emergency Fund Calculator",
+    "description": "Free Emergency Fund Calculator — Calculate your target emergency fund size based on monthly expenses and job security.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "emergency fund",
+      "savings",
+      "financial security",
+      "budget",
+      "rainy day"
+    ]
+  },
+  {
+    "slug": "debt-to-income-calc",
+    "title": "Debt to Income Ratio Calculator",
+    "description": "Free Debt to Income Ratio Calculator — Calculate your DTI ratio for mortgage qualification and financial health assessment.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "DTI",
+      "debt to income",
+      "mortgage",
+      "financial health",
+      "ratio"
+    ]
+  },
+  {
+    "slug": "net-worth-calc",
+    "title": "Net Worth Calculator",
+    "description": "Free Net Worth Calculator — Calculate your net worth by totaling assets and liabilities for financial planning.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "net worth",
+      "assets",
+      "liabilities",
+      "financial planning",
+      "wealth"
+    ]
+  },
+  {
+    "slug": "budget-planner-calc",
+    "title": "Budget Planner Calculator",
+    "description": "Free Budget Planner Calculator — Create a monthly budget by categorizing income and expenses with savings goals.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "budget",
+      "planner",
+      "monthly",
+      "expenses",
+      "savings"
+    ]
+  },
+  {
+    "slug": "home-affordability",
+    "title": "Home Affordability Calculator",
+    "description": "Free Home Affordability Calculator — Determine how much home you can afford based on income, debt, and down payment.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "home affordability",
+      "mortgage",
+      "housing",
+      "budget",
+      "real estate"
+    ]
+  },
+  {
+    "slug": "rent-affordability-calc",
+    "title": "Rent Affordability Calculator",
+    "description": "Free Rent Affordability Calculator — Calculate what rent you can afford based on the 30% rule and your monthly income.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "rent",
+      "affordability",
+      "apartment",
+      "budget",
+      "housing"
+    ]
+  },
+  {
+    "slug": "car-affordability-calc",
+    "title": "Car Affordability Calculator",
+    "description": "Free Car Affordability Calculator — Determine what car payment fits your budget based on income and expenses.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "car",
+      "affordability",
+      "auto",
+      "budget",
+      "vehicle"
+    ]
+  },
+  {
+    "slug": "vacation-budget-calc",
+    "title": "Vacation Budget Calculator",
+    "description": "Free Vacation Budget Calculator — Plan your vacation budget including travel, accommodation, food, and activities.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "vacation",
+      "budget",
+      "travel",
+      "trip planning",
+      "holiday"
+    ]
+  },
+  {
+    "slug": "road-trip-cost",
+    "title": "Road Trip Cost Calculator",
+    "description": "Free Road Trip Cost Calculator — Estimate road trip costs including fuel, lodging, food, and tolls.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "road trip",
+      "travel cost",
+      "fuel",
+      "gas",
+      "vacation"
+    ]
+  },
+  {
+    "slug": "commute-cost-calc",
+    "title": "Commute Cost Calculator",
+    "description": "Free Commute Cost Calculator — Calculate your daily commute costs including fuel, wear and tear, and public transit.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "commute",
+      "transportation",
+      "cost",
+      "fuel",
+      "transit"
+    ]
+  },
+  {
+    "slug": "fuel-efficiency-calc",
+    "title": "Fuel Efficiency Calculator",
+    "description": "Free Fuel Efficiency Calculator — Calculate your vehicle fuel economy in MPG or L/100km based on distance and fuel used.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "fuel efficiency",
+      "MPG",
+      "L/100km",
+      "gas mileage",
+      "vehicle"
+    ]
+  },
+  {
+    "slug": "tire-size-calc",
+    "title": "Tire Size Calculator",
+    "description": "Free Tire Size Calculator — Compare tire sizes and calculate diameter, width, and sidewall height for vehicle fitment.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "tire size",
+      "wheel",
+      "diameter",
+      "fitment",
+      "vehicle"
+    ]
+  },
+  {
+    "slug": "tire-pressure-calc",
+    "title": "Tire Pressure Calculator",
+    "description": "Free Tire Pressure Calculator — Calculate optimal tire pressure based on vehicle weight, load, and tire specifications.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "tire pressure",
+      "PSI",
+      "inflation",
+      "vehicle",
+      "safety"
+    ]
+  },
+  {
+    "slug": "towing-capacity",
+    "title": "Towing Capacity Calculator",
+    "description": "Free Towing Capacity Calculator — Determine your vehicle towing capacity based on GVWR, curb weight, and hitch rating.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "towing",
+      "capacity",
+      "GVWR",
+      "trailer",
+      "vehicle"
+    ]
+  },
+  {
+    "slug": "paint-calculator-calc",
+    "title": "Paint Calculator",
+    "description": "Free Paint Calculator — Calculate paint needed for a room based on wall area, coats, and paint coverage per gallon.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "paint",
+      "room",
+      "wall",
+      "coverage",
+      "gallon"
+    ]
+  },
+  {
+    "slug": "wallpaper-calculator-calc",
+    "title": "Wallpaper Calculator",
+    "description": "Free Wallpaper Calculator — Calculate wallpaper rolls needed based on room dimensions and pattern repeat.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "wallpaper",
+      "room",
+      "wall covering",
+      "pattern",
+      "rolls"
+    ]
+  },
+  {
+    "slug": "flooring-calc",
+    "title": "Flooring Calculator",
+    "description": "Free Flooring Calculator — Calculate flooring material needed including waste factor for hardwood, tile, or laminate.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "flooring",
+      "hardwood",
+      "tile",
+      "laminate",
+      "square footage"
+    ]
+  },
+  {
+    "slug": "tile-calculator-calc",
+    "title": "Tile Calculator",
+    "description": "Free Tile Calculator — Calculate tiles needed for floor or wall projects including cuts and waste factor.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "tile",
+      "floor",
+      "wall",
+      "backsplash",
+      "grout"
+    ]
+  },
+  {
+    "slug": "carpet-calculator-calc",
+    "title": "Carpet Calculator",
+    "description": "Free Carpet Calculator — Calculate carpet needed for rooms including padding, seams, and waste allowance.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "carpet",
+      "flooring",
+      "padding",
+      "room",
+      "square footage"
+    ]
+  },
+  {
+    "slug": "deck-material-calc",
+    "title": "Deck Material Calculator",
+    "description": "Free Deck Material Calculator — Calculate lumber, fasteners, and finishing materials needed for deck construction.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "deck",
+      "lumber",
+      "outdoor",
+      "construction",
+      "material"
+    ]
+  },
+  {
+    "slug": "fence-material-calc",
+    "title": "Fence Material Calculator",
+    "description": "Free Fence Material Calculator — Calculate posts, rails, and pickets needed for fencing projects.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "fence",
+      "privacy",
+      "posts",
+      "pickets",
+      "outdoor"
+    ]
+  },
+  {
+    "slug": "concrete-slab-calc",
+    "title": "Concrete Slab Calculator",
+    "description": "Free Concrete Slab Calculator — Calculate concrete volume needed for slabs, footings, and columns in cubic yards.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "concrete",
+      "slab",
+      "cubic yards",
+      "foundation",
+      "construction"
+    ]
+  },
+  {
+    "slug": "asphalt-calculator-calc",
+    "title": "Asphalt Calculator",
+    "description": "Free Asphalt Calculator — Calculate asphalt tonnage needed for driveways, parking lots, and road projects.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "asphalt",
+      "driveway",
+      "paving",
+      "tonnage",
+      "construction"
+    ]
+  },
+  {
+    "slug": "gravel-calculator",
+    "title": "Gravel Calculator",
+    "description": "Free Gravel Calculator — Calculate gravel volume needed for driveways, walkways, and landscaping beds.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "gravel",
+      "driveway",
+      "landscaping",
+      "cubic yards",
+      "aggregate"
+    ]
+  },
+  {
+    "slug": "mulch-calculator-calc",
+    "title": "Mulch Calculator",
+    "description": "Free Mulch Calculator — Calculate mulch volume needed for garden beds based on area and desired depth.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "mulch",
+      "garden",
+      "landscaping",
+      "cubic feet",
+      "soil"
+    ]
+  },
+  {
+    "slug": "sod-calculator-calc",
+    "title": "Sod Calculator",
+    "description": "Free Sod Calculator — Calculate sod rolls needed for lawn installation based on area measurements.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "sod",
+      "lawn",
+      "grass",
+      "yard",
+      "landscaping"
+    ]
+  },
+  {
+    "slug": "seed-calculator-calc",
+    "title": "Grass Seed Calculator",
+    "description": "Free Grass Seed Calculator — Calculate grass seed needed for lawn overseeding or new planting based on area.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "grass seed",
+      "lawn",
+      "overseed",
+      "planting",
+      "yard"
+    ]
+  },
+  {
+    "slug": "fertilizer-calc",
+    "title": "Fertilizer Calculator",
+    "description": "Free Fertilizer Calculator — Calculate fertilizer application rates based on N-P-K ratios and lawn area.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "fertilizer",
+      "N-P-K",
+      "lawn",
+      "garden",
+      "application"
+    ]
+  },
+  {
+    "slug": "pest-control-cost",
+    "title": "Pest Control Cost Calculator",
+    "description": "Free Pest Control Cost Calculator — Estimate pest control treatment costs based on infestation type and property size.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pest control",
+      "exterminator",
+      "cost",
+      "treatment",
+      "infestation"
+    ]
+  },
+  {
+    "slug": "pool-chemical-calc",
+    "title": "Pool Chemical Calculator",
+    "description": "Free Pool Chemical Calculator — Calculate pool chemical dosing for chlorine, pH, and alkalinity based on pool volume.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pool",
+      "chemical",
+      "chlorine",
+      "pH",
+      "water balance"
+    ]
+  },
+  {
+    "slug": "pool-heating-cost",
+    "title": "Pool Heating Cost Calculator",
+    "description": "Free Pool Heating Cost Calculator — Estimate pool heating costs based on size, heater type, and local utility rates.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "pool",
+      "heating",
+      "gas",
+      "electric",
+      "cost"
+    ]
+  },
+  {
+    "slug": "water-usage-calc",
+    "title": "Water Usage Calculator",
+    "description": "Free Water Usage Calculator — Calculate household water consumption and identify conservation opportunities.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "water",
+      "usage",
+      "conservation",
+      "utility",
+      "household"
+    ]
+  },
+  {
+    "slug": "electricity-usage",
+    "title": "Electricity Usage Calculator",
+    "description": "Free Electricity Usage Calculator — Calculate appliance electricity consumption and estimate monthly costs.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "electricity",
+      "usage",
+      "appliance",
+      "kWh",
+      "energy bill"
+    ]
+  },
+  {
+    "slug": "gas-usage-calc",
+    "title": "Natural Gas Usage Calculator",
+    "description": "Free Natural Gas Usage Calculator — Calculate gas appliance consumption and estimate monthly heating costs.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "natural gas",
+      "usage",
+      "heating",
+      "therm",
+      "utility"
+    ]
+  },
+  {
+    "slug": "solar-panel-calc",
+    "title": "Solar Panel Calculator",
+    "description": "Free Solar Panel Calculator — Calculate solar panel system size and estimated energy production for your location.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "solar panel",
+      "renewable",
+      "energy",
+      "photovoltaic",
+      "green"
+    ]
+  },
+  {
+    "slug": "generator-sizing",
+    "title": "Generator Sizing Calculator",
+    "description": "Free Generator Sizing Calculator — Calculate generator size needed based on starting and running wattage of appliances.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "generator",
+      "sizing",
+      "wattage",
+      "backup power",
+      "appliance"
+    ]
+  },
+  {
+    "slug": "wifi-speed-calc",
+    "title": "WiFi Speed Calculator",
+    "description": "Free WiFi Speed Calculator — Calculate required internet speed based on devices, streaming, and usage patterns.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "WiFi",
+      "internet",
+      "speed",
+      "bandwidth",
+      "streaming"
+    ]
+  },
+  {
+    "slug": "data-usage-calc",
+    "title": "Data Usage Calculator",
+    "description": "Free Data Usage Calculator — Estimate monthly data usage based on streaming, browsing, and download habits.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "data usage",
+      "internet",
+      "streaming",
+      "monthly",
+      "cap"
+    ]
+  },
+  {
+    "slug": "password-strength-calc",
+    "title": "Password Strength Calculator",
+    "description": "Free Password Strength Calculator — Evaluate password security based on length, complexity, and resistance to attacks.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "password",
+      "security",
+      "strength",
+      "complexity",
+      "cybersecurity"
+    ]
+  },
+  {
+    "slug": "qr-code-generator",
+    "title": "QR Code Generator",
+    "description": "Free QR Code Generator — Generate QR codes for URLs, text, and contact information with customizable sizes.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "QR code",
+      "generator",
+      "barcode",
+      "scan",
+      "digital"
+    ]
+  },
+  {
+    "slug": "color-converter",
+    "title": "Color Converter",
+    "description": "Free Color Converter — Convert between HEX, RGB, HSL, and CMYK color formats for web and print design.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "color",
+      "HEX",
+      "RGB",
+      "HSL",
+      "CMYK"
+    ]
+  },
+  {
+    "slug": "font-size-calc",
+    "title": "Font Size Calculator",
+    "description": "Free Font Size Calculator — Calculate responsive font sizes using rem, em, px, and pt conversions for web design.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "font size",
+      "typography",
+      "responsive",
+      "CSS",
+      "web design"
+    ]
+  },
+  {
+    "slug": "meal-prep-cost",
+    "title": "Meal Prep Cost",
+    "description": "Free Meal Prep Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "meal prep",
+      "cost per serving",
+      "batch"
+    ]
+  },
+  {
+    "slug": "dining-budget",
+    "title": "Dining Out Budget",
+    "description": "Free Dining Out Budget — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "dining",
+      "restaurant",
+      "budget",
+      "eating out"
+    ]
+  },
+  {
+    "slug": "takeout-vs-cooking",
+    "title": "Takeout vs Cooking",
+    "description": "Free Takeout vs Cooking — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "takeout",
+      "cooking",
+      "cost comparison",
+      "savings"
+    ]
+  },
+  {
+    "slug": "hourly-annual",
+    "title": "Hourly to Annual",
+    "description": "Free Hourly to Annual — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "hourly",
+      "annual",
+      "salary",
+      "full-time"
+    ]
+  },
+  {
+    "slug": "biweekly-monthly",
+    "title": "Biweekly to Monthly",
+    "description": "Free Biweekly to Monthly — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "biweekly",
+      "monthly",
+      "paycheck",
+      "budget"
+    ]
+  },
+  {
+    "slug": "bonus-calc",
+    "title": "Bonus Calculator",
+    "description": "Free Bonus Calculator — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "bonus",
+      "supplemental",
+      "withholding",
+      "tax"
+    ]
+  },
+  {
+    "slug": "commission-calc",
+    "title": "Commission Calculator",
+    "description": "Free Commission Calculator — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "commission",
+      "sales",
+      "rate",
+      "goal"
+    ]
+  },
+  {
+    "slug": "tip-split",
+    "title": "Tip Split",
+    "description": "Free Tip Split — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "tip",
+      "split",
+      "group",
+      "bill"
+    ]
+  },
+  {
+    "slug": "tip-by-service",
+    "title": "Tip by Service Quality",
+    "description": "Free Tip by Service Quality — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "tip",
+      "service",
+      "percentage",
+      "quality"
+    ]
+  },
+  {
+    "slug": "bill-split-calc",
+    "title": "Bill Split",
+    "description": "Free Bill Split — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "bill",
+      "split",
+      "even",
+      "divide"
+    ]
+  },
+  {
+    "slug": "discount-calc",
+    "title": "Discount Calculator",
+    "description": "Free Discount Calculator — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "discount",
+      "sale",
+      "percent off",
+      "savings"
+    ]
+  },
+  {
+    "slug": "coupon-stacker",
+    "title": "Coupon Stacking",
+    "description": "Free Coupon Stacking — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "coupon",
+      "stacking",
+      "savings",
+      "combine"
+    ]
+  },
+  {
+    "slug": "rebate-calc",
+    "title": "Rebate Calculator",
+    "description": "Free Rebate Calculator — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "rebate",
+      "mail-in",
+      "savings",
+      "after"
+    ]
+  },
+  {
+    "slug": "gift-card-value",
+    "title": "Gift Card Value",
+    "description": "Free Gift Card Value — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "gift card",
+      "remaining",
+      "balance",
+      "value"
+    ]
+  },
+  {
+    "slug": "loyalty-rewards",
+    "title": "Loyalty Rewards",
+    "description": "Free Loyalty Rewards — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "loyalty",
+      "points",
+      "rewards",
+      "redemption"
+    ]
+  },
+  {
+    "slug": "cashback-calc",
+    "title": "Cashback Calculator",
+    "description": "Free Cashback Calculator — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "cashback",
+      "credit card",
+      "percent",
+      "rewards"
+    ]
+  },
+  {
+    "slug": "price-per-unit",
+    "title": "Price Per Unit",
+    "description": "Free Price Per Unit — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "price per unit",
+      "oz",
+      "gallon",
+      "best value"
+    ]
+  },
+  {
+    "slug": "unit-pricing",
+    "title": "Unit Pricing Comparison",
+    "description": "Free Unit Pricing Comparison — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "unit price",
+      "compare",
+      "bulk",
+      "value"
+    ]
+  },
+  {
+    "slug": "bogo-deal",
+    "title": "BOGO Deal",
+    "description": "Free BOGO Deal — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "BOGO",
+      "buy one",
+      "deal",
+      "effective price"
+    ]
+  },
+  {
+    "slug": "deal-comparison",
+    "title": "Deal Comparison",
+    "description": "Free Deal Comparison — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "deal",
+      "compare",
+      "pack size",
+      "unit price"
+    ]
+  },
+  {
+    "slug": "gas-mileage-calc",
+    "title": "Gas Mileage",
+    "description": "Free Gas Mileage — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "MPG",
+      "gas",
+      "mileage",
+      "fuel economy"
+    ]
+  },
+  {
+    "slug": "gas-trip-cost",
+    "title": "Gas Trip Cost",
+    "description": "Free Gas Trip Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "gas",
+      "trip",
+      "cost",
+      "distance",
+      "MPG"
+    ]
+  },
+  {
+    "slug": "ev-charging-cost",
+    "title": "EV Charging Cost",
+    "description": "Free EV Charging Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "EV",
+      "electric",
+      "charging",
+      "cost",
+      "kWh"
+    ]
+  },
+  {
+    "slug": "ev-vs-gas",
+    "title": "EV vs Gas",
+    "description": "Free EV vs Gas — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "EV",
+      "gas",
+      "cost comparison",
+      "fuel"
+    ]
+  },
+  {
+    "slug": "toll-cost",
+    "title": "Toll Cost",
+    "description": "Free Toll Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "toll",
+      "road",
+      "commute",
+      "cost"
+    ]
+  },
+  {
+    "slug": "public-transit",
+    "title": "Public Transit Fare",
+    "description": "Free Public Transit Fare — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "transit",
+      "fare",
+      "pass",
+      "monthly",
+      "savings"
+    ]
+  },
+  {
+    "slug": "rideshare-cost",
+    "title": "Rideshare Cost",
+    "description": "Free Rideshare Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "rideshare",
+      "Uber",
+      "Lyft",
+      "fare estimate"
+    ]
+  },
+  {
+    "slug": "flight-cost",
+    "title": "Flight Cost",
+    "description": "Free Flight Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "flight",
+      "airfare",
+      "budget",
+      "destination"
+    ]
+  },
+  {
+    "slug": "road-trip",
+    "title": "Road Trip Budget",
+    "description": "Free Road Trip Budget — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "road trip",
+      "gas",
+      "hotel",
+      "food",
+      "budget"
+    ]
+  },
+  {
+    "slug": "currency-exchange-fee",
+    "title": "Currency Exchange Fee",
+    "description": "Free Currency Exchange Fee — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "currency",
+      "exchange",
+      "fee",
+      "foreign"
+    ]
+  },
+  {
+    "slug": "travel-insurance",
+    "title": "Travel Insurance",
+    "description": "Free Travel Insurance — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "travel",
+      "insurance",
+      "premium",
+      "coverage"
+    ]
+  },
+  {
+    "slug": "apartment-rent",
+    "title": "Apartment Rent Budget",
+    "description": "Free Apartment Rent Budget — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "apartment",
+      "rent",
+      "budget",
+      "30% rule"
+    ]
+  },
+  {
+    "slug": "security-deposit",
+    "title": "Security Deposit",
+    "description": "Free Security Deposit — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "security",
+      "deposit",
+      "interest",
+      "return"
+    ]
+  },
+  {
+    "slug": "renters-insurance",
+    "title": "Renters Insurance",
+    "description": "Free Renters Insurance — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "renters",
+      "insurance",
+      "content",
+      "liability"
+    ]
+  },
+  {
+    "slug": "utility-estimate",
+    "title": "Utility Bill Estimate",
+    "description": "Free Utility Bill Estimate — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "utility",
+      "electric",
+      "gas",
+      "water",
+      "estimate"
+    ]
+  },
+  {
+    "slug": "internet-service",
+    "title": "Internet Service Cost",
+    "description": "Free Internet Service Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "internet",
+      "ISP",
+      "speed",
+      "cost"
+    ]
+  },
+  {
+    "slug": "cell-phone-plan",
+    "title": "Cell Phone Plan",
+    "description": "Free Cell Phone Plan — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier1",
+    "keywords": [
+      "cell phone",
+      "plan",
+      "data",
+      "minutes",
+      "cost"
+    ]
+  },
+  {
+    "slug": "streaming-budget",
+    "title": "Streaming Services",
+    "description": "Free Streaming Services — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "streaming",
+      "Netflix",
+      "subscription",
+      "budget"
+    ]
+  },
+  {
+    "slug": "cable-vs-streaming",
+    "title": "Cable vs Streaming",
+    "description": "Free Cable vs Streaming — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "cable",
+      "streaming",
+      "cost comparison",
+      "TV"
+    ]
+  },
+  {
+    "slug": "gym-membership",
+    "title": "Gym Membership",
+    "description": "Free Gym Membership — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "gym",
+      "membership",
+      "cost",
+      "per visit"
+    ]
+  },
+  {
+    "slug": "home-gym-cost",
+    "title": "Home Gym Cost",
+    "description": "Free Home Gym Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "home gym",
+      "equipment",
+      "cost",
+      "ROI"
+    ]
+  },
+  {
+    "slug": "pet-cost",
+    "title": "Pet Cost",
+    "description": "Free Pet Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "pet",
+      "dog",
+      "cat",
+      "monthly",
+      "cost"
+    ]
+  },
+  {
+    "slug": "pet-insurance",
+    "title": "Pet Insurance",
+    "description": "Free Pet Insurance — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "pet",
+      "insurance",
+      "premium",
+      "vet"
+    ]
+  },
+  {
+    "slug": "baby-gear",
+    "title": "Baby Gear Cost",
+    "description": "Free Baby Gear Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "baby",
+      "gear",
+      "stroller",
+      "car seat",
+      "budget"
+    ]
+  },
+  {
+    "slug": "diaper-cost",
+    "title": "Diaper Cost",
+    "description": "Free Diaper Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "diapers",
+      "monthly",
+      "cost per diaper",
+      "cloth"
+    ]
+  },
+  {
+    "slug": "formula-cost",
+    "title": "Baby Formula Cost",
+    "description": "Free Baby Formula Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "formula",
+      "baby",
+      "cost per can",
+      "monthly"
+    ]
+  },
+  {
+    "slug": "college-fund",
+    "title": "College Fund Savings",
+    "description": "Free College Fund Savings — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "college",
+      "fund",
+      "monthly",
+      "goal",
+      "529"
+    ]
+  },
+  {
+    "slug": "wedding-guest",
+    "title": "Wedding Guest Cost",
+    "description": "Free Wedding Guest Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "wedding",
+      "guest",
+      "attire",
+      "gift",
+      "travel"
+    ]
+  },
+  {
+    "slug": "funeral-cost",
+    "title": "Funeral Cost",
+    "description": "Free Funeral Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "funeral",
+      "burial",
+      "cremation",
+      "cost"
+    ]
+  },
+  {
+    "slug": "home-maintenance",
+    "title": "Home Maintenance",
+    "description": "Free Home Maintenance — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "home",
+      "maintenance",
+      "1% rule",
+      "annual budget"
+    ]
+  },
+  {
+    "slug": "cleaning-supplies",
+    "title": "Cleaning Supplies",
+    "description": "Free Cleaning Supplies — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "cleaning",
+      "supplies",
+      "budget",
+      "household"
+    ]
+  },
+  {
+    "slug": "dry-cleaning",
+    "title": "Dry Cleaning Budget",
+    "description": "Free Dry Cleaning Budget — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "dry cleaning",
+      "cost",
+      "monthly",
+      "garment"
+    ]
+  },
+  {
+    "slug": "water-bill",
+    "title": "Water Bill",
+    "description": "Free Water Bill — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "water bill",
+      "usage",
+      "gallons",
+      "cost per gallon"
+    ]
+  },
+  {
+    "slug": "electric-bill",
+    "title": "Electric Bill",
+    "description": "Free Electric Bill — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "electric",
+      "kWh",
+      "bill",
+      "rate"
+    ]
+  },
+  {
+    "slug": "phantom-load",
+    "title": "Phantom Power Load",
+    "description": "Free Phantom Power Load — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "phantom",
+      "standby",
+      "vampire",
+      "power"
+    ]
+  },
+  {
+    "slug": "led-vs-incandescent",
+    "title": "LED vs Incandescent",
+    "description": "Free LED vs Incandescent — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "LED",
+      "incandescent",
+      "savings",
+      "energy"
+    ]
+  },
+  {
+    "slug": "space-heater-cost",
+    "title": "Space Heater Cost",
+    "description": "Free Space Heater Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "space heater",
+      "cost",
+      "electric",
+      "BTU"
+    ]
+  },
+  {
+    "slug": "ac-cost",
+    "title": "AC Cost",
+    "description": "Free AC Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "air conditioner",
+      "cost",
+      "SEER",
+      "cooling"
+    ]
+  },
+  {
+    "slug": "furnace-cost",
+    "title": "Furnace Cost",
+    "description": "Free Furnace Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "furnace",
+      "heating",
+      "gas",
+      "efficiency"
+    ]
+  },
+  {
+    "slug": "shower-time-cost",
+    "title": "Shower Time Cost",
+    "description": "Free Shower Time Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "shower",
+      "time",
+      "water",
+      "heater",
+      "cost"
+    ]
+  },
+  {
+    "slug": "toilet-flush-cost",
+    "title": "Toilet Flush Cost",
+    "description": "Free Toilet Flush Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "toilet",
+      "flush",
+      "water",
+      "low-flow",
+      "savings"
+    ]
+  },
+  {
+    "slug": "leak-detection",
+    "title": "Leak Detection Cost",
+    "description": "Free Leak Detection Cost — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "leak",
+      "drip",
+      "water",
+      "waste",
+      "cost"
+    ]
+  },
+  {
+    "slug": "gift-budget",
+    "title": "Gift Budget",
+    "description": "Free Gift Budget — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "gift",
+      "budget",
+      "person",
+      "occasion"
+    ]
+  },
+  {
+    "slug": "secret-santa",
+    "title": "Secret Santa",
+    "description": "Free Secret Santa — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "secret santa",
+      "budget",
+      "gift exchange"
+    ]
+  },
+  {
+    "slug": "charity-donation",
+    "title": "Charity Donation",
+    "description": "Free Charity Donation — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "charity",
+      "donation",
+      "tax",
+      "deduction"
+    ]
+  },
+  {
+    "slug": "fundraiser-goal",
+    "title": "Fundraiser Goal",
+    "description": "Free Fundraiser Goal — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "fundraiser",
+      "goal",
+      "tracker",
+      "progress"
+    ]
+  },
+  {
+    "slug": "crowdfunding-fee",
+    "title": "Crowdfunding Fee",
+    "description": "Free Crowdfunding Fee — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "crowdfunding",
+      "GoFundMe",
+      "fee",
+      "net"
+    ]
+  },
+  {
+    "slug": "ebay-fees",
+    "title": "eBay Fees",
+    "description": "Free eBay Fees — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "eBay",
+      "seller",
+      "fee",
+      "final value"
+    ]
+  },
+  {
+    "slug": "etsy-fees",
+    "title": "Etsy Fees",
+    "description": "Free Etsy Fees — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Etsy",
+      "seller",
+      "listing",
+      "fee",
+      "transaction"
+    ]
+  },
+  {
+    "slug": "amazon-fba",
+    "title": "Amazon FBA Fee",
+    "description": "Free Amazon FBA Fee — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Amazon",
+      "FBA",
+      "fee",
+      "fulfillment"
+    ]
+  },
+  {
+    "slug": "paypal-fees",
+    "title": "PayPal Fees",
+    "description": "Free PayPal Fees — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "PayPal",
+      "fee",
+      "merchant",
+      "transaction"
+    ]
+  },
+  {
+    "slug": "stripe-fees",
+    "title": "Stripe Fees",
+    "description": "Free Stripe Fees — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Stripe",
+      "fee",
+      "processing",
+      "2.9%"
+    ]
+  },
+  {
+    "slug": "yard-sale",
+    "title": "Yard Sale Pricing",
+    "description": "Free Yard Sale Pricing — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "yard sale",
+      "pricing",
+      "tag",
+      "negotiate"
+    ]
+  },
+  {
+    "slug": "craigslist-pricing",
+    "title": "Craigslist Pricing",
+    "description": "Free Craigslist Pricing — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "Craigslist",
+      "price",
+      "used",
+      "fair value"
+    ]
+  },
+  {
+    "slug": "pawn-loan",
+    "title": "Pawn Loan",
+    "description": "Free Pawn Loan — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "pawn",
+      "loan",
+      "interest",
+      "redemption"
+    ]
+  },
+  {
+    "slug": "consignment-pricing",
+    "title": "Consignment Pricing",
+    "description": "Free Consignment Pricing — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "consignment",
+      "commission",
+      "seller",
+      "payout"
+    ]
+  },
+  {
+    "slug": "auction-hammer",
+    "title": "Auction Hammer",
+    "description": "Free Auction Hammer — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier2",
+    "keywords": [
+      "auction",
+      "hammer",
+      "premium",
+      "buyer"
+    ]
+  },
+  {
+    "slug": "raffle-tickets",
+    "title": "Raffle Tickets",
+    "description": "Free Raffle Tickets — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "raffle",
+      "ticket",
+      "expected",
+      "value"
+    ]
+  },
+  {
+    "slug": "sweepstakes-entry",
+    "title": "Sweepstakes Entry",
+    "description": "Free Sweepstakes Entry — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "sweepstakes",
+      "entry",
+      "cost",
+      "win"
+    ]
+  },
+  {
+    "slug": "bingo-probability",
+    "title": "Bingo Probability",
+    "description": "Free Bingo Probability — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "bingo",
+      "probability",
+      "patterns",
+      "win"
+    ]
+  },
+  {
+    "slug": "poker-hand-odds",
+    "title": "Poker Hand Odds",
+    "description": "Free Poker Hand Odds — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "poker",
+      "hand",
+      "Texas Holdem",
+      "odds"
+    ]
+  },
+  {
+    "slug": "blackjack-basic",
+    "title": "Blackjack Basic Strategy",
+    "description": "Free Blackjack Basic Strategy — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "blackjack",
+      "strategy",
+      "basic",
+      "decision"
+    ]
+  },
+  {
+    "slug": "roulette-odds",
+    "title": "Roulette Odds",
+    "description": "Free Roulette Odds — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "roulette",
+      "probability",
+      "red",
+      "black",
+      "payout"
+    ]
+  },
+  {
+    "slug": "craps-odds",
+    "title": "Craps Odds",
+    "description": "Free Craps Odds — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "craps",
+      "pass line",
+      "odds",
+      "payout"
+    ]
+  },
+  {
+    "slug": "horse-racing-odds",
+    "title": "Horse Racing Odds",
+    "description": "Free Horse Racing Odds — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "horse",
+      "racing",
+      "odds",
+      "payout",
+      "bet"
+    ]
+  },
+  {
+    "slug": "sports-betting-odds",
+    "title": "Sports Betting Odds",
+    "description": "Free Sports Betting Odds — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "sports",
+      "betting",
+      "moneyline",
+      "spread"
+    ]
+  },
+  {
+    "slug": "parlay-odds",
+    "title": "Parlay Odds",
+    "description": "Free Parlay Odds — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "parlay",
+      "bet",
+      "multiple",
+      "payout"
+    ]
+  },
+  {
+    "slug": "prop-bet",
+    "title": "Proposition Bet",
+    "description": "Free Proposition Bet — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "prop bet",
+      "super bowl",
+      "special"
+    ]
+  },
+  {
+    "slug": "fantasy-football",
+    "title": "Fantasy Football Points",
+    "description": "Free Fantasy Football Points — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "fantasy",
+      "football",
+      "projections",
+      "scoring"
+    ]
+  },
+  {
+    "slug": "spending-habit",
+    "title": "Spending Habit Tracker",
+    "description": "Free Spending Habit Tracker — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "spending",
+      "tracker",
+      "habit",
+      "monthly"
+    ]
+  },
+  {
+    "slug": "budget-envelope",
+    "title": "Envelope Budget",
+    "description": "Free Envelope Budget — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "envelope",
+      "budget",
+      "cash",
+      "categories"
+    ]
+  },
+  {
+    "slug": "debt-snowball",
+    "title": "Debt Snowball",
+    "description": "Free Debt Snowball — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "debt",
+      "snowball",
+      "avalanche",
+      "payoff",
+      "method"
+    ]
+  },
+  {
+    "slug": "debt-avalanche",
+    "title": "Debt Avalanche",
+    "description": "Free Debt Avalanche — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "debt",
+      "avalanche",
+      "interest",
+      "payoff",
+      "order"
+    ]
+  },
+  {
+    "slug": "side-hustle",
+    "title": "Side Hustle Income",
+    "description": "Free Side Hustle Income — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "side hustle",
+      "income",
+      "hourly",
+      "ROI"
+    ]
+  },
+  {
+    "slug": "freelance-rate",
+    "title": "Freelance Rate",
+    "description": "Free Freelance Rate — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "freelance",
+      "rate",
+      "hourly",
+      "project",
+      "fee"
+    ]
+  },
+  {
+    "slug": "passive-income",
+    "title": "Passive Income",
+    "description": "Free Passive Income — Practical everyday calculator for quick results. Perfect for home, office, and lifestyle.",
+    "hubSlug": "everyday-calculators",
+    "tier": "tier3",
+    "keywords": [
+      "passive",
+      "income",
+      "dividends",
+      "royalties"
+    ]
+  }
+]
