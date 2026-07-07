@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node packages/calculator-registry/scripts/build.mjs && next dev",
-    "build": "node packages/calculator-registry/scripts/build.mjs && npm run build:search-index && prisma generate && next build",
+    "build": "node packages/calculator-registry/scripts/build.mjs && npm run build:search-index && npx prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "build:search-index": "node --experimental-strip-types scripts/build-search-index.mjs",
@@ -46,6 +46,9 @@
     "recharts": "^2.15.4",
     "tailwind-merge": "^2.2.0",
     "zod": "^3.22.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["@prisma/client", "@prisma/engines", "prisma", "sharp", "@swc/core", "esbuild"]
   },
   "devDependencies": {
     "@axe-core/cli": "^4.12.1",
