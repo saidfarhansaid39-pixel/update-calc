@@ -3,7 +3,7 @@ import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 import { calculatorRegistry } from '@calcuniverse/calculator-registry'
 import { getLocalizedCalculator } from '@/lib/localized-registry'
 
-export const runtime = 'edge'
+export const runtime = 'nodejs'
 
 const categoryColors: Record<string, string> = {
   financial: 'from-emerald-500 to-teal-600',
