@@ -1,50 +1,19 @@
-import { seoFactory } from '@/lib/seo/seoFactory'
-import { defaultSeoAdapter } from '@/lib/seo/defaultSeoAdapter'
-import { getLocale, getTranslations } from 'next-intl/server'
-import { routing } from '@/i18n/routing'
+export const dynamic = 'force-static'
+export const revalidate = 86400
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.jdcalc.com'
-
-function buildHreflang(path: string) {
-  const map: Record<string, string> = { 'x-default': `${siteUrl}/en${path}` }
-  for (const l of routing.locales) {
-    map[l] = `${siteUrl}/${l}${path}`
-  }
-  return map
-}
-
-export async function generateMetadata() {
-  const locale = await getLocale()
-  const t = await getTranslations('pages')
-  const base = seoFactory(defaultSeoAdapter({
-    title: t('terms.metaTitle'),
-    description: t('terms.metaDescription'),
-  }))
-  return {
-    ...base,
-    alternates: {
-      canonical: `${siteUrl}/${locale}/terms`,
-      languages: buildHreflang('/terms'),
-    },
-  }
-}
-
-export default async function TermsPage() {
-  const t = await getTranslations('pages')
+export default function TermsPage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">{t('terms.title')}</h1>
-        <div className="prose dark:prose-invert">
-          <p>{t('terms.intro')}</p>
-          <h2>{t('terms.useOfServicesTitle')}</h2>
-          <p>{t('terms.useOfServicesText')}</p>
-          <h2>{t('terms.accuracyTitle')}</h2>
-          <p>{t('terms.accuracyText')}</p>
-          <h2>{t('terms.availabilityTitle')}</h2>
-          <p>{t('terms.availabilityText')}</p>
-        </div>
+    <div className="max-w-3xl mx-auto px-4 py-12">
+      <h1 className="text-3xl font-bold mb-6">Terms of Service</h1>
+      <div className="prose dark:prose-invert max-w-none space-y-4">
+        <p>Last updated: January 2025</p>
+        <h2 className="text-xl font-semibold mt-8">Use of Service</h2>
+        <p>JDCALC provides free online calculators for informational purposes. While we strive for accuracy, results should not replace professional advice for financial, medical, or legal decisions.</p>
+        <h2 className="text-xl font-semibold mt-8">Accuracy</h2>
+        <p>We make every effort to ensure calculation accuracy. However, we cannot guarantee 100% error-free results. Users should verify critical calculations independently.</p>
+        <h2 className="text-xl font-semibold mt-8">Limitation of Liability</h2>
+        <p>JDCALC and its operators are not liable for any damages arising from the use of our calculators or reliance on their results.</p>
       </div>
-    </main>
-  );
+    </div>
+  )
 }

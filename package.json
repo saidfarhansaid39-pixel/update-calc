@@ -47,9 +47,6 @@
     "tailwind-merge": "^2.2.0",
     "zod": "^3.22.0"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": ["@prisma/client", "@prisma/engines", "prisma", "sharp", "@swc/core", "esbuild"]
-  },
   "devDependencies": {
     "@axe-core/cli": "^4.12.1",
     "@eslint/compat": "^2.1.0",

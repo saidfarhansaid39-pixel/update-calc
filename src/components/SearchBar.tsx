@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { Search, Loader2 } from 'lucide-react';
-import { useRouter } from '@/lib/navigation';
+import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { createSearch } from '@/lib/search';
 import { getLocalizedCalculator } from '@/lib/localized-registry';
