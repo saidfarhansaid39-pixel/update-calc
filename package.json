@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node packages/calculator-registry/scripts/build.mjs && next dev",
-    "build": "node packages/calculator-registry/scripts/build.mjs && npm run build:search-index && npx prisma generate && next build",
+    "build": "node packages/calculator-registry/scripts/build.mjs && npm run build:search-index && npx prisma generate && next build --webpack",
     "start": "next start",
     "lint": "next lint",
     "build:search-index": "node --experimental-strip-types scripts/build-search-index.mjs",
