@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from '@/lib/navigation'
-import { calculatorRegistry } from '@calcuniverse/calculator-registry'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 import { getLocale } from 'next-intl/server'
 import { getLocalizedCalculator } from '@/lib/localized-registry'
@@ -32,6 +31,7 @@ function keywordOverlap(a: string[], b: string[]): number {
 
 export async function RelatedCalculators({ calculator, max = 6 }: RelatedCalculatorsProps) {
   const locale = await getLocale()
+  const { calculatorRegistry } = await import('@calcuniverse/calculator-registry')
   const candidates = calculatorRegistry
     .filter(c => c.hubSlug !== calculator.hubSlug && c.slug !== calculator.slug && !/\d$/.test(c.slug))
     .map(c => ({

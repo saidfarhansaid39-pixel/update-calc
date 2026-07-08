@@ -66,6 +66,17 @@ const nextConfig = {
   },
 
   async redirects() {
+    const friendlySlugRedirects = [
+      ['/health-calculators/bmi-calculator', '/health-calculators/basic-bmi-1'],
+      ['/health-calculators/bmr-calculator', '/health-calculators/advanced-bmr-1'],
+      ['/health-calculators/body-fat-calculator', '/health-calculators/clinical-body-fat-1'],
+      ['/health-calculators/calorie-calculator', '/health-calculators/daily-calorie-1'],
+      ['/health-calculators/heart-rate-calculator', '/health-calculators/monthly-heart-rate-1'],
+      ['/health-calculators/blood-pressure-calculator', '/health-calculators/standard-blood-pressure-1'],
+      ['/math-calculators/percentage-calculator', '/math-calculators/ultimate-percentage-1'],
+      ['/financial-calculators/loan-calculator', '/financial-calculators/basic-loan-1'],
+    ].map(([source, dest]) => ({ source, destination: dest, permanent: true }));
+
     const legacyPages = [
       ['/mortgage', '/financial-calculators/mortgage-calculator'],
       ['/salary', '/financial-calculators/salary-calculator'],
@@ -197,6 +208,7 @@ const nextConfig = {
     ].map(([source, dest]) => ({ source, destination: dest, permanent: true }));
 
     return [
+      ...friendlySlugRedirects,
       ...legacyPages,
       ...spanishAliases,
       ...frenchAliases,

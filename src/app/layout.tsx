@@ -65,7 +65,8 @@ export const metadata: Metadata = {
 
 const fontVariables = `${inter.variable} ${notoArabic.variable} ${notoJapanese.variable} ${notoChinese.variable} ${notoDevanagari.variable}`
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const enMessages = (await import('../i18n/messages/en.json')).default
   return (
     <html lang="en" dir="ltr" className={`no-js ${fontVariables}`} suppressHydrationWarning>
       <head>
@@ -86,7 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         }} />
       </head>
       <body className={`${inter.className} flex flex-col min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300`}>
-        <ClientLocaleWrapper>
+        <ClientLocaleWrapper initialMessages={enMessages}>
           {children}
         </ClientLocaleWrapper>
       </body>

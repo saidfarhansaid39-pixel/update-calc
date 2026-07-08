@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 const calcDef: CalcDef = {
   schema: z.object({ hexColor: z.string().min(1).refine(v => /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(v), 'Invalid hex'), alphaOpacity: z.string().min(1).refine(v => parseFloat(v) >= 0 && parseFloat(v) <= 100, '0-100') }),
   fields: [
-    { name: 'hexColor', label: 'Hex Color (#rrggbb)', type: 'text', placeholder: '#1a759f' },
+    { name: 'hexColor', label: 'Hex Color (#rrggbb)', type: 'text', placeholder: '#1a3a8a' },
     { name: 'alphaOpacity', label: 'Opacity (%)', type: 'number', min: 0, max: 100, step: '5' },
   ],
   compute: (v) => {

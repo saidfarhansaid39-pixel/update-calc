@@ -9,32 +9,36 @@ import { SchemaMarkup } from '@/components/SchemaMarkup'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.jdcalc.com'
 
-export function ClientLocaleWrapper({ children }: { children: ReactNode }) {
+export function ClientLocaleWrapper({ children, initialMessages }: { children: ReactNode, initialMessages: Record<string, any> }) {
   const [locale, setLocale] = useState('en')
-  const [messages, setMessages] = useState<Record<string, any> | null>(null)
+  const [messages, setMessages] = useState(initialMessages)
   const [dir, setDir] = useState('ltr')
 
   useEffect(() => {
-    const detected = document.documentElement.lang || navigator.language?.split('-')[0] || 'en'
-    const valid = ['en', 'es', 'fr', 'de', 'pt', 'ru', 'ar', 'hi', 'ja', 'zh-CN']
-    const resolved = valid.includes(detected) ? detected : 'en'
+    const locales = ['en', 'es', 'fr', 'de', 'pt', 'ru', 'ar', 'hi', 'ja', 'zh-CN']
+
+    const pathLocale = window.location.pathname.split('/')[1]
+    const fromUrl = locales.includes(pathLocale) ? pathLocale : null
+
+    const cookieMatch = document.cookie.match(/(?:^|;\s*)NEXT_LOCALE=([^;]*)/)
+    const fromCookie = cookieMatch?.[1]
+
+    const fromBrowser = navigator.language?.split('-')[0]
+
+    const resolved = fromUrl || fromCookie || fromBrowser || 'en'
     setLocale(resolved)
     document.documentElement.lang = resolved
     const isRtl = resolved === 'ar'
     setDir(isRtl ? 'rtl' : 'ltr')
     document.documentElement.dir = isRtl ? 'rtl' : 'ltr'
 
-    import(`../i18n/messages/${resolved}.json`).then(mod => setMessages(mod.default)).catch(() => {
-      import(`../i18n/messages/en.json`).then(mod => setMessages(mod.default))
-    })
+    if (resolved !== 'en') {
+      import(`../i18n/messages/${resolved}.json`).then(mod => setMessages(mod.default)).catch(() => {})
+    }
   }, [])
 
-  if (!messages) {
-    return <>{children}</>
-  }
-
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider locale={locale} messages={messages} timeZone="UTC">
       <ServiceWorkerRegister />
       <SchemaMarkup type="WebSite" locale={locale} data={{
         name: 'JDCALC',

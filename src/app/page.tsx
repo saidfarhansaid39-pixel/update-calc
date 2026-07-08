@@ -1,11 +1,11 @@
 import { TrendingUp, Star, Calculator, ArrowRight, ChevronRight, Sparkles, BarChart3, Heart, RefreshCw, Clock, DollarSign, Brain, UtensilsCrossed, Microscope, Leaf, Trophy } from 'lucide-react';
 import { MediaMentions } from '@/components/MediaMentions';
 import { SearchBarWrapper } from '@/components/SearchBarWrapper';
-import { calculatorRegistry } from '@calcuniverse/calculator-registry'
 
 export const dynamic = 'force-static'
 
 export default async function Home() {
+  const { calculatorRegistry } = await import('@calcuniverse/calculator-registry')
   function getCalculatorCount(hubSlug: string): number {
     return calculatorRegistry.filter(c => c.hubSlug === hubSlug).length
   }

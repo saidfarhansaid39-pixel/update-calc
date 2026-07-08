@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts'
 import { cn } from '@/lib/utils'
 
-const COLORS = ['#1a759f', '#f77f00', '#2a9d8f', '#d62828', '#e9c46a']
+const COLORS = ['#1a3a8a', '#f77f00', '#2a9d8f', '#d62828', '#e9c46a']
 
 interface ExampleItem {
   label: string

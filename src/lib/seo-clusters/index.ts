@@ -1,4 +1,4 @@
-import { 
+import {
   calculatorRegistry,
   type CalculatorEntry,
 } from '@calcuniverse/calculator-registry'

@@ -1,4 +1,4 @@
-import { type CalculatorEntry, calculatorRegistry } from '@calcuniverse/calculator-registry'
+import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 import { getLocalizedCalculator } from '@/lib/localized-registry'
 
 export interface GuideSection {
@@ -21,7 +21,8 @@ function slugToTitle(slug: string): string {
   return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
 }
 
-function getRelated(calc: CalculatorEntry, limit: number = 5): CalculatorEntry[] {
+async function getRelated(calc: CalculatorEntry, limit: number = 5): Promise<CalculatorEntry[]> {
+  const { calculatorRegistry } = await import('@calcuniverse/calculator-registry')
   return calculatorRegistry
     .filter(c => c.category === calc.category && c.slug !== calc.slug)
     .slice(0, limit)
@@ -2470,7 +2471,7 @@ export async function generateGuide(calc: CalculatorEntry, t?: TranslateFn, loca
   const useCases = generateUseCases(localizedCalc)
   const tips = generateTips(localizedCalc)
   const faqs = generateFAQ(localizedCalc)
-  const related = getRelated(localizedCalc, 5)
+  const related = await getRelated(localizedCalc, 5)
 
   const name = localizedCalc.title
   const shortName = st

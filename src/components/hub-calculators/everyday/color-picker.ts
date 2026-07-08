@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 const calcDef: CalcDef = {
   schema: z.object({ hex: z.string().min(4).max(7), rgbType: z.string().min(1) }),
   fields: [
-    { name: 'hex', label: 'HEX Color', type: 'text', placeholder: '#1a759f' },
+    { name: 'hex', label: 'HEX Color', type: 'text', placeholder: '#1a3a8a' },
     { name: 'rgbType', label: 'Channels', type: 'select', options: [{ label: 'RGB (0-255)', value: '255' }, { label: 'RGBA (0-1)', value: '1' }] },
   ],
   compute: (v) => {

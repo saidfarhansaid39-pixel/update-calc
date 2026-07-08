@@ -2,10 +2,18 @@
 
 import React, { useMemo, useState, useEffect } from 'react'
 import { Link } from '@/lib/navigation'
-import { calculatorRegistry, type CalculatorEntry } from '@calcuniverse/calculator-registry'
+import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 import { ArrowRight, TrendingUp, Clock, Grid3X3, BookOpen, BarChart3, Hash, List } from 'lucide-react'
 import { useLocale } from 'next-intl'
 import { getLocalizedCalculator } from '@/lib/localized-registry'
+
+let _registryPromise: Promise<CalculatorEntry[]> | null = null
+function getRegistry(): Promise<CalculatorEntry[]> {
+  if (!_registryPromise) {
+    _registryPromise = import('@calcuniverse/calculator-registry').then(m => m.calculatorRegistry)
+  }
+  return _registryPromise
+}
 
 const hubPaths: Record<string, string> = {
   financial: 'financial-calculators', health: 'health-calculators', math: 'math-calculators',
@@ -30,20 +38,27 @@ interface InternalLinkingGridProps {
 
 export function InternalLinkingGrid({ calculator }: InternalLinkingGridProps) {
   const locale = useLocale()
+  const [registry, setRegistry] = useState<CalculatorEntry[] | null>(null)
   const [localizedTitles, setLocalizedTitles] = useState<Record<string, string>>({})
   const [localizedDescriptions, setLocalizedDescriptions] = useState<Record<string, string>>({})
 
+  useEffect(() => {
+    getRegistry().then(setRegistry)
+  }, [])
+
   const links = useMemo(() => {
-    const all = calculatorRegistry as CalculatorEntry[]
+    if (!registry) return null
+    const all = registry
     const sameCategory = all.filter(c => c.category === calculator.category && c.slug !== calculator.slug)
     const popular = sameCategory.slice(0, 6)
     const hubPath = hubPaths[calculator.category] || calculator.hubSlug
     const hubPage = `/${hubPath}`
     const relatedDetail = sameCategory.slice(0, 4)
     return { popular, hubPath, hubPage, relatedDetail, all, sameCategory }
-  }, [calculator])
+  }, [calculator, registry])
 
   const displayEntries = useMemo(() => {
+    if (!links) return []
     const slugs = new Set<string>()
     links.popular.forEach(c => slugs.add(c.slug))
     links.relatedDetail.forEach(c => slugs.add(c.slug))
@@ -72,6 +87,8 @@ export function InternalLinkingGrid({ calculator }: InternalLinkingGridProps) {
     title: localizedTitles[entry.slug] || entry.title,
     description: localizedDescriptions[entry.slug] || entry.description,
   })
+
+  if (!links) return null
 
   const linkCount = 1 + links.popular.length + links.relatedDetail.length + 3 + Math.min(links.popular.length, 3)
 

@@ -1,9 +1,17 @@
-import { calculatorRegistry, type CalculatorEntry } from '@calcuniverse/calculator-registry'
+import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 
 type OverrideEntry = { title?: string; description?: string }
 type OverrideMap = Record<string, OverrideEntry>
 
 const overrideCache = new Map<string, OverrideMap>()
+let _registry: { calculatorRegistry: CalculatorEntry[] } | null = null
+
+async function getRegistry(): Promise<{ calculatorRegistry: CalculatorEntry[] }> {
+  if (!_registry) {
+    _registry = await import('@calcuniverse/calculator-registry') as any
+  }
+  return _registry!
+}
 
 async function getOverrideMap(locale: string): Promise<OverrideMap> {
   if (locale === 'en') return {}
@@ -18,6 +26,7 @@ async function getOverrideMap(locale: string): Promise<OverrideMap> {
 }
 
 export async function getLocalizedCalculator(slug: string, locale: string): Promise<CalculatorEntry | undefined> {
+  const { calculatorRegistry } = await getRegistry()
   const original = calculatorRegistry.find(c => c.slug === slug)
   if (!original) return undefined
   if (locale === 'en') return original
@@ -32,6 +41,7 @@ export async function getLocalizedCalculator(slug: string, locale: string): Prom
 }
 
 export async function getLocalizedCalculatorsByHub(hubSlug: string, locale: string): Promise<CalculatorEntry[]> {
+  const { calculatorRegistry } = await getRegistry()
   const prefix = hubSlug.replace('-calculators', '')
   const hubCalculators = calculatorRegistry.filter(c => c.category === prefix || c.hubSlug === hubSlug)
   const results = await Promise.all(
@@ -49,6 +59,7 @@ export async function getLocalizedHubMeta(hubSlug: string, locale: string): Prom
   description: string
   calculators: CalculatorEntry[]
 }> {
+  const { calculatorRegistry } = await getRegistry()
   const calculators = await getLocalizedCalculatorsByHub(hubSlug, locale)
   const meta = calculatorRegistry.find(c => c.hubSlug === hubSlug)
   const title = hubSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())

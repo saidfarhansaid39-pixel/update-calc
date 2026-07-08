@@ -3,8 +3,13 @@ import { Link } from '@/lib/navigation'
 import { notFound } from 'next/navigation'
 import { Calculator, DollarSign, Heart, Sigma, ArrowLeftRight, Calendar, Hammer, BarChart3, GraduationCap, Atom, FlaskConical, Cog, Globe, UtensilsCrossed, Dna, TreePine, Trophy, ChevronLeft, ChevronRight } from 'lucide-react'
 import { getHubMeta, isValidHubSlug, getAllHubSlugs } from '@/lib/hub-data'
-import { getClusterSlugsForHub, getClusterBySlug } from '@/lib/seo-clusters'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
+
+let _clusterMod: any = null
+async function cluster() {
+  if (!_clusterMod) _clusterMod = await import('@/lib/seo-clusters')
+  return _clusterMod
+}
 import { getLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 
@@ -128,10 +133,11 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
   const start = (page - 1) * PER_PAGE
   const pageCalcs = calculators.slice(start, start + PER_PAGE)
 
-  const clusterSlugs = getClusterSlugsForHub(hubSlug)
+  const { getClusterSlugsForHub: getCS, getClusterBySlug: getCB } = await cluster()
+  const clusterSlugs = getCS(hubSlug)
   const clusterByPrimary = new Map<string, string[]>()
   for (const cs of clusterSlugs) {
-    const entry = getClusterBySlug(cs)
+    const entry = getCB(cs)
     if (entry) {
       const existing = clusterByPrimary.get(entry.primarySlug) || []
       existing.push(cs)
@@ -233,7 +239,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
                 const calc = calculators.find(c => c.slug === primary)
                 if (!calc) return null
                 return variants.slice(0, 3).map(cs => {
-                  const entry = getClusterBySlug(cs)
+                  const entry = getCB(cs)
                   if (!entry) return null
                   return (
                     <Link

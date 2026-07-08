@@ -1,13 +1,16 @@
 import { notFound } from 'next/navigation'
 import { getHubMeta, findCalculator } from '@/lib/hub-data'
-import { ClientOnlyPage } from '@/components/ClientOnlyPage'
 import { CalculatorRenderer } from '@/components/hub-calculators/CalculatorRenderer'
-import { getClusterBySlug, generateClusterMetadata, isClusterSlug } from '@/lib/seo-clusters'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
-import { financialCalculators } from '@calcuniverse/calculator-registry'
 
 const siteUrl = 'https://www.jdcalc.com'
+
+let _seoClusters: any = null
+async function seoClusters() {
+  if (!_seoClusters) _seoClusters = await import('@/lib/seo-clusters')
+  return _seoClusters
+}
 
 function buildHreflang(baseUrl: string) {
   const path = baseUrl.replace(siteUrl, '')
@@ -21,9 +24,10 @@ function buildHreflang(baseUrl: string) {
 export async function generateCalculatorMetadata(hubSlug: string, slug: string) {
   const locale = await getLocale()
 
-  if (isClusterSlug(slug)) {
-    const cluster = getClusterBySlug(slug)
-    const meta = generateClusterMetadata(slug, locale)
+  const { isClusterSlug: _isClusterSlug, getClusterBySlug: _getClusterBySlug, generateClusterMetadata: _generateClusterMetadata } = await seoClusters()
+  if (_isClusterSlug(slug)) {
+    const cluster = _getClusterBySlug(slug)
+    const meta = _generateClusterMetadata(slug, locale)
     if (meta) {
       if (cluster) {
         const ct = await getTranslations('clusters')
@@ -41,7 +45,8 @@ export async function generateCalculatorMetadata(hubSlug: string, slug: string) 
     }
   }
 
-  const calc = await findCalculator(slug, hubSlug, locale) || financialCalculators.find(c => c.slug === slug)
+  const hubMeta = await getHubMeta(hubSlug, locale)
+  const calc = await findCalculator(slug, hubSlug, locale) || (await import('@calcuniverse/calculator-registry')).financialCalculators.find(c => c.slug === slug) || hubMeta?.calculators.find(c => c.slug === slug)
   if (!calc) return { title: 'Calculator Not Found' }
 
   const title = calc.title
@@ -63,28 +68,21 @@ export async function generateCalculatorMetadata(hubSlug: string, slug: string) 
 export async function CalculatorPageContent({ hubSlug, slug }: { hubSlug: string, slug: string }) {
   const locale = await getLocale()
 
-  const cluster = getClusterBySlug(slug)
+  const { getClusterBySlug: _getClusterBySlug2 } = await seoClusters()
+  const cluster = _getClusterBySlug2(slug)
   if (cluster) {
     const meta = await getHubMeta(hubSlug)
     if (!meta) notFound()
     const calc = meta.calculators.find(c => c.slug === cluster.primarySlug)
     if (!calc) notFound()
     const clusterCalc = { ...calc, title: cluster.variant.title, description: cluster.variant.description }
-    return (
-      <ClientOnlyPage>
-        <CalculatorRenderer hubSlug={hubSlug} calculator={clusterCalc} />
-      </ClientOnlyPage>
-    )
+    return <CalculatorRenderer hubSlug={hubSlug} calculator={clusterCalc} />
   }
 
   const meta = await getHubMeta(hubSlug, locale)
   if (!meta) notFound()
-  const calc = await findCalculator(slug, hubSlug, locale) || financialCalculators.find(c => c.slug === slug) || meta.calculators.find(c => c.slug === slug)
+  const calc = await findCalculator(slug, hubSlug, locale) || (await import('@calcuniverse/calculator-registry')).financialCalculators.find(c => c.slug === slug) || meta.calculators.find(c => c.slug === slug)
   if (!calc) notFound()
 
-  return (
-    <ClientOnlyPage>
-      <CalculatorRenderer hubSlug={hubSlug} calculator={calc} />
-    </ClientOnlyPage>
-  )
+  return <CalculatorRenderer hubSlug={hubSlug} calculator={calc} />
 }

@@ -3,7 +3,7 @@
 import React from 'react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, AreaChart, Area, PieChart, Pie, Cell, ReferenceLine, ReferenceArea } from 'recharts'
 
-const COLORS = ['#1a759f', '#d62828', '#f77f00', '#2a9d8f', '#e9c46a', '#264653']
+const COLORS = ['#1a3a8a', '#d62828', '#f77f00', '#2a9d8f', '#e9c46a', '#264653']
 
 export function FormulaChart({ formula, variables }: { formula: string; variables: { name: string; value: number; min: number; max: number }[] }) {
   if (!variables.length) return null

@@ -3,7 +3,7 @@
 import React from 'react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, Legend, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts'
 
-const COLORS = ['#1a759f', '#d62828', '#f77f00', '#2a9d8f', '#e9c46a', '#264653', '#e76f51', '#287271', '#6b7280', '#8b5cf6']
+const COLORS = ['#1a3a8a', '#d62828', '#f77f00', '#2a9d8f', '#e9c46a', '#264653', '#e76f51', '#287271', '#6b7280', '#8b5cf6']
 
 export function HealthBarChart({ data }: { data: { name: string; value: number; target?: number }[] }) {
   if (!data.length) return null

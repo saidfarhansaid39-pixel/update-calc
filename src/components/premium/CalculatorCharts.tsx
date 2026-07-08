@@ -3,7 +3,7 @@
 import React from 'react'
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend, LineChart, Line, XAxis, YAxis, CartesianGrid, BarChart, Bar } from 'recharts'
 
-const COLORS = ['#1a759f', '#d62828', '#f77f00', '#2a9d8f', '#e9c46a', '#264653', '#e76f51', '#287271']
+const COLORS = ['#1a3a8a', '#d62828', '#f77f00', '#2a9d8f', '#e9c46a', '#264653', '#e76f51', '#287271']
 
 export function LoanDonutChart({ principal, totalInterest }: { principal: number; totalInterest: number }) {
   const data = [
