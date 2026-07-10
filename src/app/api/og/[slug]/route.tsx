@@ -1,29 +1,10 @@
-import { ImageResponse } from 'next/og'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 import { calculatorRegistry } from '@calcuniverse/calculator-registry'
 import { getLocalizedCalculator } from '@/lib/localized-registry'
 import { log } from '@/lib/logger'
 
-export const runtime = 'edge'
-
-const categoryColors: Record<string, string> = {
-  financial: 'from-emerald-500 to-teal-600',
-  health: 'from-rose-500 to-pink-600',
-  math: 'from-blue-500 to-indigo-600',
-  conversion: 'from-violet-500 to-purple-600',
-  'date-time': 'from-cyan-500 to-blue-600',
-  construction: 'from-amber-500 to-orange-600',
-  statistics: 'from-sky-500 to-cyan-600',
-  education: 'from-fuchsia-500 to-pink-600',
-  physics: 'from-red-500 to-rose-600',
-  chemistry: 'from-lime-500 to-green-600',
-  engineering: 'from-yellow-500 to-amber-600',
-  everyday: 'from-teal-500 to-emerald-600',
-  food: 'from-orange-500 to-red-600',
-  biology: 'from-green-500 to-lime-600',
-  ecology: 'from-teal-500 to-cyan-600',
-  sports: 'from-blue-500 to-sky-600',
-}
+export const runtime = 'nodejs'
+export const preferredRegion = 'iad1'
 
 const categoryBadgeColors: Record<string, string> = {
   financial: 'bg-emerald-500',
@@ -78,7 +59,8 @@ function checkRateLimit(ip: string): boolean {
   return true
 }
 
-function fallbackImageResponse(message: string): ImageResponse {
+async function fallbackImageResponse(message: string): Promise<Response> {
+  const { ImageResponse } = await import('next/og')
   return new ImageResponse(
     (
       <div
@@ -135,6 +117,7 @@ export async function GET(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    const { ImageResponse } = await import('next/og')
     const { slug } = await params
 
     if (!slug || typeof slug !== 'string') {
