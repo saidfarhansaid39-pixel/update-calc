@@ -173,6 +173,134 @@ import d_mononucleosis_risk from './mononucleosis-risk'
 import d_ms_edss_calc from './ms-edss-calc'
 import d_naegeles_rule from './naegeles-rule'
 import d_nash_risk from './nash-risk'
+import d_pulse_pressure from './pulse-pressure'
+import d_stroke_volume from './stroke-volume'
+import d_target_heart_rate from './target-heart-rate'
+import d_vo2_max_estimate from './vo2-max-estimate'
+import d_recovery_heart_rate from './recovery-heart-rate'
+import d_training_impulse from './training-impulse'
+import d_qtc_calculator from './qtc-calculator'
+import d_stroke_risk_framingham from './stroke-risk-framingham'
+import d_heart_age_2 from './heart-age-2'
+import d_non_hdl from './non-hdl'
+import d_trig_hdl_ratio from './trig-hdl-ratio'
+import d_cardiac_output_2 from './cardiac-output-2'
+import d_stroke_volume_2 from './stroke-volume-2'
+import d_ejection_fraction_calc from './ejection-fraction-calc'
+import d_tricuspid_grad from './tricuspid-grad'
+import d_pvr_calculator from './pvr-calculator'
+import d_svr_calculator from './svr-calculator'
+import d_qti_interval from './qti-interval'
+import d_qt_dispersion from './qt-dispersion'
+import d_siggs_score from './siggs-score'
+import d_wells_criteria from './wells-criteria'
+import d_wells_pe from './wells-pe'
+import d_perc_rule from './perc-rule'
+import d_padua_score from './padua-score'
+import d_has_bled from './has-bled'
+import d_pulmonary_artery from './pulmonary-artery'
+import d_wedge_pressure from './wedge-pressure'
+import d_pediatric_blood_pressure from './pediatric-blood-pressure'
+import d_oxygen_saturation from './oxygen-saturation'
+import d_pneumonia_severity_index from './pneumonia-severity-index'
+import d_pneumonia_curb65 from './pneumonia-curb65'
+import d_sepsis_qsofa_screener from './sepsis-qsofa-screener'
+import d_pulmonary_function from './pulmonary-function'
+import d_shunt_fraction from './shunt-fraction'
+import d_vq_ratio from './vq-ratio'
+import d_tuberculosis_risk_calc from './tuberculosis-risk-calc'
+import d_fena_calculator from './fena-calculator'
+import d_anion_gap_2 from './anion-gap-2'
+import d_osmolar_gap from './osmolar-gap'
+import d_creatinine_clearance_calc from './creatinine-clearance-calc'
+import d_renal_replacement from './renal-replacement'
+import d_urea_reduction from './urea-reduction'
+import d_sodium_potassium_ratio from './sodium-potassium-ratio'
+import d_crp_mgdl from './crp-mgdl'
+import d_procalcitonin from './procalcitonin'
+import d_waist_to_hip_ratio from './waist-to-hip-ratio'
+import d_waist_to_height_ratio from './waist-to-height-ratio'
+import d_ponderal_index from './ponderal-index'
+import d_skeletal_muscle_mass from './skeletal-muscle-mass'
+import d_physical_activity_level from './physical-activity-level'
+import d_pal_calculator from './pal-calculator'
+import d_neat_calculator from './neat-calculator'
+import d_protein_calculator from './protein-calculator'
+import d_sugar_calculator from './sugar-calculator'
+import d_sodium_calculator from './sodium-calculator'
+import d_water_needs_calculator from './water-needs-calculator'
+import d_saturated_fat_calculator from './saturated-fat-calculator'
+import d_waist_height_ratio from './waist-height-ratio'
+import d_sagittal_diameter from './sagittal-diameter'
+import d_relative_fat_mass from './relative-fat-mass'
+import d_triceps_skinfold from './triceps-skinfold'
+import d_subscapular_skinfold from './subscapular-skinfold'
+import d_suprailiac_skinfold from './suprailiac-skinfold'
+import d_navy_body_fat from './navy-body-fat'
+import d_navy_body_fat_2 from './navy-body-fat-2'
+import d_skeletal_muscle from './skeletal-muscle'
+import d_frame_size_2 from './frame-size-2'
+import d_waist_circ_percentile from './waist-circ-percentile'
+import d_neck_circ from './neck-circ'
+import d_wrist_circumference from './wrist-circumference'
+import d_tdee_activity from './tdee-activity'
+import d_oral_glucose from './oral-glucose'
+import d_glycemic_index from './glycemic-index'
+import d_vitamin_d_calculator from './vitamin-d-calculator'
+import d_vitamin_d_dose from './vitamin-d-dose'
+import d_thyroid_bmr from './thyroid-bmr'
+import d_testosterone_level from './testosterone-level'
+import d_omega3_index from './omega3-index'
+import d_sweat_rate from './sweat-rate'
+import d_wind_chill_calc from './wind-chill-calc'
+import d_wbgt_calc from './wbgt-calc'
+import d_alzheimers_risk_screener from './alzheimers-risk-screener'
+import d_anemia_assessment_tool from './anemia-assessment-tool'
+import d_appendicitis_alvarado from './appendicitis-alvarado'
+import d_ballard_score from './ballard-score'
+import d_bisap_score from './bisap-score'
+import d_charlson from './charlson'
+import d_colitis_mayo_score from './colitis-mayo-score'
+import d_crohns_cdai_calc from './crohns-cdai-calc'
+import d_fib_4 from './fib-4'
+import d_gerd_reflux_check from './gerd-reflux-check'
+import d_glascow_ims from './glascow-ims'
+import d_hernia_risk_checker from './hernia-risk-checker'
+import d_ibs_severity_score from './ibs-severity-score'
+import d_meld_score_2 from './meld-score-2'
+import d_nausea_severity_score from './nausea-severity-score'
+import d_newborn_jaundice from './newborn-jaundice'
+import d_newborn_weight_loss from './newborn-weight-loss'
+import d_osteoporosis_frax_calc from './osteoporosis-frax-calc'
+import d_pain_scale_calculator from './pain-scale-calculator'
+import d_pancreatitis_rancon_calc from './pancreatitis-rancon-calc'
+import d_parkinsons_hoehnyahr from './parkinsons-hoehnyahr'
+import d_pediatric_fever from './pediatric-fever'
+import d_phq9_depression_score from './phq9-depression-score'
+import d_power_nap from './power-nap'
+import d_pregnancy_week_calculator from './pregnancy-week-calculator'
+import d_pregnancy_weight_gain from './pregnancy-weight-gain'
+import d_ranson_criteria from './ranson-criteria'
+import d_resilience_score from './resilience-score'
+import d_restless_leg_irls_calc from './restless-leg-irls-calc'
+import d_rsv_infant_risk from './rsv-infant-risk'
+import d_saps2 from './saps2'
+import d_seizure_tracker_calc from './seizure-tracker-calc'
+import d_sleep_apnea_stopbang from './sleep-apnea-stopbang'
+import d_sleep_cycle_calculator from './sleep-cycle-calculator'
+import d_sleep_debt from './sleep-debt'
+import d_sleep_quality_index_calculator from './sleep-quality-index-calculator'
+import d_std_risk_screener from './std-risk-screener'
+import d_stress_level from './stress-level'
+import d_target_height from './target-height'
+import d_thyroid_risk_check from './thyroid-risk-check'
+import d_tinnitus_severity_index from './tinnitus-severity-index'
+import d_uti_risk_assessment from './uti-risk-assessment'
+import d_vertigo_dizziness_scale from './vertigo-dizziness-scale'
+import d_wake_up_time_calculator from './wake-up-time-calculator'
+import d_weight_height_percentile from './weight-height-percentile'
+import d_well_being_index from './well-being-index'
+import d_wound_healing_assessment_calc from './wound-healing-assessment-calc'
 
 import type { CalcDef } from '../../../lib/generic-fallback'
 
@@ -352,4 +480,132 @@ export const calcDefs: Record<string, CalcDef> = {
   'ms-edss-calc': d_ms_edss_calc,
   'naegeles-rule': d_naegeles_rule,
   'nash-risk': d_nash_risk,
+  'pulse-pressure': d_pulse_pressure,
+  'stroke-volume': d_stroke_volume,
+  'target-heart-rate': d_target_heart_rate,
+  'vo2-max-estimate': d_vo2_max_estimate,
+  'recovery-heart-rate': d_recovery_heart_rate,
+  'training-impulse': d_training_impulse,
+  'qtc-calculator': d_qtc_calculator,
+  'stroke-risk-framingham': d_stroke_risk_framingham,
+  'heart-age-2': d_heart_age_2,
+  'non-hdl': d_non_hdl,
+  'trig-hdl-ratio': d_trig_hdl_ratio,
+  'cardiac-output-2': d_cardiac_output_2,
+  'stroke-volume-2': d_stroke_volume_2,
+  'ejection-fraction-calc': d_ejection_fraction_calc,
+  'tricuspid-grad': d_tricuspid_grad,
+  'pvr-calculator': d_pvr_calculator,
+  'svr-calculator': d_svr_calculator,
+  'qti-interval': d_qti_interval,
+  'qt-dispersion': d_qt_dispersion,
+  'siggs-score': d_siggs_score,
+  'wells-criteria': d_wells_criteria,
+  'wells-pe': d_wells_pe,
+  'perc-rule': d_perc_rule,
+  'padua-score': d_padua_score,
+  'has-bled': d_has_bled,
+  'pulmonary-artery': d_pulmonary_artery,
+  'wedge-pressure': d_wedge_pressure,
+  'pediatric-blood-pressure': d_pediatric_blood_pressure,
+  'oxygen-saturation': d_oxygen_saturation,
+  'pneumonia-severity-index': d_pneumonia_severity_index,
+  'pneumonia-curb65': d_pneumonia_curb65,
+  'sepsis-qsofa-screener': d_sepsis_qsofa_screener,
+  'pulmonary-function': d_pulmonary_function,
+  'shunt-fraction': d_shunt_fraction,
+  'vq-ratio': d_vq_ratio,
+  'tuberculosis-risk-calc': d_tuberculosis_risk_calc,
+  'fena-calculator': d_fena_calculator,
+  'anion-gap-2': d_anion_gap_2,
+  'osmolar-gap': d_osmolar_gap,
+  'creatinine-clearance-calc': d_creatinine_clearance_calc,
+  'renal-replacement': d_renal_replacement,
+  'urea-reduction': d_urea_reduction,
+  'sodium-potassium-ratio': d_sodium_potassium_ratio,
+  'crp-mgdl': d_crp_mgdl,
+  'procalcitonin': d_procalcitonin,
+  'waist-to-hip-ratio': d_waist_to_hip_ratio,
+  'waist-to-height-ratio': d_waist_to_height_ratio,
+  'ponderal-index': d_ponderal_index,
+  'skeletal-muscle-mass': d_skeletal_muscle_mass,
+  'physical-activity-level': d_physical_activity_level,
+  'pal-calculator': d_pal_calculator,
+  'neat-calculator': d_neat_calculator,
+  'protein-calculator': d_protein_calculator,
+  'sugar-calculator': d_sugar_calculator,
+  'sodium-calculator': d_sodium_calculator,
+  'water-needs-calculator': d_water_needs_calculator,
+  'saturated-fat-calculator': d_saturated_fat_calculator,
+  'waist-height-ratio': d_waist_height_ratio,
+  'sagittal-diameter': d_sagittal_diameter,
+  'relative-fat-mass': d_relative_fat_mass,
+  'triceps-skinfold': d_triceps_skinfold,
+  'subscapular-skinfold': d_subscapular_skinfold,
+  'suprailiac-skinfold': d_suprailiac_skinfold,
+  'navy-body-fat': d_navy_body_fat,
+  'navy-body-fat-2': d_navy_body_fat_2,
+  'skeletal-muscle': d_skeletal_muscle,
+  'frame-size-2': d_frame_size_2,
+  'waist-circ-percentile': d_waist_circ_percentile,
+  'neck-circ': d_neck_circ,
+  'wrist-circumference': d_wrist_circumference,
+  'tdee-activity': d_tdee_activity,
+  'oral-glucose': d_oral_glucose,
+  'glycemic-index': d_glycemic_index,
+  'vitamin-d-calculator': d_vitamin_d_calculator,
+  'vitamin-d-dose': d_vitamin_d_dose,
+  'thyroid-bmr': d_thyroid_bmr,
+  'testosterone-level': d_testosterone_level,
+  'omega3-index': d_omega3_index,
+  'sweat-rate': d_sweat_rate,
+  'wind-chill-calc': d_wind_chill_calc,
+  'wbgt-calc': d_wbgt_calc,
+  'alzheimers-risk-screener': d_alzheimers_risk_screener,
+  'anemia-assessment-tool': d_anemia_assessment_tool,
+  'appendicitis-alvarado': d_appendicitis_alvarado,
+  'ballard-score': d_ballard_score,
+  'bisap-score': d_bisap_score,
+  'charlson': d_charlson,
+  'colitis-mayo-score': d_colitis_mayo_score,
+  'crohns-cdai-calc': d_crohns_cdai_calc,
+  'fib-4': d_fib_4,
+  'gerd-reflux-check': d_gerd_reflux_check,
+  'glascow-ims': d_glascow_ims,
+  'hernia-risk-checker': d_hernia_risk_checker,
+  'ibs-severity-score': d_ibs_severity_score,
+  'meld-score-2': d_meld_score_2,
+  'nausea-severity-score': d_nausea_severity_score,
+  'newborn-jaundice': d_newborn_jaundice,
+  'newborn-weight-loss': d_newborn_weight_loss,
+  'osteoporosis-frax-calc': d_osteoporosis_frax_calc,
+  'pain-scale-calculator': d_pain_scale_calculator,
+  'pancreatitis-rancon-calc': d_pancreatitis_rancon_calc,
+  'parkinsons-hoehnyahr': d_parkinsons_hoehnyahr,
+  'pediatric-fever': d_pediatric_fever,
+  'phq9-depression-score': d_phq9_depression_score,
+  'power-nap': d_power_nap,
+  'pregnancy-week-calculator': d_pregnancy_week_calculator,
+  'pregnancy-weight-gain': d_pregnancy_weight_gain,
+  'ranson-criteria': d_ranson_criteria,
+  'resilience-score': d_resilience_score,
+  'restless-leg-irls-calc': d_restless_leg_irls_calc,
+  'rsv-infant-risk': d_rsv_infant_risk,
+  'saps2': d_saps2,
+  'seizure-tracker-calc': d_seizure_tracker_calc,
+  'sleep-apnea-stopbang': d_sleep_apnea_stopbang,
+  'sleep-cycle-calculator': d_sleep_cycle_calculator,
+  'sleep-debt': d_sleep_debt,
+  'sleep-quality-index-calculator': d_sleep_quality_index_calculator,
+  'std-risk-screener': d_std_risk_screener,
+  'stress-level': d_stress_level,
+  'target-height': d_target_height,
+  'thyroid-risk-check': d_thyroid_risk_check,
+  'tinnitus-severity-index': d_tinnitus_severity_index,
+  'uti-risk-assessment': d_uti_risk_assessment,
+  'vertigo-dizziness-scale': d_vertigo_dizziness_scale,
+  'wake-up-time-calculator': d_wake_up_time_calculator,
+  'weight-height-percentile': d_weight_height_percentile,
+  'well-being-index': d_well_being_index,
+  'wound-healing-assessment-calc': d_wound_healing_assessment_calc,
 }

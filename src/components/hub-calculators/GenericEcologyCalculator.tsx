@@ -1,4 +1,5 @@
 'use client'
+import { memoizedCompute } from '@/lib/calc-executor'
 
 import React, { useMemo, useCallback, useState } from 'react'
 import { useForm, FormProvider, useWatch } from 'react-hook-form'
@@ -8,6 +9,7 @@ import { CalculatorFormField } from '@/components/forms/CalculatorFormField'
 import { FieldsByMode } from '@/lib/calc-field-helper'
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic'
 import type { UnitSystem } from '@/components/premium/PremiumCalculatorShell'
+import { DynamicHealthBarChart } from '@/components/premium/DynamicCharts'
 import { buildGenericDef } from '@/lib/generic-fallback'
 
 interface FieldDef {
@@ -63,7 +65,7 @@ export function GenericEcologyCalculator({ calculator }: Props) {
         vals[f.name] = raw ?? ''
       }
     }
-    const res = def.compute(vals)
+    const res = memoizedCompute(def)(vals)
     return (
       <div className="text-center space-y-4">
         <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
@@ -79,6 +81,35 @@ export function GenericEcologyCalculator({ calculator }: Props) {
     )
   }, [def, v])
 
+  const chartData = useMemo(() => {
+    if (!def) return []
+    const vals: Record<string, any> = {}
+    for (const f of def.fields) {
+      const raw = v[f.name]
+      if (f.type === 'number') {
+        vals[f.name] = raw !== undefined && raw !== '' ? Number(raw) : 0
+      } else {
+        vals[f.name] = raw ?? ''
+      }
+    }
+    const res = memoizedCompute(def)(vals)
+    if (res.steps?.length) {
+      return res.steps
+        .filter((s: any) => s && s.label && s.value !== undefined && !isNaN(parseFloat(String(s.value))))
+        .slice(0, 6)
+        .map((s: any) => ({
+          name: s.label.length > 15 ? s.label.substring(0, 15) + '…' : s.label,
+          value: parseFloat(String(s.value)) || 0,
+        }))
+    }
+    const entries = Object.entries(v).filter(([, val]) => val && !isNaN(parseFloat(String(val))))
+    if (entries.length === 0) return []
+    return entries.slice(0, 6).map(([k, val]) => ({
+      name: k.length > 15 ? k.substring(0, 15) + '…' : k,
+      value: parseFloat(String(val)) || 0,
+    }))
+  }, [def, v])
+
   const mainValue = useMemo(() => {
     if (!def) return 0
     const vals: Record<string, any> = {}
@@ -90,7 +121,7 @@ export function GenericEcologyCalculator({ calculator }: Props) {
         vals[f.name] = raw ?? ''
       }
     }
-    const res = def.compute(vals)
+    const res = memoizedCompute(def)(vals)
     return typeof res.result === 'number' ? res.result : parseFloat(String(res.result)) || 0
   }, [def, v])
 
@@ -151,6 +182,7 @@ export function GenericEcologyCalculator({ calculator }: Props) {
         showTabs={true}
         useSlider={useSlider}
         onToggleSlider={() => setUseSlider(!useSlider)}
+        charts={chartData.length > 0 ? <DynamicHealthBarChart data={chartData} /> : undefined}
         formula={formula}
         interpretation={interpretation}
         presets={presets}

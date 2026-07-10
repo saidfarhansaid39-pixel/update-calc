@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Label } from '@/components/ui/label'
 import { Lock, Unlock } from 'lucide-react'
@@ -35,6 +35,7 @@ export function CalculatorSlider({
   const numericVal = parseFloat(value) || 0
   const sliderRef = useRef<HTMLInputElement>(null)
   const wasLocked = useRef(locked)
+  const [focused, setFocused] = useState(false)
 
   useEffect(() => {
     if (locked && !wasLocked.current) {
@@ -50,6 +51,43 @@ export function CalculatorSlider({
       setValue(name, val.toString(), { shouldValidate: true })
     }
   }, [name, setValue])
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    let newVal = numericVal
+    const stepVal = step || 1
+    
+    switch (e.key) {
+      case 'ArrowRight':
+      case 'ArrowUp':
+        e.preventDefault()
+        newVal = Math.min(numericVal + stepVal, max)
+        break
+      case 'ArrowLeft':
+      case 'ArrowDown':
+        e.preventDefault()
+        newVal = Math.max(numericVal - stepVal, min)
+        break
+      case 'Home':
+        e.preventDefault()
+        newVal = min
+        break
+      case 'End':
+        e.preventDefault()
+        newVal = max
+        break
+      case 'PageUp':
+        e.preventDefault()
+        newVal = Math.min(numericVal + stepVal * 10, max)
+        break
+      case 'PageDown':
+        e.preventDefault()
+        newVal = Math.max(numericVal - stepVal * 10, min)
+        break
+      default:
+        return
+    }
+    setValue(name, newVal.toString(), { shouldValidate: true })
+  }, [name, setValue, numericVal, min, max, step])
 
   const formatDisplay = useCallback((val: number) => {
     if (formatValue) return formatValue(val)
@@ -73,7 +111,8 @@ export function CalculatorSlider({
               type="button"
               onClick={() => onLockToggle(name)}
               className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-              title={locked ? 'Unlock this value' : 'Lock this value'}
+              aria-label={locked ? `Unlock ${label}` : `Lock ${label}`}
+              aria-pressed={locked}
             >
               {locked ? <Lock size={13} /> : <Unlock size={13} />}
             </button>
@@ -91,10 +130,19 @@ export function CalculatorSlider({
           step={step}
           value={numericVal}
           onChange={handleSliderChange}
+          onKeyDown={handleKeyDown}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
           disabled={locked}
-          className={`flex-1 h-2 rounded-lg appearance-none cursor-pointer ${
+          tabIndex={0}
+          role="slider"
+          aria-valuemin={min}
+          aria-valuemax={max}
+          aria-valuenow={numericVal}
+          aria-label={label}
+          className={`flex-1 h-2 rounded-lg appearance-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06b6d4] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 ${
             locked ? 'opacity-50 cursor-not-allowed' : ''
-          }`}
+          } ${focused ? 'ring-2 ring-[#06b6d4] ring-offset-2 ring-offset-white dark:ring-offset-gray-900' : ''}`}
           style={{
             background: locked
               ? 'rgb(229 231 235)'
@@ -122,11 +170,13 @@ export function CalculatorSlider({
       </div>
 
       {units && selectedUnit && onUnitChange && (
-        <div className="flex gap-1">
+        <div className="flex gap-1" role="radiogroup" aria-label={`${label} unit`}>
           {units.map(u => (
             <button
               key={u.id}
               type="button"
+              role="radio"
+              aria-checked={selectedUnit === u.id}
               onClick={() => onUnitChange(name, u.id)}
               className={`px-2 py-0.5 text-[10px] font-medium rounded transition-colors ${
                 selectedUnit === u.id
@@ -141,7 +191,7 @@ export function CalculatorSlider({
       )}
 
       {error && (
-        <p className="text-xs text-red-500">{error.message as string}</p>
+        <p id={`${name}-error`} className="text-xs text-red-500">{error.message as string}</p>
       )}
     </div>
   )

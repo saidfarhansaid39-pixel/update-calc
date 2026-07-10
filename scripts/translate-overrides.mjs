@@ -8,6 +8,19 @@ const LOCALES = ['es', 'fr', 'de', 'pt', 'ru', 'ar', 'hi', 'ja', 'zh-CN']
 const LATIN_LOCALES = ['es', 'fr', 'de', 'pt']
 const OVERRIDES_DIR = join(__dirname, '..', 'src', 'i18n', 'calculator-overrides')
 
+const GROQ_API_KEYS = (process.env.GROQ_API_KEYS || process.env.GROQ_API_KEY || '')
+  .split(',')
+  .map(k => k.trim())
+  .filter(Boolean)
+
+let groqKeyIndex = 0
+function getNextGroqKey() {
+  if (GROQ_API_KEYS.length === 0) return null
+  const key = GROQ_API_KEYS[groqKeyIndex % GROQ_API_KEYS.length]
+  groqKeyIndex = (groqKeyIndex + 1) % GROQ_API_KEYS.length
+  return key
+}
+
 const UNIT_MAP = {
   inches: { es: 'Pulgadas', fr: 'Pouces', de: 'Zoll', pt: 'Polegadas' },
   inch: { es: 'Pulgada', fr: 'Pouce', de: 'Zoll', pt: 'Polegada' },
@@ -185,12 +198,26 @@ function systematicTranslate(entry, locale) {
   return { title, description: desc }
 }
 
-async function translateWithOpenAI(batch, targetLocale, model = 'gpt-4o-mini') {
-  const apiKey = process.env.OPENAI_API_KEY || process.env.OPENROUTER_API_KEY || process.env.NARAROUTER_API_KEY
-  if (!apiKey) throw new Error('OPENAI_API_KEY, OPENROUTER_API_KEY, or NARAROUTER_API_KEY not set')
+async function translateWithOpenAI(batch, targetLocale, model = 'gpt-4o-mini', providedKey = null) {
+  let apiKey = providedKey || process.env.OPENAI_API_KEY || process.env.OPENROUTER_API_KEY || process.env.NARAROUTER_API_KEY || process.env.GROQ_API_KEY
+  if (!apiKey && GROQ_API_KEYS.length === 0) throw new Error('OPENAI_API_KEY, OPENROUTER_API_KEY, NARAROUTER_API_KEY, or GROQ_API_KEY not set (and no GROQ_API_KEYS available)')
 
-  const isOpenRouter = apiKey.startsWith('sk-or-')
-  const isNaraRouter = apiKey.startsWith('sk-nry-')
+  let isOpenRouter = false
+  let isNaraRouter = false
+  let isGroq = false
+
+  if (!apiKey) {
+    apiKey = getNextGroqKey()
+  }
+
+  if (apiKey.startsWith('sk-or-')) {
+    isOpenRouter = true
+  } else if (apiKey.startsWith('sk-nry-')) {
+    isNaraRouter = true
+  } else if (apiKey.startsWith('gsk_')) {
+    isGroq = true
+  }
+
   let apiUrl = 'https://api.openai.com/v1/chat/completions'
   let effectiveModel = model
   if (isOpenRouter) {
@@ -199,6 +226,9 @@ async function translateWithOpenAI(batch, targetLocale, model = 'gpt-4o-mini') {
   } else if (isNaraRouter) {
     apiUrl = 'https://router.bynara.id/v1/chat/completions'
     effectiveModel = 'mistral-large'
+  } else if (isGroq) {
+    apiUrl = 'https://api.groq.com/openai/v1/chat/completions'
+    effectiveModel = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile'
   }
 
   const localeName = { es: 'Spanish', fr: 'French', de: 'German', pt: 'Portuguese', ru: 'Russian', ar: 'Arabic', hi: 'Hindi', ja: 'Japanese', 'zh-CN': 'Chinese (Simplified)' }
@@ -238,7 +268,12 @@ ${JSON.stringify(batch, null, 2)}`
     try {
       const response = await fetch(apiUrl, {
         method: 'POST',
-        headers,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`,
+          ...(isOpenRouter && { 'HTTP-Referer': 'https://www.jdcalc.com', 'X-Title': 'JDCALC Translation' }),
+          ...(isNaraRouter && { 'HTTP-Referer': 'https://www.jdcalc.com', 'X-Title': 'JDCALC Translation' }),
+        },
         body: JSON.stringify({
           model: effectiveModel,
           messages: [{ role: 'user', content: prompt }],
@@ -251,7 +286,16 @@ ${JSON.stringify(batch, null, 2)}`
         const err = await response.text()
         if (response.status === 429 && attempt < maxRetries) {
           const wait = Math.min(attempt * 5000, 15000)
-          console.error(`\n⚠️  Rate limited (attempt ${attempt}/${maxRetries}), waiting ${wait/1000}s...`)
+          console.error(`\n⚠️  Rate limited on key ${apiKey.substring(0, 12)}... (attempt ${attempt}/${maxRetries}), waiting ${wait/1000}s...`)
+          // Try next key on rate limit
+          if (GROQ_API_KEYS.length > 0) {
+            apiKey = getNextGroqKey()
+            console.error(`   Switching to next key: ${apiKey.substring(0, 12)}...`)
+            // Re-detect provider
+            if (apiKey.startsWith('sk-or-')) { isOpenRouter = true; isGroq = false; isNaraRouter = false; apiUrl = 'https://openrouter.ai/api/v1/chat/completions'; effectiveModel = `openai/${model}`; }
+            else if (apiKey.startsWith('sk-nry-')) { isNaraRouter = true; isGroq = false; isOpenRouter = false; apiUrl = 'https://router.bynara.id/v1/chat/completions'; effectiveModel = 'mistral-large'; }
+            else if (apiKey.startsWith('gsk_')) { isGroq = true; isOpenRouter = false; isNaraRouter = false; apiUrl = 'https://api.groq.com/openai/v1/chat/completions'; effectiveModel = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile'; }
+          }
           await new Promise(r => setTimeout(r, wait))
           continue
         }
@@ -286,11 +330,14 @@ function showProgress(current, total, locale) {
 
 async function main() {
   const systematic = process.argv.includes('--systematic')
-  const localeArg = process.argv.slice(2).find(a => !a.startsWith('--'))
+  let localeArg = process.argv.slice(2).find(a => !a.startsWith('--'))
   const incremental = process.argv.includes('--incremental')
   const force = process.argv.includes('--force')
   const retryFailed = process.argv.includes('--retry-failed')
+  const missingTranslation = process.argv.includes('--missing-translation')
   const dryRun = process.argv.includes('--dry-run')
+  const localeFromFlag = process.argv.find(a => a.startsWith('--locale='))?.split('=')[1]
+  if (localeFromFlag && !localeArg) { localeArg = localeFromFlag }
   const batchSize = parseInt(process.env.BATCH_SIZE || '10', 10)
   const model = process.env.OPENAI_MODEL || 'gpt-4o-mini'
   const concurrency = parseInt(process.env.CONCURRENCY || '3', 10)
@@ -367,6 +414,11 @@ async function main() {
     const entriesToTranslate = allEntries.filter(e => {
       if (incremental) return !existing[e.slug]
       if (force) return true
+      if (missingTranslation) {
+        const ov = existing[e.slug]
+        if (!ov || !ov.title) return true
+        return /^[\x00-\x7F]*$/.test(ov.title)
+      }
       if (retryFailed) {
         const ov = existing[e.slug]
         if (!ov) return true
@@ -378,19 +430,22 @@ async function main() {
 
     if (entriesToTranslate.length === 0) {
       if (retryFailed) console.log(`✅ ${locale}: no failed entries to retry`)
+      else if (missingTranslation) console.log(`✅ ${locale}: all entries already translated (--missing-translation)`)
       else console.log(`✅ ${locale}: all ${allEntries.length} entries already translated (--incremental)`)
       continue
     }
 
     if (force) {
       console.log(`\n🌐 Force-translating ALL ${entriesToTranslate.length} entries for "${locale}" (--force)...`)
+    } else if (missingTranslation) {
+      console.log(`\n🌐 Translating ${entriesToTranslate.length} untranslated entries for "${locale}" (--missing-translation)...`)
     } else if (retryFailed) {
       console.log(`\n🌐 Retry-translating ${entriesToTranslate.length} failed entries for "${locale}" (--retry-failed)...`)
     } else {
       console.log(`\n🌐 Translating ${entriesToTranslate.length} entries for "${locale}"...`)
     }
 
-    if (!process.env.OPENAI_API_KEY && !process.env.OPENROUTER_API_KEY && !process.env.NARAROUTER_API_KEY) {
+    if (!process.env.OPENAI_API_KEY && !process.env.OPENROUTER_API_KEY && !process.env.NARAROUTER_API_KEY && !process.env.GROQ_API_KEY && GROQ_API_KEYS.length === 0) {
       const overrides = { ...existing }
       for (const entry of entriesToTranslate) {
         overrides[entry.slug] = {

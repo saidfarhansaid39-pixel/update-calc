@@ -3,6 +3,11 @@ import { Link } from '@/lib/navigation'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 import { getLocale } from 'next-intl/server'
 import { getLocalizedCalculator } from '@/lib/localized-registry'
+import { getHubTheme } from '@/lib/hub-themes'
+import { SchemaMarkup } from '@/components/SchemaMarkup'
+
+const siteUrl = 'https://www.jdcalc.com'
+const DEFAULT_ACCENT = '#06b6d4' // cyan fallback
 
 interface RelatedCalculatorsProps {
   calculator: CalculatorEntry
@@ -31,6 +36,8 @@ function keywordOverlap(a: string[], b: string[]): number {
 
 export async function RelatedCalculators({ calculator, max = 6 }: RelatedCalculatorsProps) {
   const locale = await getLocale()
+  const t = (await import('next-intl/server')).getTranslations
+  const th = await t('hubs')
   const { calculatorRegistry } = await import('@calcuniverse/calculator-registry')
   const candidates = calculatorRegistry
     .filter(c => c.hubSlug !== calculator.hubSlug && c.slug !== calculator.slug && !/\d$/.test(c.slug))
@@ -52,9 +59,24 @@ export async function RelatedCalculators({ calculator, max = 6 }: RelatedCalcula
     })
   )
 
+  const accent = getHubTheme(calculator.hubSlug)?.accent || DEFAULT_ACCENT
+  const localePrefix = locale === 'en' ? '' : `/${locale}`
+
+  const itemListSchema = {
+    name: 'Related Calculators',
+    itemListElement: candidates.map(({ calc: c }, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: localizedEntries[i].title,
+      url: `${siteUrl}${localePrefix}/${c.hubSlug}/${c.slug}`,
+    })),
+  }
+
   return (
     <div className="mt-10 pt-6 border-t border-gray-200 dark:border-gray-700">
-      <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">
+      <SchemaMarkup type="ItemList" data={itemListSchema} locale={locale} />
+      <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
+        <span className="inline-block h-4 w-1 rounded-full" style={{ backgroundColor: accent }} aria-hidden="true" />
         Related Calculators from Other Categories
       </h2>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -62,10 +84,12 @@ export async function RelatedCalculators({ calculator, max = 6 }: RelatedCalcula
           <Link
             key={candidates[i].calc.slug}
             href={`/${candidates[i].calc.hubSlug}/${candidates[i].calc.slug}`}
-            className="block p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-sm transition-all"
+            rel="bookmark"
+            className="block p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-sm transition-all"
+            style={{ borderLeftWidth: '3px', borderLeftColor: accent }}
           >
             <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{localized.title}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 truncate">{candidates[i].calc.hubName}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 truncate">{th(candidates[i].calc.hubSlug)}</p>
           </Link>
         ))}
       </div>

@@ -11,6 +11,21 @@ export type Locale = (typeof routing.locales)[number]
 
 export const isRtl = (locale: Locale) => locale === 'ar'
 
+// Maps each app locale to its BCP-47 hreflang code used in sitemaps and
+// <link rel="alternate" hreflang="..."> tags.
+export const isoLangs: Record<Locale, string> = {
+  'en': 'en',
+  'es': 'es',
+  'fr': 'fr',
+  'de': 'de',
+  'pt': 'pt',
+  'ru': 'ru',
+  'ar': 'ar',
+  'hi': 'hi',
+  'ja': 'ja',
+  'zh-CN': 'zh-CN',
+}
+
 export const localeNames: Record<Locale, string> = {
   'en': 'English',
   'es': 'Español',

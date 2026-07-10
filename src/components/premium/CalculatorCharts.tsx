@@ -48,6 +48,7 @@ export function InvestmentGrowthChart({ data }: { data: { year: number; value: n
 }
 
 export function ComparisonBarChart({ data }: { data: { name: string; value: number; color: string }[] }) {
+  if (!data || !data.length) return null
   const maxItem = data.reduce((a, b) => (a.value > b.value ? a : b), data[0])
   return (
     <div className="w-full" role="img" aria-label={`Comparison chart: ${maxItem?.name} has highest value of $${maxItem?.value?.toFixed(0)}`}>

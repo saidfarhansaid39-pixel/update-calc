@@ -1,6 +1,6 @@
 'use client';
 
-import { Link } from '@/lib/navigation';
+import { Link, usePathname } from '@/lib/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { Search, Menu, X, Moon, Sun, ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -8,11 +8,13 @@ import { LocaleSwitcher } from '@/components/LocaleSwitcher'
 
 export function Header() {
   const t = useTranslations('nav')
+  const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const [dark, setDark] = useState(false);
   const moreRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const stored = localStorage.getItem('theme');
@@ -32,6 +34,54 @@ export function Header() {
     document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
+
+  useEffect(() => {
+    if (menuOpen) {
+      setSearchOpen(false);
+      setMoreOpen(false);
+    }
+  }, [menuOpen]);
+
+  useEffect(() => {
+    setMenuOpen(false);
+    setMoreOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMenuOpen(false);
+        setMoreOpen(false);
+        setSearchOpen(false);
+      }
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const menu = mobileMenuRef.current;
+    if (!menu) return;
+    const focusable = menu.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    focusable[0]?.focus();
+    const handleTrap = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab' || focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    menu.addEventListener('keydown', handleTrap);
+    return () => menu.removeEventListener('keydown', handleTrap);
+  }, [menuOpen]);
 
   const toggleDark = () => {
     const next = !dark;
@@ -119,7 +169,7 @@ export function Header() {
                       key={link.label}
                       href={link.href}
                       onClick={() => { setMoreOpen(false); setMenuOpen(false); }}
-                      className="block px-4 py-2 min-h-[36px] text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                      className="block px-4 py-2 min-h-[44px] text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
                     >
                       {link.label}
                     </Link>
@@ -135,7 +185,7 @@ export function Header() {
 
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
+              className="p-2 rounded-lg text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
               aria-label={t('searchIconAria')}
             >
               <Search className="w-5 h-5" />
@@ -143,7 +193,7 @@ export function Header() {
 
             <button
               onClick={toggleDark}
-              className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
+              className="p-2 rounded-lg text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
               aria-label={t('darkMode')}
             >
               {dark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -151,8 +201,10 @@ export function Header() {
 
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
+              className="md:hidden p-2 rounded-lg text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 touch-target"
               aria-label={t('menu')}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
             >
               {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -177,7 +229,7 @@ export function Header() {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="md:hidden overflow-hidden animate-fade-in-down">
+          <div id="mobile-menu" ref={mobileMenuRef} className="md:hidden overflow-hidden animate-fade-in-down overscroll-contain">
             <div className="pb-4 border-t border-gray-200 dark:border-gray-800 pt-4">
               <nav aria-label="Mobile navigation" className="flex flex-col gap-1">
                 {allLinks.map((link) => (
@@ -185,7 +237,7 @@ export function Header() {
                     key={link.label}
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="px-3 py-2.5 min-h-[36px] text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                    className="px-3 py-2.5 min-h-[44px] text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
                   >
                     {link.label}
                   </Link>

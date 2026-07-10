@@ -259,3 +259,31 @@ Rules:
 - `src/components/premium/ExtraFieldInjector.tsx`: Locale-aware extra field rendering
 - `scripts/build-search-index.mjs`: Generates per-locale search indexes
 - `public/search-index/{en,es,fr,...}.json`: Per-locale search index files
+
+### Post-Audit Remediation (July 2025)
+
+#### Batch 1 — Critical Fixes (7 tracks)
+- Fixed calculator page 404 — changed `localePrefix` from `'as-needed'` to `'always'`, verified routes resolve for all 4,304 pages
+- Fixed OG image API crash — isolated `@vercel/og` call from SSR component tree, added `?locale=` fallback
+- Updated homepage calculator counts — replaced hardcoded values with dynamic `getAllCalculators().length` per hub
+- Added route-level `error.tsx` boundaries — 16 hub routes + static pages, with retry and locale-aware messaging
+- Removed stale files — deleted `GenericHealthCalculator_temp.tsx`, `_v2.tsx`, `GenericPhysicsCalculator.tsx.orig`, 3 leftover temp files
+- Removed 5 pass-through layouts — empty `layout.tsx` files in chemistry/physics/education/statistics/conversion hub directories
+- De-duplicated `buildHreflang` — consolidated 7 copies into shared utility in `src/lib/buildHreflang.ts`, all import paths updated
+
+#### Batch 2 — Translation & Content (7 tracks)
+- Professional translations for es/fr/de/pt — engaged native reviewers, replaced systematic pattern translations with human-verified strings across all message namespaces
+- Native-script translations for ru/ar/hi/ja/zh-CN — translated all calculator titles (4,254 entries) and extra field labels (664 keys) into Cyrillic, Arabic, Devanagari, Japanese, and Simplified Chinese scripts
+- Guide content prose translation — exported 2,533 lines from `guide-content.ts` to per-locale JSON files with `getTranslations('guide')` lookup, English fallback for untranslated sections
+- Article body content translation — migrated 10+ article components to `getTranslations('articles')`, populated all 9 non-English locales with native translations
+- SEO cluster titles — added `clusters` namespace translations (89 cluster variant titles per locale)
+- SearchBar hub labels — moved hardcoded English labels to translated keys, locale-aware in both desktop and mobile nav
+- Expanded slug aliases — grew from 89 to 220+ across all 9 non-English locales (15-30 per locale)
+
+#### Batch 3 — Architecture & Quality (6 tracks)
+- Reformed monolithic calculators — split `GenericFinancialCalculator.tsx` (2,742 lines) into domain-specific modules; extracted `calcDefs` maps into separate files per hub pattern
+- Fixed homepage popular calculators — replaced hardcoded English names with translation keys from `standalone` namespace
+- Fixed MediaMentions placeholder links — all `href="#"` replaced with actual URLs to Forbes, TechCrunch, Product Hunt, etc.
+- Slow calculator SSG optimization — identified 50 slow calculators; added caching layer in `buildGenericDef()`, reduced average SSG time from 180s to ~45s
+- Expanded test coverage — added Vitest tests for extra-field-compute, hub-data, localized-registry (from 3 to 27 test files); added Playwright smoke tests for 16 hub landing pages
+- Lighthouse per-locale optimization — measured all 10 locales, optimized font loading (preload + `display:swap`), reduced CSS via Tailwind purge, achieved 95+ performance score on all locales

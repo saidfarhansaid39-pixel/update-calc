@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Link } from '@/lib/navigation'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { ClusterFlatEntry } from '@/lib/seo-clusters/types'
 import { getClustersForPrimary } from '@/lib/seo-clusters'
 
@@ -21,15 +21,16 @@ function faqSchema(faqs: Array<{ q: string; a: string }>) {
   }
 }
 
-function breadcrumbSchema(cluster: ClusterFlatEntry) {
-  const hubName = cluster.hubSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+function breadcrumbSchema(cluster: ClusterFlatEntry, locale: string, th: (key: string) => string) {
+  const homeUrl = locale === 'en' ? 'https://www.jdcalc.com' : `https://www.jdcalc.com/${locale}`
+  const hubUrl = locale === 'en' ? `https://www.jdcalc.com/${cluster.hubSlug}` : `https://www.jdcalc.com/${locale}/${cluster.hubSlug}`
   return {
     __html: JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'JDCALC', item: 'https://www.jdcalc.com' },
-        { '@type': 'ListItem', position: 2, name: hubName, item: `https://www.jdcalc.com/${cluster.hubSlug}` },
+        { '@type': 'ListItem', position: 1, name: 'JDCALC', item: homeUrl },
+        { '@type': 'ListItem', position: 2, name: th(cluster.hubSlug), item: hubUrl },
         { '@type': 'ListItem', position: 3, name: cluster.variant.title },
       ],
     }),
@@ -43,14 +44,16 @@ export function ClusterPageContent({
   cluster: ClusterFlatEntry
   children: React.ReactNode
 }) {
+  const locale = useLocale()
   const tc = useTranslations('common')
+  const th = useTranslations('hubs')
   const v = cluster.variant
   return (
     <div>
       {faqSchema(v.faqs) && (
         <script type="application/ld+json" dangerouslySetInnerHTML={faqSchema(v.faqs)!} />
       )}
-      <script type="application/ld+json" dangerouslySetInnerHTML={breadcrumbSchema(cluster)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={breadcrumbSchema(cluster, locale, th)} />
 
       <div className="mb-3">
         <Link

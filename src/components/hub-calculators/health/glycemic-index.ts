@@ -1,0 +1,11 @@
+import { z } from 'zod'
+import type { CalcDef } from '../../../lib/generic-fallback'
+const calcDef: CalcDef = {
+  schema: z.object({ type: z.string().min(1,'Required'), carbs: z.string().min(1,'Required').refine(v=>parseFloat(v)>=0,'≥0'), fiber: z.string().min(1,'Required').refine(v=>parseFloat(v)>=0,'≥0') }),
+  fields: [{ name:'type', label:'Carb Type', type:'select', options:[{value:'white-bread-2',label:'White Bread (~70)'},{value:'whole-wheat',label:'Whole Wheat (~50)'},{value:'brown-rice',label:'Brown Rice (~55)'},{value:'white-rice',label:'White Rice (~73)'},{value:'oatmeal',label:'Oatmeal (~55)'},{value:'spaghetti',label:'Spaghetti (~45)'},{value:'potato',label:'Potato (boiled ~56)'},{value:'apple',label:'Apple (~36)'},{value:'banana',label:'Banana (~52)'},{value:'orange',label:'Orange (~43)'},{value:'glucose',label:'Glucose (reference 100)'}] }, { name:'carbs', label:'Available Carbs (g)', type:'number', min:0, step:'1' }, { name:'fiber', label:'Dietary Fiber (g)', type:'number', min:0, step:'1' }],
+  compute: (v) => { const t=v.type||'white-bread-2'; const c=parseFloat(v.carbs)||50; const f=parseFloat(v.fiber)||0; const giMap:Record<string,number>={'white-bread-2':70,'whole-wheat':50,'brown-rice':55,'white-rice':73,'oatmeal':55,'spaghetti':45,'potato':56,'apple':36,'banana':52,'orange':43,'glucose':100}; const gi=giMap[t]||50; const availCarbs=c-f; const gl=gi*availCarbs/100; let cat:string; if(gl<=10){cat='Low'}else if(gl<=19){cat='Medium'}else{cat='High'} return { result:gl, label:'Glycemic Load', unit:'', steps:[{ label:'GI', value:gi.toFixed(0) },{ label:'Available Carbs', value:availCarbs.toFixed(0)+' g' },{ label:'GL', value:gl.toFixed(1) },{ label:'Category', value:cat }] } },
+  description: 'Estimates glycemic load from glycemic index and carbohydrate content, accounting for fiber.',
+  formula: 'Glycemic Load = GI × Available Carbs / 100. GL ≤10 low, 11-19 medium, ≥20 high.',
+  interpretation: 'Low GL (<10) minimizes blood sugar spikes. High GL (≥20) causes significant postprandial glucose elevation.'
+}
+export default calcDef

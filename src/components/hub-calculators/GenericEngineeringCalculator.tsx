@@ -10,6 +10,7 @@ import { CalculatorSlider } from '@/components/forms/CalculatorSlider'
 import { UnitToggle } from '@/components/forms/UnitToggle'
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic'
 import type { UnitSystem } from '@/components/premium/PremiumCalculatorShell'
+import { DynamicHealthBarChart } from '@/components/premium/DynamicCharts'
 import { FieldsByMode } from '@/lib/calc-field-helper'
 import { getEngFormula, engSlugOverrides } from '@/lib/seo/formula-generator'
 import { engineeringSchema } from '@/lib/forms/schemas'
@@ -3714,6 +3715,27 @@ function EngInner({ calculator }: Props) {
     vals[key] = selectFields.has(key) ? s : (parseFloat(s) || 0)
   })
 
+  const chartData = useMemo(() => {
+    if (def) {
+      const data = def.compute(vals)
+      if (data.steps?.length) {
+        return data.steps
+          .filter((s: any) => s && s.label && s.value !== undefined && !isNaN(parseFloat(String(s.value))))
+          .slice(0, 6)
+          .map((s: any) => ({
+            name: s.label.length > 15 ? s.label.substring(0, 15) + '…' : s.label,
+            value: parseFloat(String(s.value)) || 0,
+          }))
+      }
+    }
+    const entries = Object.entries(v).filter(([, val]) => val && !isNaN(parseFloat(String(val))))
+    if (entries.length === 0) return []
+    return entries.slice(0, 6).map(([k, val]) => ({
+      name: k.length > 15 ? k.substring(0, 15) + '…' : k,
+      value: parseFloat(String(val)) || 0,
+    }))
+  }, [def, vals, v])
+
   const result = useMemo(() => {
     if (calcType === 'btu') {
       const areaRaw = parseFloat(v.area) || 0
@@ -3951,7 +3973,7 @@ function EngInner({ calculator }: Props) {
           Object.entries(locked).forEach(([key, value]) => {
             if (value !== undefined && value !== '') form.setValue(key as any, value)
           })
-        }} copyResultText={copyResultText} inputs={watchedInputs} showTabs={true} useSlider={useSlider} onToggleSlider={() => setUseSlider(!useSlider)} hubCategory="engineering" mainValue={mainValue} />
+        }} copyResultText={copyResultText} inputs={watchedInputs} showTabs={true} useSlider={useSlider} onToggleSlider={() => setUseSlider(!useSlider)} charts={chartData.length > 0 ? <DynamicHealthBarChart data={chartData} /> : undefined} hubCategory="engineering" mainValue={mainValue} />
     </FormProvider>
   )
 }

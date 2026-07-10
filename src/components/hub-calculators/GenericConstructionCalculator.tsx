@@ -1,4 +1,5 @@
-﻿'use client'
+'use client'
+import { memoizedCompute } from '@/lib/calc-executor'
 
 import React, { useMemo, useCallback, useState } from 'react'
 import { useForm, FormProvider, useWatch } from 'react-hook-form'
@@ -57,14 +58,14 @@ export function GenericConstructionCalculator({ calculator }: Props) {
 
   const mainValue = useMemo(() => {
     if (!v || Object.keys(v).length === 0) return undefined
-    const res = calcDef.compute(v)
+    const res = memoizedCompute(calcDef)(v)
     const parsed = typeof res.result === 'number' ? res.result : parseFloat(String(res.result))
     return isNaN(parsed) ? undefined : parsed
   }, [v, calcDef])
 
   const result = useMemo(() => {
     if (!v || Object.keys(v).length === 0) return null
-    const res = calcDef.compute(v)
+    const res = memoizedCompute(calcDef)(v)
     const displayVal = typeof res.result === 'number' ? res.result.toFixed(2) : res.result
     return (
       <div className="text-center space-y-4">
@@ -103,14 +104,14 @@ export function GenericConstructionCalculator({ calculator }: Props) {
   const constructionChartData = useMemo(() => {
     if (!v || Object.keys(v).length === 0) return []
     try {
-      const res = calcDef.compute(v)
+      const res = memoizedCompute(calcDef)(v)
       if (!res.steps || !Array.isArray(res.steps)) return []
       return res.steps
         .filter((s: any) => s && s.label && (!isNaN(parseFloat(s.value)) || !isNaN(parseFloat(String(s.value)))))
         .slice(0, 8)
         .map((s: any) => ({
           name: s.label.length > 15 ? s.label.substring(0, 15) + '…' : s.label,
-          value: parseFloat(s.value) || parseFloat(String(s.value)) || 0,
+          value: parseFloat(String(s.value)) || 0,
         }))
     } catch { return [] }
   }, [v, calcDef])

@@ -108,7 +108,7 @@ export function ResultTabs({ mainResult, charts, breakdown, schedule, inputs, sl
     },
   ]
 
-  if (tabs.length <= 2) {
+  if (tabs.length <= 2 && !charts) {
     return <>{mainResult}</>
   }
 

@@ -1,8 +1,32 @@
 import { TrendingUp, Star, Calculator, ArrowRight, ChevronRight, Sparkles, BarChart3, Heart, RefreshCw, Clock, DollarSign, Brain, UtensilsCrossed, Microscope, Leaf, Trophy } from 'lucide-react';
 import { MediaMentions } from '@/components/MediaMentions';
 import { SearchBarWrapper } from '@/components/SearchBarWrapper';
+import { HubNav } from '@/components/hub/HubNav';
+import { HubIcon } from '@/components/hub/HubIcon';
 
 export const dynamic = 'force-static'
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.jdcalc.com'
+
+export async function generateMetadata() {
+  const { getLocale, getTranslations } = await import('next-intl/server')
+  const locale = await getLocale()
+  const t = await getTranslations('homepage')
+  const title = locale === 'en' ? 'JDCALC - Precision Calculators & Unit Converters' : `JDCALC - ${t('heroBadge')}`
+  const description = t('heroSubtitle')
+  const routing = (await import('@/i18n/routing')).routing
+  const languages: Record<string, string> = { 'x-default': siteUrl }
+  for (const l of routing.locales) {
+    languages[l] = l === 'en' ? siteUrl : `${siteUrl}/${l}`
+  }
+  return {
+    title,
+    description,
+    alternates: { canonical: siteUrl, languages },
+    openGraph: { title, description, url: siteUrl, siteName: 'JDCALC', type: 'website', locale: locale === 'en' ? 'en_US' : locale === 'zh-CN' ? 'zh_CN' : `${locale}_${locale.toUpperCase()}`, images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }] },
+    twitter: { card: 'summary_large_image', title, description, images: [`${siteUrl}/og-image.png`] },
+  }
+}
 
 export default async function Home() {
   const { calculatorRegistry } = await import('@calcuniverse/calculator-registry')
@@ -29,16 +53,24 @@ export default async function Home() {
     { name: 'Sports & Fitness', href: '/sports-calculators/', desc: 'Pace, calories, heart rate, training calculators', icon: Trophy, count: getCalculatorCount('sports-calculators') },
   ];
 
-  const popular = [
-    { name: 'Mortgage Calculator', href: '/financial-calculators/mortgage-calculator', desc: 'Estimate monthly payments', tag: 'Financial' },
-    { name: 'BMI Calculator', href: '/health-calculators/bmi-calculator', desc: 'Check your body mass index', tag: 'Health' },
-    { name: 'Tip Calculator', href: '/math-calculators/tip-calculator', desc: 'Calculate tips easily', tag: 'Math' },
-    { name: 'Compound Interest', href: '/financial-calculators/compound-interest-calculator', desc: 'See your money grow', tag: 'Financial' },
-    { name: 'Loan Calculator', href: '/financial-calculators/loan-calculator', desc: 'Calculate loan payments', tag: 'Financial' },
-    { name: 'Salary Calculator', href: '/financial-calculators/salary-calculator', desc: 'Convert salary amounts', tag: 'Financial' },
-    { name: 'Retirement Calculator', href: '/financial-calculators/retirement-calculator', desc: 'Plan your future', tag: 'Financial' },
-    { name: 'Currency Calculator', href: '/financial-calculators/currency-calculator', desc: 'Convert any currency', tag: 'Financial' },
-  ];
+  const regBySlug = new Map(calculatorRegistry.map((c: any) => [c.slug, c]))
+  const POPULAR_SLUGS = [
+    'mortgage-calculator',
+    'bmi-calculator',
+    'loan-calculator',
+    'compound-interest-calculator',
+    'retirement-calculator',
+    'salary-calculator',
+    'calorie-calculator',
+    'tip-calculator',
+    'currency-calculator',
+    'gpa-calculator',
+    'body-fat-calculator',
+    'age-difference-calculator',
+  ]
+  const popular = POPULAR_SLUGS.map((slug) => regBySlug.get(slug))
+    .filter(Boolean)
+    .map((c: any) => ({ slug: c.slug, hubSlug: c.hubSlug, title: c.title, desc: c.description || '' }))
 
   const trending = [
     { name: 'Auto Loan', href: '/financial-calculators/auto-loan-calculator', desc: 'Car payment estimator', icon: DollarSign },
@@ -64,7 +96,7 @@ export default async function Home() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
               Precision <span className="text-gradient">Calculators</span> for Everyone
             </h1>
-            <p className="text-lg sm:text-xl text-gray-500 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-500 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               Free, fast, and beautifully designed calculators for finance, health, math, science, and everyday life.
             </p>
 
@@ -81,12 +113,17 @@ export default async function Home() {
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
                   <p className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">{stat.value}</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">{stat.label}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-300">{stat.label}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Category quick-nav */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 relative z-10">
+        <HubNav />
       </section>
 
       {/* Category Grid */}
@@ -105,7 +142,7 @@ export default async function Home() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-[#1a3a8a] dark:group-hover:text-[#06b6d4] transition-colors">{hub.name}</h3>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{hub.desc}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-300 mt-0.5">{hub.desc}</p>
                     <span className="inline-block mt-1.5 text-[10px] font-medium text-[#1a3a8a] dark:text-[#06b6d4] bg-[#1a3a8a]/5 dark:bg-[#06b6d4]/10 px-2 py-0.5 rounded-full">{hub.count} Calculators</span>
                   </div>
                   <ChevronRight className="w-4 h-4 text-gray-300 dark:text-gray-600 group-hover:text-[#1a3a8a] dark:group-hover:text-[#06b6d4] group-hover:translate-x-0.5 transition-all mt-1 flex-shrink-0" />
@@ -124,19 +161,21 @@ export default async function Home() {
               <Star className="w-5 h-5 text-[#1a3a8a]" />
               Popular Calculators
             </h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Most used calculators by our community</p>
+            <p className="text-sm text-gray-500 dark:text-gray-300 mt-1">Most used calculators by our community</p>
           </div>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
           {popular.map((calc, i) => (
             <div key={i}>
               <a
-                href={calc.href}
+                href={`/${calc.hubSlug}/${calc.slug}`}
                 className="group card-premium dark:bg-gray-800 dark:border-gray-700 p-4 hover:translate-y-[-2px] block"
               >
-                <span className="inline-block text-[10px] font-medium text-[#1a3a8a] dark:text-[#06b6d4] bg-[#1a3a8a]/5 dark:bg-[#06b6d4]/10 px-2 py-0.5 rounded-full mb-2">{calc.tag}</span>
-                <h3 className="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-[#1a3a8a] dark:group-hover:text-[#06b6d4] transition-colors">{calc.name}</h3>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{calc.desc}</p>
+                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#06b6d4] to-[#1a3a8a] flex items-center justify-center mb-2">
+                  <HubIcon slug={calc.hubSlug} className="w-4 h-4 text-white" />
+                </div>
+                <h3 className="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-[#1a3a8a] dark:group-hover:text-[#06b6d4] transition-colors">{calc.title}</h3>
+                <p className="text-xs text-gray-500 dark:text-gray-300 mt-1 line-clamp-2">{calc.desc}</p>
               </a>
             </div>
           ))}
@@ -164,7 +203,7 @@ export default async function Home() {
                     </div>
                     <div>
                       <h3 className="font-medium text-sm text-gray-900 dark:text-white">{tool.name}</h3>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">{tool.desc}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-300">{tool.desc}</p>
                     </div>
                   </a>
                 </div>
@@ -178,7 +217,7 @@ export default async function Home() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-10">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Why JDCALC?</h2>
-          <p className="text-gray-500 dark:text-gray-400 mt-1">Built for speed, accuracy, and ease of use</p>
+          <p className="text-gray-500 dark:text-gray-300 mt-1">Built for speed, accuracy, and ease of use</p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
@@ -192,7 +231,7 @@ export default async function Home() {
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
               <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">{f.title}</h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400">{f.desc}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-300">{f.desc}</p>
             </div>
           ))}
         </div>

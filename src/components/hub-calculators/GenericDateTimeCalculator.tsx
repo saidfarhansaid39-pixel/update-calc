@@ -7,6 +7,7 @@ import { z } from 'zod'
 import { CalculatorFormField } from '@/components/forms/CalculatorFormField'
 import { FieldsByMode } from '@/lib/calc-field-helper'
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic'
+import { DynamicHealthBarChart } from '@/components/premium/DynamicCharts'
 import type { UnitSystem } from '@/components/premium/PremiumCalculatorShell'
 import { buildGenericDef } from '@/lib/generic-fallback'
 
@@ -379,6 +380,15 @@ export function GenericDateTimeCalculator({ calculator }: Props) {
     })
   }, [form, lockedFields])
 
+  const chartData = useMemo(() => {
+    const entries = Object.entries(v).filter(([, val]) => val && !isNaN(parseFloat(String(val))))
+    if (entries.length === 0) return []
+    return entries.slice(0, 6).map(([k, val]) => ({
+      name: k.length > 15 ? k.substring(0, 15) + '…' : k,
+      value: parseFloat(String(val)) || 0,
+    }))
+  }, [v])
+
   const mainValue = useMemo(() => {
     if (!v || Object.keys(v).length === 0) return undefined
     const res = calcDef.compute(v)
@@ -393,7 +403,7 @@ export function GenericDateTimeCalculator({ calculator }: Props) {
 
   return (
     <FormProvider {...form}>
-      <PremiumCalculatorShell calculator={calculator} form={formContent} result={result} lockedFields={lockedFields} onExtraFieldsChange={setExtraFields} formula={calcDef.formula} interpretation={calcDef.interpretation} presets={presets} onPresetApply={applyPreset} onReset={() => {
+      <PremiumCalculatorShell calculator={calculator} form={formContent} result={result} charts={chartData.length > 0 ? <DynamicHealthBarChart data={chartData} /> : undefined} lockedFields={lockedFields} onExtraFieldsChange={setExtraFields} formula={calcDef.formula} interpretation={calcDef.interpretation} presets={presets} onPresetApply={applyPreset} onReset={() => {
           const locked = Object.fromEntries(
             Array.from(lockedFields).map(key => [key, form.getValues(key)])
           )

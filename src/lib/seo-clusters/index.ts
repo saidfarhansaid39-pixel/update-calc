@@ -41,7 +41,9 @@ function generateClusterVariants(calc: CalculatorEntry): ClusterVariant[] {
     variants.push({ key: suffix, title, description, h1, intro, searchIntent, audience, faqs, slugSuffix })
   }
 
-  return variants
+  // Cap variants per calculator for richer long-tail coverage while keeping
+  // the cluster build within memory bounds (was slice(0, 1)).
+  return variants.slice(0, 3)
 }
 
 const _clusterBySlug = new Map<string, ClusterFlatEntry>()
@@ -52,16 +54,7 @@ function shouldGenerateClusters(calc: CalculatorEntry): boolean {
   if (process.env.CLUSTER_PASS !== 'true' && process.env.NEXT_PUBLIC_CLUSTER_PASS !== 'true') return false
   // Auto-generated calculators (slug ending with digit) are slow
   if (/\d$/.test(calc.slug)) return false
-  // Fast hubs: all named calculators render fine
-  // Slow hubs: biology, ecology, food, health, chemistry, education
-  const FAST_HUBS = new Set([
-    'financial-calculators', 'math-calculators', 'conversion-calculators',
-    'date-time-calculators', 'construction-calculators', 'statistics-calculators',
-    'physics-calculators', 'engineering-calculators', 'sports-calculators',
-    'everyday-calculators',
-  ])
-  if (!FAST_HUBS.has(calc.hubSlug)) return false
-  // Known-slow calculators within fast hubs — cluster page SSG takes >60s
+  // Known-slow calculators — cluster page SSG takes >60s
   const SLOW_CLUSTER_CALCS = new Set([
     'dividend-growth-rate', 'payout-ratio', 'retention-ratio',
   ])
@@ -171,7 +164,7 @@ export function generateClusterMetadata(slug: string, locale: string = 'en') {
       siteName: 'JDCALC.com',
       type: 'article' as const,
       locale: localeStr,
-      images: [{ url: 'https://www.jdcalc.com/og-image.png', width: 1200, height: 630 }],
+      images: [{ url: `https://www.jdcalc.com/api/og/${slug}?locale=${locale}`, width: 1200, height: 630 }],
     },
     twitter: { card: 'summary_large_image' as const, title: variant.title, description: variant.description },
     robots: { index: true, follow: true },

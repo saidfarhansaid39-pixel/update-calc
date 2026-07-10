@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react'
 import { Share2, MessageCircle, Users, Linkedin, Image, Mail } from 'lucide-react'
+import { useLocale } from 'next-intl'
 
 interface ShareButtonsProps {
   url: string
@@ -16,31 +17,31 @@ const shareItems = [
   {
     label: 'Twitter / X',
     icon: MessageCircle,
-    getUrl: (url: string, title: string, _desc?: string) =>
+    getUrl: (url: string, title: string, _desc?: string, _locale?: string) =>
       `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`,
   },
   {
     label: 'Facebook',
     icon: Users,
-    getUrl: (url: string, _title: string, _desc?: string) =>
+    getUrl: (url: string, _title: string, _desc?: string, _locale?: string) =>
       `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
   },
   {
     label: 'LinkedIn',
     icon: Linkedin,
-    getUrl: (url: string, _title: string, _desc?: string) =>
+    getUrl: (url: string, _title: string, _desc?: string, _locale?: string) =>
       `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
   },
   {
     label: 'Pinterest',
     icon: Image,
-    getUrl: (url: string, _title: string, desc?: string) =>
+    getUrl: (url: string, _title: string, desc?: string, _locale?: string) =>
       `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&description=${encodeURIComponent(desc || _title)}`,
   },
   {
     label: 'Email',
     icon: Mail,
-    getUrl: (url: string, title: string, desc?: string) =>
+    getUrl: (url: string, title: string, desc?: string, _locale?: string) =>
       `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(desc || title + '\n' + url)}`,
   },
 ]
@@ -48,6 +49,7 @@ const shareItems = [
 export function ShareButtons({ url, title, description }: ShareButtonsProps) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+  const locale = useLocale()
 
   useEffect(() => {
     function handleMouseDown(e: MouseEvent) {
@@ -73,7 +75,7 @@ export function ShareButtons({ url, title, description }: ShareButtonsProps) {
       {open && (
         <div className="absolute top-full right-0 mt-2 z-50 flex flex-col gap-1 min-w-[180px] rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 shadow-lg">
           {shareItems.map((item) => {
-            const href = item.getUrl(url, title, description)
+            const href = item.getUrl(url, title, description, locale)
             return (
               <a
                 key={item.label}

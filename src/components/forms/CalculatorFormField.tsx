@@ -1,5 +1,6 @@
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
+import { useId } from 'react'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Lock, Unlock } from 'lucide-react'
@@ -40,11 +41,14 @@ export function CalculatorFormField({
 }: CalculatorFormFieldProps) {
   const { register, formState: { errors } } = useFormContext()
   const error = errors[name]
+  const inputId = useId()
+  const errorId = `${inputId}-error`
+  const describedBy = error ? errorId : undefined
 
   return (
     <div>
       <div className="flex items-center gap-2">
-        <Label htmlFor={name}>{label}</Label>
+        <Label htmlFor={inputId}>{label}</Label>
         {onLockToggle && (
           <button
             type="button"
@@ -60,13 +64,15 @@ export function CalculatorFormField({
       <div className="flex gap-2 items-start">
         <div className="flex-1">
           <Input
-            id={name}
+            id={inputId}
             type={type}
             min={min}
             max={max}
             step={step}
             placeholder={placeholder}
             disabled={locked}
+            aria-invalid={error ? 'true' : 'false'}
+            aria-describedby={describedBy}
             {...register(name, { disabled: locked })}
             className={`mt-1 ${error ? 'border-red-500' : ''} ${locked ? 'opacity-60 cursor-not-allowed' : ''}`}
           />
@@ -76,6 +82,7 @@ export function CalculatorFormField({
             value={selectedUnit}
             onChange={e => onUnitChange(name, e.target.value)}
             aria-label={`Unit for ${label}`}
+            id={`${inputId}-unit`}
             className="mt-1 flex h-10 w-20 rounded-md border border-input bg-background px-2 py-2 text-xs"
           >
             {units.map(u => (
@@ -85,7 +92,7 @@ export function CalculatorFormField({
         )}
       </div>
       {error && (
-        <p className="text-xs text-red-500 mt-1">{error.message as string}</p>
+        <p id={errorId} className="text-xs text-red-500 mt-1" role="alert">{error.message as string}</p>
       )}
     </div>
   )

@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Globe, ChevronDown } from 'lucide-react'
+import { useId } from 'react'
 import { countryConfigs, countryNames, currencySymbols, type Currency, type Locale, type MeasurementSystem } from '@/lib/i18n/calculator-i18n'
 
 interface InternationalizationPanelProps {
@@ -18,11 +19,16 @@ export function InternationalizationPanel({
 }: InternationalizationPanelProps) {
   const countries = Object.keys(countryConfigs)
   const config = countryConfigs[country]
+  const countryId = useId()
+  const currencyId = useId()
+  const measurementId = useId()
 
   return (
     <div className="flex items-center gap-2 flex-wrap">
-      <Globe className="w-4 h-4 text-gray-400" />
+      <Globe className="w-4 h-4 text-gray-400" aria-hidden="true" />
+      <label htmlFor={countryId} className="sr-only">Country</label>
       <select
+        id={countryId}
         value={country}
         onChange={e => {
           const c = e.target.value
@@ -37,7 +43,9 @@ export function InternationalizationPanel({
           <option key={c} value={c}>{countryNames[c]} ({c})</option>
         ))}
       </select>
+      <label htmlFor={currencyId} className="sr-only">Currency</label>
       <select
+        id={currencyId}
         value={currency}
         onChange={e => onCurrencyChange(e.target.value as Currency)}
         className="text-xs border border-gray-200 dark:border-gray-600 rounded-lg px-3 min-h-[36px] py-1.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300"
@@ -47,7 +55,9 @@ export function InternationalizationPanel({
           return <option key={c} value={cfg.currency}>{currencySymbols[cfg.currency]} {cfg.currency}</option>
         })}
       </select>
+      <label htmlFor={measurementId} className="sr-only">Measurement system</label>
       <select
+        id={measurementId}
         value={measurement}
         onChange={e => onMeasurementChange(e.target.value as MeasurementSystem)}
         className="text-xs border border-gray-200 dark:border-gray-600 rounded-lg px-3 min-h-[36px] py-1.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300"

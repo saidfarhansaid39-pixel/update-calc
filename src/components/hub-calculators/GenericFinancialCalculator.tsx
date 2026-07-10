@@ -1690,13 +1690,14 @@ interface FieldDef {
   name: string; label: string; type: 'number' | 'select'
   options?: { label: string; value: string }[]; unit?: string; min?: number; max?: number; step?: string
 }
+import { buildGenericDef } from '@/lib/generic-fallback'
 import { calcDefs } from './financial'
 import type { CalcDef } from '@/lib/generic-fallback'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 
 type Props = { calculator: CalculatorEntry }
 
-function calcSchema(slug: string): z.ZodType<any> {
+function calcSchema(slug: string, calc?: CalculatorEntry): z.ZodType<any> {
   const def = calcDefs[slug]
   if (def?.schema) return def.schema
   const m: Record<string, z.ZodType<any>> = {
@@ -1778,12 +1779,21 @@ function calcSchema(slug: string): z.ZodType<any> {
     'compound-interest-calculator': fvPvSchema,
     'currency-calculator': defaultSchema,
   }
-  return m[slug] || defaultSchema
+  if (m[slug]) return m[slug]
+  if (calc && !calcTypeMap[slug]) {
+    const genericDef = buildGenericDef(calc)
+    if (genericDef.schema) return genericDef.schema as z.ZodType<any>
+  }
+  return defaultSchema
 }
 
-function calcDefaults(slug: string): Record<string, string> {
+function calcDefaults(slug: string, calc?: CalculatorEntry): Record<string, string> {
   const def = calcDefs[slug]
   if (def?.defaults) return def.defaults
+  if (calc && !calcTypeMap[slug]) {
+    const genericDef = buildGenericDef(calc)
+    if (genericDef.defaults) return genericDef.defaults as Record<string, string>
+  }
   return {}
 }
 
@@ -1794,8 +1804,8 @@ function getPresets(calcType: string): { label: string; values: Record<string, s
 export function GenericFinancialCalculator({ calculator }: Props) {
   const [unitSystem, setUnitSystem] = useState<UnitSystem>('us')
   const [useSlider, setUseSlider] = useState(true)
-  const formSchema = calcSchema(calculator.slug)
-  const defaults = calcDefaults(calculator.slug)
+  const formSchema = calcSchema(calculator.slug, calculator)
+  const defaults = calcDefaults(calculator.slug, calculator)
   const [lockedFields, setLockedFields] = useState<Set<string>>(new Set())
   const [extraFields, setExtraFields] = useState<Record<string, string>>({})
 

@@ -1,4 +1,5 @@
 'use client'
+import { memoizedCompute } from '@/lib/calc-executor'
 
 import React, { useMemo, useCallback, useState, useEffect } from 'react'
 import { useForm, FormProvider, useWatch } from 'react-hook-form'
@@ -1607,7 +1608,7 @@ function GenericHealthCalculator({ calculator }: { calculator: CalculatorEntry }
       .slice(0, 6)
       .map((s: any) => ({
         name: s.label.length > 15 ? s.label.substring(0, 15) + '…' : s.label,
-        value: parseFloat(s.value) || parseFloat(String(s.value)) || 0,
+        value: parseFloat(String(s.value)) || 0,
       }))
   }, [result])
   return (
@@ -1690,37 +1691,45 @@ function HealthCalcDefRenderer({ calculator, def }: { calculator: CalculatorEntr
     return Object.fromEntries(Object.entries(vals).filter(([, v]) => v !== undefined && v !== ''))
   }, [watched])
 
-  const result = useMemo(() => {
+  const computeRes = useMemo(() => {
     const vals: Record<string, any> = {}
     for (const f of def.fields) {
       const raw = v[f.name]
       vals[f.name] = (f.type === 'number' && raw !== undefined && raw !== '') ? Number(raw) : (raw ?? '')
     }
-    const res = def.compute(vals)
-    return (
-      <div className="text-center space-y-4">
-        <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-          <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
-          <p className="text-3xl font-bold text-[#06b6d4]">{typeof res.result === 'number' ? res.result.toFixed(2) : res.result} {res.unit}</p>
-        </div>
-        <div className="border-t border-gray-200 dark:border-gray-700 pt-4 text-xs text-gray-400 space-y-1">
-          {(res.steps ?? []).map((step, i) => (
-            <p key={i}><strong>{step.label}:</strong> {step.value}</p>
-          ))}
-        </div>
-      </div>
-    )
+    return { vals, res: memoizedCompute(def)(vals) }
   }, [def, v])
 
-  const mainValue = useMemo(() => {
-    const vals: Record<string, any> = {}
-    for (const f of def.fields) {
-      const raw = v[f.name]
-      vals[f.name] = (f.type === 'number' && raw !== undefined && raw !== '') ? Number(raw) : (raw ?? '')
-    }
-    const res = def.compute(vals)
-    return typeof res.result === 'number' ? res.result : parseFloat(String(res.result)) || 0
-  }, [def, v])
+  const { vals, res } = computeRes
+
+  const result = useMemo(() => (
+    <div className="text-center space-y-4">
+      <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
+        <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
+        <p className="text-3xl font-bold text-[#06b6d4]">{typeof res.result === 'number' ? res.result.toFixed(2) : res.result} {res.unit}</p>
+      </div>
+      <div className="border-t border-gray-200 dark:border-gray-700 pt-4 text-xs text-gray-400 space-y-1">
+        {(res.steps ?? []).map((step, i) => (
+          <p key={i}><strong>{step.label}:</strong> {step.value}</p>
+        ))}
+      </div>
+    </div>
+  ), [res])
+
+  const mainValue = useMemo(() =>
+    typeof res.result === 'number' ? res.result : parseFloat(String(res.result)) || 0
+  , [res])
+
+  const chartData = useMemo(() => {
+    if (!res.steps || !Array.isArray(res.steps)) return []
+    return res.steps
+      .filter((s: any) => s && s.label && !isNaN(parseFloat(String(s.value))))
+      .slice(0, 6)
+      .map((s: any) => ({
+        name: s.label.length > 15 ? s.label.substring(0, 15) + '…' : s.label,
+        value: parseFloat(String(s.value)) || 0,
+      }))
+  }, [res])
 
   const formContent = useMemo(() => {
     return <>
@@ -1790,6 +1799,7 @@ function HealthCalcDefRenderer({ calculator, def }: { calculator: CalculatorEntr
         calculator={calculator}
         form={formContent}
         result={result}
+        charts={chartData.length > 0 ? <DynamicHealthBarChart data={chartData} /> : undefined}
         lockedFields={lockedFields}
         onExtraFieldsChange={setExtraFields}
         onSaveScenario={saveScenario}

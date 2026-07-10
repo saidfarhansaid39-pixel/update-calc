@@ -7,6 +7,7 @@ import { z } from 'zod'
 import { CalculatorFormField } from '@/components/forms/CalculatorFormField'
 import { FieldsByMode } from '@/lib/calc-field-helper'
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic'
+import { DynamicHealthBarChart } from '@/components/premium/DynamicCharts'
 import { buildGenericDef } from '@/lib/generic-fallback'
 
 type FieldDef = { name: string; label: string; type?: 'number' | 'select'; min?: number; max?: number; step?: number | string; placeholder?: string; options?: { label: string; value: string }[] }
@@ -375,6 +376,14 @@ export function GenericEducationCalculator({ calculator }: Props) {
     const vals = (typeof watched === 'object' && watched !== null) ? watched as Record<string, string> : {}
     return Object.fromEntries(Object.entries(vals).filter(([, v]) => v !== undefined && v !== ''))
   }, [watched])
+  const chartData = useMemo(() => {
+    const entries = Object.entries(v).filter(([, val]) => val && !isNaN(parseFloat(String(val))))
+    if (entries.length === 0) return []
+    return entries.slice(0, 6).map(([k, val]) => ({
+      name: k.length > 15 ? k.substring(0, 15) + '…' : k,
+      value: parseFloat(String(val)) || 0,
+    }))
+  }, [v])
   const mainValue = useMemo(() => {
     if (!v || Object.keys(v).length === 0) return undefined
     const res = calcDef.compute(v)
@@ -419,7 +428,7 @@ export function GenericEducationCalculator({ calculator }: Props) {
   ), [calcDef, lockedFields, toggleLock, form, useSlider])
   return (
     <FormProvider {...form}>
-      <PremiumCalculatorShell calculator={calculator} form={formContent} result={result} lockedFields={lockedFields} onExtraFieldsChange={setExtraFields} formula={calcDef.formula} interpretation={calcDef.interpretation} presets={presets} onPresetApply={applyPreset} onReset={() => {
+      <PremiumCalculatorShell calculator={calculator} form={formContent} result={result} charts={chartData.length > 0 ? <DynamicHealthBarChart data={chartData} /> : undefined} lockedFields={lockedFields} onExtraFieldsChange={setExtraFields} formula={calcDef.formula} interpretation={calcDef.interpretation} presets={presets} onPresetApply={applyPreset} onReset={() => {
           const locked = Object.fromEntries(
             Array.from(lockedFields).map(key => [key, form.getValues(key)])
           )

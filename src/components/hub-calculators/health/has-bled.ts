@@ -1,0 +1,12 @@
+import { z } from 'zod'
+import type { CalcDef } from '../../../lib/generic-fallback'
+
+const calcDef: CalcDef = {
+  schema: z.object({ hypertension: z.string().min(1,'Required'), renalDisease: z.string().min(1,'Required'), liverDisease: z.string().min(1,'Required'), stroke: z.string().min(1,'Required'), bleedingHistory: z.string().min(1,'Required'), labileInr: z.string().min(1,'Required'), age: z.string().min(1,'Required'), drugs: z.string().min(1,'Required'), alcohol: z.string().min(1,'Required') }),
+  fields: [{ name:'hypertension', label:'Hypertension (1=Yes,0=No)', type:'number', min:0, max:1, step:'1' }, { name:'renalDisease', label:'Renal Disease (1=Yes,0=No)', type:'number', min:0, max:1, step:'1' }, { name:'liverDisease', label:'Liver Disease (1=Yes,0=No)', type:'number', min:0, max:1, step:'1' }, { name:'stroke', label:'Prior Stroke (1=Yes,0=No)', type:'number', min:0, max:1, step:'1' }, { name:'bleedingHistory', label:'Bleeding Predisposition (1=Yes,0=No)', type:'number', min:0, max:1, step:'1' }, { name:'labileInr', label:'Labile INR (1=Yes,0=No)', type:'number', min:0, max:1, step:'1' }, { name:'age', label:'Age >65 (1=Yes,0=No)', type:'number', min:0, max:1, step:'1' }, { name:'drugs', label:'Antiplatelet/NSAIDs (1=Yes,0=No)', type:'number', min:0, max:1, step:'1' }, { name:'alcohol', label:'Excess Alcohol (1=Yes,0=No)', type:'number', min:0, max:1, step:'1' }],
+  compute: (v) => { const htn=parseFloat(v.hypertension)||0; const renal=parseFloat(v.renalDisease)||0; const liver=parseFloat(v.liverDisease)||0; const stroke=parseFloat(v.stroke)||0; const bleed=parseFloat(v.bleedingHistory)||0; const inr=parseFloat(v.labileInr)||0; const age=parseFloat(v.age)||0; const drugs=parseFloat(v.drugs)||0; const alcohol=parseFloat(v.alcohol)||0; const score=htn+renal+liver+stroke+bleed+inr+age+drugs+alcohol; return { result:score, label:'HAS-BLED Score', steps:[{ label:'Total Risk Factors', value:score.toFixed(0)+'/9' }] } },
+  description: 'HAS-BLED assesses 1-year risk of major bleeding in patients with atrial fibrillation on anticoagulation.',
+  formula: 'Score = Hypertension(1) + Renal(1) + Liver(1) + Stroke(1) + Bleeding(1) + Labile INR(1) + Age>65(1) + Drugs(1) + Alcohol(1). Max 9.',
+  interpretation: 'Score 0-2: low bleeding risk (1-3%/yr). Score ≥3: high bleeding risk (5-10%/yr). Score ≥3 warrants caution with anticoagulation but should not be used alone to withhold therapy.'
+}
+export default calcDef

@@ -1,4 +1,5 @@
 'use client'
+import { memoizedCompute } from '@/lib/calc-executor'
 
 import React, { useMemo, useCallback, useState } from 'react'
 import { useForm, FormProvider, useWatch } from 'react-hook-form'
@@ -9,6 +10,7 @@ import { FieldsByMode } from '@/lib/calc-field-helper'
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic'
 import type { UnitSystem } from '@/components/premium/PremiumCalculatorShell'
 import { buildGenericDef } from '@/lib/generic-fallback'
+import { DynamicHealthBarChart } from '@/components/premium/DynamicCharts'
 
 interface FieldDef {
   name: string; label: string; type: 'number' | 'select'
@@ -81,7 +83,7 @@ export function GenericBiologyCalculator({ calculator }: Props) {
     if (calculator.slug === 'annealing-temperature-calculator') {
       vals.unit = tempUnit
     }
-    const res = def.compute(vals)
+    const res = memoizedCompute(def)(vals)
     return (
       <div className="text-center space-y-4">
         <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
@@ -97,6 +99,22 @@ export function GenericBiologyCalculator({ calculator }: Props) {
     )
   }, [def, v])
 
+  const chartData = useMemo(() => {
+    const vals: Record<string, string> = {}
+    for (const f of Object.keys(v)) {
+      const raw = (v as any)[f]
+      if (raw && !isNaN(parseFloat(String(raw)))) {
+        vals[f] = String(raw)
+      }
+    }
+    const entries = Object.entries(vals)
+    if (entries.length === 0) return []
+    return entries.slice(0, 6).map(([k, v]) => ({
+      name: k.length > 15 ? k.substring(0, 15) + '…' : k,
+      value: parseFloat(String(v)) || 0,
+    }))
+  }, [v])
+
   const mainValue = useMemo(() => {
     if (!def) return 0
     const vals: Record<string, any> = {}
@@ -108,7 +126,7 @@ export function GenericBiologyCalculator({ calculator }: Props) {
         vals[f.name] = raw ?? ''
       }
     }
-    const res = def.compute(vals)
+    const res = memoizedCompute(def)(vals)
     return typeof res.result === 'number' ? res.result : parseFloat(String(res.result)) || 0
   }, [def, v])
 
@@ -196,6 +214,7 @@ export function GenericBiologyCalculator({ calculator }: Props) {
         copyResultText={copyResultText}
         hubCategory="biology"
         mainValue={mainValue}
+        charts={chartData.length > 0 ? <DynamicHealthBarChart data={chartData} /> : undefined}
       />
     </FormProvider>
   )

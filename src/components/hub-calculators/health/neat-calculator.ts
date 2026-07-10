@@ -1,0 +1,11 @@
+import { z } from 'zod'
+import type { CalcDef } from '../../../lib/generic-fallback'
+const calcDef: CalcDef = {
+  schema: z.object({ weight: z.string().min(1,'Required').refine(v=>parseFloat(v)>0,'>0'), occupation: z.string().min(1,'Required'), steps: z.string().min(1,'Required').refine(v=>parseFloat(v)>=0,'≥0'), standingHours: z.string().min(1,'Required').refine(v=>parseFloat(v)>=0,'≥0') }),
+  fields: [{ name:'weight', label:'Weight (kg)', type:'number', min:20, step:'0.1' }, { name:'occupation', label:'Occupation Type', type:'select', options:[{value:'sedentary',label:'Sedentary (desk job)'},{value:'light',label:'Light (standing work)'},{value:'moderate',label:'Moderate (walking/lifting)'},{value:'heavy',label:'Heavy (manual labor)'}] }, { name:'posture', label:'Steps Per Day', type:'number', min:0, step:'100' }, { name:'standingHours', label:'Standing Hours/Day', type:'number', min:0, max:16, step:'0.5' }],
+  compute: (v) => { const w=parseFloat(v.weight)||70; const occ=v.occupation||'sedentary'; const steps=parseFloat(v.posture)||3000; const stand=parseFloat(v.standingHours)||2; const occMets:Record<string,number>={sedentary:1.2,light:1.5,moderate:2.0,heavy:3.0}; const occMet=occMets[occ]||1.2; const workNeat=occMet*0.5*w*8; const stepsNeat=steps*0.035*w; const standNeat=stand*0.2*w; const totalNeat=workNeat+stepsNeat+standNeat; return { result:totalNeat, label:'Non-Exercise Activity Thermogenesis', unit:'kcal', steps:[{ label:'Work NEAT', value:workNeat.toFixed(0)+' kcal' },{ label:'Steps NEAT', value:stepsNeat.toFixed(0)+' kcal' },{ label:'Standing NEAT', value:standNeat.toFixed(0)+' kcal' },{ label:'Total NEAT', value:totalNeat.toFixed(0)+' kcal' }] } },
+  description: 'Estimates non-exercise activity thermogenesis from daily movement, standing, and work physical demands.',
+  formula: 'NEAT = Work(MET×0.5×W×8h) + Steps(0.035×W×steps) + Stand(0.2×W×h). NEAT accounts for ~15-30% of TDEE.',
+  interpretation: 'NEAT varies widely: sedentary ~200-400 kcal, active lifestyle ~800-2000 kcal. Increasing NEAT aids weight management.'
+}
+export default calcDef

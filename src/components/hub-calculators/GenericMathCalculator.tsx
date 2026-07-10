@@ -1,4 +1,5 @@
 'use client'
+import { memoizedCompute } from '@/lib/calc-executor'
 
 import React, { useMemo, useState, useCallback } from 'react'
 import { useForm, FormProvider, useWatch } from 'react-hook-form'
@@ -65,7 +66,7 @@ export default function GenericMathCalculator({ calculator }: { calculator: Calc
   const computed = useMemo(() => {
     const hasValue = Object.values(values).some(v => v !== undefined && v !== '')
     if (!hasValue) return null
-    const res = calcDef.compute(values as Record<string, string>)
+    const res = memoizedCompute(calcDef)(values as Record<string, string>)
     return res as CalcResult
   }, [values, calcDef])
 
@@ -219,7 +220,7 @@ const mathChartData = useMemo(() => {
     .slice(0, 6)
     .map((s: any) => ({
       name: s.label.length > 15 ? s.label.substring(0, 15) + '…' : s.label,
-      value: parseFloat(s.value) || parseFloat(String(s.value)) || 0,
+      value: parseFloat(String(s.value)) || 0,
     }))
 }, [computed])
 

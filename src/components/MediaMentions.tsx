@@ -22,7 +22,7 @@ export function MediaMentions() {
         viewport={{ once: true, margin: '-100px' }}
         className="text-center"
       >
-        <motion.p variants={fadeInUp} className="text-xs font-medium uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 mb-6">
+        <motion.p variants={fadeInUp} className="text-xs font-medium uppercase tracking-[0.2em] text-gray-400 dark:text-gray-400 mb-6">
           As Seen On
         </motion.p>
         <motion.div variants={fadeInUp} className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">

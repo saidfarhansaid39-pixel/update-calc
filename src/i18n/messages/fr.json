@@ -105,7 +105,9 @@
     "name_ecology": "Écologie",
     "desc_ecology": "Biodiversité, empreinte carbone, climat, conservation",
     "name_sports": "Sports",
-    "desc_sports": "Course, cyclisme, force, rythme cardiaque, fitness"
+    "desc_sports": "Course, cyclisme, force, rythme cardiaque, fitness",
+    "emptyTitle": "No calculators yet",
+    "emptyMessage": "We're still building this category. Browse all calculators or head back home to explore others."
   },
   "actions": {
     "calculate": "Calculer",
@@ -176,7 +178,12 @@
     "downloadCsv": "Télécharger en CSV",
     "optional": "facultatif",
     "more": "Plus",
-    "less": "Moins"
+    "less": "Moins",
+    "somethingWentWrong": "Something went wrong",
+    "errorOccurred": "An unexpected error occurred. Please try again or go back.",
+    "tryAgain": "Try again",
+    "searchNoResults": "No calculators found for \"{query}\"",
+    "searchNoResultsHint": "Try a different search term or browse calculators by category."
   },
   "seo": {
     "siteTitle": "JDCALC — La plateforme de calculatrices la plus intelligente au monde",
@@ -268,6 +275,1281 @@
       "formulaPrefix": "The formula used by the ",
       "formulaSuffix": " is:",
       "faqPrefix": "Frequently asked questions about the "
+    },
+    "body": {
+      "whatIs": {
+        "conversion": "The {title} is a free online tool designed to instantly convert values {detail}. Instead of manually applying conversion factors or searching through reference tables, this tool handles the math automatically. Simply enter your starting value, select the units, and get the precise converted result in real time. Whether you are a student learning about measurement systems, a traveler navigating foreign units, a professional engineer, or someone who just needs a quick answer, the {st} delivers accurate results. It supports decimal precision and handles both small and large values with ease. Bookmark it for fast access whenever you need {detail}.",
+        "financial": "The {title} is a powerful free tool that helps you {desc}. Whether you are planning a major purchase, managing debt, investing for retirement, or simply trying to understand your financial situation better, this calculator provides instant accurate results using industry-standard formulas. It handles complex computations that would take minutes or hours by hand, giving you clarity on your financial decisions in seconds. Use it to compare scenarios, understand the impact of different variables, and make data-driven choices about your money. The {st} is designed for everyone from first-time homebuyers to seasoned investors.",
+        "health": "The {title} is a free health assessment tool {desc}. It uses clinically validated formulas and medical research to provide personalized health metrics based on your inputs. By entering simple measurements like your age, weight, height, and other relevant data, you receive instant insights into various aspects of your health and fitness. This tool is ideal for tracking progress toward wellness goals, understanding important health indicators, and making informed decisions about your lifestyle. Always consult a healthcare professional for medical advice, but use the {st} as a reliable reference point on your health journey.",
+        "math": "The {title} is a free online tool that performs mathematical computations instantly and accurately. {st} are encountered in many fields including education, engineering, finance, data analysis, and everyday problem-solving. Instead of working through formulas by hand or using a basic calculator that only handles one operation at a time, this specialized tool applies the correct mathematical method to your specific problem. It supports decimal values, large numbers, and provides step-by-step breakdowns that help you understand how the result is derived. Perfect for students checking homework, professionals double-checking calculations, or anyone who needs quick and reliable math results.",
+        "statistics": "The {title} is a free data analysis tool that computes key statistical measures from your data set. Instead of manually calculating formulas or setting up complex spreadsheet functions, simply enter your data values and the calculator instantly computes the statistics you need. It handles any number of data points and provides accurate results using standard statistical formulas. Whether you are a student analyzing experiment results, a professional evaluating data trends, or a researcher working with data sets, the {st} saves time and reduces errors. Use it for descriptive statistics, probability calculations, and data distribution analysis.",
+        "date-time": "The {title} is a free time and date computation tool that handles calendar arithmetic automatically. Unlike manual calculations that require accounting for varying month lengths, leap years, and daylight saving time, this calculator does all the heavy lifting for you. Simply enter your dates and times, and the tool instantly computes durations, differences, or future/past dates with precision. It is perfect for project planning, age calculation, event scheduling, and any situation that requires accurate date or time arithmetic. The {st} eliminates guesswork and ensures you get reliable results every time.",
+        "construction": "The {title} is a free project estimation tool that helps {desc}. Whether you are planning a home renovation, estimating material quantities for a building project, or calculating costs for a construction bid, this calculator provides accurate estimates based on your measurements and specifications. It uses industry-standard formulas to compute material requirements, waste factors, and cost estimates. Save time on calculations, reduce material waste, and plan your projects more effectively. The {st} is useful for both DIY homeowners and professional contractors.",
+        "education": "The {title} is a free academic tool that helps {desc}. Instead of manually computing weighted averages or wondering how different scores affect your final grade, this calculator handles all the math. Enter your grades, credit hours, or test scores and get instant results using standard educational formulas. It supports multiple grading scales including percentage, letter grade, and 4.0 GPA systems. Perfect for students tracking their academic performance, teachers calculating class grades, or parents monitoring their child's progress.",
+        "physics": "The {title} is a free scientific tool that applies fundamental physics principles {desc}. It uses established physical laws and equations to compute results based on your inputs. The calculator handles unit conversions automatically, supports both SI and imperial units, and provides accurate results using precise physical constants. Whether you are a student studying physics, an engineer solving a problem, or a curious learner exploring how things work, the {st} makes physics calculations accessible and understandable. Step-by-step solutions help reinforce the underlying concepts.",
+        "chemistry": "The {title} is a free chemistry tool that performs accurate chemical computations using standardized constants and formulas. Instead of manually looking up atomic weights, balancing equations, or converting between units, this calculator automates the process for you. It uses up-to-date IUPAC standard atomic weights and applies correct stoichiometric relationships. Whether you are a student working on homework, a lab technician preparing solutions, or a researcher conducting experiments, the {st} provides reliable results that save time and reduce calculation errors.",
+        "engineering": "The {title} is a free engineering tool that applies professional design formulas {desc}. It follows industry-standard codes and practices to provide accurate results for engineering calculations. The calculator supports multiple unit systems and uses precise constants appropriate for each discipline. Whether you are an electrical, mechanical, civil, or aerospace engineer, this tool helps you quickly verify designs, size components, and analyze systems. Use it for preliminary design, educational purposes, and quick checks of your engineering calculations.",
+        "default": "The {title} is a free online tool {desc}. It provides instant accurate results based on your inputs, saving you time and eliminating manual calculation errors. The {st} is designed to be intuitive and easy to use, making it accessible for beginners while still being powerful enough for professionals. Simply enter your values, adjust any options, and get your results immediately. This tool is ideal for quick calculations, planning, learning, and decision-making across a variety of practical scenarios."
+      },
+      "howToUse": {
+        "conversion": "Using the {title} is straightforward. First, locate the input field labeled with the source unit you want to convert from. Enter the numeric value you wish to convert. Next, confirm that the \"From\" and \"To\" unit selectors are set correctly — for example, if converting {detail}, ensure the source and target units match your intent. The result will update automatically as you type, displaying the converted value with the appropriate number of decimal places. You can also switch the conversion direction with a single click to perform the reverse calculation. The tool supports a wide range of values from very small to very large numbers.",
+        "financial": "Using the {title} is simple. Start by entering your financial information in the input fields provided. Depending on the specific calculator, you may need to enter loan amounts, interest rates, terms, income figures, or expense values. The calculator will update results automatically as you type or after clicking calculate. Review the detailed breakdown of results and try adjusting different inputs to see how changes affect your outcome. Use the scenario comparison feature to compare multiple options side by side. {st}: experiment with different values to fully understand your financial options before making decisions.",
+        "health": "Using the {title} is quick and easy. Begin by entering your basic health metrics such as age, gender, height, weight, and any other requested measurements. The calculator processes your inputs using validated health formulas and displays your results instantly. You can adjust your inputs to see how different values affect your health indicators. Use the results section to understand what your numbers mean and track changes over time by saving or noting your results. {st}: always consult with a healthcare professional before making health decisions based on calculator results.",
+        "math": "Using the {title} is straightforward. Enter your values into the input fields provided. The calculator will process your numbers and display the result along with a step-by-step breakdown of the calculation. You can change any input value and the result updates automatically. Use the {st} to verify homework, explore mathematical relationships, or solve practical problems quickly and accurately.",
+        "date-time": "Using the {title} is simple. Select or enter your starting date, time, or age information in the input fields. The calculator instantly computes the result based on your inputs. You can adjust dates to compare different scenarios or calculate durations between multiple pairs of dates. The {st} handles all calendar complexities including leap years, varying month lengths, and time zone differences automatically.",
+        "construction": "Using the {title} is easy. Start by measuring your project area and entering dimensions in the input fields. The calculator accepts measurements in feet, inches, meters, or other units depending on the specific tool. Add any relevant project details such as material type, thickness, or quality preferences. The calculator will estimate material quantities, costs, and provide a detailed breakdown. {st}: always add 10-15% extra for waste and cutting allowance when ordering materials.",
+        "statistics": "Using the {title} is straightforward. Enter your data values separated by commas, spaces, or one per line. The calculator will compute the requested statistical measures instantly. You can add or remove data points and watch the results update in real time. The {st} handles any size data set and provides accurate results using standard statistical formulas. Use it for homework, research, data analysis, or professional reporting.",
+        "education": "Using the {title} is simple. Enter your course grades, credit hours, test scores, or other academic information in the input fields. The calculator will compute your GPA, grade averages, or other academic metrics instantly. You can add multiple courses or assignments to get a comprehensive picture of your academic performance. {st}: update your inputs regularly to track your progress throughout the semester.",
+        "physics": "Using the {title} is straightforward. Enter the known values for your physics problem into the input fields. The calculator will apply the relevant physical laws and formulas to compute the unknown value. Results are displayed with appropriate units and scientific notation where needed. The {st} supports calculations across multiple physics domains including mechanics, thermodynamics, electromagnetism, and more.",
+        "chemistry": "Using the {title} is simple. Enter your chemical values such as compound formulas, concentrations, volumes, or masses into the input fields. The calculator uses IUPAC standard values to compute accurate results. Results include the appropriate units and significant figures for your chemical calculations. {st}: double-check your chemical formulas and units for the most accurate results.",
+        "engineering": "Using the {title} is straightforward. Enter your design parameters, material properties, and loading conditions into the input fields. The calculator applies industry-standard engineering formulas and codes to compute results. You can adjust inputs to optimize your design or check different scenarios. {st}: always verify critical engineering calculations with manual checks or professional consultation.",
+        "everyday": "Using the {title} is quick and practical. Enter your values in the input fields — amounts to calculate tips on, bill totals to split, prices to compute discounts on, or other everyday numbers. The calculator provides instant results that help you make quick decisions in daily situations. {st}: keep the {st} handy for quick access whenever you need fast calculations on the go.",
+        "food": "Using the {title} is simple. Enter your ingredients, quantities, serving sizes, or cooking measurements in the input fields. The calculator adjusts recipes, converts units, or computes nutritional information instantly. You can scale recipes up or down, substitute ingredients, and see how changes affect your final dish. {st}: save your favorite recipe modifications for future use.",
+        "biology": "Using the {title} is straightforward. Enter your biological data such as population counts, cell counts, or experimental measurements. The calculator applies biological formulas and statistical methods to compute growth rates, diversity indices, or other biological metrics. {st}: ensure your data is accurately recorded for the most reliable results.",
+        "ecology": "Using the {title} is simple. Enter your lifestyle data including energy usage, transportation habits, diet choices, or consumption patterns. The calculator estimates your environmental impact and provides suggestions for reduction. {st}: use the results to set measurable sustainability goals and track your progress over time.",
+        "sports": "Using the {title} is easy. Enter your workout data such as distance, time, weight, repetitions, or other performance metrics. The calculator computes pace, calories burned, one-rep max estimates, heart rate zones, or other sports-specific results. {st}: use the {st} regularly to track your athletic progress and adjust your training plan based on data.",
+        "default": "Using the {title} is simple. Enter your values in the input fields provided. The calculator will process your information and display results instantly. Adjust any input to see how changes affect the outcome. The {st} is designed to be intuitive — the main action is entering your numbers and reading the results. {st}: explore different input values to fully understand how the calculator works and what factors affect the results."
+      },
+      "formula": {
+        "intro": "The formula used by the {title} is:",
+        "withSource": "{source}",
+        "withFormula": "{source}",
+        "generic": "The {st} uses validated formulas that follow industry standards and academic best practices for {category} calculations.",
+        "conclusion": "Understanding the formula behind the {st} helps you interpret the results more effectively. Each variable in the formula represents a specific input that you provide, and the calculator handles the complex arithmetic automatically.",
+        "conversionIntro": "The {title} uses the conversion formula based on the relationship between {detail}:",
+        "conversionFormulaPart": "{detail}",
+        "conversionNoSource": "The conversion is based on established measurement standards and uses precise conversion factors that are internationally recognized. The calculator applies the correct factor automatically based on your selected units.",
+        "conversionWithSource": "{source}"
+      },
+      "example": {
+        "intro": "Let's walk through a practical example to see how the {st} works in a real scenario.",
+        "scenarioLabel": "Scenario",
+        "inputValuesLabel": "Input Values",
+        "inputLine": "{desc}",
+        "stepsHeader": "Step-by-Step Calculation",
+        "stepLine": "{desc}",
+        "finalResultLabel": "Final Result"
+      },
+      "faq": {
+        "generic": {
+          "0": {
+            "q": "What is the {title} used for?",
+            "a": "The {title} helps you perform accurate calculations quickly and easily. It is designed for {desc}. Simply enter your values and get instant results."
+          },
+          "1": {
+            "q": "Is the {title} free to use?",
+            "a": "Yes, the {title} is completely free to use with no limits on the number of calculations. Premium features like scenario saving and CSV export are available for users who create a free account."
+          },
+          "2": {
+            "q": "How accurate are the results from this calculator?",
+            "a": "Results are calculated with high precision using {clause}. The calculator provides results with appropriate decimal precision for the type of calculation being performed."
+          },
+          "3": {
+            "q": "Can I use this calculator on my mobile device?",
+            "a": "Yes, all our calculators are fully responsive and work on smartphones, tablets, and desktop browsers. The interface adapts to your screen size for a smooth experience on any device."
+          },
+          "4": {
+            "q": "What inputs do I need for the {title}?",
+            "a": "The {title} requires the inputs shown in the form above. Each input field is clearly labeled with the information needed. Common inputs include numeric values, unit selections, and option choices. Simply fill in the fields and the result appears automatically."
+          },
+          "5": {
+            "q": "Can I save or share my calculation results?",
+            "a": "You can copy results to your clipboard, print the page, or share the calculator link with others. Premium users can save calculation scenarios, compare multiple results side by side, and export data as CSV files."
+          },
+          "6": {
+            "q": "How do I report an issue or suggest an improvement?",
+            "a": "We welcome feedback! Use the contact form on our website to report issues or suggest improvements. Please include the calculator name and a description of the problem or suggestion so we can address it promptly."
+          }
+        },
+        "financial": {
+          "0": {
+            "q": "What credit score do I need for a {title}?",
+            "a": "Credit score requirements vary by lender and loan type. Conventional loans typically require a minimum score of 620, while FHA loans may accept scores as low as 580. Use the {title} to estimate your borrowing power based on your credit profile and financial situation."
+          },
+          "1": {
+            "q": "How much house can I afford with a $70,000 salary?",
+            "a": "With a $70,000 annual salary, most lenders recommend spending no more than 28% of your gross monthly income on housing, which is about $1,633 per month. Using the {title}, you can adjust your down payment, interest rate, and loan term to find a comfortable price range for your income."
+          },
+          "2": {
+            "q": "What is the difference between APR and interest rate on a loan?",
+            "a": "The interest rate is the cost of borrowing the principal amount, while APR (Annual Percentage Rate) includes the interest rate plus lender fees, closing costs, and other charges. APR gives you a more complete picture of the total loan cost. The {title} helps you compare both side by side."
+          },
+          "3": {
+            "q": "How does my debt-to-income ratio affect my loan approval?",
+            "a": "Lenders prefer a debt-to-income (DTI) ratio of 43% or lower. A high DTI signals that you may struggle to make monthly payments. You can use the {title} to calculate your current DTI and see how adding a new loan would affect your ratio before applying."
+          },
+          "4": {
+            "q": "How much should I have saved for retirement by age 40?",
+            "a": "Financial experts recommend having 2 to 3 times your annual salary saved by age 40. If you earn $80,000 per year, aim for $160,000 to $240,000 in retirement accounts. The {title} can help you model different savings rates and investment returns to see if you're on track."
+          },
+          "5": {
+            "q": "What is the average annual return I should expect from my investments?",
+            "a": "The historical average annual return of the S&P 500 is approximately 10% before inflation, or about 7% adjusted for inflation. Your actual returns will vary based on your asset allocation, fees, and market conditions. Use the {title} to project different return scenarios for your investment goals."
+          },
+          "6": {
+            "q": "How do I calculate compound interest on my savings?",
+            "a": "Compound interest is calculated using the formula A = P(1 + r/n)^(nt), where P is principal, r is the annual rate, n is compounding frequency, and t is time in years. The {title} does this math instantly so you can see how your money grows over time."
+          }
+        },
+        "health": {
+          "0": {
+            "q": "What is a healthy BMI range for seniors over 65?",
+            "a": "For adults over 65, a BMI between 23 and 27 is often considered healthier than the standard 18.5 to 24.9 range, as a slightly higher BMI may provide protective reserves during illness. The {title} can help you find your current BMI and compare it to age-adjusted recommendations."
+          },
+          "1": {
+            "q": "Is BMI accurate for athletes and bodybuilders?",
+            "a": "BMI does not distinguish between muscle and fat mass, so it often classifies athletes and bodybuilders as overweight or obese despite having very low body fat. If you have high muscle mass, consider using body fat percentage measurements or waist-to-height ratio instead of relying solely on your {title} result."
+          },
+          "2": {
+            "q": "What is the difference between BMR and TDEE?",
+            "a": "BMR (Basal Metabolic Rate) is the calories your body burns at complete rest to maintain basic functions like breathing and circulation. TDEE (Total Daily Energy Expenditure) adds calories burned through activity, digestion, and exercise. Use the {title} to find both values and plan your nutrition accordingly."
+          },
+          "3": {
+            "q": "How many calories should I eat to lose weight safely?",
+            "a": "A safe calorie deficit for weight loss is 300 to 500 calories below your TDEE, which typically results in 0.5 to 1 pound lost per week. Eating fewer than 1,200 calories per day for women or 1,500 for men is not recommended without medical supervision. The {title} can help you find your personalized target."
+          },
+          "4": {
+            "q": "What is my ideal body weight for my height and age?",
+            "a": "Ideal body weight estimates vary by method. A common formula for men is 106 pounds for the first 5 feet plus 6 pounds per extra inch, and for women 100 pounds for the first 5 feet plus 5 pounds per extra inch. The {title} provides a more personalized estimate based on your inputs."
+          },
+          "5": {
+            "q": "How accurate are fitness trackers for estimating calorie burn?",
+            "a": "Most fitness trackers overestimate calorie burn by 20% to 40% compared to lab measurements. They are useful for tracking trends and relative activity levels, but should not be relied on for precise nutrition planning. The {title} uses validated formulas to give you a more accurate baseline."
+          },
+          "6": {
+            "q": "What is a healthy heart rate zone for cardio exercise?",
+            "a": "Your target heart rate zone for moderate-intensity cardio is typically 50% to 70% of your maximum heart rate (220 minus your age). For vigorous exercise, aim for 70% to 85%. The {title} can calculate your personalized zones based on your age and fitness level."
+          }
+        },
+        "math": {
+          "0": {
+            "q": "How do I use the quadratic formula to solve equations?",
+            "a": "The quadratic formula is x = (-b ± √(b² - 4ac)) / 2a for equations in the form ax² + bx + c = 0. The discriminant (b² - 4ac) tells you how many real solutions exist. The {title} handles this calculation instantly, showing you both the steps and the final answer."
+          },
+          "1": {
+            "q": "What is the formula to calculate the area of a circle?",
+            "a": "The area of a circle is calculated using the formula A = πr², where r is the radius. Simply square the radius and multiply by π (approximately 3.14159). The {title} does this computation for you with high precision."
+          },
+          "2": {
+            "q": "What is the difference between mean, median, and mode?",
+            "a": "The mean is the average of all numbers, the median is the middle value when data is sorted, and the mode is the most frequently occurring value. The mean is sensitive to outliers while the median is not. The {title} can compute all three measures from your data set."
+          },
+          "3": {
+            "q": "How do I calculate percentages without a calculator?",
+            "a": "To find a percentage of a number, multiply the number by the decimal form of the percentage. For example, 15% of 200 is 200 × 0.15 = 30. To find what percent one number is of another, divide the part by the whole and multiply by 100. The {title} makes percentage calculations effortless."
+          },
+          "4": {
+            "q": "How is the Pythagorean theorem used in real-world applications?",
+            "a": "The Pythagorean theorem (a² + b² = c²) is used in construction to ensure square corners, in navigation to calculate direct distances, and in computer graphics for collision detection. The {title} computes the missing side length instantly when you provide any two sides of a right triangle."
+          },
+          "5": {
+            "q": "How do I convert fractions to decimals step by step?",
+            "a": "To convert a fraction to a decimal, divide the numerator by the denominator. For example, 3/4 equals 3 ÷ 4 = 0.75. For repeating decimals like 1/3 = 0.333..., the {title} shows the repeating pattern and provides the exact fractional equivalent."
+          },
+          "6": {
+            "q": "What is the slope-intercept form of a linear equation?",
+            "a": "The slope-intercept form is y = mx + b, where m is the slope and b is the y-intercept. This form makes it easy to graph a line by starting at point (0, b) and using the slope to find other points. The {title} can calculate slope and intercept from your data points."
+          }
+        },
+        "conversion": {
+          "0": {
+            "q": "How many ounces are in a cup?",
+            "a": "There are 8 fluid ounces in 1 US cup. For dry ingredients, the weight per cup varies — a cup of flour weighs about 4.5 ounces while a cup of sugar weighs about 7 ounces. The {title} handles both volume and weight conversions accurately."
+          },
+          "1": {
+            "q": "What is the formula to convert Celsius to Fahrenheit?",
+            "a": "To convert Celsius to Fahrenheit, multiply by 9/5 and add 32: °F = (°C × 9/5) + 32. For example, 20°C equals (20 × 9/5) + 32 = 68°F. The {title} instantly converts between temperature scales with precise results."
+          },
+          "2": {
+            "q": "How many inches are in a foot?",
+            "a": "There are 12 inches in 1 foot. To convert feet to inches, multiply the number of feet by 12. For example, 5 feet equals 5 × 12 = 60 inches. The {title} also handles fractional feet and mixed measurements for construction and DIY projects."
+          },
+          "3": {
+            "q": "How do I convert kilometers to miles?",
+            "a": "To convert kilometers to miles, multiply by 0.621371. For a quick mental estimate, divide the number of kilometers by 1.6. For example, 10 km ≈ 6.2 miles. The {title} provides exact conversions between kilometers and miles for travel, running, and driving distances."
+          },
+          "4": {
+            "q": "How many grams are in a pound?",
+            "a": "There are approximately 453.592 grams in 1 pound. To convert pounds to grams, multiply the number of pounds by 453.592. The {title} handles this conversion precisely, which is especially useful for cooking, shipping, and fitness tracking."
+          },
+          "5": {
+            "q": "How many liters are in a gallon?",
+            "a": "There are 3.785 liters in 1 US gallon and 4.546 liters in 1 imperial gallon. The {title} supports both US and imperial measurements so you always get the right conversion for fuel economy, cooking, or liquid storage."
+          },
+          "6": {
+            "q": "What is the difference between MB and GB in data storage?",
+            "a": "One gigabyte (GB) equals 1,024 megabytes (MB). For example, a 32 GB phone can store approximately 32,768 MB of data. The {title} converts between all digital storage units including KB, MB, GB, and TB."
+          }
+        },
+        "date-time": {
+          "0": {
+            "q": "How many weeks pregnant am I based on my due date?",
+            "a": "Pregnancy is calculated from the first day of your last menstrual period (LMP) and typically lasts 40 weeks. Your current week of pregnancy is determined by counting the weeks between LMP and today. The {title} calculates your exact pregnancy week, trimester, and estimated due date."
+          },
+          "1": {
+            "q": "How many days are there between two dates?",
+            "a": "To calculate the number of days between two dates, subtract the earlier date from the later date. The result includes all calendar days in between. The {title} does this instantly, showing the total days, weekdays, weekends, and the exact duration in months and years."
+          },
+          "2": {
+            "q": "How do I calculate my exact age in years, months, and days?",
+            "a": "Your exact age is calculated by finding the difference between your birth date and the current date, accounting for leap years and varying month lengths. The {title} computes your precise age down to the day, which is useful for milestone birthdays, retirement planning, and medical screenings."
+          },
+          "3": {
+            "q": "How many business days are in a typical year?",
+            "a": "A typical year has about 260 business days (261 in leap years), assuming a Monday-to-Friday workweek. This excludes weekends and can be adjusted for public holidays. The {title} calculates exact business days between any two dates for project planning and deadline tracking."
+          },
+          "4": {
+            "q": "How do I calculate the number of workdays between two dates?",
+            "a": "Workdays exclude weekends and optionally holidays from the total day count. The {title} lets you specify your workweek and subtract holidays to get an accurate business day count for project timelines, payroll, or leave planning."
+          },
+          "5": {
+            "q": "What time zone am I in and how do I convert between time zones?",
+            "a": "Your time zone is determined by your geographic location relative to Coordinated Universal Time (UTC). The {title} helps you convert times between any two time zones, accounting for daylight saving time changes and regional offsets."
+          },
+          "6": {
+            "q": "How many days until my next birthday or anniversary?",
+            "a": "You can calculate days until a future event by subtracting today's date from the target date. The {title} provides the exact countdown in days, weeks, and months, and even tells you what day of the week the event falls on."
+          }
+        },
+        "construction": {
+          "0": {
+            "q": "How much paint do I need for a 12x12 room?",
+            "a": "A 12x12 room with 8-foot ceilings has about 384 square feet of wall area. One gallon of paint typically covers 350 square feet, so you will need about 1 to 1.5 gallons for one coat. The {title} factors in doors, windows, and multiple coats for an accurate estimate."
+          },
+          "1": {
+            "q": "How many concrete bags do I need for a patio slab?",
+            "a": "A standard 80-pound bag of concrete mix yields about 0.6 cubic feet. For a 10x10 patio that is 4 inches thick, you need approximately 33 cubic feet of concrete, which requires about 56 bags. The {title} calculates the exact number of bags based on your slab dimensions and thickness."
+          },
+          "2": {
+            "q": "How do I calculate square footage for flooring installation?",
+            "a": "Multiply the length by the width of each room in feet to get the square footage. Add 10% extra for waste and cutting allowance. For example, a 15x20 foot room is 300 square feet, so you should purchase about 330 square feet of flooring. The {title} does all of this automatically."
+          },
+          "3": {
+            "q": "What is the standard roof pitch for residential homes?",
+            "a": "The most common residential roof pitch is 6/12, meaning the roof rises 6 inches for every 12 inches of horizontal run. Pitches typically range from 4/12 to 9/12 depending on climate and architectural style. The {title} calculates roof area, material needs, and truss lengths from your pitch and dimensions."
+          },
+          "4": {
+            "q": "How much gravel do I need for a driveway?",
+            "a": "To calculate gravel volume for a driveway, multiply length by width by depth in feet. A standard driveway with 4 inches of gravel needs about 1.5 tons per 100 square feet. The {title} converts cubic yards to tons based on the specific gravel type you are using."
+          },
+          "5": {
+            "q": "How do I estimate lumber costs for building a deck?",
+            "a": "Deck lumber costs depend on the deck size, material choice (pressure-treated, cedar, or composite), and local pricing. A basic 12x16 pressure-treated deck requires roughly 320 square feet of decking plus framing lumber. The {title} provides a detailed material and cost breakdown for your specific deck design."
+          },
+          "6": {
+            "q": "What size HVAC unit do I need for my home?",
+            "a": "HVAC size is measured in tons, with 1 ton equal to 12,000 BTU per hour. A rough estimate is 1 ton per 600 square feet of living space, but factors like ceiling height, insulation, windows, and climate matter. The {title} uses Manual J calculation principles to recommend the right system size."
+          }
+        },
+        "statistics": {
+          "0": {
+            "q": "How do I calculate standard deviation from a data set?",
+            "a": "Standard deviation measures how spread out numbers are from the mean. Calculate it by finding each number's deviation from the mean, squaring those deviations, averaging them, and taking the square root. The {title} computes both population and sample standard deviation for any data set you enter."
+          },
+          "1": {
+            "q": "What is the difference between population and sample standard deviation?",
+            "a": "Population standard deviation uses all members of a group and divides by N. Sample standard deviation uses a subset and divides by N-1 to provide an unbiased estimate. The {title} calculates both versions so you can use the correct one for your research or analysis."
+          },
+          "2": {
+            "q": "How do I find the median of a data set with an even number of values?",
+            "a": "When a data set has an even number of values, the median is the average of the two middle numbers after sorting the data. For example, in the set 2, 4, 7, 9, the median is (4 + 7) / 2 = 5.5. The {title} automatically sorts your data and finds the correct median."
+          },
+          "3": {
+            "q": "How do I calculate probability from a frequency distribution?",
+            "a": "Probability is calculated by dividing the number of favorable outcomes by the total number of possible outcomes. For a frequency distribution, divide each category's frequency by the total frequency count. The {title} converts your raw frequencies into probabilities and percentages instantly."
+          },
+          "4": {
+            "q": "What is the interquartile range and how do I calculate it?",
+            "a": "The interquartile range (IQR) is the difference between the 75th percentile (Q3) and the 25th percentile (Q1), representing the middle 50% of your data. It is more resistant to outliers than standard deviation. The {title} calculates Q1, Q3, the IQR, and identifies potential outliers for you."
+          },
+          "5": {
+            "q": "How do I calculate the correlation coefficient between two variables?",
+            "a": "The Pearson correlation coefficient (r) measures the linear relationship between two variables on a scale from -1 to +1. Values near +1 indicate a strong positive correlation, while values near -1 indicate a strong negative correlation. The {title} computes r from your paired data points."
+          },
+          "6": {
+            "q": "What is the formula for calculating a z-score?",
+            "a": "A z-score tells you how many standard deviations a data point is from the mean. The formula is z = (x - μ) / σ, where x is the value, μ is the mean, and σ is the standard deviation. The {title} calculates z-scores for any data point and can show the corresponding percentile rank."
+          }
+        },
+        "education": {
+          "0": {
+            "q": "How do I calculate my GPA for college applications?",
+            "a": "To calculate your GPA, multiply each course grade's point value by the course credits, sum the total points, and divide by the total credits attempted. An A is typically 4.0, B is 3.0, C is 2.0, and so on. The {title} handles weighted and unweighted GPA calculations for any course load."
+          },
+          "1": {
+            "q": "What is the difference between weighted and unweighted GPA?",
+            "a": "Unweighted GPA uses a 0 to 4.0 scale regardless of course difficulty, while weighted GPA gives extra points for honors, AP, and IB courses (up to 5.0). A weighted GPA better reflects academic rigor. The {title} calculates both types so you can report the appropriate one for each application."
+          },
+          "2": {
+            "q": "How do I calculate what I need on my final exam to pass?",
+            "a": "To find the minimum final exam score needed, subtract your current weighted grade from your target grade and divide by the final exam weight. For example, if your final is worth 20% and you have an 82% currently, aiming for 90% requires a final score of (90 - 82 × 0.8) / 0.2 = 122%. The {title} does this instantly."
+          },
+          "3": {
+            "q": "How do I convert letter grades to percentage scores?",
+            "a": "Common letter grade to percentage conversions are: A = 90-100%, B = 80-89%, C = 70-79%, D = 60-69%, F = below 60%. Exact ranges vary by institution. The {title} converts between letter grades, percentages, and GPA points using your school's specific grading scale."
+          },
+          "4": {
+            "q": "How many total credit hours do I need to graduate?",
+            "a": "Most bachelor's degree programs require 120 to 130 total credit hours, typically distributed among general education (about 42 credits), major requirements (about 30-60 credits), and electives. The {title} tracks your completed credits and shows how many you still need for graduation."
+          },
+          "5": {
+            "q": "How do I calculate my class rank based on GPA?",
+            "a": "Class rank is determined by sorting all students in your graduating class by GPA from highest to lowest. Your rank is your position in that sorted list. The {title} estimates your percentile rank and class standing when you provide your GPA and class size information."
+          }
+        },
+        "physics": {
+          "0": {
+            "q": "How do I calculate force using Newton's second law?",
+            "a": "Newton's second law states that force equals mass times acceleration (F = ma). Force is measured in newtons (N) where 1 N = 1 kg·m/s². The {title} computes force, mass, or acceleration when you provide the other two values, with support for metric and imperial units."
+          },
+          "1": {
+            "q": "What is the formula for calculating kinetic energy?",
+            "a": "Kinetic energy is calculated using the formula KE = ½mv², where m is mass in kilograms and v is velocity in meters per second. The result is expressed in joules (J). The {title} computes kinetic energy for any object based on its mass and speed."
+          },
+          "2": {
+            "q": "How do I calculate velocity from acceleration and time?",
+            "a": "Velocity is calculated as v = v₀ + at, where v₀ is initial velocity, a is acceleration, and t is time. If starting from rest, velocity is simply acceleration multiplied by time. The {title} handles these kinematics calculations with support for both constant and variable acceleration scenarios."
+          },
+          "3": {
+            "q": "What is the difference between speed and velocity?",
+            "a": "Speed is a scalar quantity that measures how fast an object is moving without regard to direction. Velocity is a vector that includes both speed and direction. For example, 60 mph is a speed, while 60 mph north is a velocity. The {title} helps you solve problems involving both concepts."
+          },
+          "4": {
+            "q": "How do I calculate gravitational potential energy?",
+            "a": "Gravitational potential energy is calculated as GPE = mgh, where m is mass, g is the acceleration due to gravity (9.8 m/s² on Earth), and h is height above the reference point. The result is in joules. The {title} computes GPE for any object, including scenarios with varying gravity."
+          },
+          "5": {
+            "q": "What is the formula for calculating work in physics?",
+            "a": "Work is calculated as W = Fd cos(θ), where F is force, d is displacement, and θ is the angle between the force and displacement vectors. Work is measured in joules (J). The {title} calculates work for any angle and force combination."
+          },
+          "6": {
+            "q": "How do I calculate momentum and impulse in collisions?",
+            "a": "Momentum (p) equals mass times velocity (p = mv). Impulse equals force times time or the change in momentum. In a closed system, momentum is conserved before and after collisions. The {title} calculates these values for elastic and inelastic collision scenarios."
+          }
+        },
+        "chemistry": {
+          "0": {
+            "q": "How do I calculate molar mass of a chemical compound?",
+            "a": "Molar mass is the sum of the atomic masses of all atoms in a molecule, expressed in grams per mole (g/mol). For water (H₂O), it is 2 × 1.008 + 15.999 = 18.015 g/mol. The {title} computes molar mass for any compound when you provide its chemical formula."
+          },
+          "1": {
+            "q": "How do I calculate pH from hydrogen ion concentration?",
+            "a": "pH is calculated as the negative logarithm of the hydrogen ion concentration: pH = -log₁₀[H⁺]. For example, a concentration of 1 × 10⁻⁷ M gives a pH of 7. The {title} converts between [H⁺] concentration and pH, and also calculates pOH and the degree of acidity or basicity."
+          },
+          "2": {
+            "q": "How do I calculate dilution ratios for solutions?",
+            "a": "Dilution follows the formula C₁V₁ = C₂V₂, where C₁ and V₁ are the initial concentration and volume, and C₂ and V₂ are the final concentration and volume. The {title} solves for any unknown variable in the dilution equation for accurate solution preparation."
+          },
+          "3": {
+            "q": "How do I convert moles to grams in chemistry?",
+            "a": "To convert moles to grams, multiply the number of moles by the substance's molar mass. For example, 2 moles of NaCl (molar mass 58.44 g/mol) equals 2 × 58.44 = 116.88 grams. The {title} handles both mole-to-gram and gram-to-mole conversions."
+          },
+          "4": {
+            "q": "How do I calculate the concentration of a solution in molarity?",
+            "a": "Molarity (M) is moles of solute per liter of solution: M = moles of solute / liters of solution. For example, dissolving 0.5 moles in 0.5 L of water gives a 1.0 M solution. The {title} calculates molarity, moles, or volume from any two known values."
+          },
+          "5": {
+            "q": "How do I calculate the percent yield of a chemical reaction?",
+            "a": "Percent yield = (actual yield / theoretical yield) × 100%. The theoretical yield is calculated from stoichiometry, while the actual yield is what you measure in the lab. The {title} computes your percent yield using your experimental and expected values."
+          }
+        },
+        "engineering": {
+          "0": {
+            "q": "How do I calculate voltage drop in a circuit?",
+            "a": "Voltage drop is calculated as V = IR using Ohm's law, where I is current and R is resistance. For long wire runs, you also need to account for wire gauge and length. The {title} calculates voltage drop for copper and aluminum conductors based on wire size, length, and load current."
+          },
+          "1": {
+            "q": "What is the formula for calculating beam deflection?",
+            "a": "Beam deflection depends on load type, beam support conditions, material properties, and geometry. For a simply supported beam with a point load at center, deflection δ = PL³/(48EI), where P is load, L is length, E is modulus of elasticity, and I is moment of inertia. The {title} supports multiple beam configurations."
+          },
+          "2": {
+            "q": "How do I calculate the load-bearing capacity of a steel beam?",
+            "a": "Load-bearing capacity is determined by the beam's section properties (area, moment of inertia), material yield strength, unsupported length, and loading conditions. The {title} calculates the maximum allowable load based on bending stress, shear stress, and deflection limits per building codes."
+          },
+          "3": {
+            "q": "What is the difference between stress and strain in engineering?",
+            "a": "Stress is force per unit area (σ = F/A) measured in pascals (Pa), while strain is the ratio of deformation to original length (ε = ΔL/L) and is dimensionless. The relationship between stress and strain is defined by Young's modulus (E = σ/ε). The {title} converts between stress, strain, and modulus values."
+          },
+          "4": {
+            "q": "How do I calculate torque from horsepower and RPM?",
+            "a": "Torque (lb-ft) = (Horsepower × 5252) / RPM. This is the standard formula for rotational mechanical power. For example, an engine producing 300 hp at 4,000 RPM generates 394 lb-ft of torque. The {title} converts between horsepower, torque, and RPM for any mechanical system."
+          },
+          "5": {
+            "q": "How do I calculate the shear strength of a bolt?",
+            "a": "Bolt shear strength depends on the bolt diameter, material grade, and whether the shear plane passes through the threaded or unthreaded portion. Single shear capacity = (π × d² / 4) × allowable shear stress. The {title} computes bolt capacity for SAE and metric grades."
+          },
+          "6": {
+            "q": "How do I calculate the power consumption of an electrical device?",
+            "a": "Power consumption is calculated as P = V × I for DC circuits, or P = V × I × power factor for AC circuits. Energy consumption over time is P × t in kilowatt-hours. The {title} computes power, current, voltage, and energy costs for your electrical devices."
+          }
+        },
+        "everyday": {
+          "0": {
+            "q": "How much should I tip at a restaurant?",
+            "a": "Standard tipping etiquette suggests 15% for good service, 18% for great service, and 20% or more for exceptional service. For large parties, many restaurants automatically add an 18% gratuity. The {title} calculates the tip amount and total bill for any percentage and party size."
+          },
+          "1": {
+            "q": "How do I split a bill evenly between friends?",
+            "a": "To split a bill evenly, divide the total bill (including tax and tip) by the number of people. For example, a $120 bill split among 4 people is $30 each. The {title} handles uneven splits, separate item tracking, and tip adjustments so everyone pays their fair share."
+          },
+          "2": {
+            "q": "How do I calculate the sale price after a percentage discount?",
+            "a": "To calculate the sale price, multiply the original price by (1 - discount percentage). For a $50 item at 30% off, the sale price is 50 × 0.70 = $35. The {title} computes final prices after single or multiple discounts, including tax, so you always know exactly what you will pay."
+          },
+          "3": {
+            "q": "How do I calculate monthly loan payments for a car or personal loan?",
+            "a": "Monthly loan payments are calculated using the formula M = P × [r(1+r)^n] / [(1+r)^n - 1], where P is principal, r is monthly interest rate, and n is number of payments. The {title} estimates your monthly payment, total interest, and payoff date for any loan amount and term."
+          },
+          "4": {
+            "q": "How do I calculate miles per gallon for my car?",
+            "a": "MPG is calculated by dividing the miles driven by the gallons of fuel used. Fill your tank, record the mileage, then fill again and divide the miles driven by the gallons added. The {title} tracks your fuel economy over multiple fill-ups and calculates average MPG, cost per mile, and fuel expenses."
+          },
+          "5": {
+            "q": "How much should I budget for groceries each month?",
+            "a": "The USDA recommends spending between $300 and $600 per person per month on groceries, depending on age, dietary needs, and meal plan. The {title} helps you track your grocery spending, plan meal costs, and find areas where you can save money on food."
+          },
+          "6": {
+            "q": "How do I calculate my monthly utility bill from meter readings?",
+            "a": "To calculate your utility bill, subtract the previous meter reading from the current reading and multiply by your provider's rate per unit. The {title} estimates your monthly electricity, gas, and water costs based on usage patterns and local utility rates."
+          }
+        },
+        "food": {
+          "0": {
+            "q": "How many calories are in a serving of this homemade recipe?",
+            "a": "To calculate calories per serving, add up the calories from each ingredient and divide by the number of servings. The {title} provides nutritional breakdowns including calories, protein, carbohydrates, fat, and fiber for any recipe or ingredient combination."
+          },
+          "1": {
+            "q": "How do I scale a recipe from 4 servings to 6 servings?",
+            "a": "To scale a recipe, divide the desired servings by the original servings to get the scaling factor (6/4 = 1.5), then multiply each ingredient amount by that factor. The {title} handles scaling for any serving size and automatically adjusts measurements for common cooking units."
+          },
+          "2": {
+            "q": "How do I convert cooking measurements like teaspoons to tablespoons?",
+            "a": "There are 3 teaspoons in 1 tablespoon, 16 tablespoons in 1 cup, 2 cups in 1 pint, and 4 cups in 1 quart. The {title} converts between all common cooking measurements including volume, weight, and metric equivalents for precise recipe following."
+          },
+          "3": {
+            "q": "What is the nutritional difference between whole wheat and white flour?",
+            "a": "Whole wheat flour contains all parts of the wheat kernel, providing more fiber (about 12g per cup vs 3g), protein, vitamins, and minerals than white flour which is mostly starch. The {title} compares nutritional values of ingredient substitutions to help you make healthier choices."
+          },
+          "4": {
+            "q": "How do I substitute ingredients in a recipe for dietary restrictions?",
+            "a": "Common substitutions include using applesauce instead of oil (1:1 ratio), flax eggs for regular eggs (1 tbsp flax + 3 tbsp water per egg), and plant-based milk for dairy milk. The {title} provides substitution ratios and adjusts the nutritional profile when you swap ingredients."
+          },
+          "5": {
+            "q": "How do I calculate the cost per serving of a homemade meal?",
+            "a": "To calculate cost per serving, add the cost of all ingredients used and divide by the number of servings. Include estimated costs for small amounts of pantry staples. The {title} computes total recipe cost and per-serving cost to help you budget your meal planning."
+          },
+          "6": {
+            "q": "How do I convert baking recipes for high altitude?",
+            "a": "At altitudes above 3,000 feet, you typically need to increase oven temperature by 15-25°F, decrease baking powder by 1/8 to 1/4 teaspoon per teaspoon, and increase liquid by 1-2 tablespoons per cup. The {title} adjusts your recipe ingredients for your specific elevation."
+          }
+        },
+        "biology": {
+          "0": {
+            "q": "How do I calculate population growth rate in biology?",
+            "a": "Population growth rate is calculated as r = (ln(N₂/N₁)) / t, where N₁ is the initial population, N₂ is the final population, and t is the time interval. The {title} computes exponential and logistic growth rates for scientific research and ecological studies."
+          },
+          "1": {
+            "q": "How do I calculate allele frequency using the Hardy-Weinberg equation?",
+            "a": "The Hardy-Weinberg equation is p² + 2pq + q² = 1, where p is the frequency of the dominant allele and q is the frequency of the recessive allele. The {title} calculates allele and genotype frequencies from population data and checks if a population is in equilibrium."
+          },
+          "2": {
+            "q": "What is the formula for calculating the rate of photosynthesis?",
+            "a": "The net photosynthetic rate is calculated as the difference between CO₂ uptake and CO₂ release per unit leaf area per unit time, typically expressed in μmol CO₂/m²/s. The {title} computes photosynthesis rates from experimental data including light intensity and temperature variables."
+          },
+          "3": {
+            "q": "How do I calculate the mitotic index of a cell population?",
+            "a": "Mitotic index is calculated by dividing the number of cells in mitosis by the total number of cells observed, multiplied by 100%. A higher mitotic index indicates faster cell division. The {title} computes mitotic index percentages from your cell count data."
+          },
+          "4": {
+            "q": "How do I calculate the biodiversity index of an ecosystem?",
+            "a": "The Shannon diversity index (H) is calculated as H = -Σ(pi × ln(pi)), where pi is the proportion of each species. Higher values indicate greater biodiversity. The {title} computes Shannon, Simpson, and species richness indices from your field survey data."
+          },
+          "5": {
+            "q": "How do I calculate enzyme reaction rates from experimental data?",
+            "a": "Enzyme reaction rate is calculated as the change in product concentration over time (v = Δ[P]/Δt). The {title} computes initial reaction rates, Michaelis-Menten constants (Km and Vmax), and creates Lineweaver-Burk plot values from your experimental measurements."
+          }
+        },
+        "ecology": {
+          "0": {
+            "q": "How do I calculate my personal carbon footprint?",
+            "a": "Your carbon footprint is estimated based on household energy use, transportation habits, diet, and consumption patterns. The average person emits about 4.6 tons of CO₂ per year in the US. The {title} calculates your estimated carbon footprint and suggests specific reduction strategies."
+          },
+          "1": {
+            "q": "How much water does my household consume per day?",
+            "a": "The average American household uses about 300 gallons of water per day, with the largest usage from toilets (24%), washing machines (22%), and showers (20%). The {title} estimates your daily and monthly water consumption based on household size, fixtures, and usage habits."
+          },
+          "2": {
+            "q": "How do I calculate waste reduction from recycling?",
+            "a": "Calculate waste reduction by weighing or estimating the volume of materials diverted from landfills through recycling and composting. The average person generates about 4.5 pounds of waste per day, with about 35% being recycled. The {title} tracks your diversion rate and environmental impact."
+          },
+          "3": {
+            "q": "What is the formula for calculating ecological footprint?",
+            "a": "Ecological footprint is calculated by converting resource consumption into the land area needed to support that consumption, measured in global hectares. The {title} estimates your ecological footprint based on energy use, food consumption, transportation, and waste generation patterns."
+          },
+          "4": {
+            "q": "How much energy can solar panels generate for my home?",
+            "a": "A typical residential solar panel system (6 kW) generates about 7,000 to 9,000 kWh per year depending on location, roof orientation, and shading. The {title} estimates your potential solar energy production based on your address, roof characteristics, and local weather patterns."
+          },
+          "5": {
+            "q": "How do I calculate the environmental impact of my daily commute?",
+            "a": "Commute emissions depend on distance, vehicle fuel efficiency, fuel type, and mode of transport. A 20-mile round trip by car emitting about 400 g CO₂ per mile generates roughly 8 kg CO₂ daily. The {title} compares emissions across car, public transit, biking, and walking options."
+          },
+          "6": {
+            "q": "How much carbon does a tree absorb per year?",
+            "a": "A mature tree absorbs approximately 48 pounds (22 kg) of CO₂ per year. Over its lifetime, a single tree can absorb about 1 ton of CO₂. The {title} calculates carbon sequestration based on tree species, age, and diameter to help with reforestation planning."
+          }
+        },
+        "sports": {
+          "0": {
+            "q": "What is a good 5K race time based on my current pace?",
+            "a": "A competitive 5K time varies by age and gender. For recreational runners, finishing under 25 minutes is good, while under 20 minutes is excellent. Use the {title} to predict your race time from your current training pace and see what finishing time to aim for."
+          },
+          "1": {
+            "q": "How many calories do I burn running a mile?",
+            "a": "A person weighing 155 pounds burns approximately 124 calories per mile run. The exact number depends on body weight, running speed, and running efficiency. The {title} calculates calories burned for running, cycling, swimming, and other sports based on your weight and workout intensity."
+          },
+          "2": {
+            "q": "What is my target heart rate zone for cardio exercise?",
+            "a": "Your target heart rate for moderate cardio is 50-70% of your maximum heart rate (220 minus your age), and for vigorous exercise 70-85%. For a 30-year-old, that is 95-162 BPM. The {title} calculates your personalized heart rate zones and suggests optimal training intensities."
+          },
+          "3": {
+            "q": "How do I calculate my one-rep max for weightlifting?",
+            "a": "Your one-rep max (1RM) can be estimated using the Epley formula: 1RM = weight × (1 + reps/30). For example, lifting 150 pounds for 8 reps gives an estimated 1RM of 150 × (1 + 8/30) = 190 pounds. The {title} calculates your 1RM for bench press, squat, deadlift, and other lifts."
+          },
+          "4": {
+            "q": "What is the ideal running cadence for efficiency?",
+            "a": "The optimal running cadence is typically around 170 to 180 steps per minute for most runners. A higher cadence reduces ground reaction forces and injury risk. The {title} helps you calculate your current cadence and shows how adjusting it affects your pace and efficiency."
+          },
+          "5": {
+            "q": "How do I calculate my body fat percentage using circumference measurements?",
+            "a": "The US Navy method uses neck, waist, and hip measurements to estimate body fat percentage with reasonable accuracy. For men: 86.010 × log₁₀(abdomen - neck) - 70.041 × log₁₀(height) + 36.76. The {title} computes your body fat percentage from simple tape measurements."
+          },
+          "6": {
+            "q": "What pace do I need to run to achieve my marathon goal time?",
+            "a": "To finish a marathon in 4 hours, you need to maintain an average pace of 9:09 per mile. The {title} calculates the required pace per mile or kilometer for any race distance and target finish time, and shows you split times at each mile marker."
+          }
+        },
+        "default": {
+          "0": {
+            "q": "What makes the {title} different from other calculators?",
+            "a": "The {title} provides instant, accurate results with a clean interface designed for ease of use. It uses validated formulas and is part of a comprehensive collection of free calculators covering {category} and other categories."
+          },
+          "1": {
+            "q": "What are the most common use cases for the {title}?",
+            "a": "The {title} is commonly used by students, professionals, and anyone needing quick {category} calculations. Typical scenarios include {desc}."
+          },
+          "2": {
+            "q": "How do I get the most accurate results from the {title}?",
+            "a": "For the most accurate results, enter precise input values and double-check your numbers before calculating. The {title} uses standard validated formulas and provides outputs with appropriate decimal precision for {category} calculations."
+          },
+          "3": {
+            "q": "Can the {title} help me learn more about {category} topics?",
+            "a": "Yes, alongside the calculation results you will find educational content, step-by-step explanations, and links to related resources about {category} topics. The {title} is designed to both calculate and teach."
+          },
+          "4": {
+            "q": "What related calculators are available for {category} topics?",
+            "a": "Our {category} collection includes many related calculators covering different aspects of the field. Browse the category page or use the related calculators section at the bottom of this page to discover more tools."
+          }
+        }
+      },
+      "useCases": {
+        "financial": {
+          "mortgage": {
+            "0": "Home buyers comparing mortgage options: Use the {st} to compare different loan amounts, interest rates, and term lengths side by side. See how a 30-year fixed compares to a 15-year term, or how a slightly lower rate affects your monthly payment",
+            "1": "Homeowners considering refinancing: Enter your current loan details alongside potential new rates to calculate monthly savings and determine the break-even point where closing costs are recovered",
+            "2": "Real estate investors analyzing rental properties: Calculate debt service coverage ratios and cash flow projections for investment property purchases. Compare financing options to maximize return on investment",
+            "3": "First-time home buyers setting a budget: Determine how much house you can afford based on your income, existing debts, down payment savings, and current interest rates. Get a realistic price range before house hunting",
+            "4": "Comparing 15-year vs 30-year mortgage terms: Use the {st} to see how a shorter term increases monthly payments but saves tens of thousands in total interest over the life of the loan",
+            "5": "Adjustable-rate mortgage analysis: Model how rate adjustments over time could affect your payments with an ARM. Compare worst-case scenarios against fixed-rate stability to decide which is right for you",
+            "6": "Single-income home affordability: Calculate exactly how much house you can afford on one salary. Factor in your debt-to-income ratio, down payment, and local property tax rates for a realistic budget",
+            "7": "Second home and investment property financing: Determine the higher down payment and interest rate requirements for a second home or rental property. Compare owner-occupied vs non-owner-occupied loan terms",
+            "8": "FHA, VA, and conventional loan comparison: Evaluate how different loan programs affect your monthly payment, upfront costs, and mortgage insurance requirements. Find the best program for your situation",
+            "9": "Mortgage pre-approval preparation: Before meeting with lenders, use the {st} to estimate what loan amount you qualify for. Walk into pre-approval appointments with a clear target price range"
+          },
+          "retirement": {
+            "0": "Young professionals starting retirement planning: Project how your savings will grow over 30-40 years. See the dramatic impact of starting early and the cost of delaying even a few years",
+            "1": "Mid-career workers catching up: Determine if your current savings rate is on track and how much more you need to save each month to reach your retirement goals. Factor in employer matching and catch-up contributions",
+            "2": "Pre-retirees fine-tuning their strategy: In the final years before retirement, calculate whether your nest egg is sufficient. Use the 4% withdrawal rule to estimate sustainable retirement income",
+            "3": "Couples planning together: Compare different savings scenarios, retirement ages, and lifestyle expectations. See how dual incomes and combined savings affect your retirement timeline",
+            "4": "Roth vs traditional retirement account comparison: Use the {st} to model how tax treatment differences affect your nest egg. See whether paying taxes now or later maximizes your after-tax retirement income",
+            "5": "Social Security optimization: Estimate your retirement income gap by factoring in projected Social Security benefits. Decide whether to claim early at 62, wait until full retirement age, or delay until 70",
+            "6": "Employer 401(k) match maximization: Calculate the exact contribution needed to capture your full employer match. See how leaving free money on the table impacts your long-term retirement savings growth",
+            "7": "Early retirement (FIRE) feasibility: Determine the savings rate and nest egg target needed to retire before age 60. Model aggressive saving scenarios and see how early you could achieve financial independence",
+            "8": "Retirement withdrawal strategy planning: Test different withdrawal rates and portfolio allocations to see how long your savings might last. Plan for sequence-of-return risk in the early years of retirement",
+            "9": "Inflation-adjusted retirement projections: Use the {st} to model how inflation erodes purchasing power over a 20-30 year retirement. Ensure your savings target accounts for rising costs of living and healthcare"
+          },
+          "budget": {
+            "0": "Monthly financial check-ins: Track your income against expenses to identify spending patterns and opportunities to save. Regular budget reviews help you stay on top of your financial goals",
+            "1": "Preparing for a major life change: Before a job change, move, or other transition, use the {st} to understand how your finances will be affected. Model different scenarios to plan ahead",
+            "2": "Debt reduction planning: See exactly how much of your income goes to debt payments and calculate how accelerating payments could save thousands in interest over time",
+            "3": "Family financial planning: Involve your whole family in budget discussions with clear numbers. Set savings goals for vacations, education, emergencies, and major purchases",
+            "4": "Zero-based budgeting setup: Allocate every dollar of income to specific expense categories, savings, or debt payments using the {st}. Ensure your budget balances to zero and every dollar has a purpose",
+            "5": "Net worth tracking over time: Use the {st} to regularly calculate your net worth by totaling assets minus liabilities. Monitor progress quarter over quarter to stay motivated toward wealth-building goals",
+            "6": "Emergency fund adequacy check: Determine how many months of essential expenses your current savings cover. Use the calculator to set a specific savings target for a 3-month, 6-month, or 12-month emergency fund",
+            "7": "Expense categorization audit: Group your spending into fixed costs, variable expenses, and discretionary items. Use the {st} to identify which categories consume the largest share of your income",
+            "8": "Side-hustle income integration: Model how additional income from freelancing, a part-time job, or a small business affects your overall budget. Plan how to allocate extra earnings between savings and spending",
+            "9": "Retirement budget projection: Estimate your monthly expenses in retirement by adjusting your current budget for changes in housing, healthcare, transportation, and lifestyle. Use the {st} to see if your expected retirement income covers your needs"
+          },
+          "investment": {
+            "0": "Long-term wealth building: Project how regular investments in stocks, bonds, or mutual funds can grow over decades. See the power of compound interest and consistent contributions",
+            "1": "Education savings planning: Calculate how much you need to save monthly to reach college funding goals. Compare 529 plans, Coverdell ESAs, and other education savings vehicles",
+            "2": "Retirement account optimization: Compare traditional vs Roth IRA growth projections. See how taxes at withdrawal affect your net retirement income under different account types",
+            "3": "Goal-based investing: Whether saving for a down payment, a dream vacation, or a business startup, use the {st} to determine the monthly investment needed to reach your target by a specific date",
+            "4": "Dividend reinvestment analysis: Use the {st} to model how reinvesting dividends accelerates portfolio growth over time. Compare the total return of dividend-paying stocks with and without dividend reinvestment",
+            "5": "Dollar-cost averaging vs lump sum: Simulate investing a lump sum all at once versus spreading contributions over several months. Use the calculator to see how market timing risk affects long-term returns",
+            "6": "Risk-adjusted return comparison: Compare the projected growth of conservative, moderate, and aggressive portfolio allocations. Use the {st} to see how asset allocation affects both potential returns and volatility",
+            "7": "Inflation-adjusted investment targets: Calculate the real (inflation-adjusted) return on your investments to understand true purchasing power growth. Set nominal savings targets that account for 2-3% annual inflation",
+            "8": "Compound frequency impact: See how daily, monthly, quarterly, and annual compounding affect your investment growth. Use the {st} to understand why more frequent compounding accelerates wealth accumulation",
+            "9": "Taxable vs tax-advantaged account comparison: Model the after-tax growth of investments in a taxable brokerage account versus a Roth IRA or traditional IRA. See how tax drag reduces compounding in taxable accounts"
+          },
+          "tax": {
+            "0": "Annual tax planning: Estimate your tax liability before filing to avoid surprises. Adjust withholding or make estimated payments to stay on track throughout the year",
+            "1": "Comparing filing statuses: See how married filing jointly vs separately affects your tax bill. Plan for life events that change your filing status",
+            "2": "Tax strategy for investors: Calculate how capital gains, dividends, and interest income affect your overall tax burden. Plan tax-loss harvesting or Roth conversions strategically",
+            "3": "Side hustle and freelance tax planning: Estimate self-employment tax and quarterly payment requirements. See how business deductions reduce your taxable income",
+            "4": "Paycheck withholding optimization: Use the {st} to ensure the right amount is withheld from each paycheck. Avoid large refunds (interest-free loan to the government) or surprise tax bills at filing time",
+            "5": "Tax bracket estimation: Determine which federal and state tax brackets your income falls into. Use the calculator to understand your marginal rate and how additional income would be taxed",
+            "6": "Itemized vs standard deduction comparison: Calculate whether itemizing deductions for mortgage interest, charitable contributions, and medical expenses exceeds the standard deduction for your filing status",
+            "7": "Estimated tax payment planning for freelancers: Use the {st} to calculate quarterly estimated tax payments based on projected annual income. Avoid underpayment penalties by paying the right amount each quarter",
+            "8": "Tax credit eligibility check: Estimate how tax credits like the Child Tax Credit, Earned Income Tax Credit, or education credits reduce your tax liability. Use the calculator to see how credits phase out at higher income levels",
+            "9": "Roth conversion tax impact: Model the tax cost of converting traditional IRA funds to a Roth IRA. Use the {st} to see how a conversion in a lower-income year could save taxes over the long term"
+          },
+          "salary": {
+            "0": "Job offer evaluation: Compare salary offers by converting between hourly, monthly, and annual figures. Factor in benefits, bonuses, and other compensation to see the full picture",
+            "1": "Freelance rate setting: Determine your equivalent hourly rate based on a target annual income, accounting for non-billable time, taxes, and business expenses",
+            "2": "Budget planning: Convert your salary to monthly and biweekly amounts for accurate budget planning. Know exactly how much each paycheck will be after common deductions",
+            "3": "Career change analysis: See how a shift from salaried to hourly work (or vice versa) affects your total compensation. Factor in overtime potential or reduced hours",
+            "4": "Overtime earnings projection: Use the {st} to calculate how overtime hours at time-and-a-half or double-time boost your annual income. Decide whether the extra pay is worth the additional hours",
+            "5": "Salary negotiation preparation: Calculate the minimum acceptable offer based on your current compensation, cost of living changes, and new role responsibilities. Walk into negotiations with a data-backed target",
+            "6": "Cost of living salary adjustment: Compare how far your salary goes in different cities by factoring in housing costs, taxes, and regional price differences. Use the {st} to determine a fair relocation salary",
+            "7": "Hourly vs salary break-even analysis: Determine the hourly rate equivalent of a salaried position including benefits value, paid time off, and job security. Compare offers on equal footing",
+            "8": "Part-time and reduced hours planning: Calculate how reducing your hours affects your take-home pay and benefits eligibility. Use the {st} to find the sweet spot between income and flexibility",
+            "9": "Commission and bonus impact: Add expected commissions, performance bonuses, and profit-sharing to your base salary. Use the calculator to model best-case, expected, and conservative total compensation scenarios"
+          }
+        },
+        "health": {
+          "bmi": {
+            "0": "Health screening: Use the {st} as a preliminary screening tool to understand your weight category and potential health risks associated with being underweight, overweight, or obese",
+            "1": "Fitness progress tracking: Track your BMI over time to see how changes in diet and exercise affect your body composition. Monthly measurements help you stay motivated",
+            "2": "Doctor visit preparation: Have your current BMI ready before appointments to discuss weight-related health concerns with your healthcare provider more effectively",
+            "3": "Weight management goal setting: Determine a healthy target weight range for your height and set realistic weight loss or gain goals based on BMI categories",
+            "4": "Children's BMI percentile monitoring: Use the {st} to calculate a child's BMI percentile based on age and gender. Pediatricians use percentiles rather than raw BMI to assess growth patterns in children",
+            "5": "Pre-pregnancy weight assessment: Check your BMI before conception to understand how your weight category may affect pregnancy risks and outcomes. Discuss optimal weight range with your healthcare provider",
+            "6": "Senior BMI considerations: Understand how BMI standards shift for older adults, where slightly higher BMIs may be associated with better outcomes. Use the {st} as a starting point for a broader health discussion",
+            "7": "Athlete BMI interpretation: If you have high muscle mass, learn why BMI may overestimate body fat for athletic individuals. Use the {st} alongside body fat measurements for a more complete picture",
+            "8": "Waist-to-height ratio comparison: Complement your BMI calculation with a waist-to-height ratio assessment. Use the {st} along with other metrics to get a fuller understanding of your health status",
+            "9": "Weight loss journey milestone tracking: Set intermediate BMI targets as milestones on your weight loss journey. Celebrate each category improvement — moving from obese to overweight, or overweight to normal range"
+          },
+          "calorie": {
+            "0": "Weight loss planning: Calculate your maintenance calories and create a sustainable deficit of 300-500 calories per day for steady weight loss of 0.5-1 lb per week",
+            "1": "Muscle building: Determine the calorie surplus needed to support muscle growth while minimizing fat gain. Adjust protein and carbohydrate targets for optimal results",
+            "2": "Activity adjustment: See how increasing your exercise frequency or intensity changes your daily calorie needs. Plan refeed days around harder training sessions",
+            "3": "Meal planning: Use your daily calorie target to plan balanced meals throughout the day. Ensure you are meeting your energy needs while staying within your goals",
+            "4": "Macronutrient split optimization: Use the {st} alongside your calorie target to set protein, carbohydrate, and fat ratios. Adjust macros for keto, paleo, high-protein, or balanced eating approaches",
+            "5": "BMR-based metabolism tracking: Calculate your Basal Metabolic Rate to understand the calories your body burns at rest. Use this as a baseline for setting accurate calorie goals whether cutting, maintaining, or bulking",
+            "6": "TDEE for shift workers: Adjust your Total Daily Energy Expenditure calculation for non-standard sleep schedules and irregular activity patterns. Use the {st} to find accurate calorie targets despite variable routines",
+            "7": "Post-weight-loss maintenance calories: After reaching your goal weight, recalculate your maintenance calorie level. Use the {st} to transition smoothly from a cutting phase to a sustainable maintenance plan",
+            "8": "Competition prep calorie cycling: Plan calorie and carbohydrate timing around training sessions for bodybuilding or athletic competition. Use the {st} to structure refeed days and peak week adjustments",
+            "9": "Intermittent fasting schedule planning: Determine how your eating window affects daily calorie intake and meal sizes. Use the {st} to ensure you meet nutritional needs within a restricted feeding period"
+          },
+          "heart-rate": {
+            "0": "Cardio workout optimization: Train in the right heart rate zone for your goal — Zone 2 for endurance, Zone 4 for speed, Zone 5 for peak performance",
+            "1": "Recovery monitoring: Track your resting heart rate over time. A lower resting heart rate often indicates improved cardiovascular fitness",
+            "2": "Race pace planning: Use heart rate zones to pace yourself during races. Stay in Zone 2-3 for long events to avoid early fatigue",
+            "3": "Fitness level assessment: Compare your heart rate response to exercise against age-matched norms. Improvements in recovery time indicate growing fitness",
+            "4": "Maximum heart rate verification: Use the {st} to estimate your age-predicted max heart rate. Compare this with field test results to determine your true maximum for accurate zone calculations",
+            "5": "Heart rate variability tracking: Monitor changes in resting heart rate day to day as an indicator of recovery status. Use the {st} to identify when you are fully recovered versus still fatigued from previous training",
+            "6": "Fat-burning zone targeting: Identify the heart rate range where your body burns the highest percentage of fat for fuel. Use the {st} to stay in the optimal fat-burning zone during steady-state cardio",
+            "7": "Altitude-adjusted heart rate: Understand how training at higher altitudes affects your heart rate response. Use the {st} to adjust your target zones when traveling to train or compete at elevation",
+            "8": "Age-graded heart rate comparison: Compare your heart rate performance against age-adjusted norms using the {st}. See how your cardiovascular fitness stacks up relative to others your age",
+            "9": "Interval training heart rate recovery: Track how quickly your heart rate recovers between high-intensity intervals. Use the {st} to measure recovery rate improvements over time as a marker of increasing fitness"
+          },
+          "body-fat": {
+            "0": "Body composition tracking: Go beyond the scale by measuring body fat percentage. Track changes in composition rather than just weight for a more accurate picture of progress",
+            "1": "Fitness goal setting: Set realistic body fat targets based on your gender and age. Understand what ranges are considered essential, athletic, and average",
+            "2": "Progress photography correlation: Pair body fat measurements with progress photos to visually track how changes in body composition affect your appearance",
+            "3": "Health risk assessment: Monitor body fat as a key health indicator. Higher body fat percentages are associated with increased risk of metabolic conditions",
+            "4": "Lean body mass calculation: Use the {st} to determine your fat-free mass, which includes muscle, bone, and organs. Track whether weight changes come from fat loss or muscle gain during your fitness journey",
+            "5": "Navy body fat method measurement: Use circumference-based measurements at the neck, waist, and hips to estimate body fat percentage. The {st} applies the US Navy formula for a quick, accessible assessment",
+            "6": "Body fat percentage for military standards: Check whether your body fat meets branch-specific requirements for the Army, Navy, Air Force, or Marines. Use the {st} to ensure you are within regulation limits before your assessment",
+            "7": "Cutting phase monitoring: During a calorie deficit for fat loss, use the {st} to ensure you are losing fat while preserving muscle. Track body fat percentage weekly to adjust calories and training as needed",
+            "8": "Bulk vs cut decision guide: Use body fat percentage to decide whether to start a muscle-building bulk or a fat-loss cut. The {st} helps you determine the right body fat range for your current phase",
+            "9": "Age-related body fat changes: Understand how body fat naturally increases with age even if weight stays the same. Use the {st} to set age-appropriate body fat targets and track changes over the years"
+          },
+          "pregnancy": {
+            "0": "Family planning: Track your menstrual cycle and ovulation window to identify the most fertile days for conception. Plan accordingly with your partner",
+            "1": "Pregnancy milestone tracking: Follow your pregnancy week by week with accurate dating. Know when to expect key milestones and prenatal screenings",
+            "2": "Due date preparation: Use the estimated due date to plan maternity leave, prepare the nursery, and schedule important prenatal appointments",
+            "3": "Conception timing optimization: Combine ovulation prediction with optimal timing for conception. Track basal body temperature and cycle patterns for best results",
+            "4": "Ovulation and fertile window identification: Use the {st} to pinpoint your most fertile days each cycle. Time intercourse around ovulation to maximize the chances of conception each month",
+            "5": "Pregnancy week-by-week development guide: Track fetal development milestones corresponding to each week of pregnancy. Use the {st} to understand what is happening at each stage of your pregnancy journey",
+            "6": "Gestational age calculation from LMP: Calculate how far along you are based on your last menstrual period. The {st} provides accurate dating to help you and your healthcare provider plan prenatal care",
+            "7": "Due date probability distribution: Understand that only about 5% of babies arrive exactly on their due date. Use the {st} to see the likely delivery window spanning several weeks around the estimated due date",
+            "8": "Ovulation tracking for irregular cycles: If your cycles vary in length, the {st} helps estimate ovulation timing despite irregularity. Combine with ovulation predictor kits for more accurate results",
+            "9": "Trimester transition planning: Know exactly when you enter each trimester and what prenatal screenings are recommended. Use the {st} to plan ahead for first-trimester, second-trimester, and third-trimester milestones"
+          }
+        },
+        "math": {
+          "percentage": {
+            "0": "Shopping and discounts: Quickly calculate sale prices and savings percentages when shopping. Compare deals to find the best value",
+            "1": "Tip calculation: Compute appropriate gratuity amounts at restaurants based on service quality. Split tips evenly among parties",
+            "2": "Grade computation: Calculate your percentage score on exams and assignments. Determine what percentage of your grade each component represents",
+            "3": "Business analysis: Calculate profit margins, markup percentages, and growth rates. Understand the percentage change in sales, revenue, or costs over time",
+            "4": "Investment return analysis: Use the {st} to calculate percentage gains or losses on investments. Compare annualized returns across different assets and time periods for apples-to-apples performance evaluation",
+            "5": "Sales tax and VAT calculation: Quickly add or remove sales tax from purchase prices. Use the {st} to determine the pre-tax amount or the total including tax for accurate budgeting",
+            "6": "Commission and fee calculations: Determine commission amounts based on percentage rates for real estate, sales, or affiliate earnings. Use the {st} to calculate exactly what you will earn or owe",
+            "7": "Percentage increase and decrease: Calculate year-over-year growth rates, price changes, or population changes using the {st}. Understand both the raw difference and the percentage change for meaningful comparisons",
+            "8": "Loan APR and interest rate conversion: Convert between annual percentage rates and monthly, quarterly, or daily interest rates. Use the {st} to compare loan offers with different compounding frequencies",
+            "9": "Survey and poll result analysis: Calculate the percentage of respondents who selected each option in a survey. Use the {st} to present results as clear percentages for reports and presentations"
+          },
+          "pythagorean": {
+            "0": "Construction and carpentry: Verify right angles, calculate diagonal lengths, and determine material quantities for framing, decking, and other projects",
+            "1": "Navigation and mapping: Calculate straight-line distances between coordinates, determine shortest paths, and plan efficient routes",
+            "2": "Design and graphics: Compute aspect ratios, diagonal screen sizes, and proportional scaling for digital and print design projects",
+            "3": "Physics and engineering: Solve for unknown sides or angles in force diagrams, structural analyses, and kinematic problems",
+            "4": "Ramp and stair stringer layout: Use the {st} to calculate the hypotenuse of a right triangle formed by rise and run. Determine accurate stringer lengths for stair construction or ramp slope verification",
+            "5": "TV and monitor size comparison: Calculate the diagonal screen size from width and height measurements, or find the width and height from a known diagonal and aspect ratio. Use the {st} to compare TV sizes before buying",
+            "6": "Land survey and property boundary: Calculate straight-line distances between survey points on a property. Use the {st} to verify boundary lengths and diagonal measurements for fencing or landscaping plans",
+            "7": "Roof pitch and rafter length: Determine rafter length from the roof rise and run using the Pythagorean theorem. Use the {st} to order the correct amount of lumber for roofing projects",
+            "8": "3D modeling and game development: Calculate distances between 3D coordinates, vector magnitudes, and collision detection boundaries. Use the {st} for quick geometry checks during development",
+            "9": "Ladder placement safety: Determine the correct distance a ladder base should be from a wall based on the 4:1 rule and ladder height. Use the {st} to verify safe ladder angles for working at height"
+          }
+        },
+        "conversion": {
+          "0": "Travel planning: Quickly convert between local units and the ones you are familiar with when traveling abroad. Understand distances, temperatures, weights, and volumes in your home units",
+          "1": "Cooking and baking: Convert recipe measurements between metric and imperial units. Scale ingredients accurately for different serving sizes",
+          "2": "Academic work: Complete homework and lab assignments that require unit conversions. Verify your manual calculations against the tool for accuracy",
+          "3": "Professional use: Engineers, scientists, and technicians regularly convert between units in their work. Use the {st} for quick reliable conversions without looking up factors",
+          "4": "Online shopping: When buying products from international sellers, convert dimensions, weights, and other specifications to familiar units",
+          "5": "Fitness and health tracking: Convert between pounds and kilograms for weight tracking, or between miles and kilometers for running and cycling distances. Use the {st} to keep your fitness data consistent across apps and regions",
+          "6": "DIY and home improvement: Convert between metric and imperial measurements when using tools, plans, or materials from different countries. The {st} ensures accuracy when mixing measurement systems on a project",
+          "7": "Currency conversion for international transactions: Get quick currency conversions when shopping, traveling, or sending money abroad. Use the {st} to understand the real cost of purchases in foreign currencies",
+          "8": "Temperature conversion for weather and cooking: Convert between Celsius, Fahrenheit, and Kelvin for weather forecasts, oven temperatures, or scientific experiments. The {st} handles all three scales accurately",
+          "9": "Fuel economy conversion: Convert between miles per gallon, liters per 100 kilometers, and kilometers per liter. Use the {st} to compare vehicle efficiency across different measurement systems when car shopping"
+        },
+        "date-time": {
+          "0": "Project planning: Calculate the duration between project start and end dates. Determine milestone dates and track progress against the timeline",
+          "1": "Age calculation: Compute exact age in years, months, and days for applications, legal documents, or birthday planning",
+          "2": "Event countdown: Determine exactly how many days, hours, and minutes remain until a special event like a wedding, vacation, or deadline",
+          "3": "Business scheduling: Calculate working days excluding weekends and holidays for delivery timelines, contract periods, and project deadlines",
+          "4": "Historical research: Find the exact time elapsed between historical events or personal milestones spanning months or years",
+          "5": "Tenure and employment duration: Calculate your exact length of employment at a company for your resume or job applications. Use the {st} to compute years, months, and days of service accurately",
+          "6": "Subscription and warranty tracking: Determine when a subscription, warranty, or contract expires based on the start date and term length. Use the {st} to avoid late renewal fees or lapsed coverage",
+          "7": "Pregnancy due date and gestational age: Calculate the estimated due date from conception or last menstrual period. Use the {st} to track gestational age week by week throughout pregnancy",
+          "8": "Business quarter and fiscal year planning: Calculate the number of working days remaining in the current quarter or fiscal year. Use the {st} to plan sales targets, budget spending, and project deadlines",
+          "9": "Age difference computation: Calculate the exact age difference between two people in years, months, and days. Use the {st} for legal age requirements, relationship milestones, or generational analysis"
+        },
+        "construction": {
+          "0": "Home renovation planning: Estimate material quantities for flooring, tiling, painting, and other home improvement projects. Avoid over-ordering or running short",
+          "1": "Contractor bidding: Prepare accurate material and cost estimates for client bids. Include appropriate waste factors and regional price adjustments",
+          "2": "DIY project budgeting: Before starting a project, get a realistic estimate of material costs. Decide whether to DIY or hire a professional based on the numbers",
+          "3": "Material ordering: Determine the exact quantity of concrete, lumber, drywall, or other materials needed. Minimize waste and avoid costly return trips to the store",
+          "4": "Concrete slab and foundation calculation: Calculate the cubic yards of concrete needed for a slab, footing, or column based on dimensions. Use the {st} to order the right amount and avoid expensive short loads",
+          "5": "Flooring material estimation: Determine how many boxes of hardwood, laminate, or tile you need based on room dimensions. Use the {st} to account for room shape, waste factor, and pattern matching requirements",
+          "6": "Paint and drywall coverage: Calculate gallons of paint or sheets of drywall needed for walls and ceilings. Use the {st} to factor in multiple coats, texture types, and ceiling height adjustments",
+          "7": "Deck and patio material planning: Estimate lumber, decking boards, fasteners, and stain quantities for outdoor projects. Use the {st} to plan deck joist spacing, railing requirements, and stair materials",
+          "8": "Roofing material takeoff: Calculate squares of shingles, underlayment, and flashing needed for a roof based on square footage and pitch. Use the {st} to bid roofing jobs accurately with waste factored in",
+          "9": "Fencing and landscaping materials: Determine linear feet of fencing, cubic yards of mulch or soil, and number of posts needed for yard projects. Use the {st} to budget and order landscape materials precisely"
+        },
+        "statistics": {
+          "0": "Academic research: Analyze experimental data sets to find central tendencies and variability. Report descriptive statistics in research papers and theses",
+          "1": "Business analytics: Evaluate sales data, customer metrics, and operational performance. Identify trends, outliers, and patterns in business data",
+          "2": "Quality control: Monitor manufacturing processes by analyzing measurement data. Detect when processes drift outside acceptable parameters",
+          "3": "Sports performance analysis: Track athlete statistics across games or seasons. Identify consistent performers and measure variability in performance",
+          "4": "Survey data analysis: Calculate mean, median, mode, and standard deviation from survey responses. Use the {st} to summarize large data sets and identify trends in customer feedback or opinion polling",
+          "5": "Financial data analysis: Analyze stock price volatility, portfolio return distributions, and risk metrics using statistical measures. Use the {st} to calculate standard deviation and variance of investment returns",
+          "6": "Grade distribution analysis: Determine the mean, median, and grade distribution for a class or exam. Use the {st} to curve grades, identify struggling students, and assess assessment difficulty",
+          "7": "Process capability analysis: Calculate Cp and Cpk indices to determine whether a manufacturing process is capable of meeting specifications. Use the {st} alongside standard deviation to evaluate process performance",
+          "8": "Market research and A/B testing: Calculate confidence intervals and statistical significance for A/B test results. Use the {st} to determine whether observed differences in conversion rates are statistically meaningful",
+          "9": "Demographic data summarization: Calculate average age, income, or other demographic measures across population segments. Use the {st} to summarize census data or market research for reporting and planning"
+        },
+        "education": {
+          "0": "Semester planning: Calculate your current GPA and determine what grades you need in remaining courses to reach your target GPA",
+          "1": "Final exam preparation: Use the grade calculator to determine the minimum score needed on final exams to achieve your desired course grade",
+          "2": "Course selection: Compare how different courses with varying credit hours and expected grades would affect your overall GPA",
+          "3": "Graduation requirement tracking: Ensure you are on track to meet minimum GPA requirements for graduation, honors, or program admission",
+          "4": "Weighted vs unweighted GPA calculation: Determine your GPA on both weighted and unweighted scales. Use the {st} to understand how honors, AP, and IB courses affect your GPA differently on each scale",
+          "5": "Cumulative GPA projection: Project what your cumulative GPA will be after completing current and future semesters. Use the {st} to plan your academic trajectory and set semester-by-semester grade targets",
+          "6": "Scholarship eligibility check: Calculate whether your GPA meets minimum requirements for merit-based scholarships and grants. Use the {st} to determine the GPA needed to maintain or regain scholarship eligibility",
+          "7": "Repeated course GPA recalculation: Calculate how retaking a course affects your GPA under your school's grade replacement or averaging policy. Use the {st} to plan course retakes strategically",
+          "8": "Transfer GPA calculation: Convert your GPA from one grading scale to another when transferring between schools. Use the {st} to understand how your grades translate under a different institution's grading system",
+          "9": "Midterm grade assessment: Use the {st} before midterms to determine what grades you need on midterm exams to stay on track. Adjust study priorities based on which courses need the most attention"
+        },
+        "physics": {
+          "0": "Homework and exam prep: Verify your physics problem solutions and understand the step-by-step reasoning behind each calculation",
+          "1": "Engineering design: Apply physics principles to real-world design problems. Calculate forces, energies, and motion parameters for mechanical systems",
+          "2": "Science fair projects: Perform accurate calculations for experiments and demonstrations. Validate theoretical predictions against measured results",
+          "3": "Personal curiosity: Explore the physics behind everyday phenomena. Calculate the energy in a moving car, the force required to lift an object, or the acceleration due to gravity",
+          "4": "Projectile motion analysis: Calculate launch angles, initial velocities, maximum height, and range for projectiles. Use the {st} to solve physics problems involving ballistic trajectories and parabolic motion",
+          "5": "Kinematics problem solving: Compute displacement, velocity, acceleration, and time using the kinematic equations. Use the {st} to verify solutions for constant acceleration problems in one and two dimensions",
+          "6": "Work, energy, and power calculations: Determine the work done by a force, kinetic and potential energy changes, and power output. Use the {st} for mechanics problems involving energy conservation and transfer",
+          "7": "Circular motion and centripetal force: Calculate centripetal acceleration, force requirements, and orbital velocities for objects in circular motion. Use the {st} to analyze roller coasters, satellites, and rotating systems",
+          "8": "Momentum and impulse analysis: Solve collision and explosion problems using conservation of momentum. Use the {st} to calculate impulse, momentum changes, and final velocities in elastic and inelastic collisions",
+          "9": "Fluid mechanics and buoyancy: Calculate buoyant force, fluid pressure at depth, and flow rates using fluid dynamics principles. Use the {st} for physics problems involving Archimedes' principle and Bernoulli's equation"
+        },
+        "chemistry": {
+          "0": "Lab preparation: Calculate the exact amounts of reagents needed for experiments. Prepare solutions with precise molar concentrations",
+          "1": "Homework verification: Check your chemistry problem solutions and understand the relationship between different chemical quantities",
+          "2": "Research calculations: Perform routine chemical computations for research projects including yields, concentrations, and reaction stoichiometry",
+          "3": "Green chemistry: Calculate reaction efficiencies and atom economy to design more sustainable chemical processes",
+          "4": "Solution dilution and concentration: Use the {st} to prepare solutions of specific molarity from stock solutions. Calculate the volume of stock solution and solvent needed using the dilution formula M1V1 = M2V2",
+          "5": "pH and pOH calculations: Quickly convert between hydrogen ion concentration, pH, pOH, and hydroxide concentration. Use the {st} for acid-base chemistry problems and solution characterization",
+          "6": "Stoichiometry and reaction yield: Calculate theoretical yields, limiting reagents, and percent yields for chemical reactions. Use the {st} to plan experiments and evaluate reaction efficiency",
+          "7": "Molar mass and mole conversions: Determine the molar mass of any compound from its chemical formula. Use the {st} to convert between mass, moles, and number of particles for accurate reagent measurements",
+          "8": "Gas law calculations: Solve ideal gas law problems for pressure, volume, temperature, or number of moles. Use the {st} for chemistry problems involving Boyle's, Charles's, and Avogadro's gas laws",
+          "9": "Thermochemistry and enthalpy: Calculate heat transfer, enthalpy changes, and calorimetry values for chemical reactions. Use the {st} to determine endothermic and exothermic reaction properties"
+        },
+        "engineering": {
+          "0": "Electrical circuit design: Calculate voltage, current, resistance, and power in DC and AC circuits using Ohm's law and power formulas. Design and troubleshoot electrical systems",
+          "1": "Structural analysis: Compute beam deflections, stress distributions, and load capacities for structural elements. Verify designs meet building code requirements",
+          "2": "Mechanical system design: Calculate torque, power, RPM, and mechanical advantage for rotating equipment. Size motors, gears, and shafts for machinery",
+          "3": "Fluid system design: Determine flow rates, pressure drops, and pipe sizes for plumbing, HVAC, and process piping systems",
+          "4": "Thermal system analysis: Calculate heat transfer rates, temperature changes, and energy requirements for heating and cooling systems. Use the {st} for HVAC design and thermal management",
+          "5": "Material strength and selection: Compare material properties including yield strength, tensile strength, and modulus of elasticity. Use the {st} to select appropriate materials for structural and mechanical applications",
+          "6": "Power system analysis: Calculate three-phase power, power factor correction, and voltage regulation for electrical distribution systems. Use the {st} for transformer sizing and conductor selection",
+          "7": "Control system design: Compute gain margins, phase margins, and system response characteristics for feedback control systems. Use the {st} for PID controller tuning and stability analysis",
+          "8": "Geotechnical engineering: Calculate soil bearing capacity, settlement, and lateral earth pressure for foundation design. Use the {st} for retaining wall analysis and shallow foundation sizing",
+          "9": "Environmental engineering: Calculate pollutant dispersion, treatment efficiency, and system sizing for water and wastewater treatment. Use the {st} for environmental compliance and process design"
+        },
+        "everyday": {
+          "0": "Restaurant tipping: Quickly calculate the appropriate tip amount and total bill for any service level. Split the bill among any number of people",
+          "1": "Shopping discounts: Calculate the final price after percentage discounts, sales tax, and coupon combinations. Know exactly what you will pay before checkout",
+          "2": "Bill splitting: Divide restaurant bills, shared expenses, or group gift costs fairly among friends and family",
+          "3": "Gas and fuel tracking: Calculate your vehicle's fuel economy in MPG or L/100km. Track fuel costs and plan road trip budgets",
+          "4": "Personal loan estimation: Estimate monthly payments, total interest, and payoff timelines for auto loans, personal loans, or credit card debt",
+          "5": "Monthly budget planning: Track income and expenses to create a balanced budget. Use the {st} to identify spending patterns and savings opportunities",
+          "6": "Home energy cost estimation: Calculate monthly electricity, gas, and water costs based on usage and local rates. Use the {st} to identify energy-saving opportunities and estimate bill savings from efficiency upgrades",
+          "7": "Carpool and commute cost sharing: Calculate fair cost distribution for carpool arrangements including gas, tolls, and maintenance. Use the {st} to split commuting costs equitably among participants",
+          "8": "Petty cash and expense reimbursement: Track and calculate business expenses, mileage reimbursement, and petty cash balances. Use the {st} for accurate expense reporting and budget tracking",
+          "9": "Event and party planning: Calculate costs per person, total event budget, and deposit requirements for parties, weddings, or group events. Use the {st} to plan and track event expenses"
+        },
+        "food": {
+          "0": "Recipe scaling: Adjust any recipe from its original serving size to the number of servings you need. All ingredients are scaled proportionally",
+          "1": "Nutritional analysis: Calculate the calories, protein, carbs, fat, and fiber content of homemade recipes and individual ingredients",
+          "2": "Cooking unit conversion: Convert between cups, tablespoons, teaspoons, ounces, milliliters, and grams for precise cooking and baking",
+          "3": "Ingredient substitution: Find appropriate substitutes for common ingredients based on dietary needs, allergies, or availability. Compare nutritional profiles",
+          "4": "Meal prep and bulk cooking: Scale recipes up for weekly meal prep or batch cooking. Use the {st} to adjust ingredient quantities and storage container sizes for efficient meal planning",
+          "5": "Dietary restriction menu planning: Modify recipes to accommodate gluten-free, dairy-free, vegan, or low-carb diets. Use the {st} to find suitable ingredient swaps and adjust cooking methods",
+          "6": "Baking recipe conversion: Convert between volume and weight measurements for baking ingredients. Use the {st} to ensure consistent results by measuring flour, sugar, and butter by weight rather than volume",
+          "7": "Cost per serving analysis: Calculate the exact cost of homemade meals compared to takeout or pre-prepared options. Use the {st} to identify cost-saving opportunities in your meal planning",
+          "8": "High-altitude baking adjustment: Adjust oven temperature, leavening agents, and liquid ratios for baking at elevations above 3,000 feet. Use the {st} to modify recipes for successful high-altitude baking",
+          "9": "Preservation and canning calculations: Adjust recipe quantities for canning, pickling, and preserving based on jar sizes and batch volumes. Use the {st} to scale preserving recipes accurately for food safety"
+        },
+        "biology": {
+          "0": "Population ecology: Calculate population growth rates, doubling times, and carrying capacity for ecological studies and conservation planning",
+          "1": "Genetics research: Apply the Hardy-Weinberg principle to calculate allele and genotype frequencies in population genetics studies",
+          "2": "Cell biology: Calculate mitotic index, cell division rates, and cell cycle timing from experimental microscopy data",
+          "3": "Enzyme kinetics: Determine reaction rates, Michaelis-Menten constants, and inhibition patterns from enzyme assay experiments",
+          "4": "Biodiversity assessment: Calculate Shannon, Simpson, and species richness indices from field survey data. Use the {st} to compare biodiversity across different ecosystems and monitor conservation efforts",
+          "5": "Photosynthesis rate measurement: Calculate net photosynthetic rates from CO₂ exchange data in plant physiology experiments. Use the {st} to analyze light response curves and determine compensation points",
+          "6": "Microbial growth analysis: Calculate generation times, growth rates, and population densities from bacterial or yeast culture data. Use the {st} for microbiology experiments and fermentation process monitoring",
+          "7": "Ecological sampling and mark-recapture: Estimate population sizes using the Lincoln-Petersen index from mark-recapture field data. Use the {st} for wildlife population estimation and conservation biology studies",
+          "8": "Osmosis and diffusion calculations: Calculate solute concentrations, osmotic pressure, and diffusion rates across membranes. Use the {st} for cell biology experiments and understanding transport mechanisms",
+          "9": "DNA and molecular biology calculations: Determine DNA concentration, purity ratios, and copy numbers from spectrophotometry readings. Use the {st} for molecular biology lab work and PCR reaction setup"
+        },
+        "ecology": {
+          "0": "Carbon footprint assessment: Calculate your personal or household carbon footprint from energy use, transportation, diet, and consumption patterns",
+          "1": "Water usage tracking: Estimate daily and monthly household water consumption. Identify opportunities to reduce water waste and lower utility bills",
+          "2": "Waste reduction monitoring: Track waste generation and recycling rates. Calculate diversion percentages and environmental impact of waste reduction efforts",
+          "3": "Ecological footprint estimation: Determine the land area required to support your lifestyle. Compare your footprint against national and global averages",
+          "4": "Solar energy potential: Estimate solar panel energy production based on location, roof characteristics, and system size. Use the {st} to evaluate the financial and environmental returns of solar installation",
+          "5": "Commute emissions comparison: Compare the carbon emissions of driving, public transit, biking, and walking for daily commutes. Use the {st} to quantify the environmental benefits of alternative transportation choices",
+          "6": "Tree carbon sequestration: Calculate the amount of CO₂ a tree absorbs over its lifetime based on species, age, and size. Use the {st} for reforestation planning and carbon offset project evaluation",
+          "7": "Home energy audit analysis: Estimate energy consumption by appliance and identify the biggest energy users in your home. Use the {st} to prioritize energy efficiency upgrades for maximum carbon reduction",
+          "8": "Sustainable diet assessment: Calculate the carbon and water footprint of different dietary choices from omnivore to vegan. Use the {st} to understand how food choices affect your personal environmental impact",
+          "9": "Rainwater harvesting potential: Estimate how much rainwater you can collect from your roof based on local rainfall and collection area. Use the {st} to size rainwater storage tanks for garden irrigation or household use"
+        },
+        "sports": {
+          "0": "Race time prediction: Predict your finish time for 5K, 10K, half marathon, or marathon based on a recent race result or training pace",
+          "1": "Calorie burn estimation: Calculate calories burned during running, cycling, swimming, and other sports based on your weight and workout intensity",
+          "2": "Heart rate zone training: Determine your personalized heart rate zones for different training intensities. Optimize workouts for endurance, fat burning, or peak performance",
+          "3": "One-rep max calculation: Estimate your one-repetition maximum for weightlifting exercises using the Epley formula. Track strength gains over time",
+          "4": "Running pace calculation: Determine the pace per mile or kilometer needed to achieve a target finish time for any race distance",
+          "5": "Running cadence optimization: Calculate your current running cadence and identify the optimal step rate for efficiency and injury prevention. Use the {st} to adjust your stride frequency toward the ideal 170-180 steps per minute range",
+          "6": "Body fat assessment for athletes: Use circumference measurements and the US Navy formula to estimate body fat percentage. Use the {st} to track body composition changes during training cycles without expensive equipment",
+          "7": "Training load and recovery: Calculate training load based on workout duration and intensity using heart rate data. Use the {st} to balance training stress with adequate recovery for optimal performance gains",
+          "8": "VO2 max estimation: Estimate your maximal oxygen uptake from race times or heart rate data. Use the {st} to assess cardiovascular fitness and track improvements in aerobic capacity over training cycles",
+          "9": "Macronutrient timing for athletes: Calculate optimal pre-workout, intra-workout, and post-workout nutrition timing and composition. Use the {st} to plan carb loading, protein timing, and hydration strategies for competition"
+        },
+        "default": {
+          "0": "Quick calculations: Get fast, accurate results for everyday calculations without manual math or complex spreadsheet formulas",
+          "1": "Learning and education: Use the {st} to understand how different inputs affect outcomes. Experiment with values to build intuition about {category} relationships",
+          "2": "Double-checking work: Verify manual calculations and catch errors before making important decisions based on your numbers",
+          "3": "Scenario comparison: Try different input values to see how changes affect results. Compare best-case, worst-case, and expected scenarios side by side",
+          "4": "Data-driven decision making: Use accurate calculations to support your choices in {category} planning and analysis. Let the numbers guide your decisions with confidence",
+          "5": "Time-saving: Eliminate manual calculation time and reduce errors. The {st} handles complex formulas instantly so you can focus on interpreting results",
+          "6": "Professional reporting: Generate accurate figures for reports, presentations, and client communications. Use the {st} to ensure your professional calculations are precise and reliable",
+          "7": "Teaching and tutoring: Demonstrate mathematical concepts and relationships using the {st}. Show students how changing one variable affects outcomes in real time",
+          "8": "Goal setting and tracking: Set specific numerical targets based on your calculations and track progress over time. Use the {st} to establish baseline measurements and monitor improvement",
+          "9": "Risk assessment: Model different scenarios and outcomes to understand potential risks before committing to a decision. Use the {st} to quantify uncertainty and make informed choices"
+        }
+      },
+      "tips": {
+        "financial": {
+          "mortgage": {
+            "0": "Always consider the total cost of the loan (interest + fees), not just the monthly payment. A lower monthly payment over a longer term often costs significantly more in total interest",
+            "1": "Use the calculator to compare different down payment amounts. Even an extra 5% down can reduce your monthly payment and may eliminate PMI if you reach 20% equity",
+            "2": "Remember that property taxes, insurance, and HOA fees are not included in basic payment calculations. Add these estimates to get your true monthly housing cost",
+            "3": "Check current interest rates from multiple lenders and run the numbers for each. A rate difference of just 0.25% can save thousands over the life of the loan",
+            "4": "Consider making biweekly payments instead of monthly. This results in one extra payment per year, which can shave years off your mortgage and save substantial interest",
+            "5": "Use an amortization schedule to see how much of each payment goes toward principal versus interest — early payments are mostly interest, but that balance shifts over time",
+            "6": "If you are paying PMI, calculate how quickly you can reach 20% equity to eliminate it. PMI typically costs 0.5-1% of the loan amount per year",
+            "7": "Compare a 15-year versus 30-year term carefully: the 15-year saves significant interest but requires much higher monthly payments that may strain your budget",
+            "8": "Check your credit score before applying — improving from fair (680) to good (740) could lower your rate by 0.5-1%, saving thousands over the loan term",
+            "9": "Factor in closing costs (typically 2-5% of the loan) when deciding whether to refinance. Break-even analysis helps determine if the savings justify the upfront fees"
+          },
+          "retirement": {
+            "0": "Aim to save at least 15% of your pre-tax income for retirement including any employer match. The {st} helps you see if you are on track",
+            "1": "Take full advantage of employer matching contributions — if your employer matches 50% up to 6%, contribute at least 6% to get the full match",
+            "2": "Use the calculator to compare traditional (pre-tax) versus Roth (post-tax) contributions. Your tax bracket now versus in retirement determines which is better",
+            "3": "Increasing your contribution rate by just 1-2% per year is a painless way to significantly boost your retirement savings over time",
+            "4": "Factor in inflation when projecting retirement needs — the {st} accounts for this with realistic return assumptions",
+            "5": "The earlier you start, the more powerful compounding works. Starting at 25 versus 35 can mean double the savings at retirement for the same monthly contribution",
+            "6": "Use the 4% rule as a starting benchmark: multiply your desired annual retirement income by 25 to estimate the nest egg you need",
+            "7": "Catch-up contributions (an extra $7,500 per year for those 50+) can significantly boost savings in your final working years",
+            "8": "Consider the impact of Social Security timing — delaying benefits until age 70 can increase your monthly payout by up to 32% versus claiming at full retirement age",
+            "9": "Review your asset allocation as you approach retirement. A common rule: subtract your age from 110 to get the percentage of stocks in your portfolio"
+          },
+          "budget": {
+            "0": "Track every expense for at least 30 days to get an accurate spending baseline. Most people underestimate discretionary spending by 20-30%",
+            "1": "Use the 50/30/20 rule as a starting framework: 50% of after-tax income for needs, 30% for wants, and 20% for savings and debt repayment",
+            "2": "Calculate your net worth annually to track long-term financial health. An increasing net worth trend matters more than any single month's balance",
+            "3": "Identify fixed versus variable expenses in your budget. Cutting variable costs like dining out is easier than reducing fixed costs like rent or insurance",
+            "4": "Build an emergency fund of 3-6 months of expenses before focusing on aggressive investing. The {st} can show how much to set aside each month",
+            "5": "Use zero-based budgeting: assign every dollar a specific job so your income minus expenses equals zero. This prevents mindless overspending",
+            "6": "Review subscriptions and memberships quarterly — the average person spends $200+ per month on unused services that quietly drain the budget",
+            "7": "Include all assets (home equity, investments, vehicles) and all liabilities (mortgage, credit cards, student loans) in your net worth calculation",
+            "8": "Pay yourself first by automating savings and investment transfers on payday before you have a chance to spend the money",
+            "9": "Identify spending leaks by category — small daily expenses like coffee and snacks can add up to $1,000+ per year without careful tracking"
+          },
+          "investment": {
+            "0": "The key to compound interest is time, not the amount invested. Even small regular contributions grow significantly over decades due to exponential growth",
+            "1": "Use the Rule of 72 to estimate doubling time: divide 72 by your annual return rate. At 8%, your money doubles every 9 years",
+            "2": "Diversify across asset classes (stocks, bonds, real estate) to manage risk. The {st} can model different allocation scenarios",
+            "3": "Focus on what you can control: investment fees, tax efficiency, and saving rate. These matter more than trying to time the market",
+            "4": "Dollar-cost averaging — investing a fixed amount regularly — reduces the impact of market volatility and removes the stress of timing entries",
+            "5": "Reinvest dividends automatically to maximize compound growth. Reinvested dividends can account for 40%+ of total long-term stock returns",
+            "6": "Account for inflation when calculating real returns. A 7% nominal return with 3% inflation gives only a 4% real return",
+            "7": "The difference between a 1% and 2% annual fee on a $100,000 portfolio over 30 years is over $100,000 in lost returns. Always check expense ratios",
+            "8": "Compare lump-sum investing versus dollar-cost averaging with the {st}. Historically, lump-sum outperforms DCA about two-thirds of the time",
+            "9": "Use tax-loss harvesting to offset capital gains. Track unrealized losses and consider harvesting them before year-end to reduce your tax bill"
+          },
+          "tax": {
+            "0": "Understand your marginal tax bracket versus effective tax rate. Only the income within each bracket is taxed at that rate, not your entire income",
+            "1": "Maximize tax-advantaged accounts like 401(k)s and IRAs before using taxable brokerage accounts. Every dollar deferred grows tax-free until withdrawal",
+            "2": "Itemize deductions if your total itemizable expenses exceed the standard deduction. The {st} can help you compare both approaches",
+            "3": "Keep records of deductible expenses throughout the year — charitable donations, medical expenses, and business expenses are often overlooked",
+            "4": "Use the {st} to ensure you are withholding the right amount. Avoid large refunds (an interest-free loan to the government) or large balances due at filing",
+            "5": "For self-employment income, set aside 25-30% for taxes and make quarterly estimated payments to avoid underpayment penalties",
+            "6": "Contribute to an HSA if you have a high-deductible health plan — it is triple tax-advantaged: pre-tax contributions, tax-free growth, and tax-free withdrawals for medical expenses",
+            "7": "Tax credits are more valuable than deductions — a $1,000 credit reduces your tax bill by $1,000, while a deduction only reduces taxable income",
+            "8": "Hold investments for more than one year to qualify for long-term capital gains rates, which are significantly lower than short-term rates",
+            "9": "Factor in state income taxes when comparing job offers or planning retirement relocation — rates vary from 0% to over 13% depending on the state"
+          },
+          "salary": {
+            "0": "When comparing job offers, calculate total compensation including benefits, bonuses, and retirement contributions — not just the base salary",
+            "1": "Convert hourly wage to annual salary by multiplying by 2,080 (40 hours × 52 weeks). The {st} handles this automatically",
+            "2": "Factor in commuting costs, parking, and work wardrobe when comparing an on-site position with a remote or hybrid role",
+            "3": "Overtime pay is 1.5 times your regular rate for hours over 40 per week. Use the {st} to see how overtime affects your effective hourly rate",
+            "4": "Negotiate your starting salary — candidates who negotiate typically increase their offer by 10-20%, and future raises are based on that higher base",
+            "5": "Consider the true hourly rate after accounting for unpaid breaks, commute time, and work-from-home expenses. A $50,000 salary with a 45-minute commute may be worth less than it seems",
+            "6": "Know the difference between exempt and non-exempt status. Non-exempt employees must receive overtime pay, while exempt salaried employees do not",
+            "7": "Track billable hours carefully if you are freelance or contract. Even 15 minutes of unbilled time per day adds up to 60+ hours per year of lost income",
+            "8": "Use the {st} to compare cost-of-living-adjusted salaries when considering relocation. $100,000 in San Francisco is equivalent to about $65,000 in Austin",
+            "9": "Project your salary growth over time with the {st}. The average annual raise is 3-5%, and negotiating a higher starting salary compounds over your entire career"
+          },
+          "default": {
+            "0": "Always double-check your input values — a decimal place error can significantly change financial projections and lead to poor decisions",
+            "1": "Use the {st} to run multiple scenarios by varying key assumptions like interest rates, time periods, and contribution amounts",
+            "2": "Remember that past performance does not guarantee future results, especially for investment-related calculations and projections",
+            "3": "Account for inflation's impact on long-term projections. Purchasing power erodes over time, so include realistic inflation estimates",
+            "4": "Use realistic rather than optimistic estimates for more reliable financial planning. Pessimistic scenarios help prepare for downturns",
+            "5": "Bookmark the {st} for quick access whenever you need to evaluate financial decisions or update your financial plan",
+            "6": "Share your results with a financial advisor or accountant for professional interpretation tailored to your specific situation",
+            "7": "Keep records of your calculations for future reference and to track how your financial situation changes over time",
+            "8": "Combine multiple financial calculators for a comprehensive picture — for example, pair a budget calculator with a retirement planner",
+            "9": "Review and update your financial projections annually as interest rates, income, expenses, and financial goals evolve"
+          }
+        },
+        "health": {
+          "bmi": {
+            "0": "BMI is a screening tool, not a diagnostic measure. Athletes with high muscle mass may have a high BMI despite being very healthy",
+            "1": "Use consistent measurement units — the calculator defaults to metric, but you can switch to imperial if preferred",
+            "2": "Track your BMI over time rather than focusing on a single measurement. Trends are more meaningful than any one data point",
+            "3": "Combine BMI with other measurements like waist circumference and body fat percentage for a more complete health picture",
+            "4": "Consult a healthcare provider to interpret your BMI in the context of your overall health, family history, and lifestyle",
+            "5": "For children and teens, BMI is interpreted using age- and sex-specific percentiles rather than the standard adult categories",
+            "6": "BMI does not distinguish between muscle and fat — two people with the same BMI can have very different body compositions",
+            "7": "Asian populations may have increased health risks at lower BMI thresholds (23 instead of 25 for overweight). Check ethnicity-specific guidelines",
+            "8": "A BMI below 18.5 indicates underweight, which carries health risks including weakened immune function and decreased bone density",
+            "9": "Use the {st} alongside blood pressure, cholesterol, and blood sugar readings for a comprehensive health assessment"
+          },
+          "calorie": {
+            "0": "Be honest about your activity level when selecting from the options. Overestimating activity leads to inaccurate calorie targets",
+            "1": "These are estimates — your actual metabolism may vary by 10-20%. Use the results as a starting point and adjust based on real-world results",
+            "2": "For weight loss, a deficit of 300-500 calories per day is generally sustainable. Avoid extreme deficits that can lead to muscle loss and metabolic slowdown",
+            "3": "Recalculate your needs after significant weight change (10+ lbs or 5+ kg). Your calorie requirements decrease as you lose weight",
+            "4": "Protein intake should remain consistent regardless of calorie targets. Aim for 1.6-2.2 g per kg of body weight, especially when in a deficit",
+            "5": "Protein is the most satiating macronutrient — aim for 25-30g per meal when in a calorie deficit to help manage hunger and preserve muscle",
+            "6": "Your BMR accounts for 60-75% of total daily energy expenditure. The remaining comes from physical activity and the thermic effect of food",
+            "7": "Sleep deprivation can reduce BMR by 5-10% and increase cravings for high-calorie foods. Prioritize 7-9 hours of quality sleep when managing weight",
+            "8": "For muscle gain, a surplus of 200-400 calories above maintenance is generally sufficient. Larger surpluses lead to more fat gain",
+            "9": "Track your weight and intake consistently for 2-3 weeks, then adjust based on actual results. The {st} provides a starting point, not a prescription"
+          },
+          "heart-rate": {
+            "0": "Calculate your maximum heart rate using 220 minus your age, but individual variation can be significant. A stress test provides the most accurate measurement",
+            "1": "Measure resting heart rate first thing in the morning before getting out of bed. A consistently elevated resting rate may signal overtraining or illness",
+            "2": "Use heart rate zones to target specific training effects: Zone 2 (60-70% of max) builds aerobic base, while Zone 4-5 (80-100%) improves anaerobic capacity",
+            "3": "A lower resting heart rate generally indicates better cardiovascular fitness. Elite athletes often have resting rates in the 40-50 bpm range",
+            "4": "Track your recovery heart rate — how much it drops one minute after intense exercise. A drop of 20+ beats indicates good cardiovascular fitness",
+            "5": "Stay hydrated when checking heart rate. Dehydration can elevate heart rate by 5-10 bpm, skewing your zone calculations",
+            "6": "Use the {st} to determine your target heart rate range for different workout intensities. Staying in the right zone maximizes training efficiency",
+            "7": "Certain medications like beta-blockers lower heart rate and affect exercise calculations. Consult your doctor for adjusted targets",
+            "8": "Compare heart rate data across different types of exercise. Running typically produces higher rates than cycling at the same perceived effort",
+            "9": "Use a heart rate monitor for real-time feedback during workouts rather than spot checks. Continuous data provides better insight into training zones"
+          },
+          "body-fat": {
+            "0": "Body fat percentage is a better health indicator than BMI alone. Healthy ranges are 10-20% for men and 18-28% for women, varying by age and activity",
+            "1": "Different measurement methods (calipers, bioelectrical impedance, DEXA) give different results. Use the same method consistently when tracking changes",
+            "2": "Ideal body weight formulas (Devine, Miller, Hamwi) do not account for muscle mass. Use them as rough guidelines, not strict targets",
+            "3": "Track body fat percentage trends rather than absolute numbers. A consistent downward trend indicates progress even with daily fluctuations",
+            "4": "Visceral fat around organs is more harmful than subcutaneous fat. Waist-to-hip ratio is a useful additional metric alongside the {st}",
+            "5": "For accurate caliper measurements, measure at the same sites and same time of day. Consistency matters more than absolute precision",
+            "6": "Women naturally have higher essential body fat than men due to hormonal functions. Do not compare body fat percentages across genders",
+            "7": "Use the {st} alongside progress photos and how your clothes fit for a complete picture of body composition changes",
+            "8": "Ideal weight ranges increase with age — the standard BMI-based ideal weight may be too low for adults over 65",
+            "9": "Rapid weight loss often includes significant muscle loss. Aim to lose no more than 0.5-1% of body weight per week to preserve lean mass"
+          },
+          "pregnancy": {
+            "0": "A due date is an estimate — only about 4% of babies are born exactly on their due date. Full-term delivery between 37-42 weeks is normal",
+            "1": "Ovulation typically occurs 14 days before your next period. Track your cycle for several months to identify your personal pattern",
+            "2": "Use the {st} to plan maternity leave, but remain flexible. Prepare for the possibility of delivering 2-3 weeks before or after the estimate",
+            "3": "The first day of your last menstrual period (LMP) is the standard starting point for due date calculations, even though conception occurs about two weeks later",
+            "4": "Ovulation prediction is most accurate when combined with other signs: basal body temperature, cervical mucus, and ovulation predictor kits",
+            "5": "Irregular cycles make due date and ovulation calculations less reliable. If cycle length varies by more than 7 days, consult your healthcare provider",
+            "6": "Use the {st} to track weekly milestones and fetal development stages. Each week brings specific developmental changes",
+            "7": "Due dates are typically adjusted after the first-trimester ultrasound, which measures crown-rump length for more accurate dating",
+            "8": "The fertile window spans approximately 6 days — the 5 days before ovulation and the day of ovulation itself",
+            "9": "Stress, travel, and illness can delay ovulation even in regular cycles. Do not rely solely on calendar-based calculations for birth control"
+          },
+          "water": {
+            "0": "The common recommendation of 8 glasses (64 oz) per day is a general guideline. Actual needs vary by body weight, activity, climate, and diet",
+            "1": "A simple starting formula: body weight in pounds divided by 2 equals ounces of water per day. The {st} provides a more precise estimate",
+            "2": "Increase water intake during hot weather, high-altitude activities, and when flying to compensate for increased fluid loss through sweat and respiration",
+            "3": "Urine color is a practical hydration indicator — pale yellow indicates good hydration, while dark yellow or amber means you need more fluids",
+            "4": "Eating water-rich foods (fruits, vegetables, soups) contributes significantly to daily hydration. About 20% of water intake comes from food",
+            "5": "Thirst is a late indicator of dehydration. By the time you feel thirsty, you may already be 1-2% dehydrated, impairing cognitive and physical performance",
+            "6": "Caffeinated beverages count toward daily fluid intake — the diuretic effect is minimal for moderate regular consumers",
+            "7": "During exercise, drink 5-10 ounces of water every 15-20 minutes. For workouts over 60 minutes, consider electrolyte-replacement beverages",
+            "8": "Older adults have a diminished thirst sensation and are at higher risk of dehydration. Use the {st} to set daily intake targets",
+            "9": "Alcohol has a strong diuretic effect — for each drink, your body loses about 4 ounces of extra water. Rehydrate accordingly after drinking"
+          },
+          "protein": {
+            "0": "The RDA for protein is 0.8 g per kg of body weight, but active individuals and older adults benefit from 1.2-2.0 g per kg for optimal health",
+            "1": "Distribute protein evenly across meals (20-40g per meal) rather than eating most at dinner for better muscle protein synthesis throughout the day",
+            "2": "Complete proteins (meat, eggs, dairy, soy, quinoa) contain all essential amino acids. Plant-based eaters should combine complementary proteins daily",
+            "3": "Post-workout protein within 2 hours of exercise maximizes muscle repair and growth. Aim for 20-40g of fast-digesting protein like whey or soy",
+            "4": "For weight loss, higher protein intake (1.6-2.2 g per kg) helps preserve muscle and increases satiety, making it easier to stick to a calorie deficit",
+            "5": "Older adults (65+) need more protein (1.0-1.2 g per kg minimum) to counteract age-related muscle loss and maintain strength and mobility",
+            "6": "Track your macro split (protein, carbs, fat) as percentages of total calories rather than absolute grams when adjusting for different goals",
+            "7": "Fat intake should not drop below 20% of total calories for hormonal health, especially for women who need adequate fat for reproductive hormone production",
+            "8": "Carbohydrate needs vary widely — endurance athletes may need 6-10 g per kg, while those on low-carb diets may consume as little as 50g per day",
+            "9": "Use the {st} to set starting targets, then adjust based on energy levels, performance, and body composition changes over 2-3 weeks"
+          },
+          "default": {
+            "0": "Consult your healthcare provider before making significant changes to your diet, exercise, or health routine based on calculator results",
+            "1": "Track your health metrics over time rather than relying on a single measurement. Trends provide more meaningful insights than individual data points",
+            "2": "Use consistent measurement conditions — same time of day, same equipment, similar circumstances — for the most comparable results",
+            "3": "Health calculators provide estimates based on population averages. Individual results may vary by 10-20% from calculated values",
+            "4": "Combine multiple health metrics for a complete picture. No single number tells the whole story about your health",
+            "5": "Update your measurements regularly as your body and health status change. Recalculate every 4-8 weeks for accurate tracking",
+            "6": "Enter your age, gender, and activity level accurately — these factors significantly influence health calculations and their interpretation",
+            "7": "Use the calculator results as a conversation starter with your doctor rather than as a self-diagnosis or self-treatment tool",
+            "8": "Bookmark the {st} and track your results in a journal or app to identify patterns and measure progress over time",
+            "9": "Remember that health is multidimensional — the {st} addresses one aspect, but sleep, stress, mental health, and social connections all matter"
+          }
+        },
+        "math": {
+          "0": "Double-check your inputs before relying on the result. A misplaced decimal or wrong sign can lead to entirely incorrect answers",
+          "1": "Use the step-by-step breakdown if available to understand how the result was derived. This reinforces learning and helps verify accuracy",
+          "2": "The calculator supports decimal values — do not round intermediate values prematurely for better precision in the final result",
+          "3": "For complex problems, break them down into smaller steps and verify each part independently before combining them",
+          "4": "Bookmark calculators you use frequently for quick access. Many math calculators also work great for checking homework and studying",
+          "5": "Understand what operation the calculator performs and why. Knowing the underlying concept helps you apply the result correctly",
+          "6": "Use the {st} to check your work after solving problems manually. This builds confidence and catches errors in your reasoning",
+          "7": "Try different input values to explore how the mathematical relationship works. Changing one variable at a time reveals cause and effect",
+          "8": "For geometry and trigonometry problems, draw a diagram alongside the calculator to visualize what you are calculating",
+          "9": "Keep a record of important calculations and their results. Revisiting them later can help reinforce mathematical concepts and track progress"
+        },
+        "conversion": {
+          "0": "Always double-check that the \"From\" and \"To\" units are set correctly. A common mistake is converting in the wrong direction",
+          "1": "The calculator uses internationally standardized conversion factors for maximum accuracy. Results are precise to multiple decimal places",
+          "2": "For cooking conversions, note that volume measurements vary by ingredient density. Weight-based conversions are more accurate for dry ingredients",
+          "3": "When converting temperatures, remember that celsius-to-fahrenheit and fahrenheit-to-celsius use formulas, not simple multiplication factors",
+          "4": "Bookmark the converters you use most often. Common conversions like kg-to-lbs, miles-to-km, and celsius-to-fahrenheit are popular everyday tools",
+          "5": "Know the difference between US customary and imperial units — a US gallon differs from a UK gallon, and the {st} accounts for this",
+          "6": "Use the {st} to convert between derived units like speed (mph to km/h), pressure (psi to kPa), and energy (calories to joules)",
+          "7": "For currency conversions, check that the exchange rate is current. Rates fluctuate daily and the calculator uses the latest available data",
+          "8": "When converting measurements for a recipe, convert all ingredients using the same source to maintain consistent ratios",
+          "9": "Understand the scale of the units you are converting — converting millimeters to kilometers moves the decimal six places, so small input errors multiply quickly"
+        },
+        "date-time": {
+          "0": "Double-check the date format when entering dates manually. Use the date picker when available to avoid errors",
+          "1": "Remember that date calculations automatically account for leap years and varying month lengths",
+          "2": "For business day calculations, check if your region's holidays are included in the calculator. You may need to manually adjust for specific holidays",
+          "3": "Time calculations use 24-hour format internally, but most calculators accept both 12-hour and 24-hour input",
+          "4": "When calculating durations crossing midnight or spanning multiple days, the calculator handles the day boundary automatically",
+          "5": "Use the {st} to plan project timelines by calculating end dates from start dates and durations, accounting for weekends and holidays",
+          "6": "For age calculations, the calculator uses the exact difference between birth date and the current or specified date, including leap day birthdays",
+          "7": "When scheduling across time zones, calculate the time difference separately and add it to the result for accurate cross-timezone planning",
+          "8": "Use the date calculator to determine deadlines, warranty periods, and subscription renewal dates by adding days or months from a starting point",
+          "9": "For recurring events, calculate intervals in days rather than months for more precision — months have varying lengths that can shift dates unexpectedly"
+        },
+        "construction": {
+          "0": "Always add a waste factor (typically 5-15%) when ordering materials. This accounts for cutting errors, breakage, and irregular spaces",
+          "1": "Measure twice, enter once. Double-check your measurements before relying on the calculator's estimates",
+          "2": "Material prices vary by region and quality. Use current local prices for the most accurate cost estimates",
+          "3": "Consider ordering slightly more than calculated for materials like tile and flooring. Having extra for repairs is much easier than matching stock later",
+          "4": "For concrete projects, order by the cubic yard and factor in the delivery minimum. Smaller projects may have higher per-yard delivery costs",
+          "5": "Use the {st} to compare material options. A cheaper material with a shorter lifespan may cost more in the long run when factoring in replacement labor",
+          "6": "Account for the actual dimensions of lumber and sheet goods — a 2x4 is actually 1.5 x 3.5 inches, which affects quantity calculations for framing",
+          "7": "For paint and flooring, calculate the area of each wall or section separately rather than multiplying total length by width. Doors and windows reduce coverage needs",
+          "8": "Factor in local building codes when planning your project. Minimum requirements for things like rebar spacing, footing depth, and railing height may affect quantities",
+          "9": "Use the {st} during the design phase, not just when ordering. Running calculations early helps you adjust plans before committing to materials"
+        },
+        "statistics": {
+          "0": "Check for outliers in your data before interpreting results. A single extreme value can significantly skew the mean and standard deviation",
+          "1": "Use the median instead of the mean when your data has outliers or is not symmetrically distributed",
+          "2": "The standard deviation is most meaningful when your data follows a normal (bell-shaped) distribution",
+          "3": "Larger sample sizes generally provide more reliable estimates of population parameters",
+          "4": "Always consider the context of your data. Statistical measures alone do not tell the full story — understand what your data represents",
+          "5": "Use the {st} to calculate confidence intervals alongside point estimates. A confidence interval provides a range that likely contains the true population value",
+          "6": "Be careful with correlation — a high correlation between two variables does not prove that one causes the other. Confounding variables may be involved",
+          "7": "When working with percentages and proportions, ensure your sample size is large enough. Proportions based on very small samples have wide confidence intervals",
+          "8": "Use the {st} to detect trends in time-series data by applying moving averages or regression analysis to smooth out short-term fluctuations",
+          "9": "Document your data source, collection method, and sample size alongside your results. Reproducibility is a cornerstone of sound statistical analysis"
+        },
+        "education": {
+          "0": "Keep track of all your grades throughout the semester, not just exams. Small assignments add up and can significantly impact your final grade",
+          "1": "Use the \"what if\" feature to set target grades and see what scores you need on remaining work to achieve them",
+          "2": "Remember that different courses may use different grading scales. Check your syllabus and select the correct scale in the calculator",
+          "3": "Regular GPA checks help you stay on track. Do not wait until the end of the semester to see where you stand",
+          "4": "Consider the credit weight of each course — a B in a 4-credit course affects your GPA more than an A in a 1-credit course",
+          "5": "Use the {st} to plan your semester strategically. Knowing the minimum grades needed on remaining assignments helps prioritize study time across courses",
+          "6": "Understand how your school handles pass/fail courses, withdrawals, and repeated courses in GPA calculations. These policies vary by institution",
+          "7": "For cumulative GPA, recalculate after each semester rather than averaging semester GPAs. A 4.0 in a 12-credit semester and a 3.0 in a 6-credit semester do not average to 3.5",
+          "8": "Use the grade calculator to compare different scoring scenarios. Knowing how much a single missed assignment can hurt your grade is powerful motivation",
+          "9": "Check whether your school uses weighted or unweighted GPA. Weighted GPAs give extra points for honors, AP, or IB courses and change the calculation approach"
+        },
+        "physics": {
+          "0": "Always include units in your thinking, even if the calculator handles them. Understanding units helps catch errors and verify results",
+          "1": "Check that your values are reasonable before accepting results. Physics calculations should produce results that make intuitive sense",
+          "2": "Use the appropriate number of significant figures based on your input precision. The calculator typically displays results with reasonable precision",
+          "3": "For kinematics problems, pay attention to direction. Velocity and acceleration are vector quantities with both magnitude and direction",
+          "4": "Remember that many physics formulas assume ideal conditions. Real-world results vary due to friction, air resistance, and other factors",
+          "5": "Use the {st} to check the consistency of your units before calculating — mixing meters and centimeters without converting will produce wrong answers",
+          "6": "For energy and work problems, account for efficiency losses. No real system is 100% efficient, and the calculator can model different efficiency scenarios",
+          "7": "When working with formulas, identify the known and unknown variables first. Physics problems often have multiple pathways to the same answer",
+          "8": "Use the {st} to explore how changing one variable affects the result. Doubling the mass in a kinetic energy calculation quadruples the energy",
+          "9": "Draw a free-body diagram alongside calculator use for force and motion problems. Visualizing forces helps identify which values to enter and in what direction"
+        },
+        "chemistry": {
+          "0": "Always use the correct units for each input. Mixing grams and moles without accounting for molar mass will give incorrect results",
+          "1": "Pay attention to significant figures — your result cannot be more precise than your least precise input",
+          "2": "Standard atomic weights are updated periodically. The calculator uses the latest IUPAC values for accuracy",
+          "3": "For solution chemistry, remember that temperature affects volume and therefore concentration. Most calculations assume standard temperature (25°C)",
+          "4": "Double-check chemical formulas before entering them. A subscript error can significantly change molar mass calculations",
+          "5": "Use the {st} to verify stoichiometric ratios before running a reaction. Starting with the correct mole ratios prevents wasted reagents",
+          "6": "For gas law calculations, ensure pressure and temperature units are consistent with the gas constant R being used. Common mismatches cause large errors",
+          "7": "When calculating percent yield, use actual experimental mass divided by theoretical mass times 100. Yields above 100% indicate impurities or measurement errors",
+          "8": "Understand the difference between concentrated and dilute solutions when performing dilution calculations. Use C1V1 = C2V2 for accurate dilutions",
+          "9": "Use the {st} to double-check manual calculations from lab work. Small arithmetic errors in multi-step chemistry problems are common and easily caught"
+        },
+        "engineering": {
+          "0": "Always note which standards and codes the calculator is based on. Different regions may use different design standards",
+          "1": "Results from this calculator are suitable for preliminary design and educational purposes. Always verify with detailed analysis for final designs",
+          "2": "Be consistent with units throughout your calculation. The calculator supports SI and imperial, but mixing them without conversion causes errors",
+          "3": "Consider safety factors appropriate for your application. The calculator may include standard safety margins — verify they match your requirements",
+          "4": "Document your input values and results for future reference. Engineering calculations should always be traceable and reproducible",
+          "5": "Use the {st} to perform parametric studies by varying one design parameter at a time. This reveals which variables most affect the final design",
+          "6": "Always include a factor of safety in your final design. The difference between failure and survival often comes down to adequate safety margins",
+          "7": "Check the calculator assumptions against your specific operating conditions. A model that assumes static loading may not apply to dynamic or cyclic loading scenarios",
+          "8": "Use the {st} early in the design process to narrow down viable options before committing to detailed analysis on a single approach",
+          "9": "Cross-check results with hand calculations or simplified models when possible. If a simplified model gives a very different answer, investigate before proceeding"
+        },
+        "everyday": {
+          "0": "For tip calculations, the standard tipping rate in the US is 15-20%, though you can adjust based on service quality",
+          "1": "When splitting bills, remember to include tax and tip in the total before dividing. The calculator handles this automatically",
+          "2": "For discount calculations, watch for stores that stack discounts. Calculate the final price after applying multiple discounts sequentially",
+          "3": "Round up for simplicity in everyday situations, but use exact values when precision matters for budgeting or planning",
+          "4": "Bookmark calculators you use frequently for quick access from your browser or mobile device",
+          "5": "Use the {st} to quickly compare per-unit prices between different package sizes. The largest package is not always the best value",
+          "6": "For time management, use the calculator to break large tasks into smaller time blocks. Knowing exactly how long each subtask takes improves scheduling accuracy",
+          "7": "When planning trips, use the {st} to calculate fuel costs based on distance, fuel efficiency, and current gas prices for accurate travel budgeting",
+          "8": "For home improvement projects, calculate paint or material coverage based on actual wall dimensions minus windows and doors to avoid over-ordering",
+          "9": "Use the {st} to convert between measurement systems when following international recipes or instructions. Precision matters for baking and DIY projects"
+        },
+        "food": {
+          "0": "When scaling recipes, some ingredients like spices and leavening agents do not scale linearly. Use caution with very large or very small scaling factors",
+          "1": "For baking, weigh ingredients by grams rather than using volume measurements for more consistent results",
+          "2": "Nutritional values are estimates based on standard databases. Actual values vary by brand, ripeness, preparation method, and specific ingredients",
+          "3": "When scaling down a recipe, it may be difficult to measure very small quantities accurately. Consider making a larger batch and freezing portions",
+          "4": "Use the {st} to convert between volume and weight measurements for different ingredients. Flour, sugar, and butter all have different densities",
+          "5": "For meal prep, calculate nutritional content per serving after dividing total recipe yield. The {st} handles batch cooking portioning automatically",
+          "6": "Adjust cooking times when scaling recipes — doubling the ingredients does not double the cooking time. Use visual doneness cues alongside the calculator",
+          "7": "When substituting ingredients, account for differences in moisture content, sweetness, and fat content. The calculator helps adjust quantities proportionally",
+          "8": "Use the {st} to calculate nutritional targets per meal when following specific diets like keto, paleo, or Mediterranean. Track macros against daily goals",
+          "9": "For sous vide or precision cooking, use the calculator to determine cooking times based on thickness and desired doneness. Temperature accuracy is critical"
+        },
+        "biology": {
+          "0": "Biological systems have natural variability. Results are estimates based on standard models and may not account for all variables",
+          "1": "Use consistent units when entering measurements. The calculator supports both metric and imperial units",
+          "2": "For genetics and population calculations, remember that real populations rarely match ideal model assumptions perfectly",
+          "3": "Results should be interpreted alongside other data and observations for a complete understanding of biological systems",
+          "4": "Use the {st} to explore how small changes in initial conditions can lead to very different outcomes in biological models and simulations",
+          "5": "When working with growth models, distinguish between exponential and logistic growth. Real populations face resource constraints that limit exponential growth",
+          "6": "Use the {st} alongside microscopic or observational data to quantify what you see. Converting observations to numbers enables more rigorous analysis",
+          "7": "For enzyme kinetics and biochemical calculations, note that temperature and pH significantly affect reaction rates beyond what standard models capture",
+          "8": "Use the {st} to calculate dilution series for lab experiments. Serial dilutions are common in microbiology and require precise volume calculations",
+          "9": "When analyzing ecological or biological data, always run the same calculation multiple times with slightly varied inputs to test the robustness of your conclusions"
+        },
+        "ecology": {
+          "0": "Ecological models simplify complex natural systems. Results provide estimates, not precise predictions",
+          "1": "Use the most accurate and recent data available for the most reliable estimates. Ecological conditions change over time",
+          "2": "Consider multiple indicators rather than relying on a single ecological metric for decision-making",
+          "3": "For conservation planning, always factor in uncertainty margins. Ecological systems have inherent variability",
+          "4": "Use the {st} to model population trends under different scenarios. Understanding best-case, worst-case, and most-likely outcomes guides better management decisions",
+          "5": "When calculating biodiversity indices, note that sampling effort greatly affects results. More intensive sampling generally reveals higher diversity",
+          "6": "Use the {st} to estimate carrying capacity and compare it with current population sizes. This helps identify species at risk of resource depletion",
+          "7": "For habitat fragmentation calculations, consider edge effects — the ratio of edge to interior habitat changes as fragment size decreases, affecting species composition",
+          "8": "Use the {st} to calculate ecological footprints and compare different lifestyle or policy scenarios. Small per-capita changes multiply across large populations",
+          "9": "When analyzing field data, account for detection probability — not all individuals in a survey area are detected. The {st} can incorporate correction factors"
+        },
+        "sports": {
+          "0": "For heart rate training, use your actual measured maximum heart rate rather than age-based formulas for more accurate zone calculations",
+          "1": "Pace calculations assume consistent effort over the entire distance. In real races, pace varies with terrain, weather, and energy levels",
+          "2": "Track your results over time to see trends. A single data point is less useful than the trajectory of improvement",
+          "3": "Use the calculator to plan negative splits — running the second half of a race slightly faster than the first for optimal performance",
+          "4": "Combine pace, heart rate, and perceived effort data for the most complete picture of your training and racing performance",
+          "5": "Use the {st} to calculate intensity zones based on heart rate reserve (Karvonen formula) rather than percentage of max alone for more personalized training ranges",
+          "6": "For interval training, use the calculator to precisely set work-to-rest ratios. Common ratios include 1:1 for VO2 max work and 1:3 for anaerobic capacity sessions",
+          "7": "Adjust your pacing strategy for elevation gain — climbing 100 feet per mile adds roughly 10-15 seconds per mile to your pace compared to flat terrain",
+          "8": "Use the {st} to calculate your fitness age or VO2 max estimate from race times. These metrics provide a benchmark for comparing fitness across different event distances",
+          "9": "For strength training, use one-rep max calculators to set appropriate working set weights. Training at 65-75% of 1RM is ideal for hypertrophy, while 80-90% builds strength"
+        },
+        "default": {
+          "0": "Enter accurate values for the most reliable results. Small input errors can lead to significantly different outcomes",
+          "1": "Use the calculator to explore different scenarios by adjusting inputs. This helps you understand how different factors affect results",
+          "2": "Bookmark this page for quick access whenever you need to perform this type of calculation",
+          "3": "Share the calculator with others who might find it useful. All our calculators are free to use",
+          "4": "Contact us if you have questions or suggestions for improving the calculator",
+          "5": "Use the {st} alongside other tools in the same category for a more comprehensive analysis. Combining calculators often reveals insights a single tool cannot",
+          "6": "Try the premium features like scenario saving and CSV export if you need to run the same calculation with different inputs or track results over time",
+          "7": "The {st} is designed for both beginners and experts. Start with the default values to see a sample calculation, then customize inputs for your specific situation",
+          "8": "Check the formula and methodology section below to understand exactly how the result is calculated. Knowing the math behind the tool builds confidence in the output",
+          "9": "Use the {st} on mobile or desktop — it is fully responsive and works great on any device for calculations on the go"
+        }
+      }
     }
   },
   "homepage": {
@@ -1114,7 +2396,12 @@
     "heading": "Page non trouvée",
     "message": "La page que vous cherchez a peut-être été supprimée, renommée ou est temporairement indisponible.",
     "goHome": "Aller à la Page d'Accueil",
-    "redirectNotice": "Vous serez redirigé vers la page d'accueil dans {seconds} secondes..."
+    "redirectNotice": "Vous serez redirigé vers la page d'accueil dans {seconds} secondes...",
+    "searchPlaceholder": "Search calculators...",
+    "popularTitle": "Popular calculators",
+    "browseHubTitle": "Browse by category",
+    "browseAll": "Browse all calculators",
+    "suggestion": "Try searching above or pick a category below."
   },
   "standalone": {
     "amortizationTitle": "Calculatrice d'Amortissement",

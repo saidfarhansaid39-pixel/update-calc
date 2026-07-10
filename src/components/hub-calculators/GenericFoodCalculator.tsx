@@ -7,6 +7,7 @@ import { z } from 'zod'
 import { CalculatorFormField } from '@/components/forms/CalculatorFormField'
 import { CalculatorSlider } from '@/components/forms/CalculatorSlider'
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic'
+import { DynamicHealthBarChart } from '@/components/premium/DynamicCharts'
 import type { UnitSystem } from '@/components/premium/PremiumCalculatorShell'
 import { FieldsByMode } from '@/lib/calc-field-helper'
 import { getUnits, toBaseUnit } from '@/lib/units'
@@ -244,6 +245,15 @@ export function GenericFoodCalculator({ calculator }: Props) {
     vals[key] = numericVal
   })
 
+  const chartData = useMemo(() => {
+    const entries = Object.entries(v).filter(([, val]) => val && !isNaN(parseFloat(String(val))))
+    if (entries.length === 0) return []
+    return entries.slice(0, 6).map(([k, val]) => ({
+      name: k.length > 15 ? k.substring(0, 15) + '…' : k,
+      value: parseFloat(String(val)) || 0,
+    }))
+  }, [v])
+
   const resultData = useMemo(() => {
     if (!def) return null
     return def.compute(vals)
@@ -326,7 +336,7 @@ export function GenericFoodCalculator({ calculator }: Props) {
             </div>
           )}
         </div>
-      } lockedFields={lockedFields} onExtraFieldsChange={setExtraFields} onSaveScenario={saveScenario} onExportCSV={exportCSV} unitSystem={unitSystem} onUnitChange={setUnitSystem} inputs={watchedInputs} showTabs={true} useSlider={useSlider} onToggleSlider={() => setUseSlider(!useSlider)} presets={presets} onPresetApply={applyPreset} formula={def ? 'See step-by-step' : 'Food calculation'} interpretation={def?.description || 'Food and nutrition calculator for cooking and meal planning.'} author={foodAuthor} reviewer={{ name: 'Dr. James Kent', photoUrl: 'https://i.pravatar.cc/150?u=james-kent', credential: 'PhD, RD', title: 'Professor of Nutrition', linkedIn: 'https://www.linkedin.com/in/james-kent-nutrition' }} references={foodReferences} example={foodExample.length > 0 ? foodExample : undefined} userCount={8934} onReset={() => {
+      } charts={chartData.length > 0 ? <DynamicHealthBarChart data={chartData} /> : undefined} lockedFields={lockedFields} onExtraFieldsChange={setExtraFields} onSaveScenario={saveScenario} onExportCSV={exportCSV} unitSystem={unitSystem} onUnitChange={setUnitSystem} inputs={watchedInputs} showTabs={true} useSlider={useSlider} onToggleSlider={() => setUseSlider(!useSlider)} presets={presets} onPresetApply={applyPreset} formula={def ? 'See step-by-step' : 'Food calculation'} interpretation={def?.description || 'Food and nutrition calculator for cooking and meal planning.'} author={foodAuthor} reviewer={{ name: 'Dr. James Kent', photoUrl: 'https://i.pravatar.cc/150?u=james-kent', credential: 'PhD, RD', title: 'Professor of Nutrition', linkedIn: 'https://www.linkedin.com/in/james-kent-nutrition' }} references={foodReferences} example={foodExample.length > 0 ? foodExample : undefined} userCount={8934} onReset={() => {
           const locked = Object.fromEntries(
             Array.from(lockedFields).map(key => [key, form.getValues(key)])
           )

@@ -20,7 +20,7 @@ export function CalculatorLayout({ title, breadcrumbs, children, sidebar }: Calc
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
       {/* Breadcrumbs */}
       <div className="flex justify-between items-center mb-4">
-        <nav className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
+        <nav className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-300">
           {breadcrumbs.map((crumb, index) => (
             <span key={index} className="flex items-center gap-1.5">
               <Link href={crumb.href} className="hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] transition-colors capitalize">

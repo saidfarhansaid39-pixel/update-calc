@@ -6,16 +6,26 @@ const withNextIntl = createNextIntlPlugin()
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   compress: true,
-  webpack: (config) => config,
+  webpack: (config) => {
+    config.resolve = config.resolve || {}
+    config.resolve.fallback = { ...(config.resolve.fallback || {}), fs: false }
+    return config
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 3600,
+    remotePatterns: [
+      { protocol: 'https', hostname: 'i.pravatar.cc' },
+    ],
+  },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,
   },
   poweredByHeader: false,
   reactStrictMode: true,
   staticPageGenerationTimeout: 180,
   experimental: {
-    optimizePackageImports: ['lucide-react', 'recharts', 'framer-motion', 'minisearch', '@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-select', '@radix-ui/react-tabs', '@radix-ui/react-tooltip'],
+    optimizePackageImports: ['lucide-react', 'recharts', 'framer-motion', 'minisearch', '@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-select', '@radix-ui/react-tabs', '@radix-ui/react-tooltip', '@heroicons/react'],
     cpus: 8,
   },
 
@@ -30,6 +40,20 @@ const nextConfig = {
           { key: 'X-XSS-Protection', value: '1; mode=block' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'X-DNS-Prefetch-Control', value: 'on' },
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://plausible.io https://*.vercel-analytics.com",
+              "style-src 'self' 'unsafe-inline'",
+              "img-src 'self' data: blob: https:",
+              "font-src 'self' data: https:",
+              "connect-src 'self' https://open.er-api.com https://financialmodelingprep.com https://*.vercel-analytics.com",
+              "frame-ancestors 'self'",
+              "form-action 'self'",
+              "base-uri 'self'",
+            ].join('; '),
+          },
         ],
       },
       {
@@ -40,6 +64,12 @@ const nextConfig = {
       },
       {
         source: '/favicon.svg',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400' },
+        ],
+      },
+      {
+        source: '/manifest.json',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=86400' },
         ],
@@ -60,6 +90,18 @@ const nextConfig = {
         source: '/:path(.+\\.(?:woff2?|ttf|otf|eot))',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        source: '/search-index/:path*.json',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        source: '/:path(.+\\.json)',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800' },
         ],
       },
     ]

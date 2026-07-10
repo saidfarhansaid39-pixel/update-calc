@@ -67,7 +67,7 @@ export function Footer() {
                 <span className="text-[#1a3a8a]">Calculators</span>
               </span>
             </Link>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 max-w-xs">
+            <p className="text-sm text-gray-500 dark:text-gray-300 mb-4 max-w-xs">
               {t('tagline')}
             </p>
           </div>
@@ -82,7 +82,7 @@ export function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-gray-500 dark:text-gray-400 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] transition-colors"
+                      className="text-sm text-gray-500 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -94,12 +94,12 @@ export function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-gray-400 dark:text-gray-500">
+          <p className="text-xs text-gray-400 dark:text-gray-400">
             {t('copyright', { year: new Date().getFullYear() })}
           </p>
           <div className="flex items-center gap-4">
             <LocaleSwitcher />
-            <p className="text-xs text-gray-400 dark:text-gray-500">
+            <p className="text-xs text-gray-400 dark:text-gray-400">
               {t('motto')}
             </p>
           </div>

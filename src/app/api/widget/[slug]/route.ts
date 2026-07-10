@@ -1,5 +1,17 @@
 import { NextResponse } from 'next/server'
 
+const rateLimit = new Map<string, { count: number; reset: number }>()
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now()
+  const entry = rateLimit.get(ip)
+  if (!entry || now > entry.reset) {
+    rateLimit.set(ip, { count: 1, reset: now + 60000 })
+    return true
+  }
+  entry.count++
+  return entry.count <= 60
+}
+
 const calculatorRegistry: Record<string, { title: string; description: string; category: string }> = {
   'bmi-calculator': { title: 'BMI Calculator', description: 'Calculate your Body Mass Index', category: 'health' },
   'calorie-calculator': { title: 'Calorie Calculator', description: 'Calculate your daily calorie needs', category: 'health' },
@@ -18,6 +30,11 @@ export async function GET(
   request: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
+  const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || 'unknown'
+  if (!checkRateLimit(clientIp)) {
+    return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
+  }
+
   const { slug } = await params
   const calc = calculatorRegistry[slug]
 

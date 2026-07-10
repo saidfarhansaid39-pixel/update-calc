@@ -1,0 +1,11 @@
+import { z } from 'zod'
+import type { CalcDef } from '../../../lib/generic-fallback'
+const calcDef: CalcDef = {
+  schema: z.object({ sleepHours: z.string().min(1,'Required').refine(v=>parseFloat(v)>=0,'≥0'), workMet: z.string().min(1,'Required').refine(v=>parseFloat(v)>=0,'≥0'), workHours: z.string().min(1,'Required').refine(v=>parseFloat(v)>=0,'≥0'), leisureMet: z.string().min(1,'Required').refine(v=>parseFloat(v)>=0,'≥0'), leisureHours: z.string().min(1,'Required').refine(v=>parseFloat(v)>=0,'≥0') }),
+  fields: [{ name:'sleepHours', label:'Sleep (hours/day)', type:'number', min:0, max:24, step:'0.5' }, { name:'workMet', label:'Work MET (1-10)', type:'number', min:1, max:10, step:'0.1' }, { name:'workHours', label:'Work (hours/day)', type:'number', min:0, max:24, step:'0.5' }, { name:'leisureMet', label:'Leisure MET (1-8)', type:'number', min:1, max:8, step:'0.1' }, { name:'leisureHours', label:'Leisure (hours/day)', type:'number', min:0, max:24, step:'0.5' }],
+  compute: (v) => { const sl=parseFloat(v.sleepHours)||8; const wMet=parseFloat(v.workMet)||1.5; const wH=parseFloat(v.workHours)||8; const lMet=parseFloat(v.leisureMet)||1.5; const lH=parseFloat(v.leisureHours)||6; const sleepPal=(sl*0.95)/24; const workPal=(wH*wMet)/24; const leisurePal=(lH*lMet)/24; const other=24-sl-wH-lH; const otherPal=(other*1.4)/24; const pal=sleepPal+workPal+leisurePal+otherPal; return { result:pal, label:'PAL (Calculated)', unit:'', steps:[{ label:'Sleep Component', value:sleepPal.toFixed(3) },{ label:'Work Component', value:workPal.toFixed(3) },{ label:'Leisure Component', value:leisurePal.toFixed(3) },{ label:'Other (1.4 MET)', value:otherPal.toFixed(3) },{ label:'Total PAL', value:pal.toFixed(2) }] } },
+  description: 'Calculates Physical Activity Level from reported activity types and durations.',
+  formula: 'PAL = ∑(MET_i × hours_i) / 24. Sleep ≈0.95 MET, rest ≈1.4 MET. Work and leisure vary.',
+  interpretation: 'Component-based PAL gives a more accurate activity classification than predictive equations alone.'
+}
+export default calcDef

@@ -1,0 +1,11 @@
+import { z } from 'zod'
+import type { CalcDef } from '../../../lib/generic-fallback'
+const calcDef: CalcDef = {
+  schema: z.object({ weight: z.string().min(1,'Required').refine(v=>parseFloat(v)>0,'>0'), preWeight: z.string().min(1,'Required').refine(v=>parseFloat(v)>=0,'≥0'), postWeight: z.string().min(1,'Required').refine(v=>parseFloat(v)>=0,'≥0'), drinkMl: z.string().min(1,'Required').refine(v=>parseFloat(v)>=0,'≥0'), durationMin: z.string().min(1,'Required').refine(v=>parseFloat(v)>0,'>0') }),
+  fields: [{ name:'weight', label:'Body Weight (kg)', type:'number', min:20, step:'0.1' }, { name:'preWeight', label:'Pre-Exercise Weight (kg)', type:'number', min:20, step:'0.1' }, { name:'postWeight', label:'Post-Exercise Weight (kg)', type:'number', min:20, step:'0.1' }, { name:'drinkMl', label:'Fluid Consumed (mL)', type:'number', min:0, step:'10' }, { name:'durationMin', label:'Exercise Duration (min)', type:'number', min:1, step:'5' }],
+  compute: (v) => { const w=parseFloat(v.weight)||70; const pre=parseFloat(v.preWeight)||70; const post=parseFloat(v.postWeight)||68.5; const drink=parseFloat(v.drinkMl)||500; const dur=parseFloat(v.durationMin)||60; const weightLoss=pre-post; const netLoss=(weightLoss*1000)-drink; const sweatRate=netLoss/dur; const pctDehyd=(weightLoss/w)*100; return { result:sweatRate, label:'Sweat Rate', unit:'mL/min', steps:[{ label:'Weight Loss', value:weightLoss.toFixed(2)+' kg' },{ label:'Net Fluid Loss', value:netLoss.toFixed(0)+' mL' },{ label:'Sweat Rate', value:sweatRate.toFixed(1)+' mL/min' },{ label:'Dehydration %', value:pctDehyd.toFixed(1)+'%' }] } },
+  description: 'Calculates sweat rate from pre/post exercise weight changes and fluid intake, used for hydration planning.',
+  formula: 'Sweat Rate = {(Pre - Post) × 1000 - Drink} / Duration. >2% body mass loss = significant dehydration.',
+  interpretation: 'Typical sweat rates: 0.5-1.5 mL/min (low), 1.5-2.5 (moderate), >2.5 (high). Replace ~125% of loss within 2h post-exercise.'
+}
+export default calcDef

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useMemo, useCallback, useEffect } from 'react'
+import Image from 'next/image'
 import { Calculator, RotateCcw, Download, Copy, Share2, Printer, TrendingUp, AlertCircle, Info, CheckCircle2, Settings2, Eye, EyeOff, BarChart3, RefreshCw, Plus, Save, Scissors, Trash2, DownloadCloud, FileSpreadsheet, FileText, Lightbulb, Target, Brain, Zap, ChevronDown, ChevronUp, X, AlertTriangle, Sparkles, Edit3, Flag, BookOpen, Layers, Sliders, Table2, Network, GitBranch, LineChart, PieChart, BarChart, Activity, Check, CopyCheck, ExternalLink, Heart, DollarSign, Droplet, Leaf, Microscope, Dumbbell, Globe, Award, ClipboardList, HardHat, Gauge, Clock, Sun, Moon, Atom, GraduationCap, Ruler, ThumbsUp, Linkedin, History, Crosshair } from 'lucide-react'
 import { SchemaMarkup, calculatorSchema, faqSchema, howToSchema, breadcrumbListSchema } from '@/components/SchemaMarkup'
 import { generateCalculatorContent, longFormArticlesReady } from '@/lib/seo/calculator-content-engine'
@@ -39,6 +40,7 @@ import { ResultQualityBadge } from '@/components/premium/ResultQualityBadge'
 import { InputRangeValidator } from '@/components/premium/InputRangeValidator'
 import { getQualityInfo, getInputRanges } from '@/lib/quality/calculator-quality'
 import { getExtraFieldsForCalculator } from '@/lib/extra-field-pools'
+import { getHubTheme } from '@/lib/hub-themes'
 import { ExtraFieldsProvider } from '@/lib/context/ExtraFieldsContext'
 import { useAutoSave } from '@/lib/hooks/useAutoSave'
 import { useLocale } from 'next-intl'
@@ -51,14 +53,14 @@ import type { Currency, MeasurementSystem } from '@/lib/i18n/calculator-i18n'
 
 export type UnitSystem = 'metric' | 'imperial' | 'us'
 
-interface Scenario {
+export interface Scenario {
   id: string
   label: string
   snapshot: string
   mainValue?: number
 }
 
-interface Preset {
+export interface Preset {
   label: string
   values: Record<string, string>
 }
@@ -137,7 +139,7 @@ interface ExampleItem {
   steps?: { label: string; value: string }[]
 }
 
-interface PremiumCalculatorShellProps {
+export interface PremiumCalculatorShellProps {
   calculator: {
     slug: string
     title: string
@@ -200,6 +202,7 @@ interface PremiumCalculatorShellProps {
   onExtraFieldsChange?: (values: Record<string, string>) => void
   rangeVisualizer?: React.ReactNode
   onRestoreValues?: (values: Record<string, string>) => void
+  onCalculate?: () => void
 }
 
 const hubIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -229,7 +232,7 @@ const unitOptions: { value: UnitSystem; label: string }[] = [
 
 
 
-function BreadcrumbNav({ items }: { items: { label: string; href: string }[] }) {
+function BreadcrumbNav({ items, accent }: { items: { label: string; href: string }[]; accent?: string }) {
   return (
     <nav aria-label="breadcrumb" className="mb-4">
       <ol className="flex items-center gap-1.5 text-xs text-gray-400 dark:text-gray-500">
@@ -241,7 +244,11 @@ function BreadcrumbNav({ items }: { items: { label: string; href: string }[] }) 
               </svg>
             )}
             {i < items.length - 1 ? (
-              <a href={item.href} className="hover:text-primary dark:hover:text-primary transition-colors">
+              <a
+                href={item.href}
+                className="hover:text-primary dark:hover:text-primary transition-colors"
+                style={accent && i === 1 ? { color: accent, fontWeight: 500 } : undefined}
+              >
                 {item.label}
               </a>
             ) : (
@@ -258,7 +265,7 @@ function AuthorCard({ author, label }: { author: Author; label: string }) {
   return (
     <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
       {author.photoUrl ? (
-        <img src={author.photoUrl} alt={author.name} className="w-10 h-10 rounded-full object-cover shrink-0" />
+        <Image src={author.photoUrl} alt={author.name} width={40} height={40} loading="lazy" decoding="async" className="w-10 h-10 rounded-full object-cover shrink-0" />
       ) : (
         <div className="w-10 h-10 rounded-full bg-[#1a3a8a]/10 flex items-center justify-center text-[#06b6d4] font-bold text-sm shrink-0">
           {author.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
@@ -296,6 +303,7 @@ export function PremiumCalculatorShell({
   onExtraFieldsChange,
   rangeVisualizer,
   onRestoreValues,
+  onCalculate,
 }: PremiumCalculatorShellProps) {
   const locale = useLocale()
   const [showContent, setShowContent] = useState(false)
@@ -345,7 +353,29 @@ export function PremiumCalculatorShell({
   const [restoreDismissed, setRestoreDismissed] = useState(false)
   const [copiedValue, setCopiedValue] = useState<string | null>(null)
   const { history, addEntry, removeEntry, clearHistory, showHistory, setShowHistory, exportCSV, searchQuery, setSearchQuery, clearConfirm, setClearConfirm, calcStats } = useCalculatorHistory(calculator.slug, calculator.title)
+  const calcRootRef = React.useRef<HTMLDivElement>(null)
   const autoSave = useAutoSave({ slug: calculator.slug })
+  const FORM_HISTORY_MAX = 10
+  const [formHistory, setFormHistory] = useState<Record<string, string>[]>([])
+  const [formHistoryIndex, setFormHistoryIndex] = useState(-1)
+  const prevInputsRef = React.useRef<Record<string, string> | undefined>(undefined)
+  const skipTrackingRef = React.useRef(false)
+  React.useEffect(() => {
+    if (!inputs || skipTrackingRef.current) {
+      skipTrackingRef.current = false
+      if (!inputs) prevInputsRef.current = undefined
+      return
+    }
+    if (prevInputsRef.current === inputs) return
+    prevInputsRef.current = inputs
+    setFormHistory(prev => {
+      const next = prev.slice(0, Math.max(formHistoryIndex + 1, 0))
+      next.push({ ...inputs })
+      if (next.length > FORM_HISTORY_MAX) next.shift()
+      return next
+    })
+    setFormHistoryIndex(prev => Math.min(prev + 1, FORM_HISTORY_MAX - 1))
+  }, [inputs, formHistoryIndex])
   const hasInputs = inputs && Object.keys(inputs).length > 0
 
   useEffect(() => {
@@ -455,6 +485,7 @@ export function PremiumCalculatorShell({
   } as CalculatorEntry), [calculator, articleTick])
 
   const HubIcon = hubIcons[calculator.category] || Zap
+  const hubTheme = getHubTheme(calculator.hubSlug || calculator.category)
 
   const handleExport = useCallback((format: string) => {
     if (format === 'print') window.print()
@@ -513,6 +544,54 @@ export function PremiumCalculatorShell({
   const removeScenario = useCallback((id: string) => {
     setScenarios(prev => prev.filter(s => s.id !== id))
   }, [])
+
+  const handleCalculate = useCallback(() => {
+    if (onCalculate) {
+      onCalculate()
+      return
+    }
+    const root = calcRootRef.current
+    if (!root) return
+    const form = root.querySelector('form')
+    if (form) {
+      (form as HTMLFormElement).requestSubmit?.()
+      return
+    }
+    const trigger = root.querySelector<HTMLButtonElement>('[data-calculate-trigger]')
+    trigger?.click()
+  }, [onCalculate])
+
+  React.useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.key === 'Enter' && (e.ctrlKey || e.metaKey))) {
+        e.preventDefault()
+        handleCalculate()
+      }
+      if (e.key === 'Escape') {
+        const active = document.activeElement as HTMLElement | null
+        if (active && active !== document.body) active.blur()
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
+        e.preventDefault()
+        skipTrackingRef.current = true
+        if (e.shiftKey) {
+          if (formHistoryIndex < formHistory.length - 1) {
+            const nextIdx = formHistoryIndex + 1
+            setFormHistoryIndex(nextIdx)
+            onRestoreValues?.(formHistory[nextIdx])
+          }
+        } else {
+          if (formHistoryIndex > 0) {
+            const prevIdx = formHistoryIndex - 1
+            setFormHistoryIndex(prevIdx)
+            onRestoreValues?.(formHistory[prevIdx])
+          }
+        }
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [handleCalculate, formHistory, formHistoryIndex, onRestoreValues])
 
   const hubFAQs: Record<string, { q: string; a: string }[]> = {
     financial: [
@@ -646,8 +725,8 @@ export function PremiumCalculatorShell({
         { label: calculator.title, href: `/${calculator.hubSlug}/${calculator.slug}` },
       ]}
     >
-      <div className="space-y-6">
-        <BreadcrumbNav items={[
+      <div className="space-y-6 pb-24 sm:pb-0" style={{ '--hub-accent': hubTheme.accent } as React.CSSProperties}>
+        <BreadcrumbNav accent={hubTheme.accent} items={[
           { label: 'Home', href: '/' },
           { label: calculator.hubName, href: `/${calculator.hubSlug}` },
           { label: calculator.title, href: `/${calculator.hubSlug}/${calculator.slug}` },
@@ -682,12 +761,25 @@ export function PremiumCalculatorShell({
         {/* Calculator Engine */}
         <CalculatorErrorBoundary>
         {loading ? <CalculatorLoadingSkeleton /> : calcError ? (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
-            <CalculatorEmptyState title={calculator.title} />
+          <div
+            role="alert"
+            className="bg-red-50 dark:bg-red-900/10 rounded-2xl border border-red-200 dark:border-red-900/30 p-4 sm:p-6 shadow-sm"
+          >
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="w-6 h-6 text-red-500 dark:text-red-400 shrink-0 mt-0.5" aria-hidden="true" />
+              <div className="min-w-0">
+                <h3 className="text-base font-semibold text-red-700 dark:text-red-300">
+                  Please check your inputs
+                </h3>
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                  {calcError}
+                </p>
+              </div>
+            </div>
           </div>
         ) : (
         <CalculatorModeProvider mode={mode}>
-        <div id="calculator" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
+        <div id="calculator" ref={calcRootRef} className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
           {/* Calculator Mode Toggle & Toolbar */}
           {tierFeatures.modes && (
             <div className="mb-6">
@@ -732,7 +824,7 @@ export function PremiumCalculatorShell({
               </ExtraFieldInjector>
               </ExtraFieldsProvider>
             </div>
-            <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 sm:p-6 flex flex-col justify-center max-w-full overflow-x-auto">
+            <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 sm:p-6 flex flex-col justify-center max-w-full overflow-x-auto min-h-[180px]">
               {showTabs && modeLevel >= 1 ? (
                 <ResultTabs
                   mainResult={result}
@@ -1283,6 +1375,33 @@ export function PremiumCalculatorShell({
             />
           </div>
         )}
+      </div>
+
+      {/* Sticky mobile Calculate CTA */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden border-t border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3">
+          <div className="min-w-0 flex-1">
+            {mainValue !== undefined ? (
+              <div className="min-w-0">
+                <p className="text-[11px] uppercase tracking-wide text-gray-400 dark:text-gray-500">Result</p>
+                <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                  {calculator.title}: <span className="text-[#1a759f] dark:text-[#06b6d4]">{typeof mainValue === 'number' ? mainValue.toLocaleString(undefined, { maximumFractionDigits: 2 }) : mainValue}</span>
+                </p>
+              </div>
+            ) : (
+              <p className="text-sm text-gray-500 dark:text-gray-400">Enter your values above</p>
+            )}
+          </div>
+          <button
+            type="button"
+            onClick={handleCalculate}
+            aria-label={mainValue !== undefined ? 'Recalculate' : 'Calculate'}
+            className="inline-flex touch-target min-w-[44px] flex-shrink-0 items-center justify-center gap-1.5 rounded-xl bg-gradient-to-br from-[#1a3a8a] to-[#06b6d4] px-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:opacity-90 active:scale-[0.98]"
+          >
+            <Calculator className="h-4 w-4" />
+            {mainValue !== undefined ? 'Recalculate' : 'Calculate'}
+          </button>
+        </div>
       </div>
     </CalculatorLayout>
   )

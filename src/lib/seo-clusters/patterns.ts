@@ -167,6 +167,76 @@ const audienceVariants: ClusterTemplate[] = [
       { q: 'Can I see the derivation?', a: 'Yes, the formula derivation is explained step by step, showing how the final equation is derived from first principles.' },
     ],
   },
+  {
+    suffix: 'for-students',
+    titleTemplate: '{title} for Students',
+    descriptionTemplate: 'Free {shortTitle} {toolType} for students. Learn the concepts, check your homework, and see how each result is calculated with clear explanations.',
+    h1Template: '{title} for Students',
+    introTemplate: 'This {title} is built for students. Use it to check homework, study for exams, and understand the reasoning behind every result with plain-language explanations and worked steps.',
+    searchIntent: 'Find a student-friendly calculator that explains concepts and helps check homework.',
+    audience: 'Students at high school, college, and university level',
+    faqTemplates: [
+      { q: 'Is this {shortTitle} {toolType} free for students?', a: 'Yes, it is completely free with no sign-up required — ideal for coursework, homework, and exam preparation.' },
+      { q: 'Can I use it to check my homework?', a: 'Absolutely. Enter your values to verify your answers and review the step-by-step breakdown to understand any mistakes.' },
+      { q: 'Does it explain the concepts?', a: 'Yes, each result is accompanied by explanations of the underlying concepts so you learn while you calculate.' },
+    ],
+  },
+  {
+    suffix: 'professional-grade',
+    titleTemplate: '{title} for Professionals',
+    descriptionTemplate: 'Professional-grade {shortTitle} {toolType} with high precision, advanced parameters, and export-ready results for workplace use.',
+    h1Template: '{title} for Professionals & Practitioners',
+    introTemplate: 'Designed for working professionals, this {title} offers high-precision output, advanced input options, and export-ready results suitable for reports, client work, and technical documentation.',
+    searchIntent: 'A professional-grade calculator with precision and export options for workplace use.',
+    audience: 'Working professionals, analysts, and practitioners who need precise, documentable results',
+    faqTemplates: [
+      { q: 'What makes this professional-grade?', a: 'It uses precise formulas, supports advanced parameters, and produces results you can export and cite in professional reports.' },
+      { q: 'Can I export the results?', a: 'Yes, results can be exported and shared, making the tool suitable for client-facing and internal documentation.' },
+      { q: 'Are the formulas industry-standard?', a: 'The calculations follow established, widely accepted methods used across the relevant industry or discipline.' },
+    ],
+  },
+  {
+    suffix: 'for-beginners',
+    titleTemplate: '{title} for Beginners',
+    descriptionTemplate: 'Beginner-friendly {shortTitle} {toolType}. Simple inputs, plain-language guidance, and easy explanations — no prior experience needed.',
+    h1Template: '{title} for Beginners – Simple & Easy',
+    introTemplate: 'New to this? This beginner-friendly {title} keeps things simple with clear labels, helpful defaults, and plain-language guidance so you can get an accurate result without any prior experience.',
+    searchIntent: 'Find an easy, beginner-friendly calculator with simple inputs and clear guidance.',
+    audience: 'Beginners and first-time users who want a simple, guided experience',
+    faqTemplates: [
+      { q: 'Do I need any experience to use this {shortTitle} {toolType}?', a: 'No experience is needed. The tool uses simple inputs and explains what each field means as you go.' },
+      { q: 'What if I do not know a value?', a: 'Sensible defaults and inline hints help you fill in fields even if you are unsure, so you still get a useful estimate.' },
+      { q: 'Is it accurate for beginners?', a: 'Yes, the simplified interface still uses the same reliable formulas — it just presents them in an easier way.' },
+    ],
+  },
+  {
+    suffix: 'for-advanced',
+    titleTemplate: '{title} – Advanced',
+    descriptionTemplate: 'Advanced {shortTitle} {toolType} with extra parameters, edge-case handling, and detailed output for power users who need more control.',
+    h1Template: '{title} – Advanced Mode',
+    introTemplate: 'This advanced {title} unlocks extra parameters, edge-case handling, and detailed output for power users. Fine-tune every input and explore how each variable affects the final result.',
+    searchIntent: 'An advanced calculator with extra parameters and detailed control for power users.',
+    audience: 'Advanced and power users who need additional parameters and control',
+    faqTemplates: [
+      { q: 'What advanced options are available?', a: 'You can adjust additional parameters, handle edge cases, and view a more detailed breakdown of the calculation.' },
+      { q: 'Is the advanced version harder to use?', a: 'It exposes more controls, but you can ignore the extras and still get a standard result if you prefer.' },
+      { q: 'How precise are advanced results?', a: 'Advanced mode maintains high precision and surfaces intermediate values so you can verify each stage.' },
+    ],
+  },
+  {
+    suffix: 'free-online',
+    titleTemplate: 'Free {title} Online',
+    descriptionTemplate: 'Free online {shortTitle} {toolType} — no sign-up, no download, no cost. Instant, accurate results right in your browser on any device.',
+    h1Template: 'Free {title} Online – No Sign-Up',
+    introTemplate: 'Use this free {title} online with no sign-up, no download, and no cost. It runs instantly in your browser on any device and gives accurate results every time.',
+    searchIntent: 'Find a completely free online calculator with no sign-up or download required.',
+    audience: 'Anyone looking for a free, instant, no-registration calculator',
+    faqTemplates: [
+      { q: 'Is this {shortTitle} {toolType} really free?', a: 'Yes, it is 100% free with no sign-up, subscription, or hidden charges.' },
+      { q: 'Do I need to download anything?', a: 'No, it runs entirely in your web browser — nothing to install on any device.' },
+      { q: 'Is there a usage limit?', a: 'No, you can use the calculator as many times as you like at no cost.' },
+    ],
+  },
 ]
 
 const financeVariants: ClusterTemplate[] = [
@@ -1757,11 +1827,203 @@ const sportsVariants: ClusterTemplate[] = [
   },
 ]
 
+// ---------------------------------------------------------------------------
+// Hub-specific keyword templates for under-covered hubs. These add extra
+// long-tail, keyword-focused variants on top of the shared audience + hub
+// variant pools for hubs whose content coverage scored low.
+// ---------------------------------------------------------------------------
+
+const biologyKeywordVariants: ClusterTemplate[] = [
+  {
+    suffix: 'lab-guide',
+    titleTemplate: '{title} – Lab Guide',
+    descriptionTemplate: 'Use this {shortTitle} {toolType} in the biology lab. Accurate calculations for experiments, sample preparation, and data analysis with worked examples.',
+    h1Template: '{title} for the Biology Lab',
+    introTemplate: 'This {title} supports biology lab work — from experiment setup and sample preparation to data analysis. Get accurate, repeatable results with clear step-by-step guidance.',
+    searchIntent: 'Find a biology calculator for lab experiments, sample prep, and data analysis.',
+    audience: 'Biology students, lab technicians, and researchers',
+    faqTemplates: [
+      { q: 'Can I use this {shortTitle} {toolType} for lab reports?', a: 'Yes, it produces accurate, repeatable results suitable for documenting experiments and lab reports.' },
+      { q: 'What units does it support?', a: 'It handles the standard biological and metric units used in laboratory work.' },
+      { q: 'Is it suitable for coursework?', a: 'Yes, it is ideal for biology coursework, practicals, and independent research projects.' },
+    ],
+  },
+  {
+    suffix: 'explained-simply',
+    titleTemplate: '{title} Explained Simply',
+    descriptionTemplate: 'Understand {shortTitle} in biology with a plain-language explanation. Free {toolType} with concepts, formulas, and real-world biological examples.',
+    h1Template: '{title} in Biology – Explained Simply',
+    introTemplate: 'This guide explains {shortTitle} in biology using plain language and relatable examples. Learn what it measures, why it matters, and how to interpret your results.',
+    searchIntent: 'Learn what a biology calculation means with simple, real-world explanations.',
+    audience: 'Learners and enthusiasts wanting an intuitive grasp of biology concepts',
+    faqTemplates: [
+      { q: 'What does this {shortTitle} {toolType} measure?', a: 'It quantifies a key biological property, explained here with everyday examples so the concept is easy to grasp.' },
+      { q: 'Why does this matter in biology?', a: 'Understanding this value helps interpret experiments, physiology, and ecological relationships.' },
+      { q: 'Do I need a science background?', a: 'No, the explanations are written for a general audience with no prior biology knowledge required.' },
+    ],
+  },
+]
+
+const ecologyKeywordVariants: ClusterTemplate[] = [
+  {
+    suffix: 'sustainability-guide',
+    titleTemplate: '{title} – Sustainability Guide',
+    descriptionTemplate: 'Measure your environmental impact with this {shortTitle} {toolType}. Free, accurate ecology calculations to support sustainable choices and reporting.',
+    h1Template: '{title} for Sustainability',
+    introTemplate: 'This {title} helps you measure environmental impact and make more sustainable choices. Get accurate ecology calculations for personal goals, projects, and reporting.',
+    searchIntent: 'Find an ecology calculator to measure environmental impact and support sustainability.',
+    audience: 'Environmentally conscious individuals, students, and sustainability professionals',
+    faqTemplates: [
+      { q: 'How can this {shortTitle} {toolType} help sustainability?', a: 'It quantifies environmental impact so you can identify where to reduce, offset, or improve your footprint.' },
+      { q: 'Is the data based on recognized standards?', a: 'The calculations use established environmental factors and widely referenced methodologies.' },
+      { q: 'Can I use results for reporting?', a: 'Yes, the output is suitable for personal tracking, projects, and sustainability reporting.' },
+    ],
+  },
+  {
+    suffix: 'carbon-footprint',
+    titleTemplate: '{title} & Carbon Footprint',
+    descriptionTemplate: 'Estimate the carbon footprint linked to {shortTitle}. Free ecology {toolType} showing emissions impact and practical ways to reduce it.',
+    h1Template: '{title} – Carbon Footprint Impact',
+    introTemplate: 'This {title} connects your inputs to their carbon footprint, showing the emissions impact and offering practical steps to reduce it.',
+    searchIntent: 'Understand the carbon footprint and emissions impact of an ecology calculation.',
+    audience: 'Climate-conscious users wanting to understand and reduce emissions',
+    faqTemplates: [
+      { q: 'How is the carbon footprint estimated?', a: 'It applies recognized emissions factors to your inputs to estimate the associated carbon impact.' },
+      { q: 'How can I reduce my footprint?', a: 'The results highlight the biggest contributors and suggest practical reduction strategies.' },
+      { q: 'Are the emissions factors up to date?', a: 'The tool uses widely referenced emissions factors aligned with current environmental data.' },
+    ],
+  },
+]
+
+const foodKeywordVariants: ClusterTemplate[] = [
+  {
+    suffix: 'recipe-guide',
+    titleTemplate: '{title} for Recipes',
+    descriptionTemplate: 'Use this {shortTitle} {toolType} for cooking and recipes. Free, accurate food calculations for scaling, substitutions, and meal planning.',
+    h1Template: '{title} for Cooking & Recipes',
+    introTemplate: 'This {title} is made for the kitchen. Scale recipes, plan meals, and get accurate food calculations whether you are cooking for one or a crowd.',
+    searchIntent: 'Find a food calculator for recipes, scaling, and meal planning.',
+    audience: 'Home cooks, meal planners, and recipe developers',
+    faqTemplates: [
+      { q: 'Can I scale recipes with this {shortTitle} {toolType}?', a: 'Yes, it helps you scale ingredients up or down while keeping proportions accurate.' },
+      { q: 'Does it handle common kitchen units?', a: 'Yes, it supports the everyday cooking and metric units used in recipes.' },
+      { q: 'Is it useful for meal planning?', a: 'Absolutely — it helps you plan portions, quantities, and nutrition for meals.' },
+    ],
+  },
+  {
+    suffix: 'nutrition-guide',
+    titleTemplate: '{title} – Nutrition Guide',
+    descriptionTemplate: 'Understand the nutrition behind {shortTitle}. Free food {toolType} with clear breakdowns to support healthy eating and dietary goals.',
+    h1Template: '{title} – Nutrition Breakdown',
+    introTemplate: 'This {title} breaks down the nutrition involved so you can make informed dietary choices. Track intake, compare options, and support your health goals.',
+    searchIntent: 'Get a nutrition breakdown to support healthy eating and dietary goals.',
+    audience: 'Health-conscious eaters and anyone tracking nutrition',
+    faqTemplates: [
+      { q: 'What nutrition details does this {shortTitle} {toolType} show?', a: 'It presents the key nutritional values relevant to the calculation in an easy-to-read breakdown.' },
+      { q: 'Can it help with dietary goals?', a: 'Yes, it helps you track and compare intake against your personal dietary targets.' },
+      { q: 'Are the nutrition figures reliable?', a: 'The figures are based on standard nutritional reference data commonly used in dietary planning.' },
+    ],
+  },
+]
+
+const sportsKeywordVariants: ClusterTemplate[] = [
+  {
+    suffix: 'training-guide',
+    titleTemplate: '{title} – Training Guide',
+    descriptionTemplate: 'Use this {shortTitle} {toolType} to plan and track training. Free, accurate sports calculations for athletes, coaches, and fitness goals.',
+    h1Template: '{title} for Training',
+    introTemplate: 'This {title} supports smarter training. Plan workouts, track progress, and hit performance targets with accurate sports calculations for every level.',
+    searchIntent: 'Find a sports calculator for training plans, tracking, and performance goals.',
+    audience: 'Athletes, coaches, and fitness enthusiasts',
+    faqTemplates: [
+      { q: 'How does this {shortTitle} {toolType} help training?', a: 'It gives you accurate numbers to plan sessions, set targets, and monitor progress over time.' },
+      { q: 'Is it suitable for beginners and pros?', a: 'Yes, it works for all levels — from first-time trainees to competitive athletes and coaches.' },
+      { q: 'Can coaches use it for athletes?', a: 'Yes, coaches can use it to prescribe and track training loads for their athletes.' },
+    ],
+  },
+  {
+    suffix: 'performance-guide',
+    titleTemplate: '{title} – Performance Guide',
+    descriptionTemplate: 'Improve your performance with this {shortTitle} {toolType}. Free sports calculations to benchmark, compare, and optimize results.',
+    h1Template: '{title} – Performance Benchmarking',
+    introTemplate: 'This {title} helps you benchmark and optimize performance. Compare your numbers against targets and track improvements as you progress.',
+    searchIntent: 'Benchmark and optimize athletic performance with a sports calculator.',
+    audience: 'Competitive athletes and performance-focused trainees',
+    faqTemplates: [
+      { q: 'How can this {shortTitle} {toolType} improve performance?', a: 'It benchmarks your results so you can identify gaps and focus your training where it matters most.' },
+      { q: 'Can I compare results over time?', a: 'Yes, recalculate as you improve to track progress against your previous performance.' },
+      { q: 'Are the benchmarks realistic?', a: 'The tool uses established performance references relevant to your sport and level.' },
+    ],
+  },
+]
+
+const everydayKeywordVariants: ClusterTemplate[] = [
+  {
+    suffix: 'quick-guide',
+    titleTemplate: '{title} – Quick Guide',
+    descriptionTemplate: 'A fast, free {shortTitle} {toolType} for everyday tasks. Simple inputs and instant results to solve common day-to-day questions.',
+    h1Template: '{title} – Quick Everyday Guide',
+    introTemplate: 'This {title} makes everyday tasks quick and easy. Enter a few details and get an instant, reliable answer to common day-to-day questions.',
+    searchIntent: 'Find a quick everyday calculator for common day-to-day tasks.',
+    audience: 'Anyone solving practical, everyday problems',
+    faqTemplates: [
+      { q: 'What is this {shortTitle} {toolType} used for?', a: 'It solves a common everyday question quickly, with simple inputs and an instant result.' },
+      { q: 'Is it quick to use?', a: 'Yes, it is designed for speed — just enter your details and get an answer right away.' },
+      { q: 'Do I need to sign up?', a: 'No sign-up is needed; the tool is free and ready to use instantly.' },
+    ],
+  },
+  {
+    suffix: 'money-saving',
+    titleTemplate: '{title} – Save Money',
+    descriptionTemplate: 'Save money with this {shortTitle} {toolType}. Free everyday calculations to compare options and make smarter, budget-friendly decisions.',
+    h1Template: '{title} – Smart Money-Saving Guide',
+    introTemplate: 'This {title} helps you save money on everyday decisions. Compare options, avoid overspending, and make budget-friendly choices with confidence.',
+    searchIntent: 'Use an everyday calculator to compare options and save money.',
+    audience: 'Budget-conscious households and savvy shoppers',
+    faqTemplates: [
+      { q: 'How does this {shortTitle} {toolType} save money?', a: 'It lets you compare options side by side so you can pick the most cost-effective choice.' },
+      { q: 'Can it help with budgeting?', a: 'Yes, it supports smarter, budget-friendly decisions for everyday spending.' },
+      { q: 'Is it accurate?', a: 'Yes, it uses reliable calculations so your money-saving decisions are well informed.' },
+    ],
+  },
+]
+
+const chemistryKeywordVariants: ClusterTemplate[] = [
+  {
+    suffix: 'lab-guide',
+    titleTemplate: '{title} – Lab Guide',
+    descriptionTemplate: 'Use this {shortTitle} {toolType} in the chemistry lab. Accurate calculations for solutions, reactions, and measurements with worked examples.',
+    h1Template: '{title} for the Chemistry Lab',
+    introTemplate: 'This {title} supports chemistry lab work — preparing solutions, balancing reactions, and taking measurements. Get precise, repeatable results with clear guidance.',
+    searchIntent: 'Find a chemistry calculator for lab solutions, reactions, and measurements.',
+    audience: 'Chemistry students, lab technicians, and researchers',
+    faqTemplates: [
+      { q: 'Can I use this {shortTitle} {toolType} for lab work?', a: 'Yes, it produces precise, repeatable results suitable for preparing solutions and documenting experiments.' },
+      { q: 'What units and constants does it use?', a: 'It uses standard chemistry units and accepted physical constants for accurate results.' },
+      { q: 'Is it good for coursework?', a: 'Yes, it is ideal for chemistry coursework, practicals, and research.' },
+    ],
+  },
+  {
+    suffix: 'formula-steps',
+    titleTemplate: '{title} – Formula & Steps',
+    descriptionTemplate: 'See the chemistry formula and every step for {shortTitle}. Free {toolType} explaining the equation, variables, and worked calculation.',
+    h1Template: '{title} – Chemistry Formula & Steps',
+    introTemplate: 'This {title} shows the chemistry formula and walks through each calculation step. Understand the equation, the variables, and how the result is derived.',
+    searchIntent: 'Understand the chemistry formula and step-by-step calculation.',
+    audience: 'Chemistry students and learners who want the formula explained',
+    faqTemplates: [
+      { q: 'What formula does this {shortTitle} {toolType} use?', a: 'It applies the standard chemistry equation for the calculation, shown in full on the page.' },
+      { q: 'Are the steps shown?', a: 'Yes, every step is displayed so you can follow how the result is derived from your inputs.' },
+      { q: 'Can I use this to study?', a: 'Yes, the formula and worked steps make it a useful study and homework-checking aid.' },
+    ],
+  },
+]
+
 export function getPatternsForCategory(category: string): ClusterTemplate[] {
   switch (category) {
     case 'financial': return [...audienceVariants, ...financeVariants]
     case 'health': return [...audienceVariants, ...healthVariants]
-    case 'biology': return [...audienceVariants, ...biologyVariants]
+    case 'biology': return [...audienceVariants, ...biologyVariants, ...biologyKeywordVariants]
     case 'math': return [...audienceVariants, ...mathVariants]
     case 'conversion': return [...audienceVariants, ...conversionVariants]
     case 'construction': return [...audienceVariants, ...constructionVariants]
@@ -1769,12 +2031,12 @@ export function getPatternsForCategory(category: string): ClusterTemplate[] {
     case 'statistics': return [...audienceVariants, ...statsVariants]
     case 'education': return [...audienceVariants, ...educationVariants]
     case 'physics': return [...audienceVariants, ...physicsVariants]
-    case 'chemistry': return [...audienceVariants, ...chemistryVariants]
+    case 'chemistry': return [...audienceVariants, ...chemistryVariants, ...chemistryKeywordVariants]
     case 'engineering': return [...audienceVariants, ...engineeringVariants]
-    case 'everyday': return [...audienceVariants, ...everydayVariants]
-    case 'food': return [...audienceVariants, ...foodVariants]
-    case 'ecology': return [...audienceVariants, ...ecologyVariants]
-    case 'sports': return [...audienceVariants, ...sportsVariants]
+    case 'everyday': return [...audienceVariants, ...everydayVariants, ...everydayKeywordVariants]
+    case 'food': return [...audienceVariants, ...foodVariants, ...foodKeywordVariants]
+    case 'ecology': return [...audienceVariants, ...ecologyVariants, ...ecologyKeywordVariants]
+    case 'sports': return [...audienceVariants, ...sportsVariants, ...sportsKeywordVariants]
     default: return audienceVariants
   }
 }

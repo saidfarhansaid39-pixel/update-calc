@@ -25,7 +25,18 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#1a3a8a',
+          50: '#ecfeff',
+          100: '#cffafe',
+          200: '#a5f3fc',
+          300: '#67e8f9',
+          400: '#22d3ee',
+          500: '#06b6d4',
+          600: '#0891b2',
+          700: '#0e7490',
+          800: '#155e75',
+          900: '#164e63',
+          950: '#083344',
+          DEFAULT: '#06b6d4',
           dark: '#0a1d4f',
           light: '#3d61b0',
         },
@@ -215,7 +226,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['var(--font-sans)', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
         arabic: ['var(--font-arabic)', 'Tahoma', 'Arial', 'sans-serif'],
         japanese: ['var(--font-japanese)', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', 'sans-serif'],
         chinese: ['var(--font-chinese)', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', 'sans-serif'],

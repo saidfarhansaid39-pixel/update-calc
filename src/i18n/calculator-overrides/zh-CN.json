@@ -16912,88 +16912,88 @@
     "description": "免费 Vertical Jump — Sports performance and fitness calculator for athletes, coaches, and trainers."
   },
   "standing-long-jump": {
-    "title": "Standing Long Jump",
-    "description": "免费 Standing Long Jump — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "站立跳远",
+    "description": "免费站立跳远 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "agility-t-test": {
-    "title": "Agility T-Test",
-    "description": "免费 Agility T-Test — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "敏捷性T测试",
+    "description": "免费敏捷性T测试 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "illinois-agility": {
-    "title": "Illinois Agility",
-    "description": "免费 Illinois Agility — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "伊利诺伊敏捷性",
+    "description": "免费伊利诺伊敏捷性 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "pro-agility": {
-    "title": "Pro Agility 5-10-5",
-    "description": "免费 Pro Agility 5-10-5 — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "专业敏捷性5-10-5",
+    "description": "免费专业敏捷性5-10-5 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "hexagon-agility": {
-    "title": "Hexagon Agility",
-    "description": "免费 Hexagon Agility — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "六边形敏捷性",
+    "description": "免费六边形敏捷性 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "wingate-test": {
-    "title": "Wingate Test",
-    "description": "免费 Wingate Test — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "温格特测试",
+    "description": "免费温格特测试 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "vertical-power": {
-    "title": "Vertical Power",
-    "description": "免费 Vertical Power — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "垂直力量",
+    "description": "免费垂直力量 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "broad-jump": {
-    "title": "Broad Jump Power",
-    "description": "免费 Broad Jump Power — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "宽跳力量",
+    "description": "免费宽跳力量 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "medicine-ball-throw": {
-    "title": "Medicine Ball Throw",
-    "description": "免费 Medicine Ball Throw — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "药球投掷",
+    "description": "免费药球投掷 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "reactive-strength": {
     "title": "RSI计算器",
     "description": "免费 RSI Calculator — Sports performance and fitness calculator for athletes, coaches, and trainers."
   },
   "drop-jump": {
-    "title": "Drop Jump",
-    "description": "免费 Drop Jump — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "下落跳",
+    "description": "免费下落跳 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "basketball-fg": {
-    "title": "Basketball FG Percentage",
-    "description": "免费 Basketball FG Percentage — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "篮球投篮命中率",
+    "description": "免费篮球投篮命中率 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "basketball-3pt": {
-    "title": "3 Point Percentage",
-    "description": "免费 3 Point Percentage — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "三分球命中率",
+    "description": "免费三分球命中率 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "basketball-ft": {
-    "title": "Free Throw Percentage",
-    "description": "免费 Free Throw Percentage — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "罚球命中率",
+    "description": "免费罚球命中率 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "basketball-per": {
-    "title": "PER Rating",
-    "description": "免费 PER Rating — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "PER评分",
+    "description": "免费PER评分 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "basketball-true-shooting": {
-    "title": "True Shooting Percentage",
-    "description": "免费 True Shooting Percentage — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "真实投篮命中率",
+    "description": "免费真实投篮命中率 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "soccer-passing": {
-    "title": "Soccer Passing Accuracy",
-    "description": "免费 Soccer Passing Accuracy — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "足球传球准确率",
+    "description": "免费足球传球准确率 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "soccer-possession": {
-    "title": "Soccer Possession",
-    "description": "免费 Soccer Possession — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "足球控球率",
+    "description": "免费足球控球率 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "football-passer": {
-    "title": "NFL Passer Rating",
-    "description": "免费 NFL Passer Rating — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "NFL传球评分",
+    "description": "免费NFL传球评分 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "football-completion": {
-    "title": "Completion Percentage",
-    "description": "免费 Completion Percentage — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "完成传球率",
+    "description": "免费完成传球率 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "baseball-batting": {
-    "title": "Batting Average",
-    "description": "免费 Batting Average — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "棒球击球平均值",
+    "description": "免费棒球击球平均值 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "baseball-ops": {
     "title": "OPS计算器",
@@ -17004,15 +17004,15 @@
     "description": "免费 WHIP Calculator — Sports performance and fitness calculator for athletes, coaches, and trainers."
   },
   "tennis-serving": {
-    "title": "Tennis Serve Speed",
-    "description": "免费 Tennis Serve Speed — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "网球发球速度",
+    "description": "免费网球发球速度 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "golf-handicap": {
-    "title": "Golf Handicap",
-    "description": "免费 Golf Handicap — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "高尔夫球手杆",
+    "description": "免费高尔夫球手杆 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   },
   "golf-driving": {
-    "title": "Golf Driving Distance",
-    "description": "免费 Golf Driving Distance — Sports performance and fitness calculator for athletes, coaches, and trainers."
+    "title": "高尔夫球击球距离",
+    "description": "免费高尔夫球击球距离 — 为运动员、教练和训练师提供的体育表现和健身计算器。"
   }
 }

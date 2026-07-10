@@ -23,7 +23,11 @@ export function CalculatorModeToggle({ mode, onChange, availableModes }: Calcula
   const modes = availableModes ? allModes.filter(m => availableModes.includes(m.id)) : allModes
 
   return (
-    <div className="flex items-center gap-1 p-1 bg-gray-100 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700" role="group" aria-label="Calculator mode">
+    <div 
+      className="flex items-center gap-1 p-1 bg-gray-100 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700" 
+      role="radiogroup" 
+      aria-label="Calculator mode"
+    >
       {modes.map(m => {
         const Icon = m.icon
         const isActive = mode === m.id
@@ -32,14 +36,17 @@ export function CalculatorModeToggle({ mode, onChange, availableModes }: Calcula
             key={m.id}
             onClick={() => onChange(m.id)}
             title={m.description}
+            role="radio"
+            aria-checked={isActive}
+            aria-label={m.label}
             className={cn(
-              'flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-all min-h-[36px]',
+              'flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-all min-h-[44px] sm:min-h-[32px] focus-visible:ring-2 focus-visible:ring-[#06b6d4] focus-visible:ring-offset-2',
               isActive
                 ? 'bg-white dark:bg-gray-800 text-[#06b6d4] shadow-sm border border-gray-200 dark:border-gray-600'
                 : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
             )}
           >
-            <Icon className="w-3.5 h-3.5" />
+            <Icon className="w-3.5 h-3.5" aria-hidden="true" />
             {m.label}
           </button>
         )

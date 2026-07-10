@@ -7,6 +7,7 @@ import { z } from 'zod'
 import { CalculatorFormField } from '@/components/forms/CalculatorFormField'
 import { FieldsByMode } from '@/lib/calc-field-helper'
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic'
+import { DynamicHealthBarChart } from '@/components/premium/DynamicCharts'
 import { buildGenericDef } from '@/lib/generic-fallback'
 import type { UnitSystem } from '@/components/premium/PremiumCalculatorShell'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
@@ -260,6 +261,15 @@ export function GenericSportsCalculator({ calculator }: Props) {
   const genderNum = useMemo(() => v.gender === 'female' ? 2 : 1, [v.gender])
   const valsForCompute = useMemo(() => ({ ...vals, gender: genderNum }), [vals, genderNum])
 
+  const chartData = useMemo(() => {
+    const entries = Object.entries(v).filter(([, val]) => val && !isNaN(parseFloat(String(val))))
+    if (entries.length === 0) return []
+    return entries.slice(0, 6).map(([k, val]) => ({
+      name: k.length > 15 ? k.substring(0, 15) + '…' : k,
+      value: parseFloat(String(val)) || 0,
+    }))
+  }, [v])
+
   const resultData = useMemo(() => {
     if (!def) return null
     return def.compute(valsForCompute)
@@ -336,7 +346,7 @@ export function GenericSportsCalculator({ calculator }: Props) {
             </div>
           )}
         </div>
-      } lockedFields={lockedFields} onExtraFieldsChange={setExtraFields} inputs={watchedInputs} showTabs={true} useSlider={useSlider} onToggleSlider={() => setUseSlider(!useSlider)} onSaveScenario={saveScenario} onExportCSV={exportCSV} unitSystem={unitSystem} onUnitChange={setUnitSystem} presets={presets} onPresetApply={applyPreset} formula={resultData?.steps?.map(s => s.value).join(' ? ') || ''} interpretation={def.description} author={sportsAuthor} reviewer={{ name: 'Dr. Sarah Chen', photoUrl: 'https://i.pravatar.cc/150?u=sarah-chen', credential: 'PhD, FACSM', title: 'Professor of Exercise Physiology', linkedIn: 'https://www.linkedin.com/in/sarah-chen-sports' }} references={sportsReferences} example={sportsExample.length > 0 ? sportsExample : undefined} userCount={12450} onReset={() => {
+      } lockedFields={lockedFields} onExtraFieldsChange={setExtraFields} inputs={watchedInputs} showTabs={true} useSlider={useSlider} onToggleSlider={() => setUseSlider(!useSlider)} onSaveScenario={saveScenario} onExportCSV={exportCSV} unitSystem={unitSystem} onUnitChange={setUnitSystem} presets={presets} onPresetApply={applyPreset} formula={resultData?.steps?.map(s => s.value).join(' ? ') || ''} interpretation={def.description} author={sportsAuthor} reviewer={{ name: 'Dr. Sarah Chen', photoUrl: 'https://i.pravatar.cc/150?u=sarah-chen', credential: 'PhD, FACSM', title: 'Professor of Exercise Physiology', linkedIn: 'https://www.linkedin.com/in/sarah-chen-sports' }} references={sportsReferences} example={sportsExample.length > 0 ? sportsExample : undefined} userCount={12450} charts={chartData.length > 0 ? <DynamicHealthBarChart data={chartData} /> : undefined} onReset={() => {
   const locked = Object.fromEntries(Array.from(lockedFields).map(key => [key, form.getValues(key)]))
   form.reset(defaultVals)
   Object.entries(locked).forEach(([key, value]) => {

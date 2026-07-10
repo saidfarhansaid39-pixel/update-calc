@@ -1,27 +1,27 @@
 {
   "inches-to-cm": {
-    "title": "インチ→CMコンバーター",
-    "description": "無料 Inches to CM Converter — Convert inches to centimeters instantly. Accurate fast and reliable unit conversion tool supporting multiple units and decimal precision. Perfect for students travelers engineers and professionals who need instant measurement conversions. Bookmark for quick access."
+    "title": "インチからセンチメートル変換ツール",
+    "description": "無料のインチからセンチメートル変換ツール — 即座にインチをセンチメートルに変換します。高速で正確な単位変換ツールで、複数の単位や小数点以下の精度に対応しています。学生、旅行者、エンジニア、プロフェッショナルなど、即座の測定値変換が必要な方にぴったりです。ブックマークしておくと便利です。"
   },
   "cm-to-inches": {
-    "title": "CM→インチコンバーター",
-    "description": "無料 CM to Inches Converter — Convert centimeters to inches instantly. Accurate fast and reliable unit conversion tool supporting multiple units and decimal precision. Perfect for students travelers engineers and professionals who need instant measurement conversions. Bookmark for quick access."
+    "title": "センチメートルからインチ変換ツール",
+    "description": "無料のセンチメートルからインチ変換ツール — 即座にセンチメートルをインチに変換します。高速で正確な単位変換ツールで、複数の単位や小数点以下の精度に対応しています。学生、旅行者、エンジニア、プロフェッショナルなど、即座の測定値変換が必要な方にぴったりです。ブックマークしておくと便利です。"
   },
   "feet-to-meters": {
-    "title": "フィート→メートルコンバーター",
-    "description": "無料 Feet to Meters Converter — Convert feet to meters for any measurement. Accurate fast and reliable unit conversion tool supporting multiple units and decimal precision. Perfect for students travelers engineers and professionals who need instant measurement conversions. Bookmark for quick access."
+    "title": "フィートからメートル変換ツール",
+    "description": "無料のフィートからメートル変換ツール — 任何の測定値をフィートからメートルに変換します。高速で正確な単位変換ツールで、複数の単位や小数点以下の精度に対応しています。学生、旅行者、エンジニア、プロフェッショナルなど、即座の測定値変換が必要な方にぴったりです。ブックマークしておくと便利です。"
   },
   "meters-to-feet": {
-    "title": "メートル→フィートコンバーター",
-    "description": "無料 Meters to Feet Converter — Convert meters to feet and inches. Accurate fast and reliable unit conversion tool supporting multiple units and decimal precision. Perfect for students travelers engineers and professionals who need instant measurement conversions. Bookmark for quick access."
+    "title": "メートルへフィート・コンバーター",
+    "description": "フリーのメートルへフィート・コンバーター。メートルをフィートに変換する。終交しい、速え、動作がある単体変換トール。学生、渡行者、エンジニア、協体者には、点類に設誊換急を当たに変換するたるに。ブークマークに代入してください。"
   },
   "miles-to-km": {
-    "title": "マイル→KMコンバーター",
-    "description": "無料 Miles to KM Converter — Convert miles to kilometers for distance. Accurate fast and reliable unit conversion tool supporting multiple units and decimal precision. Perfect for students travelers engineers and professionals who need instant measurement conversions. Bookmark for quick access."
+    "title": "ミールをキロメートルに変換するコンバーター",
+    "description": "フリーのミールをキロメートルに変換するコンバーター。車量のキロメートルに変換する。終交しい、速え、動作がある単体変換トール。学生、渡行者、エンジニア、協体者には、点類に設誊換急を当たに変換するたるに。ブークマークに代入してください。"
   },
   "km-to-miles": {
-    "title": "KM→マイルコンバーター",
-    "description": "無料 KM to Miles Converter — Convert kilometers to miles. Accurate fast and reliable unit conversion tool supporting multiple units and decimal precision. Perfect for students travelers engineers and professionals who need instant measurement conversions. Bookmark for quick access."
+    "title": "キロメートルをミールに変換するコンバーター",
+    "description": "フリーのキロメートルをミールに変換するコンバーター。キロメートルをミールに変換する。終交しい、速え、動作がある単体変換トール。学生、渡行者、エンジニア、協体者には、点類に設誊換急を当たに変換するたるに。ブークマークに代入してください。"
   },
   "yards-to-meters": {
     "title": "ヤード→メートルコンバーター",

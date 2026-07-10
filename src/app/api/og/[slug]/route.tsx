@@ -2,8 +2,9 @@ import { ImageResponse } from 'next/og'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 import { calculatorRegistry } from '@calcuniverse/calculator-registry'
 import { getLocalizedCalculator } from '@/lib/localized-registry'
+import { log } from '@/lib/logger'
 
-export const runtime = 'nodejs'
+export const runtime = 'edge'
 
 const categoryColors: Record<string, string> = {
   financial: 'from-emerald-500 to-teal-600',
@@ -48,24 +49,36 @@ const localeNames: Record<string, string> = {
   ar: 'AR', hi: 'HI', ja: 'JA', 'zh-CN': 'ZH',
 }
 
-export async function GET(
-  request: Request,
-  { params }: { params: Promise<{ slug: string }> }
-) {
-  const { slug } = await params
-  const { searchParams } = new URL(request.url)
-  const locale = searchParams.get('locale')
-  const localeBadge = locale && locale !== 'en' ? localeNames[locale] || locale.toUpperCase() : null
+const slugRegistry = new Set(calculatorRegistry.map(c => c.slug))
 
-  const calc = await getLocalizedCalculator(slug, locale ?? 'en')
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
+const RATE_LIMIT = 60
+const RATE_LIMIT_WINDOW = 60000
 
-  if (!calc) {
-    return new Response('Calculator not found', { status: 404 })
+function getClientIp(request: Request): string {
+  const forwarded = request.headers.get('x-forwarded-for')
+  const realIp = request.headers.get('x-real-ip')
+  return forwarded?.split(',')[0]?.trim() || realIp || 'unknown'
+}
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now()
+  const record = rateLimitMap.get(ip)
+  
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW })
+    return true
   }
+  
+  if (record.count >= RATE_LIMIT) {
+    return false
+  }
+  
+  record.count++
+  return true
+}
 
-  const gradient = categoryColors[calc.category] || 'from-gray-500 to-slate-600'
-  const badgeColor = categoryBadgeColors[calc.category] || 'bg-gray-500'
-
+function fallbackImageResponse(message: string): ImageResponse {
   return new ImageResponse(
     (
       <div
@@ -76,33 +89,10 @@ export async function GET(
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          background: `linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)`,
+          background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)',
           fontFamily: '"Inter", "system-ui", sans-serif',
-          position: 'relative',
-          overflow: 'hidden',
         }}
       >
-        <div
-          style={{
-            position: 'absolute',
-            top: '-50%',
-            left: '-50%',
-            width: '200%',
-            height: '200%',
-            background: `radial-gradient(circle at 30% 40%, rgba(52, 160, 164, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 60%, rgba(52, 160, 164, 0.1) 0%, transparent 40%)`,
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: 6,
-            background: `linear-gradient(90deg, #06b6d4, #1a3a8a, #06b6d4)`,
-          }}
-        />
         <div
           style={{
             display: 'flex',
@@ -110,143 +100,271 @@ export async function GET(
             alignItems: 'center',
             justifyContent: 'center',
             padding: '60px 80px',
-            maxWidth: 1000,
             textAlign: 'center',
           }}
         >
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 12,
-              marginBottom: 20,
-            }}
-          >
-            <span
-              style={{
-                display: 'inline-flex',
-                padding: '6px 18px',
-                borderRadius: 9999,
-                fontSize: 16,
-                fontWeight: 700,
-                color: '#fff',
-                textTransform: 'capitalize',
-                background: badgeColor,
-              }}
-            >
-              {calc.hubName || calc.category}
-            </span>
-            {localeBadge && (
-              <span
-                style={{
-                  display: 'inline-flex',
-                  padding: '6px 14px',
-                  borderRadius: 9999,
-                  fontSize: 14,
-                  fontWeight: 700,
-                  color: '#fff',
-                  background: '#1a3a8a',
-                  letterSpacing: '0.05em',
-                }}
-              >
-                {localeBadge}
-              </span>
-            )}
-          </div>
           <h1
             style={{
-              fontSize: 56,
+              fontSize: 48,
               fontWeight: 800,
               color: '#f8fafc',
               margin: '0 0 16px 0',
               lineHeight: 1.2,
-              letterSpacing: '-0.02em',
             }}
           >
-            {calc.title}
+            {message}
           </h1>
           <p
             style={{
               fontSize: 22,
               color: '#94a3b8',
-              margin: '0 0 32px 0',
-              lineHeight: 1.5,
-              maxWidth: 700,
+              margin: 0,
             }}
           >
-            {calc.description.length > 150
-              ? calc.description.slice(0, 147) + '...'
-              : calc.description}
+            JDCALC — Precision Calculators
           </p>
-          {calc.formulaSource && (
+        </div>
+      </div>
+    ),
+    { width: 1200, height: 630 }
+  )
+}
+
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  try {
+    const { slug } = await params
+
+    if (!slug || typeof slug !== 'string') {
+      log('warn', 'og image missing slug')
+      return fallbackImageResponse('Calculator')
+    }
+
+    const clientIp = getClientIp(request)
+    
+    if (!checkRateLimit(clientIp)) {
+      log('warn', 'og image rate limit exceeded', { clientIp, slug })
+      return new Response('Rate limit exceeded', { 
+        status: 429,
+        headers: {
+          'Retry-After': '60',
+          'X-RateLimit-Limit': RATE_LIMIT.toString(),
+          'X-RateLimit-Remaining': '0',
+          'X-RateLimit-Reset': Math.ceil((Date.now() + RATE_LIMIT_WINDOW) / 1000).toString(),
+        }
+      })
+    }
+
+    if (!slugRegistry.has(slug)) {
+      log('warn', 'og image unknown slug', { clientIp, slug })
+      return fallbackImageResponse('Calculator')
+    }
+
+    const { searchParams } = new URL(request.url)
+    const locale = searchParams.get('locale')
+    const localeBadge = locale && locale !== 'en' ? localeNames[locale] || locale.toUpperCase() : null
+
+    const calc = await getLocalizedCalculator(slug, locale ?? 'en')
+
+    if (!calc) {
+      log('warn', 'og image localized calc not found', { clientIp, slug, locale })
+      return fallbackImageResponse('Calculator')
+    }
+
+    log('info', 'og image generated', { clientIp, slug, locale })
+
+    const badgeColor = categoryBadgeColors[calc.category] || 'bg-gray-500'
+
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            height: '100%',
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: `linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)`,
+            fontFamily: '"Inter", "system-ui", sans-serif',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              top: '-50%',
+              left: '-50%',
+              width: '200%',
+              height: '200%',
+              background: `radial-gradient(circle at 30% 40%, rgba(52, 160, 164, 0.15) 0%, transparent 50%),
+                          radial-gradient(circle at 70% 60%, rgba(52, 160, 164, 0.1) 0%, transparent 40%)`,
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: 6,
+              background: `linear-gradient(90deg, #06b6d4, #1a3a8a, #06b6d4)`,
+            }}
+          />
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '60px 80px',
+              maxWidth: 1000,
+              textAlign: 'center',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 12,
+                marginBottom: 20,
+              }}
+            >
+              <span
+                style={{
+                  display: 'inline-flex',
+                  padding: '6px 18px',
+                  borderRadius: 9999,
+                  fontSize: 16,
+                  fontWeight: 700,
+                  color: '#fff',
+                  textTransform: 'capitalize',
+                  background: badgeColor,
+                }}
+              >
+                {calc.hubName || calc.category}
+              </span>
+              {localeBadge && (
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    padding: '6px 14px',
+                    borderRadius: 9999,
+                    fontSize: 14,
+                    fontWeight: 700,
+                    color: '#fff',
+                    background: '#1a3a8a',
+                    letterSpacing: '0.05em',
+                  }}
+                >
+                  {localeBadge}
+                </span>
+              )}
+            </div>
+            <h1
+              style={{
+                fontSize: 56,
+                fontWeight: 800,
+                color: '#f8fafc',
+                margin: '0 0 16px 0',
+                lineHeight: 1.2,
+                letterSpacing: '-0.02em',
+              }}
+            >
+              {calc.title}
+            </h1>
+            <p
+              style={{
+                fontSize: 22,
+                color: '#94a3b8',
+                margin: '0 0 32px 0',
+                lineHeight: 1.5,
+                maxWidth: 700,
+              }}
+            >
+              {calc.description.length > 150
+                ? calc.description.slice(0, 147) + '...'
+                : calc.description}
+            </p>
+            {calc.formulaSource && (
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  padding: '12px 24px',
+                  borderRadius: 12,
+                  background: 'rgba(52, 160, 164, 0.1)',
+                  border: '1px solid rgba(52, 160, 164, 0.2)',
+                  marginBottom: 32,
+                }}
+              >
+                <span style={{ fontSize: 18, color: '#5eead4', fontWeight: 600 }}>
+                  Formula:
+                </span>
+                <span
+                  style={{
+                    fontSize: 20,
+                    color: '#e2e8f0',
+                    fontWeight: 500,
+                    fontFamily: '"JetBrains Mono", monospace',
+                  }}
+                >
+                  {calc.formulaSource}
+                </span>
+              </div>
+            )}
             <div
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: 8,
-                padding: '12px 24px',
-                borderRadius: 12,
-                background: 'rgba(52, 160, 164, 0.1)',
-                border: '1px solid rgba(52, 160, 164, 0.2)',
-                marginBottom: 32,
+                marginTop: calc.formulaSource ? 0 : 32,
               }}
             >
-              <span style={{ fontSize: 18, color: '#5eead4', fontWeight: 600 }}>
-                Formula:
-              </span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect width="24" height="24" rx="6" fill="#1a3a8a" />
+                <text
+                  x="12"
+                  y="16"
+                  textAnchor="middle"
+                  fill="white"
+                  fontSize="14"
+                  fontWeight="bold"
+                >
+                  C
+                </text>
+              </svg>
               <span
                 style={{
-                  fontSize: 20,
-                  color: '#e2e8f0',
-                  fontWeight: 500,
-                  fontFamily: '"JetBrains Mono", monospace',
+                  fontSize: 16,
+                  fontWeight: 600,
+                  color: '#1a3a8a',
+                  letterSpacing: '0.05em',
                 }}
               >
-                {calc.formulaSource}
+                CALCULATOR UNIVERSE
               </span>
             </div>
-          )}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 8,
-              marginTop: calc.formulaSource ? 0 : 32,
-            }}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <rect width="24" height="24" rx="6" fill="#1a3a8a" />
-              <text
-                x="12"
-                y="16"
-                textAnchor="middle"
-                fill="white"
-                fontSize="14"
-                fontWeight="bold"
-              >
-                C
-              </text>
-            </svg>
-            <span
-              style={{
-                fontSize: 16,
-                fontWeight: 600,
-                color: '#1a3a8a',
-                letterSpacing: '0.05em',
-              }}
-            >
-              CALCULATOR UNIVERSE
-            </span>
           </div>
         </div>
-      </div>
-    ),
-    {
-      width: 1200,
-      height: 630,
-      headers: {
-        'Cache-Control': 'public, max-age=31536000, immutable',
-      },
-    }
-  )
+      ),
+      {
+        width: 1200,
+        height: 630,
+        headers: {
+          'Cache-Control': 'public, max-age=31536000, immutable',
+          'X-RateLimit-Limit': RATE_LIMIT.toString(),
+          'X-RateLimit-Remaining': Math.max(0, RATE_LIMIT - (rateLimitMap.get(clientIp)?.count || 0)).toString(),
+          'X-RateLimit-Reset': Math.ceil((Date.now() + RATE_LIMIT_WINDOW) / 1000).toString(),
+        },
+      }
+    )
+  } catch (error) {
+    log('error', 'og image generation failed', { error: String(error) })
+    return fallbackImageResponse('JDCALC')
+  }
 }
