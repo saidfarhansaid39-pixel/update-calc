@@ -1,8 +1,13 @@
 "use client";
 
 import React from 'react';
+import { useTranslations, useLocale } from 'next-intl';
+import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation';
 
 export function AnnuityResults({ results }: any) {
+  const t = useTranslations('calculatorUI');
+  const locale = useLocale();
   if (!results) return null;
 
   const totalPrincipal = results.principal;
@@ -12,7 +17,6 @@ export function AnnuityResults({ results }: any) {
   const pPct = (totalPrincipal / totalPayout) * 100 || 0;
   const iPct = (totalInterest / totalPayout) * 100 || 0;
 
-  // For pie chart
   const pAngle = (pPct / 100) * 360;
   
   const getCoordinatesForPercent = (percent: number) => {
@@ -33,7 +37,6 @@ export function AnnuityResults({ results }: any) {
     return <path d={pathData} fill={color} />;
   };
 
-  // Line chart path generation
   const maxBalance = Math.max(...results.schedule.map((y: any) => y.beginning));
   const maxInterest = Math.max(...results.schedule.map((y: any) => y.interest));
   const maxVal = Math.max(maxBalance, maxInterest);
@@ -65,21 +68,33 @@ export function AnnuityResults({ results }: any) {
       {/* Top Results Box */}
       <div className="bg-[#e4eedb] border border-[#599e28] rounded mb-6 w-full max-w-[400px]">
         <div className="bg-[#599e28] text-white p-2 font-bold flex justify-between items-center">
-          <span className="text-[16px]">Result</span>
+          <span className="text-[16px]">{t('results.resultLabel')}</span>
         </div>
         <div className="p-4">
           {results.mode === 'length' ? (
             <div className="text-[16px] mb-4">
-              You can withdraw <strong className="text-[#1c4587] text-[18px]">${results.payment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2})}</strong> {results.freqLabel}.
+              You can withdraw <strong className="text-[#1c4587] text-[18px]">{formatCurrency(results.payment, 'USD', locale)}</strong> {results.freqLabel}.
             </div>
           ) : (
             <div className="text-[16px] mb-4">
-              You can withdraw <strong className="text-[#1c4587] text-[18px]">${results.payment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2})}</strong> {results.freqLabel} for <strong className="text-black">{results.totalPeriods}</strong> periods ({results.yearsStr}).
+              You can withdraw <strong className="text-[#1c4587] text-[18px]">{formatCurrency(results.payment, 'USD', locale)}</strong> {results.freqLabel} for <strong className="text-black">{results.totalPeriods}</strong> periods ({results.yearsStr}).
             </div>
           )}
 
-          <div className="mb-1">Total of {results.totalPeriods} payments: <strong>${totalPayout.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong></div>
-          <div className="mb-4">Total interest/return: <strong>${totalInterest.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong></div>
+          <div className="mb-1">Total of {results.totalPeriods} payments: <strong>{formatCurrency(totalPayout, 'USD', locale)}</strong></div>
+          <div className="mb-4">Total interest/return: <strong>{formatCurrency(totalInterest, 'USD', locale)}</strong></div>
+
+          {/* Interpretation */}
+          <ResultInterpretation
+            type="investment"
+            values={{
+              futureValue: totalPayout,
+              totalContributions: totalPrincipal,
+              totalInterest,
+              years: numYears,
+            }}
+            currencySymbol="$"
+          />
 
           <div className="flex items-center gap-6 justify-center mt-6">
             <div className="relative w-24 h-24">
@@ -116,9 +131,9 @@ export function AnnuityResults({ results }: any) {
             {results.schedule.map((y: any) => (
               <tr key={y.year} className="border-b border-white hover:bg-[#e6e6e6]">
                 <td className="p-1">{y.year}</td>
-                <td className="p-1 text-right">${y.beginning.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                <td className="p-1 text-right">${y.interest.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                <td className="p-1 text-right">${y.ending.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                <td className="p-1 text-right">{formatCurrency(y.beginning, 'USD', locale)}</td>
+                <td className="p-1 text-right">{formatCurrency(y.interest, 'USD', locale)}</td>
+                <td className="p-1 text-right">{formatCurrency(y.ending, 'USD', locale)}</td>
               </tr>
             ))}
           </tbody>
@@ -131,7 +146,6 @@ export function AnnuityResults({ results }: any) {
             <div className="flex items-center gap-1"><span className="w-4 h-1 bg-[#8ec449] inline-block"></span> Interest/return</div>
           </div>
           <svg width={w} height={h} className="mt-6 ml-8 overflow-visible">
-            {/* Grid lines */}
             <line x1="0" y1="0" x2={w} y2="0" stroke="#e0e0e0" strokeWidth="1" />
             <line x1="0" y1={h/2} x2={w} y2={h/2} stroke="#e0e0e0" strokeWidth="1" />
             <line x1="0" y1={h} x2={w} y2={h} stroke="#999" strokeWidth="1" />
@@ -140,12 +154,10 @@ export function AnnuityResults({ results }: any) {
             <line x1={w/2} y1="0" x2={w/2} y2={h} stroke="#e0e0e0" strokeWidth="1" />
             <line x1={w} y1="0" x2={w} y2={h} stroke="#e0e0e0" strokeWidth="1" />
             
-            {/* Y-axis labels */}
             <text x="-5" y="5" textAnchor="end" fontSize="10" fill="#666">${(maxVal/1000).toFixed(0)}K</text>
             <text x="-5" y={h/2 + 5} textAnchor="end" fontSize="10" fill="#666">${((maxVal/2)/1000).toFixed(0)}K</text>
             <text x="-5" y={h + 5} textAnchor="end" fontSize="10" fill="#666">$0</text>
             
-            {/* X-axis labels */}
             <text x={0} y={h + 15} textAnchor="middle" fontSize="10" fill="#666">0</text>
             <text x={w/2} y={h + 15} textAnchor="middle" fontSize="10" fill="#666">{(numYears/2).toFixed(1)}</text>
             <text x={w} y={h + 15} textAnchor="middle" fontSize="10" fill="#666">{numYears}</text>

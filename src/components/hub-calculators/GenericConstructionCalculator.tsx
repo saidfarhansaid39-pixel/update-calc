@@ -10,6 +10,7 @@ import { renderCalcField } from '@/lib/calc-field-helper'
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic'
 import { ModeFieldGroup } from '@/components/premium/ModeFieldGroup'
 import { DynamicComparisonPieChart } from '@/components/premium/DynamicCharts'
+import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation'
 import { calcDefs } from '@/lib/constructionCalcDefs'
 import { buildGenericDef } from '@/lib/generic-fallback'
 import type { ModeLevel, FieldDef, ResultValue, CalcDef } from '@/lib/constructionCalcDefs/types'
@@ -63,6 +64,14 @@ export function GenericConstructionCalculator({ calculator }: Props) {
     return isNaN(parsed) ? undefined : parsed
   }, [v, calcDef])
 
+  const constructionInterpretation = useMemo(() => {
+    const slug = calculator.slug
+    if (slug.includes('concrete')) return <div className="text-xs text-amber-600 font-medium mt-1">Order ~10% extra to account for waste, spillage, and uneven subgrades.</div>
+    if (slug.includes('lumber') || slug.includes('wood')) return <div className="text-xs text-emerald-600 font-medium mt-1">Board foot = 144 in³ (12"×12"×1"). Add 15% for waste on complex projects.</div>
+    if (slug.includes('roof')) return <div className="text-xs text-blue-600 font-medium mt-1">Roof pitch = rise/run. A 6/12 pitch rises 6" per 12" of horizontal run.</div>
+    return null
+  }, [calculator.slug])
+
   const result = useMemo(() => {
     if (!v || Object.keys(v).length === 0) return null
     const res = memoizedCompute(calcDef)(v)
@@ -72,6 +81,7 @@ export function GenericConstructionCalculator({ calculator }: Props) {
         <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
           <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
           <p className="text-3xl font-bold text-[#06b6d4]">{displayVal} {res.unit}</p>
+          {constructionInterpretation}
         </div>
         {res.steps && res.steps.length > 0 && (
           <div className="border-t border-gray-200 dark:border-gray-700 pt-3 text-xs text-gray-500 space-y-1.5">
@@ -86,7 +96,7 @@ export function GenericConstructionCalculator({ calculator }: Props) {
         )}
       </div>
     )
-  }, [v, calcDef])
+  }, [v, calcDef, constructionInterpretation])
 
   const copyResultText = useMemo(() => {
     const lines: string[] = [calculator.title]

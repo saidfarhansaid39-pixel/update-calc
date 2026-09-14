@@ -29,7 +29,12 @@ const calcDef: CalcDef = {
         { label: 'RPE load (min × RPE)', value: `${rpeLoad.toFixed(0)} AU` },
         { label: 'Training load category', value: trimp < 50 ? 'Easy' : trimp < 100 ? 'Moderate' : trimp < 200 ? 'Hard' : 'Very Hard' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate Training Impulse (TRIMP) using heart rate and RPE. TRIMP quantifies training load by combining session duration, heart rate intensity, and perceived effort for scientific training monitoring.'
 }

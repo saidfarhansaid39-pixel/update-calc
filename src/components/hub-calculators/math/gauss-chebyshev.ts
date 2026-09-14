@@ -10,11 +10,21 @@ const calcDef: CalcDef = {
       const n = Math.max(2, Math.round(Number(v.a)))
       let sum = 0; const pts: string[] = []
       for (let i = 1; i <= n; i++) { const xi = Math.cos((2 * i - 1) * Math.PI / (2 * n)); const wi = Math.PI / n; sum += wi * Math.sqrt(1 - xi * xi); pts.push('x' + i + '=' + xi.toFixed(4)) }
-      return { result: sum.toFixed(6), label: 'Gauss-Chebyshev approx', steps: [step('Nodes:', pts.join(', ')), step('Approx integral:', '' + sum.toFixed(6))] }
+      return { result: sum.toFixed(6), label: 'Gauss-Chebyshev approx', steps: [step('Nodes:', pts.join(', ')), step('Approx integral:', '' + sum.toFixed(6))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'int_-1^1 f(x)/sqrt(1-x2) dx approx sum wi f(xi)',
     description: 'Gauss-Chebyshev quadrature approximation.',
-    interpretation: 'The approximate integral using Chebyshev nodes and weights.'
+    interpretation: 'The approximate integral using Chebyshev nodes and weights.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

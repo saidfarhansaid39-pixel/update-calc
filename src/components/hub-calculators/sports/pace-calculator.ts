@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: '5 km finish', value: `${(5 / speed * 60).toFixed(1)} min` },
         { label: '10 km finish', value: `${(10 / speed * 60).toFixed(1)} min` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate running speed and pace from distance and time. Essential for race planning, interval training, and tracking performance improvements.'
 }

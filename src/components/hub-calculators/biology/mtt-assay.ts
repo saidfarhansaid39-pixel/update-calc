@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Cytotoxicity', value: `${(100 - viabilityPct).toFixed(1)}%` },
         { label: 'IC50 check', value: viabilityPct <= 50 ? 'At or below IC50' : 'Above IC50' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The MTT assay measures cell metabolic activity as a proxy for viability. Mitochondrial dehydrogenases convert MTT to insoluble formazan crystals, which are dissolved and measured by absorbance.',
   formula: 'Viability (%) = (ODsample - ODblank) / (ODcontrol - ODblank) × 100',

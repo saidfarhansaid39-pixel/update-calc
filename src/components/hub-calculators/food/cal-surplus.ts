@@ -17,6 +17,11 @@ const calcDef: CalcDef = {
       { label: 'Surplus', value: `+${sur} kcal/day` },
       { label: 'Target intake', value: `${target.toFixed(0)} kcal/day` },
       { label: 'Estimated weekly gain', value: `${weeklyGain.toFixed(2)} kg (${(weeklyGain * 2.20462).toFixed(1)} lbs)` },
+    ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
     ]} },
     description: 'Calculate calorie intake for weight gain / muscle building by adding a surplus to your TDEE. A 500 kcal/day surplus yields ~0.5 kg per week of gain.',
     example: { label: '70kg, 175cm, 30yr, moderate, 500 surplus', value: '~2,950 kcal/day' }

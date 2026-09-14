@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         ...(v.weightKg ? [{ label: 'FTP (W/kg)', value: `${wkg.toFixed(2)} W/kg` }] : []),
         { label: 'Power zones (65-90% FTP)', value: `${(ftp * 0.65).toFixed(0)}-${(ftp * 0.90).toFixed(0)} W Endurance/Tempo` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Estimate your Functional Threshold Power (FTP) from a maximal effort test. FTP is the highest power you can sustain for ~1 hour and is the foundation of structured cycling training.'
 }

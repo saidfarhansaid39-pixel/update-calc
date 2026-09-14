@@ -15,11 +15,20 @@ const calcDef: CalcDef = {
       const sxy = xa.reduce((s: number, v: number, i: number) => s + (v - mx) * (ya[i] - my), 0)
       const r = sxy / Math.sqrt(sxx * syy)
       const strength = Math.abs(r) >= 0.8 ? 'strong' : Math.abs(r) >= 0.5 ? 'moderate' : 'weak'
-      return { result: r.toFixed(4), label: 'Pearson r', steps: [step('Means', `xbar=${mx.toFixed(4)}, ybar=${my.toFixed(4)}`), step('r', r.toFixed(4)), step('Interpretation', `${strength} ${r >= 0 ? 'positive' : 'negative'} correlation`)] }
+      return { result: r.toFixed(4), label: 'Pearson r', steps: [step('Means', `xbar=${mx.toFixed(4)}, ybar=${my.toFixed(4)}`), step('r', r.toFixed(4)), step('Interpretation', `${strength} ${r >= 0 ? 'positive' : 'negative'} correlation`)],
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ] }
     },
     formula: 'r = Sxy / sqrt(Sxx x Syy).',
     description: 'Calculate the Pearson correlation coefficient.',
-    interpretation: 'r ranges from -1 (perfect negative) to +1 (perfect positive). 0 means no linear correlation.'
+    interpretation: 'r ranges from -1 (perfect negative) to +1 (perfect positive). 0 means no linear correlation.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

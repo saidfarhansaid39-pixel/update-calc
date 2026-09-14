@@ -1,13 +1,27 @@
 "use client";
 
-import React, { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import React, { useState, useMemo } from 'react';
+import { useLocale } from 'next-intl';
+import { DollarSign, Car, Percent } from 'lucide-react';
 import { AutoLoanForm } from '@/components/calculator/AutoLoanForm';
 import { AutoLoanResults } from '@/components/calculator/AutoLoanResults';
-import { AutoLoanArticle } from '@/components/calculator/AutoLoanArticle';
+import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
+import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
+import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+
+const calcMeta = {
+  slug: 'auto-loan-calculator',
+  title: 'Auto Loan Calculator',
+  description: 'Calculate monthly car payments including tax, trade-in, and fees.',
+  tier: 'tier2',
+  category: 'financial',
+  hubSlug: 'financial-calculators',
+  hubName: 'Financial Calculators',
+  keywords: ['auto loan', 'car payment', 'vehicle financing', 'monthly payment'],
+};
 
 export function AutoLoanCalculator() {
-  const t = useTranslations('calculatorUI');
+  const locale = useLocale();
   const [autoPrice, setAutoPrice] = useState("50,000");
   const [loanTerm, setLoanTerm] = useState("60");
   const [interestRate, setInterestRate] = useState("5");
@@ -59,83 +73,43 @@ export function AutoLoanCalculator() {
   const totalInt = totalPay - principal;
   const totalCostOverall = totalPay + upfront + incentives;
 
+  const inputs = useMemo(() => ({
+    autoPrice,
+    term: loanTerm,
+    rate: interestRate,
+    downPayment,
+    tradeIn: tradeInValue,
+    salesTax,
+    titleRegistration,
+  }), [autoPrice, loanTerm, interestRate, downPayment, tradeInValue, salesTax, titleRegistration]);
+
+  const subCalcs = useMemo(() => {
+    return (
+      <SubCalcGrid>
+        <SubCalcPanel title="Payment Breakdown" icon={DollarSign} defaultOpen results={[
+          { label: 'Monthly Payment', value: formatCurrency(monthly, 'USD', locale), badge: 'info' },
+          { label: 'Total of Payments', value: formatCurrency(totalPay, 'USD', locale) },
+          { label: 'Total Interest', value: formatCurrency(totalInt, 'USD', locale), badge: 'negative' },
+        ]} />
+        <SubCalcPanel title="Cost Details" icon={Car} results={[
+          { label: 'Vehicle Price', value: formatCurrency(price, 'USD', locale) },
+          { label: 'Down Payment', value: formatCurrency(down, 'USD', locale) },
+          { label: 'Trade-In Value', value: formatCurrency(tradeIn, 'USD', locale) },
+          { label: 'Sales Tax', value: formatCurrency(tax, 'USD', locale) },
+          { label: 'Total Cost', value: formatCurrency(totalCostOverall, 'USD', locale), badge: 'positive' },
+        ]} />
+      </SubCalcGrid>
+    );
+  }, [monthly, totalPay, totalInt, price, down, tradeIn, tax, totalCostOverall, locale]);
+
   return (
-    <div className="max-w-[800px] mx-auto bg-white p-2 md:p-4">
-      <div className="flex justify-between text-xs text-gray-500 mb-2 border-b pb-1">
-        <div>home / financial / auto loan calculator</div>
-        <div className="text-blue-600 underline">{t('buttons.print')}</div>
-      </div>
-      
-      <h1 className="text-[26px] font-bold text-gray-800 mb-4 font-sans">Auto Loan Calculator</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-4">
-        <div>
-          <AutoLoanForm state={state} setters={setters} />
-        </div>
-        
-        <div>
-          <AutoLoanResults 
-            totalLoanAmount={principal}
-            salesTax={tax}
-            upfrontPayment={upfront}
-            totalPayments={totalPay}
-            totalInterest={totalInt}
-            totalCost={totalCostOverall}
-            monthlyPayment={monthly}
-          />
-        </div>
-      </div>
-
-      <div className="mt-6 border-t pt-4">
-        <h2 className="text-xl font-bold text-gray-800 mb-4 font-sans">{t('sections.amortizationSchedule')}</h2>
-        <div className="flex text-sm font-bold border-b-2 border-[#1c4587] mb-4">
-          <div className="bg-[#1c4587] text-white px-4 py-1">Annual Schedule</div>
-          <div className="text-blue-600 px-4 py-1 hover:underline cursor-pointer">Monthly Schedule</div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <table className="w-full text-xs text-center border-collapse">
-            <thead>
-              <tr className="bg-[#1c4587] text-white border border-[#1c4587]">
-                <th className="p-1 font-normal">Year</th>
-                <th className="p-1 font-normal">Interest</th>
-                <th className="p-1 font-normal">{t('formLabels.principal')}</th>
-                <th className="p-1 font-normal">Ending Balance</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="bg-gray-100 border border-gray-300">
-                <td className="p-1">1</td><td className="p-1">$1,835.98</td><td className="p-1">$7,222.21</td><td className="p-1">$32,777.79</td>
-              </tr>
-              <tr className="border border-gray-300">
-                <td className="p-1">2</td><td className="p-1">$1,466.48</td><td className="p-1">$7,591.71</td><td className="p-1">$25,186.08</td>
-              </tr>
-              <tr className="bg-gray-100 border border-gray-300">
-                <td className="p-1">3</td><td className="p-1">$1,078.07</td><td className="p-1">$7,980.12</td><td className="p-1">$17,205.96</td>
-              </tr>
-              <tr className="border border-gray-300">
-                <td className="p-1">4</td><td className="p-1">$669.80</td><td className="p-1">$8,388.40</td><td className="p-1">$8,817.56</td>
-              </tr>
-              <tr className="bg-gray-100 border border-gray-300">
-                <td className="p-1">5</td><td className="p-1">$240.63</td><td className="p-1">$8,817.56</td><td className="p-1">$0.00</td>
-              </tr>
-            </tbody>
-          </table>
-          <div className="border border-gray-300 p-2 flex items-center justify-center bg-gray-50 h-[200px]">
-             <div className="text-center text-gray-500 text-sm">Stacked Area Chart Placeholder</div>
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-6 flex items-center gap-2 font-bold text-[13px]">
-        <span className="w-4 h-4 bg-[#1c4587] text-white flex items-center justify-center rounded-sm text-[10px]">L</span> {t('sections.relatedCalculators')}
-      </div>
-      <div className="flex gap-2 mt-2">
-        <button className="bg-[#1c4587] text-white px-3 py-1 text-sm rounded">Cash Back or Low Interest Calculator</button>
-        <button className="bg-[#1c4587] text-white px-3 py-1 text-sm rounded">Auto Lease Calculator</button>
-      </div>
-
-      <AutoLoanArticle />
-    </div>
+    <PremiumCalculatorShell
+      calculator={calcMeta}
+      form={<AutoLoanForm state={state} setters={setters} />}
+      result={<AutoLoanResults totalLoanAmount={principal} salesTax={tax} upfrontPayment={upfront} totalPayments={totalPay} totalInterest={totalInt} totalCost={totalCostOverall} monthlyPayment={monthly} />}
+      subCalcs={subCalcs}
+      inputs={inputs}
+      mainValue={monthly}
+    />
   );
 }

@@ -9,6 +9,11 @@ const calcDef: CalcDef = {
     return { result: v.time, label: 'Hexagon Test Time', unit: 's', steps: [
       { label: 'Time', value: v.time+' s' }, { label: 'Rating', value: r },
       { label: 'Description', value: 'Multi-directional hopping test in a hexagon pattern measuring footwork and agility' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'The Hexagon Agility Test measures multidirectional footwork and hopping ability. Used for assessing lower body agility and coordination.', formula: 'Time to complete 3 rotations of hexagon jumps', interpretation: 'Faster times indicate better footwork, balance, and multidirectional agility. <8s is excellent.'
 }

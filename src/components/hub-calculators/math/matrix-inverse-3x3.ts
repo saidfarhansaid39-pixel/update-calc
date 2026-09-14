@@ -9,13 +9,23 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const a = n(v.a), b = n(v.b), c = n(v.c), d = n(v.d), e = n(v.e), f = n(v.f), g = n(v.g), h = n(v.h), i = n(v.i)
       const det = a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g)
-      if (Math.abs(det) < 1e-10) return { result: 'Matrix is singular', label: 'Inverse', steps: [step('det = 0', 'No inverse')] }
+      if (Math.abs(det) < 1e-10) return { result: 'Matrix is singular', label: 'Inverse', steps: [step('det = 0', 'No inverse')] ,
+    extras: [
+      { label: "Dimension Check", value: "Matrix dimensions must be compatible for the operation." },
+      { label: "Singular Matrix Warning", value: "A determinant of zero means the matrix has no inverse." },
+      { label: "Computational Complexity", value: "Larger matrices require significantly more computation." },
+      { label: "Application", value: "Used in computer graphics, machine learning, and physics simulations." }
+    ]}
       const r = (x: number) => (x / det).toFixed(4)
       return { result: `[[${r(e*i-f*h)},${r(-(b*i-c*h))},${r(b*f-c*e)}],[${r(-(d*i-f*g))},${r(a*i-c*g)},${r(-(a*f-c*d))}],[${r(d*h-e*g)},${r(-(a*h-b*g))},${r(a*e-b*d)}]]`, label: 'A?�', steps: [step('det', '' + det), step('Inverse computed', 'Using adjugate/det method')] }
     },
     formula: 'A?� = adj(A) / det(A).',
     description: 'Calculate the inverse of a 3x3 matrix.',
-    interpretation: 'The matrix that when multiplied by the original yields identity.'
+    interpretation: 'The matrix that when multiplied by the original yields identity.',
+    presets: [
+      { label: 'Identity', values: { a: '1', b: '0', c: '0', d: '0', e: '1', f: '0', g: '0', h: '0', i: '1' } },
+      { label: 'Simple', values: { a: '1', b: '2', c: '3', d: '0', e: '1', f: '4', g: '5', h: '6', i: '0' } }
+    ]
 }
 
 export default calcDef

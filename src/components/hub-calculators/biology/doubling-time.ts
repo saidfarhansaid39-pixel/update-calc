@@ -26,7 +26,12 @@ const calcDef: CalcDef = {
         { label: 'Doubling time = ln(2) / r', value: dt === Infinity ? 'No growth' : `${dt.toFixed(1)} h` },
         { label: 'Number of divisions', value: `${numDivisions.toFixed(1)}` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Population doubling time is the time required for a cell population to double in number during exponential growth. It is a key measure of cell proliferation.',
   formula: 'Doubling time = ln(2) / r, where r = ln(Nt/N0) / t | Number of doublings = log2(Nt/N0)',

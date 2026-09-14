@@ -28,7 +28,12 @@ const calcDef: CalcDef = {
         { label: '5 km split', value: `${(paceMinPerKm * 5).toFixed(0)} min` },
         { label: '10 km split', value: `${(paceMinPerKm * 10).toFixed(0)} min` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Find your half marathon pace. Calculate pace per kilometer for any half marathon goal time and develop a race day pacing plan.'
 }

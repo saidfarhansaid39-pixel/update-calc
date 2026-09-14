@@ -28,7 +28,12 @@ const calcDef: CalcDef = {
         { label: 'Total recovery', value: `${totalRecovery.toFixed(1)} min` },
         { label: 'Effort multiplier', value: `${effortMultiplier.toFixed(2)}× vs flat (hill resistance)` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Plan hill repeat training sessions. Running hills increases leg strength, power, and VO2 max more effectively than flat running at similar effort.'
 }

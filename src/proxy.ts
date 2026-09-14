@@ -6,50 +6,10 @@ import slugAliases from './lib/slug-aliases.json'
 const LOCALES = routing.locales
 const ALIASES = slugAliases as Record<string, Record<string, string>>
 
-const localeRateLimitMap = new Map<string, { count: number; resetTime: number }>()
-const LOCALE_RATE_LIMIT = 100
-const LOCALE_RATE_LIMIT_WINDOW = 60000
-
-function getClientIp(request: NextRequest): string {
-  const forwarded = request.headers.get('x-forwarded-for')
-  const realIp = request.headers.get('x-real-ip')
-  return forwarded?.split(',')[0]?.trim() || realIp || 'unknown'
-}
-
-function checkLocaleRateLimit(ip: string): boolean {
-  const now = Date.now()
-  const record = localeRateLimitMap.get(ip)
-  
-  if (!record || now > record.resetTime) {
-    localeRateLimitMap.set(ip, { count: 1, resetTime: now + LOCALE_RATE_LIMIT_WINDOW })
-    return true
-  }
-  
-  if (record.count >= LOCALE_RATE_LIMIT) {
-    return false
-  }
-  
-  record.count++
-  return true
-}
-
 export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   const segments = pathname.split('/').filter(Boolean)
   const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value
-
-  const clientIp = getClientIp(request)
-  if (!checkLocaleRateLimit(clientIp)) {
-    return new NextResponse('Rate limit exceeded for locale detection', { 
-      status: 429,
-      headers: {
-        'Retry-After': '60',
-        'X-RateLimit-Limit': LOCALE_RATE_LIMIT.toString(),
-        'X-RateLimit-Remaining': '0',
-        'X-RateLimit-Reset': Math.ceil((Date.now() + LOCALE_RATE_LIMIT_WINDOW) / 1000).toString(),
-      }
-    })
-  }
 
   let detectedLocale: string
   if (segments.length > 0 && (LOCALES as readonly string[]).includes(segments[0])) {
@@ -90,9 +50,6 @@ export default function proxy(request: NextRequest) {
   }
   response.headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
   response.headers.set('Content-Language', localeForHeaders)
-  response.headers.set('X-RateLimit-Limit', LOCALE_RATE_LIMIT.toString())
-  response.headers.set('X-RateLimit-Remaining', Math.max(0, LOCALE_RATE_LIMIT - (localeRateLimitMap.get(clientIp)?.count || 0)).toString())
-  response.headers.set('X-RateLimit-Reset', Math.ceil((Date.now() + LOCALE_RATE_LIMIT_WINDOW) / 1000).toString())
 
   return response
 }

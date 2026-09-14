@@ -17,6 +17,11 @@ const calcDef: CalcDef = {
       { label: 'Duration', value: `${v.duration} min = ${(v.duration / 60).toFixed(2)} hr` },
       { label: 'Formula', value: `${v.weight} × ${v.met} × ${(v.duration / 60).toFixed(2)}` },
       { label: 'Calories burned', value: `${kcal.toFixed(0)} kcal` },
+    ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
     ]} },
     description: 'Calories burned during physical activity calculated using the MET (Metabolic Equivalent of Task) method. MET values from the Compendium of Physical Activities.',
     example: { label: '70kg, brisk walk (3.5 MET), 30 min', value: '~122 kcal' }

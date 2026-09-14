@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function DensityConverterForm() {
@@ -8,14 +8,12 @@ export default function DensityConverterForm() {
   const [value, setValue] = useState<number>(1);
   const [from, setFrom] = useState<string>('gcm3');
   const [to, setTo] = useState<string>('kgm3');
-  const [result, setResult] = useState<any>(null);
-
   const toKgm3: any = { gcm3: 1000, kgm3: 1, gml: 1000, lbft3: 16.0185, lbin3: 27679.9, kgin3: 1000000 };
 
-  useEffect(() => {
+  const result = useMemo(() => {
     const kgm3 = value * toKgm3[from];
     const res = kgm3 / toKgm3[to];
-    setResult(res.toFixed(4));
+    return res.toFixed(4);
   }, [value, from, to]);
 
   return (

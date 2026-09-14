@@ -8,11 +8,20 @@ const calcDef: CalcDef = {
     defaults: { k: '3', lambda: '2.5' },
     compute: (v) => {
       const k = Math.round(n(v.k)), lambda = n(v.lambda); const prob = Math.exp(-lambda) * Math.pow(lambda, k) / fact(k)
-      return { result: prob.toFixed(6), label: 'P(X=k)', steps: [step('Formula', 'P(k) = e^(-lambda) x lambda^k / k!'), step('Result', prob.toFixed(6))] }
+      return { result: prob.toFixed(6), label: 'P(X=k)', steps: [step('Formula', 'P(k) = e^(-lambda) x lambda^k / k!'), step('Result', prob.toFixed(6))] ,
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ]}
     },
     formula: 'P(X=k) = e^(-lambda) x lambda^k / k!.',
     description: 'Calculate Poisson probability for exactly k events.',
-    interpretation: 'The probability of exactly k events occurring in a fixed interval.'
+    interpretation: 'The probability of exactly k events occurring in a fixed interval.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

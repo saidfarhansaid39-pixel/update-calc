@@ -16,7 +16,7 @@ export function CalculatorWidget({ slug, title, category }: CalculatorWidgetProp
   const [height, setHeight] = useState(480)
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const [copied, setCopied] = useState(false)
-  const baseUrl = 'https://www.jdcalc.com'
+  const baseUrl = 'https://www.calculat.online'
 
   const iframeCode = `<iframe src="${baseUrl}/api/widget/${slug}" width="${width}" height="${height}" frameborder="0" scrolling="no" title="${title}"></iframe>`
 

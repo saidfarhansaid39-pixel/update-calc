@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'EPOC bonus (~14%)', value: `+${epocKcal.toFixed(0)} kcal` },
         { label: 'Total with EPOC', value: `${totalKcal.toFixed(0)} kcal` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate calories burned during HIIT workouts. HIIT burns more calories per minute than steady-state cardio due to EPOC (Excess Post-Exercise Oxygen Consumption).'
 }

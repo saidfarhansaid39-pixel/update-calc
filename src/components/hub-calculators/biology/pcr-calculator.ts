@@ -27,7 +27,12 @@ const calcDef: CalcDef = {
         { label: 'Salt-corrected Tm', value: `${tmSaltCorrected.toFixed(1)} °C` },
         { label: 'Annealing temp (Tm–5)', value: `${ta.toFixed(1)} °C` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'PCR annealing temperature is critical for specific amplification. Calculate primer melting temperature and optimal annealing temperature based on sequence and salt.',
   formula: 'Tm = 64.9 + 41×(GC% – 16.4)/Length | Ta = Tm – 5°C',

@@ -9,7 +9,12 @@ const calcDef: CalcDef = {
     { name:'fresh', label:'I woke up feeling fresh and rested', type:'select', options:[{ label:'All of the time (5)', value:'5' },{ label:'Most of the time (4)', value:'4' },{ label:'More than half (3)', value:'3' },{ label:'Less than half (2)', value:'2' },{ label:'Some of the time (1)', value:'1' },{ label:'At no time (0)', value:'0' }] },
     { name:'interesting', label:'My daily life has been interesting', type:'select', options:[{ label:'All of the time (5)', value:'5' },{ label:'Most of the time (4)', value:'4' },{ label:'More than half (3)', value:'3' },{ label:'Less than half (2)', value:'2' },{ label:'Some of the time (1)', value:'1' },{ label:'At no time (0)', value:'0' }] }
   ],
-  compute: (v) => { const s=parseInt(v.cheerful||'3')+parseInt(v.calm||'3')+parseInt(v.active||'3')+parseInt(v.fresh||'3')+parseInt(v.interesting||'3'); const pct=s*4; let status='Good'; if(pct<=28) status='Poor'; else if(pct<=50) status='Fair'; return { result:pct, label:'WHO-5 Well-Being Index', unit:'%', steps:[{ label:'Raw Score', value:s+'/25' },{ label:'Percentage', value:pct+'%' },{ label:'Well-Being', value:status }] } },
+  compute: (v) => { const s=parseInt(v.cheerful||'3')+parseInt(v.calm||'3')+parseInt(v.active||'3')+parseInt(v.fresh||'3')+parseInt(v.interesting||'3'); const pct=s*4; let status='Good'; if(pct<=28) status='Poor'; else if(pct<=50) status='Fair'; return { result:pct, label:'WHO-5 Well-Being Index', unit:'%', steps:[{ label:'Raw Score', value:s+'/25' },{ label:'Percentage', value:pct+'%' },{ label:'Well-Being', value:status }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'WHO-5 Well-Being Index screening for psychological well-being over the past two weeks.',
   formula: 'Raw score = sum of 5 items (0-5 each). Percentage = raw score × 4. Range 0-100%.',
   interpretation: '<28% indicates likely depression. 28-50% suggests possible distress. >50% is adequate well-being.'

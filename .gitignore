@@ -39,6 +39,7 @@
 
 # Allow root-level doc files
 !/PRD-CalculatorUniverseX.md
+!/.vercelignore
 
 # Still exclude node_modules and build output
 node_modules/

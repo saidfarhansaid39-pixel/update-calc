@@ -9,11 +9,20 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const a = n(v.a), b = n(v.b), c = n(v.c), d = n(v.d)
       const l11 = 1, l21 = c / a; const u11 = a, u12 = b, u22 = d - l21 * b
-      return { result: `L=[[1,0],[${l21.toFixed(4)},1]], U=[[${u11.toFixed(4)},${u12.toFixed(4)}],[0,${u22.toFixed(4)}]]`, label: 'LU Decomposition', steps: [step('L', `[[1, 0], [${l21.toFixed(4)}, 1]]`), step('U', `[[${u11.toFixed(4)}, ${u12.toFixed(4)}], [0, ${u22.toFixed(4)}]]`)] }
+      return { result: `L=[[1,0],[${l21.toFixed(4)},1]], U=[[${u11.toFixed(4)},${u12.toFixed(4)}],[0,${u22.toFixed(4)}]]`, label: 'LU Decomposition', steps: [step('L', `[[1, 0], [${l21.toFixed(4)}, 1]]`), step('U', `[[${u11.toFixed(4)}, ${u12.toFixed(4)}], [0, ${u22.toFixed(4)}]]`)] ,
+    extras: [
+      { label: "Dimension Check", value: "Matrix dimensions must be compatible for the operation." },
+      { label: "Singular Matrix Warning", value: "A determinant of zero means the matrix has no inverse." },
+      { label: "Computational Complexity", value: "Larger matrices require significantly more computation." },
+      { label: "Application", value: "Used in computer graphics, machine learning, and physics simulations." }
+    ]}
     },
     formula: 'A = LU. L lower triangular, U upper triangular.',
     description: 'Compute LU decomposition of a 2x2 matrix.',
-    interpretation: 'LU decomposition factors A into lower and upper triangular matrices.'
+    interpretation: 'LU decomposition factors A into lower and upper triangular matrices.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

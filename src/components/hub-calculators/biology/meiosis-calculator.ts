@@ -18,7 +18,12 @@ const calcDef: CalcDef = {
         { label: 'Unique gamete types', value: `${combinations.toLocaleString()}` },
         { label: 'With crossover', value: '~10²× more (virtually unlimited)' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Meiosis produces genetically unique gametes through independent assortment and crossing over, generating tremendous genetic diversity.',
   formula: 'Unique combinations = 2^n (without crossover) | n = haploid chromosome number',

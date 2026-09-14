@@ -40,36 +40,50 @@ export const calcDefsGroup0: Record<string, CalcDef> = {
   },
 
   'paint-calculator': {
-    schema: z.object({ wallLength: z.string(), wallHeight: z.string(), numCoats: z.string() }),
+    schema: z.object({ wallLength: z.string(), wallHeight: z.string(), numCoats: z.string(), doors: z.string().optional(), windows: z.string().optional(), costPerGal: z.string().optional() }),
     fields: [
       { name: 'wallLength', label: 'Total Wall Length (ft)', step: 0.1, min: 0 },
       { name: 'wallHeight', label: 'Wall Height (ft)', step: 0.1, min: 0 },
       { name: 'numCoats', label: 'Number of Coats', step: 1, min: 1, placeholder: '2' },
+      { name: 'doors', label: 'Number of Doors (deduct ~20 sq ft each)', step: 1, min: 0, mode: 'advanced' },
+      { name: 'windows', label: 'Number of Windows (deduct ~15 sq ft each)', step: 1, min: 0, mode: 'advanced' },
+      { name: 'costPerGal', label: 'Cost per Gallon ($)', placeholder: '40', step: 5, min: 0, mode: 'advanced' },
     ],
     compute: (v: Record<string, string>) => {
-      const area = n(v.wallLength) * n(v.wallHeight) * n(v.numCoats)
-      const gallons = area / 350
-      return { result: Math.ceil(gallons * 2) / 2, label: 'Paint Needed', unit: 'gallons', steps: [`Total surface area: ${n(v.wallLength)} × ${n(v.wallHeight)} = ${(n(v.wallLength) * n(v.wallHeight)).toFixed(1)} sq ft`, `Coats: ${n(v.numCoats)}, total: ${area.toFixed(1)} sq ft`, `1 gallon covers ~350 sq ft → ${(area / 350).toFixed(2)} gal`, `Rounded: ${(Math.ceil(gallons * 2) / 2).toFixed(1)} gal`] }
+      const rawArea = n(v.wallLength) * n(v.wallHeight)
+      const deductions = (n(v.doors || '0') * 20) + (n(v.windows || '0') * 15)
+      const netArea = Math.max(0, rawArea - deductions)
+      const totalArea = netArea * n(v.numCoats)
+      const gallons = totalArea / 350
+      const rounded = Math.ceil(gallons * 2) / 2
+      const cost = n(v.costPerGal) > 0 ? rounded * n(v.costPerGal) : 0
+      const extras: { label: string; value: string }[] = [{ label: 'Gross Wall Area', value: `${rawArea.toFixed(1)} sq ft` }, { label: 'Deductions', value: `${deductions.toFixed(0)} sq ft` }, { label: 'Net Area (per coat)', value: `${netArea.toFixed(1)} sq ft` }]
+      if (cost > 0) extras.push({ label: 'Paint Cost', value: `$${cost.toFixed(2)}` })
+      return { result: rounded, label: 'Paint Needed', unit: 'gallons', steps: [`Gross area: ${n(v.wallLength)} × ${n(v.wallHeight)} = ${rawArea.toFixed(1)} sq ft`, `Deduct ${n(v.doors || '0')} doors + ${n(v.windows || '0')} windows = -${deductions.toFixed(0)} sq ft`, `Net area: ${netArea.toFixed(1)} sq ft × ${n(v.numCoats)} coats = ${totalArea.toFixed(1)} sq ft`, `1 gallon ~350 sq ft → ${rounded} gal`], extras }
     },
-    description: 'Estimate paint gallons needed for interior walls.',
-    formula: 'Gallons = ⌈(Length × Height × Coats) / 350 × 2⌉ / 2',
-    interpretation: 'One gallon of paint covers approximately 350 sq ft. Result is rounded to the nearest half-gallon.',
+    description: 'Estimate paint gallons needed for interior walls with door/window deductions.',
+    formula: 'Gallons = ⌈((Length × Height - Deductions) × Coats) / 350 × 2⌉ / 2',
+    interpretation: 'One gallon covers ~350 sq ft. Standard door ~20 sq ft, window ~15 sq ft. Result rounded to nearest half-gallon.',
   },
 
   'flooring-calculator': {
-    schema: z.object({ roomLength: z.string(), roomWidth: z.string(), wasteFactor: z.string() }),
+    schema: z.object({ roomLength: z.string(), roomWidth: z.string(), wasteFactor: z.string(), costPerSqFt: z.string().optional() }),
     fields: [
       { name: 'roomLength', label: 'Room Length (ft)', step: 0.1, min: 0 },
       { name: 'roomWidth', label: 'Room Width (ft)', step: 0.1, min: 0 },
       { name: 'wasteFactor', label: 'Waste Factor (%)', placeholder: '10', step: 1, min: 0 },
+      { name: 'costPerSqFt', label: 'Cost per sq ft ($)', placeholder: '5', step: 0.5, min: 0, mode: 'advanced' },
     ],
     compute: (v: Record<string, string>) => {
       const area = n(v.roomLength) * n(v.roomWidth)
       const waste = n(v.wasteFactor || '10') / 100
       const total = area * (1 + waste)
-      return { result: total, label: 'Flooring Needed', unit: 'sq ft', steps: [`Room area: ${n(v.roomLength)} × ${n(v.roomWidth)} = ${area.toFixed(1)} sq ft`, `Waste (${n(v.wasteFactor || '10')}%): +${(area * waste).toFixed(1)} sq ft`, `Total to order: ${total.toFixed(1)} sq ft`] }
+      const cost = n(v.costPerSqFt) > 0 ? total * n(v.costPerSqFt) : 0
+      const extras: { label: string; value: string }[] = [{ label: 'Net Area', value: `${area.toFixed(1)} sq ft` }, { label: 'Waste', value: `${(area * waste).toFixed(1)} sq ft (${n(v.wasteFactor || '10')}%)` }]
+      if (cost > 0) extras.push({ label: 'Material Cost', value: `$${cost.toFixed(2)}` })
+      return { result: total, label: 'Flooring Needed', unit: 'sq ft', steps: [`Room area: ${n(v.roomLength)} × ${n(v.roomWidth)} = ${area.toFixed(1)} sq ft`, `Waste (${n(v.wasteFactor || '10')}%): +${(area * waste).toFixed(1)} sq ft`, `Total to order: ${total.toFixed(1)} sq ft`], extras }
     },
-    description: 'Estimate flooring material needed for a room.',
+    description: 'Estimate flooring material needed for a room with cost.',
     formula: 'Total = (Length × Width) × (1 + Waste/100)',
     interpretation: 'Includes recommended waste factor for cutting and fitting. Add 5-10% for straight lay, 15% for diagonal or patterned installation.',
   },

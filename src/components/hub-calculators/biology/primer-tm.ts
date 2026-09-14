@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Tm = 4(G+C) + 2(A+T)', value: `${tmBasic.toFixed(1)}°C` },
         { label: 'Tm (NN model)', value: `${tmNn.toFixed(1)}°C` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Primer melting temperature (Tm) is the temperature at which half of the primer molecules are annealed to the template. Accurate Tm estimation is critical for PCR success.',
   formula: 'Basic: Tm = 4(G+C) + 2(A+T) for primers < 20 bases | NN model: Tm = 64.9 + 41(%GC - 0.41)',

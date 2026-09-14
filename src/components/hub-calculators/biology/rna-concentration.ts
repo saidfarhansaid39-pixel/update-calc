@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Conc = A260 × 40 × DF', value: `${conc.toFixed(2)} ng/µL` },
         { label: 'A260/A280 (expected ~2.0)', value: 'Check spectrophotometer for purity' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Calculate RNA concentration from UV absorbance at 260 nm. A260 of 1.0 corresponds to ~40 µg/mL for RNA. The A260/A280 and A260/A230 ratios indicate purity.',
   formula: '[RNA] (ng/µL) = A260 × 40 × DF | Pure RNA: A260/A280 ˜ 2.0, A260/A230 > 2.0',

@@ -38,21 +38,134 @@ export const calcDefsGroup1: Record<string, CalcDef> = {
   },
 
   'concrete-slab-calculator': {
-    schema: z.object({ slabLength: z.string(), slabWidth: z.string(), slabThickness: z.string() }),
+    schema: z.object({
+      shape: z.string(), slabLength: z.string(), slabWidth: z.string(),
+      slabThickness: z.string(), columnDiameter: z.string(), columnDepth: z.string(),
+      circularDiameter: z.string(), circularThickness: z.string(),
+      curbDepth: z.string(), gutterWidth: z.string(), curbHeight: z.string(),
+      flagThickness: z.string(), curbLength: z.string(),
+      stairRun: z.string(), stairRise: z.string(), stairWidth: z.string(), numRisers: z.string(),
+      quantity: z.string().optional(), costPerCuYd: z.string().optional(), bagSize: z.string().optional()
+    }),
     fields: [
-      { name: 'slabLength', label: 'Slab Length (ft)', step: 0.1, min: 0 },
-      { name: 'slabWidth', label: 'Slab Width (ft)', step: 0.1, min: 0 },
-      { name: 'slabThickness', label: 'Slab Thickness (in)', placeholder: '4', step: 0.5, min: 0 },
+      { name: 'shape', label: 'Shape', type: 'select', options: [
+        { label: 'Slab', value: 'slab' }, { label: 'Hole / Column', value: 'hole' },
+        { label: 'Circular Slab', value: 'circular' }, { label: 'Curb & Gutter', value: 'curb' },
+        { label: 'Stairs', value: 'stairs' }
+      ]},
+      { name: 'slabLength', label: 'Length', step: 0.1, min: 0, dependsOn: { field: 'shape', value: 'slab' },
+        units: [{ value: 'ft', label: 'Feet' }, { value: 'in', label: 'Inches' }, { value: 'yd', label: 'Yards' }, { value: 'm', label: 'Meters' }], defaultUnit: 'ft' },
+      { name: 'slabWidth', label: 'Width', step: 0.1, min: 0, dependsOn: { field: 'shape', value: 'slab' },
+        units: [{ value: 'ft', label: 'Feet' }, { value: 'in', label: 'Inches' }, { value: 'yd', label: 'Yards' }, { value: 'm', label: 'Meters' }], defaultUnit: 'ft' },
+      { name: 'slabThickness', label: 'Thickness', placeholder: '4', step: 0.5, min: 0, dependsOn: { field: 'shape', value: 'slab' },
+        units: [{ value: 'in', label: 'Inches' }, { value: 'ft', label: 'Feet' }, { value: 'cm', label: 'Centimeters' }], defaultUnit: 'in' },
+      { name: 'columnDiameter', label: 'Diameter', step: 0.5, min: 0, dependsOn: { field: 'shape', value: 'hole' },
+        units: [{ value: 'in', label: 'Inches' }, { value: 'ft', label: 'Feet' }], defaultUnit: 'in' },
+      { name: 'columnDepth', label: 'Depth / Height', step: 0.1, min: 0, dependsOn: { field: 'shape', value: 'hole' },
+        units: [{ value: 'ft', label: 'Feet' }, { value: 'in', label: 'Inches' }], defaultUnit: 'ft' },
+      { name: 'circularDiameter', label: 'Diameter', step: 0.5, min: 0, dependsOn: { field: 'shape', value: 'circular' },
+        units: [{ value: 'ft', label: 'Feet' }, { value: 'in', label: 'Inches' }], defaultUnit: 'ft' },
+      { name: 'circularThickness', label: 'Thickness', placeholder: '4', step: 0.5, min: 0, dependsOn: { field: 'shape', value: 'circular' },
+        units: [{ value: 'in', label: 'Inches' }, { value: 'ft', label: 'Feet' }], defaultUnit: 'in' },
+      { name: 'curbDepth', label: 'Curb Depth', step: 0.5, min: 0, placeholder: '8', dependsOn: { field: 'shape', value: 'curb' },
+        units: [{ value: 'in', label: 'Inches' }, { value: 'ft', label: 'Feet' }], defaultUnit: 'in' },
+      { name: 'gutterWidth', label: 'Gutter Width', step: 0.5, min: 0, placeholder: '12', dependsOn: { field: 'shape', value: 'curb' },
+        units: [{ value: 'in', label: 'Inches' }, { value: 'ft', label: 'Feet' }], defaultUnit: 'in' },
+      { name: 'curbHeight', label: 'Curb Height', step: 0.5, min: 0, placeholder: '6', dependsOn: { field: 'shape', value: 'curb' },
+        units: [{ value: 'in', label: 'Inches' }, { value: 'ft', label: 'Feet' }], defaultUnit: 'in' },
+      { name: 'flagThickness', label: 'Flag Thickness', step: 0.5, min: 0, placeholder: '4', dependsOn: { field: 'shape', value: 'curb' },
+        units: [{ value: 'in', label: 'Inches' }, { value: 'ft', label: 'Feet' }], defaultUnit: 'in' },
+      { name: 'curbLength', label: 'Curb Length', step: 0.1, min: 0, dependsOn: { field: 'shape', value: 'curb' },
+        units: [{ value: 'ft', label: 'Feet' }, { value: 'yd', label: 'Yards' }, { value: 'm', label: 'Meters' }], defaultUnit: 'ft' },
+      { name: 'stairRun', label: 'Tread Run', placeholder: '11', step: 0.5, min: 0, dependsOn: { field: 'shape', value: 'stairs' },
+        units: [{ value: 'in', label: 'Inches' }, { value: 'ft', label: 'Feet' }], defaultUnit: 'in' },
+      { name: 'stairRise', label: 'Riser Height', placeholder: '7', step: 0.5, min: 0, dependsOn: { field: 'shape', value: 'stairs' },
+        units: [{ value: 'in', label: 'Inches' }, { value: 'ft', label: 'Feet' }], defaultUnit: 'in' },
+      { name: 'stairWidth', label: 'Stair Width', step: 0.1, min: 0, dependsOn: { field: 'shape', value: 'stairs' },
+        units: [{ value: 'ft', label: 'Feet' }, { value: 'in', label: 'Inches' }], defaultUnit: 'ft' },
+      { name: 'numRisers', label: 'Number of Risers', step: 1, min: 1, placeholder: '10', dependsOn: { field: 'shape', value: 'stairs' } },
+      { name: 'quantity', label: 'Quantity (identical units)', placeholder: '1', step: 1, min: 1, mode: 'advanced' },
+      { name: 'costPerCuYd', label: 'Cost per cu yd ($)', placeholder: '150', step: 5, min: 0, mode: 'advanced' },
+      { name: 'bagSize', label: 'Bag Size', type: 'select', options: [
+        { label: 'Ready-mix (no bags)', value: '0' }, { label: '40 lb bags', value: '40' },
+        { label: '60 lb bags', value: '60' }, { label: '80 lb bags', value: '80' },
+        { label: '90 lb bags', value: '90' }
+      ], mode: 'advanced' },
     ],
     compute: (v: Record<string, string>) => {
-      const thickFt = n(v.slabThickness || '4') / 12
-      const volCF = n(v.slabLength) * n(v.slabWidth) * thickFt
+      const u = (name: string, def: string = 'ft') => v[name + 'Unit'] || def
+      const toFt = (val: string, unit: string): number => {
+        const m: Record<string, number> = { 'ft': 1, 'in': 1/12, 'yd': 3, 'm': 3.281, 'cm': 0.0328 }
+        return n(val) * (m[unit] || 1)
+      }
+      const toIn = (val: string, unit: string): number => toFt(val, unit) * 12
+      const shape = v.shape || 'slab'
+      const qty = Math.max(1, n(v.quantity || '1'))
+      let volCF = 0, desc = '', steps: string[] = []
+      if (shape === 'slab') {
+        const l = toFt(v.slabLength, u('slabLength'))
+        const w = toFt(v.slabWidth, u('slabWidth'))
+        const t = toIn(v.slabThickness, u('slabThickness'))
+        volCF = l * w * (t / 12)
+        desc = `Slab: ${l.toFixed(1)}' × ${w.toFixed(1)}' × ${t.toFixed(1)}"`
+        steps = [`${desc}`, `Area: ${(l * w).toFixed(1)} sq ft`, `Volume: ${volCF.toFixed(2)} ft³`]
+      } else if (shape === 'hole') {
+        const d = toIn(v.columnDiameter, u('columnDiameter'))
+        const h = toFt(v.columnDepth, u('columnDepth'))
+        volCF = Math.PI * ((d / 12) / 2) ** 2 * h
+        desc = `Column: ${d.toFixed(1)}" dia × ${h.toFixed(1)}' deep`
+        steps = [`${desc}`, `Radius: ${(d / 24).toFixed(2)}'`, `Volume: ${volCF.toFixed(2)} ft³`]
+      } else if (shape === 'circular') {
+        const d = toFt(v.circularDiameter, u('circularDiameter'))
+        const t = toIn(v.circularThickness, u('circularThickness'))
+        volCF = Math.PI * (d / 2) ** 2 * (t / 12)
+        desc = `Circular slab: ${d.toFixed(1)}' dia × ${t.toFixed(1)}" thick`
+        steps = [`${desc}`, `Area: ${(Math.PI * (d / 2) ** 2).toFixed(1)} sq ft`, `Volume: ${volCF.toFixed(2)} ft³`]
+      } else if (shape === 'curb') {
+        const cd = toIn(v.curbDepth, u('curbDepth'))
+        const gw = toIn(v.gutterWidth, u('gutterWidth'))
+        const ch = toIn(v.curbHeight, u('curbHeight'))
+        const ft = toIn(v.flagThickness, u('flagThickness'))
+        const cl = toFt(v.curbLength, u('curbLength'))
+        const curbVol = (cd / 12) * (ch / 12) * cl
+        const gutterVol = (gw / 12) * (ft / 12) * cl
+        volCF = curbVol + gutterVol
+        desc = `Curb: ${cd.toFixed(1)}"D × ${ch.toFixed(1)}"H | Gutter: ${gw.toFixed(1)}"W × ${ft.toFixed(1)}"T`
+        steps = [`${desc}`, `Length: ${cl.toFixed(1)}'`, `Curb volume: ${curbVol.toFixed(2)} ft³`, `Gutter volume: ${gutterVol.toFixed(2)} ft³`, `Total: ${volCF.toFixed(2)} ft³`]
+      } else if (shape === 'stairs') {
+        const run = toIn(v.stairRun, u('stairRun'))
+        const rise = toIn(v.stairRise, u('stairRise'))
+        const sw = toFt(v.stairWidth, u('stairWidth'))
+        const risers = Math.max(1, Math.round(n(v.numRisers || '10')))
+        volCF = (run / 12) * (rise / 12) / 2 * sw * risers
+        desc = `Stairs: ${risers} risers × ${run.toFixed(1)}" run × ${rise.toFixed(1)}" rise`
+        steps = [`${desc}`, `Width: ${sw.toFixed(1)}'`, `Volume per step: ${((run / 12) * (rise / 12) / 2 * sw).toFixed(3)} ft³`, `Total: ${volCF.toFixed(2)} ft³`]
+      }
+      volCF *= qty
       const volCY = volCF / 27
-      return { result: volCY, label: 'Concrete Needed', unit: 'cubic yd', steps: [`Slab dimensions: ${n(v.slabLength)} × ${n(v.slabWidth)} × ${n(v.slabThickness || '4')} in`, `Volume: ${volCF.toFixed(2)} ft³`, `Concrete: ${volCY.toFixed(3)} yd³ (order ${Math.ceil(volCY * 1.1)} yd³ with waste)`] }
+      const wasteVol = volCY * 0.1
+      const orderCY = volCY + wasteVol
+      const weightLbs = volCF * 150
+      const weightTons = weightLbs / 2000
+      const cost = n(v.costPerCuYd) > 0 ? orderCY * n(v.costPerCuYd) : 0
+      const bagSize = n(v.bagSize || '0')
+      const bagFactors: Record<string, number> = { '40': 0.3, '60': 0.45, '80': 0.60, '90': 0.675 }
+      const bagFactor = bagFactors[String(n(v.bagSize))] || 0
+      const bags = bagSize > 0 ? Math.ceil(orderCY * 27 / bagFactor) : 0
+      const extras: { label: string; value: string }[] = [
+        { label: qty > 1 ? `Qty (×${qty})` : 'Volume (neat)', value: `${volCY.toFixed(3)} yd³` },
+        { label: 'Waste (10%)', value: `${wasteVol.toFixed(3)} yd³` },
+        { label: 'Order Volume', value: `${orderCY.toFixed(3)} yd³` },
+        { label: 'Weight', value: `${weightLbs.toFixed(0)} lb (${weightTons.toFixed(2)} t)` }
+      ]
+      if (cost > 0) extras.push({ label: 'Material Cost', value: `$${cost.toFixed(2)}` })
+      if (bags > 0) extras.push({ label: `${bagSize} lb Bags`, value: `${bags} bags` })
+      steps.push(`With 10% waste: ${orderCY.toFixed(3)} yd³`)
+      return { result: orderCY, label: 'Concrete to Order', unit: 'yd³', steps, extras }
     },
-    description: 'Estimate concrete volume for a slab.',
-    formula: 'yd³ = (Length × Width × Thickness/12) / 27',
-    interpretation: 'Add 10% for waste and uneven subgrade. 4" slab: standard for residential. 6" for garage/light commercial.',
+    description: 'Estimate concrete volume, weight, and cost for slabs, columns, circular slabs, curbs, and stairs.',
+    formula: 'Volume = Shape-specific geometry | Weight = Vol × 150 lb/ft³ | 1 yd³ = 27 ft³',
+    interpretation: 'Add 10% for waste and uneven subgrade. 4" slab: standard residential. 6" for garage. Concrete weighs ~150 lb/ft³.',
   },
 
   'asphalt-calculator': {

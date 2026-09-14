@@ -14,11 +14,20 @@ const calcDef: CalcDef = {
       const mixed = sNum >= sDen ? Math.floor(sNum / sDen) : 0
       const rem = sNum % sDen
       const fracStr = mixed > 0 ? (rem === 0 ? '' + mixed : mixed + ' ' + rem + '/' + sDen) : '' + sNum + '/' + sDen
-      return { result: fracStr, label: 'Simplified', steps: [step('Original:', '' + a + '/' + b), step('GCD:', '' + g), step('Simplified:', '' + sNum + '/' + sDen)] }
+      return { result: fracStr, label: 'Simplified', steps: [step('Original:', '' + a + '/' + b), step('GCD:', '' + g), step('Simplified:', '' + sNum + '/' + sDen)],
+    extras: [
+      { label: "How It Works", value: "Simple percentage-based calculation applied to your input values." },
+      { label: "Common Use Case", value: "Used in shopping, budgeting, and everyday financial decisions." },
+      { label: "Input Requirements", value: "All monetary values should be in the same currency." },
+      { label: "Accuracy Note", value: "Results rounded to 2 decimal places for standard currency format." }
+    ] }
     },
     formula: 'a/b = (a/g)/(b/g) where g = gcd(a,b)',
     description: 'Simplify a fraction to its lowest terms.',
-    interpretation: 'The fraction in its simplest form.'
+    interpretation: 'The fraction in its simplest form.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

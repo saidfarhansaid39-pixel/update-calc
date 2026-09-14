@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'base', label: 'Base Type', type: 'select', options: [{ label: 'Custard (French style)', value: 'custard' }, { label: 'Philadelphia (egg-free)', value: 'philly' }, { label: 'Dairy-free (coconut)', value: 'vegan' }] }
     ],
     compute: (v) => {
-      const mult = Math.ceil(v.servings / 4); const cream = mult * 250; const milk = mult * (v.base === 'custard' ? 250 : 150); const sugar = mult * 150; const eggs = v.base === 'custard' ? mult * 3 : 0; return { result: cream + milk, label: 'Total Base', unit: 'mL', steps: [{ label: 'Servings', value: v.servings + ' (1 batch per 4 servings)' }, { label: 'Heavy cream', value: cream + ' mL' }, { label: 'Milk', value: milk + ' mL' }, { label: 'Sugar', value: sugar + ' g' }, eggs > 0 ? { label: 'Egg yolks', value: eggs + ' yolks' } : { label: 'Stabilizer', value: v.base === 'vegan' ? '1 can coconut cream' : '2 tbsp cornstarch' }] }
+      const mult = Math.ceil(v.servings / 4); const cream = mult * 250; const milk = mult * (v.base === 'custard' ? 250 : 150); const sugar = mult * 150; const eggs = v.base === 'custard' ? mult * 3 : 0; return { result: cream + milk, label: 'Total Base', unit: 'mL', steps: [{ label: 'Servings', value: v.servings + ' (1 batch per 4 servings)' }, { label: 'Heavy cream', value: cream + ' mL' }, { label: 'Milk', value: milk + ' mL' }, { label: 'Sugar', value: sugar + ' g' }, eggs > 0 ? { label: 'Egg yolks', value: eggs + ' yolks' } : { label: 'Stabilizer', value: v.base === 'vegan' ? '1 can coconut cream' : '2 tbsp cornstarch' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Ice cream base ingredients. Custard = richer (egg yolks), Philadelphia = simpler (no eggs), dairy-free = coconut-based.',
     example: { label: '4 servings, custard style', value: '500mL cream + 500mL milk + 150g sugar + 3 yolks' }

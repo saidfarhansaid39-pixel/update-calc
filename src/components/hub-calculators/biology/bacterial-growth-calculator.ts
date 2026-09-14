@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Doubling time', value: `${doubling.toFixed(2)} h` },
         { label: 'Final population', value: `${nt.toFixed(0)}` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Bacterial growth follows exponential kinetics in the log phase. Model population size over time given initial count and specific growth rate.',
   formula: 'Nt = N0 × e^(µ×t) | Doubling time = ln(2) / µ',

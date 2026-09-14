@@ -4,9 +4,8 @@ import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-export function EstateTaxForm({ state, setters, handleCalculate, handleClear }: any) {
-  const t = useTranslations('calculatorUI');
-  const InputRow = ({ label, value, setter }: any) => (
+function InputRow({ label, value, setter }: any) {
+  return (
     <div className="grid grid-cols-[1fr_120px] md:grid-cols-[250px_120px] gap-2 items-center mb-2">
       <label className="text-left pr-2 text-[13px]">{label}</label>
       <div className="flex items-center">
@@ -20,6 +19,10 @@ export function EstateTaxForm({ state, setters, handleCalculate, handleClear }: 
       </div>
     </div>
   );
+}
+
+export function EstateTaxForm({ state, setters, handleCalculate, handleClear }: any) {
+  const t = useTranslations('calculatorUI');
 
   return (
     <div className="w-full font-sans text-[13px] text-gray-800">
@@ -57,7 +60,7 @@ export function EstateTaxForm({ state, setters, handleCalculate, handleClear }: 
         <div className="bg-[#466a9b] text-white font-bold p-1 px-2 mt-4 mb-3">Lifetime Gifted Amount</div>
         <div className="pl-2">
           <div className="grid grid-cols-[1fr_120px] md:grid-cols-[250px_120px] gap-2 items-center mb-2">
-            <label className="text-left pr-2 text-[13px]">Total amount you've gifted tax free in your lifetime</label>
+            <label className="text-left pr-2 text-[13px]">Total amount you’ve gifted tax free in your lifetime</label>
             <div className="flex items-center">
               <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
               <input 

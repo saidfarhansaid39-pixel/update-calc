@@ -32,7 +32,12 @@ const calcDef: CalcDef = {
         { label: 'Body fat (Navy method)', value: `${bf.toFixed(1)} %` },
         { label: 'Category', value: cat },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Estimate body fat percentage using the US Navy circumference method. This method uses neck, waist, and height (plus hip for females) to estimate body composition.',
   formula: 'Male: BF% = 86.01×log10(waist–neck) – 70.04×log10(height) + 36.76 | Female: uses hip circumference',

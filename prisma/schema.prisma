@@ -20,6 +20,7 @@ model User {
   collections       Collection[]
   presets           Preset[]
   shareLinks        ShareLink[]
+  sessions          Session[]
 }
 
 model SavedCalculation {
@@ -87,6 +88,15 @@ model ShareLink {
   result         String
   createdAt      DateTime @default(now())
   expiresAt      DateTime?
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String   @unique
+  createdAt DateTime @default(now())
+  expiresAt DateTime
 }
 
 model ExternalDataset {

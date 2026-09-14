@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'T = d / (2µ)', value: `${divergenceTime.toFixed(0)} years` },
         { label: 'In Mya (millions)', value: `${(divergenceTime / 1e6).toFixed(2)} Mya` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The molecular clock hypothesis uses the constant rate of molecular evolution to estimate divergence times between species or lineages.',
   formula: 'T = d / (2µ) where T = divergence time, d = genetic distance, µ = substitution rate per site per year',

@@ -27,7 +27,12 @@ const calcDef: CalcDef = {
         { label: 'Total bases', value: `${total}` },
         { label: 'GC% = (G+C)/total × 100', value: `${gcPct.toFixed(1)}%` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'GC content of primers and amplicons affects melting temperature and PCR efficiency. Optimal primer GC content is typically 40-60%.',
   formula: 'GC% = (G + C) / (A + T + G + C) × 100%',

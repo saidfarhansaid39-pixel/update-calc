@@ -26,7 +26,12 @@ const calcDef: CalcDef = {
         { label: 'Issues flagged', value: issues.length > 0 ? issues.join('; ') : 'None — primer design looks good' },
         { label: 'Rules', value: "Tm diff = 5\u00b0C between pair; 3' end: G/C clamp; avoid 4+ same base; no 3' complementarity" },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Primer design quality assessment: optimal primers have Tm 50-65°C, GC 40-60%, length 18-25 bp. Use with complementary Tm and minimal self-complementarity for specific PCR.',
   formula: "Tm(primer) \u02dc 2(AT) + 4(GC) for < 20 bp | \u0394G(3' end) < -9 kcal/mol for efficient priming | Avoid: hairpins, dimers, repeats",

@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'BMI', value: `${bmi.toFixed(1)} kg/m²` },
         { label: 'Category', value: cat },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Body Mass Index (BMI) is a measure of body fat based on weight and height. It is a screening tool for weight categories that may indicate health risks.',
   formula: 'BMI = weight(kg) / height(m)²',

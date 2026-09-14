@@ -253,12 +253,12 @@ ${JSON.stringify(batch, null, 2)}`
     'Authorization': `Bearer ${apiKey}`,
   }
   if (isOpenRouter) {
-    headers['HTTP-Referer'] = 'https://www.jdcalc.com'
-    headers['X-Title'] = 'JDCALC Translation'
+    headers['HTTP-Referer'] = 'https://www.calculat.online'
+    headers['X-Title'] = 'Calculat Translation'
   }
   if (isNaraRouter) {
-    headers['HTTP-Referer'] = 'https://www.jdcalc.com'
-    headers['X-Title'] = 'JDCALC Translation'
+    headers['HTTP-Referer'] = 'https://www.calculat.online'
+    headers['X-Title'] = 'Calculat Translation'
   }
 
   const maxRetries = 3
@@ -271,8 +271,8 @@ ${JSON.stringify(batch, null, 2)}`
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${apiKey}`,
-          ...(isOpenRouter && { 'HTTP-Referer': 'https://www.jdcalc.com', 'X-Title': 'JDCALC Translation' }),
-          ...(isNaraRouter && { 'HTTP-Referer': 'https://www.jdcalc.com', 'X-Title': 'JDCALC Translation' }),
+          ...(isOpenRouter && { 'HTTP-Referer': 'https://www.calculat.online', 'X-Title': 'Calculat Translation' }),
+          ...(isNaraRouter && { 'HTTP-Referer': 'https://www.calculat.online', 'X-Title': 'Calculat Translation' }),
         },
         body: JSON.stringify({
           model: effectiveModel,

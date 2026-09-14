@@ -19,7 +19,12 @@ const calcDef: CalcDef = {
         { label: 'R² target > 0.99', value: '' },
         { label: 'Optimal efficiency', value: effPct >= 90 && effPct <= 110 ? 'Yes (90-110%)' : effPct > 110 ? 'Too high (inhibitors?)' : 'Too low (poor primers?)' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'qPCR efficiency (E) quantifies the amplification performance of a PCR reaction. Perfect amplification doubles the target each cycle (E = 100%).',
   formula: 'E = 10^(-1/slope) - 1 | E% = (E) × 100 | Slope of -3.32 = 100% efficiency',

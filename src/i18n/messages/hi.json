@@ -53,9 +53,11 @@
     "privacy": "गोपनीयता नीति",
     "terms": "सेवा की शर्तें",
     "contact": "संपर्क करें",
+    "editorialPolicy": "संपादकीय नीति",
+    "press": "प्रेस",
     "tagline": "हर गणना के लिए सटीक उपकरण। मुफ्त, तेज़ और सुंदर डिज़ाइन के साथ।",
     "motto": "सटीकता। बुद्धिमत्ता। स्पष्टता।",
-    "copyright": "© {year} JDCALC. सर्वाधिकार सुरक्षित।"
+    "copyright": "© {year} Calculat. सर्वाधिकार सुरक्षित।"
   },
   "hubs": {
     "financial-calculators": "वित्तीय कैलकुलेटर",
@@ -186,14 +188,16 @@
     "searchNoResultsHint": "Try a different search term or browse calculators by category."
   },
   "seo": {
-    "siteTitle": "JDCALC — दुनिया का सबसे स्मार्ट कैलकुलेटर प्लेटफ़ॉर्म",
-    "titleTemplate": "%s | JDCALC",
-    "siteName": "JDCALC",
+    "siteTitle": "Calculat — दुनिया का सबसे स्मार्ट कैलकुलेटर प्लेटफ़ॉर्म",
+    "titleTemplate": "%s | Calculat",
+    "siteName": "Calculat",
     "siteDescription": "वित्त, स्वास्थ्य, गणित, विज्ञान और दैनिक जीवन के लिए सटीक कैलकुलेटर। AI-संचालित, सुंदर डिज़ाइन और पूरी तरह से मुफ्त।",
     "about": "हमारे बारे में",
     "privacy": "गोपनीयता",
     "terms": "शर्तें",
-    "contact": "संपर्क"
+    "contact": "संपर्क",
+    "editorialPolicy": "संपादकीय नीति",
+    "press": "प्रेस"
   },
   "content": {
     "sectionOverview": "अवलोकन",
@@ -1556,7 +1560,7 @@
     "heroBadge": "दुनिया का सबसे स्मार्ट कैलकुलेटर प्लेटफ़ॉर्म",
     "heroTitle": "{highlight} को सटीकता से गणना करें",
     "heroHighlight": "कुछ भी",
-    "heroSubtitle": "वित्त, स्वास्थ्य, गणित, विज्ञान और दैनिक जीवन के लिए 200+ प्रीमियम कैलकुलेटर। मुफ्त, तेज़ और सुंदर डिज़ाइन।",
+    "heroSubtitle": "वित्त, स्वास्थ्य, गणित, विज्ञान और रोज़मर्रा की ज़िंदगी के लिए {count} से अधिक कैलकुलेटर। मुफ़्त, तेज़ और सुंदर डिज़ाइन।",
     "statCalculators": "कैलकुलेटर",
     "statCategories": "श्रेणियाँ",
     "statFree": "मुफ्त",
@@ -1564,7 +1568,7 @@
     "popularTitle": "लोकप्रिय कैलकुलेटर",
     "popularSubtitle": "हमारे समुदाय द्वारा सबसे अधिक उपयोग किए जाने वाले उपकरण",
     "trendingTitle": "ट्रेंडिंग",
-    "featuresTitle": "JDCALC क्यों?",
+    "featuresTitle": "Calculat क्यों?",
     "featuresSubtitle": "सटीकता के लिए निर्मित, स्पष्टता के लिए डिज़ाइन किया गया",
     "featureFastTitle": "बिजली की तेज़ी",
     "featureFastDesc": "टाइप करते ही रियल-टाइम गणना, बिल्कुल प्रतीक्षा नहीं।",
@@ -1576,7 +1580,21 @@
     "featureDesignDesc": "डार्क मोड के साथ हर डिवाइस पर दोषरहित।",
     "ctaTitle": "सेकंड में गणना शुरू करें",
     "ctaSubtitle": "कोई साइन-अप आवश्यक नहीं। बस एक कैलकुलेटर चुनें और शुरू करें।",
-    "ctaButton": "कैलकुलेटर खोजें"
+    "ctaButton": "कैलकुलेटर खोजें",
+    "heroTitlePre": "",
+    "heroTitlePost": " को सटीकता से गणना करें",
+    "allCategories": "सभी श्रेणियाँ",
+    "trendAutoLoanName": "ऑटो ऋण",
+    "trendAutoLoanDesc": "कार भुगतान का अनुमान",
+    "trend401kName": "401k कैलकुलेटर",
+    "trend401kDesc": "रिटायरमेंट बचत योजनाकार",
+    "trendHouseName": "घर की सामर्थ्य",
+    "trendHouseDesc": "आप कितना घर खरीद सकते हैं",
+    "trendStudentName": "छात्र ऋण",
+    "trendStudentDesc": "पुनर्भुगतान रणनीतियाँ",
+    "sciTitle": "वैज्ञानिक कैलकुलेटर",
+    "sciIntro": "त्वरित गणना चाहिए? त्रिकोणमिति, लघुगणक, घात और स्थिरांक वाला हमारा अंतर्निहित वैज्ञानिक कैलकुलेटर इस्तेमाल करें।",
+    "sciNote": "बेसिक और साइंटिफिक मोड के बीच स्विच करें। यह हर पेज के निचले दाएँ कोने में हमेशा उपलब्ध है।"
   },
   "extraFields": {
     "activity_job": "Job Activity Level",
@@ -2245,6 +2263,79 @@
     "zip_code_placeholder": "e.g. 90210"
   },
   "calculatorUI": {
+    "shell": {
+      "unitMetric": "Metric",
+      "unitImperial": "Imperial",
+      "unitUS": "US Customary",
+      "calculate": "Calculate",
+      "recalculate": "Recalculate",
+      "result": "Result",
+      "copyResult": "Copy Result",
+      "saveCalculation": "Save Calculation",
+      "restore": "Restore",
+      "restorePreviousValues": "Restore Previous Values",
+      "hideAudit": "Hide Audit Trail",
+      "showAudit": "Show Audit Trail",
+      "dismiss": "Dismiss",
+      "yes": "Yes",
+      "no": "No",
+      "home": "Home",
+      "onThisPage": "On This Page",
+      "tierEssential": "Essential",
+      "tierStandard": "Standard",
+      "tierPremium": "Premium",
+      "modeBasic": "Basic",
+      "modeAdvanced": "Advanced",
+      "modeProfessional": "Professional",
+      "modeExpert": "Expert",
+      "headingWhatIs": "What Is This?",
+      "headingHowItWorks": "How It Works",
+      "headingFormula": "The Formula",
+      "headingExampleCalc": "Example Calculation",
+      "headingExampleCalcs": "Example Calculations",
+      "headingWhatThisMeans": "What This Means",
+      "headingYourResults": "Your Results",
+      "headingEduGuide": "Educational Guide",
+      "headingEduVisualizations": "Visualizations",
+      "headingTipsBestPractices": "Tips & Best Practices",
+      "headingFAQ": "Frequently Asked Questions",
+      "headingQuestions": "Questions?",
+      "headingReferences": "References",
+      "headingRelatedTopics": "Related Calculators",
+      "headingAboutAuthors": "About the Authors",
+      "tocEducationalGuide": "Educational Guide",
+      "tocExample": "Example",
+      "tocComparison": "Comparison",
+      "tocUseCases": "Use Cases",
+      "tocFAQ": "FAQ",
+      "tocGlossary": "Glossary",
+      "tocCompleteGuide": "Complete Guide",
+      "tocCommonMistakes": "Common Mistakes",
+      "tips": "Tips",
+      "tipAccurateInputs": "Use accurate inputs for best results.",
+      "tipPresetExamples": "Try the preset examples to see how it works.",
+      "tipPrintExport": "Print or export your results for record keeping.",
+      "tipBookmark": "Bookmark this calculator for quick access.",
+      "tipSaveScenario": "Save different scenarios to compare outcomes.",
+      "tipReviewAssumptions": "Review the assumptions behind each calculation.",
+      "didThisHelp": "Did this calculator help you?",
+      "pleaseCheckInputs": "Please check your inputs and try again.",
+      "calculationFailed": "Calculation failed. Please check your values.",
+      "enterValuesAbove": "Enter values above to see results.",
+      "noResultAvailable": "No result available",
+      "howItWorksDefault": "Enter your values and click Calculate to see how it works.",
+      "dataDependent": "Data Required",
+      "dataDependentDescription": "Enter values in the form above to get started.",
+      "usersCount": "{count} users have used this calculator",
+      "authorLabel": "Author",
+      "reviewerLabel": "Reviewed by",
+      "relatedCalculators": "Related Calculators",
+      "refreshCadence": "Last updated: {date}",
+      "featureCharts": "Charts & Visualizations",
+      "featureComparison": "Scenario Comparison",
+      "featureGuide": "Educational Guide",
+      "questionsParagraph": "Have questions? Check the FAQ or contact us."
+    },
     "headings": {
       "paymentCalculator": "Payment Calculator"
     },
@@ -2457,11 +2548,11 @@
     },
     "contact": {
       "metaTitle": "संपर्क करें - मुफ्त ऑनलाइन कैलकुलेटर",
-      "metaDescription": "JDCALC टीम से संपर्क करें। हम आपकी प्रतिक्रिया और सुझावों का स्वागत करते हैं।",
+      "metaDescription": "Calculat टीम से संपर्क करें। हम आपकी प्रतिक्रिया और सुझावों का स्वागत करते हैं।",
       "title": "संपर्क करें",
       "intro": "Have feedback, suggestions, or found a bug? We'd love to hear from you.",
       "emailLabel": "Email us at:",
-      "emailAddress": "support@jdcalc.com"
+      "emailAddress": "support@calculat.online"
     },
     "privacy": {
       "metaTitle": "गोपनीयता नीति - मुफ्त ऑनलाइन कैलकुलेटर",
@@ -2488,6 +2579,18 @@
       "accuracyText": "We strive for accuracy but make no guarantees. Always verify critical calculations with a qualified professional.",
       "availabilityTitle": "Availability",
       "availabilityText": "We reserve the right to modify or discontinue any calculator tool at any time without notice."
-    }
+    },
+    "editorialPolicy": {
+      "metaTitle": "संपादकीय नीति - मुफ्त ऑनलाइन कैलकुलेटर",
+      "metaDescription": "हमारी संपादकीय नीति सभी कैलकुलेटर टूल्स और सामग्री में सटीकता, पारदर्शिता और गुणवत्ता सुनिश्चित करती है।",
+      "title": "संपादकीय नीति"
+    },
+    "press": {
+      "metaTitle": "प्रेस - मुफ्त ऑनलाइन कैलकुलेटर",
+      "metaDescription": "प्रेस संसाधन, मीडिया किट और Calculat टीम के लिए संपर्क जानकारी।",
+      "title": "प्रेस"
+    },
+    "calculatorBuilderTitle": "Calculator Builder",
+    "calculatorBuilderDescription": "Build your own custom calculators with custom formulas and fields. Free online calculator builder tool."
   }
 }

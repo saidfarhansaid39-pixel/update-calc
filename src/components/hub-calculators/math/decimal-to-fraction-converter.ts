@@ -12,11 +12,20 @@ const calcDef: CalcDef = {
       const num = Math.round(dec * precision), den = precision
       const g = gcd(Math.abs(num), den)
       const snum = num / g, sden = den / g
-      return { result: snum + '/' + sden, label: 'Fraction', steps: [step('Decimal:', '' + dec), step('Fraction:', snum + '/' + sden)] }
+      return { result: snum + '/' + sden, label: 'Fraction', steps: [step('Decimal:', '' + dec), step('Fraction:', snum + '/' + sden)] ,
+    extras: [
+      { label: "How It Works", value: "Simple percentage-based calculation applied to your input values." },
+      { label: "Common Use Case", value: "Used in shopping, budgeting, and everyday financial decisions." },
+      { label: "Input Requirements", value: "All monetary values should be in the same currency." },
+      { label: "Accuracy Note", value: "Results rounded to 2 decimal places for standard currency format." }
+    ]}
     },
     formula: 'Convert decimal to simplified fraction',
     description: 'Convert a decimal number to a fraction.',
-    interpretation: 'The fraction equivalent of the decimal number.'
+    interpretation: 'The fraction equivalent of the decimal number.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

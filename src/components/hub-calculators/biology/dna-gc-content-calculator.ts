@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'A+T count', value: `${atCount.toFixed(0)} bp` },
         { label: 'Est. Tm (basic)', value: `${tm.toFixed(1)} °C` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'GC content is the percentage of guanine and cytosine bases in a DNA sequence. It affects DNA stability, melting temperature, and primer design.',
   formula: 'GC% = (G+C) / (A+T+G+C) × 100 | Tm ˜ 64.9 + 41×(GC% – 16.4) / Length',

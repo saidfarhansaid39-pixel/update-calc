@@ -19,7 +19,12 @@ const calcDef: CalcDef = {
         { label: 'In Mb', value: `${(bp / 1e6).toFixed(1)} Mb` },
         { label: 'In Gb', value: `${(bp / 1e9).toFixed(3)} Gb` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Convert genome C-value (picograms of DNA per haploid genome) to base pairs. The C-value varies enormously across species and does not correlate with organism complexity.',
   formula: '1 pg DNA = 0.978 × 10? bp | Human: 3.2 Gb (3.2 pg) | C-value paradox: genome size ? complexity (mostly repetitive DNA)',

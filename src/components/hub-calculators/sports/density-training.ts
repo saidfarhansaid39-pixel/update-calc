@@ -13,6 +13,11 @@ const calcDef: CalcDef = {
       { label: 'Total volume', value: v.volume+' kg' }, { label: 'Time', value: v.timeMin+' min' },
       { label: 'Density', value: density.toFixed(1)+' kg/min' },
       { label: 'Interpretation', value: 'Higher density = more work in less time. Density training increases work capacity.' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate training density (volume per minute). Density training improves work capacity by compressing more work into less time.', formula: 'Density = total volume (kg) / time (min)', interpretation: 'Gradually increase training density by reducing rest periods while maintaining or increasing volume load.'
 }

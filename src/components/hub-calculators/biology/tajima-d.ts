@@ -32,7 +32,12 @@ const calcDef: CalcDef = {
         { label: 'D = (p - ?W) / vVar', value: `${d.toFixed(4)}` },
         { label: 'Interpretation', value: d > 2 ? 'Balancing selection / pop structure' : d < -2 ? 'Purifying sel. / bottleneck / expansion' : 'Neutral (null not rejected)' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Tajima\'s D compares nucleotide diversity (p) with segregating site count (?W) to detect selection or demographic changes. D ˜ 0 under neutral equilibrium.',
   formula: 'D = (p - ?W) / vVar | ?W = S / S(1/i) for i = 1 to n-1 | D > 2: significant positive; D < -2: significant negative',

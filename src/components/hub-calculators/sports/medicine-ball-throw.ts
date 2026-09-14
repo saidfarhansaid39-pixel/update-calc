@@ -14,6 +14,11 @@ const calcDef: CalcDef = {
       { label: 'Throw distance', value: v.distance+' m' }, { label: 'Ball weight', value: v.ballWeight+' kg' },
       { label: 'Est. release velocity', value: vel.toFixed(1)+' m/s' }, { label: 'Power', value: power.toFixed(0)+' J' },
       ...(v.weight ? [{ label: 'Relative power', value: rel.toFixed(1)+' J/kg' }] : []),
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate upper body power from the seated medicine ball chest throw test. Valid for assessing throwing athletes.', formula: 'Power = 0.5 × m_ball × (distance × g / sin(2θ))', interpretation: 'Higher throw power indicates greater upper body explosive strength. Track progress over training cycles.'
 }

@@ -13,6 +13,11 @@ const calcDef: CalcDef = {
       { label: 'Swim pace (3.8km)', value: sMin+':'+sSec.toString().padStart(2,'0')+' /100m' },
       { label: 'Bike speed (180km)', value: (180/(v.totalMin/60*0.45)).toFixed(1)+' km/h' },
       { label: 'Run pace (42.2km)', value: rMin+':'+rSec.toString().padStart(2,'0')+' /km' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Plan Ironman pacing for 3.8km swim, 180km bike, and 42.2km run. Total distance is 226km.', formula: 'Time allocation: ~10% swim, ~50% bike, ~40% run (plus transitions)', interpretation: 'Ironman pacing is critical. Most athletes aim for even effort distribution rather than even pace.'
 }

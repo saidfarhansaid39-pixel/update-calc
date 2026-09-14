@@ -430,6 +430,16 @@ export const mathSlugOverrides: Record<string, FormulaEntry> = {
   'hex-calculator': { formula: '0xFF = 255 = 11111111₂ | A-F: 10-15 decimal', description: 'Hex Calculator: hexadecimal arithmetic and conversion between hex, decimal, and binary.' },
   'combination-calculator': { formula: 'nCr = n! / (r! × (n-r)!)', description: 'Combination Calculator: number of ways to select items without regard to order.' },
   'permutation-calculator': { formula: 'nPr = n! / (n-r)!', description: 'Permutation Calculator: number of ways to arrange items where order matters.' },
+  'hrm-payroll-cost': { formula: 'Total = Wages × (1 + Benefits% + Taxes%)', description: 'HRM Payroll Cost Calculator: fully loaded employment cost from gross wages plus employer benefits and payroll taxes.' },
+  'hrm-recruitment-cost': { formula: 'Cost = Positions × (Ad Spend + Salary × Agency%)', description: 'HRM Recruitment Cost Calculator: total hiring cost per open position including advertising and agency fees.' },
+  'hrm-employee-turnover': { formula: 'Turnover Cost = Departures × Replacement Cost', description: 'HRM Employee Turnover Calculator: cost of workforce attrition plus the annual turnover rate.' },
+  'hrm-training-cost': { formula: 'Training Cost = Employees × Cost/Employee', description: 'HRM Training Cost Calculator: total employee development spend across the workforce.' },
+  'hrm-benefits-cost': { formula: 'Benefits Cost = Headcount × Benefits/Employee', description: 'HRM Benefits Cost Calculator: annual cost of employee benefits per head.' },
+  'hrm-remote-work-cost': { formula: 'Net = Office Cost − Home Stipend', description: 'HRM Remote Work Cost Calculator: monthly cost difference between office and remote work stipends.' },
+  'logistics-shipping-cost': { formula: 'Cost = Weight × Distance × Rate', description: 'Logistics Shipping Cost Calculator: freight cost from weight, distance, and per-pound-mile rate.' },
+  'logistics-freight-cost': { formula: 'Freight = Weight × Rate × (1 + Fuel%)', description: 'Logistics Freight Cost Calculator: freight charge including a percentage fuel surcharge.' },
+  'logistics-warehouse-cost': { formula: 'Warehouse = SqFt × Rate + Labor', description: 'Logistics Warehouse Cost Calculator: monthly storage and labor cost for a warehouse.' },
+  'logistics-fuel-surcharge': { formula: 'Surcharge% = (Price − Base)/Base × 100', description: 'Logistics Fuel Surcharge Calculator: percentage fuel surcharge versus the base fuel price.' },
 }
 
 export const engSlugOverrides: Record<string, FormulaEntry> = {

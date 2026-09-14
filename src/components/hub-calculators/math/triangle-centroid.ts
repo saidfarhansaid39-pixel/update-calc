@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const ax = n(v.a), ay = n(v.b), bx = n(v.c), by = n(v.d), cx = n(v.e), cy = n(v.f)
       const gx = (ax + bx + cx) / 3, gy = (ay + by + cy) / 3
-      return { result: '(' + gx.toFixed(4) + ', ' + gy.toFixed(4) + ')', label: 'Centroid', steps: [step('Formula:', 'G = ((' + ax + '+' + bx + '+' + cx + ')/3, (' + ay + '+' + by + '+' + cy + ')/3)'), step('Result:', 'G = (' + gx.toFixed(4) + ', ' + gy.toFixed(4) + ')')] }
+      return { result: '(' + gx.toFixed(4) + ', ' + gy.toFixed(4) + ')', label: 'Centroid', steps: [step('Formula:', 'G = ((' + ax + '+' + bx + '+' + cx + ')/3, (' + ay + '+' + by + '+' + cy + ')/3)'), step('Result:', 'G = (' + gx.toFixed(4) + ', ' + gy.toFixed(4) + ')')] ,
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ]}
     },
     formula: 'G = ((x1+x2+x3)/3, (y1+y2+y3)/3)',
     description: 'Calculate the centroid (geometric center) of a triangle.',
-    interpretation: 'The centroid is the intersection of the three medians of the triangle.'
+    interpretation: 'The centroid is the intersection of the three medians of the triangle.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

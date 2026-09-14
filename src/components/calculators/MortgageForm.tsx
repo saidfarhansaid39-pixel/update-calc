@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Input, Select, Button, FormGroup, FormPanel } from '@/components/CalculatorFormElements';
 import { calculateMortgage, MortgageInputs, MortgageResults } from '@/lib/calculators/mortgage';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { useCurrencyFormat } from '@/lib/hooks/useCurrencyFormat';
 
 const COLORS = ['#2ca02c', '#1f77b4', '#ff7f0e', '#d62728']; // Green, Blue, Orange, Red (Approximated from screenshot)
 
@@ -40,7 +41,7 @@ export function MortgageForm() {
     handleCalculate(); // Calculate on mount
   }, []);
 
-  const formatCurrency = (val: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val);
+  const formatCurrency = useCurrencyFormat('USD');
   const formatPercent = (val: number) => (val * 100).toFixed(0) + '%';
 
   const chartData = results ? [
@@ -50,6 +51,7 @@ export function MortgageForm() {
     { name: 'Other Cost', value: results.monthlyOtherCosts + results.monthlyPMI + results.monthlyHOA },
   ] : [];
 
+    const handleClear = () => { setResults(null); setInputs({ homePrice: 400000, downPaymentPercent: 20, loanTermYears: 30, interestRate: 6.609, startDateMonth: 4, startDateYear: 2026, includeTaxesAndCosts: true, propertyTaxPercent: 1.2, homeInsuranceYearly: 1500, pmiPercent: 0, hoaFeeMonthly: 0, otherCostsYearly: 4000 }); };
   return (
     <div className="flex flex-col gap-6 font-sans text-[13px] text-[#333333]">
       <FormPanel header="Modify the values and click the Calculate button to use">
@@ -142,7 +144,7 @@ export function MortgageForm() {
 
         <div className="pl-[140px] flex gap-2">
           <Button onClick={handleCalculate}>Calculate</Button>
-          <Button variant="secondary" onClick={() => {}}>Clear</Button>
+          <Button variant="secondary" onClick={handleClear}>Clear</Button>
         </div>
       </FormPanel>
 

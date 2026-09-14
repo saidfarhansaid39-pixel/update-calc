@@ -1,6 +1,6 @@
 {
-  "name": "JDCALC - Free Online Calculators",
-  "short_name": "JDCALC",
+  "name": "Calculat - Free Online Calculators",
+  "short_name": "Calculat",
   "description": "4,254 calculators across 16 categories. BMI, mortgage, math, conversion and more.",
   "start_url": "/",
   "display": "standalone",

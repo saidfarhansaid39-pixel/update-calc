@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'HRV Score', value: `${hrvScore.toFixed(1)}` },
         { label: 'Recovery status', value: rating },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Analyze Heart Rate Variability (HRV) from resting heart rate data. Higher HRV indicates better autonomic nervous system balance and recovery status. RMSSD is the primary time-domain HRV metric.'
 }

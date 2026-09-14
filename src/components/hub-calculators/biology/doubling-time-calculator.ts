@@ -17,7 +17,12 @@ const calcDef: CalcDef = {
         { label: 'Doubling time', value: `${dt.toFixed(2)} units` },
         { label: 'Rule of 70 check', value: `${(70 / (v.rate * 100)).toFixed(2)}` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Doubling time is the time it takes for a population or quantity to double in size at a constant growth rate. It is derived from the exponential growth equation.',
   formula: 'Doubling Time = ln(2) / r | Rule of 70: DT ˜ 70 / (r × 100)',

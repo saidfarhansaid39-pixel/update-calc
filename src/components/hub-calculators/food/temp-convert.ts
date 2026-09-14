@@ -15,7 +15,12 @@ const calcDef: CalcDef = {
         { label: 'Input', value: `${v.temp}°${v.fromUnit === 'gas' ? ' Gas Mark' : v.fromUnit}` },
         { label: 'To Celsius', value: `${celsius.toFixed(1)}°C` },
         { label: 'To target', value: `${result.toFixed(v.toUnit === 'gas' ? 0 : 1)}${v.toUnit === 'gas' ? ' Gas Mark' : '°' + v.toUnit}` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Convert cooking temperatures between Celsius, Fahrenheit, and Gas Mark. Essential for following international recipes with different temperature scales.',
     example: { label: '350°F to Celsius', value: '177°C (Gas Mark 4)' }

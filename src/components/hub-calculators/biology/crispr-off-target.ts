@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Specificity rating', value: rating },
         { label: 'Note', value: 'PAM-proximal seed (8-12 nt) critical for specificity' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'CRISPR off-target effects occur when guide RNA binds similar but non-identical genomic sequences. This estimates genome-wide off-target sites based on sequence similarity tolerance.',
   formula: 'Expected sites ˜ (Genome size) / 4^L × 3^m | L = guide+PAM length, m = tolerated mismatches | More mismatches = exponentially more off-target sites',

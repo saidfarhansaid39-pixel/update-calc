@@ -18,7 +18,12 @@ const calcDef: CalcDef = {
         { label: 'Jukes-Cantor correction', value: `${jcDist.toFixed(4)}` },
         { label: 'Multiple hits correction', value: `${(jcDist - p).toFixed(4)} extra subs/site` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The Jukes-Cantor model corrects observed sequence differences for multiple substitutions at the same site. It provides a more accurate estimate of evolutionary distance than raw p-distance.',
   formula: 'dJC = -3/4 × ln(1 - 4p/3) | where p = proportion of observed differences',

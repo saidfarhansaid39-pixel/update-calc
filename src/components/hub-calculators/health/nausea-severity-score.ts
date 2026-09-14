@@ -9,7 +9,12 @@ const calcDef: CalcDef = {
     { name:'retchingDistress', label:'Retching/Dry Heaves (0=none, 4=severe)', type:'number', min:0, max:4, step:'1' },
     { name:'interference', label:'Interference with Daily Life (0=none, 4=severe)', type:'number', min:0, max:4, step:'1' }
   ],
-  compute: (v) => { const s=parseInt(v.nauseaFreq||'0')+parseInt(v.vomitingFreq||'0')+parseInt(v.appetiteLoss||'0')+parseInt(v.retchingDistress||'0')+parseInt(v.interference||'0'); let sev='Mild'; if(s>=15) sev='Severe'; else if(s>=9) sev='Moderate'; return { result:s, label:'Nausea Severity Score', unit:'/20', steps:[{ label:'Score', value:s+'/20' },{ label:'Severity', value:sev }] } },
+  compute: (v) => { const s=parseInt(v.nauseaFreq||'0')+parseInt(v.vomitingFreq||'0')+parseInt(v.appetiteLoss||'0')+parseInt(v.retchingDistress||'0')+parseInt(v.interference||'0'); let sev='Mild'; if(s>=15) sev='Severe'; else if(s>=9) sev='Moderate'; return { result:s, label:'Nausea Severity Score', unit:'/20', steps:[{ label:'Score', value:s+'/20' },{ label:'Severity', value:sev }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'Assessment of nausea and vomiting severity across frequency and impact domains.',
   formula: 'Sum of 5 domains scored 0-4 each. Range 0-20.',
   interpretation: '0-4 Mild, 5-8 Moderate, 9-14 Moderately Severe, 15-20 Severe nausea/vomiting.'

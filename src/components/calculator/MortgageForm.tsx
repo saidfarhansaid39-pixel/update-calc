@@ -1,11 +1,12 @@
 "use client";
 
-import React from 'react';
-import { ChevronDown } from 'lucide-react';
+import React, { useState } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 export function MortgageForm({ state, setters }: any) {
   const t = useTranslations('calculatorUI');
+  const [showMore, setShowMore] = useState(false);
   return (
     <div className="w-full font-sans text-[13px] text-gray-800">
       <div className="bg-[#1c4587] text-white flex justify-between items-center p-2 rounded-t">
@@ -126,8 +127,26 @@ export function MortgageForm({ state, setters }: any) {
         </div>
 
         <div className="text-center my-3">
-          <button type="button" className="text-blue-600 underline text-sm">+ More Options</button>
+          <button type="button" className="text-blue-600 underline text-sm flex items-center justify-center mx-auto gap-1" onClick={() => setShowMore(!showMore)}>
+            {showMore ? <ChevronUp size={14} /> : <ChevronDown size={14} />} {showMore ? 'Less Options' : '+ More Options'}
+          </button>
         </div>
+
+        {showMore && (
+          <div className="grid grid-cols-[120px_1fr] gap-y-2 items-center mb-3">
+            <label className="text-right pr-2">Extra Monthly Payment</label>
+            <div className="flex items-center">
+              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+              <input
+                type="text"
+                className="border border-gray-400 w-[80px] px-1 h-[28px]"
+                value={state.extraPayment || ''}
+                onChange={e => setters.setExtraPayment?.(e.target.value)}
+                placeholder="0"
+              />
+            </div>
+          </div>
+        )}
 
         <div className="flex justify-center gap-2">
           <button className="bg-[#306e3e] hover:bg-[#255630] text-white px-6 py-1.5 font-bold rounded shadow border border-[#1f4a27]">

@@ -22,7 +22,12 @@ const calcDef: CalcDef = {
         { label: 'Speed calculation', value: `${v.rpm} × ${gearRatio.toFixed(2)} × ${v.wheel} × 60 ÷ 1000` },
         { label: 'Estimated speed', value: `${speed.toFixed(1)} km/h` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate cycling speed from cadence, gear ratio, and wheel size. A typical road cycling cadence is 80-100 RPM for efficient pedaling.'
 }

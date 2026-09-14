@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Decay constant (?)', value: `${decayConstant.toFixed(4)}` },
         { label: 'Half-life', value: `${halfLife.toFixed(2)} units` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Half-life is the time required for a quantity to reduce to half its initial value through exponential decay. Used in nuclear physics, pharmacology, and biology.',
   formula: 'Nt = N0 × (1/2)^(t/t½) | t½ = t × ln(2) / ln(N0/Nt)',

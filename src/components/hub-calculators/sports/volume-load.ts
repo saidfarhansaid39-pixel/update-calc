@@ -14,6 +14,11 @@ const calcDef: CalcDef = {
       { label: 'Sets × Reps × Weight', value: v.sets+' × '+v.reps+' × '+v.weight+' kg' },
       { label: 'Total volume', value: vl.toFixed(0)+' kg' },
       { label: 'Sets × Reps', value: (v.sets * v.reps)+' total reps' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate total training volume load (sets × reps × weight). Volume load is a key driver of muscle hypertrophy and strength gains.', formula: 'Volume Load = sets × reps × weight (kg)', interpretation: 'Higher volume loads drive hypertrophy. Progressively increase volume load over time for continued adaptation.'
 }

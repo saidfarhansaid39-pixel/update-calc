@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Fitness rating', value: rating },
         { label: 'Standard', value: isMale ? 'Exc: 2800+, Good: 2500-2799, Avg: 2200-2499' : 'Exc: 2500+, Good: 2100-2499, Avg: 1800-2099' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'The Cooper 12-minute run test measures cardiovascular fitness. Distance covered in 12 minutes predicts VO2 max and overall aerobic capacity.'
 }

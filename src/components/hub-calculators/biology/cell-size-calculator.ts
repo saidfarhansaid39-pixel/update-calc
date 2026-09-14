@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Actual size', value: `${actualMm.toFixed(4)} mm` },
         { label: 'Actual size', value: `${actualUm.toFixed(1)} µm` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Actual cell size is calculated by dividing the measured size on a micrograph by the magnification. This helps identify cell types and understand cellular scale.',
   formula: 'Actual Size (µm) = Measured Size (mm) × 1000 / Magnification',

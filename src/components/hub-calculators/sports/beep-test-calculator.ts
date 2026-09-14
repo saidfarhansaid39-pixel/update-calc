@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Fitness rating', value: rating },
         { label: 'Percentile (20-29 yr)', value: vo2 > 50 ? 'Top 10%' : vo2 > 45 ? 'Top 30%' : 'Average or below' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'The Beep Test (Multi-Stage Fitness Test) measures aerobic capacity. Each level increases speed by 0.5 km/h. VO2 max is estimated from the final level reached.'
 }

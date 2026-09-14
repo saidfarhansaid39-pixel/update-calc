@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Resolution (µm)', value: `${(resolution / 1000).toFixed(3)} µm` },
         { label: 'Nyquist sampling', value: `Pixel size should be = ${(resolution / 2 / 1000).toFixed(3)} µm for optimal sampling` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The Abbe diffraction limit defines the minimum resolvable distance between two points in light microscopy. It depends on wavelength and numerical aperture of the objective.',
   formula: 'd = 0.61 × ? / NA (Abbe) | dmin = ? / (2 × NA) (Rayleigh criterion) | Resolution improves with shorter ? and higher NA',

@@ -14,6 +14,11 @@ const calcDef: CalcDef = {
       { label: 'Peak power', value: v.peakPower+' W' }, { label: 'Body weight', value: v.weightKg+' kg' },
       { label: 'Relative peak', value: relPeak.toFixed(1)+' W/kg' },
       ...(v.avgPower ? [{ label: 'Fatigue index (30s)', value: fi.toFixed(1)+'%' }] : []),
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Analyze Wingate Anaerobic Test results. The 30-second maximal sprint test measures peak power, anaerobic capacity, and fatigue resistance.', formula: 'Relative peak power = peak power / body weight; Fatigue index = (peak - min) / peak × 100', interpretation: 'Higher relative peak power indicates better anaerobic capacity. Elite cyclists achieve 15+ W/kg peak power.'
 }

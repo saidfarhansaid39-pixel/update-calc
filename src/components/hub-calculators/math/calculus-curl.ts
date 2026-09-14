@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const dQdx = n(v.a), dPdy = n(v.b)
       const curl = dQdx - dPdy
-      return { result: curl.toFixed(4) + ' k', label: 'Curl (2D)', steps: [step('Formula:', 'curl = dQ/dx - dP/dy'), step('Result:', 'Curl = ' + curl.toFixed(4))] }
+      return { result: curl.toFixed(4) + ' k', label: 'Curl (2D)', steps: [step('Formula:', 'curl = dQ/dx - dP/dy'), step('Result:', 'Curl = ' + curl.toFixed(4))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'curl F = (dQ/dx - dP/dy)k (2D)',
     description: 'Calculate the curl of a 2D vector field.',
-    interpretation: 'The circulation density of the vector field at the given point.'
+    interpretation: 'The circulation density of the vector field at the given point.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

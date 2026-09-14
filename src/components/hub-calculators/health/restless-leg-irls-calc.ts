@@ -14,7 +14,12 @@ const calcDef: CalcDef = {
     { name:'r9', label:'Impact on daily activities?', type:'select', options:[{ label:'None (0)', value:'0' },{ label:'Mild (1)', value:'1' },{ label:'Moderate (2)', value:'2' },{ label:'Severe (3)', value:'3' },{ label:'Very Severe (4)', value:'4' }] },
     { name:'r10', label:'RLS mood disturbance (anxiety/depression)?', type:'select', options:[{ label:'None (0)', value:'0' },{ label:'Mild (1)', value:'1' },{ label:'Moderate (2)', value:'2' },{ label:'Severe (3)', value:'3' },{ label:'Very Severe (4)', value:'4' }] }
   ],
-  compute: (v) => { const s=[1,2,3,4,5,6,7,8,9,10].reduce((acc,i)=>acc+parseInt(v['r'+i]||'0'),0); let sev='Mild'; if(s>=31) sev='Very Severe'; else if(s>=21) sev='Severe'; else if(s>=11) sev='Moderate'; return { result:s, label:'IRLS Score', unit:'/40', steps:[{ label:'Total Score', value:s+'/40' },{ label:'Severity', value:sev }] } },
+  compute: (v) => { const s=[1,2,3,4,5,6,7,8,9,10].reduce((acc,i)=>acc+parseInt(v['r'+i]||'0'),0); let sev='Mild'; if(s>=31) sev='Very Severe'; else if(s>=21) sev='Severe'; else if(s>=11) sev='Moderate'; return { result:s, label:'IRLS Score', unit:'/40', steps:[{ label:'Total Score', value:s+'/40' },{ label:'Severity', value:sev }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'International Restless Legs Syndrome (IRLS) Rating Scale for symptom severity assessment.',
   formula: 'Sum of 10 questions scored 0-4 each. Range 0-40.',
   interpretation: '0-10 Mild, 11-20 Moderate, 21-30 Severe, 31-40 Very Severe RLS symptoms.'

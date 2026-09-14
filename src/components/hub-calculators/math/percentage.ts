@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const a = n(v.a), b = n(v.b)
       const pct = (a / b) * 100
-      return { result: pct, label: 'Percentage', unit: '%', steps: [step('Formula:', '(' + a + ' / ' + b + ') x 100 = ' + pct.toFixed(2) + '%')] }
+      return { result: pct, label: 'Percentage', unit: '%', steps: [step('Formula:', '(' + a + ' / ' + b + ') x 100 = ' + pct.toFixed(2) + '%')] ,
+    extras: [
+      { label: "How It Works", value: "Simple percentage-based calculation applied to your input values." },
+      { label: "Common Use Case", value: "Used in shopping, budgeting, and everyday financial decisions." },
+      { label: "Input Requirements", value: "All monetary values should be in the same currency." },
+      { label: "Accuracy Note", value: "Results rounded to 2 decimal places for standard currency format." }
+    ]}
     },
     formula: 'P = (a / b) x 100%',
     description: 'Calculate what percentage one number is of another.',
-    interpretation: 'The percentage that Value A represents of Value B.'
+    interpretation: 'The percentage that Value A represents of Value B.',
+    presets: [
+      { label: '50% of 200', values: { a: '200', b: '50' } },
+      { label: '25% of 80', values: { a: '80', b: '25' } }
+    ]
 }
 
 export default calcDef

@@ -18,7 +18,12 @@ const calcDef: CalcDef = {
         { label: 'Uncooked rice', value: `${riceG} g (75g per serving)` },
         { label: 'Water needed', value: `${water} mL (${ratio}:1 ratio)` },
         { label: 'Cook time', value: ratio > 2 ? '40-50 min' : ratio > 1.5 ? '18-20 min' : '12-15 min' },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Perfect rice-to-water ratios for any variety. White rice uses 1:1.5, brown rice 1:2, sushi rice 1:1.1. One serving = 75g uncooked rice = ~200g cooked.',
     example: { label: '2 servings jasmine rice', value: '150g rice + 188mL water' }

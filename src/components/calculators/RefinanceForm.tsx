@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button, FormGroup, FormPanel } from '@/components/CalculatorFormElements';
 import { generateAmortizationSchedule } from '@/lib/calculators/amortizationEngine';
+import { useCurrencyFormat } from '@/lib/hooks/useCurrencyFormat';
 
 export function RefinanceForm() {
   const [inputs, setInputs] = useState({
@@ -66,8 +67,9 @@ export function RefinanceForm() {
     handleCalculate();
   }, []);
 
-  const formatCurrency = (val: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val);
+  const formatCurrency = useCurrencyFormat('USD');
 
+    const handleClear = () => { setResults(null); };
   return (
     <div className="flex flex-col gap-6 font-sans text-[13px] text-[#333333]">
       <div className="flex flex-col md:flex-row gap-6">
@@ -111,7 +113,7 @@ export function RefinanceForm() {
 
             <div className="pl-[140px] flex gap-2 mt-4">
               <Button onClick={handleCalculate}>Calculate</Button>
-              <Button variant="secondary" onClick={() => {}}>Clear</Button>
+              <Button variant="secondary" onClick={handleClear}>Clear</Button>
             </div>
           </FormPanel>
         </div>

@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: '~% of 1RM used', value: `${Math.max(50, Math.min(100, pctRM)).toFixed(0)}% 1RM` },
         { label: 'Training zone', value: epley > 0 ? `90%: ${(epley * 0.9).toFixed(1)} kg · 80%: ${(epley * 0.8).toFixed(1)} kg · 70%: ${(epley * 0.7).toFixed(1)} kg` : '—' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate your theoretical maximum lift from any submaximal set. The Epley formula is most accurate for reps up to 10.'
 }

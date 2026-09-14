@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Opponent possession', value: `${(100 - pct).toFixed(1)}%` },
         { label: 'Interpretation', value: pct > 60 ? 'Dominant possession' : pct > 50 ? 'Slight advantage' : pct > 40 ? 'Competitive' : 'Defensive posture' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate soccer possession percentage based on time with the ball. Possession is a key performance metric that reflects a team\'s ability to control the game tempo.'
 }

@@ -25,11 +25,7 @@ export default function AdvancedCompoundInterestForm() {
   const [yearlyData, setYearlyData] = useState<any[]>([]);
   const [monthlyData, setMonthlyData] = useState<any[]>([]);
 
-  useEffect(() => {
-    calculateCompoundInterest();
-  }, [initialInvestment, regularContribution, contributionFrequency, contributionTiming, interestRate, years, compoundFrequency, taxRate, inflationRate]);
-
-  const calculateCompoundInterest = () => {
+  function calculateCompoundInterest() {
     const n = compoundFrequency === 'annually' ? 1 : compoundFrequency === 'quarterly' ? 4 : compoundFrequency === 'monthly' ? 12 : 365;
     const r = interestRate / 100;
     const monthlyR = r / 12;
@@ -101,7 +97,11 @@ export default function AdvancedCompoundInterestForm() {
     
     setYearlyData(yearlyResults);
     setMonthlyData(monthlyResults);
-  };
+  }
+
+  useEffect(() => {
+    calculateCompoundInterest();
+  }, [initialInvestment, regularContribution, contributionFrequency, contributionTiming, interestRate, years, compoundFrequency, taxRate, inflationRate]);
 
   const exportData = () => {
     const csv = ['Year,Balance,Contributions,Interest,Inflation Adjusted'];

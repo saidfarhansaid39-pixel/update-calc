@@ -8,13 +8,22 @@ const calcDef: CalcDef = {
     defaults: { a: '10', b: '3' },
     compute: (v) => {
       const nc = Math.round(n(v.a)), r = Math.round(n(v.b))
-      if (r > nc) return { result: 0, label: 'nCr (r > n)', steps: [step('Error:', 'Cannot choose ' + r + ' from ' + nc + ' (r > n)')] }
+      if (r > nc) return { result: 0, label: 'nCr (r > n)', steps: [step('Error:', 'Cannot choose ' + r + ' from ' + nc + ' (r > n)')] ,
+    extras: [
+      { label: "Counting Principle", value: "Understand whether order matters (permutations) or not (combinations)." },
+      { label: "Large Number Warning", value: "Factorials and combinatorial values grow extremely fast." },
+      { label: "Real-World Use", value: "Used in probability, statistics, game theory, and algorithm analysis." },
+      { label: "Formula Reference", value: "nCr = n! / (r!(n-r)!) for combinations; nPr = n! / (n-r)! for permutations." }
+    ]}
       const result = fact(nc) / (fact(r) * fact(nc - r))
       return { result, label: 'C(' + nc + ', ' + r + ')', steps: [step('Formula:', 'nCr = ' + nc + '! / (' + r + '! x (' + nc + ' - ' + r + ')!)'), step('Result:', '' + result)] }
     },
     formula: 'nCr = n! / (r! x (n-r)!)',
     description: 'Calculate the number of combinations (n choose r).',
-    interpretation: 'The number of ways to choose r items from n items where order does not matter.'
+    interpretation: 'The number of ways to choose r items from n items where order does not matter.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

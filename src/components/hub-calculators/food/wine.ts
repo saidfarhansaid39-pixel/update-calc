@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'Total glasses needed', value: `${totalGlasses}` },
         { label: 'Bottles (5 glasses/750mL bottle)', value: `${Math.ceil(bottles)} bottles (${bottles.toFixed(1)})` },
         { label: 'Alcohol calories', value: `~${calories.toFixed(0)} kcal` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Calculate wine quantities for any event. A standard 750mL bottle serves 5 glasses. Plan bottles needed based on guests and consumption pace.',
     example: { label: '10 guests, 2 glasses each', value: '4 bottles of wine' }

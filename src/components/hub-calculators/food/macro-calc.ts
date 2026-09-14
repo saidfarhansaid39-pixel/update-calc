@@ -19,7 +19,12 @@ const calcDef: CalcDef = {
         { label: 'Protein', value: `${protein.toFixed(0)} g (${pPct}%) — 4 kcal/g` },
         { label: 'Carbs', value: `${carbs.toFixed(0)} g (${cPct}%) — 4 kcal/g` },
         { label: 'Fat', value: `${fat.toFixed(0)} g (${fPct}%) — 9 kcal/g` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Quick macronutrient split based on your diet goal. Choose from balanced, low carb, high carb, or keto. Each diet adjusts the protein/carb/fat ratios automatically.',
     example: { label: '2000 kcal, low carb', value: 'P:175g C:150g F:78g' }

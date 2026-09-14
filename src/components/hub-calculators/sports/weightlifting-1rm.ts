@@ -14,6 +14,11 @@ const calcDef: CalcDef = {
       { label: 'Weight used', value: v.weight+' kg' }, { label: 'Reps', value: ''+v.reps },
       { label: 'Epley', value: epley.toFixed(1)+' kg' }, { label: 'Brzycki', value: brzycki.toFixed(1)+' kg' },
       { label: 'Average', value: avg.toFixed(1)+' kg' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Estimate one-rep max from submaximal sets using Epley and Brzycki formulas. Accurate for reps up to 10.', formula: 'Epley: W × (1 + R/30); Brzycki: W × 36/(37-R)', interpretation: 'The Epley formula is most accurate for reps ≤ 10. For higher reps, use multiple formulas and average.'
 }

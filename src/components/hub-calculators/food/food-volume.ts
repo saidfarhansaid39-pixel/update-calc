@@ -14,7 +14,12 @@ const calcDef: CalcDef = {
       return { result, label: 'Converted Volume', unit: v.toUnit, steps: [
         { label: 'Original', value: `${v.amount} ${v.fromUnit}` },
         { label: 'Converted', value: `${result.toFixed(2)} ${v.toUnit}` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Convert cooking measurements between cups, tablespoons, teaspoons, milliliters, and fluid ounces. Essential for following international recipes.',
     example: { label: '2 cups to milliliters', value: '480 mL' }

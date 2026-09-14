@@ -8,13 +8,23 @@ const calcDef: CalcDef = {
     defaults: { a: '0', b: '2' },
     compute: (v) => {
       let a = n(v.a), b = n(v.b); const fa = a * a - 2, fb = b * b - 2; let xr = 0
-      if (fa * fb >= 0) return { result: 'No sign change', label: 'False Position', steps: [] }
+      if (fa * fb >= 0) return { result: 'No sign change', label: 'False Position', steps: [] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
       for (let i = 0; i < 10; i++) { xr = (a * fb - b * fa) / (fb - fa); const fr = xr * xr - 2; if (fa * fr < 0) { b = xr } else { a = xr } }
       return { result: xr.toFixed(10), label: 'Root (v2)', steps: [step('Result', xr.toFixed(10))] }
     },
     formula: 'x? = (a�f(b) - b�f(a))/(f(b) - f(a)). Regula falsi method.',
     description: 'False position (regula falsi) method for root finding.',
-    interpretation: 'Bracketing method using linear interpolation.'
+    interpretation: 'Bracketing method using linear interpolation.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

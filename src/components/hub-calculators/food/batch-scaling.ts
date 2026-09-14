@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'ingredient', label: 'Per Batch Amount', type: 'number', min: 0, step: '0.25' }
     ],
     compute: (v) => {
-      const r = v.ingredient * v.batches; return { result: r, label: 'Total Needed', unit: 'units', steps: [{ label: 'Batches', value: v.batches }, { label: 'Per batch', value: v.ingredient }, { label: 'Total', value: r.toFixed(2) }] }
+      const r = v.ingredient * v.batches; return { result: r, label: 'Total Needed', unit: 'units', steps: [{ label: 'Batches', value: v.batches }, { label: 'Per batch', value: v.ingredient }, { label: 'Total', value: r.toFixed(2) }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Scale for bulk cooking. Multiply per-batch amounts by desired number of batches.',
     example: { label: '2x batch, 500g flour per batch', value: '1000g flour total' }

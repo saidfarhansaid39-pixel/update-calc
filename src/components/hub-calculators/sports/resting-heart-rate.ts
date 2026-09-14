@@ -19,7 +19,12 @@ const calcDef: CalcDef = {
         { label: 'Risk category', value: hr > 80 ? 'Elevated cardiovascular risk' : 'Normal range' },
         { label: 'Note', value: 'Lower resting HR generally indicates better cardiovascular fitness. Measure upon waking before getting out of bed.' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Assess your cardiovascular fitness based on resting heart rate (RHR). A normal adult RHR is 60-100 bpm; well-trained athletes often have RHRs of 40-60 bpm.'
 }

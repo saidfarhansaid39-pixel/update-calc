@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const x0 = n(v.x0), y0 = n(v.y0), x1 = n(v.x1), y1 = n(v.y1), x = n(v.x)
       const t = (x - x0) / (x1 - x0); const y = (2 * t * t * t - 3 * t * t + 1) * y0 + (-2 * t * t * t + 3 * t * t) * y1
-      return { result: y.toFixed(4), label: 'Cubic spline', steps: [step('t', t.toFixed(4)), step('S(x)', y.toFixed(4))] }
+      return { result: y.toFixed(4), label: 'Cubic spline', steps: [step('t', t.toFixed(4)), step('S(x)', y.toFixed(4))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'Cubic Hermite spline interpolation between (x0,y0) and (x1,y1).',
     description: 'Cubic spline interpolation between two points.',
-    interpretation: 'Smooth interpolation using cubic Hermite basis.'
+    interpretation: 'Smooth interpolation using cubic Hermite basis.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

@@ -10,11 +10,21 @@ const calcDef: CalcDef = {
       const a = n(v.a)
       let guess = a / 2
       for (let i = 0; i < 20; i++) guess = (guess + a / guess) / 2
-      return { result: guess, label: 'sqrt(x)', steps: [step('Method:', 'Babylonian sqrt(' + a + ')'), step('Result:', '' + guess.toFixed(6))] }
+      return { result: guess, label: 'sqrt(x)', steps: [step('Method:', 'Babylonian sqrt(' + a + ')'), step('Result:', '' + guess.toFixed(6))] ,
+    extras: [
+      { label: "Mathematical Significance", value: "Fundamental concept in number theory and discrete mathematics." },
+      { label: "Computational Note", value: "Large inputs may require optimized algorithms for performance." },
+      { label: "Historical Context", value: "Studied by mathematicians across centuries for its unique properties." },
+      { label: "Related Sequences", value: "Related to other integer sequences and special numbers." },
+      { label: "Pattern Recognition", value: "Observe recurring patterns and relationships between values." }
+    ]}
     },
     formula: 'x_{n+1} = (x_n + a/x_n) / 2',
     description: 'Calculate square root using the Babylonian method.',
-    interpretation: 'The square root of the input using ancient iterative approximation.'
+    interpretation: 'The square root of the input using ancient iterative approximation.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

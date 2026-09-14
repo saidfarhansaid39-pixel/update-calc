@@ -15,11 +15,20 @@ const calcDef: CalcDef = {
       const zMap: Record<number, number> = { 90: 1.645, 95: 1.96, 99: 2.576 }
       const zScore = zMap[Math.round(a)] || 1.96
       const moe = zScore * (b / Math.sqrt(c))
-      return { result: moe, label: 'Margin of Error', steps: [step('Formula:', 'MOE = ' + zScore + ' x (' + b + ' / sqrt(' + c + ')) = ' + moe.toFixed(4))] }
+      return { result: moe, label: 'Margin of Error', steps: [step('Formula:', 'MOE = ' + zScore + ' x (' + b + ' / sqrt(' + c + ')) = ' + moe.toFixed(4))] ,
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ]}
     },
     formula: 'MOE = z* x (s / sqrt(n))',
     description: 'Calculate the margin of error for a survey or experiment.',
-    interpretation: 'The margin of error is the range above and below the sample statistic.'
+    interpretation: 'The margin of error is the range above and below the sample statistic.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

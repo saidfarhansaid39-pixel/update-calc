@@ -34,7 +34,12 @@ const calcDef: CalcDef = {
         ] : [{ label: 'Note', value: 'Add Na? for Goldman equation' }]),
         { label: 'Resting Vm range', value: '-70 to -90 mV (typical)' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Membrane potential is the voltage difference across a cell membrane. The Nernst/Goldman equations calculate equilibrium potentials for ions.',
   formula: 'EK = RT/zF × ln([K?]?/[K?]?) | Goldman: Vm = 61.54 × log((K? + 0.04Na?)/(K? + 0.04Na?))',

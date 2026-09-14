@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function CookingConverterForm() {
@@ -8,17 +8,15 @@ export default function CookingConverterForm() {
   const [value, setValue] = useState<number>(1);
   const [from, setFrom] = useState<string>('cup');
   const [to, setTo] = useState<string>('ml');
-  const [result, setResult] = useState<any>(null);
-
   const conversions: any = {
     cup: 236.588, ml: 1, tbsp: 14.787, tsp: 4.929, oz: 29.574, lb: 453.592, g: 1, kg: 1000
   };
 
-  useEffect(() => {
+  const result = useMemo(() => {
     const fromVal = conversions[from] || 1;
     const toVal = conversions[to] || 1;
     const res = (value * fromVal) / toVal;
-    setResult(res.toFixed(2));
+    return res.toFixed(2);
   }, [value, from, to]);
 
   return (

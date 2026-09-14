@@ -12,11 +12,21 @@ const calcDef: CalcDef = {
       const romans = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I']
       let result = '', remaining = num
       for (let i = 0; i < vals.length; i++) { while (remaining >= vals[i]) { result += romans[i]; remaining -= vals[i] } }
-      return { result, label: 'Roman numeral', steps: [step('Number:', '' + num), step('Roman:', result)] }
+      return { result, label: 'Roman numeral', steps: [step('Number:', '' + num), step('Roman:', result)] ,
+    extras: [
+      { label: "Mathematical Significance", value: "Fundamental concept in number theory and discrete mathematics." },
+      { label: "Computational Note", value: "Large inputs may require optimized algorithms for performance." },
+      { label: "Historical Context", value: "Studied by mathematicians across centuries for its unique properties." },
+      { label: "Related Sequences", value: "Related to other integer sequences and special numbers." },
+      { label: "Pattern Recognition", value: "Observe recurring patterns and relationships between values." }
+    ]}
     },
     formula: 'Roman numeral conversion',
     description: 'Convert a number to Roman numerals.',
-    interpretation: 'The Roman numeral representation of the number.'
+    interpretation: 'The Roman numeral representation of the number.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

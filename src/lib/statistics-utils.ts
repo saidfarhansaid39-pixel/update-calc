@@ -1,7 +1,14 @@
-export function n(v: string | number): number {
-  return typeof v === 'number' ? v : parseFloat(v)
+/** Convert a form field value to a number. Returns NaN for non-numeric input. */
+export function n(value: string | number): number {
+  return Number(value)
 }
 
-export function parseList(v: string): number[] {
-  return v.split(',').map(s => parseFloat(s.trim())).filter(x => !isNaN(x))
+/** Parse a comma-separated string into an array of numbers, filtering out NaN values. */
+export function parseList(value: string): number[] {
+  return value
+    .split(',')
+    .map(s => s.trim())
+    .filter(s => s !== '')
+    .map(Number)
+    .filter(v => !Number.isNaN(v))
 }

@@ -17,7 +17,12 @@ const calcDef: CalcDef = {
         { label: 'Nm = (1 - FST) / (2 × FST)', value: `${nm.toFixed(2)}` },
         { label: 'Interpretation', value: nm > 1 ? 'High gene flow (Nm > 1: homogenizing)' : nm > 0.1 ? 'Moderate gene flow' : 'Low gene flow (drift dominates)' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The migration rate or gene flow (Nm) estimates the number of migrants per generation between populations. It is inferred from FST under the island model.',
   formula: 'FST ˜ 1 / (4Nm + 1) | Nm = (1 - FST) / (2 × FST) for diploids under infinite island model',

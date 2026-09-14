@@ -26,7 +26,12 @@ const calcDef: CalcDef = {
         { label: 'Volume diluent to add', value: `${volDiluent.toFixed(3)} mL` },
         { label: 'Dilution factor (fold)', value: `${dilutionFactor.toFixed(1)}×` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Calculate the volume of stock solution needed to prepare a desired concentration and volume. Based on the standard C1V1 = C2V2 formula for solution preparation.',
   formula: 'C1V1 = C2V2 | V1 = C2 × V2 / C1 | Diluent volume = V2 - V1',

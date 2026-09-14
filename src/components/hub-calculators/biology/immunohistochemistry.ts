@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Category', value: hScore === 0 ? 'Negative' : hScore <= 100 ? 'Low expression' : hScore <= 200 ? 'Moderate expression' : 'High expression' },
         { label: 'Alternative', value: 'Allred score (breast cancer ER/PR): proportion + intensity (0-8)' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Immunohistochemistry (IHC) scoring quantifies protein expression in tissue sections. The H-Score (histoscore) combines percentage of positive cells with staining intensity for semi-quantitative assessment.',
   formula: 'H-Score = S(% cells at intensity i × i) | Range 0-300 | Alternative: Allred (0-8), IRS (0-12), Quickscore',

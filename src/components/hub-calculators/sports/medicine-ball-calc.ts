@@ -12,6 +12,11 @@ const calcDef: CalcDef = {
     return { result: v.distance, label: 'Throw Distance', unit: 'm', steps: [
       { label: 'Distance', value: v.distance+' m' }, { label: 'Ball mass', value: v.ballWeight+' kg' },
       { label: 'Est. velocity', value: vel.toFixed(1)+' m/s' }, { label: 'Est. power', value: power.toFixed(0)+' J' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Estimate upper body power from medicine ball chest throw. Valid test for explosive strength.', formula: 'Power = 0.5 × m × v²', interpretation: 'Longer throws relative to ball weight indicate greater upper body power.'
 }

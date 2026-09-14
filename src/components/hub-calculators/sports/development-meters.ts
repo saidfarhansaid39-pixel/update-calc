@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Development', value: `${developM.toFixed(2)} m per pedal revolution` },
         { label: 'Speed at 90 RPM', value: `${speed90.toFixed(1)} km/h` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate meters of development — the distance traveled per pedal revolution. This gear measurement helps cyclists understand the real-world effect of their gear choices.'
 }

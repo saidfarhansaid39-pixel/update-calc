@@ -29,7 +29,12 @@ const calcDef: CalcDef = {
         { label: 'Final population', value: `${n.toFixed(0)}` },
         { label: 'K saturation', value: `${(n / v.k * 100).toFixed(1)}% of K` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Carrying capacity (K) is the maximum population size an environment can sustain. The logistic growth model incorporates density-dependent limiting factors.',
   formula: 'dN/dt = rN(1 – N/K) | Logistic growth equation',

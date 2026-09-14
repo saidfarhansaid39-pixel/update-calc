@@ -8,7 +8,12 @@ const calcDef: CalcDef = {
     { name:'alt', label:'ALT (U/L)', type:'number', min:0, max:2000, step:'1' },
     { name:'platelets', label:'Platelets (×10³/µL)', type:'number', min:0, max:1000, step:'1' }
   ],
-  compute: (v) => { const age=parseFloat(v.age)||50; const ast=parseFloat(v.ast)||40; const alt=parseFloat(v.alt)||40; const plt=parseFloat(v.platelets)||200; const fib4=(age*ast)/((plt**0.5)*(alt**0.5+1)); let stage='Indeterminate'; if(fib4>3.25) stage='Advanced Fibrosis (F3-F4)'; else if(fib4<1.45) stage='No/Minimal Fibrosis (F0-F1)'; return { result:parseFloat(fib4.toFixed(2)), label:'FIB-4 Score', steps:[{ label:'Score', value:fib4.toFixed(2) },{ label:'Fibrosis Stage', value:stage }] } },
+  compute: (v) => { const age=parseFloat(v.age)||50; const ast=parseFloat(v.ast)||40; const alt=parseFloat(v.alt)||40; const plt=parseFloat(v.platelets)||200; const fib4=(age*ast)/((plt**0.5)*(alt**0.5+1)); let stage='Indeterminate'; if(fib4>3.25) stage='Advanced Fibrosis (F3-F4)'; else if(fib4<1.45) stage='No/Minimal Fibrosis (F0-F1)'; return { result:parseFloat(fib4.toFixed(2)), label:'FIB-4 Score', steps:[{ label:'Score', value:fib4.toFixed(2) },{ label:'Fibrosis Stage', value:stage }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'FIB-4 index for non-invasive liver fibrosis assessment using routine lab values.',
   formula: 'FIB-4 = (Age × AST) / (Platelets^0.5 × (ALT^0.5 + 1)).',
   interpretation: '<1.45: F0-F1 (no/minimal fibrosis). 1.45-3.25: Indeterminate. >3.25: F3-F4 (advanced fibrosis).'

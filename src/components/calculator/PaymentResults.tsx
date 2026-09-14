@@ -1,7 +1,10 @@
 "use client";
 
 import React from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+import { AmortizationSchedule } from '@/components/calc-panel/AmortizationSchedule';
+import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation';
 
 export function PaymentResults({ 
   loanAmount, 
@@ -11,34 +14,73 @@ export function PaymentResults({
   numMonths
 }: any) {
   const t = useTranslations('calculatorUI');
+  const locale = useLocale();
   const principalPercent = (loanAmount / totalPayments) * 100 || 0;
   const interestPercent = (totalInterest / totalPayments) * 100 || 0;
   const dashPrincipal = (principalPercent / 100) * 251.2;
   const dashInterest = (interestPercent / 100) * 251.2;
+  const termYears = numMonths / 12;
+  const payoffDate = new Date();
+  payoffDate.setMonth(payoffDate.getMonth() + numMonths);
+  const payoffDateStr = payoffDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 
   return (
     <div className="w-full flex flex-col font-sans text-[13px] text-gray-800">
       <div className="bg-[#599e28] text-white p-2 font-bold flex justify-between items-center rounded-t border border-[#3b7b13]">
         <span>{t('results.monthlyPayLabel')}</span>
-        <span className="text-xl">${monthlyPayment.toFixed(2)}</span>
+        <span className="text-xl">{formatCurrency(monthlyPayment, 'USD', locale)}</span>
       </div>
       
-      <div className="p-2 border border-gray-300 border-t-0 bg-white">
-        <p className="mb-2">You will need to pay ${monthlyPayment.toFixed(2)} every month for {(numMonths / 12).toFixed(1).replace('.0', '')} years to payoff the debt.</p>
-        <table className="w-full text-sm border-collapse">
-          <tbody>
-            <tr className="border-b border-t border-gray-200 bg-gray-50">
-              <td className="p-1 text-left">{t('results.totalOfPayments', { count: numMonths })}</td>
-              <td className="p-1 text-right">${totalPayments.toFixed(2)}</td>
+      <div className="p-2 border border-gray-300 border-t-0 bg-white space-y-4">
+        <p className="mb-2">You will need to pay {formatCurrency(monthlyPayment, 'USD', locale)} every month for {(numMonths / 12).toFixed(1).replace('.0', '')} years to payoff the debt.</p>
+        
+        {/* Monthly + Total breakdown */}
+        <table className="w-full text-xs border-collapse">
+          <thead>
+            <tr className="bg-gray-100 border-b border-gray-200">
+              <th className="p-1.5 text-left font-medium text-gray-500"></th>
+              <th className="p-1.5 text-right font-medium text-gray-500">Monthly</th>
+              <th className="p-1.5 text-right font-medium text-gray-500">Total</th>
             </tr>
-            <tr className="border-b border-gray-200">
-              <td className="p-1 text-left">{t('results.totalInterest')}</td>
-              <td className="p-1 text-right">${totalInterest.toFixed(2)}</td>
+          </thead>
+          <tbody>
+            <tr className="border-b border-gray-100">
+              <td className="p-1.5 text-left font-medium text-gray-700">Principal &amp; Interest</td>
+              <td className="p-1.5 text-right text-gray-700">{formatCurrency(monthlyPayment, 'USD', locale)}</td>
+              <td className="p-1.5 text-right text-gray-700">{formatCurrency(totalPayments, 'USD', locale)}</td>
             </tr>
           </tbody>
         </table>
 
-        <div className="flex justify-center items-center my-6">
+        {/* Payoff summary cards */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <div className="p-2 bg-white rounded-lg border border-gray-200">
+            <p className="text-xs text-gray-400">Loan Amount</p>
+            <p className="text-sm font-bold text-gray-900">{formatCurrency(loanAmount, 'USD', locale)}</p>
+          </div>
+          <div className="p-2 bg-white rounded-lg border border-gray-200">
+            <p className="text-xs text-gray-400">Total Interest</p>
+            <p className="text-sm font-bold text-red-600">{formatCurrency(totalInterest, 'USD', locale)}</p>
+          </div>
+          <div className="p-2 bg-white rounded-lg border border-gray-200">
+            <p className="text-xs text-gray-400">Payoff Date</p>
+            <p className="text-sm font-bold text-gray-900">{payoffDateStr}</p>
+          </div>
+          <div className="p-2 bg-white rounded-lg border border-gray-200">
+            <p className="text-xs text-gray-400">Term</p>
+            <p className="text-sm font-bold text-gray-900">{termYears.toFixed(0)} years ({numMonths} payments)</p>
+          </div>
+        </div>
+
+        {/* Interpretation */}
+        <ResultInterpretation
+          type="loan"
+          values={{ monthlyPayment, totalPayment: totalPayments, totalInterest, principal: loanAmount, loanAmount, term: termYears }}
+          currencySymbol="$"
+        />
+
+        {/* Donut chart */}
+        <div className="flex justify-center items-center my-4">
           <div className="w-24 h-24 relative">
             <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
               <circle cx="50" cy="50" r="40" fill="transparent" stroke="#1a5ec4" strokeWidth="20" strokeDasharray={`${dashPrincipal} 251.2`} strokeDashoffset="0" />
@@ -62,6 +104,17 @@ export function PaymentResults({
               <span>{t('results.interest')}</span>
             </div>
           </div>
+        </div>
+
+        {/* Amortization schedule */}
+        <div className="mt-4">
+          <AmortizationSchedule
+            principal={loanAmount}
+            rate={0} // Approximate rate from monthly payment
+            term={termYears}
+            periodsPerYear={12}
+            currencySymbol="$"
+          />
         </div>
       </div>
     </div>

@@ -18,7 +18,12 @@ const calcDef: CalcDef = {
         { label: 'Estimated mass', value: `${avgMassDa.toFixed(0)} Da` },
         { label: 'In kDa', value: `${(avgMassDa / 1000).toFixed(2)} kDa` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Estimate peptide or protein mass from amino acid count using the average residue mass. The average molecular weight of an amino acid residue in a protein is approximately 110 Da.',
   formula: 'Mass ˜ n × 110 Da (average residue weight) | More precisely: S(individual residue masses) + H2O',

@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Rolling resistance power', value: `${rrW.toFixed(1)} W` },
         { label: 'Total power required', value: `${totalW.toFixed(0)} W (incl. aero)` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate the power lost to tire rolling resistance while cycling. Crr varies from ~0.002 for track tires to ~0.010 for mountain bike tires. Lower Crr means faster speeds at the same power output.'
 }

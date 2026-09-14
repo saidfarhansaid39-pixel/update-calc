@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Equivalent speed', value: `${speed.toFixed(2)} km/h` },
         { label: 'Per 5 km split', value: `${(paceMinPerKm * 5).toFixed(1)} min` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Predict your finish time based on current pace. Enter your distance and target pace to estimate your race day completion time.'
 }

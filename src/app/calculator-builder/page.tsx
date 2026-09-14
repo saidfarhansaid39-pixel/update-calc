@@ -1,21 +1,24 @@
-import { routing } from '@/i18n/routing'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { Link } from '@/lib/navigation'
 import { SchemaMarkup, breadcrumbListSchema } from '@/components/SchemaMarkup'
 import CalculatorBuilderClient from './client'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.jdcalc.com'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculat.online'
+
+export const dynamic = 'force-static'
 
 export async function generateMetadata() {
-  const languages: Record<string, string> = { 'x-default': `${siteUrl}/calculator-builder` }
-  for (const l of routing.locales) {
-    languages[l] = l === 'en' ? `${siteUrl}/calculator-builder` : `${siteUrl}/${l}/calculator-builder`
-  }
+  const locale = await getLocale()
+  const t = await getTranslations('pages')
+  const title = t('calculatorBuilderTitle')
+  const description = t('calculatorBuilderDescription')
+  const languages: Record<string, string> = { 'x-default': `${siteUrl}/calculator-builder`, en: `${siteUrl}/calculator-builder` }
   return {
-    title: 'Calculator Builder - Create Custom Calculators | JDCALC',
-    description: 'Build your own custom calculators with custom formulas and fields. Free online calculator builder tool.',
+    title: `${title} | Calculat`,
+    description,
     alternates: { canonical: `${siteUrl}/calculator-builder`, languages },
-    openGraph: { title: 'Calculator Builder - Create Custom Calculators | JDCALC', description: 'Build your own custom calculators with custom formulas and fields.', url: `${siteUrl}/calculator-builder`, siteName: 'JDCALC', type: 'website', images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }] },
-    twitter: { card: 'summary_large_image', title: 'Calculator Builder - Create Custom Calculators | JDCALC', description: 'Build your own custom calculators with custom formulas and fields.' },
+    openGraph: { title: `${title} | Calculat`, description, url: `${siteUrl}/calculator-builder`, siteName: 'Calculat' },
+    twitter: { card: 'summary_large_image', title: `${title} | Calculat`, description },
   }
 }
 

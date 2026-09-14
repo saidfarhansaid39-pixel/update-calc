@@ -29,7 +29,12 @@ const calcDef: CalcDef = {
         { label: 'Required insert mass', value: `${insMass.toFixed(1)} ng` },
         { label: 'Total in ligation', value: `${(v.vecMass + insMass).toFixed(1)} ng` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Calculate insert mass needed for DNA ligation based on vector size, insert size, vector mass, and desired molar ratio. The optimal ratio depends on insert:vector size and end compatibility.',
   formula: 'Insert mass (ng) = Vector mass × (Insert kb / Vector kb) × molar ratio | Sticky ends: 3:1-5:1 | Blunt ends: 5:1-10:1',

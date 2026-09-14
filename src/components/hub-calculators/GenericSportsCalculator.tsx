@@ -309,6 +309,59 @@ export function GenericSportsCalculator({ calculator }: Props) {
     })
   }, [form, lockedFields])
 
+  const sportsInterpretation = useMemo(() => {
+    if (!resultData) return null
+    const slug = calculator.slug
+    const val = typeof resultData.result === 'number' ? resultData.result : parseFloat(String(resultData.result))
+    if (isNaN(val) || val <= 0) return null
+    const u = resultData.unit || ''
+    if (slug.includes('pace') || slug.includes('run') || slug.includes('marathon')) {
+      const minPerKm = val > 0 ? val : 0; const speedKmh = minPerKm > 0 ? 60 / minPerKm : 0
+      const level = speedKmh < 8 ? 'walking' : speedKmh < 10 ? 'jogging' : speedKmh < 12 ? 'moderate run' : speedKmh < 14 ? 'fast run' : 'racing'
+      return <div className={`text-xs font-medium mt-1 ${level === 'racing' || level === 'fast run' ? 'text-blue-600' : level === 'moderate run' ? 'text-emerald-600' : 'text-amber-600'}`}>{val.toFixed(2)} {u} ({speedKmh.toFixed(1)} km/h) — {level === 'walking' ? 'Walking pace' : level === 'jogging' ? 'Light jogging pace' : level === 'moderate run' ? 'Moderate running pace' : level === 'fast run' ? 'Fast running pace' : 'Elite/racing pace'}. A 5 min/km pace = 12 km/h.</div>
+    }
+    if (slug.includes('heart-rate') || slug.includes('hr') || slug.includes('target-hr') || slug.includes('recovery')) {
+      const maxHR = 220 - (parseFloat(String(v.age)) || 30)
+      const pct = maxHR > 0 ? (val / maxHR) * 100 : 0
+      const zone = pct < 50 ? 'very light' : pct < 60 ? 'light' : pct < 70 ? 'moderate' : pct < 80 ? 'vigorous' : pct < 90 ? 'very vigorous' : 'maximal'
+      return <div className={`text-xs font-medium mt-1 ${zone === 'moderate' || zone === 'vigorous' ? 'text-emerald-600' : zone === 'very vigorous' ? 'text-amber-600' : 'text-blue-600'}`}>{val.toFixed(0)} {u} ({pct.toFixed(0)}% of max HR) — {zone} intensity. Max HR ≈ 220 - age = {maxHR} bpm.</div>
+    }
+    if (slug.includes('calorie') || slug.includes('met')) {
+      return <div className="text-xs text-amber-600 font-medium mt-1">{val.toFixed(0)} {u} — Calories burned depend on weight, intensity, and duration. 1 MET = resting rate.</div>
+    }
+    if (slug.includes('vo2') || slug.includes('cooper') || slug.includes('beep')) {
+      const level = val < 30 ? 'poor' : val < 38 ? 'fair' : val < 45 ? 'good' : val < 52 ? 'excellent' : 'superior'
+      return <div className={`text-xs font-medium mt-1 ${level === 'excellent' || level === 'superior' ? 'text-emerald-600' : level === 'good' ? 'text-blue-600' : 'text-amber-600'}`}>{val.toFixed(1)} {u} — {level} cardiorespiratory fitness (ACSM standards). VO₂max is the gold standard for aerobic capacity.</div>
+    }
+    if (slug.includes('one-rm') || slug.includes('1rm') || slug.includes('wilks')) {
+      return <div className="text-xs text-emerald-600 font-medium mt-1">{val.toFixed(1)} {u} — Estimated 1RM. Use conservative weights for safety when testing, and use a spotter.</div>
+    }
+    if (slug.includes('body-fat') || slug.includes('tdee') || slug.includes('fitness-age')) {
+      const bfCat = slug.includes('body-fat') ? (val < 10 ? 'essential' : val < 20 ? 'athlete' : val < 24 ? 'fit' : val < 31 ? 'average' : 'above average') : ''
+      return <div className={`text-xs font-medium mt-1 ${bfCat === 'athlete' || bfCat === 'fit' ? 'text-emerald-600' : bfCat === 'average' ? 'text-amber-600' : bfCat ? 'text-blue-600' : 'text-gray-500'}`}>{val.toFixed(1)} {u}{bfCat ? ` (${bfCat})` : ''} — {slug.includes('tdee') ? 'TDEE varies by activity level. Adjust calories based on your goals.' : 'Individual variability is significant. Track trends over time.'}</div>
+    }
+    if (slug.includes('cycling') || slug.includes('bike') || slug.includes('power')) {
+      const wpkg = parseFloat(String(v.weight)) > 0 ? val / parseFloat(String(v.weight)) : 0
+      const level = wpkg < 1.5 ? 'recreational' : wpkg < 2.5 ? 'moderate' : wpkg < 3.5 ? 'good' : wpkg < 4.5 ? 'very good' : 'elite'
+      return <div className={`text-xs font-medium mt-1 ${level === 'elite' || level === 'very good' ? 'text-emerald-600' : level === 'good' ? 'text-blue-600' : 'text-amber-600'}`}>{val.toFixed(1)} {u} ({wpkg.toFixed(1)} W/kg) — {level} cycling performance. W/kg is key for climbing.</div>
+    }
+    if (slug.includes('swim') || slug.includes('stroke')) {
+      return <div className="text-xs text-emerald-600 font-medium mt-1">{val.toFixed(1)} {u} — Swimming pace. Fewer strokes per length indicates better efficiency. Technique matters most.</div>
+    }
+    if (slug.includes('jump') || slug.includes('vertical')) {
+      const level = val < 30 ? 'below average' : val < 41 ? 'average' : val < 51 ? 'good' : val < 61 ? 'excellent' : 'elite'
+      return <div className={`text-xs font-medium mt-1 ${level === 'elite' || level === 'excellent' ? 'text-emerald-600' : level === 'good' ? 'text-blue-600' : 'text-amber-600'}`}>{val.toFixed(1)} {u} ({val.toFixed(0)} cm) — {level} vertical jump. Elite athletes exceed 71 cm (28 in).</div>
+    }
+    if (slug.includes('sprint') || slug.includes('agility')) {
+      return <div className="text-xs text-blue-600 font-medium mt-1">{val.toFixed(2)} {u} — Sprint/agility time. Faster times indicate better anaerobic power and change-of-direction ability.</div>
+    }
+    if (slug.includes('pushup') || slug.includes('strength')) {
+      const level = val < 10 ? 'below average' : val < 20 ? 'average' : val < 30 ? 'good' : val < 40 ? 'excellent' : 'superior'
+      return <div className={`text-xs font-medium mt-1 ${level === 'superior' || level === 'excellent' ? 'text-emerald-600' : level === 'good' ? 'text-blue-600' : 'text-amber-600'}`}>{val.toFixed(0)} {u} — {level} upper-body endurance. Standards vary by age and gender.</div>
+    }
+    return <div className="text-xs text-gray-500 italic mt-1">{val.toFixed(1)} {u} — Results based on standard fitness formulas. Individual performance varies.</div>
+  }, [resultData, calculator.slug, v])
+
   const sportsAuthor = { name: 'Alex Rivera', photoUrl: 'https://i.pravatar.cc/150?u=alex-rivera', credential: 'CSCS, USAW', title: 'Certified Strength & Conditioning Specialist', linkedIn: 'https://www.linkedin.com/in/alex-rivera-sports' }
   const sportsReferences = [
     { label: 'ACSM. Guidelines for Exercise Testing and Prescription. 11th Edition. 2021.', url: 'https://www.acsm.org/' },
@@ -325,6 +378,7 @@ export function GenericSportsCalculator({ calculator }: Props) {
               <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
                 <p className="text-xs text-gray-500 dark:text-gray-400">{resultData.label}</p>
                 <p className="text-3xl font-bold text-[#06b6d4]">{typeof resultData.result === 'number' ? (resultData.result % 1 === 0 ? resultData.result.toFixed(0) : resultData.result.toFixed(2)) : resultData.result} <span className="text-sm font-normal text-gray-500">{resultData.unit}</span></p>
+                {sportsInterpretation}
               </div>
               {(resultData.steps ?? []).length > 0 && (
                 <div className="border-t border-gray-200 dark:border-gray-700 pt-4">

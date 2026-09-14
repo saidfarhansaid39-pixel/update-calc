@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'intensity', label: 'Intensity', type: 'select', options: [{ label: 'Light (1 tbsp/500g)', value: '1' }, { label: 'Medium (1.5 tbsp/500g)', value: '1.5' }, { label: 'Heavy (2 tbsp/500g)', value: '2' }] }
     ],
     compute: (v) => {
-      const tbsp = (v.meatWeight / 500) * v.intensity; const g = tbsp * 15; return { result: g, label: 'Total Rub', unit: 'g', steps: [{ label: 'Meat', value: v.meatWeight + ' g' }, { label: 'Intensity', value: v.intensity + ' tbsp/500g' }, { label: 'Total', value: g.toFixed(0) + ' g (' + tbsp.toFixed(1) + ' tbsp)' }] }
+      const tbsp = (v.meatWeight / 500) * v.intensity; const g = tbsp * 15; return { result: g, label: 'Total Rub', unit: 'g', steps: [{ label: 'Meat', value: v.meatWeight + ' g' }, { label: 'Intensity', value: v.intensity + ' tbsp/500g' }, { label: 'Total', value: g.toFixed(0) + ' g (' + tbsp.toFixed(1) + ' tbsp)' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Dry rub quantities. Standard mix: 1 part salt + 1 part pepper + spices. Apply 30-60 min before cooking.',
     example: { label: '2kg brisket, medium', value: '~60g (6 tbsp) rub' }

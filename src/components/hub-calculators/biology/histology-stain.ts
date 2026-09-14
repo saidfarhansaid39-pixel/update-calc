@@ -35,7 +35,12 @@ const calcDef: CalcDef = {
         { label: 'Dehydration/clearing', value: info.dehyd },
         { label: 'Mounting', value: 'Apply coverslip with mounting medium (e.g., Permount, DPX, aqueous)' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Histology staining protocols vary by stain type and tissue thickness. H&E is the most common general stain; special stains highlight specific tissue components.',
   formula: 'Stain time varies by tissue type, fixation method, and section thickness. Thicker sections require longer stain times. Microwave or automated stainers reduce staining time.',

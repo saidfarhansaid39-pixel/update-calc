@@ -8,13 +8,23 @@ const calcDef: CalcDef = {
     defaults: { a: '0', b: '2' },
     compute: (v) => {
       let a = n(v.a), b = n(v.b); const fa = a * a - 2, fb = b * b - 2; let mid = 0; const steps: { label: string; value: string }[] = [step('f(a)', fa.toFixed(4)), step('f(b)', fb.toFixed(4))]
-      if (fa * fb >= 0) return { result: 'No sign change', label: 'Bisection', steps }
+      if (fa * fb >= 0) return { result: 'No sign change', label: 'Bisection', steps ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
       for (let i = 0; i < 20; i++) { mid = (a + b) / 2; const fm = mid * mid - 2; if (fm === 0) break; if (fa * fm < 0) b = mid; else a = mid; if (i < 5) steps.push(step(`Iter ${i + 1}`, `[${a.toFixed(4)}, ${b.toFixed(4)}], mid=${mid.toFixed(6)}`)) }
       return { result: mid.toFixed(10), label: 'Root (v2)', steps }
     },
     formula: 'Bisection on f(x) = x� - 2. Iteratively halve interval containing root.',
     description: 'Bisection method for root finding.',
-    interpretation: 'Approximate root found by interval halving.'
+    interpretation: 'Approximate root found by interval halving.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

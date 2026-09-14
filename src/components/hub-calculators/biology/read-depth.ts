@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Region length', value: `${v.regionLen.toLocaleString()} bp` },
         { label: 'Depth = bases / length', value: `${depth.toFixed(1)}×` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Read depth is the number of sequencing reads mapping to each genomic position. Higher depth increases base call confidence and variant detection sensitivity.',
   formula: 'Avg depth = (mapped reads × read length) / target size | = 30× for germline SNV detection; = 0.1× for low-pass CNV',

@@ -37,7 +37,12 @@ const calcDef: CalcDef = {
         { label: 'Daily protein', value: `${protein.toFixed(0)} g` },
         { label: 'Per meal (3 meals)', value: `${(protein / 3).toFixed(0)} g/meal` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Protein needs vary by activity level and goals. Adequate protein intake supports muscle maintenance, growth, recovery, and metabolic health.',
   formula: 'Protein (g/day) = Weight(kg) × Activity Factor × Goal Factor | RDA: 0.8 g/kg | Active: 1.2-2.2 g/kg',

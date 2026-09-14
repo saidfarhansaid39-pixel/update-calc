@@ -10,7 +10,12 @@ const calcDef: CalcDef = {
     { name:'dailyActivity', label:'Impact on Daily Activities (0-4)', type:'number', min:0, max:4, step:'1' },
     { name:'anxiety', label:'Anxiety / Fear of Falling (0-4)', type:'number', min:0, max:4, step:'1' }
   ],
-  compute: (v) => { const s=parseInt(v.vertigoFreq||'0')+parseInt(v.vertigoSeverity||'0')+parseInt(v.gaitDisturb||'0')+parseInt(v.nystagmus||'0')+parseInt(v.dailyActivity||'0')+parseInt(v.anxiety||'0'); let sev='Mild'; if(s>=18) sev='Severe'; else if(s>=11) sev='Moderate'; return { result:s, label:'Vertigo-Dizziness Score', unit:'/24', steps:[{ label:'Total Score', value:s+'/24' },{ label:'Severity', value:sev }] } },
+  compute: (v) => { const s=parseInt(v.vertigoFreq||'0')+parseInt(v.vertigoSeverity||'0')+parseInt(v.gaitDisturb||'0')+parseInt(v.nystagmus||'0')+parseInt(v.dailyActivity||'0')+parseInt(v.anxiety||'0'); let sev='Mild'; if(s>=18) sev='Severe'; else if(s>=11) sev='Moderate'; return { result:s, label:'Vertigo-Dizziness Score', unit:'/24', steps:[{ label:'Total Score', value:s+'/24' },{ label:'Severity', value:sev }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'Vertigo and dizziness severity scale assessing frequency, severity, balance, and functional impact.',
   formula: 'Sum of 6 domains scored 0-4 each. Range 0-24.',
   interpretation: '0-5 Mild, 6-10 Mild-Moderate, 11-17 Moderate, 18-24 Severe vertigo/dizziness impact.'

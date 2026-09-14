@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'butter', label: 'Fat Type', type: 'select', options: [{ label: 'All-butter (flakiest)', value: '0.7' }, { label: 'Shortening', value: '0.6' }, { label: 'Half butter/half shortening', value: '0.65' }] }
     ],
     compute: (v) => {
-      const p = v.crusts.split('_'); const flour = parseFloat(p[0]); const fat = flour * parseFloat(v.butter); const water = flour * 0.25; return { result: flour, label: 'Flour', unit: 'g', steps: [{ label: 'Type', value: p.slice(1).join(' ') + ' crust' }, { label: 'Flour', value: flour + ' g' }, { label: 'Fat', value: fat.toFixed(0) + ' g' }, { label: 'Ice water', value: water.toFixed(0) + ' g' }] }
+      const p = v.crusts.split('_'); const flour = parseFloat(p[0]); const fat = flour * parseFloat(v.butter); const water = flour * 0.25; return { result: flour, label: 'Flour', unit: 'g', steps: [{ label: 'Type', value: p.slice(1).join(' ') + ' crust' }, { label: 'Flour', value: flour + ' g' }, { label: 'Fat', value: fat.toFixed(0) + ' g' }, { label: 'Ice water', value: water.toFixed(0) + ' g' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Pie crust: 3:2:1 ratio (flour:fat:water). Keep ingredients COLD for flaky texture.',
     example: { label: 'Double 9" all-butter', value: '275g flour, 193g butter, 69g water' }

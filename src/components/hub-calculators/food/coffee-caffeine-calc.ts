@@ -8,7 +8,12 @@ const calcDef: CalcDef = {
       { name: 'weight', label: 'Body Weight', type: 'number', unit: 'kg', units: [{ value: 'kg', label: 'kg' }, { value: 'lb', label: 'lb' }], defaultUnit: 'kg', min: 20, step: '0.1' }
     ],
     compute: (v) => {
-      const t = v.cups * parseFloat(v.type); const s = v.weight * 6; return { result: t, label: 'Caffeine', unit: 'mg', steps: [{ label: 'Intake', value: v.cups + ' x ' + v.type + ' mg = ' + t.toFixed(0) + ' mg' }, { label: 'Safe limit (6 mg/kg)', value: s.toFixed(0) + ' mg' }, t > s ? { label: 'Over limit', value: 'Reduce by ' + (t - s).toFixed(0) + ' mg' } : { label: 'Within range', value: (s - t).toFixed(0) + ' mg below limit' }] }
+      const t = v.cups * parseFloat(v.type); const s = v.weight * 6; return { result: t, label: 'Caffeine', unit: 'mg', steps: [{ label: 'Intake', value: v.cups + ' x ' + v.type + ' mg = ' + t.toFixed(0) + ' mg' }, { label: 'Safe limit (6 mg/kg)', value: s.toFixed(0) + ' mg' }, t > s ? { label: 'Over limit', value: 'Reduce by ' + (t - s).toFixed(0) + ' mg' } : { label: 'Within range', value: (s - t).toFixed(0) + ' mg below limit' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Caffeine intake vs safe limits. Health authorities recommend up to 400 mg/day (6 mg/kg body weight).',
     example: { label: '3 cups drip coffee, 70kg', value: '285 mg — within limit' }

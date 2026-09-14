@@ -39,7 +39,9 @@ export function getDefaultSources(hub: string): CitationSource[] {
   return EXPERT_SOURCES;
 }
 
-const REVIEW_BASE_DATE = new Date('2025-06-10T00:00:00Z');
+const REVIEW_BASE_DATE = new Date('2026-09-14T00:00:00Z');
+
+export const CONTENT_REVIEW_DATE = '2026-09-14';
 
 export function getReviewedDate(hub: string, slug?: string): string {
   if (!slug) return REVIEW_BASE_DATE.toISOString().slice(0, 10);

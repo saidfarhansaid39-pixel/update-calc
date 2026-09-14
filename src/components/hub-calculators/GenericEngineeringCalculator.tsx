@@ -3596,6 +3596,55 @@ function getEngineeringPresets(type: CalcType): { label: string; values: Record<
   }
 }
 
+function getEngineeringInterpretation(slug: string, val?: number | string, unit?: string): React.ReactNode {
+  const s = slug.toLowerCase()
+  const v = typeof val === 'number' ? val : (typeof val === 'string' ? parseFloat(val) : undefined)
+  const hasVal = v !== undefined && !isNaN(v)
+
+  if (s.includes('voltage') || s.includes('ohms-law') || s.includes('power') || s.includes('current') || s.includes('capacitance') || s.includes('inductance') || s.includes('impedance') || s.includes('resistor') || s.includes('transformer') || s.includes('duty-cycle') || s.includes('signal-to-noise') || s.includes('decibel') || s.includes('voltage-drop') || s.includes('awg') || s.includes('frequency') || s.includes('wavelength')) {
+    let msg = 'Electrical parameter within typical design range'
+    if (hasVal && (s.includes('voltage') || s.includes('ohms'))) {
+      if (v < 50) msg = 'Low-voltage — suitable for electronics and control circuits'
+      else if (v < 250) msg = 'Standard mains voltage — typical for household and commercial wiring'
+      else if (v < 1000) msg = 'High voltage — requires proper insulation and clearance'
+      else msg = 'Extra-high voltage — used in power transmission and distribution'
+    }
+    return <p className="text-xs font-medium mt-1 text-blue-600 dark:text-blue-400">{msg}</p>
+  }
+
+  if (s.includes('beam') || s.includes('deflect') || s.includes('bending') || s.includes('stress') || s.includes('strain') || s.includes('young') || s.includes('poisson') || s.includes('torsion') || s.includes('buckling') || s.includes('shear') || s.includes('moment') || s.includes('truss') || s.includes('frame') || s.includes('section-modulus') || s.includes('moment-of-inertia') || s.includes('plastic') || s.includes('failure') || s.includes('fatigue') || s.includes('goodman') || s.includes('soderberg') || s.includes('stress-concentration') || s.includes('crack') || s.includes('fracture') || s.includes('vibration') || s.includes('modal') || s.includes('indeterminate') || s.includes('conjugate') || s.includes('stiffness') || s.includes('flexibility') || s.includes('influence') || s.includes('spring-constant') || s.includes('hookes')) {
+    let msg = 'Structural analysis — verify against applicable design code'
+    if (hasVal) {
+      if (v < 100) msg = 'Within typical serviceability limits for most structures'
+      else if (v < 500) msg = 'Moderate — verify against code-specified allowable stresses'
+      else msg = 'High — consider member resizing or additional reinforcement'
+    }
+    return <p className="text-xs font-medium mt-1 text-amber-600 dark:text-amber-400">{msg}</p>
+  }
+
+  if (s.includes('torque') || s.includes('gear') || s.includes('horsepower') || s.includes('engine') || s.includes('rpm') || s.includes('speed')) {
+    let msg = 'Mechanical power transmission parameter'
+    if (hasVal && (s.includes('torque') || s.includes('gear'))) {
+      if (v < 100) msg = 'Light-duty — suitable for small mechanisms and precision instruments'
+      else if (v < 1000) msg = 'Medium-duty — typical for automotive and general industrial machinery'
+      else msg = 'Heavy-duty — high load requiring robust drivetrain design'
+    }
+    return <p className="text-xs font-medium mt-1 text-emerald-600 dark:text-emerald-400">{msg}</p>
+  }
+
+  if (s.includes('concrete') || s.includes('volume') || s.includes('hydraulic') || s.includes('buoyancy') || s.includes('flow') || s.includes('reynolds') || s.includes('bernoulli') || s.includes('water') || s.includes('pipe') || s.includes('channel') || s.includes('weir') || s.includes('sediment') || s.includes('hvac') || s.includes('heat') || s.includes('thermal') || s.includes('efficiency') || s.includes('specific-heat') || s.includes('latent')) {
+    let msg = 'Fluid / thermal systems analysis'
+    if (hasVal && (s.includes('flow') || s.includes('reynolds') || s.includes('pipe'))) {
+      if (v < 2000) msg = 'Laminar regime — smooth, predictable flow behavior'
+      else if (v < 4000) msg = 'Transitional regime — flow may oscillate between laminar and turbulent'
+      else msg = 'Turbulent regime — high mixing with increased friction losses'
+    }
+    return <p className="text-xs font-medium mt-1 text-purple-600 dark:text-purple-400">{msg}</p>
+  }
+
+  return null
+}
+
 function GenericEngFallback({ calculator }: Props) {
   const genericDef = useMemo(() => buildGenericDef(calculator) as any, [calculator])
   const [val, setVal] = useState('')
@@ -3618,6 +3667,7 @@ function GenericEngFallback({ calculator }: Props) {
       <div className="text-center py-4">
         <p className="text-sm text-gray-500 dark:text-gray-400">{res.label}</p>
         <p className="text-4xl font-bold text-[#06b6d4]">{String(res.result)} {res.unit}</p>
+        {getEngineeringInterpretation(calculator.slug, res.result, res.unit)}
       </div>
       {res.steps?.length > 0 && (
         <div className="space-y-2">
@@ -3759,6 +3809,7 @@ function EngInner({ calculator }: Props) {
           <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
             <p className="text-xs text-gray-500 dark:text-gray-400">{data.label}</p>
             <p className="text-3xl font-bold text-[#06b6d4]">{data.result % 1 === 0 ? data.result.toFixed(0) : data.result.toExponential(4)} <span className="text-sm font-normal text-gray-500">{data.unit}</span></p>
+            {getEngineeringInterpretation(calculator.slug, data.result, data.unit)}
           </div>
           {data.steps.length > 0 && (
             <div className="border-t border-gray-200 dark:border-gray-700 pt-4">

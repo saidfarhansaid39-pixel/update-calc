@@ -18,7 +18,12 @@ const calcDef: CalcDef = {
         { label: 'Servings', value: `${v.servings} × 300 mL` },
         { label: 'Total volume', value: `${total} mL` },
         ...amounts.map((a: number, i: number) => ({ label: ['Base ingredient', 'Secondary', 'Liquid'][i] || `Component ${i + 1}`, value: `${a.toFixed(0)} mL (${parts[i]}%)` })),
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Balance your smoothie ingredients for the perfect blend. A standard serving is 300 mL. Adjust ratios for fruit-forward, protein-packed, or green smoothies.',
     example: { label: '2 servings fruit smoothie', value: '600 mL: 360mL fruit + 240mL liquid' }

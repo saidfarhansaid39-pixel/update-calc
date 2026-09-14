@@ -25,6 +25,11 @@ const calcDef: CalcDef = {
       { label: 'Missed shots', value: ''+missed }, { label: 'Turnovers', value: ''+v.tov },
       { label: 'PER (simplified)', value: adjustedPER.toFixed(1) },
       { label: 'NBA benchmark', value: adjustedPER > 20 ? 'All-Star level' : adjustedPER > 15 ? 'Above average' : adjustedPER > 10 ? 'Average' : 'Below average' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate a simplified Player Efficiency Rating (PER). PER summarizes a player\'s per-minute statistical production into a single number.', formula: 'PER ≈ (PTS + REB + AST + STL + BLK - MissedShots - TO) / GP', interpretation: 'NBA average PER is ~15. A PER above 20 indicates All-Star level performance; above 25 is MVP caliber.'
 }

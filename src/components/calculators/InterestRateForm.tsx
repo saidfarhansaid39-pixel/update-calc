@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button, FormGroup, FormPanel } from '@/components/CalculatorFormElements';
 import { CalculatorPieChart } from '@/components/calculators/ChartPresets';
+import { useCurrencyFormat } from '@/lib/hooks/useCurrencyFormat';
 
 function solveForInterestRate(pv: number, pmt: number, n: number): number {
   if (pv <= 0 || pmt <= 0 || n <= 0) return 0;
@@ -61,8 +62,9 @@ export function InterestRateForm() {
     handleCalculate();
   }, []);
 
-  const formatCurrency = (val: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val);
+  const formatCurrency = useCurrencyFormat('USD');
 
+    const handleClear = () => { setResults(null); setInputs({ loanAmount: 10000, loanTermYears: 5, loanTermMonths: 0, monthlyPay: 193.33 }); };
   return (
     <div className="flex flex-col gap-6 font-sans text-[13px] text-[#333333]">
       <div className="flex flex-col md:flex-row gap-6">
@@ -87,7 +89,7 @@ export function InterestRateForm() {
 
             <div className="pl-[140px] flex gap-2 mt-4">
               <Button onClick={handleCalculate}>Calculate</Button>
-              <Button variant="secondary" onClick={() => {}}>Clear</Button>
+              <Button variant="secondary" onClick={handleClear}>Clear</Button>
             </div>
           </FormPanel>
         </div>

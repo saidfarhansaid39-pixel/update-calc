@@ -177,6 +177,19 @@ export function evaluateRPN(rpn: Token[], isDeg: boolean = true): number {
         case 'ln': stack.push(Math.log(a)); break;
         case 'sqrt': stack.push(Math.sqrt(a)); break;
         case 'exp': stack.push(Math.exp(a)); break;
+        case 'sinh': stack.push(Math.sinh(a)); break;
+        case 'cosh': stack.push(Math.cosh(a)); break;
+        case 'tanh': stack.push(Math.tanh(a)); break;
+        case 'asinh': stack.push(Math.asinh(a)); break;
+        case 'acosh': stack.push(Math.acosh(a)); break;
+        case 'atanh': stack.push(Math.atanh(a)); break;
+        case 'log2': stack.push(Math.log2(a)); break;
+        case 'cbrt': stack.push(Math.cbrt(a)); break;
+        case 'abs': stack.push(Math.abs(a)); break;
+        case 'floor': stack.push(Math.floor(a)); break;
+        case 'ceil': stack.push(Math.ceil(a)); break;
+        case 'round': stack.push(Math.round(a)); break;
+        case 'recip': stack.push(1 / a); break;
         default: stack.push(0);
       }
     }

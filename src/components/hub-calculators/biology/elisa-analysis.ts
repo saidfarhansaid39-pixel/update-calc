@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Estimated concentration', value: `${estConc.toFixed(2)} pg/mL` },
         { label: 'Note', value: 'Use 4- or 5-parameter logistic fit for accurate quantitation over full standard curve range' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'ELISA (Enzyme-Linked Immunosorbent Assay) quantifies antigens or antibodies using enzyme-linked detection. Sample concentration is interpolated from a standard curve.',
   formula: 'Concentration = OD(sample) / OD(standard) × concentration(standard) (linear interpolation assuming background subtracted)',

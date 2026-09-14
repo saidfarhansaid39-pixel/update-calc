@@ -22,7 +22,12 @@ const calcDef: CalcDef = {
         { label: 'In µM', value: `${(molarityNM / 1000).toFixed(4)} µM` },
         { label: 'Molarity = conc × 106 / MW', value: `${molarityNM.toFixed(2)} nM` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Convert DNA mass concentration to molar concentration. Essential for equimolar ligation, NGS library pooling, and qPCR standard curve preparation.',
   formula: 'MW(dsDNA) = length(bp) × 649.5 g/mol | M(nM) = (ng/µL) × 106 / MW | 1 kb dsDNA at 50 ng/µL ˜ 77 nM',

@@ -6,6 +6,9 @@ const withNextIntl = createNextIntlPlugin()
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   compress: true,
+  turbopack: {
+    root: '.',
+  },
   webpack: (config) => {
     config.resolve = config.resolve || {}
     config.resolve.fallback = { ...(config.resolve.fallback || {}), fs: false }
@@ -36,7 +39,7 @@ const nextConfig = {
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400' },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'X-DNS-Prefetch-Control', value: 'on' },
@@ -49,17 +52,11 @@ const nextConfig = {
               "img-src 'self' data: blob: https:",
               "font-src 'self' data: https:",
               "connect-src 'self' https://open.er-api.com https://financialmodelingprep.com https://*.vercel-analytics.com",
-              "frame-ancestors 'self'",
+              "frame-ancestors *",
               "form-action 'self'",
               "base-uri 'self'",
             ].join('; '),
           },
-        ],
-      },
-      {
-        source: '/_next/static/(.*)',
-        headers: [
-          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],
       },
       {
@@ -83,7 +80,7 @@ const nextConfig = {
       {
         source: '/sitemap.xml',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=3600' },
+          { key: 'Cache-Control', value: 'public, max-age=86400' },
         ],
       },
       {
@@ -108,17 +105,6 @@ const nextConfig = {
   },
 
   async redirects() {
-    const friendlySlugRedirects = [
-      ['/health-calculators/bmi-calculator', '/health-calculators/basic-bmi-1'],
-      ['/health-calculators/bmr-calculator', '/health-calculators/advanced-bmr-1'],
-      ['/health-calculators/body-fat-calculator', '/health-calculators/clinical-body-fat-1'],
-      ['/health-calculators/calorie-calculator', '/health-calculators/daily-calorie-1'],
-      ['/health-calculators/heart-rate-calculator', '/health-calculators/monthly-heart-rate-1'],
-      ['/health-calculators/blood-pressure-calculator', '/health-calculators/standard-blood-pressure-1'],
-      ['/math-calculators/percentage-calculator', '/math-calculators/ultimate-percentage-1'],
-      ['/financial-calculators/loan-calculator', '/financial-calculators/basic-loan-1'],
-    ].map(([source, dest]) => ({ source, destination: dest, permanent: true }));
-
     const legacyPages = [
       ['/mortgage', '/financial-calculators/mortgage-calculator'],
       ['/salary', '/financial-calculators/salary-calculator'],
@@ -250,7 +236,6 @@ const nextConfig = {
     ].map(([source, dest]) => ({ source, destination: dest, permanent: true }));
 
     return [
-      ...friendlySlugRedirects,
       ...legacyPages,
       ...spanishAliases,
       ...frenchAliases,

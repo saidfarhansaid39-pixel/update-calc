@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'Concentration = A260 × 50 × dilution', value: `${concNgUl.toFixed(2)} ng/µL` },
         { label: 'Purity check (A260/A280)', value: 'Expected > 1.8 for pure DNA. Use your spectrophotometer ratio.' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Calculate DNA concentration from UV absorbance at 260 nm. An A260 of 1.0 corresponds to ~50 µg/mL for double-stranded DNA.',
   formula: 'dsDNA: c = A260 × 50 × dilution (ng/µL) | ssDNA: c = A260 × 33 × dilution | RNA: c = A260 × 40 × dilution',

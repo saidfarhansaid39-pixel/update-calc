@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Estimated IC50', value: `${ic50.toFixed(2)} µM` },
         { label: 'Note', value: 'Use 4-parameter logistic regression for accurate determination with full dose-response data' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'IC50 is the half-maximal inhibitory concentration — the concentration of an inhibitor needed to reduce a biological response by 50%. It measures drug potency.',
   formula: 'Log IC50 = log(highConc) - (highInh - 50) / slope | Slope = log(high/low) / (highInh - lowInh)',

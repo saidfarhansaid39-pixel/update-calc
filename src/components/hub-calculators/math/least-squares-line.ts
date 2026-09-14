@@ -9,11 +9,20 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const x1 = n(v.x1), y1 = n(v.y1), x2 = n(v.x2), y2 = n(v.y2); const nPt = 2; const sx = x1 + x2, sy = y1 + y2, sxx = x1 * x1 + x2 * x2, sxy = x1 * y1 + x2 * y2
       const slope = (nPt * sxy - sx * sy) / (nPt * sxx - sx * sx); const intercept = (sy - slope * sx) / nPt
-      return { result: `y = ${slope.toFixed(4)}x + ${intercept.toFixed(4)}`, label: 'Best-fit line', steps: [step('Slope', slope.toFixed(4)), step('Intercept', intercept.toFixed(4))] }
+      return { result: `y = ${slope.toFixed(4)}x + ${intercept.toFixed(4)}`, label: 'Best-fit line', steps: [step('Slope', slope.toFixed(4)), step('Intercept', intercept.toFixed(4))] ,
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ]}
     },
     formula: 'y = mx + b, m = (nSxy - SxSy)/(nSx� - (Sx)�).',
     description: 'Calculate least squares linear regression for 2 points.',
-    interpretation: 'Line of best fit minimizing sum of squared residuals.'
+    interpretation: 'Line of best fit minimizing sum of squared residuals.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

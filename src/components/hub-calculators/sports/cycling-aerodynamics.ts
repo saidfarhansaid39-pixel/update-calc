@@ -29,7 +29,12 @@ const calcDef: CalcDef = {
         { label: 'Drag power loss', value: `${dragW.toFixed(0)} W` },
         ...(savings > 0 ? [{ label: 'Saving ~0.02 CdA', value: `~${savings.toFixed(1)} W saved` }] : []),
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Estimate aerodynamic drag power while cycling at a given speed. At 40 km/h, ~80% of total power output goes to overcoming air resistance. Reducing CdA from 0.30 to 0.25 saves significant watts.'
 }

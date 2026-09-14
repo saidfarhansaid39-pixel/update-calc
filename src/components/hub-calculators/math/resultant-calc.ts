@@ -8,11 +8,20 @@ const calcDef: CalcDef = {
     defaults: { a: '1', b: '2', c: '1', d: '1' },
     compute: (v) => {
       const a = n(v.a), b = n(v.b), c = n(v.c), d = n(v.d); const res = a * d - b * c
-      return { result: res, label: 'Resultant', steps: [step('Resultant', '' + res)] }
+      return { result: res, label: 'Resultant', steps: [step('Resultant', '' + res)] ,
+    extras: [
+      { label: "Dimension Check", value: "Matrix dimensions must be compatible for the operation." },
+      { label: "Singular Matrix Warning", value: "A determinant of zero means the matrix has no inverse." },
+      { label: "Computational Complexity", value: "Larger matrices require significantly more computation." },
+      { label: "Application", value: "Used in computer graphics, machine learning, and physics simulations." }
+    ]}
     },
     formula: 'Resultant of ax�+bx+c and dx�+ex+f.',
     description: 'Calculate the resultant of two quadratic polynomials (simplified).',
-    interpretation: 'Resultant = 0 when polynomials share a root.'
+    interpretation: 'Resultant = 0 when polynomials share a root.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

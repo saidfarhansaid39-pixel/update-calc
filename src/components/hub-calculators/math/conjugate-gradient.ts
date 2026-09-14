@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const a = n(v.a), b = n(v.b), c = n(v.c); let x = 0, r = c - a * x, p = r; const steps: { label: string; value: string }[] = []
       for (let i = 0; i < 3; i++) { const Ap = a * p; const alpha = r * r / (p * Ap); x += alpha * p; const rn = r - alpha * Ap; const beta = rn * rn / (r * r); p = rn + beta * p; r = rn; steps.push(step(`Iter ${i + 1}`, `x=${x.toFixed(4)}, residual=${r.toFixed(6)}`)) }
-      return { result: x.toFixed(6), label: 'Solution x', steps }
+      return { result: x.toFixed(6), label: 'Solution x', steps ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'CG method for Ax = b. Iterative solver for SPD matrices.',
     description: 'Conjugate gradient method (simplified 1D).',
-    interpretation: 'Iterative solution for symmetric positive-definite systems.'
+    interpretation: 'Iterative solution for symmetric positive-definite systems.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

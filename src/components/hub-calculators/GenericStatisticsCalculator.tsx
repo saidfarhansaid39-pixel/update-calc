@@ -11,6 +11,7 @@ import { formatWithExtras } from '@/lib/format-with-extras'
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic'
 import type { UnitSystem } from '@/components/premium/PremiumCalculatorShell'
 import { DynamicHealthBarChart } from '@/components/premium/DynamicCharts'
+import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation'
 import { buildGenericDef } from '@/lib/generic-fallback'
 
 interface FieldDef {
@@ -53,6 +54,16 @@ export function GenericStatisticsCalculator({ calculator }: Props) {
     return Object.fromEntries(Object.entries(vals).filter(([, v]) => v !== undefined && v !== ''))
   }, [watched])
 
+  const statsInterpretation = useMemo(() => {
+    const slug = calculator.slug
+    const val = parseFloat(String(v[Object.keys(v)[0]]))
+    if (slug.includes('standard-deviation') || slug.includes('std-dev')) return <div className="text-xs text-blue-600 font-medium mt-1">~68% of data falls within 1σ, ~95% within 2σ of the mean (normal distribution).</div>
+    if (slug.includes('correlation') || slug.includes('r-squared') || slug.includes('pearson')) return <div className="text-xs text-emerald-600 font-medium mt-1">Ranges from -1 to +1. |r| &gt; 0.7 indicates strong correlation.</div>
+    if (slug.includes('percentile')) return <div className="text-xs text-amber-600 font-medium mt-1">The p-th percentile is the value below which p% of the data falls.</div>
+    if (slug.includes('z-score')) return <div className="text-xs text-blue-600 font-medium mt-1">|z| &gt; 1.96 is significant at α=0.05 (two-tailed). |z| &gt; 2.58 at α=0.01.</div>
+    return null
+  }, [calculator.slug, v])
+
   const result = useMemo(() => {
     if (!def) return <div className="text-center text-gray-400">Select values to calculate</div>
     const vals: Record<string, any> = {}
@@ -71,6 +82,7 @@ export function GenericStatisticsCalculator({ calculator }: Props) {
         <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
           <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
           <p className="text-3xl font-bold text-[#06b6d4]">{formatWithExtras(res.result, extraFields)} {res.unit}</p>
+          {statsInterpretation}
         </div>
         <div className="border-t border-gray-200 dark:border-gray-700 pt-4 text-xs text-gray-400 space-y-1">
           {(res.steps ?? []).map((step, i) => (
@@ -79,7 +91,7 @@ export function GenericStatisticsCalculator({ calculator }: Props) {
         </div>
       </div>
     )
-  }, [def, v, extraFields])
+  }, [def, v, extraFields, statsInterpretation])
 
   const chartData = useMemo(() => {
     if (!def) return []

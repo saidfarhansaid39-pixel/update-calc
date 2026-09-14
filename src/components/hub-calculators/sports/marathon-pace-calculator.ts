@@ -26,7 +26,12 @@ const calcDef: CalcDef = {
         { label: '10 km split', value: `${Math.floor(split10k / 60)}:${(split10k % 60).toFixed(0).padStart(2, '0')}` },
         { label: 'Half-marathon split', value: `${Math.floor(halfTime / 60)}h ${(halfTime % 60).toFixed(0)}m` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Plan your marathon pacing strategy. Calculate the pace needed to achieve your goal marathon finish time from 3 hours to 6 hours.'
 }

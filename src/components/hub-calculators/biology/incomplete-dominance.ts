@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'f(12) = 2pq (intermediate)', value: `${(h12*100).toFixed(1)}%` },
         { label: 'f(22) = q²', value: `${(h22*100).toFixed(1)}%` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Incomplete dominance produces a blended intermediate phenotype in heterozygotes. Snapdragon flower color is a classic example.',
   formula: 'AA = phenotype 1, Aa = intermediate, aa = phenotype 2 | f(AA)=p², f(Aa)=2pq, f(aa)=q²',

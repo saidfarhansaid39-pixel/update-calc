@@ -2,7 +2,9 @@
 
 import React, { useState } from 'react'
 import { Clock, Trash2, RotateCcw, History, Search, Download, X, AlertTriangle } from 'lucide-react'
+import { useLocale } from 'next-intl'
 import type { HistoryEntry } from '@/lib/hooks/useCalculatorHistory'
+import { formatDate, formatDateTime } from '@/lib/i18n/calculator-i18n'
 
 interface CalculationHistoryProps {
   entries: HistoryEntry[]
@@ -23,6 +25,7 @@ export function CalculationHistory({
   entries, onApply, onRemove, onClear, onExportCSV, show, onToggle,
   searchQuery = '', onSearchChange, clearConfirm = false, onClearConfirm, calcStats,
 }: CalculationHistoryProps) {
+  const locale = useLocale()
   if (entries.length === 0 && !show) return null
 
   return (
@@ -74,8 +77,8 @@ export function CalculationHistory({
             ) : (
               entries.slice(0, 20).map(entry => {
                 const date = new Date(entry.timestamp)
-                const dateStr = date.toLocaleDateString()
-                const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                const dateStr = formatDate(date, locale)
+                const dateTimeStr = formatDateTime(date, locale)
                 return (
                   <div
                     key={entry.id}
@@ -84,12 +87,15 @@ export function CalculationHistory({
                     <Clock className="w-3 h-3 text-gray-400 shrink-0" />
                     <button
                       onClick={() => onApply(entry.inputs)}
-                      className="flex-1 text-left min-w-0 text-gray-600 dark:text-gray-400 hover:text-[#06b6d4] transition-colors truncate"
+                      className="flex-1 text-left min-w-0 text-gray-600 dark:text-gray-400 hover:text-[#06b6d4] transition-colors"
                       title="Restore this calculation"
                     >
-                      {Object.values(entry.inputs).filter(Boolean).join(', ')}
+                      <span className="block truncate">{Object.values(entry.inputs).filter(Boolean).join(', ')}</span>
+                      {entry.result && (
+                        <span className="block truncate text-[10px] text-[#06b6d4] font-medium">= {entry.result}</span>
+                      )}
                     </button>
-                    <span className="text-[10px] text-gray-400 shrink-0 whitespace-nowrap" title={dateStr + ' ' + timeStr}>
+                    <span className="text-[10px] text-gray-400 shrink-0 whitespace-nowrap" title={dateTimeStr}>
                       {dateStr}
                     </span>
                     <button

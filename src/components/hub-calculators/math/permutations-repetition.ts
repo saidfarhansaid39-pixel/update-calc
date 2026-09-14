@@ -6,10 +6,19 @@ const calcDef: CalcDef = {
     schema: z.object({ n: z.string().min(1).refine(v => !isNaN(parseFloat(v)) && parseFloat(v) >= 1 && Number.isInteger(Number(v)) && Number(v) <= 20, '1-20 integer'), r: z.string().min(1).refine(v => !isNaN(parseFloat(v)) && parseFloat(v) >= 0 && Number.isInteger(Number(v)), '0+ integer') }),
     fields: [numField('n', 'n', { min: 1, max: 20, step: '1' }), numField('r', 'r (chosen)', { min: 0, step: '1' })],
     defaults: { n: '5', r: '3' },
-    compute: (v) => { const nVal = Math.round(n(v.n)), r = Math.round(n(v.r)); const p = Math.pow(nVal, r); return { result: p, label: 'n^r', steps: [step('n^r', '' + p)] } },
+    compute: (v) => { const nVal = Math.round(n(v.n)), r = Math.round(n(v.r)); const p = Math.pow(nVal, r); return { result: p, label: 'n^r', steps: [step('n^r', '' + p)] ,
+    extras: [
+      { label: "Counting Principle", value: "Understand whether order matters (permutations) or not (combinations)." },
+      { label: "Large Number Warning", value: "Factorials and combinatorial values grow extremely fast." },
+      { label: "Real-World Use", value: "Used in probability, statistics, game theory, and algorithm analysis." },
+      { label: "Formula Reference", value: "nCr = n! / (r!(n-r)!) for combinations; nPr = n! / (n-r)! for permutations." }
+    ]} },
     formula: 'P = n?.',
     description: 'Calculate permutations with repetition allowed.',
-    interpretation: 'Number of ways to arrange r items from n types with repetition.'
+    interpretation: 'Number of ways to arrange r items from n types with repetition.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

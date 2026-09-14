@@ -15,6 +15,11 @@ const calcDef: CalcDef = {
       { label: 'Work interval', value: v.workSec+' s' }, { label: 'Rest interval', value: v.restSec+' s' },
       { label: 'Rounds', value: ''+v.rounds }, { label: 'Work density', value: intensity.toFixed(0)+'% work time' },
       { label: 'Total session', value: totalSec+' s ('+totalMin.toFixed(1)+' min)' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Design HIIT (High-Intensity Interval Training) sessions. HIIT alternates maximal effort work periods with recovery intervals.', formula: 'Total time = (work + rest) × rounds', interpretation: 'HIIT improves VO2max and insulin sensitivity more efficiently than steady-state cardio in less total time.'
 }

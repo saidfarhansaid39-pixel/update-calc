@@ -12,11 +12,20 @@ const calcDef: CalcDef = {
       if (xa.length !== ya.length || xa.length < 2) return { result: 'Need 2+ paired values', label: 'Error' }
       const n = xa.length; const mx = xa.reduce((s: number, v: number) => s + v, 0) / n, my = ya.reduce((s: number, v: number) => s + v, 0) / n
       const cov = xa.reduce((s: number, v: number, i: number) => s + (v - mx) * (ya[i] - my), 0) / (n - 1)
-      return { result: cov.toFixed(4), label: 'Covariance', steps: [step('Mean X', mx.toFixed(4)), step('Mean Y', my.toFixed(4)), step('Cov(X,Y)', cov.toFixed(4))] }
+      return { result: cov.toFixed(4), label: 'Covariance', steps: [step('Mean X', mx.toFixed(4)), step('Mean Y', my.toFixed(4)), step('Cov(X,Y)', cov.toFixed(4))],
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ] }
     },
     formula: 'Cov(X,Y) = S(xi - xbar)(yi - ybar) / (n-1).',
     description: 'Calculate the covariance between two variables.',
-    interpretation: 'Positive covariance means X and Y tend to increase together.'
+    interpretation: 'Positive covariance means X and Y tend to increase together.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

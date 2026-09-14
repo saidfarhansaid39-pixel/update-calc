@@ -26,7 +26,12 @@ const calcDef: CalcDef = {
         { label: 'Generation time', value: `${genTime.toFixed(2)} h` },
         { label: 'Growth rate (µ)', value: `${growthRate.toFixed(4)} h?¹` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Generation (doubling) time is the time it takes for a microbial population to double in number. It indicates growth efficiency and culture health.',
   formula: 'n = log2(Nt/N0) | Generation Time = t / n | µ = ln(Nt/N0) / t',

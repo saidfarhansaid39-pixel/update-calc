@@ -15,6 +15,11 @@ const calcDef: CalcDef = {
       { label: 'Superset pair', value: 'A: '+v.exA_reps+' reps → B: '+v.exB_reps+' reps' },
       { label: 'Sets', value: ''+v.sets }, { label: 'Total reps', value: ''+totalReps },
       ...(v.restSec ? [{ label: 'Rest per superset', value: v.restSec+' s' }] : []),
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate superset training volume. Supersets pair two exercises back-to-back to increase training density and metabolic stress.', formula: 'Total volume = (A reps + B reps) × sets', interpretation: 'Supersets save time and increase metabolic stress. Opposing muscle group supersets allow better recovery.'
 }

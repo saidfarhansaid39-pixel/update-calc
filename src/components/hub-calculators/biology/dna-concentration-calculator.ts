@@ -30,7 +30,12 @@ const calcDef: CalcDef = {
         { label: 'Concentration', value: `${conc.toFixed(1)} µg/mL` },
         { label: 'Quality', value: ratio260280 >= 1.8 ? 'Pure' : ratio260280 >= 1.5 ? 'Moderate' : 'Contaminated' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Nucleic acid concentration is measured by UV absorbance at 260 nm. The A260/A280 ratio indicates sample purity for downstream applications.',
   formula: 'Concentration (µg/mL) = A260 × Conversion factor | Pure DNA A260/A280 ~1.8, RNA ~2.0',

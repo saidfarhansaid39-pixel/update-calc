@@ -18,7 +18,12 @@ const calcDef: CalcDef = {
         { label: 'Oil', value: `${oil.toFixed(1)} mL` },
         { label: 'Vinegar/acid', value: `${vinegar.toFixed(1)} mL` },
         { label: 'Ratio', value: `${parts[0]}:${parts[1]} oil:vinegar` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Perfect vinaigrette dressing ratios. Classic French: 3 parts oil to 1 part vinegar. Adjust to taste — more oil for milder, more vinegar for tangier dressings.',
     example: { label: '4 servings, 2:1 ratio', value: '80mL oil + 40mL vinegar' }

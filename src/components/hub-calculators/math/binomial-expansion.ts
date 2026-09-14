@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const a = n(v.a), b = n(v.b), nVal = Math.round(n(v.n)); const terms: string[] = []
       for (let k = 0; k <= nVal; k++) { const coeff = Math.round(fact(nVal) / (fact(k) * fact(nVal - k))); const aTerm = nVal - k === 0 ? '' : a === 1 ? 'x' : a + 'x'; const bTerm = k === 0 ? '' : b === 1 ? 'y' : b + 'y'; const coeffStr = coeff === 1 ? '' : '' + coeff; terms.push(coeffStr + (aTerm || '1') + (k > 0 ? '^' + k : '') + (bTerm ? bTerm + (nVal - k > 0 ? '^' + (nVal - k) : '') : '')) }
-      return { result: terms.join(' + '), label: 'Expansion', steps: [step('(a+b)^' + nVal, terms.join(' + '))] }
+      return { result: terms.join(' + '), label: 'Expansion', steps: [step('(a+b)^' + nVal, terms.join(' + '))] ,
+    extras: [
+      { label: "Solution Methods", value: "Can be solved via factoring, formula, or graphical methods." },
+      { label: "Discriminant Insight", value: "The discriminant reveals the number and type of solutions." },
+      { label: "Graphical Meaning", value: "Solutions correspond to x-intercepts on the graph." },
+      { label: "Checking Solutions", value: "Substitute results back into the original equation to verify." },
+      { label: "Real vs Complex", value: "Real solutions appear when discriminant ≥ 0; otherwise complex." }
+    ]}
     },
     formula: '(a+b)n = S C(n,k) an?? b?.',
     description: 'Expand binomials using the binomial theorem.',
-    interpretation: 'Binomial expansion gives the sum of weighted terms.'
+    interpretation: 'Binomial expansion gives the sum of weighted terms.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

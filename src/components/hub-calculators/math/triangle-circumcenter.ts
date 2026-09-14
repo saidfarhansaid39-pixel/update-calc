@@ -12,11 +12,21 @@ const calcDef: CalcDef = {
       if (Math.abs(D) < 1e-10) return { result: 'Collinear points', label: 'Error' }
       const ux = ((ax * ax + ay * ay) * (by - cy) + (bx * bx + by * by) * (cy - ay) + (cx * cx + cy * cy) * (ay - by)) / D
       const uy = ((ax * ax + ay * ay) * (cx - bx) + (bx * bx + by * by) * (ax - cx) + (cx * cx + cy * cy) * (bx - ax)) / D
-      return { result: '(' + ux.toFixed(4) + ', ' + uy.toFixed(4) + ')', label: 'Circumcenter', steps: [step('Result:', 'O = (' + ux.toFixed(4) + ', ' + uy.toFixed(4) + ')')] }
+      return { result: '(' + ux.toFixed(4) + ', ' + uy.toFixed(4) + ')', label: 'Circumcenter', steps: [step('Result:', 'O = (' + ux.toFixed(4) + ', ' + uy.toFixed(4) + ')')],
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ] }
     },
     formula: 'Circumcenter via perpendicular bisector intersection',
     description: 'Calculate the circumcenter of a triangle (center of circumscribed circle).',
-    interpretation: 'The circumcenter is equidistant from all three vertices of the triangle.'
+    interpretation: 'The circumcenter is equidistant from all three vertices of the triangle.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

@@ -17,7 +17,12 @@ const calcDef: CalcDef = {
         { label: 'Add water', value: `${water} g` },
         { label: 'Total after feeding', value: `${total} g` },
         { label: 'Discard before next feed', value: `Keep ${v.starter} g, discard ${total - v.starter} g` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Calculate sourdough starter feeding amounts. Standard 1:1:1 ratio maintains starter. Higher ratios (1:5:5) build larger amounts for baking or reduce feeding frequency.',
     example: { label: '50g starter, 1:2:2 ratio', value: 'Add 100g flour + 100g water = 250g total' }

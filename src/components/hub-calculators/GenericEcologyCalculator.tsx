@@ -10,6 +10,7 @@ import { FieldsByMode } from '@/lib/calc-field-helper'
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic'
 import type { UnitSystem } from '@/components/premium/PremiumCalculatorShell'
 import { DynamicHealthBarChart } from '@/components/premium/DynamicCharts'
+import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation'
 import { buildGenericDef } from '@/lib/generic-fallback'
 
 interface FieldDef {
@@ -54,6 +55,15 @@ export function GenericEcologyCalculator({ calculator }: Props) {
     return Object.fromEntries(Object.entries(vals).filter(([, v]) => v !== undefined && v !== ''))
   }, [watched])
 
+  const ecologyInterpretation = useMemo(() => {
+    const slug = calculator.slug
+    const val = parseFloat(String(v[Object.keys(v)[0]]))
+    if (slug.includes('carbon') && val > 0) return <div className="text-xs text-amber-600 font-medium mt-1">Average carbon footprint per capita is ~4.8 tons CO₂e/year. {val > 4.8 ? 'This is above average.' : 'This is below average.'}</div>
+    if (slug.includes('biodiversity') || slug.includes('shannon')) return <div className="text-xs text-emerald-600 font-medium mt-1">Shannon index typically ranges 0-4.5. Higher values indicate greater species diversity.</div>
+    if (slug.includes('footprint')) return <div className="text-xs text-blue-600 font-medium mt-1">The Earth's biocapacity is ~1.6 global hectares per person. A footprint above this is unsustainable.</div>
+    return null
+  }, [calculator.slug, v])
+
   const result = useMemo(() => {
     if (!def) return <div className="text-center text-gray-400">Select values to calculate</div>
     const vals: Record<string, any> = {}
@@ -71,6 +81,7 @@ export function GenericEcologyCalculator({ calculator }: Props) {
         <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
           <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
           <p className="text-3xl font-bold text-[#06b6d4]">{Number(res.result).toFixed(2)} {res.unit}</p>
+          {ecologyInterpretation}
         </div>
         <div className="border-t border-gray-200 dark:border-gray-700 pt-4 text-xs text-gray-400 space-y-1">
           {(res.steps ?? []).map((step, i) => (
@@ -79,7 +90,7 @@ export function GenericEcologyCalculator({ calculator }: Props) {
         </div>
       </div>
     )
-  }, [def, v])
+  }, [def, v, ecologyInterpretation])
 
   const chartData = useMemo(() => {
     if (!def) return []

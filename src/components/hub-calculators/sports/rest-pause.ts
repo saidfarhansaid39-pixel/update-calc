@@ -14,6 +14,11 @@ const calcDef: CalcDef = {
       { label: 'Target total reps', value: ''+v.targetReps }, { label: 'Weight', value: v.weight+' kg' },
       { label: 'Mini-sets', value: clusters+' × ~'+Math.round(avgMiniSet)+' reps' },
       { label: 'Rest between', value: v.restSec+' s (total rest: '+totalRest+' s)' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Plan rest-pause training sets. This intensity technique allows more reps at heavy loads by taking brief rests between mini-sets.', formula: 'Rest-pause: mini-sets × reps with 10-20s rest', interpretation: 'Rest-pause training increases total rep volume at high intensities, stimulating muscle growth and strength.'
 }

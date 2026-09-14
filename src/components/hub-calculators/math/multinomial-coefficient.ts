@@ -8,13 +8,22 @@ const calcDef: CalcDef = {
     defaults: { a: '10', b: '3' },
     compute: (v) => {
       const nc = Math.round(n(v.a)), k = Math.round(n(v.b))
-      if (k > nc) return { result: 0, label: 'Error', steps: [step('Error:', 'k cannot exceed n')] }
+      if (k > nc) return { result: 0, label: 'Error', steps: [step('Error:', 'k cannot exceed n')] ,
+    extras: [
+      { label: "Counting Principle", value: "Understand whether order matters (permutations) or not (combinations)." },
+      { label: "Large Number Warning", value: "Factorials and combinatorial values grow extremely fast." },
+      { label: "Real-World Use", value: "Used in probability, statistics, game theory, and algorithm analysis." },
+      { label: "Formula Reference", value: "nCr = n! / (r!(n-r)!) for combinations; nPr = n! / (n-r)! for permutations." }
+    ]}
       const result = fact(nc) / (fact(k) * fact(nc - k))
       return { result, label: 'C(' + nc + ', ' + k + ')', steps: [step('Formula:', 'Simplified to binomial coefficient'), step('Result:', '' + result)] }
     },
     formula: 'n! / (k1! x k2! x ... x km!)',
     description: 'Calculate multinomial coefficient (simplified to binomial case).',
-    interpretation: 'The number of ways to divide n items into groups.'
+    interpretation: 'The number of ways to divide n items into groups.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

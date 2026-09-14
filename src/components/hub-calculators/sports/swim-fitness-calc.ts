@@ -10,7 +10,12 @@ const calcDef: CalcDef = {
   compute: (v) => {
     const pace = v.time / (v.distance / 100); const speed = v.distance / v.time / 60 * 1000
     const min = Math.floor(pace); const sec = Math.round((pace - min) * 60)
-    return { result: speed, label: 'Average Speed', unit: 'm/s', steps: [{ label: 'Distance', value: v.distance + ' m' }, { label: 'Time', value: v.time + ' min' }, { label: 'Pace', value: min + ':' + sec.toString().padStart(2, '0') + ' /100m' }] }
+    return { result: speed, label: 'Average Speed', unit: 'm/s', steps: [{ label: 'Distance', value: v.distance + ' m' }, { label: 'Time', value: v.time + ' min' }, { label: 'Pace', value: min + ':' + sec.toString().padStart(2, '0') + ' /100m' }] ,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Assess swimming fitness based on distance and time. Tracks pace improvement and endurance gains over time.'
 }

@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Min events rule', value: gateCount < 100 ? 'Low — <100 events in gate may not be statistically reliable' : 'Adequate events for analysis' },
         { label: 'Compensation', value: 'Proper compensation is critical for multicolor panels' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Flow cytometry counts and characterizes cells or particles in suspension. Fluorophore-labeled antibodies enable multi-parameter analysis of cell populations through gating.',
   formula: 'Population count = Total events × Gate % / 100% | Collect 10,000-50,000 events per sample | Minimum 100 events in rare populations',

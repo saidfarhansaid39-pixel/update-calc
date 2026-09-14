@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Molecular weight', value: `${mw.toFixed(0)} Da (${(mw / 1000).toFixed(2)} kDa)` },
         { label: 'Approx. # of atoms', value: `${(mw / 12).toFixed(0)} (rough estimate)` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Protein molecular weight is estimated by multiplying the number of amino acid residues by the average residue mass (~110 Da/amino acid).',
   formula: 'MW (Da) = Number of residues × Average residue mass (~110 Da)',

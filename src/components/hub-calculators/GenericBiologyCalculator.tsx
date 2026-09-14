@@ -10,6 +10,7 @@ import { FieldsByMode } from '@/lib/calc-field-helper'
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic'
 import type { UnitSystem } from '@/components/premium/PremiumCalculatorShell'
 import { buildGenericDef } from '@/lib/generic-fallback'
+import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation'
 import { DynamicHealthBarChart } from '@/components/premium/DynamicCharts'
 
 interface FieldDef {
@@ -69,6 +70,13 @@ export function GenericBiologyCalculator({ calculator }: Props) {
     return Object.fromEntries(Object.entries(vals).filter(([, v]) => v !== undefined && v !== ''))
   }, [watched])
 
+  const bioInterpretation = useMemo(() => {
+    const slug = calculator.slug
+    if (slug.includes('annealing')) return <div className="text-xs text-blue-600 font-medium mt-1">Typical PCR annealing temperatures range from 50-65°C. Use 3-5°C below primer Tm.</div>
+    if (slug.includes('dna') || slug.includes('cell')) return <div className="text-xs text-emerald-600 font-medium mt-1">Standard laboratory calculations. Results should be validated empirically.</div>
+    return null
+  }, [calculator.slug])
+
   const result = useMemo(() => {
     if (!def) return <div className="text-center text-gray-400">Select values to calculate</div>
     const vals: Record<string, any> = {}
@@ -89,6 +97,7 @@ export function GenericBiologyCalculator({ calculator }: Props) {
         <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
           <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
           <p className="text-3xl font-bold text-[#06b6d4]">{Number(res.result).toFixed(2)} {res.unit}</p>
+          {bioInterpretation}
         </div>
         <div className="border-t border-gray-200 dark:border-gray-700 pt-4 text-xs text-gray-400 space-y-1">
           {(res.steps ?? []).map((step, i) => (
@@ -97,7 +106,7 @@ export function GenericBiologyCalculator({ calculator }: Props) {
         </div>
       </div>
     )
-  }, [def, v])
+  }, [def, v, bioInterpretation])
 
   const chartData = useMemo(() => {
     const vals: Record<string, string> = {}

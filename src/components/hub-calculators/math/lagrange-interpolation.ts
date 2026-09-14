@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const x0 = n(v.x0), y0 = n(v.y0), x1 = n(v.x1), y1 = n(v.y1), x = n(v.x)
       const L0 = (x - x1) / (x0 - x1); const L1 = (x - x0) / (x1 - x0); const y = y0 * L0 + y1 * L1
-      return { result: y.toFixed(4), label: 'P(x)', steps: [step('L0(x)', L0.toFixed(4)), step('L1(x)', L1.toFixed(4)), step('P(x) = y0L0 + y1L1', y.toFixed(4))] }
+      return { result: y.toFixed(4), label: 'P(x)', steps: [step('L0(x)', L0.toFixed(4)), step('L1(x)', L1.toFixed(4)), step('P(x) = y0L0 + y1L1', y.toFixed(4))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'P(x) = S y? L?(x) where L?(x) = ? (x-x?)/(x?-x?).',
     description: 'Lagrange polynomial interpolation for 2 points.',
-    interpretation: 'Interpolated value using Lagrange basis polynomials.'
+    interpretation: 'Interpolated value using Lagrange basis polynomials.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

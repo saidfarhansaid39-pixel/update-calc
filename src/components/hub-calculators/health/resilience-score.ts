@@ -9,7 +9,12 @@ const calcDef: CalcDef = {
     { name:'stayFocused', label:'Stay focused under pressure', type:'select', options:[{ label:'Not true (0)', value:'0' },{ label:'Rarely true (1)', value:'1' },{ label:'Sometimes true (2)', value:'2' },{ label:'Often true (3)', value:'3' },{ label:'True nearly all the time (4)', value:'4' }] },
     { name:'positiveOutlook', label:'Tend to find something positive', type:'select', options:[{ label:'Not true (0)', value:'0' },{ label:'Rarely true (1)', value:'1' },{ label:'Sometimes true (2)', value:'2' },{ label:'Often true (3)', value:'3' },{ label:'True nearly all the time (4)', value:'4' }] }
   ],
-  compute: (v) => { const s=parseInt(v.adapt||'2')+parseInt(v.bounceBack||'2')+parseInt(v.stressHandle||'2')+parseInt(v.stayFocused||'2')+parseInt(v.positiveOutlook||'2'); const pct=s/20*100; let level='Low'; if(pct>=75) level='High'; else if(pct>=50) level='Moderate'; return { result:Math.round(pct), label:'Resilience Score', unit:'%', steps:[{ label:'Raw Score', value:s+'/20' },{ label:'Resilience Level', value:level }] } },
+  compute: (v) => { const s=parseInt(v.adapt||'2')+parseInt(v.bounceBack||'2')+parseInt(v.stressHandle||'2')+parseInt(v.stayFocused||'2')+parseInt(v.positiveOutlook||'2'); const pct=s/20*100; let level='Low'; if(pct>=75) level='High'; else if(pct>=50) level='Moderate'; return { result:Math.round(pct), label:'Resilience Score', unit:'%', steps:[{ label:'Raw Score', value:s+'/20' },{ label:'Resilience Level', value:level }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'Brief resilience scale assessing ability to bounce back from stress and adversity.',
   formula: 'Sum of 5 items (0-4 each). Score converted to percentage. Higher = greater resilience.',
   interpretation: '>75% High resilience, 50-74% Moderate, <50% Low resilience. May benefit from resilience training.'

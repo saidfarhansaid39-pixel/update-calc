@@ -36,7 +36,12 @@ const calcDef: CalcDef = {
         { label: 'eGFR', value: `${gfr.toFixed(0)} mL/min/1.73m²` },
         { label: 'CKD Stage', value: stage },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Estimated Glomerular Filtration Rate (eGFR) assesses kidney function. The CKD-EPI 2021 equation is the current clinical standard without race adjustment.',
   formula: 'eGFR = 141 × (min(Cr/?,1))^a × (max(Cr/?,1))^-1.209 × 0.993^Age × [1.018 if female]',

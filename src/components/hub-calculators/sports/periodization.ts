@@ -13,6 +13,11 @@ const calcDef: CalcDef = {
       { label: 'Weeks per phase', value: ''+v.weeksPerPhase }, { label: 'Number of phases', value: ''+v.phases },
       { label: 'Total program', value: totalWeeks+' weeks ('+Math.floor(totalWeeks/4)+' months)' },
       { label: 'Phasing', value: 'Typical: hypertrophy → strength → peaking → deload' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Plan training periodization cycles. Periodization organizes training into phases for progressive adaptation and peak performance.', formula: 'Total = weeks per phase × number of phases', interpretation: 'Linear periodization progresses from high volume/low intensity to low volume/high intensity over time.'
 }

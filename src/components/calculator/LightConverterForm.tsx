@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function LightConverterForm() {
@@ -8,14 +8,12 @@ export default function LightConverterForm() {
   const [value, setValue] = useState<number>(1);
   const [from, setFrom] = useState<string>('c');
   const [to, setTo] = useState<string>('km');
-  const [result, setResult] = useState<any>(null);
-
   const toMeters: any = { m: 1, km: 1000, mi: 1609.34, ly: 9.461e15, au: 1.496e11, ft: 0.3048, in: 0.0254 };
 
-  useEffect(() => {
+  const result = useMemo(() => {
     const meters = value * toMeters[from];
     const res = meters / toMeters[to];
-    setResult(res.toExponential(4));
+    return res.toExponential(4);
   }, [value, from, to]);
 
   return (

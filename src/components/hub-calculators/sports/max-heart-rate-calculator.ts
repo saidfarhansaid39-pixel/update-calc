@@ -17,7 +17,12 @@ const calcDef: CalcDef = {
         { label: 'Tanaka formula (208-0.7×age)', value: `${tanaka.toFixed(0)} bpm` },
         { label: 'Recommended range', value: `${Math.min(maxHR, tanaka).toFixed(0)}-${Math.max(maxHR, tanaka).toFixed(0)} bpm` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Estimate your maximum heart rate using the Fox formula (220 - age) and Tanaka formula (208 - 0.7 × age). Max HR declines with age.'
 }

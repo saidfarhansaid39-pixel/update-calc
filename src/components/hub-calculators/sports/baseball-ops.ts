@@ -42,7 +42,12 @@ const calcDef: CalcDef = {
         { label: 'OPS', value: `${ops.toFixed(3)}` },
         { label: 'Rating', value: ops > 0.900 ? 'Excellent' : ops > 0.800 ? 'Very Good' : ops > 0.700 ? 'Above Average' : ops > 0.600 ? 'Average' : 'Below Average' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate On-base Plus Slugging (OPS), a key baseball offensive statistic. OPS combines on-base percentage and slugging percentage to measure a player\'s overall offensive productivity.'
 }

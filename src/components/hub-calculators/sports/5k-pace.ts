@@ -16,6 +16,11 @@ const calcDef: CalcDef = {
       { label: 'Finish time', value: totalMin.toFixed(0)+' min' },
       { label: 'Pace', value: pMin+':'+pSec.toString().padStart(2,'0')+' /km' },
       { label: 'Speed', value: speed.toFixed(1)+' km/h' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Find your 5K race pace for any goal time from 15 to 40 minutes.', formula: 'Pace = goal time (min) / 5', interpretation: '5K requires a sustained high-intensity pace. Aim for even splits throughout.'
 }

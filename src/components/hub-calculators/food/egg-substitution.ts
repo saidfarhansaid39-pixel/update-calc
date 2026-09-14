@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'substitute', label: 'Substitute', type: 'select', options: [{ label: 'Flax egg (1 tbsp+3 tbsp water)', value: 'flax' }, { label: 'Chia egg (1 tbsp+3 tbsp water)', value: 'chia' }, { label: 'Mashed banana (1/4 cup)', value: 'banana' }, { label: 'Applesauce (1/4 cup)', value: 'apple' }] }
     ],
     compute: (v) => {
-      const info: Record<string, string> = { flax: '1 tbsp flax + 3 tbsp water', chia: '1 tbsp chia + 3 tbsp water', banana: '1/4 cup mashed banana', apple: '1/4 cup applesauce' }; return { result: v.eggs, label: 'Egg Substitute', unit: 'eggs', steps: [{ label: 'Eggs', value: v.eggs }, { label: 'Substitute', value: v.substitute }, { label: 'Per egg', value: info[v.substitute] }, { label: 'Total', value: 'Mix ' + v.eggs + 'x ' + info[v.substitute] }] }
+      const info: Record<string, string> = { flax: '1 tbsp flax + 3 tbsp water', chia: '1 tbsp chia + 3 tbsp water', banana: '1/4 cup mashed banana', apple: '1/4 cup applesauce' }; return { result: v.eggs, label: 'Egg Substitute', unit: 'eggs', steps: [{ label: 'Eggs', value: v.eggs }, { label: 'Substitute', value: v.substitute }, { label: 'Per egg', value: info[v.substitute] }, { label: 'Total', value: 'Mix ' + v.eggs + 'x ' + info[v.substitute] }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Vegan egg alternatives for baking. Flax and chia eggs bind best; banana and applesauce add moisture.',
     example: { label: '3 eggs to flax eggs', value: '3 tbsp flax + 9 tbsp water' }

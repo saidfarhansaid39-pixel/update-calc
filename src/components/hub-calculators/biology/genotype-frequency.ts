@@ -28,7 +28,12 @@ const calcDef: CalcDef = {
         { label: 'p(A) from counts', value: `${(pVal).toFixed(3)}` },
         { label: 'q(a) from counts', value: `${(qVal).toFixed(3)}` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Calculate observed genotype frequencies from population count data. Compare to Hardy-Weinberg expected frequencies to detect evolutionary forces.',
   formula: 'f(AA) = n(AA)/N, f(Aa) = n(Aa)/N, f(aa) = n(aa)/N | p = f(AA) + f(Aa)/2, q = 1 - p',

@@ -22,7 +22,12 @@ const calcDef: CalcDef = {
         { label: 'Viability = live / total × 100', value: `${viability.toFixed(1)}%` },
         { label: 'Culture quality', value: viability > 90 ? 'Excellent' : viability > 80 ? 'Good' : viability > 70 ? 'Adequate' : 'Poor — replace culture' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Cell viability is the percentage of live cells in a population, typically assessed by trypan blue exclusion. Live cells exclude the dye while dead cells with compromised membranes take it up.',
   formula: 'Viability (%) = (live cells / total cells) × 100',

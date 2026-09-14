@@ -14,6 +14,11 @@ const calcDef: CalcDef = {
       { label: 'Points', value: ''+v.pts }, { label: 'FGA', value: ''+v.fga },
       { label: 'FTA', value: ''+v.fta }, { label: 'TS%', value: ts.toFixed(1)+'%' },
       { label: 'NBA benchmark', value: ts > 60 ? 'Excellent (elite efficiency)' : ts > 55 ? 'Good (above average)' : ts > 50 ? 'Average' : 'Below average' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate True Shooting Percentage (TS%), measuring scoring efficiency accounting for 2-pointers, 3-pointers, and free throws.', formula: 'TS% = PTS / (2 × (FGA + 0.44 × FTA)) × 100', interpretation: 'TS% above 60% is elite. TS% is a more complete efficiency metric than FG% because it includes the value of 3-pointers and free throws.'
 }

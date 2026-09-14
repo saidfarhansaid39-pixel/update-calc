@@ -13,6 +13,11 @@ const calcDef: CalcDef = {
     return { result: speed, label: 'Average Speed', unit: 'km/h', steps: [
       { label: 'Distance', value: v.distance+' km' }, { label: 'Time', value: v.hours+'h '+v.minutes+'m' },
       { label: 'Speed', value: speed.toFixed(1)+' km/h' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate cycling average speed from distance and ride time. Basic measure of cycling performance.', formula: 'Speed = distance / time', interpretation: 'Higher average speed indicates better cycling fitness and efficiency.'
 }

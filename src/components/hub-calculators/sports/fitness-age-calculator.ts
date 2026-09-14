@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Calculated fitness age', value: `${Math.max(15, Math.min(90, Math.round(fitnessAge)))} years` },
         { label: 'Assessment', value: rating },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate your fitness age based on VO2 max compared to population averages. A fitness age lower than your chronological age indicates better cardiovascular health.'
 }

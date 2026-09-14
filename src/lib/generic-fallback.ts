@@ -15,7 +15,7 @@ export interface CalcDef {
   presets?: { label: string; values: Record<string, string> }[]
   formulaVariables?: { name: string; value: number; min: number; max: number }[]
   example?: { label: string; value: string } | { label: string; value: string }[]
-  compute: (vals: Record<string, any>) => { result: number | string; label: string; unit?: string; steps?: { label: string; value: string }[] }
+  compute: (vals: Record<string, any>) => { result: number | string; label: string; unit?: string; steps?: { label: string; value: string }[]; extras?: { label: string; value: string | number }[] }
   description?: string
   formula?: string
   interpretation?: string

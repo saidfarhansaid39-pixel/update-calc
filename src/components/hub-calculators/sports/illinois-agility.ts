@@ -15,6 +15,11 @@ const calcDef: CalcDef = {
     return { result: v.time, label: 'Illinois Agility Time', unit: 's', steps: [
       { label: 'Time', value: v.time+' s' }, { label: 'Rating', value: r },
       { label: 'Description', value: 'Cone weave agility test measuring change-of-direction speed and body control' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'The Illinois Agility Test measures change-of-direction speed through a cone weaving course. Used by sports teams and athletic assessments.', formula: 'Time to complete Illinois cone weave course', interpretation: 'Faster times indicate superior agility, body control, and ability to change direction at speed.'
 }

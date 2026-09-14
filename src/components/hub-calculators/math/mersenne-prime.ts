@@ -10,11 +10,23 @@ const calcDef: CalcDef = {
       const nVal = Math.round(n(v.n)); const mp = Math.pow(2, nVal) - 1
       const isPrime = (x: number) => { if (x < 2) return false; for (let i = 2; i * i <= x; i++) if (x % i === 0) return false; return true }
       const pr = isPrime(mp)
-      return { result: pr ? mp + ' (prime Mersenne)' : mp + ' (not prime)', label: 'M_' + nVal, steps: [step('M_' + nVal, '2^' + nVal + ' - 1 = ' + mp), step('Prime?', pr ? 'Yes - Mersenne prime!' : 'No')] }
+      return { result: pr ? mp + ' (prime Mersenne)' : mp + ' (not prime)', label: 'M_' + nVal, steps: [step('M_' + nVal, '2^' + nVal + ' - 1 = ' + mp), step('Prime?', pr ? 'Yes - Mersenne prime!' : 'No')] ,
+    extras: [
+      { label: "Mathematical Significance", value: "Fundamental concept in number theory and discrete mathematics." },
+      { label: "Computational Note", value: "Large inputs may require optimized algorithms for performance." },
+      { label: "Historical Context", value: "Studied by mathematicians across centuries for its unique properties." },
+      { label: "Related Sequences", value: "Related to other integer sequences and special numbers." },
+      { label: "Pattern Recognition", value: "Observe recurring patterns and relationships between values." }
+    ]}
     },
     formula: 'M_n = 2^n - 1. Mersenne prime if M_n is prime.',
     description: 'Check if a Mersenne number (2^n - 1) is prime.',
-    interpretation: 'Mersenne primes are primes of the form 2^n - 1.'
+    interpretation: 'Mersenne primes are primes of the form 2^n - 1.',
+    presets: [
+      { label: 'Small Prime', values: { a: '7' } },
+      { label: 'Composite', values: { a: '12' } },
+      { label: 'Large Prime', values: { a: '97' } }
+    ]
 }
 
 export default calcDef

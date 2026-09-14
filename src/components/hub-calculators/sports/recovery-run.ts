@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Recovery zone (60-70%)', value: `${zoneLow.toFixed(0)}-${zoneHigh.toFixed(0)} bpm` },
         { label: 'Perceived effort', value: 'Very light, conversational pace' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Find your recovery run heart rate zone (60-70% of HR Reserve). Recovery runs at low intensity promote blood flow, reduce muscle soreness, and build aerobic base.'
 }

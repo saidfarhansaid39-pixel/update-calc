@@ -19,7 +19,12 @@ const calcDef: CalcDef = {
         { label: 'Heterozygote deficit', value: `${(f*100).toFixed(1)}%` },
         { label: 'Interpretation', value: f < 0.05 ? 'Low inbreeding' : f < 0.15 ? 'Moderate' : f < 0.25 ? 'High' : 'Very high inbreeding' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Wright\'s inbreeding coefficient (F) measures the probability that two alleles at a locus are identical by descent. It quantifies the reduction in heterozygosity due to inbreeding.',
   formula: 'F = (Hexp - Hobs) / Hexp | Ho = Hexp × (1 - F) | For an offspring of full-sib mating: F = 0.25',

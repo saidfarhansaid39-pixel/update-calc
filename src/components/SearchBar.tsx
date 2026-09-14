@@ -7,7 +7,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { createSearch, type SearchResult } from '@/lib/search';
 import { getLocalizedCalculator } from '@/lib/localized-registry';
 
-const RECENT_KEY = 'jdcalc_recent_searches';
+const RECENT_KEY = 'calculat_recent_searches';
 const MAX_RECENT = 5;
 
 // Top calculators shown as default suggestions when the field is empty.
@@ -158,16 +158,22 @@ export function SearchBar() {
         return;
       }
       setLoading(true);
-      const matches = await search(term);
-      const localized = await Promise.all(
-        matches.map(async (r) => {
-          const loc = await getLocalizedCalculator(r.slug, locale);
-          return loc ? { ...r, title: loc.title } : r;
-        }),
-      );
-      setResults(localized);
-      setShowDropdown(localized.length > 0 || term.length >= 2);
-      setDidYouMean(localized.length === 0 ? await findDidYouMean(term, locale) : null);
+      try {
+        const matches = await search(term);
+        const localized = await Promise.all(
+          matches.map(async (r) => {
+            const loc = await getLocalizedCalculator(r.slug, locale);
+            return loc ? { ...r, title: loc.title } : r;
+          }),
+        );
+        setResults(localized);
+        setShowDropdown(localized.length > 0 || term.length >= 2);
+        setDidYouMean(localized.length === 0 ? await findDidYouMean(term, locale) : null);
+      } catch {
+        setResults([]);
+        setDidYouMean(null);
+        setShowDropdown(term.length >= 2);
+      }
       setLoading(false);
     },
     [search, locale],

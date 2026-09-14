@@ -26,7 +26,12 @@ const calcDef: CalcDef = {
         { label: 'Weight loss (-500 kcal)', value: `${(tdee - 500).toFixed(0)} kcal/day` },
         { label: 'Weight gain (+300 kcal)', value: `${(tdee + 300).toFixed(0)} kcal/day` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate Total Daily Energy Expenditure (TDEE) using Mifflin-St Jeor BMR × activity factor. Essential for weight management, muscle gain, and fat loss planning.'
 }

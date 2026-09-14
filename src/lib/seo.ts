@@ -17,13 +17,13 @@ export function constructMetadata({
     title,
     description,
     alternates: {
-      canonical: canonicalUrl || 'https://www.jdcalc.com',
+      canonical: canonicalUrl || 'https://www.calculat.online',
     },
     openGraph: {
       title,
       description,
       type: 'website',
-      url: canonicalUrl || 'https://www.jdcalc.com',
+      url: canonicalUrl || 'https://www.calculat.online',
       images: [
         {
           url: ogImage,

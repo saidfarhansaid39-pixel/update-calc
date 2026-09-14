@@ -10,11 +10,21 @@ const calcDef: CalcDef = {
       let nVal = Math.round(n(v.n)), result = nVal, temp = nVal
       for (let p = 2; p * p <= temp; p++) { if (temp % p === 0) { while (temp % p === 0) temp /= p; result -= result / p } }
       if (temp > 1) result -= result / temp
-      return { result: Math.round(result), label: 'f(n)', steps: [step('n', '' + nVal), step('f(n)', '' + Math.round(result))] }
+      return { result: Math.round(result), label: 'f(n)', steps: [step('n', '' + nVal), step('f(n)', '' + Math.round(result))] ,
+    extras: [
+      { label: "Mathematical Significance", value: "Fundamental concept in number theory and discrete mathematics." },
+      { label: "Computational Note", value: "Large inputs may require optimized algorithms for performance." },
+      { label: "Historical Context", value: "Studied by mathematicians across centuries for its unique properties." },
+      { label: "Related Sequences", value: "Related to other integer sequences and special numbers." },
+      { label: "Pattern Recognition", value: "Observe recurring patterns and relationships between values." }
+    ]}
     },
     formula: 'f(n) = n ? (1 - 1/p) for primes p|n.',
     description: 'Calculate Euler totient function f(n) � count of coprime numbers < n.',
-    interpretation: 'Number of integers k < n with gcd(k,n) = 1.'
+    interpretation: 'Number of integers k < n with gcd(k,n) = 1.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'FST = (HT - HS) / HT', value: `${fst.toFixed(4)}` },
         { label: 'Interpretation', value: fst < 0.05 ? 'Low differentiation' : fst < 0.15 ? 'Moderate' : fst < 0.25 ? 'High' : 'Very high differentiation' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'FST (fixation index) measures population differentiation due to genetic structure. It ranges from 0 (no differentiation) to 1 (complete differentiation).',
   formula: 'FST = (HT - HS) / HT = 1 - (HS / HT) | HT = total expected heterozygosity, HS = mean subpopulation heterozygosity',

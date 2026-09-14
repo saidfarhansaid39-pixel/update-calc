@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Total e280', value: `${extinctionCoeff} M?¹·cm?¹` },
         { label: 'For A280 = 1.0', value: extinctionCoeff > 0 ? `Concentration ˜ ${extinctionCoeff} / e M` : 'No absorbance at 280 nm' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The molar extinction coefficient (e) at 280 nm predicts how strongly a protein absorbs UV light based on its aromatic amino acid composition. Essential for protein quantification by A280.',
   formula: 'e280 = nTyr × 1490 + nTrp × 5500 + nCystine × 125 (M?¹·cm?¹)',

@@ -10,11 +10,21 @@ const calcDef: CalcDef = {
       const x = n(v.a)
       const num = 1 + x / 2, den = 1 - x / 2
       const result = num / den
-      return { result: result.toFixed(6), label: 'Pade(1,1)', steps: [step('Pade approx:', 'R(x) = (1 + x/2) / (1 - x/2)'), step('At x=' + x + ':', 'R(' + x + ') = ' + result.toFixed(6)), step('Exact ex:', 'exp(' + x + ') = ' + Math.exp(x).toFixed(6))] }
+      return { result: result.toFixed(6), label: 'Pade(1,1)', steps: [step('Pade approx:', 'R(x) = (1 + x/2) / (1 - x/2)'), step('At x=' + x + ':', 'R(' + x + ') = ' + result.toFixed(6)), step('Exact ex:', 'exp(' + x + ') = ' + Math.exp(x).toFixed(6))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'Pade approximant [1/1] for ex: (1 + x/2)/(1 - x/2)',
     description: 'Pade approximant (degree 1/1) for exponential function.',
-    interpretation: 'The rational approximation using Pade approximant.'
+    interpretation: 'The rational approximation using Pade approximant.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

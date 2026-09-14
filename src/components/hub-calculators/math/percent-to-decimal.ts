@@ -8,11 +8,20 @@ const calcDef: CalcDef = {
     defaults: { a: '85' },
     compute: (v) => {
       const a = n(v.a)
-      return { result: (a / 100).toFixed(6), label: 'Decimal', steps: [step('Formula:', '' + a + ' / 100 = ' + (a / 100).toFixed(6))] }
+      return { result: (a / 100).toFixed(6), label: 'Decimal', steps: [step('Formula:', '' + a + ' / 100 = ' + (a / 100).toFixed(6))] ,
+    extras: [
+      { label: "How It Works", value: "Simple percentage-based calculation applied to your input values." },
+      { label: "Common Use Case", value: "Used in shopping, budgeting, and everyday financial decisions." },
+      { label: "Input Requirements", value: "All monetary values should be in the same currency." },
+      { label: "Accuracy Note", value: "Results rounded to 2 decimal places for standard currency format." }
+    ]}
     },
     formula: 'decimal = percent / 100',
     description: 'Convert a percentage to a decimal.',
-    interpretation: 'The percentage expressed as a decimal.'
+    interpretation: 'The percentage expressed as a decimal.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

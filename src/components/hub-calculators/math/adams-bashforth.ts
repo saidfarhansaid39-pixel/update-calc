@@ -10,11 +10,22 @@ const calcDef: CalcDef = {
       const y0 = n(v.a), h = n(v.b)
       const f0 = y0, f1 = y0 * 1.1
       const y1 = y0 + h * (3 * f1 - f0) / 2
-      return { result: y1.toFixed(6), label: 'Adams-Bashforth y1', steps: [step('Formula:', 'y1 = y0 + h(3f1 - f0)/2'), step('Result:', 'y1 = ' + y1.toFixed(6))] }
+      return { result: y1.toFixed(6), label: 'Adams-Bashforth y1', steps: [step('Formula:', 'y1 = y0 + h(3f1 - f0)/2'), step('Result:', 'y1 = ' + y1.toFixed(6))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'y_{n+1} = y_n + h(3f_n - f_{n-1})/2',
     description: 'Adams-Bashforth 2-step method (one step).',
-    interpretation: 'The approximate solution using Adams-Bashforth method.'
+    interpretation: 'The approximate solution using Adams-Bashforth method.',
+    presets: [
+      { label: 'Fine grain', values: { x0: '0', y0: '1', h: '0.1', steps: '10' } },
+      { label: 'Coarse', values: { x0: '0', y0: '1', h: '0.2', steps: '5' } }
+    ]
 }
 
 export default calcDef

@@ -22,7 +22,12 @@ const calcDef: CalcDef = {
         { label: 'VPD', value: `${v.vpd} kPa` },
         { label: 'Transpiration rate', value: `${rate.toFixed(2)} g·h?¹` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Transpiration is the loss of water vapor from plant leaves through stomata. It drives water and nutrient transport from roots to shoots.',
   formula: 'E = gs × VPD × Leaf Area × 18 g/mol (× 10?³ for conversion)',

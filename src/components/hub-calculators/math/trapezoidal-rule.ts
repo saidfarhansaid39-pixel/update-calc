@@ -10,11 +10,21 @@ const calcDef: CalcDef = {
       const a = n(v.a), b = n(v.b), nVal = Math.round(n(v.n)); const h = (b - a) / nVal; let sum = 0
       for (let i = 0; i <= nVal; i++) { const x = a + i * h; const fx = x * x; const coeff = (i === 0 || i === nVal) ? 1 : 2; sum += coeff * fx }
       const result = (h / 2) * sum
-      return { result: result.toFixed(6), label: '?x� dx (approx)', steps: [step('h', h.toFixed(6)), step('Approx integral', result.toFixed(6))] }
+      return { result: result.toFixed(6), label: '?x� dx (approx)', steps: [step('h', h.toFixed(6)), step('Approx integral', result.toFixed(6))] ,
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ]}
     },
     formula: '?f(x)dx � h/2 � [f(a) + 2Sf(x?) + f(b)]. Example: f(x) = x�.',
     description: 'Trapezoidal rule for numerical integration.',
-    interpretation: 'Approximate definite integral using trapezoids.'
+    interpretation: 'Approximate definite integral using trapezoids.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

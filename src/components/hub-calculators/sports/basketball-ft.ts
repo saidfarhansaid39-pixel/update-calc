@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Points from FT', value: `${v.made} points` },
         { label: 'NBA average', value: pct > 82 ? 'Excellent (>NBA avg 78%)' : pct > 73 ? 'Around NBA average' : 'Below NBA average (~78%)' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate free throw percentage (FT%). Free throw shooting is a fundamental basketball skill that can significantly impact game outcomes, especially in close contests.'
 }

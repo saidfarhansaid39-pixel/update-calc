@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       let x = n(v.x0), iters = Math.round(n(v.iter)); const steps: { label: string; value: string }[] = [step('Initial', `x0 = ${x.toFixed(6)}`)]
       for (let i = 0; i < iters; i++) { const f = x * x - 2; const df = 2 * x; if (Math.abs(df) < 1e-15) break; const xn = x - f / df; steps.push(step(`Iter ${i + 1}`, `x = ${xn.toFixed(6)}`)); x = xn }
-      return { result: x.toFixed(10), label: 'Root (v2)', steps }
+      return { result: x.toFixed(10), label: 'Root (v2)', steps ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'x??1 = x? - f(x?)/f\'(x?). Example: f(x) = x� - 2.',
     description: 'Newton-Raphson method for finding roots. Example finds v2.',
-    interpretation: 'Approximate root of f(x) = x� - 2 (square root of 2).'
+    interpretation: 'Approximate root of f(x) = x� - 2 (square root of 2).',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

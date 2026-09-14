@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Input, Select, Button, FormGroup, FormPanel } from '@/components/CalculatorFormElements';
 import { CalculatorPieChart } from '@/components/calculators/ChartPresets';
 import { generateAmortizationSchedule, aggregateAmortizationByYear } from '@/lib/calculators/amortizationEngine';
+import { useCurrencyFormat } from '@/lib/hooks/useCurrencyFormat';
 
 export function AutoLoanForm() {
   const [activeTab, setActiveTab] = useState<'total' | 'monthly'>('total');
@@ -62,7 +63,7 @@ export function AutoLoanForm() {
     handleCalculate();
   }, []);
 
-  const formatCurrency = (val: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val);
+  const formatCurrency = useCurrencyFormat('USD');
 
   return (
     <div className="flex flex-col gap-6 font-sans text-[13px] text-[#333333]">

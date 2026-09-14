@@ -28,7 +28,12 @@ const calcDef: CalcDef = {
         { label: 'Recurrence risk', value: d.risk },
         { label: 'Key features', value: d.features },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Pedigree analysis identifies inheritance patterns of genetic disorders within families. Accurate pattern recognition guides genetic counseling and recurrence risk assessment.',
   formula: 'Pattern recognition based on affected vs unaffected individuals across generations, sex distribution, and parent-to-offspring transmission.',

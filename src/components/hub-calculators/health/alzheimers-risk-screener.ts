@@ -16,7 +16,12 @@ const calcDef: CalcDef = {
     { name:'smoking', label:'Current smoker?', type:'select', options:[{ label:'No', value:'0' },{ label:'Yes (1)', value:'1' }] },
     { name:'physicalInactivity', label:'Physical inactivity?', type:'select', options:[{ label:'No', value:'0' },{ label:'Yes (1)', value:'1' }] }
   ],
-  compute: (v) => { const a=parseInt(v.age)||60; const agePts=a>=85?4:a>=75?3:a>=65?2:a>=55?1:0; const score=agePts+parseInt(v.familyHistory||'0')+parseInt(v.apoe4||'0')+parseInt(v.memoryLoss||'0')+parseInt(v.cognitiveDecline||'0')+parseInt(v.hypertension||'0')+parseInt(v.diabetes||'0')+parseInt(v.headTrauma||'0')+parseInt(v.depression||'0')+parseInt(v.lowEducation||'0')+parseInt(v.smoking||'0')+parseInt(v.physicalInactivity||'0'); let risk='Low'; if(score>=14) risk='High'; else if(score>=8) risk='Moderate'; return { result:score, label:'Alzheimer\'s Risk Score', unit:'/25', steps:[{ label:'Age Points', value:agePts+'/4' },{ label:'Risk Factor Points', value:score-agePts+'/21' },{ label:'Total Score', value:score+'/25' },{ label:'Risk Level', value:risk }] } },
+  compute: (v) => { const a=parseInt(v.age)||60; const agePts=a>=85?4:a>=75?3:a>=65?2:a>=55?1:0; const score=agePts+parseInt(v.familyHistory||'0')+parseInt(v.apoe4||'0')+parseInt(v.memoryLoss||'0')+parseInt(v.cognitiveDecline||'0')+parseInt(v.hypertension||'0')+parseInt(v.diabetes||'0')+parseInt(v.headTrauma||'0')+parseInt(v.depression||'0')+parseInt(v.lowEducation||'0')+parseInt(v.smoking||'0')+parseInt(v.physicalInactivity||'0'); let risk='Low'; if(score>=14) risk='High'; else if(score>=8) risk='Moderate'; return { result:score, label:'Alzheimer\'s Risk Score', unit:'/25', steps:[{ label:'Age Points', value:agePts+'/4' },{ label:'Risk Factor Points', value:score-agePts+'/21' },{ label:'Total Score', value:score+'/25' },{ label:'Risk Level', value:risk }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'Alzheimer\'s disease risk screening based on modifiable and non-modifiable risk factors.',
   formula: 'Weighted score: age + family history + APOE4 + subjective/objective decline + vascular risk factors + lifestyle.',
   interpretation: '0-7 Low risk, 8-13 Moderate risk, 14-25 High risk. Modifiable factors (HTN, diabetes, smoking) are actionable.'

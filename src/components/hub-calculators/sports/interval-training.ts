@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Work:Rest ratio', value: `${workRestRatio}:1` },
         { label: 'Total session', value: `${totalSession.toFixed(1)} min (${Math.floor(totalSession / 60)}h ${(totalSession % 60).toFixed(0)}m)` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Plan interval training sessions by setting work duration, rest duration, and number of intervals. Interval training improves cardiovascular fitness, speed, and endurance.'
 }

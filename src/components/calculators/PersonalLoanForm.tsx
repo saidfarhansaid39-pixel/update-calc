@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Input, Select, Button, FormGroup, FormPanel } from '@/components/CalculatorFormElements';
 import { CalculatorPieChart } from '@/components/calculators/ChartPresets';
 import { generateAmortizationSchedule, aggregateAmortizationByYear } from '@/lib/calculators/amortizationEngine';
+import { useCurrencyFormat } from '@/lib/hooks/useCurrencyFormat';
 
 export function PersonalLoanForm() {
   const [inputs, setInputs] = useState({
@@ -64,8 +65,9 @@ export function PersonalLoanForm() {
     }
   }, [inputs]);
 
-  const formatCurrency = (val: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val);
+  const formatCurrency = useCurrencyFormat('USD');
 
+    const handleClear = () => { setResults(null); };
   return (
     <div className="flex flex-col gap-6 font-sans text-[13px] text-[#333333]">
       <div className="flex flex-col md:flex-row gap-6">
@@ -113,7 +115,7 @@ export function PersonalLoanForm() {
 
             <div className="pl-[140px] flex gap-2 mt-4">
               <Button onClick={handleCalculate}>Calculate</Button>
-              <Button variant="secondary" onClick={() => {}}>Clear</Button>
+              <Button variant="secondary" onClick={handleClear}>Clear</Button>
             </div>
           </FormPanel>
         </div>
@@ -186,7 +188,8 @@ export function PersonalLoanForm() {
                   const endM = (inputs.startDateMonth + ((idx + 1) * 12) - 1) % 12 + 1;
                   const endY = inputs.startDateYear + Math.floor((inputs.startDateMonth + ((idx + 1) * 12) - 1) / 12) % 100;
                   
-                  return (
+                    const handleClear = () => { setResults(null); };
+  return (
                     <tr key={row.year} className={row.year % 2 === 0 ? "bg-[#f8f8f8]" : ""}>
                       <td className="p-1 text-center border-l border-r border-[#cccccc]">{row.year}</td>
                       <td className="p-1 text-center border-r border-[#cccccc]">{startM}/{startY}-{endM}/{endY}</td>

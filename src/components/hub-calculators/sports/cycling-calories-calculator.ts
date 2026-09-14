@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Avg speed', value: `${speed.toFixed(1)} km/h → ${met} METs` },
         { label: 'Calories burned', value: `${kcal.toFixed(0)} kcal` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate calories burned during cycling based on distance, time, and weight. Slower speeds use fewer METs.'
 }

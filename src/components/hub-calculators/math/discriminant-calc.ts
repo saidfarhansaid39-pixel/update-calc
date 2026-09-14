@@ -12,11 +12,23 @@ const calcDef: CalcDef = {
       let nature = 'Two distinct real roots'
       if (disc < 0) nature = 'Two complex roots'
       else if (disc === 0) nature = 'One repeated real root'
-      return { result: disc, label: 'Discriminant', steps: [step('Formula:', 'D = ' + b + '2 - 4(' + a + ')(' + c + ')'), step('Result:', 'D = ' + disc), step('Nature:', nature)] }
+      return { result: disc, label: 'Discriminant', steps: [step('Formula:', 'D = ' + b + '2 - 4(' + a + ')(' + c + ')'), step('Result:', 'D = ' + disc), step('Nature:', nature)] ,
+    extras: [
+      { label: "Solution Methods", value: "Can be solved via factoring, formula, or graphical methods." },
+      { label: "Discriminant Insight", value: "The discriminant reveals the number and type of solutions." },
+      { label: "Graphical Meaning", value: "Solutions correspond to x-intercepts on the graph." },
+      { label: "Checking Solutions", value: "Substitute results back into the original equation to verify." },
+      { label: "Real vs Complex", value: "Real solutions appear when discriminant ≥ 0; otherwise complex." }
+    ]}
     },
     formula: 'D = b2 - 4ac',
     description: 'Calculate the discriminant of a quadratic equation.',
-    interpretation: 'Determines the nature of roots: D > 0 two real, D = 0 one real, D < 0 complex.'
+    interpretation: 'Determines the nature of roots: D > 0 two real, D = 0 one real, D < 0 complex.',
+    presets: [
+      { label: 'Two Real Roots', values: { a: '1', b: '-5', c: '6' } },
+      { label: 'No Real Roots', values: { a: '1', b: '0', c: '1' } },
+      { label: 'Double Root', values: { a: '1', b: '-4', c: '4' } }
+    ]
 }
 
 export default calcDef

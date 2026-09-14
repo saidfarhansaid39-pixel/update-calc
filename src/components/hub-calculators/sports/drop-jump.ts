@@ -13,6 +13,11 @@ const calcDef: CalcDef = {
       { label: 'Drop height', value: v.dropH+' cm' }, { label: 'Rebound height', value: v.reboundH+' cm' },
       { label: 'RSI modified', value: rsiMod.toFixed(2) },
       { label: 'Optimal drop height', value: rsiMod > 1.0 ? 'Drop height may be too low' : rsiMod > 0.7 ? 'Good drop height' : 'Drop height may be too high' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Analyze drop jump performance. The drop jump measures reactive strength and the optimal drop height for plyometric training.', formula: 'RSI-modified = rebound height / drop height', interpretation: 'The optimal drop height maximizes rebound height. A drop height producing ~0.7-1.0 RSI-mod is ideal for power development.'
 }

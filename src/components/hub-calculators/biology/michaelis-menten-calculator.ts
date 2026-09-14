@@ -26,7 +26,12 @@ const calcDef: CalcDef = {
         { label: 'Vmax (calculated)', value: `${vmax.toFixed(4)} µM/min` },
         { label: 'At [S] = Km', value: `v = ${vHalf.toFixed(4)} µM/min (½ Vmax)` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The Michaelis-Menten equation describes enzyme kinetics. Vmax and Km are key parameters characterizing enzyme activity and substrate affinity.',
   formula: 'v = Vmax × [S] / (Km + [S]) | Vmax = v × (Km + [S]) / [S]',

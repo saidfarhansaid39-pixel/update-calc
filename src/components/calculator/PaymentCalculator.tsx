@@ -1,13 +1,27 @@
 "use client";
 
-import React, { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import React, { useState, useMemo } from 'react';
+import { useLocale } from 'next-intl';
+import { DollarSign, Calendar, Percent } from 'lucide-react';
 import { PaymentForm } from '@/components/calculator/PaymentForm';
 import { PaymentResults } from '@/components/calculator/PaymentResults';
-import { PaymentArticle } from '@/components/calculator/PaymentArticle';
+import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
+import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
+import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+
+const calcMeta = {
+  slug: 'payment-calculator',
+  title: 'Payment Calculator',
+  description: 'Calculate loan payments — fixed term or fixed payment amount.',
+  tier: 'tier2',
+  category: 'financial',
+  hubSlug: 'financial-calculators',
+  hubName: 'Financial Calculators',
+  keywords: ['payment', 'loan payment', 'monthly payment', 'amortization'],
+};
 
 export function PaymentCalculator() {
-  const t = useTranslations('calculatorUI');
+  const locale = useLocale();
   const [activeTab, setActiveTab] = useState('fixedTerm');
   
   const [loanAmount, setLoanAmount] = useState("200,000");
@@ -32,7 +46,6 @@ export function PaymentCalculator() {
       computedMonthly = p / computedMonths;
     }
   } else {
-    // Fixed Payments tab
     const m = parseFloat(monthlyPayInput.replace(/,/g, '')) || 0;
     computedMonthly = m;
     if (i > 0 && m > p * i && p > 0) {
@@ -46,84 +59,67 @@ export function PaymentCalculator() {
   const totalPayments = computedMonthly * computedMonths;
   const totalInterest = totalPayments - p;
 
+  const inputs = useMemo(() => ({
+    loanAmount,
+    term: loanTerm,
+    rate: interestRate,
+    monthlyPay: monthlyPayInput,
+  }), [loanAmount, loanTerm, interestRate, monthlyPayInput]);
+
+  const amortSchedule = useMemo(() => {
+    if (!computedMonthly || !computedMonths || !p) return [];
+    const rows: { year: number; principalPaid: number; interestPaid: number; balance: number }[] = [];
+    let bal = p;
+    let cumInt = 0;
+    let yearPrincipal = 0;
+    let yearInterest = 0;
+    for (let m = 1; m <= computedMonths; m++) {
+      const intPmt = bal * i;
+      const prinPmt = Math.min(computedMonthly - intPmt, bal);
+      bal -= prinPmt;
+      cumInt += intPmt;
+      yearPrincipal += prinPmt;
+      yearInterest += intPmt;
+      if (m % 12 === 0 || m === computedMonths) {
+        rows.push({ year: Math.ceil(m / 12), principalPaid: yearPrincipal, interestPaid: yearInterest, balance: Math.max(0, bal) });
+        yearPrincipal = 0;
+        yearInterest = 0;
+      }
+    }
+    return rows;
+  }, [computedMonthly, computedMonths, p, i]);
+
+  const subCalcs = useMemo(() => {
+    const principalPct = p > 0 ? (p / totalPayments) * 100 : 0;
+    return (
+      <SubCalcGrid>
+        <SubCalcPanel title="Payment Summary" icon={DollarSign} defaultOpen results={[
+          { label: 'Monthly Payment', value: formatCurrency(computedMonthly, 'USD', locale), badge: 'info' },
+          { label: 'Total Payments', value: formatCurrency(totalPayments, 'USD', locale) },
+          { label: 'Total Interest', value: formatCurrency(totalInterest, 'USD', locale), badge: 'negative' },
+        ]} />
+        <SubCalcPanel title="Loan Details" icon={Calendar} results={[
+          { label: 'Loan Amount', value: formatCurrency(p, 'USD', locale) },
+          { label: 'Payoff Period', value: `${computedMonths} months (${(computedMonths / 12).toFixed(1)} years)` },
+        ]} />
+        {amortSchedule.length > 0 && (
+          <SubCalcPanel title="Amortization Schedule (Yearly)" icon={Percent} defaultOpen results={amortSchedule.slice(0, Math.min(15, amortSchedule.length)).map(row => ({
+            label: `Year ${row.year}`,
+            value: `P: $${row.principalPaid.toLocaleString()} | I: $${row.interestPaid.toLocaleString()} | Bal: $${Math.round(row.balance).toLocaleString()}`,
+          }))} />
+        )}
+      </SubCalcGrid>
+    );
+  }, [computedMonthly, totalPayments, totalInterest, p, computedMonths, locale, amortSchedule]);
+
   return (
-    <div className="max-w-[800px] mx-auto bg-white p-2 md:p-4">
-      <div className="flex justify-between text-xs text-gray-500 mb-2 border-b pb-1">
-        <div>{t('breadcrumbs.home')} / financial / {t('breadcrumbs.paymentCalculator')}</div>
-        <div className="text-blue-600 underline">{t('buttons.print')}</div>
-      </div>
-      
-      <p className="mb-4 text-[13px] text-gray-800 leading-relaxed">
-        {t('descriptions.paymentCalcDesc')} For more information about or to do calculations specifically for car payments, please use the <a href="/financial-calculators/auto-loan-calculator/" className="text-blue-600 underline">Auto Loan Calculator</a>. To find net payment of salary after taxes and deductions, use the <a href="/financial-calculators/salary-calculator/" className="text-blue-600 underline">Take-Home-Pay Calculator</a>.
-      </p>
-
-      <h1 className="text-[26px] font-bold text-gray-800 mb-4 font-sans">{t('headings.paymentCalculator')}</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-4">
-        <div>
-          <PaymentForm state={state} setters={setters} activeTab={activeTab} setActiveTab={setActiveTab} />
-        </div>
-        <div>
-          <PaymentResults 
-            loanAmount={p}
-            totalPayments={totalPayments}
-            totalInterest={totalInterest}
-            monthlyPayment={computedMonthly}
-            numMonths={computedMonths}
-          />
-        </div>
-      </div>
-
-      <div className="mt-6 border-t pt-4">
-        <h2 className="text-xl font-bold text-gray-800 mb-4 font-sans">{t('sections.amortizationSchedule')}</h2>
-        <div className="flex text-sm font-bold border-b-2 border-[#1c4587] mb-4">
-          <div className="bg-[#1c4587] text-white px-4 py-1">Annual Schedule</div>
-          <div className="text-blue-600 px-4 py-1 hover:underline cursor-pointer">Monthly Schedule</div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <table className="w-full text-xs text-center border-collapse">
-            <thead>
-              <tr className="bg-[#1c4587] text-white border border-[#1c4587]">
-                <th className="p-1 font-normal">Year</th>
-                <th className="p-1 font-normal">Interest</th>
-                <th className="p-1 font-normal">Principal</th>
-                <th className="p-1 font-normal">Ending Balance</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="bg-gray-100 border border-gray-300">
-                <td className="p-1">1</td><td className="p-1">$11,769.23</td><td className="p-1">$8,483.33</td><td className="p-1">$191,516.67</td>
-              </tr>
-              <tr className="border border-gray-300">
-                <td className="p-1">2</td><td className="p-1">$11,246.00</td><td className="p-1">$9,006.57</td><td className="p-1">$182,510.10</td>
-              </tr>
-              <tr className="bg-gray-100 border border-gray-300">
-                <td className="p-1">3</td><td className="p-1">$10,690.49</td><td className="p-1">$9,562.07</td><td className="p-1">$172,948.02</td>
-              </tr>
-              <tr className="border border-gray-300">
-                <td className="p-1">4</td><td className="p-1">$10,100.72</td><td className="p-1">$10,151.84</td><td className="p-1">$162,796.18</td>
-              </tr>
-              <tr className="bg-gray-100 border border-gray-300">
-                <td className="p-1">5</td><td className="p-1">$9,474.58</td><td className="p-1">$10,777.98</td><td className="p-1">$152,018.20</td>
-              </tr>
-            </tbody>
-          </table>
-          <div className="border border-gray-300 p-2 flex items-center justify-center bg-gray-50 h-[200px]">
-             <div className="text-center text-gray-500 text-sm">Stacked Area Chart Placeholder</div>
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-6 flex items-center gap-2 font-bold text-[13px]">
-        <span className="w-4 h-4 bg-[#1c4587] text-white flex items-center justify-center rounded-sm text-[10px]">L</span> Related
-      </div>
-      <div className="flex gap-2 mt-2">
-        <button className="bg-[#1c4587] text-white px-3 py-1 text-sm rounded">Loan Calculator</button>
-        <button className="bg-[#1c4587] text-white px-3 py-1 text-sm rounded">Auto Loan Calculator</button>
-      </div>
-
-      <PaymentArticle />
-    </div>
+    <PremiumCalculatorShell
+      calculator={calcMeta}
+      form={<PaymentForm state={state} setters={setters} activeTab={activeTab} setActiveTab={setActiveTab} />}
+      result={<PaymentResults loanAmount={p} totalPayments={totalPayments} totalInterest={totalInterest} monthlyPayment={computedMonthly} numMonths={computedMonths} />}
+      subCalcs={subCalcs}
+      inputs={inputs}
+      mainValue={computedMonthly}
+    />
   );
 }

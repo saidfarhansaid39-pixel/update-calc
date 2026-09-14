@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Est. conc = (sample/std) × standard', value: `${estConc.toFixed(2)} ng` },
         { label: 'Note', value: 'Use standard curve (multiple concentrations) for accurate quantitation' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Band density quantitation compares sample band intensity to a known standard on gels or blots. Accurate quantitation requires a standard curve with multiple known concentrations.',
   formula: 'Sample amount = (sample intensity / standard intensity) × standard amount | Use linear range of detection for accuracy',

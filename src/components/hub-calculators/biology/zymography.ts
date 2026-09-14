@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'Relative activity = sample/control × 100', value: `${relActivity.toFixed(1)}%` },
         { label: 'Interpretation', value: relActivity > 150 ? 'Increased activity (e.g., MMP upregulation)' : relActivity < 50 ? 'Decreased activity (e.g., TIMP inhibition)' : 'Activity comparable to control' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Zymography uses substrate-impregnated gels to detect enzyme activity (typically MMPs). Clear bands on a dark background indicate proteolytic activity. Densitometry quantifies relative activity.',
   formula: 'Relative activity (%) = (sample band density / control band density) × 100% | Gelatin zymography detects MMP-2 (72 kDa) and MMP-9 (92 kDa)',

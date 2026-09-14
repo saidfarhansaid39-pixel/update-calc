@@ -27,7 +27,12 @@ const calcDef: CalcDef = {
         { label: 'Binding ratio', value: `${bindingRatio.toFixed(3)}` },
         { label: 'Interpretation', value: bindingRatio > 0.5 ? 'Strong interaction' : bindingRatio > 0.2 ? 'Moderate interaction' : bindingRatio > 0.05 ? 'Weak interaction' : 'No specific interaction detected' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Co-immunoprecipitation (Co-IP) analysis quantifies protein-protein interactions. The bait protein is immunoprecipitated, and co-precipitated prey proteins are detected by western blot. IgG control corrects for nonspecific binding.',
   formula: 'Binding ratio = (Prey intensity - IgG) / (Bait intensity - IgG) | Ratio > 0.3: strong/stable interaction | Ratio 0.1-0.3: moderate/transient | Ratio < 0.1: weak/non-specific',

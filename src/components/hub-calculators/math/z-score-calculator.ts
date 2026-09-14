@@ -13,11 +13,20 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const x = n(v.x), mu = n(v.mu), sigma = n(v.sigma)
       const z = (x - mu) / sigma
-      return { result: z, label: 'Z-Score', steps: [step('Formula:', 'z = (' + x + ' - ' + mu + ') / ' + sigma + ' = ' + z.toFixed(4)), step('Interpretation:', 'The value ' + x + ' is ' + (z >= 0 ? 'above' : 'below') + ' the mean by ' + Math.abs(z).toFixed(2) + ' standard deviations.')] }
+      return { result: z, label: 'Z-Score', steps: [step('Formula:', 'z = (' + x + ' - ' + mu + ') / ' + sigma + ' = ' + z.toFixed(4)), step('Interpretation:', 'The value ' + x + ' is ' + (z >= 0 ? 'above' : 'below') + ' the mean by ' + Math.abs(z).toFixed(2) + ' standard deviations.')] ,
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ]}
     },
     formula: 'z = (x - u) / s',
     description: 'Calculate the z-score for a raw value given the population mean and standard deviation.',
-    interpretation: 'The z-score tells you how many standard deviations a value is from the mean.'
+    interpretation: 'The z-score tells you how many standard deviations a value is from the mean.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

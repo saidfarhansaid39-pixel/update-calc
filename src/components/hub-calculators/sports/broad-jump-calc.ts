@@ -13,6 +13,11 @@ const calcDef: CalcDef = {
       { label: 'Distance', value: v.distance+' cm ('+dM.toFixed(2)+' m)' },
       ...(v.weight ? [{ label: 'Estimated power', value: power.toFixed(0)+' W' }] : []),
       { label: 'Rating', value: v.distance >= 250 ? 'Excellent' : v.distance >= 220 ? 'Good' : v.distance >= 190 ? 'Average' : 'Needs improvement' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Measure standing broad jump for lower body explosive power. Correlates with sprint speed and vertical jump.', formula: 'Power approximated from jump distance and body mass', interpretation: 'Longer jumps indicate greater lower body power. >250cm is excellent for most athletes.'
 }

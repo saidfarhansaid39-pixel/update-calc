@@ -13,11 +13,20 @@ const calcDef: CalcDef = {
       const q1 = mid(nums.slice(0, Math.floor(nums.length / 2)))
       const q3 = mid(nums.slice(Math.ceil(nums.length / 2)))
       const iqr = q3 - q1; const lower = q1 - 1.5 * iqr; const upper = q3 + 1.5 * iqr
-      return { result: iqr.toFixed(4), label: 'IQR', steps: [step('Q1', q1.toFixed(4)), step('Q3', q3.toFixed(4)), step('IQR = Q3 - Q1', iqr.toFixed(4)), step('Lower fence', lower.toFixed(4)), step('Upper fence', upper.toFixed(4))] }
+      return { result: iqr.toFixed(4), label: 'IQR', steps: [step('Q1', q1.toFixed(4)), step('Q3', q3.toFixed(4)), step('IQR = Q3 - Q1', iqr.toFixed(4)), step('Lower fence', lower.toFixed(4)), step('Upper fence', upper.toFixed(4))],
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ] }
     },
     formula: 'IQR = Q3 - Q1. Fences: Q1 - 1.5xIQR, Q3 + 1.5xIQR.',
     description: 'Calculate the interquartile range (IQR).',
-    interpretation: 'The IQR measures statistical dispersion, robust to outliers.'
+    interpretation: 'The IQR measures statistical dispersion, robust to outliers.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

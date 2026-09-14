@@ -74,6 +74,15 @@ export function SalaryForm({ state, setters, handleCalculate, handleClear }: any
             value={state.vacationDaysPerYear}
             onChange={e => setters.setVacationDaysPerYear(e.target.value)}
           />
+
+          <label className="text-left pr-2">State Tax Rate (%)</label>
+          <input 
+            type="text" 
+            className="border border-gray-400 w-[60px] px-1 h-[28px]" 
+            value={state.stateTaxRate}
+            onChange={e => setters.setStateTaxRate(e.target.value)}
+            placeholder="5"
+          />
         </div>
 
         <div className="flex gap-2 mt-4 ml-[130px]">

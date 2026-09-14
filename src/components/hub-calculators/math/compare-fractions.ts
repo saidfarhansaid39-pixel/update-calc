@@ -13,11 +13,20 @@ const calcDef: CalcDef = {
       if (val1 < val2) cmp = '<'
       else if (val1 > val2) cmp = '>'
       else cmp = '='
-      return { result: '' + a + '/' + b + ' ' + cmp + ' ' + c + '/' + d, label: 'Comparison', steps: [step('Fraction 1:', '' + a + '/' + b + ' = ' + val1.toFixed(4)), step('Fraction 2:', '' + c + '/' + d + ' = ' + val2.toFixed(4)), step('Result:', '' + a + '/' + b + ' ' + cmp + ' ' + c + '/' + d)] }
+      return { result: '' + a + '/' + b + ' ' + cmp + ' ' + c + '/' + d, label: 'Comparison', steps: [step('Fraction 1:', '' + a + '/' + b + ' = ' + val1.toFixed(4)), step('Fraction 2:', '' + c + '/' + d + ' = ' + val2.toFixed(4)), step('Result:', '' + a + '/' + b + ' ' + cmp + ' ' + c + '/' + d)] ,
+    extras: [
+      { label: "How It Works", value: "Simple percentage-based calculation applied to your input values." },
+      { label: "Common Use Case", value: "Used in shopping, budgeting, and everyday financial decisions." },
+      { label: "Input Requirements", value: "All monetary values should be in the same currency." },
+      { label: "Accuracy Note", value: "Results rounded to 2 decimal places for standard currency format." }
+    ]}
     },
     formula: 'Cross-multiply: a/b vs c/d -> ad vs bc',
     description: 'Compare two fractions to determine which is larger.',
-    interpretation: 'The relational comparison between the two fractions.'
+    interpretation: 'The relational comparison between the two fractions.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'type', label: 'Type', type: 'select', options: [{ label: 'American', value: 'american' }, { label: 'Swiss meringue', value: 'swiss' }, { label: 'Italian meringue', value: 'italian' }] }
     ],
     compute: (v) => {
-      const butter = Math.ceil(v.servings / 12) * 227; const sugar = v.type === 'american' ? butter * 2 : butter * 1.5; const egg = v.type === 'american' ? 0 : Math.round(butter / 227 * 3); return { result: butter, label: 'Butter', unit: 'g', steps: [{ label: 'Servings', value: v.servings }, { label: 'Butter', value: butter + ' g' }, { label: 'Sugar', value: sugar.toFixed(0) + ' g' }, egg > 0 ? { label: 'Egg whites', value: egg + ' whites' } : { label: 'Milk', value: '2-4 tbsp' }] }
+      const butter = Math.ceil(v.servings / 12) * 227; const sugar = v.type === 'american' ? butter * 2 : butter * 1.5; const egg = v.type === 'american' ? 0 : Math.round(butter / 227 * 3); return { result: butter, label: 'Butter', unit: 'g', steps: [{ label: 'Servings', value: v.servings }, { label: 'Butter', value: butter + ' g' }, { label: 'Sugar', value: sugar.toFixed(0) + ' g' }, egg > 0 ? { label: 'Egg whites', value: egg + ' whites' } : { label: 'Milk', value: '2-4 tbsp' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Buttercream quantities. American is quick; Swiss/Italian meringue are silkier. 1 batch per 12 servings.',
     example: { label: '24 servings American', value: '454g butter, 908g sugar' }

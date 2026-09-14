@@ -14,6 +14,11 @@ const calcDef: CalcDef = {
       { label: 'Weight', value: v.weight+' kg × '+v.reps+' reps' }, { label: 'Est. 1RM', value: epley.toFixed(1)+' kg' },
       { label: 'Est. %1RM used', value: pct.toFixed(0)+'%' },
       { label: 'Training zones (90/80/70%)', value: (epley*0.9).toFixed(1)+' / '+(epley*0.8).toFixed(1)+' / '+(epley*0.7).toFixed(1)+' kg' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Estimate your maximum lift capacity and training zones from any submaximal set.', formula: 'Epley 1RM = W × (1 + R/30)', interpretation: 'Use estimated 1RM to calculate training percentages for structured strength programming.'
 }

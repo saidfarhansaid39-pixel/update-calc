@@ -17,6 +17,11 @@ const calcDef: CalcDef = {
       { label: 'Walk time', value: v.timeMin+' min' }, { label: 'End HR', value: v.hrEnd+' bpm' },
       { label: 'VO2max', value: vo2.toFixed(1)+' mL/kg/min' },
       { label: 'Fitness', value: vo2 > 45 ? 'Excellent' : vo2 > 38 ? 'Good' : vo2 > 30 ? 'Average' : 'Below Average' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Estimate VO2max from the Rockport 1-mile Fitness Walking Test. Safe submaximal test for most populations.', formula: 'VO2max = 132.853 - 0.0769W - 0.3877A + 6.315G - 3.2649T - 0.1565HR', interpretation: 'Higher VO2max indicates better cardiovascular fitness. Valid for sedentary to moderately active adults.'
 }

@@ -30,7 +30,12 @@ const calcDef: CalcDef = {
         { label: 'Anaphase', value: mitotic > 0 ? `${(v.anaphase / mitotic * 100).toFixed(1)}% of mitotic` : '—' },
         { label: 'Telophase', value: mitotic > 0 ? `${(v.telophase / mitotic * 100).toFixed(1)}% of mitotic` : '—' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Mitosis stage distribution analysis determines the proportion of cells in each mitotic phase. Phase timing reveals cell cycle dynamics and effects of treatments that arrest mitosis.',
   formula: 'Mitotic Index = S(mitotic cells) / Total cells × 100% | Stage % = Stage count / S(mitotic cells) × 100%',

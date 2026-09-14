@@ -14,7 +14,12 @@ const calcDef: CalcDef = {
       return { result, label: 'Converted Weight', unit: v.toUnit, steps: [
         { label: 'Original', value: `${v.amount} ${v.fromUnit}` },
         { label: 'Converted', value: `${result.toFixed(2)} ${v.toUnit}` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Convert food weights between grams, kilograms, ounces, and pounds. Essential for following recipes using different measurement systems.',
     example: { label: '500g to ounces', value: '17.6 oz' }

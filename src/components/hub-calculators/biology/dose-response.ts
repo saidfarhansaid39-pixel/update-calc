@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Response = 100% / (1 + (EC50/Dose)^n)', value: `${response.toFixed(1)}% of max` },
         { label: 'Interpretation', value: response < 20 ? 'Low response (below EC20)' : response < 50 ? 'Sub-maximal' : response < 80 ? 'Near EC50 range' : 'Near-maximal response' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The four-parameter logistic (4PL) dose-response model describes the relationship between drug concentration and biological effect. EC50 is the concentration producing half-maximal effect.',
   formula: 'Response = Bottom + (Top - Bottom) / (1 + (EC50/[Dose])^Hill) | Hill > 1: steep (cooperative); Hill = 1: standard; Hill < 1: shallow',

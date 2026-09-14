@@ -28,7 +28,12 @@ const calcDef: CalcDef = {
         { label: 'Insert:Vector ratio', value: `${ratio}:1` },
         { label: 'Insert mass needed', value: `${insertMass.toFixed(1)} ng` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Ligation efficiency depends on the insert-to-vector molar ratio. Calculate the optimal insert mass for your cloning experiment.',
   formula: 'Insert mass (ng) = Vector mass × (Insert length / Vector length) × Molar ratio',

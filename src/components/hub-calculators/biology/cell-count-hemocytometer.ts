@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Conc = (count/squares) × 104 × DF', value: `${conc.toExponential(4)} cells/mL` },
         { label: 'Total in 10 mL', value: `${(conc * 10).toExponential(4)} cells` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Hemocytometer cell counting determines cell concentration. The chamber depth of 0.1 mm gives a volume of 0.1 µL per 1 mm² square, so the conversion factor is 104 cells/mL per cell per square.',
   formula: 'Cells/mL = (avg count per square) × 104 × dilution factor | Count 100-300 cells for statistical accuracy',

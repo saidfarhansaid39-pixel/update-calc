@@ -9,11 +9,22 @@ const calcDef: CalcDef = {
     compute: (v) => {
       let x = n(v.x0), y = n(v.y0), h = n(v.h), s = Math.round(n(v.steps)); const st: { label: string; value: string }[] = [step('Initial', `x0=${x.toFixed(4)}, y0=${y.toFixed(4)}`)]
       for (let i = 0; i < s; i++) { const k1 = h * (x + y); const k2 = h * ((x + h) + (y + k1)); y += (k1 + k2) / 2; x += h; st.push(step(`Step ${i + 1}`, `x=${x.toFixed(4)}, y=${y.toFixed(4)}`)) }
-      return { result: y.toFixed(6), label: `y(${x.toFixed(4)})`, steps: st }
+      return { result: y.toFixed(6), label: `y(${x.toFixed(4)})`, steps: st ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'RK2: k1 = hf(x?,y?), k2 = hf(x?+h, y?+k1), y??1 = y? + (k1+k2)/2.',
     description: 'Runge-Kutta 2nd order (midpoint) method for ODEs.',
-    interpretation: 'Second-order accurate ODE solver using midpoint approximation.'
+    interpretation: 'Second-order accurate ODE solver using midpoint approximation.',
+    presets: [
+      { label: 'Fine grain', values: { x0: '0', y0: '1', h: '0.1', steps: '10' } },
+      { label: 'Coarse', values: { x0: '0', y0: '1', h: '0.2', steps: '5' } }
+    ]
 }
 
 export default calcDef

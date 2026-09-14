@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function PressureConverterForm() {
@@ -8,14 +8,12 @@ export default function PressureConverterForm() {
   const [value, setValue] = useState<number>(1);
   const [from, setFrom] = useState<string>('atm');
   const [to, setTo] = useState<string>('bar');
-  const [result, setResult] = useState<any>(null);
-
   const toPa: any = { atm: 101325, bar: 100000, Pa: 1, kPa: 1000, psi: 6894.76, mmHg: 133.322 };
 
-  useEffect(() => {
+  const result = useMemo(() => {
     const pa = value * toPa[from];
     const res = pa / toPa[to];
-    setResult(res.toFixed(4));
+    return res.toFixed(4);
   }, [value, from, to]);
 
   return (

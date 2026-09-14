@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Type/doneness', value: `${parts.slice(1).join(' ')}` },
         { label: 'Total grill time', value: `~${minTotal.toFixed(0)} min (flip halfway)` },
         { label: 'Internal temp target', value: getMeatTemp(parts.slice(1).join(' ')) },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Calculate perfect BBQ grilling times based on meat type, weight, and desired doneness. Always verify with a meat thermometer for food safety.',
     example: { label: '250g steak, medium', value: '~12 min grill time' }

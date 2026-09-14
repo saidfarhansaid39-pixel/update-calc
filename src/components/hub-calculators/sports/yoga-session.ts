@@ -15,6 +15,11 @@ const calcDef: CalcDef = {
       { label: 'Main asana practice', value: main+' min (65%)' },
       { label: 'Cool-down / savasana', value: cooldown+' min (20%)' },
       ...(v.level ? [{ label: 'Level', value: v.level === 'beginner' ? 'Focus on foundational poses' : v.level === 'intermediate' ? 'Include standing balances and inversions' : 'Advanced sequencing with arm balances' }] : []),
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Plan a balanced yoga session with warm-up, main practice, and cool-down phases.', formula: 'Session structure: 15% warm-up / 65% main practice / 20% cool-down', interpretation: 'A well-structured yoga session progressively opens the body, builds to peak poses, and winds down for relaxation.'
 }

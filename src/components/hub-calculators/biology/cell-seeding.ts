@@ -28,7 +28,12 @@ const calcDef: CalcDef = {
         { label: 'Viability correction', value: `${v.viability}% viable` },
         { label: 'Volume of stock to add', value: `${volumeNeeded.toFixed(2)} mL` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Cell seeding calculations ensure consistent cell density across experiments. Proper seeding density is critical for reproducible cell culture experiments.',
   formula: 'Cells needed = desired density × surface area | Volume = cells / (stock concentration × viability factor)',

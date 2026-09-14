@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'Est. strokes per min', value: `${spm.toFixed(0)} SPM` },
         { label: 'Efficiency note', value: dls > 2 ? 'Good efficiency — long, powerful strokes' : 'Work on glide and technique to increase distance per stroke' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate swimming stroke efficiency by measuring distance per stroke. Longer distance per stroke means more efficient swimming. Elite swimmers cover 2+ m/stroke.'
 }

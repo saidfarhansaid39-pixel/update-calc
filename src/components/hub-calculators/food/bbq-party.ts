@@ -17,7 +17,12 @@ const calcDef: CalcDef = {
         { label: 'Sausages/extra', value: `${sausage} g extra` },
         { label: 'Sides per guest', value: '~200g salad + bread per person' },
         { label: 'Drinks', value: `~${drinks} drinks per guest (${v.guests * drinks} total)` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Plan the perfect BBQ with the right amount of food and drinks. Estimate 400-500g of meat per guest, plus sides, bread, and 2 drinks per person for a 4-hour party.',
     example: { label: '10 guests, moderate appetite', value: '4kg meat + 1.5kg sausages + sides' }

@@ -26,7 +26,12 @@ const calcDef: CalcDef = {
         { label: 'Calories burned', value: `${kcal.toFixed(0)} kcal` },
         { label: 'Note', value: 'Swimming burns more calories than running at the same effort due to higher energy cost of water resistance' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate calories burned during swimming by stroke type. Butterfly burns the most calories (~9 METs), while treading water burns the least (~3 METs).'
 }

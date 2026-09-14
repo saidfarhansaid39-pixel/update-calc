@@ -15,6 +15,11 @@ const calcDef: CalcDef = {
     return { result: v.time, label: 'Shuttle Run', unit: 's', steps: [
       { label: 'Time', value: v.time+' s' }, { label: 'Rating', value: r },
       { label: 'Standards', value: isMale ? 'Exc:<9.0s, Good:9.0-9.9s, Avg:10.0-10.9s' : 'Exc:<10.0s, Good:10.0-10.9s, Avg:11.0-11.9s' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Assess agility with the 4×10m shuttle run. Measures speed, acceleration, deceleration, and change-of-direction.', formula: 'Time to complete 4 × 10m course', interpretation: 'Faster times indicate better agility and change-of-direction ability.'
 }

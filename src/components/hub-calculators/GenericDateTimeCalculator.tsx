@@ -342,6 +342,49 @@ export function GenericDateTimeCalculator({ calculator }: Props) {
     return Object.fromEntries(Object.entries(vals).filter(([, v]) => v !== undefined && v !== ''))
   }, [watched])
 
+  function getDateTimeInterpretation(slug: string, val?: number | string, unit?: string): React.ReactNode {
+    const numVal = typeof val === 'number' ? val : parseFloat(String(val ?? ''))
+
+    if (slug.includes('bedtime') || slug.includes('nap') || slug.includes('sleep') || slug === 'alarm-calc' || slug === 'auto-sleep-cycle') {
+      return <p className="text-xs font-medium mt-1 text-emerald-600">Aim for 5–6 full sleep cycles (7.5–9h) for optimal rest. Wake at cycle end for best alertness.</p>
+    }
+
+    if (slug === 'work-life-balance-calculator') {
+      return <p className="text-xs font-medium mt-1 text-amber-600">Healthy balance: at least 4–5h of free time daily. {val ? `Current: ${val}.` : ''}</p>
+    }
+
+    if (slug === 'screen-time-calculator') {
+      return <p className="text-xs font-medium mt-1 text-red-600">Excessive screen time (&gt;7h/day) may affect sleep and eye health. {!isNaN(numVal) ? `Current: ${numVal.toFixed(1)}h/day.` : ''}</p>
+    }
+
+    if (slug === 'biorythm-calculator') {
+      return <p className="text-xs font-medium mt-1 text-blue-600">Cycles: Physical 23d, Emotional 28d, Intellectual 33d. &gt;0% = high energy, &lt;0% = low energy.</p>
+    }
+
+    if (slug.includes('countdown')) {
+      return <p className="text-xs font-medium mt-1 text-amber-600">Time is ticking — plan ahead to avoid last-minute rush.{val ? ` Remaining: ${val}.` : ''}</p>
+    }
+
+    if (slug === 'time-card-calculator' || slug === 'time-card-calc' || slug === 'work-hours-calculator' || slug === 'auto-work-hours' || slug === 'timecard-hours') {
+      return <p className="text-xs font-medium mt-1 text-emerald-600">{!isNaN(numVal) && numVal > 8 ? `Overtime (${numVal.toFixed(1)}h) — ensure proper compensation.` : `Within standard 8-hour workday${!isNaN(numVal) ? ` (${numVal.toFixed(1)}h)` : ''}.`}</p>
+    }
+
+    if (
+      slug.includes('date-difference') ||
+      slug.includes('timer') ||
+      slug === 'time-since-calculator' ||
+      slug === 'time-until-calculator' ||
+      slug === 'days-since-date' ||
+      slug === 'date-subtraction-calculator' ||
+      slug === 'auto-date-difference' ||
+      slug === 'date-difference-days'
+    ) {
+      return <p className="text-xs font-medium mt-1 text-blue-600">Time context matters — consider what this duration means for your planning.{!isNaN(numVal) ? ` ${numVal} ${unit || ''}`.trim() : ''}</p>
+    }
+
+    return null
+  }
+
   const result = useMemo(() => {
     if (!v || Object.keys(v).length === 0) return null
     const res = calcDef.compute(v)
@@ -351,6 +394,7 @@ export function GenericDateTimeCalculator({ calculator }: Props) {
         <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
           <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
           <p className="text-3xl font-bold text-[#06b6d4]">{displayVal}{res.unit ? ` ${res.unit}` : ''}</p>
+          {getDateTimeInterpretation(calculator.slug, res.result, res.unit)}
         </div>
         {res.steps && res.steps.length > 0 && (
           <div className="border-t border-gray-200 dark:border-gray-700 pt-3 text-xs text-gray-500 space-y-1.5">
@@ -362,10 +406,10 @@ export function GenericDateTimeCalculator({ calculator }: Props) {
               </div>
             ))}
           </div>
-        )}
-      </div>
-    )
-  }, [v, calcDef])
+          )}
+        </div>
+      )
+    }, [v, calcDef, calculator])
 
   const copyResultText = useMemo(() => {
     const lines: string[] = [calculator.title]

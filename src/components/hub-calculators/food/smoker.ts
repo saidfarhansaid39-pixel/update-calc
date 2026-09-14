@@ -19,7 +19,12 @@ const calcDef: CalcDef = {
         { label: 'Estimated time', value: `~${totalHrs.toFixed(1)} hr${totalHrs !== 1 ? 's' : ''} (${(totalHrs * 60).toFixed(0)} min)` },
         { label: 'Target internal temp', value: `${targetTemp}°C` },
         { label: 'Wood choice', value: 'Hickory (pork/beef), Apple (chicken/fish), Mesquite (bold flavor)' },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Smoking times for popular meats. Low and slow cooking at 110-135°C breaks down collagen for tender results. Always verify internal temperature with a probe thermometer.',
     example: { label: '5kg brisket', value: '~7.5 hours at 110°C' }

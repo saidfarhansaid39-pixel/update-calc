@@ -11,11 +11,20 @@ const calcDef: CalcDef = {
       const bx = n(v.bx), by = n(v.by), bz = n(v.bz)
       const rx = ay * bz - az * by, ry = az * bx - ax * bz, rz = ax * by - ay * bx
       const resultStr = '(' + rx + ', ' + ry + ', ' + rz + ')'
-      return { result: resultStr, label: 'v1 x v2', steps: [step('Formula:', 'v x w = (v2w3 - v3w2, v3w1 - v1w3, v1w2 - v2w1)'), step('Result:', resultStr)] }
+      return { result: resultStr, label: 'v1 x v2', steps: [step('Formula:', 'v x w = (v2w3 - v3w2, v3w1 - v1w3, v1w2 - v2w1)'), step('Result:', resultStr)] ,
+    extras: [
+      { label: "Dimension Check", value: "Matrix dimensions must be compatible for the operation." },
+      { label: "Singular Matrix Warning", value: "A determinant of zero means the matrix has no inverse." },
+      { label: "Computational Complexity", value: "Larger matrices require significantly more computation." },
+      { label: "Application", value: "Used in computer graphics, machine learning, and physics simulations." }
+    ]}
     },
     formula: 'v x w = (v2w3 - v3w2, v3w1 - v1w3, v1w2 - v2w1)',
     description: 'Calculate the cross product of two 3D vectors.',
-    interpretation: 'A vector perpendicular to both input vectors.'
+    interpretation: 'A vector perpendicular to both input vectors.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

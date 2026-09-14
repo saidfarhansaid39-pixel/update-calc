@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function TorqueConverterForm() {
@@ -8,14 +8,12 @@ export default function TorqueConverterForm() {
   const [value, setValue] = useState<number>(1);
   const [from, setFrom] = useState<string>('nm');
   const [to, setTo] = useState<string>('ftlb');
-  const [result, setResult] = useState<any>(null);
-
   const toNm: any = { nm: 1, kgm: 9.80665, ftlb: 1.35582, inlb: 0.112984, lbfft: 1.35582, dynecm: 1e-7 };
 
-  useEffect(() => {
+  const result = useMemo(() => {
     const nm = value * toNm[from];
     const res = nm / toNm[to];
-    setResult(res.toFixed(4));
+    return res.toFixed(4);
   }, [value, from, to]);
 
   return (

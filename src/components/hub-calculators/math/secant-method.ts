@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       let x0 = n(v.x0), x1 = n(v.x1), iters = Math.round(n(v.iter)); const steps: { label: string; value: string }[] = []
       for (let i = 0; i < iters; i++) { const f0 = x0 * x0 - 2, f1 = x1 * x1 - 2; const df = (f1 - f0) / (x1 - x0); if (Math.abs(df) < 1e-15) break; const xn = x1 - f1 / df; steps.push(step(`Iter ${i + 1}`, `x = ${xn.toFixed(6)}`)); x0 = x1; x1 = xn }
-      return { result: x1.toFixed(10), label: 'Root (v2)', steps }
+      return { result: x1.toFixed(10), label: 'Root (v2)', steps ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'x??1 = x? - f(x?)(x? - x??1)/(f(x?) - f(x??1)).',
     description: 'Secant method for root finding (no derivative needed).',
-    interpretation: 'Approximate root using secant line approximation.'
+    interpretation: 'Approximate root using secant line approximation.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

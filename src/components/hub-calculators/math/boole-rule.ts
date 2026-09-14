@@ -11,11 +11,21 @@ const calcDef: CalcDef = {
       const f = (x: number) => Math.exp(x)
       const fx0 = f(a), fx1 = f(a + h), fx2 = f(a + 2 * h), fx3 = f(a + 3 * h), fx4 = f(b)
       const integral = (2 * h / 45) * (7 * fx0 + 32 * fx1 + 12 * fx2 + 32 * fx3 + 7 * fx4)
-      return { result: integral.toFixed(6), label: 'Boole integral', steps: [step('h:', '' + h.toFixed(4)), step('f(x0)...f(x4):', fx0.toFixed(4) + ', ' + fx1.toFixed(4) + ', ' + fx2.toFixed(4) + ', ' + fx3.toFixed(4) + ', ' + fx4.toFixed(4)), step('Integral:', '' + integral.toFixed(6))] }
+      return { result: integral.toFixed(6), label: 'Boole integral', steps: [step('h:', '' + h.toFixed(4)), step('f(x0)...f(x4):', fx0.toFixed(4) + ', ' + fx1.toFixed(4) + ', ' + fx2.toFixed(4) + ', ' + fx3.toFixed(4) + ', ' + fx4.toFixed(4)), step('Integral:', '' + integral.toFixed(6))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'int_a^b f(x) dx approx 2h/45 (7f0 + 32f1 + 12f2 + 32f3 + 7f4)',
     description: 'Boole rule (5-point Newton-Cotes) integration.',
-    interpretation: 'The approximate integral using Boole rule (degree 4).'
+    interpretation: 'The approximate integral using Boole rule (degree 4).',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

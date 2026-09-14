@@ -9,11 +9,20 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const a11 = n(v.a11), a12 = n(v.a12), a21 = n(v.a21), a22 = n(v.a22)
       const b11 = n(v.b11), b12 = n(v.b12), b21 = n(v.b21), b22 = n(v.b22)
-      return { result: `[[${a11 + b11}, ${a12 + b12}], [${a21 + b21}, ${a22 + b22}]]`, label: 'A + B', steps: [step('Matrix A', `[[${a11},${a12}],[${a21},${a22}]]`), step('Matrix B', `[[${b11},${b12}],[${b21},${b22}]]`), step('Sum', `[[${a11 + b11},${a12 + b12}],[${a21 + b21},${a22 + b22}]]`)] }
+      return { result: `[[${a11 + b11}, ${a12 + b12}], [${a21 + b21}, ${a22 + b22}]]`, label: 'A + B', steps: [step('Matrix A', `[[${a11},${a12}],[${a21},${a22}]]`), step('Matrix B', `[[${b11},${b12}],[${b21},${b22}]]`), step('Sum', `[[${a11 + b11},${a12 + b12}],[${a21 + b21},${a22 + b22}]]`)] ,
+    extras: [
+      { label: "Dimension Check", value: "Matrix dimensions must be compatible for the operation." },
+      { label: "Singular Matrix Warning", value: "A determinant of zero means the matrix has no inverse." },
+      { label: "Computational Complexity", value: "Larger matrices require significantly more computation." },
+      { label: "Application", value: "Used in computer graphics, machine learning, and physics simulations." }
+    ]}
     },
     formula: '(A + B)ij = Aij + Bij.',
     description: 'Add two 2x2 matrices together.',
-    interpretation: 'Element-wise sum of the two matrices.'
+    interpretation: 'Element-wise sum of the two matrices.',
+    presets: [
+      { label: 'Example', values: { a: '1', b: '0', c: '0', d: '1' } }
+    ]
 }
 
 export default calcDef

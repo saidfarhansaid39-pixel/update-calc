@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function SoundConverterForm() {
@@ -8,14 +8,12 @@ export default function SoundConverterForm() {
   const [value, setValue] = useState<number>(1);
   const [from, setFrom] = useState<string>('mach');
   const [to, setTo] = useState<string>('mph');
-  const [result, setResult] = useState<any>(null);
-
   const toMps: any = { mach: 343, mph: 0.44704, kph: 0.277778, mps: 1, fps: 0.3048 };
 
-  useEffect(() => {
+  const result = useMemo(() => {
     const mps = value * toMps[from];
     const res = mps / toMps[to];
-    setResult(res.toFixed(2));
+    return res.toFixed(2);
   }, [value, from, to]);
 
   return (

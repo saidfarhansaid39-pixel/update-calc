@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Doubling time = ln(2)/r', value: `${doublingTime === Infinity ? 'No growth' : `${doublingTime.toFixed(1)} days`}` },
         { label: 'T/C ratio', value: `Volume ratio = ${(v.v2 / v.v1).toFixed(2)}×` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Tumor growth rate and doubling time quantify how quickly a tumor is growing. Exponential growth is assumed for early-stage tumors.',
   formula: 'Growth rate r = ln(V2/V1) / ?t | Doubling time = ln(2) / r | T/C = V2(treated) / V2(control)',

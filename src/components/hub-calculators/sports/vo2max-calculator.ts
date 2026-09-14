@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'VO2 Max', value: `${vo2.toFixed(1)} mL/kg/min` },
         ...(v.age ? [{ label: 'Fitness rating', value: vo2 > 45 ? 'Good to Excellent' : vo2 > 35 ? 'Average to Good' : 'Below Average' }] : []),
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Estimate VO2 max from a 12-minute Cooper test run. VO2 max is the gold standard measure of aerobic fitness and cardiovascular endurance.'
 }

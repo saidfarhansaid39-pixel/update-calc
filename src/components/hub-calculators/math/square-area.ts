@@ -8,11 +8,23 @@ const calcDef: CalcDef = {
     defaults: { a: '5' },
     compute: (v) => {
       const a = n(v.a)
-      return { result: a * a, label: 'Area', unit: 'units2', steps: [step('Formula:', 'A = ' + a + '2 = ' + (a * a))] }
+      return { result: a * a, label: 'Area', unit: 'units2', steps: [step('Formula:', 'A = ' + a + '2 = ' + (a * a))] ,
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ]}
     },
     formula: 'A = s2',
     description: 'Calculate the area of a square.',
-    interpretation: 'The area enclosed by a square with the given side length.'
+    interpretation: 'The area enclosed by a square with the given side length.',
+    presets: [
+      { label: 'Small', values: { a: '2' } },
+      { label: 'Medium', values: { a: '5' } },
+      { label: 'Large', values: { a: '10' } }
+    ]
 }
 
 export default calcDef

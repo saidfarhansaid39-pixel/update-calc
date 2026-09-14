@@ -107,6 +107,7 @@ export function PaceForm() {
     return splits;
   };
 
+    const handleClear = () => { setResults(null); };
   return (
     <div className="flex flex-col gap-6 font-sans text-[13px] text-[#333333]">
       <div className="flex bg-[#3366aa] text-white w-full max-w-[340px]">
@@ -164,7 +165,7 @@ export function PaceForm() {
 
             <div className="pl-[140px] flex gap-2 mt-4">
               <Button onClick={handleCalculate}>Calculate</Button>
-              <Button variant="secondary" onClick={() => {}}>Clear</Button>
+              <Button variant="secondary" onClick={handleClear}>Clear</Button>
             </div>
           </FormPanel>
         </div>

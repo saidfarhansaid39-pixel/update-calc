@@ -14,6 +14,11 @@ const calcDef: CalcDef = {
     return { result: drop, label: 'HR Recovery Drop', unit: 'bpm', steps: [
       { label: 'Post-exercise', value: v.postHR+' bpm' }, { label: 'After 1 min', value: v.oneMinHR+' bpm' },
       { label: 'Drop', value: drop+' bpm' }, { label: 'Rating', value: r },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Heart rate recovery measures 1-minute HR drop after exercise. Drop > 40 bpm = good fitness.', formula: 'HRR = HRpeak - HR1min', interpretation: 'Faster recovery = better parasympathetic function and cardiovascular fitness.'
 }

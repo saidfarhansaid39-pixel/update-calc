@@ -28,7 +28,12 @@ const calcDef: CalcDef = {
         { label: 'Fold change = 2^-??Ct', value: `${foldChange.toFixed(3)}` },
         { label: 'Up/down regulation', value: foldChange > 1 ? `${foldChange.toFixed(2)}× up-regulated` : foldChange < 1 ? `${(1/foldChange).toFixed(2)}× down-regulated` : 'No change' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The delta-delta Ct method quantifies relative gene expression changes between treated and control samples, normalized to a reference (housekeeping) gene.',
   formula: '??Ct = ?Ct(target) - ?Ct(reference) | Fold change = 2^(-??Ct) | Requires E ˜ 100% for both target and reference',

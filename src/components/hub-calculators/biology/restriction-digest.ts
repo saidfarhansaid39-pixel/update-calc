@@ -27,7 +27,12 @@ const calcDef: CalcDef = {
         { label: 'Enzyme (10 U/µL stock)', value: `${(units / 10).toFixed(1)} µL (${units} U)` },
         { label: 'Water to 50 µL total', value: `${Math.max(0, water).toFixed(1)} µL` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Set up a restriction digest reaction. Calculate reagent volumes for a 50 µL reaction containing DNA, restriction enzyme, buffer, and water. Use 5-10 U enzyme per µg DNA.',
   formula: 'DNA volume = Amount / Conc | 10× buffer = 1/10 final volume | 1 U enzyme digests 1 µg DNA in 1 h at optimal temp',

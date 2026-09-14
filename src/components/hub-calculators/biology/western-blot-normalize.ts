@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Relative to control sample', value: 'Divide by control normalized value for fold change' },
         { label: 'Common controls', value: 'ß-actin (42 kDa), GAPDH (37 kDa), tubulin (50 kDa)' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Western blot normalization corrects for unequal protein loading and transfer efficiency by dividing target protein signal by a loading control (housekeeping protein) signal.',
   formula: 'Normalized expression = Target density / Loading control density | Fold change = normalized(treated) / normalized(control)',

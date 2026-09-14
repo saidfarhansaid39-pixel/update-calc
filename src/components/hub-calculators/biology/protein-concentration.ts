@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'c = A / (e × l)', value: `${(concM * 1000).toFixed(4)} mg/mL (assuming 1 cm path)'` },
         { label: 'c (µM)', value: `${(concM * 1e6).toFixed(2)} µM` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Protein concentration is determined by UV absorbance at 280 nm using the Beer-Lambert law. Aromatic amino acids (Trp, Tyr) primarily absorb at 280 nm.',
   formula: 'A = e × c × l | c = A / (e × l) | l = path length (typically 1 cm) | e = molar extinction coefficient',

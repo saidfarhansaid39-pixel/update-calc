@@ -35,7 +35,12 @@ const calcDef: CalcDef = {
         { label: 'Pattern match', value: match ? '? Matches expected pattern' : '? May be a different inhibition type' },
         { label: 'Expected pattern', value: name === 'Competitive' ? 'Vmax unchanged, Km ?' : name === 'Non-competitive' ? 'Vmax ?, Km unchanged' : 'Both Vmax ? and Km ?' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Enzyme inhibition patterns distinguish competitive, non-competitive, and uncompetitive mechanisms by their effects on Vmax and Km in Michaelis-Menten kinetics.',
   formula: 'Competitive: Vmax unchanged, Km? (apparent Km = Km × (1 + [I]/Ki)) | Non-competitive: Vmax?, Km unchanged | Uncompetitive: both Vmax? and Km?',

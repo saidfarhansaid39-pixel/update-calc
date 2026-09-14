@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'Situps in 1 min', value: `${v.count}` },
         { label: 'Rating', value: rating },
         { label: 'Standards', value: isMale ? 'Exc: >50, Good: 40-49, Avg: 30-39' : 'Exc: >45, Good: 35-44, Avg: 25-34' },
-      ].filter(s => s.label)
+      ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ].filter(s => s.label)
 }
   },
   description: 'Assess core muscular endurance with the 1-minute situp test. The situp test measures abdominal strength and is used in military and law enforcement fitness tests.'

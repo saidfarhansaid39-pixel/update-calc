@@ -13,6 +13,11 @@ const calcDef: CalcDef = {
       { label: 'Swim pace (1.9km)', value: sMin+':'+sSec.toString().padStart(2,'0')+' /100m' },
       { label: 'Bike speed (90km)', value: (90/(v.totalMin/60*0.47)).toFixed(1)+' km/h' },
       { label: 'Run pace (21.1km)', value: rMin+':'+rSec.toString().padStart(2,'0')+' /km' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Plan Half Ironman (70.3) pacing for 1.9km swim, 90km bike, 21.1km run.', formula: 'Time: ~12% swim, ~48% bike, ~40% run', interpretation: '70.3 requires sustained threshold effort. Pacing discipline determines success.'
 }

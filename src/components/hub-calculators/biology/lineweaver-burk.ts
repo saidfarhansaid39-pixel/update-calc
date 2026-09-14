@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'X-intercept = -1/Km', value: `${interceptX.toExponential(4)}` },
         { label: 'Slope = Km/Vmax', value: `${(v.km / v.vmax).toExponential(4)}` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The Lineweaver-Burk (double reciprocal) plot linearizes the Michaelis-Menten equation for determining enzyme kinetics parameters Vmax and Km.',
   formula: '1/v = (Km/Vmax) × 1/[S] + 1/Vmax | X-intercept = -1/Km | Y-intercept = 1/Vmax',

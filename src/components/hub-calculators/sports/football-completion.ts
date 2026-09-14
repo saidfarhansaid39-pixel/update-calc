@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Formula', value: `${v.comp} / ${v.att} × 100` },
         { label: 'NFL benchmark', value: pct > 67 ? 'Elite (>67%)' : pct > 63 ? 'Good (63-67%)' : pct > 58 ? 'Average' : 'Below average' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate quarterback completion percentage. The modern NFL average is around 64-65%, with elite quarterbacks completing over 67% of their passes.'
 }

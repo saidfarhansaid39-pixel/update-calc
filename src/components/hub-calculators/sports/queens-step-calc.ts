@@ -10,6 +10,11 @@ const calcDef: CalcDef = {
       { label: '15-sec pulse', value: ''+v.hrRecovery }, { label: 'Est. HR (bpm)', value: hrMin+' bpm' },
       { label: 'VO2max', value: vo2.toFixed(1)+' mL/kg/min' },
       { label: 'Rating', value: vo2 > 45 ? 'Good to Excellent' : vo2 > 35 ? 'Average' : 'Below Average' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Estimate VO2max using the Queens College Step Test (3 min at 22 steps/min, 16.25 in bench).', formula: 'VO2max = 65.81 - 0.1847 × HR (bpm)', interpretation: 'Lower recovery HR indicates better aerobic fitness after the step test protocol.'
 }

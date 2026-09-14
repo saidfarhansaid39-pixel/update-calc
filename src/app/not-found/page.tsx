@@ -8,7 +8,7 @@ import { getHubTheme } from '@/lib/hub-themes'
 import { getLocalizedCalculator } from '@/lib/localized-registry'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.jdcalc.com'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculat.online'
 
 export const dynamic = 'force-static'
 
@@ -27,8 +27,9 @@ export async function generateMetadata() {
     title,
     description,
     alternates: { canonical, languages },
-    openGraph: { title, description, url: canonical, siteName: 'JDCALC', type: 'website' },
+    openGraph: { title, description, url: canonical, siteName: 'Calculat', type: 'website' },
     twitter: { card: 'summary_large_image', title, description },
+    robots: { index: false, follow: false },
   }
 }
 
@@ -36,7 +37,7 @@ export default async function NotFoundPage() {
   const locale = await getLocale()
   const t = await getTranslations('notFound')
   const th = await getTranslations('hubs')
-  const localePrefix = locale === 'en' ? '' : `/${locale}`
+
 
   const hubSlugs = getAllHubSlugs()
 
@@ -51,7 +52,7 @@ export default async function NotFoundPage() {
       const loc = await getLocalizedCalculator(calc.slug, locale)
       popular.push({
         title: (loc?.title || calc.title),
-        href: `${localePrefix}/${hubSlug}/${calc.slug}`,
+        href: `/${hubSlug}/${calc.slug}`,
       })
     }
     if (popular.length >= 8) break
@@ -112,7 +113,7 @@ export default async function NotFoundPage() {
               return (
                 <Link
                   key={hubSlug}
-                  href={`${localePrefix}/${hubSlug}`}
+                  href={`/${hubSlug}`}
                   className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 hover:border-primary hover:text-primary transition-colors"
                 >
                   <span aria-hidden="true">{theme.emoji}</span>
@@ -125,7 +126,7 @@ export default async function NotFoundPage() {
 
         <div className="mt-10 text-center">
           <Link
-            href={localePrefix || '/'}
+            href="/"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-medium hover:opacity-90 transition-opacity"
           >
             {t('goHome')}

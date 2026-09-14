@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Stride frequency', value: `${strideFreq.toFixed(2)} strides/s (${(strideFreq * 60).toFixed(0)} spm)` },
         { label: 'Speed', value: `${speed.toFixed(2)} m/s (${(speed * 3.6).toFixed(1)} km/h)` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Analyze your running stride by measuring stride length and frequency. Elite runners typically maintain 180+ steps per minute with longer stride lengths.'
 }

@@ -26,9 +26,9 @@ function buildCitations(title: string, url: string, author: string, accessDate: 
   const path = url.replace(/^https?:\/\/[^/]+/, '')
 
   return {
-    apa: `${author}. (${year}). ${title}. JDCALC.com. Retrieved ${accessDate}, from ${url}`,
-    mla: `${author}. "${title}." JDCALC.com, ${year}, ${url}. Accessed ${accessDate}.`,
-    chicago: `${author}. "${title}." JDCALC.com. Accessed ${accessDate}. https://www.jdcalc.com${path}.`,
+    apa: `${author}. (${year}). ${title}. Calculat. Retrieved ${accessDate}, from ${url}`,
+    mla: `${author}. "${title}." Calculat, ${year}, ${url}. Accessed ${accessDate}.`,
+    chicago: `${author}. "${title}." Calculat. Accessed ${accessDate}. https://www.calculat.online${path}.`,
   }
 }
 
@@ -36,7 +36,7 @@ export function CitationGenerator({
   title,
   url,
   accessDate,
-  authorName = 'JDCALC.com Team',
+  authorName = 'Calculat Team',
 }: CitationGeneratorProps) {
   const [open, setOpen] = useState(false)
   const [copiedKey, setCopiedKey] = useState<string | null>(null)

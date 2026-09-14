@@ -152,6 +152,100 @@ function convertTemp(v: number, from: string, to: string): number {
   return c + 273.15
 }
 
+function getConversionInterpretation(slug: string, val?: number | string, unit?: string): string {
+  const num = typeof val === 'number' ? val : parseFloat(String(val ?? ''))
+  if (isNaN(num)) return ''
+
+  const s = slug.toLowerCase()
+
+  if (s.includes('celsius') || s.includes('fahrenheit') || s.includes('kelvin')) {
+    if (num <= -273.15) return `Absolute zero (−273.15°C / 0 K) — the coldest possible temperature.`
+    if (num >= 100 && s.includes('celsius')) return `Water boils at 100°C (212°F) at sea level.`
+    if (num >= 212 && s.includes('fahrenheit')) return `Water boils at 212°F (100°C) at sea level.`
+    if (num <= 0 && s.includes('celsius')) return `Water freezes at 0°C (32°F).`
+    if (num <= 32 && s.includes('fahrenheit')) return `Water freezes at 32°F (0°C).`
+    if (num >= 40 && s.includes('celsius')) return `Extreme heat — above 40°C can cause heat exhaustion.`
+    return `Typical room temperature is 20–25°C (68–77°F).`
+  }
+
+  if (s.includes('knot') || s.includes('mach') || s.includes('speed-of')) {
+    if (num >= 1 && s.includes('mach')) return `Supersonic speed — faster than the speed of sound.`
+    return `Typical cruising speed of a commercial jet is ~900 km/h (~560 mph).`
+  }
+
+  if (s.includes('light-year') || s.includes('au') || s.includes('astronomical')) {
+    return `Astronomical distances — light travels 9.46 trillion km in one year.`
+  }
+
+  if (s.includes('blood') || s.includes('cholesterol') || s.includes('glucose') || s.includes('creatinine')) {
+    return `Medical reference ranges vary by age, sex, and lab standards. Consult your healthcare provider.`
+  }
+
+  if (s.includes('currency') || s.includes('crypto')) {
+    return `Exchange rates change constantly. This is an approximate conversion — check a live source for accurate trading.`
+  }
+
+  if (s.includes('cooking') || s.includes('baking') || s.includes('tablespoon') || s.includes('teaspoon') || s.includes('cup') || s.includes('carat') || s.includes('gold') || s.includes('silver') || s.includes('thread') || s.includes('candle') || s.includes('nit') || s.includes('decibel') || s.includes('sone') || s.includes('frequency') || s.includes('shoe') || s.includes('ring') || s.includes('bra') || s.includes('clothing') || s.includes('paper') || s.includes('font') || s.includes('fabric') || s.includes('yarn')) {
+    return `Specialty conversion — values may vary by standard or region.`
+  }
+
+  if (s.includes('watt-hour') || s.includes('kwh') || s.includes('btu') || (s.includes('calorie') && !s.includes('celsius') && !s.includes('fahrenheit'))) {
+    if (num > 1000) return `Large energy amount — enough to power a typical home for several days.`
+    if (num > 100) return `Equivalent to running a 100W light bulb for ~${Math.round(num * 10)} hours.`
+    return `Small energy amount — about ${num > 1 ? `${(num / 4184).toFixed(2)} food Calories (kcal)` : `${(num * 0.239).toFixed(2)} calories`}.`
+  }
+
+  if (s.includes('hp') || s.includes('horsepower') || s.includes('kw') && !s.includes('kwh')) {
+    return `A typical car engine produces 100–300 hp (~75–225 kW).`
+  }
+
+  if (s.includes('psi') || s.includes('bar') || s.includes('kpa') || s.includes('atm') || s.includes('torr') || s.includes('mmhg')) {
+    if (num > 1000) return `Very high pressure — deep ocean or hydraulic system levels.`
+    if (num >= 14.7 && s.includes('psi')) return `Standard atmospheric pressure at sea level is 14.7 psi (1 atm, 101.3 kPa).`
+    return `Typical tire pressure is 30–35 psi (~2–2.4 bar).`
+  }
+
+  if (s.includes('stone') || s.includes('lb') || s.includes('pound') || s.includes('kg') || s.includes('kilogram') || s.includes('ton')) {
+    if (num > 1000) return `Very large mass — over 1 ton (industrial/heavy vehicle scale).`
+    if (num > 100) return `Large mass — exceeds typical human weight range.`
+    if (num > 0 && num < 5 && (s.includes('kg') || s.includes('pound'))) return `Light weight — comparable to a bag of groceries.`
+    return `Average adult human weight is ~70 kg (~154 lb).`
+  }
+
+  if (s.includes('inch') || s.includes('foot') || s.includes('feet') || s.includes('yard') || s.includes('meter') || s.includes('kilometer') || s.includes('mile') || s.includes('league') || s.includes('nautical')) {
+    if (num > 1000 && (s.includes('km') || s.includes('mile'))) return `Long distance — over 1,000 km/mi (cross-country or international travel).`
+    if (num > 100 && (s.includes('m') || s.includes('yard') || s.includes('foot'))) return `Moderate distance — about the length of a football field.`
+    if (num < 0.01 && (s.includes('m') || s.includes('cm'))) return `Microscopic scale — smaller than a grain of sand.`
+    if (num >= 1.5 && num <= 2 && s.includes('m')) return `About the height of an average doorway (2 m).`
+    if (num >= 0.3 && num <= 0.5 && s.includes('m')) return `About the height of a standard kitchen counter (~0.9 m).`
+    return `Everyday scale — human height ranges from ~1.5–1.8 m (~5–6 ft).`
+  }
+
+  if (s.includes('liter') || s.includes('gallon') || s.includes('quart') || s.includes('pint') || s.includes('ml') || s.includes('milliliter') || s.includes('ounce') || s.includes('barrel') || s.includes('cubic')) {
+    if (num > 1000 && (s.includes('l') || s.includes('gallon'))) return `Large volume — swimming pool or tanker truck scale.`
+    if (num >= 3.78 && num < 4 && s.includes('l')) return `About 1 US gallon (3.785 L).`
+    if (num <= 0.5 && s.includes('l')) return `Small volume — less than a standard water bottle (500 mL).`
+    return `Typical drinking glass: ~250 mL (~8.5 fl oz).`
+  }
+
+  if (s.includes('hectare') || s.includes('acre') || s.includes('sq') || s.includes('square')) {
+    if (num > 1e6) return `Very large area — city or national park scale.`
+    if (num >= 4046 && num < 5000 && s.includes('m')) return `About 1 acre (4,047 m²).`
+    if (num >= 90 && num <= 100 && s.includes('m')) return `About the area of a 1-bedroom apartment (~100 m²).`
+    return `A standard parking space is ~15 m² (~160 ft²).`
+  }
+
+  if (s.includes('byte') || s.includes('kb') || s.includes('mb') || s.includes('gb') || s.includes('tb') || s.includes('bit') || s.includes('mbps') || s.includes('gbps')) {
+    if (num >= 1e12) return `Massive data — hundreds of HD movies or large server storage.`
+    if (num >= 1e9) return `Large data — about 200–500 HD movies at 2 GB each.`
+    if (num >= 1e6) return `Moderate data — about ${Math.round(num / 5)} MP3 songs or 1 HD movie.`
+    if (num >= 1024) return `Small file — a few photos or a document.`
+    return `Tiny — a short text file or email.`
+  }
+
+  return ''
+}
+
 const calcDefs: Record<string, CalcDef> = {
 
   // ===== LENGTH =====
@@ -1252,7 +1346,7 @@ export function GenericConversionCalculator({ calculator }: Props) {
 
   return (
     <FormProvider {...form}>
-      <PremiumCalculatorShell calculator={calculator} form={formContent} result={result} charts={chartData.length > 0 ? <DynamicHealthBarChart data={chartData} /> : undefined} lockedFields={lockedFields} onExtraFieldsChange={setExtraFields} formula={calcDef.formula} interpretation={calcDef.interpretation} presets={presets} onPresetApply={applyPreset} onReset={() => {
+      <PremiumCalculatorShell calculator={calculator} form={formContent} result={result} charts={chartData.length > 0 ? <DynamicHealthBarChart data={chartData} /> : undefined} lockedFields={lockedFields} onExtraFieldsChange={setExtraFields} formula={calcDef.formula} interpretation={getConversionInterpretation(calculator.slug, mainValue, undefined) || calcDef.interpretation} presets={presets} onPresetApply={applyPreset} onReset={() => {
   const locked = Object.fromEntries(Array.from(lockedFields).map(key => [key, form.getValues(key)]))
   form.reset()
   Object.entries(locked).forEach(([key, value]) => {

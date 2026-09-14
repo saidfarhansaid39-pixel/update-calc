@@ -19,7 +19,12 @@ const calcDef: CalcDef = {
         { label: 'Seeding for next passage', value: pct >= 80 ? `Seed ${Math.max(1, Math.round(pct / 4))}× dilution` : 'Not ready for passage' },
         { label: 'Recommended action', value: pct >= 80 ? 'Passage cells (split 1:3–1:10)' : pct >= 50 ? 'Replace media if > 48 h' : 'Let cells grow to 70-80%' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Cell confluence is the percentage of culture surface covered by adherent cells. Regular monitoring ensures consistent experimental timing and prevents overgrowth.',
   formula: 'Confluence (%) = (area covered by cells / total area) × 100% | Passage at 70-90% confluence depending on cell type',

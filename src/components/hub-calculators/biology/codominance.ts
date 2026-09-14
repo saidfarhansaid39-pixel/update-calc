@@ -22,7 +22,12 @@ const calcDef: CalcDef = {
         { label: 'f(AB) = 2pq', value: `${(fAB*100).toFixed(1)}%` },
         { label: 'f(BB) = q²', value: `${(fBB*100).toFixed(1)}%` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Codominant inheritance means both alleles are fully expressed in heterozygotes. ABO blood type is a classic example of codominance.',
   formula: 'f(AA) = p², f(AB) = 2pq, f(BB) = q² under Hardy-Weinberg equilibrium',

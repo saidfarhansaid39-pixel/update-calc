@@ -32,7 +32,9 @@ function ExtraFieldFormContent({
   const tl = (name: string, fallback: string) => t(getLabelKey(name)) || fallback
   const { register, setValue, getValues, formState: { errors } } = useFormContext()
   const onChangeReported = useRef(onFieldsChange)
-  onChangeReported.current = onFieldsChange
+  useEffect(() => {
+    onChangeReported.current = onFieldsChange
+  })
 
   useEffect(() => {
     activeFields.forEach(name => {
@@ -125,19 +127,19 @@ function ExtraFieldFormContent({
 }
 
 export function ExtraFieldInjector({ slug, extraFields, children, onFieldsChange }: ExtraFieldInjectorProps) {
-  const [activeFields, setActiveFields] = useState<string[]>([])
-  const [showPicker, setShowPicker] = useState(false)
-  const extraForm = useForm({ mode: 'onChange' })
-
-  useEffect(() => {
+  const [activeFields, setActiveFields] = useState<string[]>(() => {
+    if (typeof window === 'undefined') return []
     try {
       const stored = localStorage.getItem(STORAGE_PREFIX + slug)
       if (stored) {
         const parsed = JSON.parse(stored) as string[]
-        setActiveFields(parsed.filter(n => extraFields.some(f => f.name === n)))
+        return parsed.filter(n => extraFields.some(f => f.name === n))
       }
     } catch {}
-  }, [slug, extraFields])
+    return []
+  })
+  const [showPicker, setShowPicker] = useState(false)
+  const extraForm = useForm({ mode: 'onChange' })
 
   useEffect(() => {
     localStorage.setItem(STORAGE_PREFIX + slug, JSON.stringify(activeFields))

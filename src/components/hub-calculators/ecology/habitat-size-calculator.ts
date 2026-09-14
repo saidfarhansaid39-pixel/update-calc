@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import type { CalcDef } from '../../../lib/generic-fallback'
+import { step } from '../../../lib/hub-helpers'
 
 const calcDef: CalcDef = {
   schema: z.object({
@@ -11,7 +12,14 @@ const calcDef: CalcDef = {
     { name: 'species', label: 'Target Population Size', type: 'number', min: 1, step: '1' },
     { name: 'density', label: 'Species Density', type: 'number', unit: 'indiv/ha', min: 0.01, step: '0.01' },
     { name: 'mvp', label: 'MVP Population (optional)', type: 'number', min: 1, step: '1' },
-  ],
+    ],
+  presets: [
+    { label: 'Amazon deforestation', values: { forest: '1000', deforested: '180', patchCount: '45' } },
+    { label: 'Urban fragmentation', values: { nativeCover: '500', builtArea: '1200', roadDensity: '5' } },
+    { label: 'Wildlife corridor', values: { corridorWidth: '200', corridorLength: '5000', habitatQuality: '0.7' } },
+    { label: 'Mountain ecosystem', values: { elevationMin: '500', elevationMax: '2500', patchArea: '800' } },
+    { label: 'Coastal wetland', values: { wetlandArea: '500', bufferZone: '150', connectivityScore: '0.6' } }
+    ],
   compute: (v) => {
     const mvp = v.mvp || 50
     const minArea = mvp / v.density
@@ -24,7 +32,14 @@ const calcDef: CalcDef = {
         { label: 'Area needed', value: `${targetArea.toFixed(1)} ha (${(targetArea / 100).toFixed(2)} km²)` },
         { label: 'MVP-based area', value: `${minArea.toFixed(1)} ha (${(minArea / 100).toFixed(2)} km²)` },
       ]
-}
+,
+    extras: [
+      { label: "Environmental Context", value: "Habitat loss and fragmentation are the primary drivers of biodiversity loss globally. Landscape connectivity is critical for species movement and gene flow." },
+      { label: "Measurement Method", value: "Remote sensing (satellite imagery, aerial photography) combined with GIS analysis. Field validation of habitat quality and corridor use." },
+      { label: "Conservation Note", value: "Ecological corridors reduce extinction risk by 30-50% in fragmented landscapes. Minimum corridor width varies by target species from 50-500 m." },
+      { label: "Typical Ranges", value: "Edge effects extend 50-500 m into habitat patches. Optimal connectivity: >30% habitat cover at landscape scale. Patch area: 1-10⁶ ha." },
+      { label: "Related Concepts", value: "Island biogeography theory, SLOSS debate, matrix permeability, stepping stones, wildlife crossings, green infrastructure." }
+    ]}
   },
   description: 'Minimum habitat size is calculated from population targets and species density. Conservation areas must be large enough to support viable populations.',
   formula: 'Area = Population size / Density | MVP-based area = MVP / Density',

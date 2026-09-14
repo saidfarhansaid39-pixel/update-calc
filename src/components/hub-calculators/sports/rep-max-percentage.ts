@@ -9,6 +9,11 @@ const calcDef: CalcDef = {
     return { result: pct, label: 'Estimated % of 1RM', unit: '%', steps: [
       { label: 'Reps', value: ''+v.reps }, { label: '% of 1RM', value: pct.toFixed(0)+'%' },
       { label: 'Relative intensity', value: pct > 85 ? 'Maximal strength (1-5 reps)' : pct > 70 ? 'Hypertrophy (6-12 reps)' : 'Muscular endurance (12+ reps)' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate the percentage of one-rep max for a given rep count using the standard rep-max table.', formula: '%1RM ≈ 100 - (reps × 2.5)', interpretation: 'Use rep-max percentages to select appropriate training loads for specific goals (strength, hypertrophy, endurance).'
 }

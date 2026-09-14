@@ -59,12 +59,18 @@ export default function CompoundInterestForm() {
       yearlyData.push({ year, balance: Math.round(yearBalance), contributions: Math.round(yearContributions), interest: Math.round(yearInterest) });
     }
     
+    const effectiveAnnualRate = n === -1 ? (Math.exp(r) - 1) * 100 : (Math.pow(1 + r / n, n) - 1) * 100;
+    const rule72 = r > 0 ? 72 / (r * 100) : 0;
+    const interestPct = endBalance > 0 ? (totalInterest / endBalance) * 100 : 0;
     setResult({
       endBalance: Math.round(endBalance),
       totalContributions: Math.round(totalContributions),
       totalInterest: Math.round(totalInterest),
       afterTaxBalance: Math.round(afterTaxBalance),
       inflationAdjustedBalance: Math.round(inflationAdjustedBalance),
+      effectiveAnnualRate: effectiveAnnualRate.toFixed(2),
+      rule72: rule72.toFixed(1),
+      interestPct: interestPct.toFixed(1),
       yearlyData
     });
   }, [initialInvestment, annualContribution, monthlyContribution, interestRate, compoundFrequency, years, taxRate, inflationRate]);
@@ -136,6 +142,18 @@ export default function CompoundInterestForm() {
                 <tr>
                   <td className="py-2 text-gray-600">Total Interest</td>
                   <td className="py-2 text-right text-gray-700">${result.totalInterest.toLocaleString()}</td>
+                </tr>
+                <tr className="border-b">
+                  <td className="py-2 text-gray-600">Interest as % of Total</td>
+                  <td className="py-2 text-right text-gray-700">{result.interestPct}%</td>
+                </tr>
+                <tr className="border-b">
+                  <td className="py-2 text-gray-600">Effective Annual Rate (APY)</td>
+                  <td className="py-2 text-right text-gray-700">{result.effectiveAnnualRate}%</td>
+                </tr>
+                <tr>
+                  <td className="py-2 text-gray-600">Rule of 72 (years to double)</td>
+                  <td className="py-2 text-right text-gray-700">{result.rule72} yrs</td>
                 </tr>
               </tbody>
             </table>

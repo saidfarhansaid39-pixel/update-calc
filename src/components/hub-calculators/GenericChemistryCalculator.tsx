@@ -10,6 +10,7 @@ import { FieldsByMode } from '@/lib/calc-field-helper'
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic'
 import type { UnitSystem } from '@/components/premium/PremiumCalculatorShell'
 import { DynamicHealthBarChart } from '@/components/premium/DynamicCharts'
+import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation'
 import { buildGenericDef } from '@/lib/generic-fallback'
 
 interface FieldDef {
@@ -101,6 +102,14 @@ export default function GenericChemistryCalculator({ calculator }: Props) {
     return isNaN(parsed) ? undefined : parsed
   }, [def, v])
 
+  const chemInterpretation = useMemo(() => {
+    const slug = calculator.slug
+    const val = parseFloat(String(v[Object.keys(v).find(k => k !== 'unit' && k !== 'temperature') || '']))
+    if (slug.includes('ph') && !isNaN(val)) return <div className="text-xs font-medium mt-1">{val < 7 ? <span className="text-red-600">Acidic (pH &lt; 7)</span> : val > 7 ? <span className="text-blue-600">Basic (pH &gt; 7)</span> : <span className="text-emerald-600">Neutral (pH = 7)</span>}</div>
+    if (slug.includes('molarity') || slug.includes('dilution')) return <div className="text-xs text-blue-600 font-medium mt-1">Laboratory concentrations in mol/L. Always verify with experimental measurement.</div>
+    return null
+  }, [calculator.slug, v])
+
   const result = useMemo(() => {
     if (!def) return <div className="text-center text-gray-400">Select values to calculate</div>
     const vals: Record<string, any> = {}
@@ -118,6 +127,7 @@ export default function GenericChemistryCalculator({ calculator }: Props) {
         <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
           <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
           <p className="text-3xl font-bold text-[#06b6d4]">{typeof res.result === 'number' ? res.result.toFixed(2) : res.result} {res.unit}</p>
+          {chemInterpretation}
         </div>
         <div className="border-t border-gray-200 dark:border-gray-700 pt-4 text-xs text-gray-400 space-y-1">
           {(res.steps ?? []).map((step, i) => (
@@ -126,7 +136,7 @@ export default function GenericChemistryCalculator({ calculator }: Props) {
         </div>
       </div>
     )
-  }, [def, v])
+  }, [def, v, chemInterpretation])
 
   const formContent = useMemo(() => {
     return <FieldsByMode fields={def.fields} useSlider={useSlider} lockedFields={lockedFields} toggleLock={toggleLock} />

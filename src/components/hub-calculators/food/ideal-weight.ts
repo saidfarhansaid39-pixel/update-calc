@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Formula used', value: v.formula.charAt(0).toUpperCase() + v.formula.slice(1) },
         { label: 'Ideal weight', value: `${result.toFixed(1)} kg (${(result * 2.20462).toFixed(1)} lbs)` },
         { label: 'Note', value: 'Ideal weight is a population-based estimate. Individual healthy weight may vary by muscle mass, frame size, and body composition.' },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Ideal body weight calculated using four clinical formulas. Hamwi is most common in clinical settings. These are population estimates — individual variation is normal.',
     example: { label: '175cm, Hamwi formula', value: '~70.5 kg (155 lbs)' }

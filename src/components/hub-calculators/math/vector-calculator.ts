@@ -10,11 +10,20 @@ const calcDef: CalcDef = {
       const a = n(v.a), b = n(v.b), c = n(v.c), d = n(v.d)
       const dot = a * c + b * d
       const cross = a * d - b * c
-      return { result: 'dot=' + dot + ', cross=' + cross, label: 'Vector ops', steps: [step('Dot product:', '' + a + 'x' + c + ' + ' + b + 'x' + d + ' = ' + dot), step('Cross product (2D):', '' + a + 'x' + d + ' - ' + b + 'x' + c + ' = ' + cross)] }
+      return { result: 'dot=' + dot + ', cross=' + cross, label: 'Vector ops', steps: [step('Dot product:', '' + a + 'x' + c + ' + ' + b + 'x' + d + ' = ' + dot), step('Cross product (2D):', '' + a + 'x' + d + ' - ' + b + 'x' + c + ' = ' + cross)] ,
+    extras: [
+      { label: "Dimension Check", value: "Matrix dimensions must be compatible for the operation." },
+      { label: "Singular Matrix Warning", value: "A determinant of zero means the matrix has no inverse." },
+      { label: "Computational Complexity", value: "Larger matrices require significantly more computation." },
+      { label: "Application", value: "Used in computer graphics, machine learning, and physics simulations." }
+    ]}
     },
     formula: 'Dot: v1.v2, Cross: v1 x v2 (2D scalar)',
     description: 'Calculate dot and cross products of 2D vectors.',
-    interpretation: 'The dot product and 2D cross product of the vectors.'
+    interpretation: 'The dot product and 2D cross product of the vectors.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

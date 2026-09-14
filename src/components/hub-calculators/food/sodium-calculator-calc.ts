@@ -8,7 +8,12 @@ const calcDef: CalcDef = {
       { name: 'snacks', label: 'Snacks Sodium', type: 'number', unit: 'mg', min: 0, step: '25' }
     ],
     compute: (v) => {
-      const t = v.meals * v.sodiumPerMeal + v.snacks; const l = 2300; const p = (t / l * 100).toFixed(0); return { result: t, label: 'Total Sodium', unit: 'mg', steps: [{ label: 'Meals', value: v.meals + ' x ' + v.sodiumPerMeal + ' mg' }, { label: 'Snacks', value: v.snacks + ' mg' }, { label: 'Total', value: t.toFixed(0) + ' mg (' + p + '% DV)' }, t > l ? { label: 'Over limit', value: 'Reduce by ' + (t - l).toFixed(0) + ' mg' } : { label: 'Within limit', value: (l - t).toFixed(0) + ' mg remaining' }] }
+      const t = v.meals * v.sodiumPerMeal + v.snacks; const l = 2300; const p = (t / l * 100).toFixed(0); return { result: t, label: 'Total Sodium', unit: 'mg', steps: [{ label: 'Meals', value: v.meals + ' x ' + v.sodiumPerMeal + ' mg' }, { label: 'Snacks', value: v.snacks + ' mg' }, { label: 'Total', value: t.toFixed(0) + ' mg (' + p + '% DV)' }, t > l ? { label: 'Over limit', value: 'Reduce by ' + (t - l).toFixed(0) + ' mg' } : { label: 'Within limit', value: (l - t).toFixed(0) + ' mg remaining' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Track daily sodium against the 2,300 mg limit. High sodium is linked to hypertension and heart disease.',
     example: { label: '3 meals x 600mg + 200mg snacks', value: '2,000 mg (87% DV)' }

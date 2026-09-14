@@ -12,10 +12,12 @@ import {
   MoreHorizontal,
   RefreshCw,
   Sliders,
+  History,
 } from 'lucide-react'
 
 interface ActionToolbarProps {
   onReset?: () => void
+  onReload?: () => void
   onUnitChange?: (unit: string) => void
   unitOptions?: { value: string; label: string }[]
   unitSystem?: string
@@ -49,6 +51,7 @@ const accentBtn = `${btnBase} border-primary bg-primary text-white hover:bg-prim
 
 export function ActionToolbar({
   onReset,
+  onReload,
   onUnitChange,
   unitOptions,
   unitSystem,
@@ -118,6 +121,14 @@ export function ActionToolbar({
           <span className="hidden sm:inline">
             {useSlider ? 'Sliders On' : 'Sliders'}
           </span>
+        </button>
+      )}
+
+      {/* Reload (restore last saved) */}
+      {onReload && (
+        <button onClick={onReload} className={ghostBtn} aria-label="Reload last saved values">
+          <History className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+          <span className="hidden sm:inline">Reload</span>
         </button>
       )}
 
@@ -199,8 +210,22 @@ export function ActionToolbar({
           <span>More</span>
         </button>
 
-        {dropdownOpen && (
-          <div className="absolute bottom-full right-0 mb-2 z-50 flex flex-col gap-1 min-w-[160px] rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 shadow-lg" role="menu">
+          {dropdownOpen && (
+            <div className="absolute bottom-full right-0 mb-2 z-50 flex flex-col gap-1 min-w-[160px] rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 shadow-lg" role="menu">
+            {onReload && (
+              <button
+                onClick={() => {
+                  onReload()
+                  setDropdownOpen(false)
+                }}
+                className={ghostBtn}
+                aria-label="Reload last saved values"
+                role="menuitem"
+              >
+                <History className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                Reload
+              </button>
+            )}
             {onExport && (
               <button
                 onClick={() => {

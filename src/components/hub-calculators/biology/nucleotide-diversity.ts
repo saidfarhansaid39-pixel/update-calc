@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'p = diff / length', value: `${piPerSite.toFixed(6)}` },
         { label: 'p × 1000', value: `${(piPerSite * 1000).toFixed(2)} per kb` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Nucleotide diversity (p) is the average number of nucleotide differences per site between two randomly chosen sequences in a population. It is the most commonly used measure of genetic diversity.',
   formula: 'p = S(differences between all pairs) / (number of pairs × sequence length)',

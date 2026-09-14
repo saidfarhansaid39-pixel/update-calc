@@ -15,6 +15,11 @@ const calcDef: CalcDef = {
       { label: 'Goal time', value: v.hours+'h '+v.minutes+'m' },
       { label: 'Pace per km', value: pMin+':'+pSec.toString().padStart(2,'0') },
       { label: '5k split', value: (pace*5).toFixed(0)+' min' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Plan your marathon pacing strategy for 42.195 km. Even or negative splits are optimal.', formula: 'Pace = goal time (min) / 42.195', interpretation: 'Most runners benefit from conservative early pacing and finishing strong.'
 }

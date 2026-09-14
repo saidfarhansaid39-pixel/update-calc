@@ -351,6 +351,48 @@ const calcDefs: Record<string, CalcDef> = {
 
 interface Props { calculator: { slug: string; title: string; description: string; tier: string; category: string; hubSlug: string; hubName: string; keywords: string[]; dataDependent?: boolean; dataRefreshCadence?: string } }
 
+function getEducationInterpretation(slug: string, val?: number | string): React.ReactNode {
+  const nval = typeof val === 'string' ? parseFloat(val) : val
+  if (slug.includes('gpa') || slug.includes('grade') && !slug.includes('improvement') && !slug.includes('grade-required') && !slug.includes('required') && !slug.includes('extra-credit') && !slug.includes('midterm') && !slug.includes('curve') && !slug.includes('improvement') && !slug.includes('participation') && !slug.includes('essay') && !slug.includes('presentation') && !slug.includes('lab') && !slug.includes('quiz') && !slug.includes('assignment') && !slug.includes('pass-fail') && !slug.includes('reading-level') && !slug.includes('dolch') && !slug.includes('class-rank') && !slug.includes('reading') && !slug.includes('typing') && !slug.includes('spelling') && !slug.includes('vocabulary')) {
+    const gpa = nval || 0
+    const level = gpa >= 3.7 ? 'excellent' : gpa >= 3.0 ? 'good' : gpa >= 2.0 ? 'average' : 'below average'
+    return <div className={`text-xs font-medium mt-1 ${level === 'excellent' || level === 'good' ? 'text-emerald-600' : level === 'average' ? 'text-blue-600' : 'text-amber-600'}`}>{gpa.toFixed(2)} GPA — {level}. A 4.0 is a perfect A average.</div>
+  }
+  if (slug.includes('final-grade') || slug.includes('final-grade-calc')) {
+    const needed = nval || 0
+    return <div className={`text-xs font-medium mt-1 ${needed <= 100 ? 'text-emerald-600' : needed <= 120 ? 'text-amber-600' : 'text-red-600'}`}>{needed.toFixed(1)}% needed{needed > 100 ? ' — target may be unreachable' : ' — achievable goal'}.</div>
+  }
+  if (slug.includes('sat-score') || slug.includes('sat-score-calculator')) {
+    const score = nval || 0
+    const level = score >= 1400 ? 'competitive' : score >= 1200 ? 'good' : score >= 1000 ? 'average' : 'below average'
+    return <div className={`text-xs font-medium mt-1 ${level === 'competitive' ? 'text-emerald-600' : level === 'good' ? 'text-blue-600' : 'text-amber-600'}`}>SAT {score}/1600 — {level}. National avg: ~1050.</div>
+  }
+  if (slug.includes('act-score')) {
+    const score = nval || 0
+    const level = score >= 30 ? 'competitive' : score >= 24 ? 'good' : score >= 20 ? 'average' : 'below average'
+    return <div className={`text-xs font-medium mt-1 ${level === 'competitive' ? 'text-emerald-600' : level === 'good' ? 'text-blue-600' : 'text-amber-600'}`}>ACT {score.toFixed(1)}/36 — {level}. National avg: ~20.8.</div>
+  }
+  if (slug.includes('attendance')) {
+    const rate = nval || 0
+    return <div className={`text-xs font-medium mt-1 ${rate >= 95 ? 'text-emerald-600' : rate >= 90 ? 'text-amber-600' : 'text-red-600'}`}>{rate.toFixed(1)}% attendance — {rate >= 95 ? 'Excellent' : rate >= 90 ? 'Satisfactory' : 'Below 90% — risk of chronic absenteeism'}.</div>
+  }
+  if (slug.includes('reading-speed')) {
+    const wpm = nval || 0
+    const level = wpm >= 400 ? 'speed reader' : wpm >= 300 ? 'above average' : wpm >= 200 ? 'average' : 'below average'
+    return <div className={`text-xs font-medium mt-1 ${level === 'speed reader' ? 'text-emerald-600' : level === 'above average' ? 'text-blue-600' : level === 'average' ? 'text-gray-600' : 'text-amber-600'}`}>{wpm.toFixed(0)} WPM — {level}. Avg: 200-300 WPM.</div>
+  }
+  if (slug.includes('typing-speed')) {
+    const wpm = nval || 0
+    const level = wpm >= 60 ? 'professional' : wpm >= 45 ? 'above average' : wpm >= 35 ? 'average' : 'needs practice'
+    return <div className={`text-xs font-medium mt-1 ${level === 'professional' ? 'text-emerald-600' : level === 'above average' ? 'text-blue-600' : level === 'average' ? 'text-gray-600' : 'text-amber-600'}`}>{wpm.toFixed(0)} WPM — {level}. Avg: 35-45 WPM.</div>
+  }
+  if (slug.includes('study-time') || slug.includes('homework-time')) {
+    const hrs = nval || 0
+    return <div className="text-xs text-blue-600 font-medium mt-1">{hrs.toFixed(1)} hours — Include breaks every 25-50 min for focus.</div>
+  }
+  return null
+}
+
 function FallbackEducation({ calculator }: Props) {
   return (
     <div className="text-center py-12 px-4">
@@ -399,6 +441,7 @@ export function GenericEducationCalculator({ calculator }: Props) {
         <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
           <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
           <p className="text-3xl font-bold text-[#06b6d4]">{displayVal} {res.unit}</p>
+          {getEducationInterpretation(calculator.slug, res.result)}
         </div>
         {res.steps.length > 0 && (
           <div className="border-t border-gray-200 dark:border-gray-700 pt-3 text-xs text-gray-500 space-y-1.5 text-left">

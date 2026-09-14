@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Additional', value: `${extra > 0 ? extra + ' min extra' : 'none'}` },
         { label: 'Total oven time', value: `~${mins.toFixed(0)} min` },
         { label: 'Rest time', value: `${rest} min before carving` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Calculate oven roasting times based on food weight and type. Always rest meat before carving — this allows juices to redistribute for a more tender result.',
     example: { label: '2kg chicken', value: '~110 min oven + 10 min rest' }

@@ -1,13 +1,12 @@
-'use client';
-
-import { Link } from '@/lib/navigation';
-import { Calculator } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { Link } from '@/lib/navigation'
+import { Calculator } from 'lucide-react'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { LocaleSwitcher } from '@/components/LocaleSwitcher'
 
-export function Footer() {
-  const t = useTranslations('footer')
-  const s = useTranslations('seo')
+export async function Footer() {
+  const locale = await getLocale()
+  const t = await getTranslations('footer')
+  const s = await getTranslations('seo')
 
   const sections = [
     {
@@ -29,6 +28,7 @@ export function Footer() {
         { label: t('biology'), href: '/biology-calculators' },
         { label: t('ecology'), href: '/ecology-calculators' },
         { label: t('sports'), href: '/sports-calculators' },
+        { label: 'All Calculators (A-Z)', href: '/a-z-index' },
       ],
     },
     {
@@ -48,23 +48,25 @@ export function Footer() {
         { label: s('privacy'), href: '/privacy' },
         { label: s('terms'), href: '/terms' },
         { label: s('contact'), href: '/contact' },
+        { label: s('editorialPolicy'), href: '/editorial-policy' },
+        { label: s('press'), href: '/press' },
+        { label: 'Suggest a Calculator', href: '/suggest-calculator' },
       ],
     },
-  ];
+  ]
 
   return (
     <footer className="w-full border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
-          {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#1a3a8a] to-[#06b6d4] flex items-center justify-center">
                 <Calculator className="w-3.5 h-3.5 text-white" />
               </div>
               <span className="text-sm font-bold">
-                <span className="text-gray-900 dark:text-white">All</span>
-                <span className="text-[#1a3a8a]">Calculators</span>
+                <span className="text-gray-900 dark:text-white">Calcu</span>
+                <span className="text-[#06b6d4]">lat</span>
               </span>
             </Link>
             <p className="text-sm text-gray-500 dark:text-gray-300 mb-4 max-w-xs">
@@ -106,5 +108,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

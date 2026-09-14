@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Avg peptide length', value: `${avgLen.toFixed(1)} aa` },
         { label: 'Avg peptide mass', value: `${(avgLen * 110).toFixed(0)} Da` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Trypsin specifically cleaves at the C-terminal side of lysine (K) and arginine (R). Estimate digestion products for proteomics sample preparation and mass spec analysis.',
   formula: '# peptides ˜ n(Lys+Arg) + 1 | Avg length = N / (n(K+R) + 1) | Trypsin misses at K-P and R-P bonds',

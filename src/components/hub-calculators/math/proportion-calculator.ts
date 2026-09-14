@@ -10,11 +10,20 @@ const calcDef: CalcDef = {
       const a = n(v.a), b = n(v.b), c = n(v.c)
       if (b === 0) return { result: 'Division by zero', label: 'Error' }
       const d = (b * c) / a
-      return { result: d.toFixed(4), label: 'Unknown (d)', steps: [step('Proportion:', '' + a + '/' + b + ' = ' + c + '/d'), step('Cross-multiply:', '' + a + ' x d = ' + b + ' x ' + c), step('d:', '(' + b + ' x ' + c + ') / ' + a + ' = ' + d.toFixed(4))] }
+      return { result: d.toFixed(4), label: 'Unknown (d)', steps: [step('Proportion:', '' + a + '/' + b + ' = ' + c + '/d'), step('Cross-multiply:', '' + a + ' x d = ' + b + ' x ' + c), step('d:', '(' + b + ' x ' + c + ') / ' + a + ' = ' + d.toFixed(4))],
+    extras: [
+      { label: "How It Works", value: "Simple percentage-based calculation applied to your input values." },
+      { label: "Common Use Case", value: "Used in shopping, budgeting, and everyday financial decisions." },
+      { label: "Input Requirements", value: "All monetary values should be in the same currency." },
+      { label: "Accuracy Note", value: "Results rounded to 2 decimal places for standard currency format." }
+    ] }
     },
     formula: 'a/b = c/d  ->  d = bc/a',
     description: 'Solve a proportion a/b = c/d for the unknown value d.',
-    interpretation: 'The value of d that makes the proportion true.'
+    interpretation: 'The value of d that makes the proportion true.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

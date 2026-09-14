@@ -6,17 +6,17 @@
 
 @layer base {
   :root {
-    --brand-50: #d9ed92;
-    --brand-100: #d9ed92;
-    --brand-200: #b5e48c;
-    --brand-300: #99d98c;
-    --brand-400: #76c893;
-    --brand-500: #52b69a;
-    --brand-600: #34a0a4;
-    --brand-700: #168aad;
-    --brand-800: #1a759f;
-    --brand-900: #1e6091;
-    --brand-950: #184e77;
+    --brand-50: #ecfeff;
+    --brand-100: #cffafe;
+    --brand-200: #a5f3fc;
+    --brand-300: #67e8f9;
+    --brand-400: #22d3ee;
+    --brand-500: #06b6d4;
+    --brand-600: #0891b2;
+    --brand-700: #0e7490;
+    --brand-800: #155e75;
+    --brand-900: #164e63;
+    --brand-950: #083344;
 
     --bg-primary: #ffffff;
     --bg-secondary: #f8fafc;
@@ -32,7 +32,7 @@
     --card-foreground: var(--text-primary);
     --popover: #ffffff;
     --popover-foreground: var(--text-primary);
-    --primary: #52b69a;
+    --primary: #06b6d4;
     --primary-foreground: #ffffff;
     --secondary: var(--bg-secondary);
     --secondary-foreground: var(--text-primary);
@@ -44,7 +44,7 @@
     --destructive-foreground: #ffffff;
     --border: var(--border-color);
     --input: var(--border-color);
-    --ring: #52b69a;
+    --ring: #06b6d4;
     --radius: 0.5rem;
   }
 
@@ -63,7 +63,7 @@
     --card-foreground: var(--text-primary);
     --popover: var(--bg-secondary);
     --popover-foreground: var(--text-primary);
-    --primary: #52b69a;
+    --primary: #06b6d4;
     --primary-foreground: #ffffff;
     --secondary: var(--bg-secondary);
     --secondary-foreground: var(--text-primary);
@@ -75,7 +75,7 @@
     --destructive-foreground: #ffffff;
     --border: var(--border-color);
     --input: var(--border-color);
-    --ring: #52b69a;
+    --ring: #06b6d4;
     --radius: 0.5rem;
   }
 
@@ -95,15 +95,19 @@
   }
 
   a {
-    @apply text-[#34a0a4] hover:text-[#168aad] transition-colors duration-200;
+    @apply text-[#06b6d4] hover:text-[#0891b2] transition-colors duration-200;
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-[#06b6d4] ring-offset-2;
+    @apply outline-none ring-2 ring-[#06b6d4] ring-offset-2 ring-offset-white;
+  }
+
+  .dark :focus-visible {
+    @apply ring-offset-gray-900;
   }
 
   ::selection {
-    @apply bg-[#52b69a]/20 text-[#1a759f];
+    @apply bg-[#06b6d4]/15 text-[#0e7490];
   }
 
   @keyframes shimmer {
@@ -143,7 +147,8 @@
   }
 
   .card-premium:hover {
-    @apply shadow-glow border-[#52b69a]/20;
+    @apply shadow-glow border-[#06b6d4]/20;
+    transform: translateY(-1px);
   }
 
   .card-premium-dark {
@@ -151,33 +156,34 @@
   }
 
   .gradient-brand {
-    @apply bg-gradient-to-br from-[#34a0a4] to-[#168aad];
+    @apply bg-gradient-to-br from-[#06b6d4] to-[#0e7490];
   }
 
   .gradient-brand-light {
-    @apply bg-gradient-to-br from-[#76c893] to-[#52b69a];
+    @apply bg-gradient-to-br from-[#22d3ee] to-[#06b6d4];
   }
 
   .gradient-brand-dark {
-    @apply bg-gradient-to-br from-[#1e6091] to-[#184e77];
+    @apply bg-gradient-to-br from-[#164e63] to-[#083344];
   }
 
   .gradient-surface {
-    @apply bg-gradient-to-br from-[#d9ed92] via-[#b5e48c] to-[#99d98c];
+    @apply bg-gradient-to-br from-[#ecfeff] via-[#cffafe] to-[#a5f3fc];
   }
 
   .btn-primary {
     @apply px-5 py-2.5 rounded-xl font-medium text-white transition-all duration-200;
-    background: linear-gradient(135deg, #34a0a4, #168aad);
+    background: linear-gradient(135deg, #06b6d4, #0e7490);
   }
 
   .btn-primary:hover {
-    background: linear-gradient(135deg, #168aad, #1a759f);
-    box-shadow: 0 4px 15px rgba(52, 160, 164, 0.3);
+    background: linear-gradient(135deg, #0e7490, #155e75);
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+    transform: translateY(-1px);
   }
 
   .btn-primary:active {
-    transform: scale(0.98);
+    transform: scale(0.97);
   }
 
   .btn-secondary {
@@ -188,12 +194,12 @@
   .input-premium {
     @apply w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-white text-gray-800;
     @apply transition-all duration-200;
-    @apply focus:outline-none focus:ring-2 focus:ring-[#52b69a]/30 focus:border-[#52b69a];
+    @apply focus:outline-none focus:ring-2 focus:ring-[#06b6d4]/20 focus:border-[#06b6d4];
   }
 
   .input-premium-dark {
     @apply bg-gray-800 border-gray-600 text-gray-100;
-    @apply focus:ring-[#52b69a]/40 focus:border-[#52b69a];
+    @apply focus:ring-[#06b6d4]/30 focus:border-[#06b6d4];
   }
 
   .glass-panel {
@@ -209,15 +215,15 @@
   }
 
   .tab-premium-active {
-    @apply bg-[#34a0a4] text-white shadow-md;
+    @apply bg-[#06b6d4] text-white shadow-md;
   }
 
   .tab-premium-inactive {
-    @apply bg-gray-100 text-gray-600 hover:bg-gray-200;
+    @apply bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-800;
   }
 
   .tab-premium-dark-active {
-    @apply bg-[#34a0a4] text-white;
+    @apply bg-[#06b6d4] text-white;
   }
 
   .tab-premium-dark-inactive {
@@ -230,11 +236,11 @@
 
   .result-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(22, 138, 173, 0.2);
+    box-shadow: 0 8px 25px rgba(6, 182, 212, 0.2);
   }
 
   .shimmer-bg {
-    background: linear-gradient(90deg, transparent, rgba(82, 182, 154, 0.08), transparent);
+    background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.06), transparent);
     background-size: 200% 100%;
     animation: shimmer 2s linear infinite;
   }
@@ -251,7 +257,7 @@
 
 html, body {
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 @layer utilities {
@@ -259,37 +265,79 @@ html, body {
     text-wrap: balance;
   }
 
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
   .touch-target {
     @apply min-h-[44px] min-w-[44px];
   }
 
+  .leading-relaxed {
+    line-height: var(--leading-relaxed);
+  }
+
+  .tracking-tight {
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .tracking-wide {
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .hover-lift {
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .hover-glow {
+    transition: box-shadow var(--transition-normal);
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+  }
+
+  .fade-in {
+    animation: fadeIn var(--transition-slow) ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   .bg-mesh-light {
     background-image:
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(82, 182, 154, 0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 100% 50%, rgba(22, 138, 173, 0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 0% 80%, rgba(52, 160, 164, 0.05) 0%, transparent 60%);
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(6, 182, 212, 0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 100% 50%, rgba(14, 116, 144, 0.04) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 0% 80%, rgba(8, 145, 178, 0.04) 0%, transparent 60%);
   }
 
   .bg-mesh-dark {
     background-image:
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(22, 138, 173, 0.15) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 100% 50%, rgba(30, 96, 145, 0.1) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 0% 80%, rgba(52, 160, 164, 0.08) 0%, transparent 60%);
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(6, 182, 212, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 100% 50%, rgba(14, 116, 144, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 0% 80%, rgba(8, 145, 178, 0.06) 0%, transparent 60%);
   }
 
   .bg-glow {
-    background: radial-gradient(ellipse at center, rgba(82, 182, 154, 0.06) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(6, 182, 212, 0.05) 0%, transparent 70%);
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, #34a0a4 0%, #168aad 50%, #1e6091 100%);
+    background: linear-gradient(135deg, #06b6d4 0%, #0e7490 50%, #164e63 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient-light {
-    background: linear-gradient(135deg, #76c893 0%, #52b69a 50%, #34a0a4 100%);
+    background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 50%, #0891b2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

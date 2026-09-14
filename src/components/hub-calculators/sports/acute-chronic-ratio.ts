@@ -29,7 +29,12 @@ const calcDef: CalcDef = {
         { label: 'Interpretation', value: risk },
         { label: 'Recommendation', value: acwr > 1.5 ? 'Reduce volume to prevent injury' : acwr > 0.8 ? 'Maintain current training' : 'Gradually increase load' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate the Acute:Chronic Workload Ratio (ACWR) to monitor training load balance. An ACWR between 0.8-1.3 is the optimal training zone; values above 1.5 significantly increase injury risk.'
 }

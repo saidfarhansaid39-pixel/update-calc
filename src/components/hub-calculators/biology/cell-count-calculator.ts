@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Dilution factor', value: `${dil}` },
         { label: 'Concentration', value: `${conc.toFixed(0)} cells/mL` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Cell counting determines cell concentration for culture seeding, experimental setup, and viability assessment. Typically performed with a hemocytometer.',
   formula: 'Cells/mL = Count × Dilution factor / Volume(mL)',

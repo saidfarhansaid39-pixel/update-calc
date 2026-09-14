@@ -10,11 +10,23 @@ const calcDef: CalcDef = {
       const r = n(v.a), h = n(v.b)
       const vol = (1 / 3) * Math.PI * r * r * h
       const slant = Math.sqrt(r * r + h * h)
-      return { result: vol, label: 'Volume', unit: 'units3', steps: [step('Volume:', 'V = 1/3 x pi x ' + r + '2 x ' + h + ' = ' + vol.toFixed(4)), step('Slant height:', 'l = sqrt(' + r + '2 + ' + h + '2) = ' + slant.toFixed(4))] }
+      return { result: vol, label: 'Volume', unit: 'units3', steps: [step('Volume:', 'V = 1/3 x pi x ' + r + '2 x ' + h + ' = ' + vol.toFixed(4)), step('Slant height:', 'l = sqrt(' + r + '2 + ' + h + '2) = ' + slant.toFixed(4))] ,
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ]}
     },
     formula: 'V = 1/3pir2h, l = sqrt(r2 + h2)',
     description: 'Calculate cone volume and slant height.',
-    interpretation: 'The volume of a cone and its slant height.'
+    interpretation: 'The volume of a cone and its slant height.',
+    presets: [
+      { label: 'Small', values: { a: '2' } },
+      { label: 'Medium', values: { a: '5' } },
+      { label: 'Large', values: { a: '10' } }
+    ]
 }
 
 export default calcDef

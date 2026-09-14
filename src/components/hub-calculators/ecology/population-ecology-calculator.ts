@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import type { CalcDef } from '../../../lib/generic-fallback'
+import { step } from '../../../lib/hub-helpers'
 
 const calcDef: CalcDef = {
   schema: z.object({
@@ -17,7 +18,14 @@ const calcDef: CalcDef = {
     { name: 'immig', label: 'Immigration (per 1000/yr)', type: 'number', min: 0, step: '0.1' },
     { name: 'emig', label: 'Emigration (per 1000/yr)', type: 'number', min: 0, step: '0.1' },
     { name: 'years', label: 'Time Period', type: 'number', unit: 'years', min: 1, step: '1' },
-  ],
+    ],
+  presets: [
+    { label: 'White-tailed deer (US)', values: { initial: '1000', birthRate: '35', deathRate: '25', years: '10' } },
+    { label: 'Endangered wolf', values: { initial: '50', birthRate: '20', deathRate: '15', immig: '5', emig: '2', years: '20' } },
+    { label: 'Invasive species', values: { initial: '100', birthRate: '80', deathRate: '30', years: '5' } },
+    { label: 'Human population (global)', values: { initial: '8000000000', birthRate: '18', deathRate: '7', years: '50' } },
+    { label: 'Sea otter recovery', values: { initial: '200', birthRate: '25', deathRate: '8', years: '15' } }
+    ],
   compute: (v) => {
     const r = (v.birthRate - v.deathRate + (v.immig || 0) - (v.emig || 0)) / 1000
     const final = v.initial * Math.exp(r * v.years)
@@ -34,7 +42,14 @@ const calcDef: CalcDef = {
         { label: 'Doubling time', value: doubling === Infinity ? 'N/A (declining)' : `${doubling.toFixed(1)} yr` },
         { label: 'Final pop (t={v.years})', value: `${final.toFixed(0)}` },
       ]
-}
+,
+    extras: [
+      { label: "Environmental Context", value: "Population growth rates determine species persistence, extinction risk, and the carrying capacity of ecosystems under environmental change." },
+      { label: "Measurement Method", value: "Census data, mark-recapture, or remote sensing. Vital rates estimated from longitudinal studies, life tables, or matrix models." },
+      { label: "Conservation Note", value: "Declining populations (r < 0) indicate extinction risk. Minimum viable population sizes typically range from 50 (short-term) to 500 (long-term)." },
+      { label: "Typical Ranges", value: "Mammal r: 0.01-0.5/yr. Human ~1.1%/yr. Endangered species often have r < 0.02/yr. Doubling time = 70/r (%) in years." },
+      { label: "Related Concepts", value: "Carrying capacity (K), logistic growth, Allee effect, source-sink dynamics, density dependence, metapopulation theory." }
+    ]}
   },
   description: 'Population ecology models demographic change from births, deaths, and migration. The growth rate r = (births - deaths + immigration - emigration) / population.',
   formula: 'r = (B - D + I - E) / N₀ | N(t) = N₀ × e^(rt) | Doubling = ln(2)/r',

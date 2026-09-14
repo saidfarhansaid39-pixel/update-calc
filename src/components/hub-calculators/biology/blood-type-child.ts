@@ -42,7 +42,12 @@ const calcDef: CalcDef = {
         ...Object.entries(aboCounts).map(([ph,c]) => ({ label: `Type ${ph}`, value: `${(c/total*100).toFixed(0)}%` })),
         { label: 'Rh prediction', value: rhNeg },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Predict possible blood types for a child based on parents\' ABO and Rh blood types. ABO and Rh are the two most clinically significant blood group systems.',
   formula: 'ABO: A/B are codominant, O is recessive | Rh: + (D antigen) is dominant over -',

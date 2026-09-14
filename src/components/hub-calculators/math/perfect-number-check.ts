@@ -11,11 +11,21 @@ const calcDef: CalcDef = {
       let sum = 0
       const divisors: number[] = []
       for (let i = 1; i < pn; i++) { if (pn % i === 0) { sum += i; divisors.push(i) } }
-      return { result: sum === pn ? 'Yes, perfect number' : 'Not a perfect number', label: 'Check', steps: [step('Number:', '' + pn), step('Proper divisors:', divisors.join(', ')), step('Sum:', '' + sum), step('Result:', '' + (sum === pn ? pn + ' = ' + sum + ' (perfect)' : pn + ' != ' + sum + ' (not perfect)'))] }
+      return { result: sum === pn ? 'Yes, perfect number' : 'Not a perfect number', label: 'Check', steps: [step('Number:', '' + pn), step('Proper divisors:', divisors.join(', ')), step('Sum:', '' + sum), step('Result:', '' + (sum === pn ? pn + ' = ' + sum + ' (perfect)' : pn + ' != ' + sum + ' (not perfect)'))] ,
+    extras: [
+      { label: "Mathematical Significance", value: "Fundamental concept in number theory and discrete mathematics." },
+      { label: "Computational Note", value: "Large inputs may require optimized algorithms for performance." },
+      { label: "Historical Context", value: "Studied by mathematicians across centuries for its unique properties." },
+      { label: "Related Sequences", value: "Related to other integer sequences and special numbers." },
+      { label: "Pattern Recognition", value: "Observe recurring patterns and relationships between values." }
+    ]}
     },
     formula: 'A perfect number equals the sum of its proper divisors.',
     description: 'Check if a positive integer is a perfect number.',
-    interpretation: 'A perfect number equals the sum of its proper divisors (excluding itself).'
+    interpretation: 'A perfect number equals the sum of its proper divisors (excluding itself).',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

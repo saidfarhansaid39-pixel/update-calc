@@ -26,7 +26,12 @@ const calcDef: CalcDef = {
         { label: 'Error rate', value: `${(errorRate * 100).toExponential(2)}%` },
         { label: 'Expected errors', value: `${(totalBases * errorRate).toFixed(0)} bases` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'FASTQ statistics summarize sequencing data quality: total bases, per-base quality (Q-scores), and expected error rate. Q = 30 (99.9% accuracy) is the standard for reliable base calling.',
   formula: 'Total bases = reads × read length | Error rate = 10^(-Q/10) | Q30 = 99.9% accuracy, Q20 = 99% accuracy | Illumina: = 80% bases at Q30 is typical',

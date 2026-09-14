@@ -18,7 +18,12 @@ const calcDef: CalcDef = {
         { label: 'Salt (1.2%)', value: `${salt.toFixed(1)} g` },
         { label: 'Yeast (0.6%)', value: `${yeast.toFixed(1)} g` },
         { label: 'Total dough', value: `${totalDough} g` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Perfect pizza dough recipe using baker\'s percentages. Scale for any number and size of pizzas. Classic Neapolitan: 60% flour, 36% water, 1.2% salt, 0.6% yeast.',
     example: { label: '2 × 12" pizzas', value: '600g total dough' }

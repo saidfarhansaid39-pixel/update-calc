@@ -32,7 +32,12 @@ const calcDef: CalcDef = {
         { label: 'Activity multiplier', value: `${v.activity}` },
         { label: 'TDEE', value: `${tdee.toFixed(0)} cal/day` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Total Daily Energy Expenditure (TDEE) estimates total calories burned daily including activity. Use this to plan calorie intake for weight maintenance, loss, or gain.',
   formula: 'TDEE = BMR × Activity Factor | BMR via Mifflin-St Jeor',

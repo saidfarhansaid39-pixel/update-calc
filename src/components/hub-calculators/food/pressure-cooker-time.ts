@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'weight', label: 'Weight', type: 'number', unit: 'g', min: 100, step: '50' }
     ],
     compute: (v) => {
-      const bm = parseInt(v.food); const adj = Math.round(bm + (v.weight - 500) / 500 * 5); const r = Math.max(bm, adj); return { result: r, label: 'Pressure Cook Time', unit: 'min', steps: [{ label: 'Food', value: bm + ' min base' }, { label: 'Weight', value: v.weight + ' g' }, { label: 'Adjusted', value: r + ' min HIGH' }, { label: 'Release', value: 'Natural for meats/beans, Quick for veg/rice' }] }
+      const bm = parseInt(v.food); const adj = Math.round(bm + (v.weight - 500) / 500 * 5); const r = Math.max(bm, adj); return { result: r, label: 'Pressure Cook Time', unit: 'min', steps: [{ label: 'Food', value: bm + ' min base' }, { label: 'Weight', value: v.weight + ' g' }, { label: 'Adjusted', value: r + ' min HIGH' }, { label: 'Release', value: 'Natural for meats/beans, Quick for veg/rice' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Instant Pot/pressure cooker times. Natural release for meats; quick release for vegetables.',
     example: { label: '1kg beef stew', value: '~27 min high pressure' }

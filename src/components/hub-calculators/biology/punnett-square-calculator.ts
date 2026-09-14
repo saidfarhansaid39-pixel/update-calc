@@ -41,7 +41,12 @@ const calcDef: CalcDef = {
         { label: 'Dominant phenotype', value: `${dom.toFixed(0)}%` },
         { label: 'Recessive phenotype', value: `${rec.toFixed(0)}%` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'A Punnett square predicts the genotypic and phenotypic ratios of offspring from a genetic cross between two parents with known genotypes.',
   formula: 'For Aa × Aa: 1 AA : 2 Aa : 1 aa = 3:1 phenotypic ratio',

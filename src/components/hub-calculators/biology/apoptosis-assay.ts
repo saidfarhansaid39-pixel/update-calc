@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Early vs late apoptosis', value: 'Add PI staining: Annexin V+/PI- = early, Annexin V+/PI+ = late/necrotic' },
         { label: 'Fold over background', value: `Compare to untreated control to determine apoptosis induction` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Annexin V binding detects phosphatidylserine externalization, an early hallmark of apoptosis. Combined with propidium iodide (PI), it discriminates early apoptotic, late apoptotic, and necrotic cells.',
   formula: '% Apoptotic = (Annexin V+ cells / total cells) × 100% | Early apoptosis: Annexin V+/PI- | Late apoptosis/necrosis: Annexin V+/PI+',

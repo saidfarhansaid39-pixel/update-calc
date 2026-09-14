@@ -1,91 +1,97 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Input, Button, FormGroup, FormPanel } from '@/components/CalculatorFormElements';
 import { CompactTable, CompactTableHeader, CompactTableBody, CompactTh, CompactTr, CompactTd } from '@/components/TableElements';
 import { calculateBMI, getBMICategory } from '@/lib/calculators/healthEngine';
 
+function computeResults(tab: 'us' | 'metric' | 'other', usInputs: any, metricInputs: any) {
+  let weightKg = 0;
+  let heightM = 0;
+
+  if (tab === 'us') {
+    weightKg = usInputs.weightLbs * 0.453592;
+    heightM = ((usInputs.heightFt * 12) + usInputs.heightIn) * 0.0254;
+  } else {
+    weightKg = metricInputs.weightKg;
+    heightM = metricInputs.heightCm / 100;
+  }
+
+  const bmi = calculateBMI(weightKg, heightM);
+  const category = getBMICategory(bmi);
+
+  // Healthy weight range (BMI 18.5 - 25)
+  const minWeightKg = 18.5 * (heightM * heightM);
+  const maxWeightKg = 25 * (heightM * heightM);
+
+  const minWeightStr = tab === 'us' ? `${(minWeightKg / 0.453592).toFixed(1)} lbs` : `${minWeightKg.toFixed(1)} kgs`;
+  const maxWeightStr = tab === 'us' ? `${(maxWeightKg / 0.453592).toFixed(1)} lbs` : `${maxWeightKg.toFixed(1)} kgs`;
+
+  return {
+    bmi: bmi.toFixed(1),
+    category,
+    healthyRange: `${minWeightStr} - ${maxWeightStr}`,
+    weightKg,
+    heightM
+  };
+}
+
+function BMIGaugeBar({ bmi }: { bmi: number }) {
+  // Range roughly 15 to 40
+  let pos = ((bmi - 15) / (40 - 15)) * 100;
+  if (pos < 0) pos = 0;
+  if (pos > 100) pos = 100;
+
+  return (
+    <div className="w-full max-w-[400px] my-6 text-[11px] text-center">
+      <div className="flex h-[20px] w-full border border-gray-400 mb-1">
+        <div className="bg-[#bc2020] w-[14%]" title="Severe Thinness"></div>
+        <div className="bg-[#d38888] w-[14%]" title="Moderate Thinness"></div>
+        <div className="bg-[#ffe400] w-[14%]" title="Mild Thinness"></div>
+        <div className="bg-[#008137] w-[26%]" title="Normal"></div>
+        <div className="bg-[#ffe400] w-[16%]" title="Overweight"></div>
+        <div className="bg-[#d38888] w-[8%]" title="Obese Class I"></div>
+        <div className="bg-[#bc2020] w-[8%]" title="Obese Class II"></div>
+      </div>
+      <div className="relative w-full h-[15px] border-t border-[#cccccc] mt-2">
+        <div className="absolute top-[-18px] text-black font-bold flex flex-col items-center" style={{ left: `calc(${pos}% - 10px)` }}>
+          ▼<br/>{bmi}
+        </div>
+        <div className="absolute left-0 top-1 text-gray-500">15</div>
+        <div className="absolute left-[14%] top-1 text-gray-500">16</div>
+        <div className="absolute left-[28%] top-1 text-gray-500">18.5</div>
+        <div className="absolute left-[54%] top-1 text-gray-500">25</div>
+        <div className="absolute left-[70%] top-1 text-gray-500">30</div>
+        <div className="absolute left-[86%] top-1 text-gray-500">35</div>
+        <div className="absolute right-0 top-1 text-gray-500">40</div>
+      </div>
+    </div>
+  );
+}
+
 export function BMIForm() {
   const [activeTab, setActiveTab] = useState<'us' | 'metric' | 'other'>('us');
-  
+
   const [usInputs, setUsInputs] = useState({ age: 25, heightFt: 5, heightIn: 10, weightLbs: 160 });
   const [metricInputs, setMetricInputs] = useState({ age: 25, heightCm: 178, weightKg: 72 });
-  const [results, setResults] = useState<any>(null);
+  const [results, setResults] = useState<any>(() => computeResults('us', usInputs, metricInputs));
 
   const handleCalculate = () => {
-    let weightKg = 0;
-    let heightM = 0;
-
-    if (activeTab === 'us') {
-      weightKg = usInputs.weightLbs * 0.453592;
-      heightM = ((usInputs.heightFt * 12) + usInputs.heightIn) * 0.0254;
-    } else {
-      weightKg = metricInputs.weightKg;
-      heightM = metricInputs.heightCm / 100;
-    }
-
-    const bmi = calculateBMI(weightKg, heightM);
-    const category = getBMICategory(bmi);
-    
-    // Healthy weight range (BMI 18.5 - 25)
-    const minWeightKg = 18.5 * (heightM * heightM);
-    const maxWeightKg = 25 * (heightM * heightM);
-    
-    const minWeightStr = activeTab === 'us' ? `${(minWeightKg / 0.453592).toFixed(1)} lbs` : `${minWeightKg.toFixed(1)} kgs`;
-    const maxWeightStr = activeTab === 'us' ? `${(maxWeightKg / 0.453592).toFixed(1)} lbs` : `${maxWeightKg.toFixed(1)} kgs`;
-
-    setResults({
-      bmi: bmi.toFixed(1),
-      category,
-      healthyRange: `${minWeightStr} - ${maxWeightStr}`,
-      weightKg,
-      heightM
-    });
+    setResults(computeResults(activeTab, usInputs, metricInputs));
   };
 
-  useEffect(() => {
-    handleCalculate();
-  }, [activeTab]);
-
-  const BMIGaugeBar = ({ bmi }: { bmi: number }) => {
-    // Range roughly 15 to 40
-    let pos = ((bmi - 15) / (40 - 15)) * 100;
-    if (pos < 0) pos = 0;
-    if (pos > 100) pos = 100;
-
-    return (
-      <div className="w-full max-w-[400px] my-6 text-[11px] text-center">
-        <div className="flex h-[20px] w-full border border-gray-400 mb-1">
-          <div className="bg-[#bc2020] w-[14%]" title="Severe Thinness"></div>
-          <div className="bg-[#d38888] w-[14%]" title="Moderate Thinness"></div>
-          <div className="bg-[#ffe400] w-[14%]" title="Mild Thinness"></div>
-          <div className="bg-[#008137] w-[26%]" title="Normal"></div>
-          <div className="bg-[#ffe400] w-[16%]" title="Overweight"></div>
-          <div className="bg-[#d38888] w-[8%]" title="Obese Class I"></div>
-          <div className="bg-[#bc2020] w-[8%]" title="Obese Class II"></div>
-        </div>
-        <div className="relative w-full h-[15px] border-t border-[#cccccc] mt-2">
-          <div className="absolute top-[-18px] text-black font-bold flex flex-col items-center" style={{ left: `calc(${pos}% - 10px)` }}>
-            ▼<br/>{bmi}
-          </div>
-          <div className="absolute left-0 top-1 text-gray-500">15</div>
-          <div className="absolute left-[14%] top-1 text-gray-500">16</div>
-          <div className="absolute left-[28%] top-1 text-gray-500">18.5</div>
-          <div className="absolute left-[54%] top-1 text-gray-500">25</div>
-          <div className="absolute left-[70%] top-1 text-gray-500">30</div>
-          <div className="absolute left-[86%] top-1 text-gray-500">35</div>
-          <div className="absolute right-0 top-1 text-gray-500">40</div>
-        </div>
-      </div>
-    );
+const switchTab = (tab: 'us' | 'metric' | 'other') => {
+    setActiveTab(tab);
+    setResults(computeResults(tab, usInputs, metricInputs));
   };
 
+  const handleClear = () => { setResults(null); setUsInputs({ age: 25, heightFt: 5, heightIn: 10, weightLbs: 160 }); setMetricInputs({ age: 25, heightCm: 178, weightKg: 72 }); };
   return (
     <div className="flex flex-col gap-6 font-sans text-[13px] text-[#333333]">
       <div className="flex bg-[#3366aa] text-white w-full max-w-[340px]">
-        <div className={`flex-1 text-center py-2 font-bold cursor-pointer border border-[#3366aa] ${activeTab === 'us' ? 'bg-[#f0f0f0] text-[#333333] border-b-transparent' : 'hover:bg-[#4477bb]'}`} onClick={() => setActiveTab('us')}>US Units</div>
-        <div className={`flex-1 text-center py-2 font-bold cursor-pointer border border-[#3366aa] ${activeTab === 'metric' ? 'bg-[#f0f0f0] text-[#333333] border-b-transparent' : 'hover:bg-[#4477bb]'}`} onClick={() => setActiveTab('metric')}>Metric Units</div>
-        <div className={`flex-1 text-center py-2 font-bold cursor-pointer border border-[#3366aa] ${activeTab === 'other' ? 'bg-[#f0f0f0] text-[#333333] border-b-transparent' : 'hover:bg-[#4477bb]'}`} onClick={() => setActiveTab('other')}>Other Units</div>
+<div className={`flex-1 text-center py-2 font-bold cursor-pointer border border-[#3366aa] ${activeTab === 'us' ? 'bg-[#f0f0f0] text-[#333333] border-b-transparent' : 'hover:bg-[#4477bb]'}`} onClick={() => switchTab('us')}>US Units</div>
+        <div className={`flex-1 text-center py-2 font-bold cursor-pointer border border-[#3366aa] ${activeTab === 'metric' ? 'bg-[#f0f0f0] text-[#333333] border-b-transparent' : 'hover:bg-[#4477bb]'}`} onClick={() => switchTab('metric')}>Metric Units</div>
+        <div className={`flex-1 text-center py-2 font-bold cursor-pointer border border-[#3366aa] ${activeTab === 'other' ? 'bg-[#f0f0f0] text-[#333333] border-b-transparent' : 'hover:bg-[#4477bb]'}`} onClick={() => switchTab('other')}>Other Units</div>
       </div>
       
       <div className="-mt-6 w-full max-w-[340px]">
@@ -128,7 +134,7 @@ export function BMIForm() {
 
           <div className="pl-[140px] flex gap-2 mt-4">
             <Button onClick={handleCalculate}>Calculate</Button>
-            <Button variant="secondary" onClick={() => {}}>Clear</Button>
+            <Button variant="secondary" onClick={handleClear}>Clear</Button>
           </div>
         </FormPanel>
       </div>
@@ -148,7 +154,7 @@ export function BMIForm() {
           <BMIGaugeBar bmi={parseFloat(results.bmi)} />
 
           <h2 className="text-[18px] font-bold text-primary-dark mt-8 mb-2">BMI table for adults</h2>
-          <p className="mb-2">This is the World Health Organization's (WHO) recommended body weight based on BMI values for adults. It is used for both men and women, age 20 or older.</p>
+          <p className="mb-2">This is the World Health Organization’s (WHO) recommended body weight based on BMI values for adults. It is used for both men and women, age 20 or older.</p>
           
           <div className="max-w-[400px]">
             <CompactTable>

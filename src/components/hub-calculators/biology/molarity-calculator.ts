@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Moles', value: `${(v.mass / v.mw).toFixed(4)} mol` },
         { label: 'Molarity', value: `${molarity.toFixed(4)} M` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Molarity is the concentration of a solution expressed as moles of solute per liter. It is the most common concentration unit in laboratory biology and chemistry.',
   formula: 'Molarity (M) = Mass(g) / (MW × Volume(L))',

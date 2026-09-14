@@ -16,6 +16,11 @@ const calcDef: CalcDef = {
     return { result: v.time, label: '5-10-5 Shuttle', unit: 's', steps: [
       { label: 'Time', value: v.time+' s' }, { label: 'Rating', value: r },
       { label: 'Standard', value: isMale ? 'Exc:<4.3s, Good:4.3-4.5s, Avg:4.5-4.7s' : 'Exc:<4.5s, Good:4.5-4.7s, Avg:4.7-5.0s' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'The 5-10-5 Pro Agility Test measures change-of-direction speed. Used by NFL Combine and professional sports for lateral quickness assessment.', formula: 'Time to complete 5-10-5 yard shuttle course', interpretation: 'Lower times indicate better lateral quickness and change-of-direction ability. Essential for football, basketball, and soccer.'
 }

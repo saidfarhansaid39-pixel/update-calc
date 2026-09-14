@@ -10,7 +10,12 @@ const calcDef: CalcDef = {
     { name:'hearingDiff', label:'Hearing Difficulty (0-4)', type:'number', min:0, max:4, step:'1' },
     { name:'distress', label:'Emotional Distress (0-4)', type:'number', min:0, max:4, step:'1' }
   ],
-  compute: (v) => { const l=parseInt(v.loudness)||3; const d=parseInt(v.duration)||2; const s=parseInt(v.sleepDisturb)||0; const c=parseInt(v.concentration)||0; const h=parseInt(v.hearingDiff)||0; const e=parseInt(v.distress)||0; const score=l*2+d*3+s*3+c*2+h+3*e; let sev='Mild'; if(score>=46) sev='Catastrophic'; else if(score>=36) sev='Severe'; else if(score>=26) sev='Moderate'; else if(score>=16) sev='Mild-Moderate'; return { result:score, label:'Tinnitus Severity Index', unit:'/60', steps:[{ label:'Loudness', value:(l*2)+'/10' },{ label:'Duration', value:(d*3)+'/12' },{ label:'Sleep', value:(s*3)+'/12' },{ label:'Concentration', value:(c*2)+'/8' },{ label:'Hearing', value:h+'/4' },{ label:'Distress', value:(e*3)+'/12' },{ label:'Severity Level', value:sev }] } },
+  compute: (v) => { const l=parseInt(v.loudness)||3; const d=parseInt(v.duration)||2; const s=parseInt(v.sleepDisturb)||0; const c=parseInt(v.concentration)||0; const h=parseInt(v.hearingDiff)||0; const e=parseInt(v.distress)||0; const score=l*2+d*3+s*3+c*2+h+3*e; let sev='Mild'; if(score>=46) sev='Catastrophic'; else if(score>=36) sev='Severe'; else if(score>=26) sev='Moderate'; else if(score>=16) sev='Mild-Moderate'; return { result:score, label:'Tinnitus Severity Index', unit:'/60', steps:[{ label:'Loudness', value:(l*2)+'/10' },{ label:'Duration', value:(d*3)+'/12' },{ label:'Sleep', value:(s*3)+'/12' },{ label:'Concentration', value:(c*2)+'/8' },{ label:'Hearing', value:h+'/4' },{ label:'Distress', value:(e*3)+'/12' },{ label:'Severity Level', value:sev }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'Tinnitus Severity Index assessing loudness, duration, sleep, concentration, hearing, and distress.',
   formula: 'Weighted score = loudness×2 + duration×3 + sleep×3 + concentration×2 + hearing + distress×3. Range 0-60.',
   interpretation: '0-15 Mild, 16-25 Mild-Moderate, 26-35 Moderate, 36-45 Severe, 46-60 Catastrophic tinnitus impact.'

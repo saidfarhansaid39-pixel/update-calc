@@ -42,7 +42,12 @@ const calcDef: CalcDef = {
         { label: 'Estimated total', value: info.total },
         { label: 'Thickness adjustment', value: extraThick },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Tissue processing prepares fixed tissue for paraffin embedding through sequential dehydration, clearing, and paraffin infiltration. Processing times depend on tissue type, size, and density.',
   formula: 'Processing = Fixation ? Dehydration (70% ? 95% ? 100% ethanol) ? Clearing (xylene) ? Infiltration (molten paraffin, 58-62°C) | Total time: 6-16h for most tissues',

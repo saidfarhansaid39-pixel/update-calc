@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const a = n(v.a), b = Math.round(n(v.b))
       const factor = Math.pow(10, b)
-      return { result: Math.round(a * factor) / factor, label: 'Rounded to ' + b + ' decimal places', steps: [step('Original:', '' + a), step('Rounding:', 'to ' + b + ' decimal places'), step('Result:', '' + (Math.round(a * factor) / factor).toFixed(b))] }
+      return { result: Math.round(a * factor) / factor, label: 'Rounded to ' + b + ' decimal places', steps: [step('Original:', '' + a), step('Rounding:', 'to ' + b + ' decimal places'), step('Result:', '' + (Math.round(a * factor) / factor).toFixed(b))] ,
+    extras: [
+      { label: "Mathematical Significance", value: "Fundamental concept in number theory and discrete mathematics." },
+      { label: "Computational Note", value: "Large inputs may require optimized algorithms for performance." },
+      { label: "Historical Context", value: "Studied by mathematicians across centuries for its unique properties." },
+      { label: "Related Sequences", value: "Related to other integer sequences and special numbers." },
+      { label: "Pattern Recognition", value: "Observe recurring patterns and relationships between values." }
+    ]}
     },
     formula: 'Round to n decimal places',
     description: 'Round a number to a specified number of decimal places.',
-    interpretation: 'The number rounded to the given precision.'
+    interpretation: 'The number rounded to the given precision.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

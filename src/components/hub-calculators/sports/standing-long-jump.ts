@@ -13,6 +13,11 @@ const calcDef: CalcDef = {
       { label: 'Distance', value: v.distance+' cm ('+dM.toFixed(2)+' m)' },
       ...(v.weight ? [{ label: 'Est. power', value: power.toFixed(0)+' W' }] : []),
       { label: 'Rating', value: v.distance >= 250 ? 'Excellent' : v.distance >= 220 ? 'Good' : v.distance >= 190 ? 'Average' : 'Below Average' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Measure standing long jump distance for explosive lower body power assessment. Used in NFL Combine and fitness testing.', formula: 'Horizontal jump distance from standing start', interpretation: 'Longer jumps = greater lower body power. >250cm is outstanding; >220cm is good for active individuals.'
 }

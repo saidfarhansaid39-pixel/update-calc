@@ -10,6 +10,13 @@ const calcDef: CalcDef = {
     { name: 'agbBudgetStrictness', label: 'Spending Level', type: 'select', options: [{ label: 'Thrifty (lowest cost)', value: 'thrifty' }, { label: 'Moderate (balanced)', value: 'moderate' }, { label: 'Liberal (organic/premium)', value: 'liberal' }] },
     { name: 'agbDeliveryPct', label: 'Delivery/Grocery App (10% surcharge)', type: 'select', options: [{ label: 'Shop in-store (0%)', value: 'none' }, { label: 'Partial delivery (30% of orders)', value: 'partial' }, { label: 'Mostly delivery (70% of orders)', value: 'mostly' }] },
   ],
+  defaults: { agbHouseholdSize: '2', agbDietType: 'standard', agbMealsPerDay: '3', agbBudgetStrictness: 'moderate', agbDeliveryPct: 'none' },
+  presets: [
+    { label: 'Couple Meal Preppers', values: { agbHouseholdSize: '2', agbDietType: 'vegetarian', agbMealsPerDay: '3', agbBudgetStrictness: 'thrifty', agbDeliveryPct: 'none' } },
+    { label: 'Family of 4', values: { agbHouseholdSize: '4', agbDietType: 'standard', agbMealsPerDay: '3', agbBudgetStrictness: 'moderate', agbDeliveryPct: 'partial' } },
+    { label: 'Keto Single', values: { agbHouseholdSize: '1', agbDietType: 'keto', agbMealsPerDay: '2', agbBudgetStrictness: 'liberal', agbDeliveryPct: 'none' } },
+    { label: 'Vegan Family', values: { agbHouseholdSize: '3', agbDietType: 'vegan', agbMealsPerDay: '3', agbBudgetStrictness: 'moderate', agbDeliveryPct: 'mostly' } },
+  ],
   compute: (v) => {
     const dietFactors: Record<string, number> = { standard: 1, vegetarian: 0.9, vegan: 0.85, keto: 1.15, mediterranean: 1.05 }
     const strictnessCost: Record<string, number> = { thrifty: 45, moderate: 70, liberal: 100 }
@@ -22,13 +29,24 @@ const calcDef: CalcDef = {
     const mealAdjustment = v.agbMealsPerDay / 3
     const adjustedWeekly = weeklyTotal * mealAdjustment
     const monthlyGrocery = adjustedWeekly * 4.33
-    const monthlyDelivery = v.agbDeliveryPct !== 'none' ? monthlyGrocery * (v.agbDeliveryPct === 'partial' ? 0.03 : 0.07) : 0
-    const monthlyTotal = monthlyGrocery + monthlyDelivery
-    return { result: monthlyTotal, label: 'Smart Grocery Budget', unit: '$', steps: [{ label: 'Per Person Weekly', value: `$${weeklyPerPerson.toFixed(2)}` }, { label: 'Household Weekly', value: `$${weeklyTotal.toFixed(2)}` }, { label: 'Meal Adjustment', value: `${mealAdjustment.toFixed(1)}×` }, { label: 'Adjusted Weekly', value: `$${adjustedWeekly.toFixed(2)}` }, { label: 'Monthly Groceries', value: `$${monthlyGrocery.toFixed(2)}` }, { label: 'Delivery Surcharge', value: `$${monthlyDelivery.toFixed(2)}` }, { label: 'Total Monthly', value: `$${monthlyTotal.toFixed(2)}` }] }
+    const monthLyNoDelivery = (basePerPerson * dietFactor * v.agbHouseholdSize * mealAdjustment) * 4.33
+    const deliverySurchargeAmt = monthlyGrocery - monthLyNoDelivery
+    const monthlyTotal = monthlyGrocery
+    const annualTotal = monthlyTotal * 12
+    return { result: monthlyTotal, label: 'Smart Grocery Budget', unit: '$', steps: [{ label: 'Base per Person Weekly', value: `$${basePerPerson.toFixed(2)} (${v.agbBudgetStrictness})` }, { label: 'Diet Adjustment', value: `${dietFactor.toFixed(2)}× (${v.agbDietType})` }, { label: 'Delivery Markup', value: `${deliveryFactor.toFixed(2)}× (${v.agbDeliveryPct})` }, { label: 'Weekly per Person', value: `$${basePerPerson.toFixed(2)} × ${dietFactor.toFixed(2)} × ${deliveryFactor.toFixed(2)} = $${weeklyPerPerson.toFixed(2)}` }, { label: 'Meal Adjustment', value: `${v.agbMealsPerDay}/3 meals = ${mealAdjustment.toFixed(1)}×` }, { label: 'Monthly Groceries', value: `$${monthlyGrocery.toFixed(2)}` }, { label: 'Delivery Surcharge', value: `+$${deliverySurchargeAmt.toFixed(2)}` }, { label: 'Total Monthly', value: `$${monthlyTotal.toFixed(2)}` }] ,
+    extras: [
+      { label: 'Diet Cost Comparison', value: `Vegan is cheapest (${((1 - 0.85) * 100).toFixed(0)}% less than standard). Keto costs ${((1.15 - 1) * 100).toFixed(0)}% more — meat, nuts, and specialty flours add up. Mediterranean is ${((1.05 - 1) * 100).toFixed(0)}% more but linked to longer life expectancy.` },
+      { label: 'Delivery Fee Impact', value: `In-store shopping costs $${monthLyNoDelivery.toFixed(0)}/month. Adding delivery (${v.agbDeliveryPct}) adds $${deliverySurchargeAmt.toFixed(2)}/month ($${(deliverySurchargeAmt * 12).toFixed(0)}/year). A $10-15/month store membership (free delivery) pays for itself.` },
+      { label: 'Batch Cooking Savings', value: 'Cooking 3+ servings per recipe cuts per-meal cost by 20-30%. If you cook ' + `${v.agbMealsPerDay}` + ' meals/day, batch cooking could save ~$' + `${(monthlyTotal * 0.2).toFixed(0)}` + '/month.' },
+      { label: 'Seasonal Produce Strategy', value: 'Buying seasonal produce costs 30-50% less than out-of-season imports. A thrifty budget ($' + `${basePerPerson}/week)` + ' stretches further with a CSA box ($20-30/week for 2 people).' },
+      { label: 'Protein Cost Efficiency', value: 'Cheapest proteins per lb: beans ($1-2), eggs ($2-4), chicken ($3-5), tofu ($2-4), pork ($3-6), beef ($5-10). A ' + `${v.agbDietType}` + ' diet at $' + `${basePerPerson}/week/person ` + (v.agbDietType === 'vegan' || v.agbDietType === 'vegetarian' ? 'saves on protein costs vs meat-based diets.' : 'can save 15-20% by including 2-3 plant-based meals/week.') },
+      { label: 'Bulk Buying Thresholds', value: 'Rice, oats, lentils, and spices cost 40-60% less in bulk bins vs packaged. A $20 bulk run every 3 months saves ~$' + `${(20 * 0.5 * 4).toFixed(0)}` + '/year. But only buy bulk if you will use it before expiry.' },
+      { label: 'Annual Grocery Projection', value: `At $${monthlyTotal.toFixed(0)}/month, you spend $${annualTotal.toFixed(0)}/year on groceries. That is $${(annualTotal / v.agbHouseholdSize).toFixed(0)} per person per year. The average US household of ${v.agbHouseholdSize} spends $${(monthlyTotal * 1.1).toFixed(0)}/month — you are ${monthlyTotal < 600 ? 'below' : 'near'} average.` },
+    ]}
   },
-  description: 'Smart grocery budget tool that adapts to household size, diet type, spending level, and delivery habits. Optimize your food spending with intelligent recommendations.',
-  formula: 'Monthly = (Base/Person × Diet × Delivery × Household × Meals/3) × 4.33 + Delivery Fee',
-  interpretation: 'Thrifty ($45/person/week): rice, beans, seasonal produce. Moderate ($70): mix of fresh and organic. Liberal ($100+): organic, specialty items. Delivery apps add 3-7% in hidden fees. Batch cooking cuts weekly costs by 20%.'
+  description: 'Smart grocery budget tool that adapts to household size, diet type (standard, vegetarian, vegan, keto, Mediterranean), spending level, and delivery habits. Optimize your food spending with diet-specific pricing and bulk-buying insights.',
+  formula: 'Weekly/Person = Base Spend × Diet Factor × Delivery Factor | Monthly = (Weekly/Person × Household × Meals/3) × 4.33 | Diet Factors: Vegan 0.85, Vegetarian 0.9, Standard 1.0, Mediterranean 1.05, Keto 1.15',
+  interpretation: 'A thrifty ($45/person/week) budget relies on rice, beans, eggs, and seasonal produce. Moderate ($70) adds organic produce and some premium items. Liberal ($100+) includes organic everything, specialty diet items, and imported goods. Vegan/vegetarian diets cost 10-15% less due to cheaper protein sources. Keto costs 15% more because of meat, nuts, and alternative flours. Delivery apps add 3-7% in inflated prices and fees — in-store shopping keeps the full budget on food. Batch cooking and seasonal buying can cut costs by another 20-30%.'
 }
 
 export default calcDef

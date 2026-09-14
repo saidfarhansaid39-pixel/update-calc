@@ -1,11 +1,27 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { useLocale } from 'next-intl';
+import { DollarSign, Percent, Calendar } from 'lucide-react';
 import { EstateTaxForm } from '@/components/calculator/EstateTaxForm';
 import { EstateTaxResults } from '@/components/calculator/EstateTaxResults';
-import { EstateTaxArticle } from '@/components/calculator/EstateTaxArticle';
+import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
+import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
+import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+
+const calcMeta = {
+  slug: 'estate-tax-calculator',
+  title: 'Estate Tax Calculator',
+  description: 'Estimate federal estate tax due based on gross estate value, deductions, and lifetime gifts.',
+  tier: 'tier3',
+  category: 'financial',
+  hubSlug: 'financial-calculators',
+  hubName: 'Financial Calculators',
+  keywords: ['estate', 'tax', 'inheritance', 'federal exemption'],
+};
 
 export function EstateTaxCalculator() {
+  const locale = useLocale();
   // Assets
   const [residence, setResidence] = useState("0");
   const [stocks, setStocks] = useState("0");
@@ -75,32 +91,46 @@ export function EstateTaxCalculator() {
     });
   };
 
+  const inputs = useMemo(() => ({
+    residence, stocks, savings, vehicles, retirement, insurance, otherAssets,
+    debts, funeral, charitable, stateTax, gifted,
+  }), [residence, stocks, savings, vehicles, retirement, insurance, otherAssets, debts, funeral, charitable, stateTax, gifted]);
+
+  const subCalcs = useMemo(() => {
+    if (!results) return null;
+    const taxableAfterExemption = Math.max(0, results.taxableEstate - results.exemption);
+    const effectiveRate = results.grossEstate > 0 ? (results.estimatedTax / results.grossEstate) * 100 : 0;
+
+    return (
+      <SubCalcGrid>
+        <SubCalcPanel title="Estate Value Summary" icon={DollarSign} defaultOpen results={[
+          { label: 'Gross Estate Value', value: formatCurrency(results.grossEstate, 'USD', locale) },
+          { label: 'Total Deductions', value: formatCurrency(results.totalDeductions, 'USD', locale), badge: 'positive' },
+          { label: 'Lifetime Gifts', value: formatCurrency(results.giftedAmount, 'USD', locale) },
+          { label: 'Total Taxable Estate', value: formatCurrency(results.taxableEstate, 'USD', locale), badge: 'info' },
+        ]} />
+        <SubCalcPanel title="Federal Tax Calculation" icon={Percent} results={[
+          { label: 'Federal Exemption (2026)', value: formatCurrency(results.exemption, 'USD', locale) },
+          { label: 'Amount Subject to Tax', value: formatCurrency(taxableAfterExemption, 'USD', locale), badge: taxableAfterExemption > 0 ? 'negative' : 'positive' },
+          { label: 'Federal Estate Tax Rate', value: '40%' },
+          { label: 'Estimated Tax Due', value: formatCurrency(results.estimatedTax, 'USD', locale), badge: results.estimatedTax > 0 ? 'negative' : 'positive' },
+        ]} />
+        <SubCalcPanel title="Tax Analysis" icon={Calendar} results={[
+          { label: 'Effective Tax Rate', value: `${effectiveRate.toFixed(2)}%`, description: 'Percentage of gross estate owed in federal tax' },
+          { label: 'State Estate Tax', value: 'Varies by state', description: 'Many states impose additional estate or inheritance taxes with lower exemptions' },
+        ]} />
+      </SubCalcGrid>
+    );
+  }, [results, locale]);
+
   return (
-    <div className="max-w-[800px] mx-auto bg-white p-2 md:p-4">
-      <div className="flex justify-between text-xs text-gray-500 mb-2 border-b pb-1">
-        <div>home / financial / estate tax calculator</div>
-      </div>
-      
-      <h1 className="text-[26px] font-bold text-gray-800 mb-4 font-sans">Estate Tax Calculator</h1>
-      <p className="mb-4 text-[13px] text-gray-800 leading-relaxed">
-        The Estate Tax Calculator estimates federal estate tax due. Many states impose their own estate taxes, but they tend to be less than the federal estate tax. This calculator is mainly intended for use by U.S. residents.
-      </p>
-
-      <div className="flex flex-col md:flex-row gap-6 w-full">
-        <div className="flex-1">
-          <EstateTaxForm 
-            state={state} 
-            setters={setters} 
-            handleCalculate={calculate}
-            handleClear={handleClear}
-          />
-        </div>
-        <div className="w-full md:w-[350px]">
-          <EstateTaxResults results={results} />
-        </div>
-      </div>
-
-      <EstateTaxArticle />
-    </div>
+    <PremiumCalculatorShell
+      calculator={calcMeta}
+      form={<EstateTaxForm state={state} setters={setters} handleCalculate={calculate} handleClear={handleClear} />}
+      result={<EstateTaxResults results={results} />}
+      subCalcs={subCalcs}
+      mainValue={results?.estimatedTax ?? 0}
+      inputs={inputs}
+    />
   );
 }

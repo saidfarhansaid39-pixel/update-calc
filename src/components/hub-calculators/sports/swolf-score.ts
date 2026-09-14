@@ -12,6 +12,11 @@ const calcDef: CalcDef = {
     return { result: swolf, label: 'SWOLF Score', unit: '', steps: [
       { label: 'Time (50m)', value: v.timeSec+' s' }, { label: 'Strokes (50m)', value: ''+v.strokes },
       { label: 'SWOLF', value: swolf+' (time + strokes)' }, { label: 'Rating', value: swolf < 30 ? 'Elite' : swolf < 40 ? 'Excellent' : swolf < 50 ? 'Good' : swolf < 60 ? 'Average' : 'Needs improvement' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate SWOLF (Swim Golf) score combining time and stroke count. Lower SWOLF = more efficient swimming.', formula: 'SWOLF = time (s) + stroke count', interpretation: 'Lower SWOLF scores indicate better swimming efficiency. Elite swimmers score < 30 for 50m.'
 }

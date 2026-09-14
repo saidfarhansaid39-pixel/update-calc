@@ -15,6 +15,11 @@ const calcDef: CalcDef = {
       { label: 'Total distance', value: totalKm.toFixed(1)+' km' },
       { label: 'Total time', value: v.totalMin+' min ('+Math.floor(v.totalMin/60)+'h '+(v.totalMin%60).toFixed(0)+'m)' },
       { label: 'Overall pace', value: pace < 60 ? (pace*60).toFixed(0)+' s/km' : Math.floor(pace/60)+':'+Math.round(pace%60).toString().padStart(2,'0')+' min/km' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate overall triathlon pace across all three disciplines for pacing strategy development.', formula: 'Overall pace = total time / total distance', interpretation: 'Overall pace helps triathletes set realistic targets and manage effort across disciplines.'
 }

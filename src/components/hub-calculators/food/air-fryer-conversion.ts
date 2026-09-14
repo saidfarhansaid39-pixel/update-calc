@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'time', label: 'Oven Time', type: 'number', unit: 'min', min: 5, step: '5' }
     ],
     compute: (v) => {
-      const at = v.temp - 20; const atm = Math.round(v.time * 0.75); return { result: at, label: 'Air Fryer Temp', unit: '°C', steps: [{ label: 'Oven', value: v.temp + '°C for ' + v.time + ' min' }, { label: 'Air fryer', value: at + '°C for ' + atm + ' min' }] }
+      const at = v.temp - 20; const atm = Math.round(v.time * 0.75); return { result: at, label: 'Air Fryer Temp', unit: '°C', steps: [{ label: 'Oven', value: v.temp + '°C for ' + v.time + ' min' }, { label: 'Air fryer', value: at + '°C for ' + atm + ' min' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Convert oven recipes to air fryer. Reduce temp 20°C and time 25%.',
     example: { label: '200°C for 20 min', value: '180°C for 15 min' }

@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Water', value: `${water.toFixed(0)} g (${v.hydration}% hydration)` },
         { label: 'Salt', value: `${salt.toFixed(0)} g (${v.saltPct}%)` },
         { label: 'Total dough weight', value: `${total.toFixed(0)} g` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Calculate ingredients for bread using baker\'s percentages. The hydration ratio determines crumb structure — higher hydration yields more open, airy bread.',
     example: { label: '500g flour, 70% hydration, 2% salt', value: '350g water, 10g salt' }

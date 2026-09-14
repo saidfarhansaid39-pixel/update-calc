@@ -15,7 +15,12 @@ const calcDef: CalcDef = {
         { label: 'Scaling factor', value: `${factor.toFixed(2)}×` },
         { label: 'Original amount', value: `${v.ingredient}` },
         { label: 'Scaled amount', value: `${(v.ingredient * factor).toFixed(2)}` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Scale any recipe up or down by adjusting ingredient quantities proportionally. The scaling factor = desired servings ÷ original servings.',
     example: { label: '4 to 6 servings, 200g flour', value: '300g flour (1.5×)' }

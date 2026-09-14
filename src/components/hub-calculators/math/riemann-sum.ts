@@ -10,11 +10,21 @@ const calcDef: CalcDef = {
       const a = n(v.a), b = n(v.b), nVal = Math.round(n(v.n)); const dx = (b - a) / nVal; let leftSum = 0, rightSum = 0
       for (let i = 1; i <= nVal; i++) { leftSum += (a + (i - 1) * dx) ** 2; rightSum += (a + i * dx) ** 2 }
       leftSum *= dx; rightSum *= dx
-      return { result: leftSum.toFixed(6), label: 'Left Riemann sum', steps: [step('dx', dx.toFixed(6)), step('Left sum', leftSum.toFixed(6)), step('Right sum', rightSum.toFixed(6))] }
+      return { result: leftSum.toFixed(6), label: 'Left Riemann sum', steps: [step('dx', dx.toFixed(6)), step('Left sum', leftSum.toFixed(6)), step('Right sum', rightSum.toFixed(6))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'S = S f(x?*)dx. Left sum uses left endpoints, right sum uses right endpoints.',
     description: 'Compute left and right Riemann sums for f(x) = x^2.',
-    interpretation: 'Riemann sums approximate the definite integral using rectangles.'
+    interpretation: 'Riemann sums approximate the definite integral using rectangles.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

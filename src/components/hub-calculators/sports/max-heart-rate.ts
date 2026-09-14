@@ -9,6 +9,11 @@ const calcDef: CalcDef = {
     return { result: fox, label: 'Max HR (Fox)', unit: 'bpm', steps: [
       { label: 'Fox (220-age)', value: fox+' bpm' }, { label: 'Tanaka (208-0.7×age)', value: tanaka.toFixed(0)+' bpm' },
       { label: 'Range', value: Math.min(fox,tanaka).toFixed(0)+'-'+Math.max(fox,tanaka).toFixed(0)+' bpm' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Estimate max heart rate via Fox (220-age) and Tanaka (208-0.7×age) formulas.', formula: 'HRmax = 220 - age; HRmax = 208 - 0.7 × age', interpretation: 'Max HR declines ~1 bpm/year. Individual variation is ±10-15 bpm.'
 }

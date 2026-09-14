@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Run distance', value: `${v.longRunKm} km` },
         { label: 'Estimated duration', value: `${Math.floor(estDuration / 60)}h ${(estDuration % 60).toFixed(0)}m` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate your ideal long run pace based on marathon goal time. Long runs should be 45-90 seconds per km slower than marathon pace to build endurance safely.'
 }

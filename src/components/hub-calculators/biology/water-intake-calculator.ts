@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Total daily water', value: `${total.toFixed(0)} mL (${(total / 1000).toFixed(1)} L)` },
         { label: '~In cups (240 mL)', value: `${(total / 240).toFixed(0)} cups` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Daily water needs vary by weight, age, activity, and climate. Use this calculator to determine your optimal hydration target for health and performance.',
   formula: 'Daily Water (mL) = Weight(kg) × 33 + Exercise(min) × 12',

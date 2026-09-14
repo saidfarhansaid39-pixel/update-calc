@@ -14,6 +14,11 @@ const calcDef: CalcDef = {
       { label: 'Deload percentage', value: pct+'%' },
       { label: 'Deload volume', value: deloadVol.toFixed(0)+' kg' },
       { label: 'Recommendation', value: 'Reduce volume by 40-60% while maintaining intensity for active recovery' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate deload week training volume. Deload weeks reduce training stress to promote recovery and long-term progress.', formula: 'Deload volume = normal volume × (deload% / 100)', interpretation: 'Deload weeks every 4-8 weeks prevent overtraining and allow super-compensation. Maintain intensity but reduce volume.'
 }

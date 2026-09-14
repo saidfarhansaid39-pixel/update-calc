@@ -25,11 +25,21 @@ const calcDef: CalcDef = {
         case 'circle': result = 2 * Math.PI * a; label = 'Circumference (2pir)'; break
         case 'triangle': result = a + (b || a) + (c || a); label = 'Perimeter (a+b+c)'; break
       }
-      return { result, label, steps: [step('Result:', label + ' = ' + (typeof result === 'number' ? result.toFixed(4) : result))] }
+      return { result, label, steps: [step('Result:', label + ' = ' + (typeof result === 'number' ? result.toFixed(4) : result))] ,
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ]}
     },
     formula: 'P varies by shape',
     description: 'Calculate the perimeter (or circumference) of common shapes.',
-    interpretation: 'The total distance around the boundary of the shape.'
+    interpretation: 'The total distance around the boundary of the shape.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

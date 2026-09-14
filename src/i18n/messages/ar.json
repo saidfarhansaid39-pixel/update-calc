@@ -53,9 +53,11 @@
     "privacy": "سياسة الخصوصية",
     "terms": "شروط الخدمة",
     "contact": "اتصل بنا",
+    "editorialPolicy": "السياسة التحريرية",
+    "press": "الصحافة",
     "tagline": "أدوات دقيقة لكل عملية حسابية. مجانية وسريعة وتصميم رائع.",
     "motto": "دقة. ذكاء. وضوح.",
-    "copyright": "© {year} JDCALC. جميع الحقوق محفوظة."
+    "copyright": "© {year} Calculat. جميع الحقوق محفوظة."
   },
   "hubs": {
     "financial-calculators": "الآلات الحاسبة المالية",
@@ -186,14 +188,16 @@
     "searchNoResultsHint": "Try a different search term or browse calculators by category."
   },
   "seo": {
-    "siteTitle": "JDCALC — منصة الآلات الحاسبة الأذكى في العالم",
-    "titleTemplate": "%s | JDCALC",
-    "siteName": "JDCALC",
+    "siteTitle": "Calculat — منصة الآلات الحاسبة الأذكى في العالم",
+    "titleTemplate": "%s | Calculat",
+    "siteName": "Calculat",
     "siteDescription": "آلات حاسبة دقيقة للمالية والصحة والرياضيات والعلوم والحياة اليومية. مدعومة بالذكاء الاصطناعي، بتصميم رائع، ومجانية تماماً.",
     "about": "حول",
     "privacy": "الخصوصية",
     "terms": "الشروط",
-    "contact": "اتصل بنا"
+    "contact": "اتصل بنا",
+    "editorialPolicy": "السياسة التحريرية",
+    "press": "الصحافة"
   },
   "content": {
     "sectionOverview": "نظرة عامة",
@@ -1556,7 +1560,7 @@
     "heroBadge": "منصة الآلات الحاسبة الأذكى في العالم",
     "heroTitle": "احسب {highlight} بدقة",
     "heroHighlight": "أي شيء",
-    "heroSubtitle": "أكثر من 200 آلة حاسبة متميزة للمالية والصحة والرياضيات والعلوم والحياة اليومية. مجانية وسريعة وتصميم رائع.",
+    "heroSubtitle": "أكثر من {count} آلة حاسبة للتمويل والصحة والرياضيات والعلوم والحياة اليومية. مجانية وسريعة وبتصميم أنيق.",
     "statCalculators": "آلة حاسبة",
     "statCategories": "تصنيف",
     "statFree": "مجاناً",
@@ -1564,7 +1568,7 @@
     "popularTitle": "الآلات الحاسبة الشائعة",
     "popularSubtitle": "الأدوات الأكثر استخداماً من قبل مجتمعنا",
     "trendingTitle": "رائجة الآن",
-    "featuresTitle": "لماذا JDCALC؟",
+    "featuresTitle": "لماذا Calculat؟",
     "featuresSubtitle": "مبنية للدقة، مصممة للوضوح",
     "featureFastTitle": "سرعة فائقة",
     "featureFastDesc": "حسابات فورية أثناء الكتابة، بدون انتظار.",
@@ -1576,7 +1580,21 @@
     "featureDesignDesc": "رائع على كل جهاز مع الوضع الداكن.",
     "ctaTitle": "ابدأ الحساب في ثوانٍ",
     "ctaSubtitle": "لا حاجة للتسجيل. فقط اختر آلة حاسبة وابدأ.",
-    "ctaButton": "استكشف الآلات الحاسبة"
+    "ctaButton": "استكشف الآلات الحاسبة",
+    "heroTitlePre": "احسب ",
+    "heroTitlePost": " بدقة",
+    "allCategories": "جميع الفئات",
+    "trendAutoLoanName": "قرض السيارة",
+    "trendAutoLoanDesc": "تقدير الدفعة الشهرية",
+    "trend401kName": "حاسبة 401k",
+    "trend401kDesc": "مخطط ادخار التقاعد",
+    "trendHouseName": "تكلفة شراء منزل",
+    "trendHouseDesc": "كم منزل يمكنك تحمله",
+    "trendStudentName": "القرض الدراسي",
+    "trendStudentDesc": "استراتيجيات السداد",
+    "sciTitle": "حاسبة علمية",
+    "sciIntro": "تحتاج إلى حساب سريع؟ استخدم الحاسبة العلمية المدمجة مع حساب المثلثات واللوغاريتمات والأسس والثوابت.",
+    "sciNote": "بدّل بين الوضعين الأساسي والعلمي. وهي متاحة دائماً في الزاوية السفلية اليمنى من كل صفحة."
   },
   "extraFields": {
     "activity_job": "Job Activity Level",
@@ -2245,6 +2263,79 @@
     "zip_code_placeholder": "e.g. 90210"
   },
   "calculatorUI": {
+    "shell": {
+      "unitMetric": "Metric",
+      "unitImperial": "Imperial",
+      "unitUS": "US Customary",
+      "calculate": "Calculate",
+      "recalculate": "Recalculate",
+      "result": "Result",
+      "copyResult": "Copy Result",
+      "saveCalculation": "Save Calculation",
+      "restore": "Restore",
+      "restorePreviousValues": "Restore Previous Values",
+      "hideAudit": "Hide Audit Trail",
+      "showAudit": "Show Audit Trail",
+      "dismiss": "Dismiss",
+      "yes": "Yes",
+      "no": "No",
+      "home": "Home",
+      "onThisPage": "On This Page",
+      "tierEssential": "Essential",
+      "tierStandard": "Standard",
+      "tierPremium": "Premium",
+      "modeBasic": "Basic",
+      "modeAdvanced": "Advanced",
+      "modeProfessional": "Professional",
+      "modeExpert": "Expert",
+      "headingWhatIs": "What Is This?",
+      "headingHowItWorks": "How It Works",
+      "headingFormula": "The Formula",
+      "headingExampleCalc": "Example Calculation",
+      "headingExampleCalcs": "Example Calculations",
+      "headingWhatThisMeans": "What This Means",
+      "headingYourResults": "Your Results",
+      "headingEduGuide": "Educational Guide",
+      "headingEduVisualizations": "Visualizations",
+      "headingTipsBestPractices": "Tips & Best Practices",
+      "headingFAQ": "Frequently Asked Questions",
+      "headingQuestions": "Questions?",
+      "headingReferences": "References",
+      "headingRelatedTopics": "Related Calculators",
+      "headingAboutAuthors": "About the Authors",
+      "tocEducationalGuide": "Educational Guide",
+      "tocExample": "Example",
+      "tocComparison": "Comparison",
+      "tocUseCases": "Use Cases",
+      "tocFAQ": "FAQ",
+      "tocGlossary": "Glossary",
+      "tocCompleteGuide": "Complete Guide",
+      "tocCommonMistakes": "Common Mistakes",
+      "tips": "Tips",
+      "tipAccurateInputs": "Use accurate inputs for best results.",
+      "tipPresetExamples": "Try the preset examples to see how it works.",
+      "tipPrintExport": "Print or export your results for record keeping.",
+      "tipBookmark": "Bookmark this calculator for quick access.",
+      "tipSaveScenario": "Save different scenarios to compare outcomes.",
+      "tipReviewAssumptions": "Review the assumptions behind each calculation.",
+      "didThisHelp": "Did this calculator help you?",
+      "pleaseCheckInputs": "Please check your inputs and try again.",
+      "calculationFailed": "Calculation failed. Please check your values.",
+      "enterValuesAbove": "Enter values above to see results.",
+      "noResultAvailable": "No result available",
+      "howItWorksDefault": "Enter your values and click Calculate to see how it works.",
+      "dataDependent": "Data Required",
+      "dataDependentDescription": "Enter values in the form above to get started.",
+      "usersCount": "{count} users have used this calculator",
+      "authorLabel": "Author",
+      "reviewerLabel": "Reviewed by",
+      "relatedCalculators": "Related Calculators",
+      "refreshCadence": "Last updated: {date}",
+      "featureCharts": "Charts & Visualizations",
+      "featureComparison": "Scenario Comparison",
+      "featureGuide": "Educational Guide",
+      "questionsParagraph": "Have questions? Check the FAQ or contact us."
+    },
     "headings": {
       "paymentCalculator": "Payment Calculator"
     },
@@ -2457,11 +2548,11 @@
     },
     "contact": {
       "metaTitle": "اتصل بنا - آلات حاسبة مجانية عبر الإنترنت",
-      "metaDescription": "تواصل مع فريق JDCALC. نحن نقدر ملاحظاتك واقتراحاتك.",
+      "metaDescription": "تواصل مع فريق Calculat. نحن نقدر ملاحظاتك واقتراحاتك.",
       "title": "اتصل بنا",
       "intro": "Have feedback, suggestions, or found a bug? We'd love to hear from you.",
       "emailLabel": "Email us at:",
-      "emailAddress": "support@jdcalc.com"
+      "emailAddress": "support@calculat.online"
     },
     "privacy": {
       "metaTitle": "سياسة الخصوصية - آلات حاسبة مجانية عبر الإنترنت",
@@ -2488,6 +2579,18 @@
       "accuracyText": "We strive for accuracy but make no guarantees. Always verify critical calculations with a qualified professional.",
       "availabilityTitle": "Availability",
       "availabilityText": "We reserve the right to modify or discontinue any calculator tool at any time without notice."
-    }
+    },
+    "editorialPolicy": {
+      "metaTitle": "السياسة التحريرية - آلات حاسبة مجانية عبر الإنترنت",
+      "metaDescription": "تضمن سياستنا التحريرية الدقة والشفافية والجودة في جميع أدواتنا الحاسبة والمحتوى.",
+      "title": "السياسة التحريرية"
+    },
+    "press": {
+      "metaTitle": "الصحافة - آلات حاسبة مجانية عبر الإنترنت",
+      "metaDescription": "موارد صحفية، حزمة إعلامية ومعلومات الاتصال لفريق Calculat.",
+      "title": "الصحافة"
+    },
+    "calculatorBuilderTitle": "Calculator Builder",
+    "calculatorBuilderDescription": "Build your own custom calculators with custom formulas and fields. Free online calculator builder tool."
   }
 }

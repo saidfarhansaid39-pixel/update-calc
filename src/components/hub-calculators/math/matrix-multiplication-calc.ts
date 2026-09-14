@@ -9,11 +9,20 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const a = n(v.a), b = n(v.b), c = n(v.c), d = n(v.d), e = n(v.e), f = n(v.f), g = n(v.g), h = n(v.h)
       const r11 = a * e + b * g, r12 = a * f + b * h, r21 = c * e + d * g, r22 = c * f + d * h
-      return { result: '[' + r11 + ', ' + r12 + '; ' + r21 + ', ' + r22 + ']', label: 'A x B', steps: [step('Row1:', '[' + r11 + ', ' + r12 + ']'), step('Row2:', '[' + r21 + ', ' + r22 + ']')] }
+      return { result: '[' + r11 + ', ' + r12 + '; ' + r21 + ', ' + r22 + ']', label: 'A x B', steps: [step('Row1:', '[' + r11 + ', ' + r12 + ']'), step('Row2:', '[' + r21 + ', ' + r22 + ']')] ,
+    extras: [
+      { label: "Dimension Check", value: "Matrix dimensions must be compatible for the operation." },
+      { label: "Singular Matrix Warning", value: "A determinant of zero means the matrix has no inverse." },
+      { label: "Computational Complexity", value: "Larger matrices require significantly more computation." },
+      { label: "Application", value: "Used in computer graphics, machine learning, and physics simulations." }
+    ]}
     },
     formula: 'A x B (2x2 matrix multiplication)',
     description: 'Multiply two 2x2 matrices.',
-    interpretation: 'The product of the two matrices.'
+    interpretation: 'The product of the two matrices.',
+    presets: [
+      { label: 'Example', values: { a: '1', b: '0', c: '0', d: '1' } }
+    ]
 }
 
 export default calcDef

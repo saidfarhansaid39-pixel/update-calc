@@ -127,7 +127,7 @@ export default function CalculatorBuilderClient() {
   }, [])
 
   const embedCode = activeCalc ? calculators.find(c => c.id === activeCalc) : null
-  const iframeCode = embedCode ? `<iframe src="https://www.jdcalc.com/calculator-builder?calc=${embedCode.slug}" width="100%" height="500" frameborder="0" title="${embedCode.name}"></iframe>` : ''
+  const iframeCode = embedCode ? `<iframe src="https://www.calculat.online/calculator-builder?calc=${embedCode.slug}" width="100%" height="500" frameborder="0" title="${embedCode.name}"></iframe>` : ''
 
   const handleCopy = async () => {
     try {

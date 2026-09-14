@@ -16,6 +16,11 @@ const calcDef: CalcDef = {
     return { result: v.reach, label: 'Sit-and-Reach Score', unit: 'cm', steps: [
       { label: 'Reach distance', value: v.reach+' cm' }, { label: 'Rating', value: r },
       { label: 'Standards', value: isMale ? 'Exc:>35cm, Good:30-35cm, Avg:25-29cm' : 'Exc:>40cm, Good:35-40cm, Avg:30-34cm' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Assess hamstring and lower back flexibility with the sit-and-reach test. The standard flexibility assessment used in fitness testing batteries.', formula: 'Distance reached on sit-and-reach box (cm)', interpretation: 'Better flexibility reduces injury risk and improves movement quality. Consistent stretching improves sit-and-reach scores over time.'
 }

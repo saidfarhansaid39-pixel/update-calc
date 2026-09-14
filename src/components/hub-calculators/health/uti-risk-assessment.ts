@@ -12,7 +12,12 @@ const calcDef: CalcDef = {
     { name:'sexualActivity', label:'Sexually active?', type:'select', options:[{ label:'No', value:'no' },{ label:'Yes', value:'yes' }] },
     { name:'symptoms', label:'Dysuria / frequency / urgency?', type:'select', options:[{ label:'No', value:'no' },{ label:'Yes', value:'yes' }] }
   ],
-  compute: (v) => { let score=0; if(v.gender==='female') score+=3; if(parseInt(v.age)||0) score+=Math.min(3,Math.floor((parseInt(v.age)||30)/20)); if(v.priorUti==='yes') score+=2; if(v.catheter==='yes') score+=3; if(v.diabetes==='yes') score+=2; if(v.pregnancy==='yes') score+=2; if(v.sexualActivity==='yes') score+=1; if(v.symptoms==='yes') score+=4; let risk='Low'; if(score>=12) risk='High'; else if(score>=7) risk='Moderate'; return { result:score, label:'UTI Risk Score', unit:'/20', steps:[{ label:'Risk Score', value:score+'/20' },{ label:'Risk Category', value:risk }] } },
+  compute: (v) => { let score=0; if(v.gender==='female') score+=3; if(parseInt(v.age)||0) score+=Math.min(3,Math.floor((parseInt(v.age)||30)/20)); if(v.priorUti==='yes') score+=2; if(v.catheter==='yes') score+=3; if(v.diabetes==='yes') score+=2; if(v.pregnancy==='yes') score+=2; if(v.sexualActivity==='yes') score+=1; if(v.symptoms==='yes') score+=4; let risk='Low'; if(score>=12) risk='High'; else if(score>=7) risk='Moderate'; return { result:score, label:'UTI Risk Score', unit:'/20', steps:[{ label:'Risk Score', value:score+'/20' },{ label:'Risk Category', value:risk }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'Urinary tract infection risk assessment based on demographic and clinical risk factors.',
   formula: 'Weighted scoring: female gender, age, prior UTI, catheter, diabetes, pregnancy, sexual activity, symptoms.',
   interpretation: '0-6 Low risk, 7-11 Moderate risk, 12-20 High risk of UTI. Symptoms + risk factors warrant urinalysis.'

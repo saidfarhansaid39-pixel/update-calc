@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Yield per mg', value: `${rnaPerMg.toFixed(2)} µg/mg` },
         { label: 'A260/A280 (target > 2.0)', value: 'Check your spectrophotometer reading for purity' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Calculate RNA extraction yield from tissue or cell samples. RNA is more labile than DNA, so careful handling and RNAse-free conditions are essential.',
   formula: 'Total yield (µg) = conc (ng/µL) × volume (µL) / 1000 | A260/A280 > 2.0 indicates pure RNA',

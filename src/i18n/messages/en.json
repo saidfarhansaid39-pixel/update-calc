@@ -53,9 +53,11 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "contact": "Contact Us",
+    "editorialPolicy": "Editorial Policy",
+    "press": "Press",
     "tagline": "Precision tools for every calculation. Free, fast, and beautifully designed.",
     "motto": "Precision. Intelligence. Clarity.",
-    "copyright": "© {year} JDCALC. All rights reserved."
+    "copyright": "© {year} Calculat. All rights reserved."
   },
   "hubs": {
     "financial-calculators": "Financial Calculators",
@@ -186,14 +188,16 @@
     "searchNoResultsHint": "Try a different search term or browse calculators by category."
   },
   "seo": {
-    "siteTitle": "JDCALC — The World's Smartest Calculator Platform",
-    "titleTemplate": "%s | JDCALC",
-    "siteName": "JDCALC",
+    "siteTitle": "Calculat — The World's Smartest Calculator Platform",
+    "titleTemplate": "%s | Calculat",
+    "siteName": "Calculat",
     "siteDescription": "Precision calculators for finance, health, math, science, and everyday life. AI-powered, beautifully designed, and completely free.",
     "about": "About",
     "privacy": "Privacy",
     "terms": "Terms",
-    "contact": "Contact"
+    "contact": "Contact",
+    "editorialPolicy": "Editorial Policy",
+    "press": "Press"
   },
   "content": {
     "sectionOverview": "Overview",
@@ -274,7 +278,13 @@
       "howToUseSuffix": ", follow these steps:",
       "formulaPrefix": "The formula used by the ",
       "formulaSuffix": " is:",
-      "faqPrefix": "Frequently asked questions about the "
+      "faqPrefix": "Frequently asked questions about the ",
+      "lastReviewed": "Last reviewed {date}",
+      "medicallyReviewed": "Medically Reviewed",
+      "financiallyReviewed": "Financially Reviewed",
+      "expertReviewed": "Expert Reviewed",
+      "follow": "Follow",
+      "editorialPolicy": "Editorial Policy"
     },
     "body": {
       "whatIs": {
@@ -1556,7 +1566,7 @@
     "heroBadge": "The smartest calculator platform",
     "heroTitle": "Calculate {highlight} with precision",
     "heroHighlight": "anything",
-    "heroSubtitle": "200+ premium calculators for finance, health, math, science, and everyday life. Free, fast, and beautifully designed.",
+    "heroSubtitle": "Over {count} calculators for finance, health, math, science, and everyday life. Free, fast, and beautifully designed.",
     "statCalculators": "Calculators",
     "statCategories": "Categories",
     "statFree": "To Use",
@@ -1564,7 +1574,7 @@
     "popularTitle": "Popular Calculators",
     "popularSubtitle": "Most used tools by our community",
     "trendingTitle": "Trending Now",
-    "featuresTitle": "Why JDCALC?",
+    "featuresTitle": "Why Calculat?",
     "featuresSubtitle": "Built for precision, designed for clarity",
     "featureFastTitle": "Lightning Fast",
     "featureFastDesc": "Real-time calculations as you type, zero waiting.",
@@ -1576,7 +1586,21 @@
     "featureDesignDesc": "Flawless on every device with dark mode.",
     "ctaTitle": "Start calculating in seconds",
     "ctaSubtitle": "No sign-up required. Just pick a calculator and go.",
-    "ctaButton": "Explore Calculators"
+    "ctaButton": "Explore Calculators",
+    "heroTitlePre": "Calculate ",
+    "heroTitlePost": " with precision",
+    "allCategories": "All Categories",
+    "trendAutoLoanName": "Auto Loan",
+    "trendAutoLoanDesc": "Car payment estimator",
+    "trend401kName": "401K Calculator",
+    "trend401kDesc": "Retirement savings planner",
+    "trendHouseName": "House Affordability",
+    "trendHouseDesc": "How much house you can afford",
+    "trendStudentName": "Student Loan",
+    "trendStudentDesc": "Repayment strategies",
+    "sciTitle": "Scientific Calculator",
+    "sciIntro": "Need a quick calculation? Use our built-in scientific calculator with trig, logs, powers, and constants.",
+    "sciNote": "Switch between Basic and Scientific modes. It is always available in the bottom-right corner of every page."
   },
   "pages": {
     "about": {
@@ -1598,11 +1622,11 @@
     },
     "contact": {
       "metaTitle": "Contact Us - Free Online Calculators",
-      "metaDescription": "Get in touch with the JDCALC team. We welcome your feedback and suggestions.",
+      "metaDescription": "Get in touch with the Calculat team. We welcome your feedback and suggestions.",
       "title": "Contact Us",
       "intro": "Have feedback, suggestions, or found a bug? We'd love to hear from you.",
       "emailLabel": "Email us at:",
-      "emailAddress": "support@jdcalc.com"
+      "emailAddress": "support@calculat.online"
     },
     "privacy": {
       "metaTitle": "Privacy Policy - Free Online Calculators",
@@ -1629,7 +1653,19 @@
       "accuracyText": "We strive for accuracy but make no guarantees. Always verify critical calculations with a qualified professional.",
       "availabilityTitle": "Availability",
       "availabilityText": "We reserve the right to modify or discontinue any calculator tool at any time without notice."
-    }
+    },
+    "editorialPolicy": {
+      "metaTitle": "Editorial Policy - Free Online Calculators",
+      "metaDescription": "Our editorial policy ensures accuracy, transparency, and quality in all our calculator tools and content.",
+      "title": "Editorial Policy"
+    },
+    "press": {
+      "metaTitle": "Press - Free Online Calculators",
+      "metaDescription": "Press resources, media kit, and contact information for the Calculat team.",
+      "title": "Press"
+    },
+    "calculatorBuilderTitle": "Calculator Builder",
+    "calculatorBuilderDescription": "Build your own custom calculators with custom formulas and fields. Free online calculator builder tool."
   },
   "notFound": {
     "title": "Page Not Found",
@@ -2345,6 +2381,79 @@
     "zip_code_placeholder": "e.g. 90210"
   },
   "calculatorUI": {
+    "shell": {
+      "unitMetric": "Metric",
+      "unitImperial": "Imperial",
+      "unitUS": "US Customary",
+      "calculate": "Calculate",
+      "recalculate": "Recalculate",
+      "result": "Result",
+      "copyResult": "Copy Result",
+      "saveCalculation": "Save Calculation",
+      "restore": "Restore",
+      "restorePreviousValues": "Restore Previous Values",
+      "hideAudit": "Hide Audit Trail",
+      "showAudit": "Show Audit Trail",
+      "dismiss": "Dismiss",
+      "yes": "Yes",
+      "no": "No",
+      "home": "Home",
+      "onThisPage": "On This Page",
+      "tierEssential": "Essential",
+      "tierStandard": "Standard",
+      "tierPremium": "Premium",
+      "modeBasic": "Basic",
+      "modeAdvanced": "Advanced",
+      "modeProfessional": "Professional",
+      "modeExpert": "Expert",
+      "headingWhatIs": "What Is This?",
+      "headingHowItWorks": "How It Works",
+      "headingFormula": "The Formula",
+      "headingExampleCalc": "Example Calculation",
+      "headingExampleCalcs": "Example Calculations",
+      "headingWhatThisMeans": "What This Means",
+      "headingYourResults": "Your Results",
+      "headingEduGuide": "Educational Guide",
+      "headingEduVisualizations": "Visualizations",
+      "headingTipsBestPractices": "Tips & Best Practices",
+      "headingFAQ": "Frequently Asked Questions",
+      "headingQuestions": "Questions?",
+      "headingReferences": "References",
+      "headingRelatedTopics": "Related Calculators",
+      "headingAboutAuthors": "About the Authors",
+      "tocEducationalGuide": "Educational Guide",
+      "tocExample": "Example",
+      "tocComparison": "Comparison",
+      "tocUseCases": "Use Cases",
+      "tocFAQ": "FAQ",
+      "tocGlossary": "Glossary",
+      "tocCompleteGuide": "Complete Guide",
+      "tocCommonMistakes": "Common Mistakes",
+      "tips": "Tips",
+      "tipAccurateInputs": "Use accurate inputs for best results.",
+      "tipPresetExamples": "Try the preset examples to see how it works.",
+      "tipPrintExport": "Print or export your results for record keeping.",
+      "tipBookmark": "Bookmark this calculator for quick access.",
+      "tipSaveScenario": "Save different scenarios to compare outcomes.",
+      "tipReviewAssumptions": "Review the assumptions behind each calculation.",
+      "didThisHelp": "Did this calculator help you?",
+      "pleaseCheckInputs": "Please check your inputs and try again.",
+      "calculationFailed": "Calculation failed. Please check your values.",
+      "enterValuesAbove": "Enter values above to see results.",
+      "noResultAvailable": "No result available",
+      "howItWorksDefault": "Enter your values and click Calculate to see how it works.",
+      "dataDependent": "Data Required",
+      "dataDependentDescription": "Enter values in the form above to get started.",
+      "usersCount": "{count} users have used this calculator",
+      "authorLabel": "Author",
+      "reviewerLabel": "Reviewed by",
+      "relatedCalculators": "Related Calculators",
+      "refreshCadence": "Last updated: {date}",
+      "featureCharts": "Charts & Visualizations",
+      "featureComparison": "Scenario Comparison",
+      "featureGuide": "Educational Guide",
+      "questionsParagraph": "Have questions? Check the FAQ or contact us."
+    },
     "headings": {
       "paymentCalculator": "Payment Calculator"
     },

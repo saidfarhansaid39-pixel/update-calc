@@ -6,10 +6,20 @@ const calcDef: CalcDef = {
     schema: z.object({ leg: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Must be a number'), hypotenuse: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Must be a number') }),
     fields: [numField('leg','Leg Length'),numField('hypotenuse','Hypotenuse')],
     defaults: { leg:'5',hypotenuse:'0' },
-    compute: (v) => { const leg=n(v.leg),hyp=n(v.hypotenuse); let l=0,h=0; if(leg>0){l=leg;h=leg*Math.sqrt(2)} else{h=hyp;l=h/Math.sqrt(2)}; const area=(l*l)/2; return { result:area, label:'Area', unit:'units²', steps:[step('Leg:',l.toFixed(4)),step('Hypotenuse:',h.toFixed(4)),step('Area:',area.toFixed(4)+' units²')] } },
+    compute: (v) => { const leg=n(v.leg),hyp=n(v.hypotenuse); let l=0,h=0; if(leg>0){l=leg;h=leg*Math.sqrt(2)} else{h=hyp;l=h/Math.sqrt(2)}; const area=(l*l)/2; return { result:area, label:'Area', unit:'units²', steps:[step('Leg:',l.toFixed(4)),step('Hypotenuse:',h.toFixed(4)),step('Area:',area.toFixed(4)+' units²')] ,
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ]} },
     formula: 'hypotenuse = leg×√2, area = leg²/2',
     description: 'Solve a 45-45-90 isosceles right triangle given leg or hypotenuse.',
-    interpretation: 'A 45-45-90 triangle has side ratios 1:1:√2.'
+    interpretation: 'A 45-45-90 triangle has side ratios 1:1:√2.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

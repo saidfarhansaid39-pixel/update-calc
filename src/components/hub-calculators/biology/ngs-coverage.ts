@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Reference size', value: `${v.genomeSizeMb} Mb` },
         { label: 'Coverage = bases / size', value: `${coverage.toFixed(1)}×` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'NGS coverage (depth) is the average number of times each base in the reference genome is sequenced. Adequate depth is critical for confident variant calling and quantification.',
   formula: 'C = (N × L) / G | Coverage = (reads × read length) / genome size | 30× minimum for human WGS germline variant calling',

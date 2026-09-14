@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'Activity multiplier', value: `${v.activity}×` },
         { label: 'Climate multiplier', value: `${v.climate}×` },
         { label: 'Recommended intake', value: `${total.toFixed(2)} L (${(total * 4.227).toFixed(1)} cups)` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Daily water needs based on body weight, activity level, and climate. The base recommendation is 33 mL per kg of body weight, adjusted for exercise and heat.',
     example: { label: '70kg, moderately active, cool climate', value: '~3.2L/day (13.5 cups)' }

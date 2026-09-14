@@ -11,11 +11,20 @@ const calcDef: CalcDef = {
       const dot = ax * bx + ay * by, mag1 = Math.sqrt(ax * ax + ay * ay), mag2 = Math.sqrt(bx * bx + by * by)
       if (mag1 === 0 || mag2 === 0) return { result: 'Zero vector', label: 'Error' }
       const cosTheta = dot / (mag1 * mag2); const angle = Math.acos(Math.max(-1, Math.min(1, cosTheta))) * 180 / Math.PI
-      return { result: angle.toFixed(2), label: 'Angle (degrees)', steps: [step('Dot product', dot.toFixed(4)), step('cos(theta)', cosTheta.toFixed(4)), step('Angle', angle.toFixed(2) + 'deg')] }
+      return { result: angle.toFixed(2), label: 'Angle (degrees)', steps: [step('Dot product', dot.toFixed(4)), step('cos(theta)', cosTheta.toFixed(4)), step('Angle', angle.toFixed(2) + 'deg')],
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ] }
     },
     formula: 'theta = arccos((v�w)/(|v||w|)).',
     description: 'Calculate the angle between two 2D vectors.',
-    interpretation: 'The smallest angle between the two vectors in degrees.'
+    interpretation: 'The smallest angle between the two vectors in degrees.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

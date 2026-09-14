@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Average speed', value: `${speed.toFixed(2)} km/h` },
         { label: 'CSS (Critical Swim Speed)', value: `${paceMin}:${paceSec.toString().padStart(2, '0')} min/100m — your threshold pace` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate swimming pace per 100m and average speed. Track your CSS (Critical Swim Speed) and threshold pace for any distance and time.'
 }

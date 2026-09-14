@@ -10,11 +10,20 @@ const calcDef: CalcDef = {
       const a = n(v.a), b = n(v.b), angleC = n(v.c)
       const cRad = angleC * (Math.PI / 180)
       const cSide = Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(cRad))
-      return { result: cSide.toFixed(4), label: 'Side c', steps: [step('Formula:', 'c2 = a2 + b2 - 2ab cos(C)'), step('Result:', 'c = ' + cSide.toFixed(4))] }
+      return { result: cSide.toFixed(4), label: 'Side c', steps: [step('Formula:', 'c2 = a2 + b2 - 2ab cos(C)'), step('Result:', 'c = ' + cSide.toFixed(4))] ,
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ]}
     },
     formula: 'c2 = a2 + b2 - 2ab cos(C)',
     description: 'Apply the law of cosines for triangle solving.',
-    interpretation: 'The missing side length using the law of cosines.'
+    interpretation: 'The missing side length using the law of cosines.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

@@ -9,7 +9,12 @@ const calcDef: CalcDef = {
     { name:'ast', label:'AST (U/L)', type:'number', min:0, max:2000, step:'1' },
     { name:'ldh', label:'LDH (U/L)', type:'number', min:0, max:5000, step:'1' }
   ],
-  compute: (v) => { const a=parseInt(v.age)||45; const w=parseFloat(v.wbc)||10; const g=parseFloat(v.glucose)||100; const ast=parseFloat(v.ast)||40; const ldh=parseFloat(v.ldh)||200; let score=0; if(a>55)score++; if(w>16)score++; if(g>200)score++; if(ast>250)score++; if(ldh>350)score++; let sev='Mild'; if(score>=4) sev='Severe'; else if(score>=2) sev='Moderate'; return { result:score, label:'Ranson Criteria (Admission)', unit:'/5', steps:[{ label:'Admission Score', value:score+'/5' },{ label:'Predicted Severity', value:sev }] } },
+  compute: (v) => { const a=parseInt(v.age)||45; const w=parseFloat(v.wbc)||10; const g=parseFloat(v.glucose)||100; const ast=parseFloat(v.ast)||40; const ldh=parseFloat(v.ldh)||200; let score=0; if(a>55)score++; if(w>16)score++; if(g>200)score++; if(ast>250)score++; if(ldh>350)score++; let sev='Mild'; if(score>=4) sev='Severe'; else if(score>=2) sev='Moderate'; return { result:score, label:'Ranson Criteria (Admission)', unit:'/5', steps:[{ label:'Admission Score', value:score+'/5' },{ label:'Predicted Severity', value:sev }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'Ranson admission criteria for acute pancreatitis severity assessment (first 5 of 11 criteria).',
   formula: 'Age>55 + WBC>16K + Glucose>200 + AST>250 + LDH>350. Range 0-5.',
   interpretation: '0-1 Mild pancreatitis (<1% mortality), 2-3 Moderate (10-15%), 4-5 Severe (>40% mortality).'

@@ -14,11 +14,20 @@ const calcDef: CalcDef = {
       const sxx = xa.reduce((s, v) => s + (v - mx) ** 2, 0), syy = ya.reduce((s, v) => s + (v - my) ** 2, 0)
       const sxy = xa.reduce((s, v, i) => s + (v - mx) * (ya[i] - my), 0)
       const r = sxy / Math.sqrt(sxx * syy); const r2 = r * r
-      return { result: r2.toFixed(4), label: 'R-squared', steps: [step('Pearson r', r.toFixed(4)), step('R-squared = r^2', r2.toFixed(4)), step('Interpretation', (r2 * 100).toFixed(1) + '% of variance explained')] }
+      return { result: r2.toFixed(4), label: 'R-squared', steps: [step('Pearson r', r.toFixed(4)), step('R-squared = r^2', r2.toFixed(4)), step('Interpretation', (r2 * 100).toFixed(1) + '% of variance explained')],
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ] }
     },
     formula: 'R^2 = r^2 = (Sxy / sqrt(Sxx x Syy))^2.',
     description: 'Calculate the coefficient of determination (R-squared).',
-    interpretation: 'The proportion of variance in Y that is predictable from X.'
+    interpretation: 'The proportion of variance in Y that is predictable from X.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

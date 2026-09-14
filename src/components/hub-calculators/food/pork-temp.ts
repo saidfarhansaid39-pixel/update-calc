@@ -8,7 +8,12 @@ const calcDef: CalcDef = {
       { name: 'weight', label: 'Weight', type: 'number', unit: 'g', min: 100, step: '50' }
     ],
     compute: (v) => {
-      const tc = parseFloat(v.doneness); const tf = tc * 9/5 + 32; const mp500 = parseFloat(v.cut); const time = (v.weight / 500) * mp500; return { result: tc, label: 'Target Temp', unit: '°C', steps: [{ label: 'Doneness', value: tc + '°C / ' + tf.toFixed(0) + '°F' }, { label: 'Weight', value: v.weight + ' g' }, { label: 'Cook time', value: time.toFixed(0) + ' min' }, { label: 'Rest', value: '3 min (chops) or 10 min (roast)' }] }
+      const tc = parseFloat(v.doneness); const tf = tc * 9/5 + 32; const mp500 = parseFloat(v.cut); const time = (v.weight / 500) * mp500; return { result: tc, label: 'Target Temp', unit: '°C', steps: [{ label: 'Doneness', value: tc + '°C / ' + tf.toFixed(0) + '°F' }, { label: 'Weight', value: v.weight + ' g' }, { label: 'Cook time', value: time.toFixed(0) + ' min' }, { label: 'Rest', value: '3 min (chops) or 10 min (roast)' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Pork temperatures. USDA: 63°C (145°F) with 3 min rest. Ground pork: 71°C (160°F).',
     example: { label: '200g pork chop, medium', value: '63°C (145°F), ~3 min' }

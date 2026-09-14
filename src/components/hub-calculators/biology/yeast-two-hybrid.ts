@@ -26,7 +26,12 @@ const calcDef: CalcDef = {
         { label: 'Interpretation', value: foldActivation >= 10 ? 'Strong positive interaction' : foldActivation >= 5 ? 'Moderate interaction' : foldActivation >= 3 ? 'Weak/possible interaction' : 'No significant interaction' },
         { label: 'Controls needed', value: 'Test bait autoactivation before screening. Include known positive and negative controls.' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The yeast two-hybrid (Y2H) assay detects protein-protein interactions by reconstituting a transcription factor. Bait (DNA-binding domain fusion) and prey (activation domain fusion) interact to activate a reporter gene (e.g., lacZ, HIS3, ADE2).',
   formula: 'Fold activation = (Prey signal - Bait autoactivation) / Neg control signal | = 10x: strong positive | 5-10x: moderate | 3-5x: weak/ambiguous',

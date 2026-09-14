@@ -31,7 +31,12 @@ const calcDef: CalcDef = {
         { label: 'Terminal speed', value: `${speedKmh.toFixed(1)} km/h` },
         { label: 'Descent type', value: speedKmh > 70 ? 'Very fast — aero tuck recommended' : speedKmh > 50 ? 'Fast descent' : 'Moderate descent' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Estimate terminal descent speed on a bicycle given grade, rider position, and weight. Steeper grades and lower CdA yield higher speeds until aerodynamic drag balances gravitational force.'
 }

@@ -27,7 +27,12 @@ const calcDef: CalcDef = {
         { label: 'Distance covered', value: `${distanceKm.toFixed(2)} km` },
         { label: 'Easy run pace', value: `${easyMin}:${easySec.toString().padStart(2, '0')} /km (15% slower)` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate tempo run distance and easy pace from your lactate threshold pace. Tempo runs improve lactate clearance and sustained speed at threshold intensity.'
 }

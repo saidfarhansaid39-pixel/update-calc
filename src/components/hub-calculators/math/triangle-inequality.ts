@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const a = n(v.a), b = n(v.b), c = n(v.c)
       const valid = a + b > c && a + c > b && b + c > a
-      return { result: valid ? 'Valid Triangle' : 'Invalid Triangle', label: 'Triangle Inequality', steps: [step('Check 1:', a + ' + ' + b + ' > ' + c + ' -> ' + (a + b > c ? 'OK' : 'FAIL') + ' (' + (a + b) + ' ' + (a + b > c ? '>' : '<=') + ' ' + c + ')'), step('Check 2:', a + ' + ' + c + ' > ' + b + ' -> ' + (a + c > b ? 'OK' : 'FAIL')), step('Check 3:', b + ' + ' + c + ' > ' + a + ' -> ' + (b + c > a ? 'OK' : 'FAIL'))] }
+      return { result: valid ? 'Valid Triangle' : 'Invalid Triangle', label: 'Triangle Inequality', steps: [step('Check 1:', a + ' + ' + b + ' > ' + c + ' -> ' + (a + b > c ? 'OK' : 'FAIL') + ' (' + (a + b) + ' ' + (a + b > c ? '>' : '<=') + ' ' + c + ')'), step('Check 2:', a + ' + ' + c + ' > ' + b + ' -> ' + (a + c > b ? 'OK' : 'FAIL')), step('Check 3:', b + ' + ' + c + ' > ' + a + ' -> ' + (b + c > a ? 'OK' : 'FAIL'))] ,
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ]}
     },
     formula: 'a + b > c, a + c > b, b + c > a',
     description: 'Check if three side lengths can form a valid triangle.',
-    interpretation: 'The triangle inequality theorem states the sum of any two sides must exceed the third.'
+    interpretation: 'The triangle inequality theorem states the sum of any two sides must exceed the third.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

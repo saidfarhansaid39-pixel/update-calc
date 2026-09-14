@@ -10,11 +10,20 @@ const calcDef: CalcDef = {
       const a = Math.round(n(v.a)), b = Math.round(n(v.b))
       const sumDiv = (x: number) => { let s = 0; for (let i = 1; i < x; i++) if (x % i === 0) s += i; return s }
       const sumA = sumDiv(a), sumB = sumDiv(b); const isAmicable = sumA === b && sumB === a && a !== b
-      return { result: isAmicable ? 'Yes, amicable pair' : 'Not an amicable pair', label: 'Amicable Check', steps: [step('Sum divisors of ' + a, '' + sumA), step('Sum divisors of ' + b, '' + sumB), step('Result', isAmicable ? a + ' and ' + b + ' form an amicable pair' : 'Not amicable')] }
+      return { result: isAmicable ? 'Yes, amicable pair' : 'Not an amicable pair', label: 'Amicable Check', steps: [step('Sum divisors of ' + a, '' + sumA), step('Sum divisors of ' + b, '' + sumB), step('Result', isAmicable ? a + ' and ' + b + ' form an amicable pair' : 'Not amicable')] ,
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ]}
     },
     formula: 'a and b are amicable if s(a) = b and s(b) = a, where s(n) = sum of proper divisors.',
     description: 'Check if two numbers form an amicable pair.',
-    interpretation: 'Amicable numbers are pairs where each equals the sum of the other\'s proper divisors.'
+    interpretation: 'Amicable numbers are pairs where each equals the sum of the other\'s proper divisors.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

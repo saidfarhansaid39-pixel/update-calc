@@ -6,10 +6,20 @@ const calcDef: CalcDef = {
     schema: z.object({ value: z.string().min(1).refine(v => !isNaN(parseFloat(v)) && parseFloat(v) >= 0, 'Must be >= 0'), n: z.string().min(1).refine(v => !isNaN(parseFloat(v)) && parseFloat(v) >= 2 && Number.isInteger(Number(v)), 'Integer >= 2') }),
     fields: [numField('value', 'Radicand', { min: 0 }), numField('n', 'Index (nth root)', { min: 2, step: '1' })],
     defaults: { value: '16', n: '2' },
-    compute: (v) => { const val = n(v.value), idx = Math.round(n(v.n)); const root = Math.pow(val, 1 / idx); return { result: root.toFixed(6), label: `${idx}th root`, steps: [step('Radicand', '' + val), step('Index', '' + idx), step('Result', root.toFixed(6))] } },
+    compute: (v) => { const val = n(v.value), idx = Math.round(n(v.n)); const root = Math.pow(val, 1 / idx); return { result: root.toFixed(6), label: `${idx}th root`, steps: [step('Radicand', '' + val), step('Index', '' + idx), step('Result', root.toFixed(6))] ,
+    extras: [
+      { label: "Solution Methods", value: "Can be solved via factoring, formula, or graphical methods." },
+      { label: "Discriminant Insight", value: "The discriminant reveals the number and type of solutions." },
+      { label: "Graphical Meaning", value: "Solutions correspond to x-intercepts on the graph." },
+      { label: "Checking Solutions", value: "Substitute results back into the original equation to verify." },
+      { label: "Real vs Complex", value: "Real solutions appear when discriminant ≥ 0; otherwise complex." }
+    ]} },
     formula: 'nvx = x^(1/n).',
     description: 'Evaluate radical expressions (nth root).',
-    interpretation: 'The nth root of the given radicand.'
+    interpretation: 'The nth root of the given radicand.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

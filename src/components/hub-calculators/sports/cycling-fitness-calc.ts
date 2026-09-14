@@ -14,6 +14,11 @@ const calcDef: CalcDef = {
     return { result: vo2Est, label: 'Est. VO2max', unit: 'mL/kg/min', steps: [
       { label: 'Power', value: v.powerW+' W' }, { label: 'HR at steady state', value: v.hrSteady+' bpm ('+(pctHR*100).toFixed(0)+'% max)' },
       { label: 'Est. VO2max', value: vo2Est.toFixed(1)+' mL/kg/min' }, { label: 'Protocol', value: 'Submaximal Astrand cycle test' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Estimate VO2max from submaximal cycling using the Astrand-Ryhming protocol. Heart rate response at known workload predicts aerobic capacity.', formula: 'VO2max = (W × 12 / weight) / HR%max', interpretation: 'Lower HR at same power output = higher aerobic capacity and cycling efficiency.'
 }

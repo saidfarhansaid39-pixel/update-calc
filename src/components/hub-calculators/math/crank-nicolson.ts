@@ -11,11 +11,21 @@ const calcDef: CalcDef = {
       const alpha = 0.01, dx = 0.1, r = alpha * dt / (dx * dx)
       const T = [T0, T0 * 0.8, T0 * 0.6]
       const Tnew = T.map((_, i) => T[i] + r * ((T[i + 1] || 0) - 2 * T[i] + (T[i - 1] || 0)) / 2)
-      return { result: 'T1=' + Tnew[0].toFixed(2) + ', T2=' + Tnew[1].toFixed(2) + ', T3=' + Tnew[2].toFixed(2), label: 'Crank-Nicolson step', steps: [step('Diffusivity:', 'alpha=' + alpha + ', dx=' + dx + ', r=' + r.toFixed(4)), step('New temps:', Tnew.map((t, i) => 'T' + (i + 1) + '=' + t.toFixed(2)).join(', '))] }
+      return { result: 'T1=' + Tnew[0].toFixed(2) + ', T2=' + Tnew[1].toFixed(2) + ', T3=' + Tnew[2].toFixed(2), label: 'Crank-Nicolson step', steps: [step('Diffusivity:', 'alpha=' + alpha + ', dx=' + dx + ', r=' + r.toFixed(4)), step('New temps:', Tnew.map((t, i) => 'T' + (i + 1) + '=' + t.toFixed(2)).join(', '))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'T_i^{n+1} = T_i^n + r/2 (T_{i+1}^n - 2T_i^n + T_{i-1}^n + T_{i+1}^{n+1} - 2T_i^{n+1} + T_{i-1}^{n+1})',
     description: 'Crank-Nicolson method for heat equation (one step).',
-    interpretation: 'The temperature distribution after one time step using Crank-Nicolson.'
+    interpretation: 'The temperature distribution after one time step using Crank-Nicolson.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

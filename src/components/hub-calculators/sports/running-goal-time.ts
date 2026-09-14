@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Total time', value: `${hours}h ${mins}m (${totalMin.toFixed(1)} min)` },
         { label: 'Per 5 km split', value: `${(paceTotalMin * 5).toFixed(1)} min` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate your estimated race finish time from distance and target pace per kilometer. Set realistic race goals based on your current fitness level.'
 }

@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Category', value: cat },
         { label: 'Climbing performance', value: wkg > 4 ? 'Excellent climber' : wkg > 3 ? 'Good climber' : 'Moderate climber' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate your cycling power-to-weight ratio (W/kg). This is the key metric for climbing performance and overall cycling fitness level.'
 }

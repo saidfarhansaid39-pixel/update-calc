@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function DataConverterForm() {
@@ -8,13 +8,11 @@ export default function DataConverterForm() {
   const [value, setValue] = useState<number>(1);
   const [from, setFrom] = useState<string>('GB');
   const [to, setTo] = useState<string>('MB');
-  const [result, setResult] = useState<any>(null);
-
   const conversions: any = { B: 1, KB: 1024, MB: 1024**2, GB: 1024**3, TB: 1024**4, PB: 1024**5 };
 
-  useEffect(() => {
+  const result = useMemo(() => {
     const res = (value * conversions[from]) / conversions[to];
-    setResult(res.toFixed(2));
+    return res.toFixed(2);
   }, [value, from, to]);
 
   return (

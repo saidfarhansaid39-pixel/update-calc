@@ -14,6 +14,11 @@ const calcDef: CalcDef = {
       { label: 'Mat work / warm-up', value: mat+' min' },
       { label: 'Reformer / equipment', value: reformer+' min' },
       ...(v.focus ? [{ label: 'Focus', value: v.focus === 'core' ? 'Emphasize powerhouse exercises' : v.focus === 'lower' ? 'Focus on glutes and legs' : v.focus === 'upper' ? 'Upper body and arms emphasis' : 'Balanced full body workout' }] : []),
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Plan a Pilates session with mat work and equipment components. Pilates improves core strength, posture, and body awareness.', formula: 'Session: 70% mat work, 30% equipment/reformer', interpretation: 'Consistent Pilates practice develops deep core stability, spinal mobility, and balanced muscle development.'
 }

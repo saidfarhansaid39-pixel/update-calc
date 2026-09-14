@@ -9,11 +9,23 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const deg = n(v.a), rad = deg * (Math.PI / 180)
       const result = Math.tan(rad)
-      return { result: Math.abs(result) > 1e15 ? 'Undefined' : result, label: 'tan(theta)', steps: [step('Convert:', deg + 'deg = ' + rad.toFixed(6) + ' rad'), step('Result:', 'tan(' + deg + 'deg) = ' + (Math.abs(result) > 1e15 ? 'undefined (asymptote)' : result.toFixed(6)))] }
+      return { result: Math.abs(result) > 1e15 ? 'Undefined' : result, label: 'tan(theta)', steps: [step('Convert:', deg + 'deg = ' + rad.toFixed(6) + ' rad'), step('Result:', 'tan(' + deg + 'deg) = ' + (Math.abs(result) > 1e15 ? 'undefined (asymptote)' : result.toFixed(6)))] ,
+    extras: [
+      { label: "Unit Circle Reference", value: "Angles measured from positive x-axis counterclockwise." },
+      { label: "Common Angle Values", value: "sin(0°)=0, sin(30°)=0.5, sin(45°)=0.707, sin(60°)=0.866, sin(90°)=1." },
+      { label: "Pythagorean Identity", value: "sin²θ + cos²θ = 1 — fundamental trigonometric relationship." },
+      { label: "Radian vs Degree", value: "Switch between degree and radian mode depending on your problem." },
+      { label: "Periodic Nature", value: "Trigonometric functions repeat every 360° (2π radians)." }
+    ]}
     },
     formula: 'tan(theta)',
     description: 'Calculate the tangent of an angle.',
-    interpretation: 'The tangent of the given angle in degrees.'
+    interpretation: 'The tangent of the given angle in degrees.',
+    presets: [
+      { label: 'Common 30°', values: { a: '30' } },
+      { label: 'Common 45°', values: { a: '45' } },
+      { label: 'Common 60°', values: { a: '60' } }
+    ]
 }
 
 export default calcDef

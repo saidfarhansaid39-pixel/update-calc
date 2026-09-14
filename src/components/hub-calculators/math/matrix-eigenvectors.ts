@@ -8,14 +8,23 @@ const calcDef: CalcDef = {
     defaults: { a: '2', b: '1', c: '1', d: '2' },
     compute: (v) => {
       const a = n(v.a), b = n(v.b), c = n(v.c), d = n(v.d); const trace = a + d; const det = a * d - b * c; const disc = trace * trace - 4 * det
-      if (disc < 0) return { result: 'Complex eigenvectors', label: 'Eigenvectors', steps: [step('Complex ?', 'Eigenvectors complex')] }
+      if (disc < 0) return { result: 'Complex eigenvectors', label: 'Eigenvectors', steps: [step('Complex ?', 'Eigenvectors complex')] ,
+    extras: [
+      { label: "Dimension Check", value: "Matrix dimensions must be compatible for the operation." },
+      { label: "Singular Matrix Warning", value: "A determinant of zero means the matrix has no inverse." },
+      { label: "Computational Complexity", value: "Larger matrices require significantly more computation." },
+      { label: "Application", value: "Used in computer graphics, machine learning, and physics simulations." }
+    ]}
       const l1 = (trace + Math.sqrt(disc)) / 2; const l2 = (trace - Math.sqrt(disc)) / 2
       const v1x = b, v1y = l1 - a; const v2x = b, v2y = l2 - a
       return { result: `v1=(${v1x.toFixed(4)}, ${v1y.toFixed(4)}), v2=(${v2x.toFixed(4)}, ${v2y.toFixed(4)})`, label: 'Eigenvectors', steps: [step('?1', l1.toFixed(4)), step('v1', `(${v1x.toFixed(4)}, ${v1y.toFixed(4)})`), step('?2', l2.toFixed(4)), step('v2', `(${v2x.toFixed(4)}, ${v2y.toFixed(4)})`)] }
     },
     formula: '(A - ?I)v = 0. For 2x2, v = (b, ? - a).',
     description: 'Calculate eigenvectors of a 2x2 matrix.',
-    interpretation: 'Eigenvectors are non-zero vectors that only scale under transformation.'
+    interpretation: 'Eigenvectors are non-zero vectors that only scale under transformation.',
+    presets: [
+      { label: 'Example', values: { a: '1', b: '0', c: '0', d: '1' } }
+    ]
 }
 
 export default calcDef

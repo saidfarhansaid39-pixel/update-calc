@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'Adduct (z × H? = z × 1.00784)', value: `${(v.charge * 1.00784).toFixed(4)} Da` },
         { label: 'm/z = (M + z·H?) / z', value: `${mz.toFixed(4)} Th` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Mass-to-charge ratio (m/z) is the fundamental measurement in mass spectrometry. Calculate m/z from molecular mass and charge state for identifying ions.',
   formula: 'm/z = (M + z·m(H?)) / z | m(H?) = 1.00784 Da | ESI-MS typically produces z = 2-20; MALDI-TOF typically z = 1',

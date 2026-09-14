@@ -42,14 +42,10 @@ export default function AdvancedMortgageForm() {
   const [pieData, setPieData] = useState<any[]>([]);
 
   useEffect(() => {
-    calculateMortgage();
-  }, [homePrice, downPayment, loanTerm, interestRate, propertyTax, insurance, pmi, hoa, paymentFrequency, points]);
-
-  useEffect(() => {
     setDownPayment(Math.round(homePrice * (downPaymentPercent / 100)));
   }, [downPaymentPercent, homePrice]);
 
-  const calculateMortgage = () => {
+  function calculateMortgage() {
     const loanAmount = homePrice - downPayment;
     const monthlyRate = interestRate / 100 / 12;
     const totalPayments = loanTerm * 12;
@@ -132,7 +128,11 @@ export default function AdvancedMortgageForm() {
       totalPayments,
       upfrontCosts: downPayment + (loanAmount * points / 100) + (loanAmount * 0.02)
     });
-  };
+  }
+
+  useEffect(() => {
+    calculateMortgage();
+  }, [homePrice, downPayment, loanTerm, interestRate, propertyTax, insurance, pmi, hoa, paymentFrequency, points]);
 
   const exportToCSV = () => {
     const headers = ['Month', 'Payment', 'Principal', 'Interest', 'Balance'];

@@ -3,7 +3,7 @@ import { routing } from '@/i18n/routing'
 import { Link } from '@/lib/navigation'
 import { SchemaMarkup, breadcrumbListSchema } from '@/components/SchemaMarkup'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.jdcalc.com'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculat.online'
 
 export const dynamic = 'force-static'
 
@@ -22,12 +22,13 @@ export async function generateMetadata() {
     title,
     description,
     alternates: { canonical, languages },
-    openGraph: { title, description, url: canonical, siteName: 'JDCALC', type: 'website', images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }] },
+    openGraph: { title, description, url: canonical, siteName: 'Calculat', type: 'website', images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }] },
     twitter: { card: 'summary_large_image', title, description },
   }
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const locale = await getLocale()
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
       <nav aria-label="Breadcrumb" className="mb-6">
@@ -41,10 +42,21 @@ export default function ContactPage() {
         { name: 'Home', url: siteUrl },
         { name: 'Contact Us', url: `${siteUrl}/contact` },
       ])} />
+      <SchemaMarkup
+        type="WebApplication"
+        locale={locale}
+        data={{
+          '@type': 'WebPage',
+          name: 'Contact Us',
+          description: 'Get in touch with the Calculat team for questions, suggestions, or feedback.',
+          url: `${siteUrl}/contact`,
+          isPartOf: { '@type': 'WebSite', name: 'Calculat', url: siteUrl },
+        }}
+      />
       <h1 className="text-3xl font-bold mb-6">Contact Us</h1>
       <div className="prose dark:prose-invert max-w-none space-y-4">
         <p>Have a question, suggestion, or feedback? We&apos;d love to hear from you.</p>
-        <p>Email us at: <a href="mailto:support@jdcalc.com" className="text-primary hover:underline">support@jdcalc.com</a></p>
+        <p>Email us at: <a href="mailto:support@calculat.online" className="text-primary hover:underline">support@calculat.online</a></p>
         <p>We typically respond within 24-48 hours on business days.</p>
         <h2 className="text-xl font-semibold mt-8">Report an Issue</h2>
         <p>If you find a bug or calculation error, please include the calculator name and a description of the issue so we can fix it quickly.</p>

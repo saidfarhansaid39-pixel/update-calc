@@ -16,6 +16,11 @@ const calcDef: CalcDef = {
     return { result: speed, label: 'Running Speed', unit: 'km/h', steps: [
       { label: 'Distance', value: v.distance+' km' }, { label: 'Time', value: v.hours+'h '+v.minutes+'m '+v.seconds+'s' },
       { label: 'Pace', value: pMin+':'+pSec.toString().padStart(2,'0')+' /km' }, { label: 'Speed', value: speed.toFixed(2)+' km/h' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate running pace and speed from distance and time. Essential for race planning and training.', formula: 'Speed = distance / time', interpretation: 'Faster speeds and lower pace numbers = better running performance.'
 }

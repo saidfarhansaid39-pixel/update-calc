@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Strength level', value: standards },
         { label: 'Bodyweight ratio', value: `${ratio.toFixed(2)}× bodyweight` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Estimate your bench press one-rep max. The bench press is the gold standard upper body strength exercise measured in powerlifting.'
 }

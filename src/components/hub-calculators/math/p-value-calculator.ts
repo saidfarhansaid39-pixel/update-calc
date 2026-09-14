@@ -22,11 +22,20 @@ const calcDef: CalcDef = {
       const pOneTail = 1 - cdf
       const pTwoTail = 2 * pOneTail
       const pVal = b === 1 ? pOneTail : pTwoTail
-      return { result: pVal.toFixed(6), label: 'P-Value', steps: [step('Z-Score:', '' + a), step('CDF:', 'Phi(' + a + ') = ' + cdf.toFixed(6)), step('P-Value:', '' + (b === 1 ? 'One-tailed' : 'Two-tailed') + ' p = ' + pVal.toFixed(6))] }
+      return { result: pVal.toFixed(6), label: 'P-Value', steps: [step('Z-Score:', '' + a), step('CDF:', 'Phi(' + a + ') = ' + cdf.toFixed(6)), step('P-Value:', '' + (b === 1 ? 'One-tailed' : 'Two-tailed') + ' p = ' + pVal.toFixed(6))] ,
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ]}
     },
     formula: 'p = 2 x (1 - Phi(|z|)) for two-tailed',
     description: 'Estimate the p-value from a z-score using the normal distribution.',
-    interpretation: 'The p-value is the probability of observing a result as extreme as the test statistic.'
+    interpretation: 'The p-value is the probability of observing a result as extreme as the test statistic.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

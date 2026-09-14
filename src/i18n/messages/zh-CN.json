@@ -53,9 +53,11 @@
     "privacy": "隐私政策",
     "terms": "服务条款",
     "contact": "联系我们",
+    "editorialPolicy": "编辑政策",
+    "press": "新闻",
     "tagline": "为每次计算提供精准工具。免费、快速、设计精美。",
     "motto": "精准。智能。清晰。",
-    "copyright": "© {year} JDCALC. 保留所有权利。"
+    "copyright": "© {year} Calculat. 保留所有权利。"
   },
   "hubs": {
     "financial-calculators": "金融计算器",
@@ -186,14 +188,16 @@
     "searchNoResultsHint": "Try a different search term or browse calculators by category."
   },
   "seo": {
-    "siteTitle": "JDCALC — 世界上最智能的计算器平台",
-    "titleTemplate": "%s | JDCALC",
-    "siteName": "JDCALC",
+    "siteTitle": "Calculat — 世界上最智能的计算器平台",
+    "titleTemplate": "%s | Calculat",
+    "siteName": "Calculat",
     "siteDescription": "精准计算器，涵盖金融、健康、数学、科学和日常生活。AI 驱动，设计精美，完全免费。",
     "about": "关于我们",
     "privacy": "隐私",
     "terms": "条款",
-    "contact": "联系我们"
+    "contact": "联系我们",
+    "editorialPolicy": "编辑政策",
+    "press": "新闻"
   },
   "content": {
     "sectionOverview": "概述",
@@ -1556,7 +1560,7 @@
     "heroBadge": "世界上最智能的计算器平台",
     "heroTitle": "精确计算{highlight}",
     "heroHighlight": "一切",
-    "heroSubtitle": "200+ 款高级计算器，涵盖金融、健康、数学、科学和日常生活。免费、快速、设计精美。",
+    "heroSubtitle": "涵盖金融、健康、数学、科学和日常生活的 {count} 多款计算器，免费、快速、设计精美。",
     "statCalculators": "计算器",
     "statCategories": "分类",
     "statFree": "免费",
@@ -1564,7 +1568,7 @@
     "popularTitle": "热门计算器",
     "popularSubtitle": "社区最常用的工具",
     "trendingTitle": " trending",
-    "featuresTitle": "为什么选择 JDCALC？",
+    "featuresTitle": "为什么选择 Calculat？",
     "featuresSubtitle": "为精准而生，为清晰而设计",
     "featureFastTitle": "闪电般快速",
     "featureFastDesc": "输入即计算，实时响应，零等待。",
@@ -1576,7 +1580,21 @@
     "featureDesignDesc": "深色模式，在每台设备上完美呈现。",
     "ctaTitle": "即刻开始计算",
     "ctaSubtitle": "无需注册。只需选择一个计算器即可开始。",
-    "ctaButton": "探索计算器"
+    "ctaButton": "探索计算器",
+    "heroTitlePre": "精确计算",
+    "heroTitlePost": "",
+    "allCategories": "所有类别",
+    "trendAutoLoanName": "汽车贷款",
+    "trendAutoLoanDesc": "汽车付款估算",
+    "trend401kName": "401k计算器",
+    "trend401kDesc": "退休储蓄规划器",
+    "trendHouseName": "住房可负担性",
+    "trendHouseDesc": "你能买得起多少的房子",
+    "trendStudentName": "学生贷款",
+    "trendStudentDesc": "还款策略",
+    "sciTitle": "科学计算器",
+    "sciIntro": "需要快速计算？使用我们内置的科学计算器，支持三角函数、对数、幂和常数。",
+    "sciNote": "可在基础与科学模式之间切换。它始终位于每个页面的右下角。"
   },
   "extraFields": {
     "activity_job": "Job Activity Level",
@@ -2245,6 +2263,79 @@
     "zip_code_placeholder": "e.g. 90210"
   },
   "calculatorUI": {
+    "shell": {
+      "unitMetric": "Metric",
+      "unitImperial": "Imperial",
+      "unitUS": "US Customary",
+      "calculate": "Calculate",
+      "recalculate": "Recalculate",
+      "result": "Result",
+      "copyResult": "Copy Result",
+      "saveCalculation": "Save Calculation",
+      "restore": "Restore",
+      "restorePreviousValues": "Restore Previous Values",
+      "hideAudit": "Hide Audit Trail",
+      "showAudit": "Show Audit Trail",
+      "dismiss": "Dismiss",
+      "yes": "Yes",
+      "no": "No",
+      "home": "Home",
+      "onThisPage": "On This Page",
+      "tierEssential": "Essential",
+      "tierStandard": "Standard",
+      "tierPremium": "Premium",
+      "modeBasic": "Basic",
+      "modeAdvanced": "Advanced",
+      "modeProfessional": "Professional",
+      "modeExpert": "Expert",
+      "headingWhatIs": "What Is This?",
+      "headingHowItWorks": "How It Works",
+      "headingFormula": "The Formula",
+      "headingExampleCalc": "Example Calculation",
+      "headingExampleCalcs": "Example Calculations",
+      "headingWhatThisMeans": "What This Means",
+      "headingYourResults": "Your Results",
+      "headingEduGuide": "Educational Guide",
+      "headingEduVisualizations": "Visualizations",
+      "headingTipsBestPractices": "Tips & Best Practices",
+      "headingFAQ": "Frequently Asked Questions",
+      "headingQuestions": "Questions?",
+      "headingReferences": "References",
+      "headingRelatedTopics": "Related Calculators",
+      "headingAboutAuthors": "About the Authors",
+      "tocEducationalGuide": "Educational Guide",
+      "tocExample": "Example",
+      "tocComparison": "Comparison",
+      "tocUseCases": "Use Cases",
+      "tocFAQ": "FAQ",
+      "tocGlossary": "Glossary",
+      "tocCompleteGuide": "Complete Guide",
+      "tocCommonMistakes": "Common Mistakes",
+      "tips": "Tips",
+      "tipAccurateInputs": "Use accurate inputs for best results.",
+      "tipPresetExamples": "Try the preset examples to see how it works.",
+      "tipPrintExport": "Print or export your results for record keeping.",
+      "tipBookmark": "Bookmark this calculator for quick access.",
+      "tipSaveScenario": "Save different scenarios to compare outcomes.",
+      "tipReviewAssumptions": "Review the assumptions behind each calculation.",
+      "didThisHelp": "Did this calculator help you?",
+      "pleaseCheckInputs": "Please check your inputs and try again.",
+      "calculationFailed": "Calculation failed. Please check your values.",
+      "enterValuesAbove": "Enter values above to see results.",
+      "noResultAvailable": "No result available",
+      "howItWorksDefault": "Enter your values and click Calculate to see how it works.",
+      "dataDependent": "Data Required",
+      "dataDependentDescription": "Enter values in the form above to get started.",
+      "usersCount": "{count} users have used this calculator",
+      "authorLabel": "Author",
+      "reviewerLabel": "Reviewed by",
+      "relatedCalculators": "Related Calculators",
+      "refreshCadence": "Last updated: {date}",
+      "featureCharts": "Charts & Visualizations",
+      "featureComparison": "Scenario Comparison",
+      "featureGuide": "Educational Guide",
+      "questionsParagraph": "Have questions? Check the FAQ or contact us."
+    },
     "headings": {
       "paymentCalculator": "Payment Calculator"
     },
@@ -2457,11 +2548,11 @@
     },
     "contact": {
       "metaTitle": "联系我们 - 免费在线计算器",
-      "metaDescription": "与JDCALC团队取得联系。我们欢迎您的反馈和建议。",
+      "metaDescription": "与Calculat团队取得联系。我们欢迎您的反馈和建议。",
       "title": "联系我们",
       "intro": "Have feedback, suggestions, or found a bug? We'd love to hear from you.",
       "emailLabel": "Email us at:",
-      "emailAddress": "support@jdcalc.com"
+      "emailAddress": "support@calculat.online"
     },
     "privacy": {
       "metaTitle": "隐私政策 - 免费在线计算器",
@@ -2488,6 +2579,18 @@
       "accuracyText": "We strive for accuracy but make no guarantees. Always verify critical calculations with a qualified professional.",
       "availabilityTitle": "Availability",
       "availabilityText": "We reserve the right to modify or discontinue any calculator tool at any time without notice."
-    }
+    },
+    "editorialPolicy": {
+      "metaTitle": "编辑政策 - 免费在线计算器",
+      "metaDescription": "我们的编辑政策确保所有计算工具和内容的准确性、透明度和质量。",
+      "title": "编辑政策"
+    },
+    "press": {
+      "metaTitle": "新闻 - 免费在线计算器",
+      "metaDescription": "新闻资源、媒体资料包以及Calculat团队的联系信息。",
+      "title": "新闻"
+    },
+    "calculatorBuilderTitle": "Calculator Builder",
+    "calculatorBuilderDescription": "Build your own custom calculators with custom formulas and fields. Free online calculator builder tool."
   }
 }

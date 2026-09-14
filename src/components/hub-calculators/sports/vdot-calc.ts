@@ -28,7 +28,12 @@ const calcDef: CalcDef = {
         { label: 'Easy run pace', value: `${easyMin}:${easySec.toString().padStart(2, '0')} /km` },
         { label: 'Marathon pace', value: `${mpMin}:${mpSec.toString().padStart(2, '0')} /km` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate your VDOT value from a recent race performance using Jack Daniels\' Running Formula. VDOT is a measure of running ability used to prescribe training paces for easy, marathon, threshold, and interval workouts.'
 }

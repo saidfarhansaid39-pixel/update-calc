@@ -53,9 +53,11 @@
     "privacy": "プライバシーポリシー",
     "terms": "利用規約",
     "contact": "お問い合わせ",
+    "editorialPolicy": "編集方針",
+    "press": "プレス",
     "tagline": "あらゆる計算のための精密ツール。無料、高速、美しいデザイン。",
     "motto": "精度。知性。明瞭さ。",
-    "copyright": "© {year} JDCALC. 無断転載を禁じます。"
+    "copyright": "© {year} Calculat. 無断転載を禁じます。"
   },
   "hubs": {
     "financial-calculators": "ファイナンス電卓",
@@ -186,14 +188,16 @@
     "searchNoResultsHint": "Try a different search term or browse calculators by category."
   },
   "seo": {
-    "siteTitle": "JDCALC — 世界で最もスマートな電卓プラットフォーム",
-    "titleTemplate": "%s | JDCALC",
-    "siteName": "JDCALC",
+    "siteTitle": "Calculat — 世界で最もスマートな電卓プラットフォーム",
+    "titleTemplate": "%s | Calculat",
+    "siteName": "Calculat",
     "siteDescription": "ファイナンス、ヘルス、数学、科学、日常生活のための精密電卓。AI搭載、美しいデザイン、完全無料。",
     "about": "概要",
     "privacy": "プライバシー",
     "terms": "利用規約",
-    "contact": "お問い合わせ"
+    "contact": "お問い合わせ",
+    "editorialPolicy": "編集方針",
+    "press": "プレス"
   },
   "content": {
     "sectionOverview": "概要",
@@ -1556,7 +1560,7 @@
     "heroBadge": "世界で最もスマートな電卓プラットフォーム",
     "heroTitle": "{highlight}を正確に計算",
     "heroHighlight": "あらゆるもの",
-    "heroSubtitle": "ファイナンス、ヘルス、数学、科学、日常生活のための200以上のプレミアム電卓。無料、高速、美しいデザイン。",
+    "heroSubtitle": "金融・健康・数学・科学・日常生活向けの計算機が{count}以上。無料で、速く、美しいデザイン。",
     "statCalculators": "電卓",
     "statCategories": "カテゴリー",
     "statFree": "無料",
@@ -1564,7 +1568,7 @@
     "popularTitle": "人気の電卓",
     "popularSubtitle": "コミュニティで最も使われているツール",
     "trendingTitle": "トレンド",
-    "featuresTitle": "JDCALCの理由",
+    "featuresTitle": "Calculatの理由",
     "featuresSubtitle": "精度のために構築、明瞭さのために設計",
     "featureFastTitle": "超高速",
     "featureFastDesc": "入力と同時にリアルタイム計算、待ち時間ゼロ。",
@@ -1576,7 +1580,21 @@
     "featureDesignDesc": "ダークモード対応で全デバイスで完璧。",
     "ctaTitle": "今すぐ計算を始める",
     "ctaSubtitle": "サインアップ不要。電卓を選んですぐに開始。",
-    "ctaButton": "電卓を探す"
+    "ctaButton": "電卓を探す",
+    "heroTitlePre": "",
+    "heroTitlePost": "を正確に計算",
+    "allCategories": "すべてのカテゴリー",
+    "trendAutoLoanName": "オートローン",
+    "trendAutoLoanDesc": "車の月々の支払い見積もり",
+    "trend401kName": "401k計算機",
+    "trend401kDesc": "退職貯蓄プランナー",
+    "trendHouseName": "住宅の購入可否",
+    "trendHouseDesc": "購入できる家の価格帯",
+    "trendStudentName": "奨学金ローン",
+    "trendStudentDesc": "返済戦略",
+    "sciTitle": "関数電卓",
+    "sciIntro": "すぐに計算したいですか？三角関数、対数、累乗、定数を備えた内蔵の関数電卓をご利用ください。",
+    "sciNote": "基本モードと関数電卓モードを切り替えられます。各ページの右下に常に表示されます。"
   },
   "extraFields": {
     "activity_job": "Job Activity Level",
@@ -2245,6 +2263,79 @@
     "zip_code_placeholder": "e.g. 90210"
   },
   "calculatorUI": {
+    "shell": {
+      "unitMetric": "Metric",
+      "unitImperial": "Imperial",
+      "unitUS": "US Customary",
+      "calculate": "Calculate",
+      "recalculate": "Recalculate",
+      "result": "Result",
+      "copyResult": "Copy Result",
+      "saveCalculation": "Save Calculation",
+      "restore": "Restore",
+      "restorePreviousValues": "Restore Previous Values",
+      "hideAudit": "Hide Audit Trail",
+      "showAudit": "Show Audit Trail",
+      "dismiss": "Dismiss",
+      "yes": "Yes",
+      "no": "No",
+      "home": "Home",
+      "onThisPage": "On This Page",
+      "tierEssential": "Essential",
+      "tierStandard": "Standard",
+      "tierPremium": "Premium",
+      "modeBasic": "Basic",
+      "modeAdvanced": "Advanced",
+      "modeProfessional": "Professional",
+      "modeExpert": "Expert",
+      "headingWhatIs": "What Is This?",
+      "headingHowItWorks": "How It Works",
+      "headingFormula": "The Formula",
+      "headingExampleCalc": "Example Calculation",
+      "headingExampleCalcs": "Example Calculations",
+      "headingWhatThisMeans": "What This Means",
+      "headingYourResults": "Your Results",
+      "headingEduGuide": "Educational Guide",
+      "headingEduVisualizations": "Visualizations",
+      "headingTipsBestPractices": "Tips & Best Practices",
+      "headingFAQ": "Frequently Asked Questions",
+      "headingQuestions": "Questions?",
+      "headingReferences": "References",
+      "headingRelatedTopics": "Related Calculators",
+      "headingAboutAuthors": "About the Authors",
+      "tocEducationalGuide": "Educational Guide",
+      "tocExample": "Example",
+      "tocComparison": "Comparison",
+      "tocUseCases": "Use Cases",
+      "tocFAQ": "FAQ",
+      "tocGlossary": "Glossary",
+      "tocCompleteGuide": "Complete Guide",
+      "tocCommonMistakes": "Common Mistakes",
+      "tips": "Tips",
+      "tipAccurateInputs": "Use accurate inputs for best results.",
+      "tipPresetExamples": "Try the preset examples to see how it works.",
+      "tipPrintExport": "Print or export your results for record keeping.",
+      "tipBookmark": "Bookmark this calculator for quick access.",
+      "tipSaveScenario": "Save different scenarios to compare outcomes.",
+      "tipReviewAssumptions": "Review the assumptions behind each calculation.",
+      "didThisHelp": "Did this calculator help you?",
+      "pleaseCheckInputs": "Please check your inputs and try again.",
+      "calculationFailed": "Calculation failed. Please check your values.",
+      "enterValuesAbove": "Enter values above to see results.",
+      "noResultAvailable": "No result available",
+      "howItWorksDefault": "Enter your values and click Calculate to see how it works.",
+      "dataDependent": "Data Required",
+      "dataDependentDescription": "Enter values in the form above to get started.",
+      "usersCount": "{count} users have used this calculator",
+      "authorLabel": "Author",
+      "reviewerLabel": "Reviewed by",
+      "relatedCalculators": "Related Calculators",
+      "refreshCadence": "Last updated: {date}",
+      "featureCharts": "Charts & Visualizations",
+      "featureComparison": "Scenario Comparison",
+      "featureGuide": "Educational Guide",
+      "questionsParagraph": "Have questions? Check the FAQ or contact us."
+    },
     "headings": {
       "paymentCalculator": "Payment Calculator"
     },
@@ -2457,11 +2548,11 @@
     },
     "contact": {
       "metaTitle": "お問い合わせ - 無料オンライン計算機",
-      "metaDescription": "JDCALCチームにお問い合わせください。ご意見やご提案をお待ちしております。",
+      "metaDescription": "Calculatチームにお問い合わせください。ご意見やご提案をお待ちしております。",
       "title": "お問い合わせ",
       "intro": "Have feedback, suggestions, or found a bug? We'd love to hear from you.",
       "emailLabel": "Email us at:",
-      "emailAddress": "support@jdcalc.com"
+      "emailAddress": "support@calculat.online"
     },
     "privacy": {
       "metaTitle": "プライバシーポリシー - 無料オンライン計算機",
@@ -2488,6 +2579,18 @@
       "accuracyText": "We strive for accuracy but make no guarantees. Always verify critical calculations with a qualified professional.",
       "availabilityTitle": "Availability",
       "availabilityText": "We reserve the right to modify or discontinue any calculator tool at any time without notice."
-    }
+    },
+    "editorialPolicy": {
+      "metaTitle": "編集方針 - 無料オンライン計算機",
+      "metaDescription": "当社の編集方針は、すべての計算ツールとコンテンツの正確性、透明性、品質を保証します。",
+      "title": "編集方針"
+    },
+    "press": {
+      "metaTitle": "プレス - 無料オンライン計算機",
+      "metaDescription": "プレスリソース、メディアキット、Calculatチームへの連絡先情報。",
+      "title": "プレス"
+    },
+    "calculatorBuilderTitle": "Calculator Builder",
+    "calculatorBuilderDescription": "Build your own custom calculators with custom formulas and fields. Free online calculator builder tool."
   }
 }

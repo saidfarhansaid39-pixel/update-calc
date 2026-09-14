@@ -8,13 +8,23 @@ const calcDef: CalcDef = {
     defaults: { a: '10', b: '3' },
     compute: (v) => {
       const nc = Math.round(n(v.a)), k = Math.round(n(v.b))
-      if (k > nc) return { result: 0, label: 'C(n,k) (k > n)', steps: [step('Error:', 'Cannot choose ' + k + ' from ' + nc + ' (k > n)')] }
+      if (k > nc) return { result: 0, label: 'C(n,k) (k > n)', steps: [step('Error:', 'Cannot choose ' + k + ' from ' + nc + ' (k > n)')] ,
+    extras: [
+      { label: "Solution Methods", value: "Can be solved via factoring, formula, or graphical methods." },
+      { label: "Discriminant Insight", value: "The discriminant reveals the number and type of solutions." },
+      { label: "Graphical Meaning", value: "Solutions correspond to x-intercepts on the graph." },
+      { label: "Checking Solutions", value: "Substitute results back into the original equation to verify." },
+      { label: "Real vs Complex", value: "Real solutions appear when discriminant ≥ 0; otherwise complex." }
+    ]}
       const result = fact(nc) / (fact(k) * fact(nc - k))
       return { result, label: 'C(' + nc + ', ' + k + ')', steps: [step('Formula:', 'C(' + nc + ', ' + k + ') = ' + nc + '! / (' + k + '! x (' + nc + ' - ' + k + ')!)'), step('Result:', '' + result)] }
     },
     formula: 'C(n, k) = n! / (k! x (n-k)!)',
     description: 'Calculate the binomial coefficient n choose k.',
-    interpretation: 'The number of ways to choose k items from n items.'
+    interpretation: 'The number of ways to choose k items from n items.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

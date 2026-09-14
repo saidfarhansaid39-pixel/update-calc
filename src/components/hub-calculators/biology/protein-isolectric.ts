@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Net charge proxy at pH 7', value: `${netCharge.toFixed(1)}` },
         { label: 'Estimated pI', value: `${clampedPI.toFixed(2)}` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The isoelectric point (pI) is the pH at which a protein carries no net electrical charge. It is critical for IEF, 2D electrophoresis, and protein purification by ion exchange chromatography.',
   formula: 'pI ˜ pH where net charge = 0. Estimate based on acidic (pKa ~4) vs basic (pKa ~10-12) residue counts.',

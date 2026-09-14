@@ -6,7 +6,7 @@ import { getLocalizedCalculator } from '@/lib/localized-registry'
 import { getHubTheme } from '@/lib/hub-themes'
 import { SchemaMarkup } from '@/components/SchemaMarkup'
 
-const siteUrl = 'https://www.jdcalc.com'
+const siteUrl = 'https://www.calculat.online'
 const DEFAULT_ACCENT = '#06b6d4' // cyan fallback
 
 interface RelatedCalculatorsProps {

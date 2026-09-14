@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Meters per revolution', value: `${developM.toFixed(2)} m/rev` },
         { label: 'Classification', value: gearInches < 60 ? 'Low (climbing)' : gearInches < 80 ? 'Medium (rolling)' : 'High (descending)' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate gear inches for your bicycle drivetrain. Gear inches represent the effective wheel diameter and help cyclists compare gear ratios across different wheel sizes.'
 }

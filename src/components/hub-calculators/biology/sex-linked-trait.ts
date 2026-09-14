@@ -26,7 +26,12 @@ const calcDef: CalcDef = {
         { label: 'Daughters: affected', value: `${dauAff}%` },
         { label: 'Daughters: carriers', value: `${dauCarrier}%` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'X-linked recessive traits (like hemophilia, color blindness) primarily affect males. Females are typically carriers unless homozygous.',
   formula: 'Males: XY (single X). Affected if X?Y. Females: XX. Affected only if X?X?. Carrier if X?X?.',

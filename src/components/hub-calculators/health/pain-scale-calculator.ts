@@ -10,7 +10,12 @@ const calcDef: CalcDef = {
     { name:'sleepImpact', label:'Impact on Sleep (0=none, 10=severe)', type:'number', min:0, max:10, step:'1' },
     { name:'painQuality', label:'Pain Quality', type:'select', options:[{ label:'Aching/Dull (1)', value:'1' },{ label:'Stabbing (2)', value:'2' },{ label:'Burning (3)', value:'3' },{ label:'Throbbing (4)', value:'4' }] }
   ],
-  compute: (v) => { const intensity=parseInt(v.painIntensity)||5; const freq=parseInt(v.painFrequency)||2; const dur=parseInt(v.painDuration)||2; const activity=parseInt(v.activityImpact)||5; const sleep=parseInt(v.sleepImpact)||5; const quality=parseInt(v.painQuality)||2; const score=intensity+freq+dur+Math.round(activity/3)+Math.round(sleep/3)+quality; let sev='Mild'; if(score>=20) sev='Severe'; else if(score>=12) sev='Moderate'; return { result:score, label:'Pain Score', unit:'/32', steps:[{ label:'Pain Score', value:score+'/32' },{ label:'Severity', value:sev }] } },
+  compute: (v) => { const intensity=parseInt(v.painIntensity)||5; const freq=parseInt(v.painFrequency)||2; const dur=parseInt(v.painDuration)||2; const activity=parseInt(v.activityImpact)||5; const sleep=parseInt(v.sleepImpact)||5; const quality=parseInt(v.painQuality)||2; const score=intensity+freq+dur+Math.round(activity/3)+Math.round(sleep/3)+quality; let sev='Mild'; if(score>=20) sev='Severe'; else if(score>=12) sev='Moderate'; return { result:score, label:'Pain Score', unit:'/32', steps:[{ label:'Pain Score', value:score+'/32' },{ label:'Severity', value:sev }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'Multi-dimensional pain assessment scoring intensity, frequency, duration, and impact.',
   formula: 'Score = intensity + frequency + duration + activity/3 + sleep/3 + quality. Range 2-32.',
   interpretation: '2-11 Mild pain, 12-19 Moderate pain, 20-32 Severe pain requiring intervention.'

@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'muffins', label: 'Number of Muffins', type: 'number', min: 1, step: '1' }
     ],
     compute: (v) => {
-      const tb = parseInt(v.size) * v.muffins; const cu = tb / 16; return { result: tb, label: 'Total Batter', unit: 'tbsp', steps: [{ label: 'Size', value: v.size + ' tbsp each' }, { label: 'Muffins', value: v.muffins }, { label: 'Total', value: tb + ' tbsp (' + cu.toFixed(1) + ' cups)' }] }
+      const tb = parseInt(v.size) * v.muffins; const cu = tb / 16; return { result: tb, label: 'Total Batter', unit: 'tbsp', steps: [{ label: 'Size', value: v.size + ' tbsp each' }, { label: 'Muffins', value: v.muffins }, { label: 'Total', value: tb + ' tbsp (' + cu.toFixed(1) + ' cups)' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Muffin batter quantities. Standard uses 4 tbsp (1/4 cup) per muffin. Fill 2/3 full.',
     example: { label: '12 standard muffins', value: '48 tbsp (3 cups)' }

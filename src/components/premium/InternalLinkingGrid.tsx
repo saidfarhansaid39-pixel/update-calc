@@ -2,18 +2,11 @@
 
 import React, { useMemo, useState, useEffect } from 'react'
 import { Link } from '@/lib/navigation'
+import { calculatorRegistry } from '@calcuniverse/calculator-registry'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 import { ArrowRight, TrendingUp, Clock, Grid3X3, BookOpen, BarChart3, Hash, List } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { getLocalizedCalculator } from '@/lib/localized-registry'
-
-let _registryPromise: Promise<CalculatorEntry[]> | null = null
-function getRegistry(): Promise<CalculatorEntry[]> {
-  if (!_registryPromise) {
-    _registryPromise = import('@calcuniverse/calculator-registry').then(m => m.calculatorRegistry)
-  }
-  return _registryPromise
-}
 
 const hubPaths: Record<string, string> = {
   financial: 'financial-calculators', health: 'health-calculators', math: 'math-calculators',
@@ -39,17 +32,11 @@ interface InternalLinkingGridProps {
 export function InternalLinkingGrid({ calculator }: InternalLinkingGridProps) {
   const locale = useLocale()
   const th = useTranslations('hubs')
-  const [registry, setRegistry] = useState<CalculatorEntry[] | null>(null)
   const [localizedTitles, setLocalizedTitles] = useState<Record<string, string>>({})
   const [localizedDescriptions, setLocalizedDescriptions] = useState<Record<string, string>>({})
 
-  useEffect(() => {
-    getRegistry().then(setRegistry)
-  }, [])
-
   const links = useMemo(() => {
-    if (!registry) return null
-    const all = registry
+    const all = calculatorRegistry
     const sameCategory = all.filter(c => c.category === calculator.category && c.slug !== calculator.slug)
     const hubPath = hubPaths[calculator.category] || calculator.hubSlug
     const hubPage = `/${hubPath}`
@@ -65,7 +52,7 @@ export function InternalLinkingGrid({ calculator }: InternalLinkingGridProps) {
           otherCategory[(seedNum + i * 97) % otherCategory.length])
       : []
     return { popular, hubPath, hubPage, relatedDetail, youMightLike, all, sameCategory }
-  }, [calculator, registry])
+  }, [calculator])
 
   const displayEntries = useMemo(() => {
     if (!links) return []
@@ -98,8 +85,6 @@ export function InternalLinkingGrid({ calculator }: InternalLinkingGridProps) {
     title: localizedTitles[entry.slug] || entry.title,
     description: localizedDescriptions[entry.slug] || entry.description,
   })
-
-  if (!links) return null
 
   const hubPathFor = (c: CalculatorEntry) => hubPaths[c.category] || c.hubSlug
 

@@ -15,6 +15,11 @@ const calcDef: CalcDef = {
     return { result: speed, label: 'Estimated Speed', unit: 'km/h', steps: [
       { label: 'Cadence', value: v.rpm+' RPM' }, { label: 'Gear ratio', value: v.chainring+'/'+v.cog+' = '+ratio.toFixed(2) },
       { label: 'Wheel circ.', value: v.wheel+' m' }, { label: 'Speed', value: speed.toFixed(1)+' km/h' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate cycling speed from cadence, gear ratio, and wheel size. Typical road cadence is 80-100 RPM.', formula: 'Speed = RPM × (chainring/cog) × wheelCircumference × 60 / 1000', interpretation: 'Higher cadence with same gear = faster speed. Optimal cadence varies by rider and terrain.'
 }

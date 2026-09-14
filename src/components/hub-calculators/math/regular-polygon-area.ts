@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const nSides = Math.max(3, ni(v.a)), s = n(v.b)
       const area = (nSides * s * s) / (4 * Math.tan(Math.PI / nSides))
-      return { result: area, label: 'Area', unit: 'units2', steps: [step('Formula:', 'A = (' + nSides + ' x ' + s + '2) / (4 x tan(pi/' + nSides + '))'), step('Result:', 'A = ' + area.toFixed(4))] }
+      return { result: area, label: 'Area', unit: 'units2', steps: [step('Formula:', 'A = (' + nSides + ' x ' + s + '2) / (4 x tan(pi/' + nSides + '))'), step('Result:', 'A = ' + area.toFixed(4))] ,
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ]}
     },
     formula: 'A = (ns2) / (4 tan(pi/n))',
     description: 'Calculate the area of a regular polygon.',
-    interpretation: 'The area enclosed by a regular polygon with the given number of sides and side length.'
+    interpretation: 'The area enclosed by a regular polygon with the given number of sides and side length.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

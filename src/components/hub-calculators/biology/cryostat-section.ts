@@ -38,7 +38,12 @@ const calcDef: CalcDef = {
         { label: 'Embedding', value: useOCT ? 'Use OCT compound — embed at -20°C for 30 min' : 'OCT or optimal cutting temperature medium' },
         { label: 'Anti-roll plate', value: 'Adjust gap to section thickness for flat sections' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Cryostat sectioning produces frozen tissue sections for rapid diagnosis (frozen section), immunohistochemistry, or enzyme histochemistry. Optimal temperature varies by tissue composition.',
   formula: 'Chamber temp = f(tissue composition) | Fatty tissues need colder temps (-25 to -30°C) | Fibrous tissues need moderate temps (-14 to -18°C) | Section thickness: 5-10 µm standard, 10-30 µm for IHC',

@@ -9,11 +9,23 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const R = n(v.a), r = n(v.b)
       const area = Math.PI * (R * R - r * r)
-      return { result: area, label: 'Annulus Area', unit: 'units2', steps: [step('Formula:', 'A = pi(' + R + '2 - ' + r + '2) = ' + area.toFixed(4))] }
+      return { result: area, label: 'Annulus Area', unit: 'units2', steps: [step('Formula:', 'A = pi(' + R + '2 - ' + r + '2) = ' + area.toFixed(4))] ,
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ]}
     },
     formula: 'A = pi(R2 - r2)',
     description: 'Calculate the area of an annulus (ring).',
-    interpretation: 'The area between two concentric circles.'
+    interpretation: 'The area between two concentric circles.',
+    presets: [
+      { label: 'Small', values: { a: '3', b: '4' } },
+      { label: 'Medium', values: { a: '6', b: '8' } },
+      { label: 'Large', values: { a: '10', b: '12' } }
+    ]
 }
 
 export default calcDef

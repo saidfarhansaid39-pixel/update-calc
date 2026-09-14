@@ -12,11 +12,21 @@ const calcDef: CalcDef = {
       const val = -b / a
       const flip = a < 0
       const m = { gt: flip ? 'x < ' : 'x > ', gte: flip ? 'x <= ' : 'x >= ', lt: flip ? 'x > ' : 'x < ', lte: flip ? 'x >= ' : 'x <= ' }
-      return { result: m[op as keyof typeof m] + val.toFixed(4), label: 'Solution', steps: [step('Inequality:', '' + a + 'x + ' + b + ' ' + op + ' 0'), step('Critical point:', 'x = ' + val.toFixed(4)), step('Direction:', a > 0 ? 'Positive coefficient, no flip' : 'Negative coefficient, flip sign')] }
+      return { result: m[op as keyof typeof m] + val.toFixed(4), label: 'Solution', steps: [step('Inequality:', '' + a + 'x + ' + b + ' ' + op + ' 0'), step('Critical point:', 'x = ' + val.toFixed(4)), step('Direction:', a > 0 ? 'Positive coefficient, no flip' : 'Negative coefficient, flip sign')],
+    extras: [
+      { label: "Solution Methods", value: "Can be solved via factoring, formula, or graphical methods." },
+      { label: "Discriminant Insight", value: "The discriminant reveals the number and type of solutions." },
+      { label: "Graphical Meaning", value: "Solutions correspond to x-intercepts on the graph." },
+      { label: "Checking Solutions", value: "Substitute results back into the original equation to verify." },
+      { label: "Real vs Complex", value: "Real solutions appear when discriminant ≥ 0; otherwise complex." }
+    ] }
     },
     formula: 'ax + b > 0, etc.',
     description: 'Solve linear inequalities of the form ax + b > 0, etc.',
-    interpretation: 'The range of x values that satisfy the inequality.'
+    interpretation: 'The range of x values that satisfy the inequality.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'loaves', label: 'Number of Loaves', type: 'number', min: 1, step: '1' }
     ],
     compute: (v) => {
-      const cpl = parseInt(v.size); const tc = cpl * v.loaves; return { result: tc, label: 'Total Batter', unit: 'cups', steps: [{ label: 'Pan', value: cpl + ' cups' }, { label: 'Loaves', value: v.loaves }, { label: 'Total', value: tc + ' cups' }] }
+      const cpl = parseInt(v.size); const tc = cpl * v.loaves; return { result: tc, label: 'Total Batter', unit: 'cups', steps: [{ label: 'Pan', value: cpl + ' cups' }, { label: 'Loaves', value: v.loaves }, { label: 'Total', value: tc + ' cups' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Loaf pan batter quantities. Standard 9x5" = 8 cups. Fill 1/2 to 2/3 full.',
     example: { label: '2 standard loaves', value: '12 cups batter' }

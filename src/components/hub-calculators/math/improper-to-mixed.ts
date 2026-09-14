@@ -10,11 +10,20 @@ const calcDef: CalcDef = {
       const a = Math.round(n(v.a)), b = Math.round(n(v.b))
       if (b === 0) return { result: 'Undefined', label: 'Error' }
       const whole = Math.floor(a / b), rem = a % b
-      return { result: whole + ' ' + rem + '/' + b, label: 'Mixed Number', steps: [step('Improper fraction:', '' + a + '/' + b), step('Whole:', '' + whole), step('Remainder:', '' + rem), step('Result:', whole + ' ' + rem + '/' + b)] }
+      return { result: whole + ' ' + rem + '/' + b, label: 'Mixed Number', steps: [step('Improper fraction:', '' + a + '/' + b), step('Whole:', '' + whole), step('Remainder:', '' + rem), step('Result:', whole + ' ' + rem + '/' + b)],
+    extras: [
+      { label: "How It Works", value: "Simple percentage-based calculation applied to your input values." },
+      { label: "Common Use Case", value: "Used in shopping, budgeting, and everyday financial decisions." },
+      { label: "Input Requirements", value: "All monetary values should be in the same currency." },
+      { label: "Accuracy Note", value: "Results rounded to 2 decimal places for standard currency format." }
+    ] }
     },
     formula: 'a/b = q + r/b where a = qb + r',
     description: 'Convert an improper fraction to a mixed number.',
-    interpretation: 'The mixed number representation of the fraction.'
+    interpretation: 'The mixed number representation of the fraction.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

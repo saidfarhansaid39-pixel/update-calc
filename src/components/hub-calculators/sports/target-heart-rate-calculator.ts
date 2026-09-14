@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Target intensity', value: `${intensity}%` },
         { label: 'Target HR', value: `${target.toFixed(0)} bpm` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate your target heart rate for a specific exercise intensity using the Karvonen method. Train in the right zone for your fitness goals.'
 }

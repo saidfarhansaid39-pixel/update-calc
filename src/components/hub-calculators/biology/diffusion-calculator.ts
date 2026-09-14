@@ -22,7 +22,12 @@ const calcDef: CalcDef = {
         { label: 't = x²/2D', value: `${time.toFixed(4)} s` },
         { label: 't (ms)', value: `${(time * 1000).toFixed(2)} ms` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Diffusion is the passive movement of molecules from high to low concentration. The time required scales with the square of distance (Fick\'s second law).',
   formula: 't = x² / 2D | RMS displacement = v(2Dt)',

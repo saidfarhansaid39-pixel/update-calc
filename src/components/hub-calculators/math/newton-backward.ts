@@ -14,11 +14,21 @@ const calcDef: CalcDef = {
       const b2 = b1.map((_, i) => i > 1 ? b1[i] - b1[i - 1] : 0)
       const hVal = 1, p = (x - xVals[nPts - 1]) / hVal
       const result = yVals[nPts - 1] + p * b1[nPts - 1] + p * (p + 1) * b2[nPts - 1] / 2
-      return { result: result.toFixed(4), label: 'f(' + x + ')', steps: [step('Backward diff b1:', b1.filter(v => v !== 0).join(', ')), step('Backward diff b2:', b2.filter(v => v !== 0).join(', ')), step('Interpolated:', 'f(' + x + ') = ' + result.toFixed(4))] }
+      return { result: result.toFixed(4), label: 'f(' + x + ')', steps: [step('Backward diff b1:', b1.filter(v => v !== 0).join(', ')), step('Backward diff b2:', b2.filter(v => v !== 0).join(', ')), step('Interpolated:', 'f(' + x + ') = ' + result.toFixed(4))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'Newton backward difference interpolation formula',
     description: 'Interpolate using Newton backward difference formula.',
-    interpretation: 'The interpolated value at the given point using backward differences.'
+    interpretation: 'The interpolated value at the given point using backward differences.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

@@ -9,13 +9,23 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const a = n(v.a), angleB = n(v.b), sideB = v.c ? n(v.c) : 0
       const bRad = angleB * (Math.PI / 180)
-      if (sideB === 0) { const sideBcalc = (a * Math.sin(bRad)) / Math.sin(bRad); return { result: 'Need angle A', label: 'Incomplete', steps: [step('Note:', 'Law of sines: a/sin(A) = b/sin(B) = c/sin(C)')] } }
+      if (sideB === 0) { const sideBcalc = (a * Math.sin(bRad)) / Math.sin(bRad); return { result: 'Need angle A', label: 'Incomplete', steps: [step('Note:', 'Law of sines: a/sin(A) = b/sin(B) = c/sin(C)')] ,
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ]} }
       const ratio = a / Math.sin(bRad)
       return { result: ratio.toFixed(4), label: 'a/sin(A) ratio', steps: [step('Law of sines:', 'a/sin(A) = b/sin(B) = c/sin(C)'), step('Ratio:', '' + ratio.toFixed(4))] }
     },
     formula: 'a/sin(A) = b/sin(B) = c/sin(C)',
     description: 'Apply the law of sines to solve triangles.',
-    interpretation: 'The ratio of side length to sine of opposite angle.'
+    interpretation: 'The ratio of side length to sine of opposite angle.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

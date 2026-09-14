@@ -22,7 +22,12 @@ const calcDef: CalcDef = {
         { label: 'Volume (cm³)', value: `${volumeCm3.toFixed(3)} cm³` },
         { label: 'Approx mass (if density ˜ 1 g/cm³)', value: `${volumeCm3.toFixed(3)} g` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Tumor volume is estimated from caliper measurements using the ellipsoid formula. It is the standard endpoint in preclinical tumor xenograft studies.',
   formula: 'V = (L × W²) / 2 (ellipsoid approximation) | L = longest diameter, W = perpendicular diameter (shorter axis)',

@@ -17,7 +17,14 @@ const calcDef: CalcDef = {
       else if (t === 'hex2bin') { result = parseInt(v.a, 16).toString(2); label = 'Binary' }
       else if (t === 'oct2dec') { result = '' + parseInt(v.a, 8); label = 'Decimal' }
       else if (t === 'dec2oct') { result = parseInt(v.a, 10).toString(8); label = 'Octal' }
-      return { result: isNaN(parseInt(result)) ? 'Invalid input' : result, label, steps: [step('Convert:', '' + t + ' of ' + v.a), step('Result:', result)] }
+      return { result: isNaN(parseInt(result)) ? 'Invalid input' : result, label, steps: [step('Convert:', '' + t + ' of ' + v.a), step('Result:', result)] ,
+    extras: [
+      { label: "Mathematical Significance", value: "Fundamental concept in number theory and discrete mathematics." },
+      { label: "Computational Note", value: "Large inputs may require optimized algorithms for performance." },
+      { label: "Historical Context", value: "Studied by mathematicians across centuries for its unique properties." },
+      { label: "Related Sequences", value: "Related to other integer sequences and special numbers." },
+      { label: "Pattern Recognition", value: "Observe recurring patterns and relationships between values." }
+    ]}
     },
     formula: 'Base conversion',
     description: 'Convert numbers between binary, decimal, hexadecimal, and octal bases.',

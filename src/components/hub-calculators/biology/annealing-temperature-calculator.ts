@@ -36,7 +36,12 @@ const calcDef: CalcDef = {
         { label: 'Subtract constant: -14.9', value: `${ta.toFixed(2)}°C` },
         { label: `Convert to ${displayUnit}` + (unit !== 'celsius' ? '' : ' (no conversion needed)'), value: `${displayValue.toFixed(2)} ${displayUnit}` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   formula: 'T? = 0.3 × Tm? + 0.7 × Tm? - 14.9',
   description: 'Annealing temperature is critical for specific PCR amplification. Calculate optimal Ta from your primer and target DNA melting temperatures.',

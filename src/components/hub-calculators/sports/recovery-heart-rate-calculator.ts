@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'Recovery rating', value: rating },
         { label: 'Interpretation', value: drop > 40 ? 'Good cardiovascular fitness' : 'Consider improving aerobic conditioning' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Heart rate recovery measures how much your heart rate drops 1 minute after exercise. A drop > 40 bpm indicates good cardiovascular fitness.'
 }

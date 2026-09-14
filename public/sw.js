@@ -1,6 +1,6 @@
 const CACHE_VERSION = 'v2';
-const STATIC_CACHE = 'allcalculators-static-' + CACHE_VERSION;
-const API_CACHE = 'allcalculators-api-' + CACHE_VERSION;
+const STATIC_CACHE = 'calculat-static-' + CACHE_VERSION;
+const API_CACHE = 'calculat-api-' + CACHE_VERSION;
 const OFFLINE_URL = '/offline.html';
 
 var STATIC_ASSETS = [

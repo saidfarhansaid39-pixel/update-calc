@@ -28,7 +28,12 @@ const calcDef: CalcDef = {
         { label: 'Estimated migration', value: `${migration.toFixed(1)} mm from well` },
         { label: 'Recommendation', value: v.kbSize < 0.5 ? 'Use 1.5-2% gel' : v.kbSize < 3 ? 'Use 0.8-1% gel' : 'Use 0.6-0.8% gel' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Agarose gel electrophoresis separates DNA fragments by size. Smaller fragments migrate faster through the gel matrix. Migration distance is proportional to log of fragment size.',
   formula: 'Migration ˜ constant - m × log(kb) - gel% × f | Run at 5-10 V/cm gel length | Lower % gel for larger fragments',

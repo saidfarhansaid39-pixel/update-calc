@@ -16,7 +16,12 @@ const calcDef: CalcDef = {
         { label: 'Height', value: `${v.height} cm` },
         { label: 'Formula (US Navy)', value: `495 / (1.0324 - 0.19077 × log10(${v.waist} - ${v.neck}) + 0.15456 × log10(${v.height})) - 450` },
         { label: 'Estimated body fat', value: `${bf.toFixed(1)}%` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Body fat percentage using the US Navy circumference method. This method uses neck, waist, and height measurements and is accurate within 3-4% of hydrostatic weighing.',
     example: { label: 'Neck 38cm, Waist 85cm, Height 175cm', value: '~15.6% body fat' }

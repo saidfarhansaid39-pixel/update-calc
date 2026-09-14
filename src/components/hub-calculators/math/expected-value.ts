@@ -11,11 +11,20 @@ const calcDef: CalcDef = {
       const probs = String(v.probs || '').split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x))
       if (vals.length !== probs.length || vals.length === 0) return { result: 'Equal length required', label: 'Error' }
       const ev = vals.reduce((s, v, i) => s + v * probs[i], 0)
-      return { result: ev.toFixed(6), label: 'E[X]', steps: [step('Items', '' + vals.length), step('Formula', 'E[X] = S xi � pi'), step('Result', ev.toFixed(6))] }
+      return { result: ev.toFixed(6), label: 'E[X]', steps: [step('Items', '' + vals.length), step('Formula', 'E[X] = S xi � pi'), step('Result', ev.toFixed(6))],
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ] }
     },
     formula: 'E[X] = S xi � P(xi).',
     description: 'Calculate the expected value of a discrete random variable.',
-    interpretation: 'The long-run average value of the random variable.'
+    interpretation: 'The long-run average value of the random variable.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

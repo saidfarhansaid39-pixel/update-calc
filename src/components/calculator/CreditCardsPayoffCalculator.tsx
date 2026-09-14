@@ -1,11 +1,26 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { useLocale } from 'next-intl';
+import { CreditCard, DollarSign, Clock } from 'lucide-react';
 import { CreditCardsPayoffForm } from '@/components/calculator/CreditCardsPayoffForm';
 import { CreditCardsPayoffResults } from '@/components/calculator/CreditCardsPayoffResults';
-import { CreditCardsPayoffArticle } from '@/components/calculator/CreditCardsPayoffArticle';
+import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
+import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
+
+const calcMeta = {
+  slug: 'credit-cards-payoff-calculator',
+  title: 'Credit Cards Payoff Calculator',
+  description: 'Find the fastest way to pay off multiple credit cards using the debt avalanche method.',
+  tier: 'tier2',
+  category: 'financial',
+  hubSlug: 'financial-calculators',
+  hubName: 'Financial Calculators',
+  keywords: ['credit card payoff', 'debt avalanche', 'multiple cards', 'payoff schedule'],
+};
 
 export function CreditCardsPayoffCalculator() {
+  const locale = useLocale();
   const [budget, setBudget] = useState("500");
   const [cards, setCards] = useState([
     { name: "Card 1", balance: "4,600", minPayment: "100", rate: "18.99" },
@@ -127,32 +142,44 @@ export function CreditCardsPayoffCalculator() {
     });
   };
 
+  const totalPrincipal = useMemo(() => {
+    return cards
+      .map(c => parseFloat(c.balance.replace(/,/g, '')) || 0)
+      .reduce((a, b) => a + b, 0);
+  }, [cards]);
+
+  const subCalcs = useMemo(() => {
+    if (!results || results.error) return null;
+    const years = Math.floor(results.totalMonths / 12);
+    const months = results.totalMonths % 12;
+    return (
+      <SubCalcGrid>
+        <SubCalcPanel title="Payoff Summary" icon={CreditCard} defaultOpen results={[
+          { label: 'Total Debt', value: `$${totalPrincipal.toLocaleString()}`, badge: 'negative' },
+          { label: 'Total Interest Paid', value: `$${results.totalInterest.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`, badge: 'negative' },
+          { label: 'Total Amount Paid', value: `$${results.totalPaid.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}` },
+          { label: 'Payoff Time', value: `${years > 0 ? `${years}y ` : ''}${months}mo (${results.totalMonths} months)`, badge: 'info' },
+        ]} />
+        <SubCalcPanel title="Cards Breakdown" icon={DollarSign} results={
+          (results.cardStats || []).map((stat: any) => ({
+            label: stat.name,
+            value: `${stat.monthsToPayoff} months · $${stat.interestPaid.toLocaleString(undefined, {minimumFractionDigits: 2})} interest`,
+          }))
+        } />
+      </SubCalcGrid>
+    );
+  }, [results, totalPrincipal]);
+
+  const mainValue = results ? results.totalInterest : undefined;
+
   return (
-    <div className="max-w-[800px] mx-auto bg-white p-2 md:p-4">
-      <div className="flex justify-between text-xs text-gray-500 mb-2 border-b pb-1">
-        <div>home / financial / credit cards payoff calculator</div>
-      </div>
-      
-      <h1 className="text-[26px] font-bold text-gray-800 mb-4 font-sans">Credit Cards Payoff Calculator</h1>
-      <p className="mb-4 text-[13px] text-gray-800 leading-relaxed">
-        This calculator creates a cost-efficient payback schedule for multiple credit cards using the Debt Avalanche method. To evaluate the repayment of a single credit card only, or for further information about credit cards and how they work, please visit our <a href="/financial-calculators/credit-card-payoff-calculator/" className="text-[#1c4587] underline">credit card calculator</a>.
-      </p>
-
-      <div className="flex flex-col md:flex-row gap-6 w-full">
-        <div className="flex-1">
-          <CreditCardsPayoffForm 
-            state={state} 
-            setters={setters} 
-            handleCalculate={calculate}
-            handleClear={handleClear}
-          />
-        </div>
-        <div className="w-full md:w-[350px]">
-          <CreditCardsPayoffResults results={results} />
-        </div>
-      </div>
-
-      <CreditCardsPayoffArticle />
-    </div>
+    <PremiumCalculatorShell
+      calculator={calcMeta}
+      form={<CreditCardsPayoffForm state={state} setters={setters} handleCalculate={calculate} handleClear={handleClear} />}
+      result={<CreditCardsPayoffResults results={results} />}
+      subCalcs={subCalcs}
+      inputs={{ budget, cardCount: String(cards.filter(c => c.balance).length) }}
+      mainValue={mainValue}
+    />
   );
 }

@@ -10,11 +10,20 @@ const calcDef: CalcDef = {
       const a = n(v.a), b = n(v.b)
       const g = gcd(a, b)
       const sa = a / g, sb = b / g
-      return { result: '' + sa + ' : ' + sb, label: 'Simplified Ratio', steps: [step('Original ratio:', '' + a + ' : ' + b), step('GCD:', '' + g), step('Simplified:', '(' + a + '/' + g + ') : (' + b + '/' + g + ') = ' + sa + ' : ' + sb)] }
+      return { result: '' + sa + ' : ' + sb, label: 'Simplified Ratio', steps: [step('Original ratio:', '' + a + ' : ' + b), step('GCD:', '' + g), step('Simplified:', '(' + a + '/' + g + ') : (' + b + '/' + g + ') = ' + sa + ' : ' + sb)] ,
+    extras: [
+      { label: "How It Works", value: "Simple percentage-based calculation applied to your input values." },
+      { label: "Common Use Case", value: "Used in shopping, budgeting, and everyday financial decisions." },
+      { label: "Input Requirements", value: "All monetary values should be in the same currency." },
+      { label: "Accuracy Note", value: "Results rounded to 2 decimal places for standard currency format." }
+    ]}
     },
     formula: 'a : b simplified',
     description: 'Simplify a ratio to its lowest terms.',
-    interpretation: 'The ratio in its simplest form.'
+    interpretation: 'The ratio in its simplest form.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

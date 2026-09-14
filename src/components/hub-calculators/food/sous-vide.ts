@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Doneness temp', value: `${parts.slice(1).join(' ')} (${baseMin}°C)` },
         { label: 'Recommended time', value: `${time.toFixed(0)} min` },
         { label: 'Sear after', value: 'Pat dry and sear 30-60s per side for crust' },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Sous vide cooking times based on thickness and desired doneness. The water bath ensures precise, consistent results. Always sear after sous vide for a golden crust.',
     example: { label: '3cm steak, medium-rare', value: '~72 min at 54°C' }

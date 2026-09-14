@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'amount', label: 'Original Amount', type: 'number', min: 0, step: '0.25' }
     ],
     compute: (v) => {
-      const r = parseFloat(v.ingredient); const result = v.amount * r; return { result, label: 'Substitute Amount', unit: 'units', steps: [{ label: 'Ratio', value: r + 'x' }, { label: 'Original', value: v.amount }, { label: 'Substitute', value: result.toFixed(2) }] }
+      const r = parseFloat(v.ingredient); const result = v.amount * r; return { result, label: 'Substitute Amount', unit: 'units', steps: [{ label: 'Ratio', value: r + 'x' }, { label: 'Original', value: v.amount }, { label: 'Substitute', value: result.toFixed(2) }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Calculate substitute ingredient amounts based on common kitchen conversion ratios.',
     example: { label: '100g butter to oil (0.8x)', value: '80g oil' }

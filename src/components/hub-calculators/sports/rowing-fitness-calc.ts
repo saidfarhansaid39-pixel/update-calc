@@ -16,6 +16,11 @@ const calcDef: CalcDef = {
       { label: 'Distance', value: v.distance+' m in '+(v.time/60).toFixed(1)+' min' },
       { label: 'Pace/500m', value: paceMin+':'+paceSec.toString().padStart(2,'0') },
       { label: 'Power', value: watts.toFixed(0)+' W' }, ...(v.weight ? [{ label: 'W/kg', value: wkg.toFixed(2)+' W/kg' }] : []),
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate rowing power from distance and time on ergometer. Based on Concept2 drag factor model.', formula: 'P = 2.8 / (pace/500)³', interpretation: 'Higher power and lower split = better rowing. Elite rowers exceed 400W for 2000m.'
 }

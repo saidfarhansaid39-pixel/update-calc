@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'thickness', label: 'Thickness', type: 'select', options: [{ label: '1 cm (thin)', value: '1' }, { label: '2.5 cm (med)', value: '2.5' }, { label: '4 cm+ (thick)', value: '4' }] }
     ],
     compute: (v) => {
-      const p = v.type.split('_'); const tc = parseFloat(p[0]); const tf = tc * 9/5 + 32; const time = parseFloat(v.thickness) * 6; return { result: tc, label: 'Target Temp', unit: '°C', steps: [{ label: 'Fish', value: p.slice(1).join(' ') }, { label: 'Temp', value: tc + '°C / ' + tf.toFixed(0) + '°F' }, { label: 'Thickness', value: v.thickness + ' cm' }, { label: 'Cook time', value: time.toFixed(0) + ' min' }, { label: 'Test', value: 'Flakes easily with fork' }] }
+      const p = v.type.split('_'); const tc = parseFloat(p[0]); const tf = tc * 9/5 + 32; const time = parseFloat(v.thickness) * 6; return { result: tc, label: 'Target Temp', unit: '°C', steps: [{ label: 'Fish', value: p.slice(1).join(' ') }, { label: 'Temp', value: tc + '°C / ' + tf.toFixed(0) + '°F' }, { label: 'Thickness', value: v.thickness + ' cm' }, { label: 'Cook time', value: time.toFixed(0) + ' min' }, { label: 'Test', value: 'Flakes easily with fork' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Fish cooking temperatures. Salmon is best at medium (52-57°C); white fish at 63°C.',
     example: { label: '2.5cm salmon fillet', value: '57°C (135°F), ~15 min' }

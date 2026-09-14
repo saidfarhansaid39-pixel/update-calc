@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Total yield = conc × volume / 1000', value: `${totalYield.toFixed(2)} µg` },
         { label: 'Yield per mg tissue', value: `${yieldPerMg.toFixed(2)} µg/mg` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Calculate DNA extraction yield from tissue samples. Expected yields vary by tissue type and extraction method.',
   formula: 'Total yield (µg) = concentration (ng/µL) × elution volume (µL) / 1000 | Specific yield = total yield / sample mass',

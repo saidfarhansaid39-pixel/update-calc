@@ -8,11 +8,21 @@ const calcDef: CalcDef = {
     defaults: { a: '0', b: '10' },
     compute: (v) => {
       const lo = n(v.a), hi = n(v.b)
-      return { result: '[' + lo + ', ' + hi + ']', label: 'Interval', steps: [step('Interval:', '[' + lo + ', ' + hi + ']')] }
+      return { result: '[' + lo + ', ' + hi + ']', label: 'Interval', steps: [step('Interval:', '[' + lo + ', ' + hi + ']')] ,
+    extras: [
+      { label: "Solution Methods", value: "Can be solved via factoring, formula, or graphical methods." },
+      { label: "Discriminant Insight", value: "The discriminant reveals the number and type of solutions." },
+      { label: "Graphical Meaning", value: "Solutions correspond to x-intercepts on the graph." },
+      { label: "Checking Solutions", value: "Substitute results back into the original equation to verify." },
+      { label: "Real vs Complex", value: "Real solutions appear when discriminant ≥ 0; otherwise complex." }
+    ]}
     },
     formula: 'Interval [a, b]',
     description: 'Express a range of values in interval notation.',
-    interpretation: 'The interval of values between the lower and upper bounds.'
+    interpretation: 'The interval of values between the lower and upper bounds.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

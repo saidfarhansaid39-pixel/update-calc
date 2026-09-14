@@ -6,10 +6,19 @@ const calcDef: CalcDef = {
     schema: z.object({ n: z.string().min(1).refine(v => !isNaN(parseFloat(v)) && parseFloat(v) >= 1 && Number.isInteger(Number(v)) && Number(v) <= 20, '1-20 integer') }),
     fields: [numField('n', 'Number of objects', { min: 1, max: 20, step: '1' })],
     defaults: { n: '5' },
-    compute: (v) => { const nVal = Math.round(n(v.n)); const p = fact(nVal - 1); return { result: p, label: 'Circular permutations', steps: [step('n', '' + nVal), step('(n-1)!', '' + p)] } },
+    compute: (v) => { const nVal = Math.round(n(v.n)); const p = fact(nVal - 1); return { result: p, label: 'Circular permutations', steps: [step('n', '' + nVal), step('(n-1)!', '' + p)] ,
+    extras: [
+      { label: "Counting Principle", value: "Understand whether order matters (permutations) or not (combinations)." },
+      { label: "Large Number Warning", value: "Factorials and combinatorial values grow extremely fast." },
+      { label: "Real-World Use", value: "Used in probability, statistics, game theory, and algorithm analysis." },
+      { label: "Formula Reference", value: "nCr = n! / (r!(n-r)!) for combinations; nPr = n! / (n-r)! for permutations." }
+    ]} },
     formula: 'P_circ(n) = (n-1)!',
     description: 'Calculate the number of circular permutations of n distinct objects.',
-    interpretation: 'Number of distinct arrangements around a circle (rotations considered identical).'
+    interpretation: 'Number of distinct arrangements around a circle (rotations considered identical).',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

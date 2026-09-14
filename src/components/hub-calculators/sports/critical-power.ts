@@ -28,7 +28,12 @@ const calcDef: CalcDef = {
         { label: 'W\' (anaerobic capacity)', value: `${validWprime.toFixed(0)} kJ` },
         { label: 'Max effort at CP', value: `${(validCP * 0.9).toFixed(0)} W sustainable for ~20 min` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate Critical Power (CP) and W\' (anaerobic work capacity) from two maximal efforts of different durations. CP represents sustainable power output and is a more precise training metric than FTP.'
 }

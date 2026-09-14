@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'HR Reserve', value: `${hrr} bpm` },
         ...zones.map(z => ({ label: `${z.pct}% zone`, value: `${z.hr.toFixed(0)} bpm` })),
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Calculate heart rate training zones using the Karvonen formula. Train at the right intensity for endurance, fat burn, or high-intensity intervals.',
   formula: 'Target HR = Resting HR + (Max HR – Resting HR) × Intensity% | Max HR = 220 – Age',

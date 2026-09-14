@@ -12,11 +12,22 @@ const calcDef: CalcDef = {
       const k4 = h * ((x + 12 * h / 13) + (y + 1932 * k1 / 2197 - 7200 * k2 / 2197 + 7296 * k3 / 2197))
       const k5 = h * ((x + h) + (y + 439 * k1 / 216 - 8 * k2 + 3680 * k3 / 513 - 845 * k4 / 4104))
       y += 25 * k1 / 216 + 1408 * k3 / 2565 + 2197 * k4 / 4104 - k5 / 5; x += h
-      return { result: y.toFixed(6), label: `y(${x.toFixed(4)})`, steps: [step('k1', k1.toFixed(6)), step('k2', k2.toFixed(6)), step('k3', k3.toFixed(6)), step('k4', k4.toFixed(6)), step('k5', k5.toFixed(6)), step('Result', `y=${y.toFixed(6)}`)] }
+      return { result: y.toFixed(6), label: `y(${x.toFixed(4)})`, steps: [step('k1', k1.toFixed(6)), step('k2', k2.toFixed(6)), step('k3', k3.toFixed(6)), step('k4', k4.toFixed(6)), step('k5', k5.toFixed(6)), step('Result', `y=${y.toFixed(6)}`)] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'RKF45 � embedded 4th/5th order Runge-Kutta method.',
     description: 'Runge-Kutta-Fehlberg (RKF45) one-step ODE solver.',
-    interpretation: 'Adaptive step-size Runge-Kutta method with error estimation.'
+    interpretation: 'Adaptive step-size Runge-Kutta method with error estimation.',
+    presets: [
+      { label: 'Fine grain', values: { x0: '0', y0: '1', h: '0.1', steps: '10' } },
+      { label: 'Coarse', values: { x0: '0', y0: '1', h: '0.2', steps: '5' } }
+    ]
 }
 
 export default calcDef

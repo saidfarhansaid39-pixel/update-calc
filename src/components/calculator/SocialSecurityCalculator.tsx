@@ -1,10 +1,26 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { Calendar, TrendingUp, Users, DollarSign } from 'lucide-react';
 import { SocialSecurityForm1 } from '@/components/calculator/SocialSecurityForm1';
 import { SocialSecurityForm2 } from '@/components/calculator/SocialSecurityForm2';
 import { SocialSecurityResults } from '@/components/calculator/SocialSecurityResults';
 import { SocialSecurityArticle } from '@/components/calculator/SocialSecurityArticle';
+import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
+import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
+
+const FRA = 67;
+
+const calcMeta = {
+  slug: 'social-security-calculator',
+  title: 'Social Security Calculator',
+  description: 'Determine the ideal age to claim Social Security retirement benefits and compare claiming strategies.',
+  tier: 'tier2',
+  category: 'financial',
+  hubSlug: 'financial-calculators',
+  hubName: 'Financial Calculators',
+  keywords: ['social security', 'retirement benefits', 'claiming age', 'FRA', 'break-even age'],
+};
 
 export function SocialSecurityCalculator() {
   // Form 1 State
@@ -136,39 +152,84 @@ export function SocialSecurityCalculator() {
     });
   };
 
+  const inputs = useMemo(() => ({
+    birthYear, lifeExpectancy, returnRate1, cola1,
+    age1, payment1, age2, payment2, returnRate2, cola2,
+  }), [birthYear, lifeExpectancy, returnRate1, cola1, age1, payment1, age2, payment2, returnRate2, cola2]);
+
+  const mainValue = results?.type === 'ideal'
+    ? results.bestAge
+    : results?.type === 'compare'
+      ? (typeof results.breakEvenAge === 'number' ? results.breakEvenAge : 0)
+      : 0;
+
+  const subCalcs = useMemo(() => {
+    const idealResults = results?.type === 'ideal' ? results : null;
+    const compareResults = results?.type === 'compare' ? results : null;
+
+    return (
+      <SubCalcGrid>
+        <SubCalcPanel title="Full Retirement Age" icon={Calendar} defaultOpen results={[
+          { label: 'FRA (born ≥ 1960)', value: `${FRA} years` },
+          { label: 'Early Eligibility', value: '62 years', badge: 'info' },
+          { label: 'Maximum Delayed Credit', value: '70 years', badge: 'info' },
+          { label: 'Early Reduction (62)', value: '30% reduction' },
+          { label: 'Delayed Credit (70)', value: '+24% increase' },
+        ]} />
+        {idealResults && (
+          <SubCalcPanel title="Ideal Age Analysis" icon={TrendingUp} defaultOpen results={[
+            { label: 'Best Claiming Age', value: `Age ${idealResults.bestAge}`, badge: 'positive' },
+            { label: 'Life Expectancy', value: `${idealResults.lifeExpectancy} years` },
+            { label: 'vs FRA (67)', value: idealResults.bestAge < FRA ? `Early by ${FRA - idealResults.bestAge} years` : idealResults.bestAge > FRA ? `Delayed by ${idealResults.bestAge - FRA} years` : 'At FRA' },
+            { label: 'Investment Return', value: `${idealResults.returnRate}%` },
+            { label: 'COLA', value: `${idealResults.cola}%` },
+          ]} />
+        )}
+        {compareResults && (
+          <SubCalcPanel title="Comparison Analysis" icon={Users} defaultOpen results={[
+            { label: 'Option 1 (Claim at)', value: `Age ${compareResults.age1}` },
+            { label: 'Option 2 (Claim at)', value: `Age ${compareResults.age2}` },
+            { label: 'Break-Even Age', value: `Age ${compareResults.breakEvenAge}`, badge: 'info' },
+            { label: 'Investment Return', value: `${compareResults.returnRate}%` },
+            { label: 'COLA', value: `${compareResults.cola}%` },
+          ]} />
+        )}
+        <SubCalcPanel title="Benefit Overview" icon={DollarSign} results={[
+          { label: 'Spousal Benefit', value: 'Up to 50% of PIA' },
+          { label: 'Survivor Benefit', value: 'Up to 100% of PIA' },
+          { label: 'Tax on Benefits', value: 'Up to 85% taxable', badge: 'info' },
+          { label: 'Cost-of-Living Adjustment', value: 'Annual COLA applies' },
+        ]} />
+      </SubCalcGrid>
+    );
+  }, [results]);
+
   return (
-    <div className="max-w-[800px] mx-auto bg-white p-2 md:p-4">
-      <div className="flex justify-between text-xs text-gray-500 mb-2 border-b pb-1">
-        <div>home / financial / social security calculator</div>
-      </div>
-      
-      <h1 className="text-[26px] font-bold text-gray-800 mb-4 font-sans">Social Security Calculator</h1>
-      <p className="mb-4 text-[13px] text-gray-800 leading-relaxed">
-        <a href="https://www.ssa.gov/" className="text-[#1c4587] underline">The U.S. Social Security website provides calculators for various purposes.</a> While they are all useful, there currently isn't a way to help determine the ideal (financially speaking) age at which a person between the ages of 62-70 should apply for their Social Security retirement benefits. This tool is designed specifically for this purpose. Please note that this calculator is intended for U.S. Social Security purposes only.
-      </p>
-
-      <div className="flex flex-col md:flex-row gap-6 w-full">
-        <div className="flex-1">
-          <SocialSecurityForm1 
-            state={state1} 
-            setters={setters1} 
-            handleCalculate={calculateForm1}
-            handleClear={handleClear1}
-          />
-
-          <SocialSecurityForm2 
-            state={state2} 
-            setters={setters2} 
-            handleCalculate={calculateForm2}
-            handleClear={handleClear2}
-          />
-        </div>
-        <div className="w-full md:w-[350px]">
-          <SocialSecurityResults results={results} />
-        </div>
-      </div>
-
+    <>
+      <PremiumCalculatorShell
+        calculator={calcMeta}
+        form={
+          <div>
+            <SocialSecurityForm1 
+              state={state1} 
+              setters={setters1} 
+              handleCalculate={calculateForm1}
+              handleClear={handleClear1}
+            />
+            <SocialSecurityForm2 
+              state={state2} 
+              setters={setters2} 
+              handleCalculate={calculateForm2}
+              handleClear={handleClear2}
+            />
+          </div>
+        }
+        result={<SocialSecurityResults results={results} />}
+        subCalcs={subCalcs}
+        inputs={inputs}
+        mainValue={mainValue}
+      />
       <SocialSecurityArticle />
-    </div>
+    </>
   );
 }

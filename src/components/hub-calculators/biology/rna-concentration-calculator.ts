@@ -22,7 +22,12 @@ const calcDef: CalcDef = {
         { label: 'Concentration (40×A260)', value: `${conc.toFixed(1)} µg/mL` },
         { label: 'Quality (RNA)', value: ratio >= 2.0 ? 'Pure RNA' : ratio >= 1.8 ? 'Acceptable' : 'Contaminated (protein/phenol)' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'RNA concentration is determined by UV absorbance at 260 nm using the conversion factor of 40 µg/mL per A260 unit. A260/A280 ratio indicates purity.',
   formula: '[RNA] (µg/mL) = A260 × 40 | Pure RNA A260/A280 ˜ 2.0',

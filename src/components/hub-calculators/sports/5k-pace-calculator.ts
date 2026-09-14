@@ -27,7 +27,12 @@ const calcDef: CalcDef = {
         { label: 'Pace per mile', value: `${mileMin}:${mileSec.toString().padStart(2, '0')}` },
         { label: 'Speed', value: `${speed.toFixed(2)} km/h (${(speed * 0.6214).toFixed(2)} mph)` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Optimize your 5K race strategy. Calculate target pace per kilometer for any 5K goal time from 15 minutes to 40 minutes.'
 }

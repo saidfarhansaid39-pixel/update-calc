@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Speed (mph)', value: `${speedMph.toFixed(1)} mph` },
         { label: 'Comparison', value: speedKmh > 200 ? 'ATP-level serve' : speedKmh > 160 ? 'Competitive serve' : speedKmh > 120 ? 'Club level' : 'Developing serve' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate tennis serve speed by measuring ball travel time across the court diagonal (standard ~23.8 m). Professional serves typically exceed 200 km/h (125 mph).'
 }

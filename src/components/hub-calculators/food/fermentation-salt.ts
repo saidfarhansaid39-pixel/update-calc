@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'pct', label: 'Salt %', type: 'select', options: [{ label: '2% (sauerkraut, peppers)', value: '2' }, { label: '3% (pickles, hot sauce)', value: '3' }, { label: '5% (olives, strong brine)', value: '5' }] }
     ],
     compute: (v) => {
-      const s = v.water * parseFloat(v.pct) / 100; return { result: s, label: 'Salt Needed', unit: 'g', steps: [{ label: 'Water', value: v.water + ' mL' }, { label: v.pct + '% brine', value: s.toFixed(1) + ' g salt' }, { label: 'Tip', value: 'Use non-iodized salt. Weigh, don\'t measure by volume!' }] }
+      const s = v.water * parseFloat(v.pct) / 100; return { result: s, label: 'Salt Needed', unit: 'g', steps: [{ label: 'Water', value: v.water + ' mL' }, { label: v.pct + '% brine', value: s.toFixed(1) + ' g salt' }, { label: 'Tip', value: 'Use non-iodized salt. Weigh, don\'t measure by volume!' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Fermentation brine salinity. 2% for most vegetables, 3% for pickles, 5% for strong brines. Use non-iodized salt.',
     example: { label: '1L water, 2% brine', value: '20g salt' }

@@ -10,7 +10,12 @@ const calcDef: CalcDef = {
     { name:'lactic', label:'Lactic Acid (>5 mmol/L)', type:'select', options:[{ label:'No', value:'0' },{ label:'Yes (1)', value:'1' }] },
     { name:'baseDeficit', label:'Base Deficit (-5 to -10 mEq/L)', type:'select', options:[{ label:'No', value:'0' },{ label:'Yes (1)', value:'1' }] }
   ],
-  compute: (v) => { const a=parseInt(v.age)||45; let agePts=0; if(a>=70) agePts=2; else if(a>=55) agePts=1; const ards=parseInt(v.ards||'0'); const arf=parseInt(v.arf||'0'); const gi=parseInt(v.giAnticoag||'0'); const lac=parseInt(v.lactic||'0'); const bd=parseInt(v.baseDeficit||'0'); const score=agePts+ards+arf+gi+lac+bd; let sev='Mild'; if(score>=5) sev='Severe'; else if(score>=3) sev='Moderate'; return { result:score, label:'Glasgow-IMS Score', unit:'/8', steps:[{ label:'Age Points', value:agePts+'/2' },{ label:'Organ Failure Points', value:(ards+arf+gi+lac+bd)+'/6' },{ label:'Glasgow-IMS Score', value:score+'/8' }] } },
+  compute: (v) => { const a=parseInt(v.age)||45; let agePts=0; if(a>=70) agePts=2; else if(a>=55) agePts=1; const ards=parseInt(v.ards||'0'); const arf=parseInt(v.arf||'0'); const gi=parseInt(v.giAnticoag||'0'); const lac=parseInt(v.lactic||'0'); const bd=parseInt(v.baseDeficit||'0'); const score=agePts+ards+arf+gi+lac+bd; let sev='Mild'; if(score>=5) sev='Severe'; else if(score>=3) sev='Moderate'; return { result:score, label:'Glasgow-IMS Score', unit:'/8', steps:[{ label:'Age Points', value:agePts+'/2' },{ label:'Organ Failure Points', value:(ards+arf+gi+lac+bd)+'/6' },{ label:'Glasgow-IMS Score', value:score+'/8' }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'Glasgow-IMS (Imrie Modified Score) for acute pancreatitis severity assessment.',
   formula: 'Age>55(1)/>70(2) + ARDS + ARF + GI bleed + Lactic >5 + Base deficit. Range 0-8.',
   interpretation: '0-2 Mild pancreatitis, 3-4 Moderate, ≥5 Severe with higher morbidity/mortality.'

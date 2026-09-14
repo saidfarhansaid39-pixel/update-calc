@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function LuminanceConverterForm() {
@@ -8,14 +8,12 @@ export default function LuminanceConverterForm() {
   const [value, setValue] = useState<number>(1);
   const [from, setFrom] = useState<string>('cdm2');
   const [to, setTo] = useState<string>('fl');
-  const [result, setResult] = useState<any>(null);
-
   const toCdm2: any = { cdm2: 1, fl: 0.31831, lambert: 10000, nit: 1, stilb: 10000 };
 
-  useEffect(() => {
+  const result = useMemo(() => {
     const cdm2 = value * toCdm2[from];
     const res = cdm2 / toCdm2[to];
-    setResult(res.toFixed(4));
+    return res.toFixed(4);
   }, [value, from, to]);
 
   return (

@@ -13,7 +13,12 @@ const calcDef: CalcDef = {
         { label: 'Body fat percentage', value: `${v.bf}%` },
         { label: 'Fat mass', value: `${fatMass.toFixed(1)} kg` },
         { label: 'Lean body mass', value: `${lbm.toFixed(1)} kg` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Lean Body Mass (LBM) is your total weight minus fat mass. LBM includes muscle, bone, organs, and water. Tracking LBM is more useful than weight alone for fitness progress.',
     example: { label: '80kg, 15% body fat', value: '68 kg LBM, 12 kg fat mass' }

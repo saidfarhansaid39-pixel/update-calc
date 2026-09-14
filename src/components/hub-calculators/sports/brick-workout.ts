@@ -14,6 +14,11 @@ const calcDef: CalcDef = {
       { label: 'Bike leg', value: v.bikeMin+' min' }, { label: 'Run leg', value: v.runMin+' min' },
       ...(v.transitions ? [{ label: 'Transitions', value: v.transitions+' min' }] : []),
       { label: 'Total', value: total+' min ('+Math.floor(total/60)+'h '+(total%60).toFixed(0)+'m)' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Plan brick workouts (bike-to-run) for triathlon training. Bricks simulate race-day conditions and improve run-off-the-bike ability.', formula: 'Brick = bike + run + transitions', interpretation: 'Brick workouts are essential for adapting to the bike-to-run transition feeling and improving race performance.'
 }

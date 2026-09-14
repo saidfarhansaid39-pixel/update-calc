@@ -10,11 +10,22 @@ const calcDef: CalcDef = {
       const y0 = n(v.a), h = n(v.b)
       const k1 = y0, k2 = y0 + h * k1 / 5, k3 = y0 + h * (3 * k1 / 40 + 9 * k2 / 40)
       const y1 = y0 + h * (k1 * 35 / 384 + k3 * 500 / 1113)
-      return { result: y1.toFixed(6), label: 'y(' + h.toFixed(2) + ')', steps: [step('RK stages:', 'k1=' + k1.toFixed(4) + ', k2=' + k2.toFixed(4) + ', k3=' + k3.toFixed(4)), step('Result:', 'y1=' + y1.toFixed(6))] }
+      return { result: y1.toFixed(6), label: 'y(' + h.toFixed(2) + ')', steps: [step('RK stages:', 'k1=' + k1.toFixed(4) + ', k2=' + k2.toFixed(4) + ', k3=' + k3.toFixed(4)), step('Result:', 'y1=' + y1.toFixed(6))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'Dormand-Prince RK5(4) embedded method (simplified)',
     description: 'Dormand-Prince adaptive Runge-Kutta method (one step).',
-    interpretation: 'The solution at the next step using Dormand-Prince method.'
+    interpretation: 'The solution at the next step using Dormand-Prince method.',
+    presets: [
+      { label: 'Fine grain', values: { x0: '0', y0: '1', h: '0.1', steps: '10' } },
+      { label: 'Coarse', values: { x0: '0', y0: '1', h: '0.2', steps: '5' } }
+    ]
 }
 
 export default calcDef

@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'A260/A230', value: `${v.a260_230.toFixed(2)} — ${pure260_230}` },
         { label: 'Interpretation', value: pure260_280 === 'Pure' && pure260_230 === 'Pure' ? 'Sample is clean — suitable for downstream applications' : 'Contamination detected — consider re-purification' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Nucleic acid purity is assessed by UV absorbance ratios. A260/A280 indicates protein/phenol contamination; A260/A230 indicates chaotropic salt or organic compound contamination.',
   formula: 'Pure dsDNA: A260/A280 ˜ 1.8, A260/A230 ˜ 2.0-2.2 | Pure RNA: A260/A280 ˜ 2.0, A260/A230 ˜ 2.0-2.2',

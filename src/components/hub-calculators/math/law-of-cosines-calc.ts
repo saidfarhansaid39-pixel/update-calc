@@ -10,11 +10,21 @@ const calcDef: CalcDef = {
       const a = n(v.a), b = n(v.b), angleC = n(v.c)
       const cRad = angleC * (Math.PI / 180)
       const cSide = Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(cRad))
-      return { result: cSide.toFixed(4), label: 'Side c', steps: [step('Formula:', 'c2 = a2 + b2 - 2ab cos(C)'), step('Calculation:', 'c2 = ' + a + '2 + ' + b + '2 - 2(' + a + ')(' + b + ')cos(' + angleC + ')'), step('Result:', 'c = ' + cSide.toFixed(4))] }
+      return { result: cSide.toFixed(4), label: 'Side c', steps: [step('Formula:', 'c2 = a2 + b2 - 2ab cos(C)'), step('Calculation:', 'c2 = ' + a + '2 + ' + b + '2 - 2(' + a + ')(' + b + ')cos(' + angleC + ')'), step('Result:', 'c = ' + cSide.toFixed(4))] ,
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ]}
     },
     formula: 'c2 = a2 + b2 - 2ab cos(C)',
     description: 'Apply the law of cosines to solve triangles.',
-    interpretation: 'The missing side length using the law of cosines.'
+    interpretation: 'The missing side length using the law of cosines.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

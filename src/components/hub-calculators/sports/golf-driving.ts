@@ -26,7 +26,12 @@ const calcDef: CalcDef = {
         { label: 'Carry distance', value: `${carryAdjusted.toFixed(0)} yards` },
         { label: 'Spin analysis', value: spinEfficiency },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Estimate golf driving carry distance from ball speed, launch angle, and backspin rate. Optimal launch conditions produce maximum carry for a given ball speed.'
 }

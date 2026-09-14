@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const a = n(v.a), b = n(v.b), c = n(v.c), d = n(v.d)
       const result = a * d - b * c
-      return { result, label: 'det(A)', steps: [step('Formula:', 'det = ad - bc'), step('Values:', '(' + a + ')(' + d + ') - (' + b + ')(' + c + ')'), step('Result:', '' + result)] }
+      return { result, label: 'det(A)', steps: [step('Formula:', 'det = ad - bc'), step('Values:', '(' + a + ')(' + d + ') - (' + b + ')(' + c + ')'), step('Result:', '' + result)] ,
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ]}
     },
     formula: 'det = ad - bc for 2x2 matrix [[a,b],[c,d]]',
     description: 'Calculate the determinant of a 2x2 matrix.',
-    interpretation: 'The determinant value of the 2x2 matrix.'
+    interpretation: 'The determinant value of the 2x2 matrix.',
+    presets: [
+      { label: 'Identity', values: { a: '1', b: '0', c: '0', d: '1' } },
+      { label: 'Integer', values: { a: '1', b: '2', c: '3', d: '4' } }
+    ]
 }
 
 export default calcDef

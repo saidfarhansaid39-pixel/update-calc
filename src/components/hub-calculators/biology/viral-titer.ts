@@ -22,7 +22,12 @@ const calcDef: CalcDef = {
         { label: 'Dilution factor', value: `${v.dilution}` },
         { label: 'Titer = plaques × dilution / volume', value: `${titer.toExponential(4)} PFU/mL` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Viral titer (PFU/mL) quantifies infectious viral particles by plaque assay. Each plaque represents one infectious unit that lysed the cell monolayer.',
   formula: 'Titer (PFU/mL) = (number of plaques × dilution factor) / volume plated (mL)',

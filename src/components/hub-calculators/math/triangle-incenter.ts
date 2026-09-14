@@ -15,11 +15,21 @@ const calcDef: CalcDef = {
       if (perimeter === 0) return { result: 'Degenerate triangle', label: 'Error' }
       const ix = (aLen * ax + bLen * bx + cLen * cx) / perimeter
       const iy = (aLen * ay + bLen * by + cLen * cy) / perimeter
-      return { result: '(' + ix.toFixed(4) + ', ' + iy.toFixed(4) + ')', label: 'Incenter', steps: [step('Result:', 'I = (' + ix.toFixed(4) + ', ' + iy.toFixed(4) + ')')] }
+      return { result: '(' + ix.toFixed(4) + ', ' + iy.toFixed(4) + ')', label: 'Incenter', steps: [step('Result:', 'I = (' + ix.toFixed(4) + ', ' + iy.toFixed(4) + ')')],
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ] }
     },
     formula: 'I = (aA + bB + cC) / (a + b + c)',
     description: 'Calculate the incenter of a triangle (center of inscribed circle).',
-    interpretation: 'The incenter is the intersection of the angle bisectors of the triangle.'
+    interpretation: 'The incenter is the intersection of the angle bisectors of the triangle.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

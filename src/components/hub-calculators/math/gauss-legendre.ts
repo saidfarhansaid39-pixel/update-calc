@@ -12,11 +12,21 @@ const calcDef: CalcDef = {
       const weights = [5 / 9, 8 / 9, 5 / 9].slice(0, n)
       let sum = 0; const pts: string[] = []
       for (let i = 0; i < n; i++) { pts.push('x' + (i + 1) + '=' + nodes[i].toFixed(4) + ', w=' + weights[i].toFixed(4)); sum += weights[i] * Math.exp(nodes[i]) }
-      return { result: sum.toFixed(6), label: 'Gauss-Legendre approx', steps: [step('Nodes/Weights:', pts.join('; ')), step('Approx integral:', '' + sum.toFixed(6))] }
+      return { result: sum.toFixed(6), label: 'Gauss-Legendre approx', steps: [step('Nodes/Weights:', pts.join('; ')), step('Approx integral:', '' + sum.toFixed(6))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'int_-1^1 f(x) dx approx sum wi f(xi)',
     description: 'Gauss-Legendre quadrature approximation.',
-    interpretation: 'The approximate integral using Legendre polynomial nodes and weights.'
+    interpretation: 'The approximate integral using Legendre polynomial nodes and weights.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

@@ -57,6 +57,23 @@ export function RentForm({ state, setters, handleCalculate, handleClear }: any) 
             <span className="text-gray-600">car/student loan, credit cards, etc</span>
           </div>
 
+          <label className="text-left pr-2 flex items-center">
+            Monthly Rent
+          </label>
+          <div className="flex items-center flex-wrap gap-2">
+            <div className="flex items-center">
+              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+              <input 
+                type="text" 
+                className="border border-gray-400 w-[100px] px-1 h-[28px]" 
+                value={state.rentAmount}
+                onChange={e => setters.setRentAmount(e.target.value)}
+                placeholder="1,500"
+              />
+            </div>
+            <span className="text-gray-600">enter actual rent to check ratio</span>
+          </div>
+
         </div>
 
         <div className="flex gap-2 mt-4 md:ml-[160px]">

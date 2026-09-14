@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Estimated Ne', value: `${Math.round(ne)}` },
         { label: 'Ne/Nc ratio', value: `${(ne / v.censusN).toFixed(3)}` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Effective population size (Ne) is the size of an ideal population that would lose genetic diversity at the same rate as the actual population. Ne is usually smaller than census size.',
   formula: 'Ne = 4NmNf / (Nm + Nf) for unequal sex ratios. In general: Ne << Nc due to variance in reproductive success.',

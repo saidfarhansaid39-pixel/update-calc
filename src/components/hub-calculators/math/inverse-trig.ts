@@ -12,11 +12,21 @@ const calcDef: CalcDef = {
       if (fn === 'arcsin') { result = Math.asin(x); label = 'arcsin(' + x + ')' }
       else if (fn === 'arccos') { result = Math.acos(x); label = 'arccos(' + x + ')' }
       else { result = Math.atan(x); label = 'arctan(' + x + ')' }
-      return { result: result.toFixed(6) + ' rad (' + (result * 180 / Math.PI).toFixed(4) + ' deg)', label, steps: [step('Input:', '' + fn + '(' + x + ')'), step('Result (rad):', '' + result.toFixed(6)), step('Result (deg):', '' + (result * 180 / Math.PI).toFixed(4))] }
+      return { result: result.toFixed(6) + ' rad (' + (result * 180 / Math.PI).toFixed(4) + ' deg)', label, steps: [step('Input:', '' + fn + '(' + x + ')'), step('Result (rad):', '' + result.toFixed(6)), step('Result (deg):', '' + (result * 180 / Math.PI).toFixed(4))] ,
+    extras: [
+      { label: "Unit Circle Reference", value: "Angles measured from positive x-axis counterclockwise." },
+      { label: "Common Angle Values", value: "sin(0°)=0, sin(30°)=0.5, sin(45°)=0.707, sin(60°)=0.866, sin(90°)=1." },
+      { label: "Pythagorean Identity", value: "sin²θ + cos²θ = 1 — fundamental trigonometric relationship." },
+      { label: "Radian vs Degree", value: "Switch between degree and radian mode depending on your problem." },
+      { label: "Periodic Nature", value: "Trigonometric functions repeat every 360° (2π radians)." }
+    ]}
     },
     formula: 'arcsin(x), arccos(x), arctan(x)',
     description: 'Calculate inverse trigonometric functions.',
-    interpretation: 'The angle (in radians and degrees) whose trigonometric function equals the input.'
+    interpretation: 'The angle (in radians and degrees) whose trigonometric function equals the input.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

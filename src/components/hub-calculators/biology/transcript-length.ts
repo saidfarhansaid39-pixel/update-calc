@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Poly(A) tail (est.)', value: '~200 A\'s' },
         { label: 'Total mature mRNA', value: `${totalMRNA.toLocaleString()} bp (${(totalMRNA / 1000).toFixed(1)} kb)` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: "Transcript length is the total mRNA sequence including CDS plus 5' and 3' untranslated regions (UTRs). UTRs contain regulatory elements affecting translation, stability, and localization.",
   formula: "mRNA length = CDS + 5'UTR + 3'UTR + poly(A) | Human median: ~2.5 kb (CDS ~1.3 kb, 5'UTR ~150 bp, 3'UTR ~700 bp)",

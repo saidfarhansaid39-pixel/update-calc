@@ -16,6 +16,11 @@ const calcDef: CalcDef = {
       { label: 'Typical shelf life', value: `${shelfDays} days` },
       { label: 'Days remaining', value: `${remaining} days` },
       v.purchased > Number(v.foodType) ? { label: '⚠️ Warning', value: 'May be expired — check for spoilage before consuming' } : { label: 'Status', value: 'Still within safe consumption period' },
+    ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
     ]}},
     description: 'Estimate remaining shelf life for common foods based on purchase date and typical storage duration. Always check for signs of spoilage before consuming.',
     example: { label: 'Fresh chicken purchased 3 days ago', value: '0-1 days remaining' }

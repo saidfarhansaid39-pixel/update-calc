@@ -28,7 +28,12 @@ const calcDef: CalcDef = {
         { label: 'Possible parent ABO', value: possible[v.childABO] || 'Unknown' },
         { label: 'Rh note', value: rhInfo },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Infer possible parental blood types from a child\'s blood type. Useful for understanding inheritance patterns in family studies.',
   formula: 'Each parent contributes one ABO allele. A and B are codominant; O is recessive. Rh+ is dominant over Rh-.',

@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Wilks score', value: `${wilks.toFixed(2)}` },
         { label: 'Classification', value: wilks > 400 ? 'Elite' : wilks > 350 ? 'Master' : wilks > 300 ? 'Advanced' : wilks > 250 ? 'Intermediate' : 'Novice' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate the Wilks Coefficient for powerlifting comparison. The Wilks formula normalizes strength across bodyweights to determine the strongest lifter.'
 }

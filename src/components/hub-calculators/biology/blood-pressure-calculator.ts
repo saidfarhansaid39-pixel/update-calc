@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Pulse pressure', value: `${pp} mmHg` },
         { label: 'BP classification', value: cat },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Mean Arterial Pressure (MAP) and Pulse Pressure are calculated from systolic and diastolic readings. MAP = 60 mmHg is needed for adequate organ perfusion.',
   formula: 'MAP = DBP + (SBP – DBP) / 3 | Pulse Pressure = SBP – DBP',

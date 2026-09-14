@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'amount', label: 'Original Amount', type: 'number', min: 0, step: '0.25' }
     ],
     compute: (v) => {
-      const p = v.category.split('_'); const r = parseFloat(p[0]); const result = v.amount * r; return { result, label: 'Substitute Amount', unit: 'units', steps: [{ label: 'Category', value: p.slice(1).join(' ') }, { label: 'Ratio', value: r + 'x' }, { label: 'Substitute', value: result.toFixed(2) }] }
+      const p = v.category.split('_'); const r = parseFloat(p[0]); const result = v.amount * r; return { result, label: 'Substitute Amount', unit: 'units', steps: [{ label: 'Category', value: p.slice(1).join(' ') }, { label: 'Ratio', value: r + 'x' }, { label: 'Substitute', value: result.toFixed(2) }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Ingredient substitutions by category with conversion ratios.',
     example: { label: '100g sugar (sweetener 0.75x)', value: '75g honey equivalent' }

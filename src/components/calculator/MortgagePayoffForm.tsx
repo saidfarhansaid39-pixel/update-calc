@@ -78,6 +78,37 @@ export default function MortgagePayoffForm() {
               <p className="text-blue-800 font-medium">Adding ${extraPayment}/month saves ${result.savings.toLocaleString()} in interest and pays off {term - Math.floor(result.months/12)} years early!</p>
             </div>
           )}
+
+          {result.schedule.length > 0 && (
+            <div className="border border-gray-200 rounded overflow-x-auto">
+              <h4 className="font-bold text-gray-800 p-3 bg-gray-50 border-b">Amortization Schedule (Yearly)</h4>
+              <table className="w-full text-sm border-collapse">
+                <thead>
+                  <tr className="bg-gray-100">
+                    <th className="border p-2 text-left">Year</th>
+                    <th className="border p-2 text-right">Remaining Balance</th>
+                    <th className="border p-2 text-right">Cumulative Interest</th>
+                    <th className="border p-2 text-right">Equity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {result.schedule.map((row: any, i: number) => {
+                    const yearNum = row.month / 12;
+                    const shouldShow = yearNum <= 5 || yearNum >= Math.floor(result.years) - 2 || i === 0 || i === result.schedule.length - 1 || result.schedule.length <= 15;
+                    if (!shouldShow && result.schedule.length > 15) return null;
+                    return (
+                      <tr key={row.month} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                        <td className="border p-2">Year {Math.floor(yearNum)}</td>
+                        <td className="border p-2 text-right">${Math.round(row.balance).toLocaleString()}</td>
+                        <td className="border p-2 text-right">${Math.round(row.totalInterest).toLocaleString()}</td>
+                        <td className="border p-2 text-right">${Math.round(principal - row.balance).toLocaleString()}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       )}
 

@@ -8,11 +8,23 @@ const calcDef: CalcDef = {
     defaults: { a: '1' },
     compute: (v) => {
       const val = n(v.a); const result = Math.sinh(val)
-      return { result: result.toFixed(6), label: 'sinh(x)', steps: [step('Formula', 'sinh(x) = (e^x - e^(-x))/2'), step('Result', result.toFixed(6))] }
+      return { result: result.toFixed(6), label: 'sinh(x)', steps: [step('Formula', 'sinh(x) = (e^x - e^(-x))/2'), step('Result', result.toFixed(6))] ,
+    extras: [
+      { label: "Unit Circle Reference", value: "Angles measured from positive x-axis counterclockwise." },
+      { label: "Common Angle Values", value: "sin(0°)=0, sin(30°)=0.5, sin(45°)=0.707, sin(60°)=0.866, sin(90°)=1." },
+      { label: "Pythagorean Identity", value: "sin²θ + cos²θ = 1 — fundamental trigonometric relationship." },
+      { label: "Radian vs Degree", value: "Switch between degree and radian mode depending on your problem." },
+      { label: "Periodic Nature", value: "Trigonometric functions repeat every 360° (2π radians)." }
+    ]}
     },
     formula: 'sinh(x) = (e^x - e^-x)/2',
     description: 'Calculate the hyperbolic sine of a value.',
-    interpretation: 'Hyperbolic sine of the given input, sinh(x) = (e^x - e^-x)/2.'
+    interpretation: 'Hyperbolic sine of the given input, sinh(x) = (e^x - e^-x)/2.',
+    presets: [
+      { label: 'Common 30°', values: { a: '30' } },
+      { label: 'Common 45°', values: { a: '45' } },
+      { label: 'Common 60°', values: { a: '60' } }
+    ]
 }
 
 export default calcDef

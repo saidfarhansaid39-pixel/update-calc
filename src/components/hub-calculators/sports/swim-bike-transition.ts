@@ -12,6 +12,11 @@ const calcDef: CalcDef = {
     return { result: v.t1Min, label: 'T1 Transition Time', unit: 'min', steps: [
       { label: 'Swim time', value: v.swimMin+' min' }, { label: 'T1', value: v.t1Min+' min' },
       { label: 'Total to bike start', value: total+' min' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Plan T1 transition (swim-to-bike) strategy. Efficient transitions save time and improve race performance.', formula: 'T1 includes wetsuit removal, helmet on, mount line jog', interpretation: 'Fast transitions can save 1-3 minutes. Practice T1 skills including wetsuit stripping and mounting.'
 }

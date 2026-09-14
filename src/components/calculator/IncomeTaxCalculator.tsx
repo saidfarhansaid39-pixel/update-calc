@@ -1,11 +1,28 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { useLocale } from 'next-intl';
+import { DollarSign, Receipt } from 'lucide-react';
 import { IncomeTaxForm } from '@/components/calculator/IncomeTaxForm';
 import { IncomeTaxResults } from '@/components/calculator/IncomeTaxResults';
 import { IncomeTaxArticle } from '@/components/calculator/IncomeTaxArticle';
+import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
+import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
+import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+
+const calcMeta = {
+  slug: 'income-tax-calculator',
+  title: 'Income Tax Calculator',
+  description: 'Calculate your federal income tax refund or amount owed based on 2025-2026 tax brackets.',
+  tier: 'tier2',
+  category: 'financial',
+  hubSlug: 'financial-calculators',
+  hubName: 'Financial Calculators',
+  keywords: ['income tax', 'tax refund', 'tax brackets', 'federal tax', 'tax calculator'],
+};
 
 export function IncomeTaxCalculator() {
+  const locale = useLocale();
   const [wages, setWages] = useState("80,000");
   const [fedWithheld, setFedWithheld] = useState("9,000");
   const [showResults, setShowResults] = useState(false);
@@ -43,33 +60,63 @@ export function IncomeTaxCalculator() {
   }
   const effectiveRate = w > 0 ? (taxOwed / w) * 100 : 0;
 
+  let marginalRate = 0;
+  if (taxable > 0) {
+    if (taxable <= 11600) marginalRate = 10;
+    else if (taxable <= 47150) marginalRate = 12;
+    else if (taxable <= 100525) marginalRate = 22;
+    else marginalRate = 24;
+  }
+
+  const takeHome = w - taxOwed;
+  const refundOrOwed = fw - taxOwed;
+  const isRefund = refundOrOwed >= 0;
+
+  const inputs = useMemo(() => ({
+    wages,
+    fedWithheld,
+  }), [wages, fedWithheld]);
+
+  const subCalcs = useMemo(() => {
+    return (
+      <SubCalcGrid>
+        <SubCalcPanel title="Income Summary" icon={DollarSign} defaultOpen results={[
+          { label: 'Gross Income', value: formatCurrency(w, 'USD', locale) },
+          { label: 'Standard Deduction', value: formatCurrency(14600, 'USD', locale), badge: 'info' },
+          { label: 'Taxable Income', value: formatCurrency(Math.max(taxable, 0), 'USD', locale) },
+          { label: 'Take-Home Pay', value: formatCurrency(takeHome, 'USD', locale), badge: 'positive' },
+        ]} />
+        <SubCalcPanel title="Tax Breakdown" icon={Receipt} results={[
+          { label: 'Total Federal Tax', value: formatCurrency(taxOwed, 'USD', locale), badge: 'negative' },
+          { label: 'Effective Tax Rate', value: `${effectiveRate.toFixed(2)}%` },
+          { label: 'Marginal Tax Rate', value: `${marginalRate}%`, badge: 'info' },
+          { label: 'Taxes Withheld', value: formatCurrency(fw, 'USD', locale) },
+          { label: isRefund ? 'Estimated Refund' : 'Amount You Owe', value: formatCurrency(Math.abs(refundOrOwed), 'USD', locale), badge: isRefund ? 'positive' : 'negative' },
+        ]} />
+      </SubCalcGrid>
+    );
+  }, [w, taxable, taxOwed, effectiveRate, marginalRate, takeHome, fw, refundOrOwed, isRefund, locale]);
+
+  const result = showResults ? (
+    <IncomeTaxResults 
+      wages={w}
+      fedWithheld={fw}
+      taxOwed={taxOwed}
+      effectiveRate={effectiveRate}
+    />
+  ) : null;
+
   return (
-    <div className="max-w-[800px] mx-auto bg-white p-2 md:p-4">
-      <div className="flex justify-between text-xs text-gray-500 mb-2 border-b pb-1">
-        <div>home / financial / income tax calculator</div>
-      </div>
-      
-      <p className="mb-4 text-[13px] text-gray-800 leading-relaxed">
-        The Income Tax Calculator estimates the refund or potential owed amount on a federal tax return. It is mainly intended for residents of the U.S. and is based on the tax brackets of 2025 and 2026 (One Big Beautiful Bill). The 2026 tax values can be used for 1040-ES estimation, planning ahead, or comparison.
-      </p>
-
-      <h1 className="text-[26px] font-bold text-gray-800 mb-4 font-sans">Income Tax Calculator</h1>
-      
-      <div className="w-full">
-        <div>
-          <IncomeTaxForm state={state} setters={setters} handleCalculate={handleCalculate} handleClear={handleClear} />
-          {showResults && (
-            <IncomeTaxResults 
-              wages={w}
-              fedWithheld={fw}
-              taxOwed={taxOwed}
-              effectiveRate={effectiveRate}
-            />
-          )}
-        </div>
-      </div>
-
+    <>
+      <PremiumCalculatorShell
+        calculator={calcMeta}
+        form={<IncomeTaxForm state={state} setters={setters} handleCalculate={handleCalculate} handleClear={handleClear} />}
+        result={result}
+        subCalcs={subCalcs}
+        inputs={inputs}
+        mainValue={taxOwed}
+      />
       <IncomeTaxArticle />
-    </div>
+    </>
   );
 }

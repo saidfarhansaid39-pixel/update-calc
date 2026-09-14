@@ -13,6 +13,11 @@ const calcDef: CalcDef = {
     return { result: dls, label: 'Distance Per Stroke', unit: 'm/stroke', steps: [
       { label: 'Distance', value: v.distance+' m' }, { label: 'Strokes', value: ''+v.strokes },
       { label: 'DPS', value: dls.toFixed(2)+' m/stroke' }, { label: 'Est. SPM', value: spm.toFixed(0)+' SPM' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate swim stroke efficiency (DPS - distance per stroke). Elite swimmers cover 2+ m/stroke.', formula: 'DPS = distance / strokes; SPM = 60 / (DPS / 1.5)', interpretation: 'Longer DPS with same speed = more efficient swimming. Stroke rate and length must balance.'
 }

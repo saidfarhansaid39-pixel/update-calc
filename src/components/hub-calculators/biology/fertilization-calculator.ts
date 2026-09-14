@@ -27,7 +27,12 @@ const calcDef: CalcDef = {
         { label: 'Total P2O5', value: `${pTotal.toFixed(1)} kg` },
         { label: 'Total K2O', value: `${kTotal.toFixed(1)} kg` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Fertilizer calculations determine the nutrient amounts needed for crop production based on soil tests, crop requirements, and field area.',
   formula: 'Nutrient Total (kg) = Rate (kg/ha) × Area (ha)',

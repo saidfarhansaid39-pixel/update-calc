@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Effective FG%', value: `${((v.made * 1.5) / v.attempts * 100).toFixed(1)}% (adjusted for 3-pt value)` },
         { label: 'NBA average', value: pct > 38 ? 'Above NBA average (~36%)' : pct > 33 ? 'Around NBA average' : 'Below NBA average (~36%)' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate three-point shooting percentage (3PT%). Three-point shooting efficiency is increasingly important in modern basketball analytics.'
 }

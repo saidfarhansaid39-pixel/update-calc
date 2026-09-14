@@ -1,93 +1,105 @@
-export const FAQ_CONTENT: Record<string, { question: string; answer: string }[]> = {
-  'bmi-calculator': [
-    { question: 'What is a healthy BMI range?', answer: 'A BMI between 18.5 and 24.9 is considered healthy for most adults. Below 18.5 is underweight, 25-29.9 is overweight, and 30+ is obese.' },
-    { question: 'Is BMI accurate for athletes?', answer: 'No. BMI does not distinguish muscle from fat. Athletes with high muscle mass may show a "high" BMI despite low body fat.' },
-    { question: 'Does BMI differ by age or sex?', answer: 'The standard BMI formula is the same, but interpretation varies. Older adults may have healthy BMIs slightly higher, and women naturally carry more body fat than men.' },
-    { question: 'Should children use the same BMI categories?', answer: 'No. Children and teens use age- and sex-specific BMI percentiles rather than the adult cutoffs, because body fat changes with growth.' },
-  ],
-  'calorie-calculator': [
-    { question: 'How accurate are calorie calculators?', answer: 'They are estimates accurate within roughly 10-20% because metabolism varies by genetics, body composition, and health. Use the result as a starting point and adjust based on real outcomes.' },
-    { question: 'What is the difference between BMR and TDEE?', answer: 'BMR is the calories you burn at complete rest; TDEE adds activity, digestion, and exercise. TDEE is what you actually burn in a day and is the number to use for weight goals.' },
-    { question: 'How big a deficit should I run to lose weight?', answer: 'A deficit of 300-500 kcal/day is generally sustainable and safe, producing about 0.5-1 lb of loss per week without excessive muscle loss.' },
-  ],
-  'mortgage-calculator': [
-    { question: 'What is included in my monthly mortgage payment?', answer: 'The calculator shows principal and interest (P&I). Your real payment also usually includes property taxes, homeowners insurance, and possibly PMI or HOA dues.' },
-    { question: 'Should I choose a 15- or 30-year mortgage?', answer: 'A 15-year term saves large amounts of interest but costs more per month. A 30-year term lowers the payment but costs more overall. Choose based on your budget and goals.' },
-    { question: 'How much does a 0.25% rate change matter?', answer: 'On a $300,000 loan it can change the monthly payment by roughly $40-50 and total interest by tens of thousands over the full term.' },
-  ],
-  'loan-calculator': [
-    { question: 'What is the difference between interest rate and APR?', answer: 'The interest rate is the cost of borrowing the principal; APR adds lender fees and closing costs, giving a fuller picture of total loan cost.' },
-    { question: 'Can I pay off my loan early to save interest?', answer: 'Usually yes. Extra principal payments reduce the balance and future interest, but check whether your loan has a prepayment penalty first.' },
-    { question: 'Why does my first payment include mostly interest?', answer: 'Amortization front-loads interest. Early payments apply little to principal; that ratio shifts toward principal over time.' },
-  ],
-  'compound-interest-calculator': [
-    { question: 'What does "compounded daily" mean?', answer: 'Interest is calculated and added to the balance every day, so the next day’s interest is earned on a slightly larger balance. More frequent compounding yields more over time.' },
-    { question: 'What is the Rule of 72?', answer: 'Divide 72 by your annual return rate to estimate how many years it takes your money to double. At 8%, money doubles about every 9 years.' },
-    { question: 'Is compound interest guaranteed?', answer: 'No. It depends on the assumed return, which varies with the market. Treat projections as estimates, not promises.' },
-  ],
-  'retirement-calculator': [
-    { question: 'How much should I save for retirement?', answer: 'A common guideline is 15% of pre-tax income including any employer match, aiming for 10-12× your final salary by retirement age.' },
-    { question: 'What is the 4% rule?', answer: 'It suggests you can withdraw about 4% of your nest egg in the first year of retirement, adjusting for inflation, with low risk of running out over 30 years.' },
-    { question: 'Does delaying Social Security help?', answer: 'Yes. Claiming at 70 instead of 62 can increase monthly benefits by up to about 32%, which helps longevity risk.' },
-  ],
-  'age-calculator': [
-    { question: 'How is age calculated precisely?', answer: 'Age is computed as the difference between today’s date and your birth date, expressed in completed years, months, and days.' },
-    { question: 'Why does my age change on my birthday?', answer: 'Your completed years increase only on the anniversary of your birth date; before that you are still in the prior year.' },
-  ],
-  'percentage-calculator': [
-    { question: 'What is the difference between percent of and percent change?', answer: '"Percent of" multiplies a base by a percentage (45 is 25% of 180). "Percent change" compares an old and new value: (new−old)/old×100.' },
-    { question: 'How do I add a percentage to a number?', answer: 'Multiply by (1 + percent/100). Adding 8% to 120 gives 120 × 1.08 = 129.60.' },
-  ],
-  'gpa-calculator': [
-    { question: 'How is GPA weighted by credits?', answer: 'Each grade’s points are multiplied by its credit hours, summed, then divided by total credit hours so harder courses count more.' },
-    { question: 'Do pass/fail courses affect GPA?', answer: 'Typically they appear on the transcript but carry zero grade points, so they do not change the GPA average.' },
-  ],
-  'grade-calculator': [
-    { question: 'How do weighted categories work?', answer: 'Each category score is multiplied by its weight (as a decimal) and the products are summed. Weights should total 100%.' },
-    { question: 'Can I find the score I need on a final?', answer: 'Yes. Set the desired final grade and solve backward for the missing category using its weight.' },
-  ],
-  'tip-calculator': [
-    { question: 'How much should I tip?', answer: 'In the US, 15-20% is standard for sit-down restaurants, with 18% common for good service. Larger groups may have an automatic gratuity.' },
-    { question: 'Should I tip on the pre-tax amount?', answer: 'Customs vary; many people tip on the pre-tax subtotal, but some tip on the total. Either is acceptable as long as you are consistent.' },
-  ],
-  'tax-calculator': [
-    { question: 'What is the difference between sales tax and VAT?', answer: 'Sales tax is added on top of the price at checkout; VAT is generally included in the displayed price and collected at each production stage.' },
-    { question: 'Why does my effective tax rate differ from my bracket?', answer: 'Only the income within each bracket is taxed at that rate. Your effective rate is total tax divided by total income, which is lower than the top marginal rate.' },
-  ],
-  'salary-calculator': [
-    { question: 'How do I convert hourly to salary?', answer: 'Multiply the hourly rate by 2,080 (40 hours × 52 weeks) for a full-time annual salary before taxes and deductions.' },
-    { question: 'Is overtime included automatically?', answer: 'No. Overtime at 1.5× is separate; add it using an overtime calculator if your role qualifies.' },
-  ],
-  'bmr-calculator': [
-    { question: 'Which BMR formula is best?', answer: 'The Mifflin-St Jeor equation is widely used and tends to be more accurate than the older Harris-Benedict formula for most people.' },
-    { question: 'Why is my BMR lower than expected?', answer: 'BMR depends on weight, height, age, and sex; it naturally declines with age and very low body weight, and muscle raises it.' },
-  ],
-  'tdee-calculator': [
-    { question: 'What PAL should I pick?', answer: 'Use sedentary (1.2) for little exercise, light (1.375) for 1-3 days/week, moderate (1.55) for 3-5 days, active (1.725) for 6-7 days, and very active (1.9) for physical jobs or twice-daily training.' },
-    { question: 'Does TDEE include exercise calories?', answer: 'The PAL multiplier already bakes in typical activity. If you add a separate workout estimate on top, you may double-count and overshoot your needs.' },
-  ],
-  'pregnancy-calculator': [
-    { question: 'How is pregnancy counted from conception?', answer: 'Clinically, pregnancy is counted from the LMP, about two weeks before conception, so "4 weeks pregnant" usually means ~2 weeks since fertilization.' },
-    { question: 'How accurate is the due date?', answer: 'Only about 5% of babies arrive exactly on the due date; most are born within two weeks before or after.' },
-  ],
-  'due-date-calculator': [
-    { question: 'What is Naegele’s Rule?', answer: 'It estimates the due date as the first day of the last menstrual period plus 280 days (40 weeks), assuming a 28-day cycle.' },
-    { question: 'Do irregular cycles change the due date?', answer: 'Yes. For cycles much longer or shorter than 28 days, an ultrasound or ovulation-based date may be more accurate.' },
-  ],
-  'body-fat-calculator': [
-    { question: 'Is the Navy circumference method accurate?', answer: 'It is a reasonable estimate for most people but less precise than DEXA or hydrostatic weighing; hydration and measurement technique affect results.' },
-    { question: 'What is a healthy body fat range?', answer: 'For men, about 10-20% is fit; for women, about 18-28%. Essential fat is lower, and very high values carry health risks.' },
-  ],
-  'fuel-cost-calculator': [
-    { question: 'Why does my real cost differ from the estimate?', answer: 'EPA efficiency ratings are optimistic versus real driving; traffic, weather, and load raise consumption above the estimate.' },
-    { question: 'Should I include round trips?', answer: 'Yes, if you are budgeting a return journey, double the one-way distance or enter the full round-trip miles.' },
-  ],
-  'standard-deviation-calculator': [
-    { question: 'When do I use sample vs population standard deviation?', answer: 'Use population (divide by N) when you have every data point; use sample (divide by N−1) when your data is a subset estimating a larger group.' },
-    { question: 'What does a high standard deviation mean?', answer: 'It means the data is spread far from the mean and is more variable; a low value means the data clusters tightly around the mean.' },
-  ],
+export interface FAQ {
+  question: string
+  answer: string
 }
 
-export function getFAQs(slug: string): { question: string; answer: string }[] {
-  return FAQ_CONTENT[slug] || []
+export function getFAQs(slug: string): FAQ[] {
+  const faqs: Record<string, FAQ[]> = {
+    'mortgage-calculator': [
+      { question: 'What is a mortgage calculator?', answer: 'A mortgage calculator estimates your monthly housing payment based on loan amount, interest rate, and term. It helps you understand affordability before applying for a loan.' },
+      { question: 'How is the monthly mortgage payment calculated?', answer: 'The standard formula is M = P[r(1+r)^n] / [(1+r)^n - 1], where P is the principal, r is the monthly interest rate, and n is the number of months.' },
+      { question: 'How much house can I afford?', answer: 'Most lenders recommend spending no more than 28% of your gross monthly income on housing expenses. Use our affordability calculator with your income, debt, and down payment.' },
+      { question: 'What is PMI and when do I need it?', answer: 'Private Mortgage Insurance (PMI) is required when your down payment is less than 20%. It protects the lender and typically costs 0.3% to 1.5% of the loan amount annually.' },
+      { question: 'Should I choose a 15-year or 30-year mortgage?', answer: 'A 15-year mortgage has higher monthly payments but lower total interest. A 30-year mortgage has lower monthly payments but you pay more interest over time. Choose based on your cash flow and long-term goals.' },
+    ],
+    'loan-calculator': [
+      { question: 'What does a loan calculator tell you?', answer: 'It calculates your monthly payment, total interest paid, and total cost of a loan based on principal, interest rate, and repayment term.' },
+      { question: 'How is the interest on a loan calculated?', answer: 'Most loans use amortizing interest: each payment covers the interest due plus a portion of the principal. Early payments go mostly toward interest; later payments go mostly toward principal.' },
+      { question: 'What is the difference between secured and unsecured loans?', answer: 'Secured loans are backed by collateral (like a car or house) and typically have lower rates. Unsecured loans (like credit cards or personal loans) have higher rates because there is no collateral.' },
+      { question: 'How does my credit score affect my loan rate?', answer: 'Higher credit scores qualify for lower interest rates. A 760+ score might get rates 2-5% lower than a 620 score, potentially saving thousands over the loan term.' },
+    ],
+    'bmi-calculator': [
+      { question: 'Is BMI an accurate measure of health?', answer: 'BMI is a useful screening tool but does not account for muscle mass, bone density, or fat distribution. Athletes may have a high BMI without excess body fat.' },
+      { question: 'What BMI ranges are considered healthy?', answer: 'A BMI between 18.5 and 24.9 is generally considered healthy for most adults. Below 18.5 is underweight, 25-29.9 is overweight, and 30 or above is obese.' },
+      { question: 'What is the difference between BMI and body fat percentage?', answer: 'BMI uses only height and weight, while body fat percentage directly measures how much of your weight is fat. Two people with the same BMI can have very different body fat percentages.' },
+      { question: 'Can BMI be misleading for certain groups?', answer: 'Yes, BMI can overestimate body fat in athletes and underestimate it in older adults who have lost muscle mass. It may also be less accurate for different ethnicities.' },
+      { question: 'How can I lower my BMI?', answer: 'Lowering BMI requires reducing body weight through a combination of balanced nutrition, regular physical activity, adequate sleep, and stress management. Aim for gradual, sustainable changes.' },
+    ],
+    'calorie-calculator': [
+      { question: 'How many calories should I eat per day?', answer: 'This depends on your age, sex, weight, height, and activity level. A calorie calculator uses the Mifflin-St Jeor equation to estimate your Total Daily Energy Expenditure (TDEE).' },
+      { question: 'What is the difference between BMR and TDEE?', answer: 'BMR (Basal Metabolic Rate) is the calories your body needs at rest. TDEE (Total Daily Energy Expenditure) includes BMR plus calories burned through activity, exercise, and digestion.' },
+      { question: 'How many calories do I need to lose weight?', answer: 'To lose about 1 pound per week, create a deficit of 500 calories per day below your TDEE. For 2 pounds per week, aim for a 1,000-calorie daily deficit, but never go below 1,200 calories for women or 1,500 for men without medical supervision.' },
+      { question: 'What is the best macronutrient split for weight loss?', answer: 'A common approach is 40% carbohydrates, 30% protein, and 30% fat. Higher protein (35-40%) can help preserve muscle during weight loss and improve satiety.' },
+    ],
+    'compound-interest-calculator': [
+      { question: 'How does compound interest differ from simple interest?', answer: 'Simple interest is calculated only on the principal, while compound interest is calculated on the principal plus previously earned interest, leading to exponential growth.' },
+      { question: 'What is the Rule of 72?', answer: 'The Rule of 72 estimates how long an investment takes to double: divide 72 by the annual interest rate. At 8%, your money doubles in about 9 years (72/8 = 9).' },
+      { question: 'How does compounding frequency affect returns?', answer: 'More frequent compounding (daily vs monthly vs annually) leads to slightly higher returns. The difference grows with higher rates and longer time horizons.' },
+      { question: 'What is the best way to maximize compound interest?', answer: 'Start early, contribute regularly, reinvest all earnings, and choose investments with the highest sustainable return. Time is the most important factor in compounding.' },
+    ],
+    'percentage-calculator': [
+      { question: 'How do you calculate a percentage of a number?', answer: 'Multiply the number by the percentage and divide by 100. For example, 20% of 150 = (150 × 20) / 100 = 30.' },
+      { question: 'How do you calculate percentage change?', answer: 'Percentage change = (new value - old value) / old value × 100. A positive result means an increase; negative means a decrease.' },
+      { question: 'How do you convert a fraction to a percentage?', answer: 'Divide the numerator by the denominator and multiply by 100. For example, 3/4 = 0.75 × 100 = 75%.' },
+    ],
+    'tip-calculator': [
+      { question: 'What is a standard tip percentage?', answer: 'In the United States, 15-20% of the pre-tax bill is standard for restaurant service. For counter service, 10-15% is common.' },
+      { question: 'Should I tip on the pre-tax or post-tax amount?', answer: 'Tips are traditionally calculated on the pre-tax amount. Tipping on the post-tax amount results in a slightly higher tip that some consider more generous.' },
+      { question: 'What is the etiquette for tipping in other countries?', answer: 'Tipping customs vary widely. In Japan and South Korea, tipping can be considered rude. In many European countries, 5-10% is standard. Research local customs before traveling.' },
+    ],
+    'gpa-calculator': [
+      { question: 'How is GPA calculated?', answer: 'GPA = Σ(grade points × credits) / Σ(credits). Each letter grade is converted to grade points (e.g., A = 4.0, B = 3.0), multiplied by the course credits, summed, and divided by total credits.' },
+      { question: 'What is a weighted GPA?', answer: 'Weighted GPA gives extra points for advanced courses like AP, IB, or honors classes. An A in an AP course might be worth 5.0 instead of 4.0, reflecting the increased difficulty.' },
+      { question: 'What GPA do I need for college admissions?', answer: 'Requirements vary by institution. Competitive colleges often look for 3.5+ unweighted GPA. Ivy League schools typically admit students with 3.8+ GPAs and rigorous course loads.' },
+    ],
+    'pythagorean-calculator': [
+      { question: 'What is the Pythagorean theorem?', answer: 'In a right triangle, the square of the hypotenuse equals the sum of the squares of the other two sides: c² = a² + b².' },
+      { question: 'How is the Pythagorean theorem used in real life?', answer: 'It is used in construction (checking square corners), navigation (calculating distances), computer graphics (calculating distances between points), and many engineering applications.' },
+      { question: 'Can the Pythagorean theorem be used for non-right triangles?', answer: 'No, the Pythagorean theorem only applies to right triangles. For other triangles, use the Law of Cosines: c² = a² + b² - 2ab·cos(C).' },
+    ],
+    'savings-calculator': [
+      { question: 'How much should I save each month?', answer: 'A common recommendation is to save at least 20% of your income. Use the savings calculator to project how your balance grows over time with regular contributions and interest.' },
+      { question: 'What is the 50/30/20 budget rule?', answer: 'The 50/30/20 rule allocates 50% of income to needs, 30% to wants, and 20% to savings and debt repayment. It is a simple framework for managing personal finances.' },
+      { question: 'How much emergency fund should I have?', answer: 'Most financial experts recommend 3-6 months of living expenses in an easily accessible savings account. This protects against job loss, medical emergencies, or unexpected repairs.' },
+    ],
+    'retirement-calculator': [
+      { question: 'How much do I need to save for retirement?', answer: 'A common rule of thumb is to save 10-15% of your income annually. By age 67, aim to have 8-10 times your final salary saved. Use our calculator for a personalized estimate.' },
+      { question: 'What is the difference between a 401(k) and an IRA?', answer: 'A 401(k) is employer-sponsored with higher contribution limits ($23,000 in 2024) and often includes employer matching. An IRA is individual with lower limits ($7,000 in 2024) but more investment choices.' },
+      { question: 'When can I withdraw from retirement accounts without penalty?', answer: 'You can withdraw from 401(k)s and Traditional IRAs penalty-free starting at age 59½. Roth IRA contributions can be withdrawn anytime tax-free; earnings have age restrictions.' },
+      { question: 'What is the 4% rule for retirement withdrawals?', answer: 'The 4% rule suggests withdrawing 4% of your retirement savings in your first year of retirement, adjusting for inflation annually. This is designed to make your savings last 30 years.' },
+    ],
+    'amortization-calculator': [
+      { question: 'What is an amortization schedule?', answer: 'An amortization schedule shows each monthly payment broken down into principal and interest portions over the life of a loan. Early payments are mostly interest; later payments are mostly principal.' },
+      { question: 'How does making extra payments affect my loan?', answer: 'Extra payments reduce the principal faster, which decreases total interest paid and shortens the loan term. Even one extra payment per year can save thousands in interest.' },
+      { question: 'What is the difference between amortizing and interest-only loans?', answer: 'Amortizing loans gradually pay down principal with each payment. Interest-only loans require only interest payments for a set period, after which payments increase significantly.' },
+    ],
+    'investment-calculator': [
+      { question: 'How do I calculate investment returns?', answer: 'Investment returns are calculated using compound growth: Future Value = Present Value × (1 + rate)^time. Our calculator handles regular contributions and variable rates.' },
+      { question: 'What is the difference between simple and compound returns?', answer: 'Simple returns only earn interest on the principal. Compound returns earn interest on both the principal and accumulated interest, leading to exponential growth over time.' },
+      { question: 'How does inflation affect investment returns?', answer: 'Inflation reduces purchasing power. If your investment earns 7% but inflation is 3%, your real return is only 4%. Always consider inflation-adjusted returns for long-term planning.' },
+      { question: 'What is dollar-cost averaging?', answer: 'Dollar-cost averaging means investing a fixed amount at regular intervals regardless of market conditions. This reduces the impact of market volatility and eliminates the risk of poor timing.' },
+    ],
+    'currency-calculator': [
+      { question: 'How are currency exchange rates determined?', answer: 'Exchange rates fluctuate based on supply and demand, interest rates, inflation, political stability, and economic performance. Our calculator uses real-time rates from reliable financial data sources.' },
+      { question: 'Why do exchange rates differ between banks and online converters?', answer: 'Banks and currency exchange services add a markup (spread) to the mid-market rate. Our calculator shows the mid-market rate, which is the rate used between banks.' },
+      { question: 'When is the best time to exchange currency?', answer: 'Exchange rates fluctuate 24/7. Monitor rates over time and consider exchanging when the rate is favorable for your needs. Avoid exchanging at airports, which typically have the worst rates.' },
+    ],
+    'salary-calculator': [
+      { question: 'What is the difference between gross and net pay?', answer: 'Gross pay is your total earnings before deductions. Net pay (take-home pay) is what you receive after taxes, Social Security, Medicare, and other deductions are subtracted.' },
+      { question: 'How are taxes calculated on my salary?', answer: 'Federal income tax uses progressive brackets — higher portions of income are taxed at higher rates. FICA taxes (Social Security + Medicare) are fixed percentages. State and local taxes vary by location.' },
+      { question: 'What deductions can reduce my taxable income?', answer: 'Common pre-tax deductions include 401(k) contributions, health insurance premiums, Health Savings Account (HSA) contributions, and Flexible Spending Account (FSA) contributions.' },
+    ],
+    'income-tax-calculator': [
+      { question: 'How do US federal income tax brackets work?', answer: 'The US uses progressive tax brackets. Your income is divided into portions, each taxed at a different rate. Only the income above each threshold is taxed at the higher rate, not your entire income.' },
+      { question: 'What is the difference between standard and itemized deductions?', answer: 'The standard deduction is a fixed amount ($14,600 for single filers in 2024) you can deduct from your income. Itemizing allows you to deduct specific expenses if they exceed the standard amount.' },
+      { question: 'How do capital gains taxes work?', answer: 'Short-term capital gains (assets held less than 1 year) are taxed at ordinary income rates. Long-term gains (held over 1 year) have lower rates: 0%, 15%, or 20% depending on your income.' },
+    ],
+    'auto-loan-calculator': [
+      { question: 'How is my monthly car payment calculated?', answer: 'Your monthly payment depends on the loan amount, interest rate, and term length. Use our calculator to see how different down payments, trade-in values, and loan terms affect your payment.' },
+      { question: 'What credit score do I need for the best auto loan rates?', answer: 'Top auto loan rates typically require a credit score of 720 or higher. Buyers with scores below 660 may face significantly higher rates. Check your credit before applying.' },
+      { question: 'Should I finance through a dealership or a bank?', answer: 'Compare offers from both. Dealerships may offer promotional rates on new cars, while credit unions and banks often provide better rates on used cars. Always get pre-approved before visiting a dealer.' },
+    ],
+  }
+
+  return faqs[slug] ?? []
 }

@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Ellipsoid V = 4/3 × p × L/2 × W/2 × D/2', value: `${volEllipsoid.toFixed(1)} mm³` },
         { label: 'Box estimate (L×W×D)', value: `${volCube.toFixed(1)} mm³` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Biopsy volume estimation from three linear dimensions using the ellipsoid formula. Biopsy size determines tissue adequacy for histopathology, molecular analysis, and cell yield.',
   formula: 'V(ellipsoid) = 4/3 × p × L/2 × W/2 × D/2 | Core needle biopsy: 1-2 mm × 10-20 mm ? ~15-60 mm³ | Punch biopsy (4 mm): ~50 mm³',

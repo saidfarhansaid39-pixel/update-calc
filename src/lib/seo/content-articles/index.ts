@@ -1,113 +1,85 @@
-﻿import type { LongFormSection } from '../calculator-content-engine'
+import type { LongFormSection } from '../calculator-content-engine'
 
-import group0 from './group0'
-import group1 from './group1'
-import group2 from './group2'
-import group3 from './group3'
-import group4 from './group4'
-import group5 from './group5'
-import group6 from './group6'
-import group7 from './group7'
-import group8 from './group8'
-import group9 from './group9'
-import group10 from './group10'
-import group11 from './group11'
-import group12 from './group12'
-import group13 from './group13'
-import group14 from './group14'
-import group15 from './group15'
-import group16 from './group16'
-import group17 from './group17'
-import group18 from './group18'
-import group19 from './group19'
-import group20 from './group20'
-import group21 from './group21'
-import group22 from './group22'
-import group23 from './group23'
-import group24 from './group24'
-import group25 from './group25'
-import group26 from './group26'
-import group27 from './group27'
-import group28 from './group28'
-import group29 from './group29'
-import group30 from './group30'
-import group31 from './group31'
-import group32 from './group32'
-import group33 from './group33'
-import group34 from './group34'
-import group35 from './group35'
-import group36 from './group36'
-import group37 from './group37'
-import group38 from './group38'
-import group39 from './group39'
-import group40 from './group40'
-import group41 from './group41'
-import group42 from './group42'
-import group43 from './group43'
-import group44 from './group44'
-import group45 from './group45'
-import group46 from './group46'
-import group47 from './group47'
-import group48 from './group48'
-import group49 from './group49'
-import group50 from './group50'
-import group51 from './group51'
-import group52 from './group52'
-
-const longFormArticles: Record<string, LongFormSection[]> = {
-  ...group0,
-  ...group1,
-  ...group2,
-  ...group3,
-  ...group4,
-  ...group5,
-  ...group6,
-  ...group7,
-  ...group8,
-  ...group9,
-  ...group10,
-  ...group11,
-  ...group12,
-  ...group13,
-  ...group14,
-  ...group15,
-  ...group16,
-  ...group17,
-  ...group18,
-  ...group19,
-  ...group20,
-  ...group21,
-  ...group22,
-  ...group23,
-  ...group24,
-  ...group25,
-  ...group26,
-  ...group27,
-  ...group28,
-  ...group29,
-  ...group30,
-  ...group31,
-  ...group32,
-  ...group33,
-  ...group34,
-  ...group35,
-  ...group36,
-  ...group37,
-  ...group38,
-  ...group39,
-  ...group40,
-  ...group41,
-  ...group42,
-  ...group43,
-  ...group44,
-  ...group45,
-  ...group46,
-  ...group47,
-  ...group48,
-  ...group49,
-  ...group50,
-  ...group51,
-  ...group52,
+const articles: Record<string, LongFormSection[]> = {
+  'mortgage-calculator': [
+    {
+      title: 'Understanding Mortgage Types',
+      content: 'Mortgages come in several varieties, each with distinct terms that affect your monthly payment and total cost over the life of the loan.',
+      subsections: [
+        { heading: 'Fixed-Rate Mortgage', text: 'The interest rate stays the same for the entire loan term, typically 15 or 30 years. This provides predictable monthly payments regardless of market conditions.' },
+        { heading: 'Adjustable-Rate Mortgage (ARM)', text: 'The rate is fixed for an initial period (commonly 5, 7, or 10 years), then adjusts periodically based on a market index. ARMs often start with lower rates than fixed mortgages.' },
+        { heading: 'Interest-Only Mortgage', text: 'You pay only interest for a set period, after which payments increase to cover both principal and interest. This can be useful for buyers who expect higher income in the future.' },
+      ],
+    },
+    {
+      title: 'How Down Payments Affect Your Loan',
+      content: 'A larger down payment reduces the amount you need to borrow, lowers your monthly payment, and may eliminate the need for private mortgage insurance (PMI).',
+      subsections: [
+        { heading: 'The 20% Rule', text: 'Putting down 20% of the home price is the traditional benchmark to avoid PMI, which typically adds 0.5% to 1.5% of the loan amount annually to your payment.' },
+        { heading: 'Low Down Payment Options', text: 'FHA loans require as little as 3.5% down, conventional loans can go as low as 3%, and VA/USDA loans may require zero down payment for eligible buyers.' },
+      ],
+    },
+    {
+      title: 'The Impact of Interest Rates',
+      content: 'Even small changes in interest rates can significantly affect your monthly payment and the total amount you pay over the life of the loan.',
+      subsections: [
+        { heading: 'Rate Shopping', text: 'A 0.5% rate difference on a $300,000 loan over 30 years can save or cost you over $30,000 in total interest. Always compare offers from multiple lenders.' },
+        { heading: 'Points and Buydowns', text: 'You can pay upfront "points" (1 point = 1% of the loan) to lower your interest rate. This break-even point typically takes 4-7 years to recoup.' },
+      ],
+    },
+  ],
+  'compound-interest-calculator': [
+    {
+      title: 'The Power of Compound Interest',
+      content: 'Compound interest earns interest on both the initial principal and the accumulated interest from previous periods, creating exponential growth over time.',
+      subsections: [
+        { heading: 'Compounding Frequency', text: 'Interest can compound annually, semi-annually, quarterly, monthly, or daily. More frequent compounding results in slightly higher returns because interest is calculated and added more often.' },
+        { heading: 'Rule of 72', text: 'A quick way to estimate doubling time: divide 72 by the annual interest rate. At 6% interest, your money doubles roughly every 12 years (72 ÷ 6 = 12).' },
+      ],
+    },
+    {
+      title: 'Starting Early Matters Most',
+      content: 'The earlier you begin investing, the more time compound interest has to work. Even small, regular contributions can grow into substantial sums over decades.',
+      subsections: [
+        { heading: 'Time vs. Amount', text: 'An investor who starts at age 25 and invests $200/month at 7% will have roughly $525,000 by age 65. Someone who starts at 35 with the same amount will have about $244,000 — less than half.' },
+      ],
+    },
+  ],
+  'bmi-calculator': [
+    {
+      title: 'Understanding Body Mass Index',
+      content: 'BMI is a simple ratio of weight to height that provides a quick screening tool for weight categories. While useful at the population level, it has important limitations for individuals.',
+      subsections: [
+        { heading: 'BMI Categories', text: 'Underweight: below 18.5. Normal weight: 18.5 to 24.9. Overweight: 25 to 29.9. Obese: 30 and above. These ranges apply to adults aged 20 and older.' },
+        { heading: 'Limitations of BMI', text: 'BMI does not distinguish between muscle and fat. Athletes may register as overweight due to muscle mass. It also does not account for fat distribution, which is an important health risk factor.' },
+      ],
+    },
+    {
+      title: 'Beyond BMI: Better Health Metrics',
+      content: 'For a more complete picture of health, consider combining BMI with other measurements like waist circumference, body fat percentage, and blood markers.',
+      subsections: [
+        { heading: 'Waist Circumference', text: 'A waist measurement greater than 40 inches (men) or 35 inches (women) indicates increased health risk, even if BMI is in the normal range.' },
+        { heading: 'Waist-to-Hip Ratio', text: 'Dividing waist circumference by hip circumference provides insight into fat distribution. Ratios above 0.90 (men) or 0.85 (women) suggest higher cardiovascular risk.' },
+      ],
+    },
+  ],
+  'savings-calculator': [
+    {
+      title: 'Building Wealth Through Consistent Saving',
+      content: 'Regular saving, even in small amounts, builds a financial foundation over time. The key factors are how much you save, how consistently you save, and what return your savings earn.',
+      subsections: [
+        { heading: 'Emergency Fund First', text: 'Before focusing on growth, build an emergency fund covering 3-6 months of essential expenses. This safety net prevents you from dipping into long-term savings when unexpected costs arise.' },
+        { heading: 'Automatic Transfers', text: 'Setting up automatic transfers on payday removes the temptation to spend before saving. Even 10% of income can compound into a significant balance over time.' },
+      ],
+    },
+    {
+      title: 'High-Yield Savings vs. Traditional',
+      content: 'The interest rate on your savings account directly impacts growth. Online banks typically offer significantly higher rates than traditional brick-and-mortar institutions.',
+      subsections: [
+        { heading: 'Inflation Considerations', text: 'If your savings rate is lower than inflation, your purchasing power decreases over time. A savings calculator helps you see whether your money is growing in real terms.' },
+      ],
+    },
+  ],
 }
 
-export default longFormArticles
+export default articles

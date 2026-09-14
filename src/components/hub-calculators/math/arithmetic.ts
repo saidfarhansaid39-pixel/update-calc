@@ -33,7 +33,14 @@ const calcDef: CalcDef = {
         case 'power': result = Math.pow(a, b); label = 'Power'; st.push(step('Formula:', a + '^' + b + ' = ' + result)); break
         case 'percent': result = (a / b) * 100; label = 'Percentage'; st.push(step('Formula:', '(' + a + ' / ' + b + ') x 100 = ' + result + '%')); break
       }
-      return { result: isNaN(result) ? 'Error' : result, label, steps: st }
+      return { result: isNaN(result) ? 'Error' : result, label, steps: st ,
+    extras: [
+      { label: "Mathematical Significance", value: "Fundamental concept in number theory and discrete mathematics." },
+      { label: "Computational Note", value: "Large inputs may require optimized algorithms for performance." },
+      { label: "Historical Context", value: "Studied by mathematicians across centuries for its unique properties." },
+      { label: "Related Sequences", value: "Related to other integer sequences and special numbers." },
+      { label: "Pattern Recognition", value: "Observe recurring patterns and relationships between values." }
+    ]}
     },
     formula: 'Op(A, B) -> Result',
     description: 'Arithmetic operations include addition, subtraction, multiplication, division, exponentiation, and percentage.',

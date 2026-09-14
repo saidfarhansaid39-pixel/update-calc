@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'µ', value: `${mutationRate.toExponential(4)}` },
         { label: 'Per genome per generation', value: `${(mutationRate * v.sites).toExponential(4)}` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Mutation rate (µ) is the probability of a mutation occurring per site per generation. It is a fundamental parameter in population genetics and molecular evolution.',
   formula: 'µ = S / (G × L), where S = substitutions, G = generations, L = sites | Per genome: µ × L',

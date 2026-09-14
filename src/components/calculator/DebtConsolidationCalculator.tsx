@@ -1,11 +1,27 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { useLocale } from 'next-intl';
+import { DollarSign, TrendingDown, PiggyBank } from 'lucide-react';
 import { DebtConsolidationForm } from '@/components/calculator/DebtConsolidationForm';
 import { DebtConsolidationResults } from '@/components/calculator/DebtConsolidationResults';
-import { DebtConsolidationArticle } from '@/components/calculator/DebtConsolidationArticle';
+import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
+import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
+import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+
+const calcMeta = {
+  slug: 'debt-consolidation-calculator',
+  title: 'Debt Consolidation Calculator',
+  description: 'Compare your current debts against a consolidation loan to see if you can save.',
+  tier: 'tier2',
+  category: 'financial',
+  hubSlug: 'financial-calculators',
+  hubName: 'Financial Calculators',
+  keywords: ['debt consolidation', 'consolidation loan', 'debt comparison', 'APR'],
+};
 
 export function DebtConsolidationCalculator() {
+  const locale = useLocale();
   const [cards, setCards] = useState([
     { name: "Credit card 1", balance: "10,000", payment: "260", rate: "17.99" },
     { name: "Credit card 2", balance: "7,500", payment: "190", rate: "19.99" },
@@ -143,32 +159,35 @@ export function DebtConsolidationCalculator() {
     });
   };
 
+  const subCalcs = useMemo(() => {
+    if (!results) return null;
+    const isRecommended = results.savings.totalInterest > 0;
+    return (
+      <SubCalcGrid>
+        <SubCalcPanel title="Comparison Summary" icon={TrendingDown} defaultOpen results={[
+          { label: 'Current Monthly Payment', value: formatCurrency(results.oldDebts.monthlyPayment, 'USD', locale) },
+          { label: 'New Monthly Payment', value: formatCurrency(results.newLoan.monthlyPayment, 'USD', locale) },
+          { label: 'Monthly Difference', value: isRecommended ? `Save ${formatCurrency(results.savings.monthlyPayment, 'USD', locale)}` : `Extra ${formatCurrency(Math.abs(results.savings.monthlyPayment), 'USD', locale)}`, badge: isRecommended ? 'positive' : 'negative' },
+          { label: 'Total Interest Savings', value: isRecommended ? formatCurrency(results.savings.totalInterest, 'USD', locale) : `Costs ${formatCurrency(Math.abs(results.savings.totalInterest), 'USD', locale)} more`, badge: isRecommended ? 'positive' : 'negative' },
+        ]} />
+        <SubCalcPanel title="Loan Details" icon={PiggyBank} results={[
+          { label: 'New Loan Amount', value: formatCurrency(results.newLoan.principal, 'USD', locale) },
+          { label: 'Loan Term', value: `${results.newLoan.months} months` },
+          { label: 'Upfront Fee', value: formatCurrency(results.newLoan.fee, 'USD', locale), badge: 'negative' },
+          { label: 'Time Saved', value: results.savings.months > 0 ? `${results.savings.months} months sooner` : `${Math.abs(results.savings.months)} months longer` },
+        ]} />
+      </SubCalcGrid>
+    );
+  }, [results, locale]);
+
   return (
-    <div className="max-w-[800px] mx-auto bg-white p-2 md:p-4">
-      <div className="flex justify-between text-xs text-gray-500 mb-2 border-b pb-1">
-        <div>home / financial / debt consolidation calculator</div>
-      </div>
-      
-      <h1 className="text-[26px] font-bold text-gray-800 mb-4 font-sans">Debt Consolidation Calculator</h1>
-      <p className="mb-4 text-[13px] text-gray-800 leading-relaxed">
-        The Debt Consolidation Calculator can determine whether it is financially rewarding to consolidate debts by comparing the APR (Annual Percentage Rate) of the combined debts with that of the consolidation loan. APR is the fee-adjusted financial cost of a loan, providing a more accurate basis for loan comparisons. The calculated results will also display comparisons such as the monthly payment, payoff length, and total interest.
-      </p>
-
-      <div className="flex flex-col md:flex-row gap-6 w-full">
-        <div className="flex-1">
-          <DebtConsolidationForm 
-            state={state} 
-            setters={setters} 
-            handleCalculate={calculate}
-            handleClear={handleClear}
-          />
-        </div>
-        <div className="w-full md:w-[350px]">
-          <DebtConsolidationResults results={results} />
-        </div>
-      </div>
-
-      <DebtConsolidationArticle />
-    </div>
+    <PremiumCalculatorShell
+      calculator={calcMeta}
+      form={<DebtConsolidationForm state={state} setters={setters} handleCalculate={calculate} handleClear={handleClear} />}
+      result={<DebtConsolidationResults results={results} />}
+      subCalcs={subCalcs}
+      inputs={{ loanAmount, rate: loanRate, term: `${loanYears}y ${loanMonths}m` }}
+      mainValue={results?.savings?.totalInterest}
+    />
   );
 }

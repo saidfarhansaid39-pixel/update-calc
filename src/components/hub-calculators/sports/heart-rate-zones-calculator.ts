@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Zone 2 (endurance)', value: `${zones[1].hr.toFixed(0)}-${zones[2].hr.toFixed(0)} bpm` },
         { label: 'Zone 4 (threshold)', value: `${zones[3].hr.toFixed(0)}-${zones[4].hr.toFixed(0)} bpm` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate all 5 heart rate zones using the Karvonen formula (Heart Rate Reserve method). Train at the right intensity for your goals.'
 }

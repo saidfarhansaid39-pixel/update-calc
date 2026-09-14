@@ -22,7 +22,12 @@ const calcDef: CalcDef = {
         { label: 'q² (aa genotype)', value: `${(q2*100).toFixed(1)}%` },
         { label: 'p² + 2pq + q²', value: `${((p2+pq2+q2)*100).toFixed(1)}% (should = 100%)` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Hardy-Weinberg equilibrium describes the relationship between allele frequencies and genotype frequencies in a non-evolving population. It serves as the null model for population genetics.',
   formula: 'p + q = 1 | p² + 2pq + q² = 1 | Assumes random mating, no selection, no mutation, no migration, infinite population size',

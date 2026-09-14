@@ -27,7 +27,12 @@ const calcDef: CalcDef = {
         { label: 'Total fast time', value: `${totalFast.toFixed(1)} min (${(totalFast / v.totalMin * 100).toFixed(0)}%)` },
         { label: 'Total recovery', value: `${totalEasy.toFixed(1)} min` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Plan a fartlek (speed play) session by setting fast and easy segments. Fartlek training alternates between fast running and recovery throughout the session.'
 }

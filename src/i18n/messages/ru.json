@@ -53,9 +53,11 @@
     "privacy": "Политика конфиденциальности",
     "terms": "Условия использования",
     "contact": "Контакты",
+    "editorialPolicy": "Редакционная политика",
+    "press": "Пресса",
     "tagline": "Точные инструменты для любых расчётов. Бесплатно, быстро и с прекрасным дизайном.",
     "motto": "Точность. Интеллект. Ясность.",
-    "copyright": "© {year} JDCALC. Все права защищены."
+    "copyright": "© {year} Calculat. Все права защищены."
   },
   "hubs": {
     "financial-calculators": "Финансовые калькуляторы",
@@ -186,14 +188,16 @@
     "searchNoResultsHint": "Try a different search term or browse calculators by category."
   },
   "seo": {
-    "siteTitle": "JDCALC — самая умная платформа калькуляторов в мире",
-    "titleTemplate": "%s | JDCALC",
-    "siteName": "JDCALC",
+    "siteTitle": "Calculat — самая умная платформа калькуляторов в мире",
+    "titleTemplate": "%s | Calculat",
+    "siteName": "Calculat",
     "siteDescription": "Точные калькуляторы для финансов, здоровья, математики, науки и повседневной жизни. На базе ИИ, с прекрасным дизайном и абсолютно бесплатно.",
     "about": "О нас",
     "privacy": "Конфиденциальность",
     "terms": "Условия",
-    "contact": "Контакты"
+    "contact": "Контакты",
+    "editorialPolicy": "Редакционная политика",
+    "press": "Пресса"
   },
   "content": {
     "sectionOverview": "Обзор",
@@ -1556,7 +1560,7 @@
     "heroBadge": "Самая умная платформа калькуляторов",
     "heroTitle": "Рассчитайте {highlight} с точностью",
     "heroHighlight": "что угодно",
-    "heroSubtitle": "Более 200 премиум-калькуляторов для финансов, здоровья, математики, науки и повседневной жизни. Бесплатно, быстро и с прекрасным дизайном.",
+    "heroSubtitle": "Более {count} калькуляторов для финансов, здоровья, математики, науки и повседневной жизни. Бесплатно, быстро и с аккуратным дизайном.",
     "statCalculators": "Калькуляторов",
     "statCategories": "Категорий",
     "statFree": "Бесплатно",
@@ -1564,7 +1568,7 @@
     "popularTitle": "Популярные калькуляторы",
     "popularSubtitle": "Самые используемые инструменты нашего сообщества",
     "trendingTitle": "В тренде",
-    "featuresTitle": "Почему JDCALC?",
+    "featuresTitle": "Почему Calculat?",
     "featuresSubtitle": "Создано для точности, разработано для ясности",
     "featureFastTitle": "Молниеносно",
     "featureFastDesc": "Расчёты в реальном времени без ожидания.",
@@ -1576,7 +1580,21 @@
     "featureDesignDesc": "Безупречно на любом устройстве с тёмной темой.",
     "ctaTitle": "Начните расчёт за секунды",
     "ctaSubtitle": "Без регистрации. Просто выберите калькулятор.",
-    "ctaButton": "Изучить калькуляторы"
+    "ctaButton": "Изучить калькуляторы",
+    "heroTitlePre": "Рассчитайте ",
+    "heroTitlePost": " с точностью",
+    "allCategories": "Все категории",
+    "trendAutoLoanName": "Автокредит",
+    "trendAutoLoanDesc": "Расчёт ежемесячного платежа",
+    "trend401kName": "Калькулятор 401(k)",
+    "trend401kDesc": "Планировщик пенсионных накоплений",
+    "trendHouseName": "Доступность жилья",
+    "trendHouseDesc": "Какой дом вы можете себе позволить",
+    "trendStudentName": "Студенческий кредит",
+    "trendStudentDesc": "Стратегии погашения",
+    "sciTitle": "Научный калькулятор",
+    "sciIntro": "Нужен быстрый расчёт? Используйте встроенный научный калькулятор с тригонометрией, логарифмами, степенями и константами.",
+    "sciNote": "Переключайтесь между режимами «Базовый» и «Научный». Он всегда доступен в правом нижнем углу каждой страницы."
   },
   "extraFields": {
     "activity_job": "Job Activity Level",
@@ -2245,6 +2263,79 @@
     "zip_code_placeholder": "e.g. 90210"
   },
   "calculatorUI": {
+    "shell": {
+      "unitMetric": "Metric",
+      "unitImperial": "Imperial",
+      "unitUS": "US Customary",
+      "calculate": "Calculate",
+      "recalculate": "Recalculate",
+      "result": "Result",
+      "copyResult": "Copy Result",
+      "saveCalculation": "Save Calculation",
+      "restore": "Restore",
+      "restorePreviousValues": "Restore Previous Values",
+      "hideAudit": "Hide Audit Trail",
+      "showAudit": "Show Audit Trail",
+      "dismiss": "Dismiss",
+      "yes": "Yes",
+      "no": "No",
+      "home": "Home",
+      "onThisPage": "On This Page",
+      "tierEssential": "Essential",
+      "tierStandard": "Standard",
+      "tierPremium": "Premium",
+      "modeBasic": "Basic",
+      "modeAdvanced": "Advanced",
+      "modeProfessional": "Professional",
+      "modeExpert": "Expert",
+      "headingWhatIs": "What Is This?",
+      "headingHowItWorks": "How It Works",
+      "headingFormula": "The Formula",
+      "headingExampleCalc": "Example Calculation",
+      "headingExampleCalcs": "Example Calculations",
+      "headingWhatThisMeans": "What This Means",
+      "headingYourResults": "Your Results",
+      "headingEduGuide": "Educational Guide",
+      "headingEduVisualizations": "Visualizations",
+      "headingTipsBestPractices": "Tips & Best Practices",
+      "headingFAQ": "Frequently Asked Questions",
+      "headingQuestions": "Questions?",
+      "headingReferences": "References",
+      "headingRelatedTopics": "Related Calculators",
+      "headingAboutAuthors": "About the Authors",
+      "tocEducationalGuide": "Educational Guide",
+      "tocExample": "Example",
+      "tocComparison": "Comparison",
+      "tocUseCases": "Use Cases",
+      "tocFAQ": "FAQ",
+      "tocGlossary": "Glossary",
+      "tocCompleteGuide": "Complete Guide",
+      "tocCommonMistakes": "Common Mistakes",
+      "tips": "Tips",
+      "tipAccurateInputs": "Use accurate inputs for best results.",
+      "tipPresetExamples": "Try the preset examples to see how it works.",
+      "tipPrintExport": "Print or export your results for record keeping.",
+      "tipBookmark": "Bookmark this calculator for quick access.",
+      "tipSaveScenario": "Save different scenarios to compare outcomes.",
+      "tipReviewAssumptions": "Review the assumptions behind each calculation.",
+      "didThisHelp": "Did this calculator help you?",
+      "pleaseCheckInputs": "Please check your inputs and try again.",
+      "calculationFailed": "Calculation failed. Please check your values.",
+      "enterValuesAbove": "Enter values above to see results.",
+      "noResultAvailable": "No result available",
+      "howItWorksDefault": "Enter your values and click Calculate to see how it works.",
+      "dataDependent": "Data Required",
+      "dataDependentDescription": "Enter values in the form above to get started.",
+      "usersCount": "{count} users have used this calculator",
+      "authorLabel": "Author",
+      "reviewerLabel": "Reviewed by",
+      "relatedCalculators": "Related Calculators",
+      "refreshCadence": "Last updated: {date}",
+      "featureCharts": "Charts & Visualizations",
+      "featureComparison": "Scenario Comparison",
+      "featureGuide": "Educational Guide",
+      "questionsParagraph": "Have questions? Check the FAQ or contact us."
+    },
     "headings": {
       "paymentCalculator": "Payment Calculator"
     },
@@ -2457,11 +2548,11 @@
     },
     "contact": {
       "metaTitle": "Контакты - Бесплатные онлайн-калькуляторы",
-      "metaDescription": "Свяжитесь с командой JDCALC. Мы ценим ваши отзывы и предложения.",
+      "metaDescription": "Свяжитесь с командой Calculat. Мы ценим ваши отзывы и предложения.",
       "title": "Свяжитесь с нами",
       "intro": "Have feedback, suggestions, or found a bug? We'd love to hear from you.",
       "emailLabel": "Email us at:",
-      "emailAddress": "support@jdcalc.com"
+      "emailAddress": "support@calculat.online"
     },
     "privacy": {
       "metaTitle": "Политика конфиденциальности - Бесплатные онлайн-калькуляторы",
@@ -2488,6 +2579,18 @@
       "accuracyText": "We strive for accuracy but make no guarantees. Always verify critical calculations with a qualified professional.",
       "availabilityTitle": "Availability",
       "availabilityText": "We reserve the right to modify or discontinue any calculator tool at any time without notice."
-    }
+    },
+    "editorialPolicy": {
+      "metaTitle": "Редакционная политика - Бесплатные онлайн-калькуляторы",
+      "metaDescription": "Наша редакционная политика обеспечивает точность, прозрачность и качество всех наших инструментов и контента.",
+      "title": "Редакционная политика"
+    },
+    "press": {
+      "metaTitle": "Пресса - Бесплатные онлайн-калькуляторы",
+      "metaDescription": "Ресурсы для прессы, медиа-кит и контактная информация команды Calculat.",
+      "title": "Пресса"
+    },
+    "calculatorBuilderTitle": "Calculator Builder",
+    "calculatorBuilderDescription": "Build your own custom calculators with custom formulas and fields. Free online calculator builder tool."
   }
 }

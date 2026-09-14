@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Converted to grams', value: `${grams.toFixed(1)} g` },
         { label: 'Ingredient', value: `${v.ingredient}` },
         { label: 'Approx. volume', value: `~${volMl} mL (${(volMl / 240).toFixed(2)} cups)` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Convert kitchen scale readings between units AND estimate volume for common ingredients. Handy when a recipe lists cups but you only have a scale.',
     example: { label: '250g flour on scale', value: '250g = ~421 mL (1.75 cups)' }

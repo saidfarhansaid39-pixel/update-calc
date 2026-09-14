@@ -27,7 +27,12 @@ const calcDef: CalcDef = {
         { label: 'Robinson formula', value: `${robinson.toFixed(1)} kg` },
         { label: 'Healthy BMI range', value: `${(18.5 * (v.height / 100) ** 2).toFixed(1)} – ${(24.9 * (v.height / 100) ** 2).toFixed(1)} kg` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Ideal Body Weight (IBW) estimates a healthy weight for height using several validated formulas. Originally developed for medical dosing calculations.',
   formula: 'Devine: Male = 50 + 2.3(in–60) | Female = 45.5 + 2.3(in–60) | Hamwi/Robinson variations available.',

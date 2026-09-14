@@ -17,7 +17,7 @@ export function EmbedWidget({ slug, title, hubSlug }: EmbedWidgetProps) {
   const [copied, setCopied] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
-  const embedCode = `<iframe src="https://www.jdcalc.com/${hubSlug}/${slug}" width="100%" height="600" frameborder="0" title="${title.replace(/"/g, '&quot;')}"></iframe>`
+  const embedCode = `<iframe src="https://www.calculat.online/${hubSlug}/${slug}" width="100%" height="600" frameborder="0" title="${title.replace(/"/g, '&quot;')}"></iframe>`
 
   useEffect(() => {
     function handleMouseDown(e: MouseEvent) {

@@ -4,7 +4,12 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 const calcDef: CalcDef = {
   schema: z.object({ sodium: z.string().min(1,'Required').refine(v=>parseFloat(v)>0,'>0'), potassium: z.string().min(1,'Required').refine(v=>parseFloat(v)>0,'>0') }),
   fields: [{ name:'sodium', label:'Serum Sodium (mEq/L)', type:'number', min:100, max:170, step:'1' }, { name:'potassium', label:'Serum Potassium (mEq/L)', type:'number', min:2, max:9, step:'0.1' }],
-  compute: (v) => { const na=parseFloat(v.sodium)||140; const k=parseFloat(v.potassium)||4.5; const ratio=na/k; return { result:ratio, label:'Sodium-Potassium Ratio', steps:[{ label:'Sodium', value:na.toFixed(0)+' mEq/L' },{ label:'Potassium', value:k.toFixed(1)+' mEq/L' },{ label:'Na/K Ratio', value:ratio.toFixed(2) }] } },
+  compute: (v) => { const na=parseFloat(v.sodium)||140; const k=parseFloat(v.potassium)||4.5; const ratio=na/k; return { result:ratio, label:'Sodium-Potassium Ratio', steps:[{ label:'Sodium', value:na.toFixed(0)+' mEq/L' },{ label:'Potassium', value:k.toFixed(1)+' mEq/L' },{ label:'Na/K Ratio', value:ratio.toFixed(2) }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'Sodium-potassium ratio is a marker of dietary electrolyte balance and cardiovascular risk.',
   formula: 'Na/K Ratio = Serum Sodium / Serum Potassium',
   interpretation: 'Normal ratio: ~30-35. Lower Na/K ratios (<30) are associated with lower BP and better cardiovascular outcomes. Higher ratios (>35) suggest high sodium or low potassium intake. Spot urine Na/K also used.'

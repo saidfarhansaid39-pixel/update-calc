@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'servings', label: 'Desired Servings', type: 'number', min: 1, step: '1' }
     ],
     compute: (v) => {
-      const ps = parseInt(v.pan); const pn = Math.ceil(v.servings / ps); return { result: pn, label: 'Pans Needed', unit: 'pans', steps: [{ label: 'Pan capacity', value: ps + ' servings' }, { label: 'Desired', value: v.servings }, { label: 'Pans needed', value: pn }] }
+      const ps = parseInt(v.pan); const pn = Math.ceil(v.servings / ps); return { result: pn, label: 'Pans Needed', unit: 'pans', steps: [{ label: 'Pan capacity', value: ps + ' servings' }, { label: 'Desired', value: v.servings }, { label: 'Pans needed', value: pn }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Sheet pan servings. Half sheet = 8 servings, quarter = 4, full = 16.',
     example: { label: '24 servings, half sheet', value: '3 half-sheet pans' }

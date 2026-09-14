@@ -8,7 +8,12 @@ const calcDef: CalcDef = {
       { name: 'to', label: 'To', type: 'select', options: [{ label: 'Active dry', value: '1_active' }, { label: 'Instant', value: '0.75_instant' }, { label: 'Fresh', value: '3_fresh' }] }
     ],
     compute: (v) => {
-      const fp = v.from.split('_'); const tp = v.to.split('_'); const fr = parseFloat(fp[0]); const tr = parseFloat(tp[0]); const r = v.amount * fr / tr; return { result: r, label: 'Converted Yeast', unit: 'tsp', steps: [{ label: 'Original', value: v.amount + ' tsp ' + fp.slice(1).join(' ') }, { label: 'To ' + tp.slice(1).join(' '), value: r.toFixed(2) + ' tsp' }] }
+      const fp = v.from.split('_'); const tp = v.to.split('_'); const fr = parseFloat(fp[0]); const tr = parseFloat(tp[0]); const r = v.amount * fr / tr; return { result: r, label: 'Converted Yeast', unit: 'tsp', steps: [{ label: 'Original', value: v.amount + ' tsp ' + fp.slice(1).join(' ') }, { label: 'To ' + tp.slice(1).join(' '), value: r.toFixed(2) + ' tsp' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Convert between active dry, instant, and fresh yeast. 1 tsp active dry = 0.75 tsp instant = 3 tsp fresh.',
     example: { label: '1 tsp active dry to instant', value: '0.75 tsp instant' }

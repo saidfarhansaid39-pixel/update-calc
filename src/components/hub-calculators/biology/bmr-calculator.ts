@@ -29,7 +29,12 @@ const calcDef: CalcDef = {
         { label: 'Moderate TDEE', value: `${(bmr * 1.55).toFixed(0)} cal/day` },
         { label: 'Active TDEE', value: `${(bmr * 1.725).toFixed(0)} cal/day` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Basal Metabolic Rate (BMR) is the calories your body burns at complete rest. Use the Mifflin-St Jeor equation to estimate your daily energy needs.',
   formula: 'Male: BMR = 10×w + 6.25×h – 5×a + 5 | Female: BMR = 10×w + 6.25×h – 5×a – 161',

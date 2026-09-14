@@ -14,6 +14,11 @@ const calcDef: CalcDef = {
       { label: 'VO2max estimate', value: vo2.toFixed(1)+' mL/kg/min' },
       { label: 'Protocol', value: 'YMCA 3-min step test (30 cm bench, 24 steps/min)' },
       { label: 'Rating', value: vo2 > 42 ? 'Good' : vo2 > 33 ? 'Average' : 'Below Average' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Estimate aerobic fitness with the YMCA 3-minute step test using a 30 cm bench at 24 steps/min.', formula: 'VO2max estimated from post-exercise HR', interpretation: 'Lower post-test HR indicates better cardiovascular fitness.'
 }

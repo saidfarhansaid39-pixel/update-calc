@@ -11,11 +11,20 @@ const calcDef: CalcDef = {
       const det = a * d - b * c
       if (det === 0) return { result: 'Matrix is singular (det=0)', label: 'No inverse' }
       const invA = d / det, invB = -b / det, invC = -c / det, invD = a / det
-      return { result: '[' + invA.toFixed(4) + ', ' + invB.toFixed(4) + '; ' + invC.toFixed(4) + ', ' + invD.toFixed(4) + ']', label: 'Inverse matrix', steps: [step('Determinant:', 'det = ' + det), step('Inverse:', '1/' + det + ' x [' + d + ', -' + b + '; -' + c + ', ' + a + ']')] }
+      return { result: '[' + invA.toFixed(4) + ', ' + invB.toFixed(4) + '; ' + invC.toFixed(4) + ', ' + invD.toFixed(4) + ']', label: 'Inverse matrix', steps: [step('Determinant:', 'det = ' + det), step('Inverse:', '1/' + det + ' x [' + d + ', -' + b + '; -' + c + ', ' + a + ']')],
+    extras: [
+      { label: "Dimension Check", value: "Matrix dimensions must be compatible for the operation." },
+      { label: "Singular Matrix Warning", value: "A determinant of zero means the matrix has no inverse." },
+      { label: "Computational Complexity", value: "Larger matrices require significantly more computation." },
+      { label: "Application", value: "Used in computer graphics, machine learning, and physics simulations." }
+    ] }
     },
     formula: 'A^-1 = 1/det(A) x [[d, -b], [-c, a]]',
     description: 'Calculate the inverse of a 2x2 matrix.',
-    interpretation: 'The inverse of the given 2x2 matrix.'
+    interpretation: 'The inverse of the given 2x2 matrix.',
+    presets: [
+      { label: 'Example', values: { a: '1', b: '0', c: '0', d: '1' } }
+    ]
 }
 
 export default calcDef

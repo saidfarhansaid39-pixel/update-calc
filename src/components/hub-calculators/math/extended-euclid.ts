@@ -10,11 +10,20 @@ const calcDef: CalcDef = {
       let a = Math.round(n(v.a)), b = Math.round(n(v.b)), x0 = 1, x1 = 0, y0 = 0, y1 = 1, origA = a, origB = b; const steps: { label: string; value: string }[] = []
       while (b) { const q = Math.floor(a / b); [a, b] = [b, a - q * b]; [x0, x1] = [x1, x0 - q * x1]; [y0, y1] = [y1, y0 - q * y1] }
       steps.push(step('GCD(' + origA + ',' + origB + ')', '' + a), step('Coefficients (x,y)', `(${x0}, ${y0})`), step('Verification', `${origA}�(${x0}) + ${origB}�(${y0}) = ${a}`))
-      return { result: a, label: 'GCD', steps }
+      return { result: a, label: 'GCD', steps ,
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ]}
     },
     formula: 'ax + by = gcd(a,b). Extended Euclidean finds x,y.',
     description: 'Extended Euclidean algorithm � find gcd and B�zout coefficients.',
-    interpretation: 'B�zout coefficients satisfy ax + by = gcd(a,b).'
+    interpretation: 'B�zout coefficients satisfy ax + by = gcd(a,b).',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

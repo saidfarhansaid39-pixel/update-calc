@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'Calories burned', value: `${kcal.toFixed(0)} kcal` },
         { label: 'Classification', value: v.met < 3 ? 'Light intensity' : v.met < 6 ? 'Moderate intensity' : 'Vigorous intensity' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate the metabolic equivalent (MET) of your activity and calories burned. Light < 3 METs, Moderate 3-6 METs, Vigorous > 6 METs.'
 }

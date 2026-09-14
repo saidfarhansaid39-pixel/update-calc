@@ -12,6 +12,11 @@ const calcDef: CalcDef = {
     return { result: total, label: 'AMRAP Score', unit: '', steps: [
       { label: 'Rounds', value: ''+v.rounds }, { label: 'Partial reps', value: ''+v.reps },
       { label: 'Score', value: v.rounds+' rounds + '+v.reps+' reps' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate AMRAP (As Many Rounds As Possible) workout score. Standard CrossFit and HIIT format for timed workout scoring.', formula: 'AMRAP score = complete rounds + partial reps', interpretation: 'Compare AMRAP scores over time to measure improving work capacity and muscular endurance.'
 }

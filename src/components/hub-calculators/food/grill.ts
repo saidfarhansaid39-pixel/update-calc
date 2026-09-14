@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Target internal temp', value: `${temp}°C` },
         { label: 'Total grill time', value: `${total.toFixed(0)} min total` },
         { label: 'Flip', value: 'Flip at halfway point' },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Calculate total grilling time including preheat for gas, charcoal, or electric grills. Target internal temperatures ensure food safety and desired doneness.',
     example: { label: '300g steak, medium (63°C), gas grill', value: '~14 min + 15 min preheat' }

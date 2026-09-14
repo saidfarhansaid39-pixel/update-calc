@@ -13,7 +13,12 @@ const calcDef: CalcDef = {
         { label: 'Exercise adjustment', value: `+${extra.toFixed(2)} L (${v.exercise} min)` },
         { label: 'Total water goal', value: `${total.toFixed(2)} L (${(total * 4.227).toFixed(1)} cups)` },
         { label: 'Hydration tip', value: 'Drink steadily throughout the day — don\'t chug! Your body absorbs water better in small, frequent sips.' },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Simple daily water intake goal based on body weight and exercise. Base recommendation is 33 mL per kg of body weight plus 12 mL per minute of exercise.',
     example: { label: '70kg, 30 min exercise', value: '~2.7 L/day (11.4 cups)' }

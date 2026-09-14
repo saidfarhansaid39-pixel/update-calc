@@ -13,6 +13,11 @@ const calcDef: CalcDef = {
     return { result: v.distance, label: 'Broad Jump', unit: 'cm', steps: [
       { label: 'Distance', value: v.distance+' cm ('+dM.toFixed(2)+' m)' },
       ...(v.weightKg ? [{ label: 'Est. power', value: power.toFixed(0)+' W' }, { label: 'Relative power', value: thrust.toFixed(1)+' W/kg' }] : []),
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Analyze standing broad jump distance and estimated power output. The broad jump is a key test of horizontal power production.', formula: 'Power = √(g × d) × m × 1.1', interpretation: 'Broad jump distance correlates with sprint acceleration. Powerful athletes jump >250cm.'
 }

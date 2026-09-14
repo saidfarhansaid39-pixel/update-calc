@@ -11,11 +11,22 @@ const calcDef: CalcDef = {
       const f0 = y0, f1 = y0 * 1.1, y1_pred = y0 + h * (3 * f1 - f0) / 2
       const f1_corr = y1_pred
       const y1 = y0 + h * (f1_corr + f0) / 2
-      return { result: y1.toFixed(6), label: 'Adams-Moulton y1', steps: [step('Predictor:', 'y1_pred = ' + y1_pred.toFixed(6)), step('Corrector:', 'y1 = ' + y1.toFixed(6))] }
+      return { result: y1.toFixed(6), label: 'Adams-Moulton y1', steps: [step('Predictor:', 'y1_pred = ' + y1_pred.toFixed(6)), step('Corrector:', 'y1 = ' + y1.toFixed(6))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'y_{n+1} = y_n + h(f_{n+1} + f_n)/2',
     description: 'Adams-Moulton 1-step implicit method.',
-    interpretation: 'The approximate solution using Adams-Moulton corrector.'
+    interpretation: 'The approximate solution using Adams-Moulton corrector.',
+    presets: [
+      { label: 'Fine grain', values: { x0: '0', y0: '1', h: '0.1', steps: '10' } },
+      { label: 'Coarse', values: { x0: '0', y0: '1', h: '0.2', steps: '5' } }
+    ]
 }
 
 export default calcDef

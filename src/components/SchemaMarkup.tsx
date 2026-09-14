@@ -1,10 +1,10 @@
 import React from 'react'
 import { routing } from '@/i18n/routing'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.jdcalc.com'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculat.online'
 
 interface SchemaMarkupProps {
-  type: 'WebSite' | 'Product' | 'Article' | 'FAQPage' | 'HowTo' | 'BreadcrumbList' | 'WebApplication' | 'ItemList' | 'SoftwareApplication'
+  type: 'WebSite' | 'Product' | 'Article' | 'FAQPage' | 'HowTo' | 'BreadcrumbList' | 'WebApplication' | 'ItemList' | 'SoftwareApplication' | 'Organization' | 'CollectionPage'
   data: Record<string, unknown>
   locale?: string
 }
@@ -26,19 +26,19 @@ export function SchemaMarkup({ type, data, locale = routing.defaultLocale }: Sch
 }
 
 const siteNames: Record<string, string> = {
-  en: 'JDCALC',
-  es: 'JDCALC',
-  fr: 'JDCALC',
-  de: 'JDCALC',
-  pt: 'JDCALC',
-  ru: 'JDCALC',
-  ar: 'JDCALC',
-  hi: 'JDCALC',
-  ja: 'JDCALC',
-  'zh-CN': 'JDCALC',
+  en: 'Calculat',
+  es: 'Calculat',
+  fr: 'Calculat',
+  de: 'Calculat',
+  pt: 'Calculat',
+  ru: 'Calculat',
+  ar: 'Calculat',
+  hi: 'Calculat',
+  ja: 'Calculat',
+  'zh-CN': 'Calculat',
 }
 
-const siteDescriptions: Record<string, string> = {
+export const siteDescriptions: Record<string, string> = {
   en: 'Precision calculators for finance, health, math, science, and everyday life. Free, fast, and beautifully designed.',
   es: 'Calculadoras de precisión para finanzas, salud, matemáticas, ciencias y la vida cotidiana. Gratis, rápidas y hermosamente diseñadas.',
   fr: 'Calculatrices de précision pour la finance, la santé, les mathématiques, les sciences et la vie quotidienne. Gratuites, rapides et magnifiquement conçues.',
@@ -56,10 +56,23 @@ export function websiteSchema(locale: string) {
     name: siteNames[locale] || siteNames.en,
     url: siteUrl,
     description: siteDescriptions[locale] || siteDescriptions.en,
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: `${siteUrl}/search?q={search_term_string}`,
-      'query-input': 'required name=search_term_string',
+  }
+}
+
+export function organizationSchema(locale?: string) {
+  const loc = locale || routing.defaultLocale
+  return {
+    name: 'Calculat',
+    url: siteUrl,
+    logo: `${siteUrl}/favicon.svg`,
+    description: siteDescriptions[loc] || siteDescriptions.en,
+    sameAs: [
+      'https://www.calculat.online',
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      availableLanguage: Object.keys(siteNames),
     },
   }
 }

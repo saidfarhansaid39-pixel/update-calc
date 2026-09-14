@@ -1,28 +1,47 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useLocale } from 'next-intl';
+import { DollarSign, Home, Percent, Calendar } from 'lucide-react';
 import { RentForm } from '@/components/calculator/RentForm';
 import { RentResults } from '@/components/calculator/RentResults';
-import { RentArticle } from '@/components/calculator/RentArticle';
+import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
+import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
+import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+
+const calcMeta = {
+  slug: 'rent-calculator',
+  title: 'Rent Calculator',
+  description: 'Calculate how much rent you can afford based on your income and monthly debt.',
+  tier: 'tier3',
+  category: 'financial',
+  hubSlug: 'financial-calculators',
+  hubName: 'Financial Calculators',
+  keywords: ['rent', 'affordability', 'rental budget', 'income'],
+};
 
 export function RentCalculator() {
+  const locale = useLocale();
   const [income, setIncome] = useState("80,000");
   const [incomeFrequency, setIncomeFrequency] = useState("per year");
   const [debt, setDebt] = useState("0");
+  const [rentAmount, setRentAmount] = useState("");
   const [results, setResults] = useState<any>(null);
 
-  const state = { income, incomeFrequency, debt };
-  const setters = { setIncome, setIncomeFrequency, setDebt };
+  const state = { income, incomeFrequency, debt, rentAmount };
+  const setters = { setIncome, setIncomeFrequency, setDebt, setRentAmount };
 
   const handleClear = () => {
     setIncome("");
     setDebt("");
+    setRentAmount("");
     setResults(null);
   };
 
   const calculate = () => {
     const rawIncome = parseFloat(income.replace(/,/g, '')) || 0;
     const monthlyDebt = parseFloat(debt.replace(/,/g, '')) || 0;
+    const monthlyRent = parseFloat(rentAmount.replace(/,/g, '')) || 0;
 
     let monthlyGross = rawIncome;
     if (incomeFrequency === "per year") {
@@ -38,15 +57,20 @@ export function RentCalculator() {
     const recommended = monthlyGross * 0.30;
     
     // Max using 43% Back-End DTI rule
-    // Max Rent + Debt <= 43% Gross
-    // Max Rent <= 43% Gross - Debt
     let maximum = (monthlyGross * 0.43) - monthlyDebt;
     if (maximum < 0) maximum = 0;
+
+    const rentToIncomeRatio = monthlyGross > 0 ? (monthlyRent / monthlyGross) * 100 : 0;
+    const totalDti = monthlyGross > 0 ? ((monthlyRent + monthlyDebt) / monthlyGross) * 100 : 0;
 
     setResults({
       conservative,
       recommended,
-      maximum
+      maximum,
+      rentAmount: monthlyRent,
+      rentToIncomeRatio,
+      totalDti,
+      monthlyGross
     });
   };
 
@@ -55,34 +79,56 @@ export function RentCalculator() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const rawIncome = parseFloat(income.replace(/,/g, '')) || 0;
+  let monthlyGross = rawIncome;
+  if (incomeFrequency === "per year") {
+    monthlyGross = rawIncome / 12;
+  }
+
+  const inputs = useMemo(() => ({
+    income,
+    incomeFrequency,
+    debt,
+  }), [income, incomeFrequency, debt]);
+
+  const subCalcs = useMemo(() => {
+    if (!results) return null;
+    const monthlyDebt = parseFloat(debt.replace(/,/g, '')) || 0;
+    const dtiRatio = monthlyGross > 0 ? monthlyDebt / monthlyGross : 0;
+    const annualRecommended = results.recommended * 12;
+    const totalFiveYear = results.recommended * 60;
+    const totalTenYear = results.recommended * 120;
+    const opportunityCostAnnual = annualRecommended * 0.07;
+
+    return (
+      <SubCalcGrid>
+        <SubCalcPanel title="Rent Affordability Breakdown" icon={Home} defaultOpen results={[
+          { label: 'Conservative Budget (25% rule)', value: formatCurrency(results.conservative, 'USD', locale), badge: 'positive' },
+          { label: 'Recommended Budget (30% rule)', value: formatCurrency(results.recommended, 'USD', locale) },
+          { label: 'Maximum Budget (DTI limit)', value: formatCurrency(results.maximum, 'USD', locale), badge: 'info' },
+        ]} />
+        <SubCalcPanel title="Total Over Time" icon={Calendar} results={[
+          { label: 'Annual Rent (recommended)', value: formatCurrency(annualRecommended, 'USD', locale) },
+          { label: '5-Year Total', value: formatCurrency(totalFiveYear, 'USD', locale) },
+          { label: '10-Year Total', value: formatCurrency(totalTenYear, 'USD', locale) },
+        ]} />
+        <SubCalcPanel title="Debt & Opportunity Cost" icon={Percent} results={[
+          { label: 'Debt-to-Income Ratio', value: `${(dtiRatio * 100).toFixed(1)}%`, badge: dtiRatio > 0.43 ? 'negative' : 'info' },
+          { label: 'Monthly Gross Income', value: formatCurrency(monthlyGross, 'USD', locale) },
+          { label: 'Est. Annual Opportunity Cost', value: formatCurrency(opportunityCostAnnual, 'USD', locale) },
+        ]} />
+      </SubCalcGrid>
+    );
+  }, [results, monthlyGross, debt, locale]);
+
   return (
-    <div className="max-w-[800px] mx-auto bg-white p-2 md:p-4">
-      <div className="flex justify-between text-xs text-gray-500 mb-2 border-b pb-1">
-        <div>home / financial / rent calculator</div>
-      </div>
-      
-      <h1 className="text-[26px] font-bold text-gray-800 mb-4 font-sans">Rent Calculator</h1>
-      
-      <h2 className="text-[18px] font-bold text-[#1c4587] mb-2 font-sans">How Much Rent Can I Afford?</h2>
-      <p className="mb-4 text-[13px] text-gray-800 leading-relaxed">
-        Use the rent calculator below to estimate the affordable monthly rental spending amount based on income and debt level.
-      </p>
-
-      <div className="flex flex-col md:flex-row gap-6 w-full">
-        <div className="flex-1">
-          <RentForm 
-            state={state} 
-            setters={setters} 
-            handleCalculate={calculate}
-            handleClear={handleClear}
-          />
-        </div>
-        <div className="w-full md:w-[350px]">
-          <RentResults results={results} />
-        </div>
-      </div>
-
-      <RentArticle />
-    </div>
+    <PremiumCalculatorShell
+      calculator={calcMeta}
+      form={<RentForm state={state} setters={setters} handleCalculate={calculate} handleClear={handleClear} />}
+      result={<RentResults results={results} />}
+      subCalcs={subCalcs}
+      mainValue={results?.recommended ?? 0}
+      inputs={inputs}
+    />
   );
 }

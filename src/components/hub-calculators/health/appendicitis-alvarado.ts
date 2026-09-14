@@ -12,7 +12,12 @@ const calcDef: CalcDef = {
     { name:'leukocytosis', label:'Leukocytosis (WBC >10,000)', type:'select', options:[{ label:'No', value:'no' },{ label:'Yes (2)', value:'yes' }] },
     { name:'leftShift', label:'Left shift (neutrophils >75%)', type:'select', options:[{ label:'No', value:'no' },{ label:'Yes (1)', value:'yes' }] }
   ],
-  compute: (v) => { const score=((v.migrationRLQ==='yes'?1:0)+(v.anorexia==='yes'?1:0)+(v.nauseaVomit==='yes'?1:0)+(v.tendernessRLQ==='yes'?2:0)+(v.reboundPain==='yes'?1:0)+(v.fever==='yes'?1:0)+(v.leukocytosis==='yes'?2:0)+(v.leftShift==='yes'?1:0)); let prob='Low'; if(score>=7) prob='High'; else if(score>=5) prob='Moderate'; else if(score>=3) prob='Possible'; return { result:score, label:'Alvarado Score', unit:'/10', steps:[{ label:'Score', value:score+'/10' },{ label:'Appendicitis Probability', value:prob }] } },
+  compute: (v) => { const score=((v.migrationRLQ==='yes'?1:0)+(v.anorexia==='yes'?1:0)+(v.nauseaVomit==='yes'?1:0)+(v.tendernessRLQ==='yes'?2:0)+(v.reboundPain==='yes'?1:0)+(v.fever==='yes'?1:0)+(v.leukocytosis==='yes'?2:0)+(v.leftShift==='yes'?1:0)); let prob='Low'; if(score>=7) prob='High'; else if(score>=5) prob='Moderate'; else if(score>=3) prob='Possible'; return { result:score, label:'Alvarado Score', unit:'/10', steps:[{ label:'Score', value:score+'/10' },{ label:'Appendicitis Probability', value:prob }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'Alvarado Score (MANTRELS) for acute appendicitis risk stratification in adults.',
   formula: 'Migration + Anorexia + Nausea + RLQ Tenderness(2) + Rebound + Fever + Leukocytosis(2) + Left Shift. Range 0-10.',
   interpretation: '1-4 Low probability, 5-6 Possible, 7-8 Moderate probability, 9-10 High probability of appendicitis.'

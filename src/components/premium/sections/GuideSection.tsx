@@ -179,7 +179,7 @@ export function GuideSection({ locale, t, th, calculator, showContent, onToggleC
       <SchemaMarkup type="Product" data={{
         name: calculator.title,
         description: calculator.description,
-        url: `https://www.jdcalc.com/${calculator.hubSlug}/${calculator.slug}`,
+        url: `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}`,
         category: calculator.hubName,
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
         applicationCategory: applicationCategory,
@@ -195,14 +195,14 @@ export function GuideSection({ locale, t, th, calculator, showContent, onToggleC
       }} />}
       {steps && steps.length > 0 && <SchemaMarkup type="HowTo" data={howToSchema(steps)} />}
       <SchemaMarkup type="BreadcrumbList" data={breadcrumbListSchema([
-        { name: t('home'), url: locale === 'en' ? `https://www.jdcalc.com` : `https://www.jdcalc.com/${locale}` },
-        { name: th(calculator.hubSlug), url: locale === 'en' ? `https://www.jdcalc.com/${calculator.hubSlug}` : `https://www.jdcalc.com/${locale}/${calculator.hubSlug}` },
-        { name: calculator.title, url: locale === 'en' ? `https://www.jdcalc.com/${calculator.hubSlug}/${calculator.slug}` : `https://www.jdcalc.com/${locale}/${calculator.hubSlug}/${calculator.slug}` },
+        { name: t('home'), url: locale === 'en' ? `https://www.calculat.online` : `https://www.calculat.online/${locale}` },
+        { name: th(calculator.hubSlug), url: locale === 'en' ? `https://www.calculat.online/${calculator.hubSlug}` : `https://www.calculat.online/${locale}/${calculator.hubSlug}` },
+        { name: calculator.title, url: locale === 'en' ? `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}` : `https://www.calculat.online/${locale}/${calculator.hubSlug}/${calculator.slug}` },
       ])} />
       <SchemaMarkup type="WebApplication" data={{
         name: calculator.title,
         description: calculator.description,
-        url: `https://www.jdcalc.com/${calculator.hubSlug}/${calculator.slug}`,
+        url: `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}`,
         applicationCategory: applicationCategory,
         operatingSystem: 'Web',
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },

@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'AVG', value: `${avg.toFixed(3)} (${(avg * 1000).toFixed(0)} per 1000 AB)` },
         { label: 'Rating', value: avg > 0.300 ? 'Elite' : avg > 0.280 ? 'Excellent' : avg > 0.250 ? 'Good' : avg > 0.230 ? 'Average' : 'Below average' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate batting average (AVG), the ratio of hits to at bats in baseball. A .300 average is considered elite, while .250-.270 is around league average in MLB.'
 }

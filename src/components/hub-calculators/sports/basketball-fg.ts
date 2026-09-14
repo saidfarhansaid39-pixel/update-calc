@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Formula', value: `${v.made} / ${v.attempts} × 100` },
         { label: 'NBA average', value: pct > 47 ? 'Above NBA average (~47%)' : pct > 44 ? 'Around NBA average' : 'Below NBA average (~47%)' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate basketball field goal percentage (FG%). FG% is the ratio of field goals made to attempted and is a fundamental shooting efficiency metric in basketball.'
 }

@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'CFU/mL = colonies × dilution / volume', value: `${cfuPerMl.toExponential(4)}` },
         { label: 'Quantification range', value: cfuPerMl < 30 ? 'Below countable range (<30)' : cfuPerMl > 300 ? 'Above countable range (>300)' : 'Within countable range (30-300)' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Colony-forming units (CFU) per mL quantifies viable bacteria in a sample. Each colony arises from a single viable bacterial cell.',
   formula: 'CFU/mL = (number of colonies × dilution factor) / volume plated (mL)',

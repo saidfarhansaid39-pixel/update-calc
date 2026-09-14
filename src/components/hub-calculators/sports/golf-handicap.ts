@@ -37,7 +37,12 @@ const calcDef: CalcDef = {
         { label: 'Handicap Index (96%)', value: `${handicap.toFixed(1)}` },
         { label: 'Playing level', value: handicap < 5 ? 'Low handicap (excellent)' : handicap < 13 ? 'Mid handicap (good)' : handicap < 20 ? 'High handicap' : 'Beginner' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate your golf handicap index using the USGA formula. The handicap is based on the best differentials from recent scores, adjusted for course rating and slope rating.'
 }

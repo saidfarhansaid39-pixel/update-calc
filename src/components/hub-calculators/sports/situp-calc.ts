@@ -15,6 +15,11 @@ const calcDef: CalcDef = {
     return { result: v.count, label: 'Situp Score', unit: 'reps', steps: [
       { label: 'Situps in 1 min', value: ''+v.count }, { label: 'Rating', value: r },
       { label: 'Standards', value: isMale ? 'Exc:>50, Good:40-49, Avg:30-39' : 'Exc:>45, Good:35-44, Avg:25-34' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Assess core muscular endurance with the 1-minute situp test. Used in military and law enforcement fitness assessments.', formula: 'Rating based on ACSM age/gender norms', interpretation: 'Higher situp counts indicate better core muscular endurance compared to normative data.'
 }

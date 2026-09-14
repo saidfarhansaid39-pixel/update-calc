@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'Mitotic index = mitotic / total × 100', value: `${mitoticIdx.toFixed(2)}%` },
         { label: 'Proliferation interpretation', value: mitoticIdx < 0.5 ? 'Low proliferation' : mitoticIdx < 2 ? 'Moderate' : mitoticIdx < 5 ? 'High' : 'Very high proliferation' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Mitotic index is the percentage of cells in a population that are undergoing mitosis. It measures cell proliferation activity and is used in cancer grading.',
   formula: 'Mitotic Index (%) = (number of mitotic cells / total cells counted) × 100',

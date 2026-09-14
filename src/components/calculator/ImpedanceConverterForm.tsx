@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function ImpedanceConverterForm() {
@@ -8,14 +8,12 @@ export default function ImpedanceConverterForm() {
   const [value, setValue] = useState<number>(1);
   const [from, setFrom] = useState<string>('ohm');
   const [to, setTo] = useState<string>('kohm');
-  const [result, setResult] = useState<any>(null);
-
   const toOhm: any = { ohm: 1, kohm: 1000, mohm: 1000000, milliohm: 0.001 };
 
-  useEffect(() => {
+  const result = useMemo(() => {
     const ohm = value * toOhm[from];
     const res = ohm / toOhm[to];
-    setResult(res.toFixed(4));
+    return res.toFixed(4);
   }, [value, from, to]);
 
   return (

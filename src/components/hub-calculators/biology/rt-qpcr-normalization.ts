@@ -22,7 +22,12 @@ const calcDef: CalcDef = {
         { label: 'RQ = 2^(-?Ct)', value: `${rq.toFixed(4)}` },
         { label: 'Expression vs reference', value: rq > 1 ? `${rq.toFixed(2)}× higher` : rq < 1 ? `${(1 / rq).toFixed(2)}× lower` : 'Equal' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'RT-qPCR normalization using the ?Ct method with a single reference (housekeeping) gene. Normalizes target expression to endogenous control to correct for RNA input differences.',
   formula: '?Ct = Ct(target) - Ct(reference) | RQ = 2^(-?Ct) | For relative quantification: fold change = 2^(-??Ct) vs calibrator',

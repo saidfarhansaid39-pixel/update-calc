@@ -9,7 +9,12 @@ const calcDef: CalcDef = {
       { name: 'depth', label: 'Depth', type: 'number', unit: 'in', min: 1, step: '0.5' }
     ],
     compute: (v) => {
-      let a; if (v.shape === 'round') { a = Math.PI * Math.pow(v.dim1 / 2, 2); } else if (v.shape === 'square') { a = v.dim1 * v.dim1; } else { a = v.dim1 * v.dim2; } const vol = a * v.depth; const cups = vol * 0.069; return { result: cups, label: 'Pan Volume', unit: 'cups', steps: [{ label: 'Shape', value: v.shape }, { label: 'Area', value: a.toFixed(1) + ' sq in' }, { label: 'Volume', value: vol.toFixed(1) + ' cu in' }, { label: 'Capacity', value: cups.toFixed(1) + ' cups' }] }
+      let a; if (v.shape === 'round') { a = Math.PI * Math.pow(v.dim1 / 2, 2); } else if (v.shape === 'square') { a = v.dim1 * v.dim1; } else { a = v.dim1 * v.dim2; } const vol = a * v.depth; const cups = vol * 0.069; return { result: cups, label: 'Pan Volume', unit: 'cups', steps: [{ label: 'Shape', value: v.shape }, { label: 'Area', value: a.toFixed(1) + ' sq in' }, { label: 'Volume', value: vol.toFixed(1) + ' cu in' }, { label: 'Capacity', value: cups.toFixed(1) + ' cups' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Calculate cake pan volume. Helps determine batter needed and find substitute pans.',
     example: { label: '9" round, 2" deep', value: '~6.4 cups' }

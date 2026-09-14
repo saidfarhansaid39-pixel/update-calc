@@ -12,6 +12,11 @@ const calcDef: CalcDef = {
     return { result: rsi, label: 'Reactive Strength Index', unit: '', steps: [
       { label: 'Jump height', value: v.jumpCm+' cm' }, { label: 'Contact time', value: v.contactMs+' ms ('+(v.contactMs/1000).toFixed(3)+' s)' },
       { label: 'RSI', value: rsi.toFixed(2) }, { label: 'Rating', value: rsi > 2.5 ? 'Excellent' : rsi > 2.0 ? 'Good' : rsi > 1.5 ? 'Average' : 'Needs improvement' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate Reactive Strength Index (RSI) from jump height and ground contact time. RSI measures plyometric ability and elastic strength.', formula: 'RSI = jump height (m) / contact time (s)', interpretation: 'Higher RSI indicates better stretch-shortening cycle function. >2.5 is excellent for most sports.'
 }

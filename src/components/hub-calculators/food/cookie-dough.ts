@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'scoopSize', label: 'Scoop Size', type: 'select', options: [{ label: 'Small (1 tbsp, 0.5x)', value: '0.5' }, { label: 'Medium (2 tbsp, 1x)', value: '1' }, { label: 'Large (3 tbsp, 1.5x)', value: '1.5' }] }
     ],
     compute: (v) => {
-      const r = parseInt(v.recipe) * parseFloat(v.scoopSize); return { result: Math.round(r), label: 'Cookie Yield', unit: 'cookies', steps: [{ label: 'Base yield', value: v.recipe }, { label: 'Scoop factor', value: v.scoopSize + 'x' }, { label: 'Adjusted yield', value: Math.round(r) + ' cookies' }] }
+      const r = parseInt(v.recipe) * parseFloat(v.scoopSize); return { result: Math.round(r), label: 'Cookie Yield', unit: 'cookies', steps: [{ label: 'Base yield', value: v.recipe }, { label: 'Scoop factor', value: v.scoopSize + 'x' }, { label: 'Adjusted yield', value: Math.round(r) + ' cookies' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Cookie dough yields by scoop size. Standard: 2 tbsp dough = 1 cookie.',
     example: { label: 'Standard batch, medium scoop', value: '36 cookies' }

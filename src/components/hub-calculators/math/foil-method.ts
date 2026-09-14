@@ -14,11 +14,21 @@ const calcDef: CalcDef = {
       if (x2 !== 0) result += (x2 === 1 ? '' : x2 === -1 ? '-' : x2) + 'x2'
       if (x !== 0) result += (x > 0 && result ? ' + ' : result ? ' - ' : '') + (Math.abs(x) === 1 ? '' : Math.abs(x)) + 'x'
       if (constVal !== 0) result += (constVal > 0 && result ? ' + ' : result ? ' - ' : '') + Math.abs(constVal)
-      return { result: result || '0', label: 'Product', steps: [step('First:', '' + a + 'x x ' + c + ' = ' + first + 'x2'), step('Outer:', '' + a + 'x x ' + d + ' = ' + outer + 'x'), step('Inner:', '' + b + ' x ' + c + 'x = ' + inner + 'x'), step('Last:', '' + b + ' x ' + d + ' = ' + constVal), step('Combine:', '' + first + 'x2 + ' + (outer + inner) + 'x + ' + constVal)] }
+      return { result: result || '0', label: 'Product', steps: [step('First:', '' + a + 'x x ' + c + ' = ' + first + 'x2'), step('Outer:', '' + a + 'x x ' + d + ' = ' + outer + 'x'), step('Inner:', '' + b + ' x ' + c + 'x = ' + inner + 'x'), step('Last:', '' + b + ' x ' + d + ' = ' + constVal), step('Combine:', '' + first + 'x2 + ' + (outer + inner) + 'x + ' + constVal)] ,
+    extras: [
+      { label: "Solution Methods", value: "Can be solved via factoring, formula, or graphical methods." },
+      { label: "Discriminant Insight", value: "The discriminant reveals the number and type of solutions." },
+      { label: "Graphical Meaning", value: "Solutions correspond to x-intercepts on the graph." },
+      { label: "Checking Solutions", value: "Substitute results back into the original equation to verify." },
+      { label: "Real vs Complex", value: "Real solutions appear when discriminant ≥ 0; otherwise complex." }
+    ]}
     },
     formula: '(ax + b)(cx + d) = acx2 + (ad + bc)x + bd',
     description: 'Multiply two binomials using the FOIL method.',
-    interpretation: 'The expanded product of the two binomials.'
+    interpretation: 'The expanded product of the two binomials.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

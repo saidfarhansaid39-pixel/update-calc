@@ -1,14 +1,29 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
+import { DollarSign, Home, Percent, Calendar } from 'lucide-react';
 import { HouseAffordabilityForm1 } from '@/components/calculator/HouseAffordabilityForm1';
 import { HouseAffordabilityForm2 } from '@/components/calculator/HouseAffordabilityForm2';
 import { HouseAffordabilityResults } from '@/components/calculator/HouseAffordabilityResults';
-import { HouseAffordabilityArticle } from '@/components/calculator/HouseAffordabilityArticle';
+import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
+import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
+import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+
+const calcMeta = {
+  slug: 'house-affordability-calculator',
+  title: 'House Affordability Calculator',
+  description: 'Estimate an affordable purchase amount for a house based on household income-to-debt estimates or fixed monthly budgets.',
+  tier: 'tier3',
+  category: 'financial',
+  hubSlug: 'financial-calculators',
+  hubName: 'Financial Calculators',
+  keywords: ['house', 'affordability', 'mortgage', 'home buying'],
+};
 
 export function HouseAffordabilityCalculator() {
   const t = useTranslations('calculatorUI');
+  const locale = useLocale();
   // Form 1 State
   const [f1_income, setF1Income] = useState("120,000");
   const [f1_term, setF1Term] = useState("30");
@@ -185,68 +200,105 @@ export function HouseAffordabilityCalculator() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const inputs = useMemo(() => ({
+    f1_income, f1_term, f1_rate, f1_debt,
+    f1_downPayment, f1_downPaymentType,
+    f1_propertyTax, f1_propertyTaxType,
+    f1_hoa, f1_hoaType,
+    f1_insurance, f1_insuranceType,
+    f1_dti,
+    f2_budget, f2_term, f2_rate,
+    f2_downPayment, f2_downPaymentType,
+    f2_includeTax: String(f2_includeTax),
+    f2_propertyTax, f2_propertyTaxType,
+    f2_hoa, f2_hoaType,
+    f2_insurance, f2_insuranceType,
+    f2_maintenance, f2_maintenanceType,
+  }), [f1_income, f1_term, f1_rate, f1_debt, f1_downPayment, f1_downPaymentType, f1_propertyTax, f1_propertyTaxType, f1_hoa, f1_hoaType, f1_insurance, f1_insuranceType, f1_dti, f2_budget, f2_term, f2_rate, f2_downPayment, f2_downPaymentType, f2_includeTax, f2_propertyTax, f2_propertyTaxType, f2_hoa, f2_hoaType, f2_insurance, f2_insuranceType, f2_maintenance, f2_maintenanceType]);
+
+  const subCalcs = useMemo(() => {
+    if (!results1 && !results2) return null;
+
+    const cl = (v: number) => formatCurrency(v, 'USD', locale);
+    const hp1 = results1?.homePrice ?? 0;
+    const hp2 = results2?.homePrice ?? 0;
+    const loan1 = results1?.loanAmount ?? 0;
+    const dp1 = results1?.downPayment ?? 0;
+    const mc1 = results1?.monthlyCost ?? 0;
+    const mc2 = results2?.monthlyCost ?? 0;
+    const downPct1 = hp1 > 0 ? (dp1 / hp1) * 100 : 0;
+    const estClosing = hp1 * 0.03;
+    const annualIncome = parseFloat(f1_income.replace(/,/g, '')) || 0;
+    const monthlyDebt = parseFloat(f1_debt.replace(/,/g, '')) || 0;
+    const monthlyGross = annualIncome / 12;
+    const dtiFront = monthlyGross > 0 ? mc1 / monthlyGross : 0;
+    const dtiBack = monthlyGross > 0 ? (mc1 + monthlyDebt) / monthlyGross : 0;
+
+    return (
+      <SubCalcGrid>
+        <SubCalcPanel title="Maximum Purchase Price" icon={Home} defaultOpen results={[
+          ...(results1 ? [{ label: 'Income-Based Price', value: cl(hp1), badge: 'positive' as const }] : []),
+          ...(results2 ? [{ label: 'Budget-Based Price', value: cl(hp2) }] : []),
+        ]} />
+        <SubCalcPanel title="Monthly Payment Breakdown" icon={DollarSign} results={[
+          ...(results1 ? [{ label: 'Income-Based Monthly Cost', value: cl(mc1) }] : []),
+          ...(results2 ? [{ label: 'Budget-Based Monthly Cost', value: cl(mc2) }] : []),
+        ]} />
+        <SubCalcPanel title="Loan & Down Payment Details" icon={Percent} results={[
+          ...(results1 ? [
+            { label: 'Total Loan Amount', value: cl(loan1) },
+            { label: 'Down Payment', value: `${cl(dp1)} (${downPct1.toFixed(1)}%)` },
+          ] : []),
+          { label: 'Est. Closing Costs (3%)', value: cl(estClosing) },
+        ]} />
+        <SubCalcPanel title="DTI Ratio Analysis" icon={Calendar} results={[
+          { label: 'Front-End DTI (housing)', value: `${(dtiFront * 100).toFixed(1)}%`, badge: dtiFront > 0.28 ? 'negative' as const : 'positive' as const },
+          { label: 'Back-End DTI (total)', value: `${(dtiBack * 100).toFixed(1)}%`, badge: dtiBack > 0.36 ? 'negative' as const : 'positive' as const },
+        ]} />
+      </SubCalcGrid>
+    );
+  }, [results1, results2, f1_income, f1_debt, locale]);
+
   return (
-    <div className="max-w-[800px] mx-auto bg-white p-2 md:p-4">
-      <div className="flex justify-between text-xs text-gray-500 mb-2 border-b pb-1">
-        <div>home / financial / house affordability calculator</div>
-        <div className="text-blue-600 underline cursor-pointer">{t('buttons.print')}</div>
-      </div>
-      
-      <h1 className="text-[26px] font-bold text-gray-800 mb-4 font-sans">How Much House Can I Afford?</h1>
-      
-      <h2 className="text-[18px] font-bold text-[#1c4587] mb-2 font-sans">House Affordability Calculator</h2>
-      <p className="mb-4 text-[13px] text-gray-800 leading-relaxed">
-        There are two House Affordability Calculators that can be used to estimate an affordable purchase amount for a house based on either household income-to-debt estimates or fixed monthly budgets. They are mainly intended for use by U.S. residents.
-      </p>
-
-      {/* Calculator 1 */}
-      <div className="flex flex-col md:flex-row gap-6 w-full">
-        <div className="flex-1">
-          <HouseAffordabilityForm1 
-            state={state1} 
-            setters={setters1} 
-            handleCalculate={calculateF1}
-            handleClear={clearF1}
-          />
-          <div className="bg-[#f0f0f0] p-2 mt-4 text-center border border-gray-300 mx-auto w-[350px]">
-             <div className="text-[12px] font-bold mb-1">Latest Mortgage Rates:</div>
-             <div className="text-[12px] space-x-2">
-                <span>30 Years: <span className="text-blue-600 underline">6.609%</span></span>
-                <span>15 Years: <span className="text-blue-600 underline">5.77%</span></span>
-                <span>10 Years: <span className="text-blue-600 underline">5.635%</span></span>
-             </div>
-             <div className="flex justify-center gap-2 mt-2">
-                <button className="bg-[#466a9b] text-white px-3 py-1 text-[13px]">See your local rates</button>
-                <button className="bg-[#466a9b] text-white px-3 py-1 text-[13px]">Get pre-approval</button>
-             </div>
-          </div>
+    <PremiumCalculatorShell
+      calculator={calcMeta}
+      form={<>
+        <HouseAffordabilityForm1 
+          state={state1} 
+          setters={setters1} 
+          handleCalculate={calculateF1}
+          handleClear={clearF1}
+        />
+        <div className="bg-[#f0f0f0] p-2 mt-4 text-center border border-gray-300 mx-auto w-[350px]">
+           <div className="text-[12px] font-bold mb-1">Latest Mortgage Rates:</div>
+           <div className="text-[12px] space-x-2">
+              <span>30 Years: <span className="text-blue-600 underline">6.609%</span></span>
+              <span>15 Years: <span className="text-blue-600 underline">5.77%</span></span>
+              <span>10 Years: <span className="text-blue-600 underline">5.635%</span></span>
+           </div>
+           <div className="flex justify-center gap-2 mt-2">
+              <button className="bg-[#466a9b] text-white px-3 py-1 text-[13px]">See your local rates</button>
+              <button className="bg-[#466a9b] text-white px-3 py-1 text-[13px]">Get pre-approval</button>
+           </div>
         </div>
-        <div className="w-full md:w-[300px]">
-          <HouseAffordabilityResults results={results1} />
-        </div>
-      </div>
-
-      <h2 className="text-[18px] font-bold text-[#1c4587] mt-8 mb-2 font-sans">House affordability based on fixed, monthly budgets</h2>
-      <p className="mb-4 text-[13px] text-gray-800 leading-relaxed">
-        This is a separate calculator used to estimate house affordability based on monthly allocations of a fixed amount for housing costs.
-      </p>
-
-      {/* Calculator 2 */}
-      <div className="flex flex-col md:flex-row gap-6 w-full">
-        <div className="flex-1">
-          <HouseAffordabilityForm2 
-            state={state2} 
-            setters={setters2} 
-            handleCalculate={calculateF2}
-            handleClear={clearF2}
-          />
-        </div>
-        <div className="w-full md:w-[300px]">
-          <HouseAffordabilityResults results={results2} />
-        </div>
-      </div>
-
-      <HouseAffordabilityArticle />
-    </div>
+        <h2 className="text-[18px] font-bold text-[#1c4587] mt-8 mb-2 font-sans">House affordability based on fixed, monthly budgets</h2>
+        <p className="mb-4 text-[13px] text-gray-800 leading-relaxed">
+          This is a separate calculator used to estimate house affordability based on monthly allocations of a fixed amount for housing costs.
+        </p>
+        <HouseAffordabilityForm2 
+          state={state2} 
+          setters={setters2} 
+          handleCalculate={calculateF2}
+          handleClear={clearF2}
+        />
+      </>}
+      result={<>
+        <HouseAffordabilityResults results={results1} />
+        <HouseAffordabilityResults results={results2} />
+      </>}
+      subCalcs={subCalcs}
+      mainValue={results1?.homePrice ?? results2?.homePrice ?? 0}
+      inputs={inputs}
+    />
   );
 }

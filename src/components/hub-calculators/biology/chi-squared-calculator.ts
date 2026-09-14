@@ -27,7 +27,12 @@ const calcDef: CalcDef = {
         { label: 'Degrees of freedom', value: `${df}` },
         { label: 'At a=0.05 (3.84)', value: critical3_84 },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The chi-squared test compares observed and expected frequencies to test goodness of fit. Used in genetics to validate Mendelian ratios and experimental data.',
   formula: '?² = S(O – E)² / E | df = n – 1',

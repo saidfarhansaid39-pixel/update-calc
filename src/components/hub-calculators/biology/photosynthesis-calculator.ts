@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Temperature factor', value: `${tempOpt.toFixed(3)}` },
         { label: 'Est. photosynthetic rate', value: `${rate.toFixed(2)} µmol·m?²·s?¹` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Photosynthesis rate depends on light intensity, CO2 concentration, and temperature. Each factor can be limiting. This model uses a multiplicative Michaelis-Menten approach.',
   formula: 'Rate = Pmax × (I/(I+K_I)) × ([CO2]/([CO2]+K_C)) × exp(-0.5×((T-Topt)/s)²)',

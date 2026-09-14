@@ -5,9 +5,12 @@ export type FieldDef = {
   min?: number; max?: number; step?: number | string; placeholder?: string; unit?: string
   options?: { label: string; value: string }[]
   mode?: ModeLevel
+  units?: { value: string; label: string; toFactor?: number; fromFactor?: number }[]
+  defaultUnit?: string
+  dependsOn?: { field: string; value: string }
 }
 
-export type ResultValue = { result: number | string; label: string; unit: string; steps?: (string | { label: string; value: string })[] }
+export type ResultValue = { result: number | string; label: string; unit: string; steps?: (string | { label: string; value: string })[]; extras?: { label: string; value: string }[] }
 
 export type CalcDef = {
   schema: any

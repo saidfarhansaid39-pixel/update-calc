@@ -28,7 +28,12 @@ const calcDef: CalcDef = {
         { label: 'Body fat (US Navy method)', value: `${bf.toFixed(1)}%` },
         { label: 'Category', value: cat },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Estimate body fat percentage using the US Navy circumference method. Neck, waist, and height are required for males; hip measurement is also needed for females.'
 }

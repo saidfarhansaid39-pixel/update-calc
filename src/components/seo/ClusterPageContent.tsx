@@ -22,14 +22,14 @@ function faqSchema(faqs: Array<{ q: string; a: string }>) {
 }
 
 function breadcrumbSchema(cluster: ClusterFlatEntry, locale: string, th: (key: string) => string) {
-  const homeUrl = locale === 'en' ? 'https://www.jdcalc.com' : `https://www.jdcalc.com/${locale}`
-  const hubUrl = locale === 'en' ? `https://www.jdcalc.com/${cluster.hubSlug}` : `https://www.jdcalc.com/${locale}/${cluster.hubSlug}`
+  const homeUrl = locale === 'en' ? 'https://www.calculat.online' : `https://www.calculat.online/${locale}`
+  const hubUrl = locale === 'en' ? `https://www.calculat.online/${cluster.hubSlug}` : `https://www.calculat.online/${locale}/${cluster.hubSlug}`
   return {
     __html: JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'JDCALC', item: homeUrl },
+        { '@type': 'ListItem', position: 1, name: 'Calculat', item: homeUrl },
         { '@type': 'ListItem', position: 2, name: th(cluster.hubSlug), item: hubUrl },
         { '@type': 'ListItem', position: 3, name: cluster.variant.title },
       ],

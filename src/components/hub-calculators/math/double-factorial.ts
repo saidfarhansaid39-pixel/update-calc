@@ -10,11 +10,23 @@ const calcDef: CalcDef = {
       const nVal = Math.round(n(v.n)); let result = 1
       for (let i = nVal; i > 0; i -= 2) result *= i
       if (nVal === -1) result = 1; if (nVal === 0) result = 1
-      return { result, label: 'n!!', steps: [step('n', '' + nVal), step('Double factorial', '' + result)] }
+      return { result, label: 'n!!', steps: [step('n', '' + nVal), step('Double factorial', '' + result)] ,
+    extras: [
+      { label: "Mathematical Significance", value: "Fundamental concept in number theory and discrete mathematics." },
+      { label: "Computational Note", value: "Large inputs may require optimized algorithms for performance." },
+      { label: "Historical Context", value: "Studied by mathematicians across centuries for its unique properties." },
+      { label: "Related Sequences", value: "Related to other integer sequences and special numbers." },
+      { label: "Pattern Recognition", value: "Observe recurring patterns and relationships between values." }
+    ]}
     },
     formula: 'n!! = n x (n-2) x ... x 1 (odd n) or 2 (even n).',
     description: 'Calculate the double factorial n!!.',
-    interpretation: 'Product of every other integer from n down to 1 or 2.'
+    interpretation: 'Product of every other integer from n down to 1 or 2.',
+    presets: [
+      { label: 'Small 5', values: { a: '5' } },
+      { label: 'Medium 10', values: { a: '10' } },
+      { label: 'Large 20', values: { a: '20' } }
+    ]
 }
 
 export default calcDef

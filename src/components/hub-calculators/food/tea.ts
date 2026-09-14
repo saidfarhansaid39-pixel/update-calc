@@ -17,7 +17,12 @@ const calcDef: CalcDef = {
         { label: 'Water temperature', value: `${temp}°C` },
         { label: 'Steep time', value: `${mins} min` },
         { label: 'For', value: `${v.cups} cup${v.cups > 1 ? 's' : ''}` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Perfect tea steeping parameters based on tea variety. Water temperature and steep time dramatically affect flavor — too hot or too long makes tea bitter.',
     example: { label: 'Green tea, 2 cups', value: 'Steep 3 min at 75°C' }

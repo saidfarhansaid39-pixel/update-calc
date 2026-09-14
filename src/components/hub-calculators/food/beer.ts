@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Total beers needed', value: `${totalBeers}` },
         { label: perPack >= 55 ? 'Kegs needed' : 'Packs needed', value: `${packsNeeded} (${perPack}-unit ${perPack >= 55 ? 'keg' : 'pack'})` },
         { label: 'Calories', value: `~${calories.toFixed(0)} kcal` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Calculate beer quantities for parties and events. Determine total beers, optimal packaging (bottles, cans, or kegs), and calorie estimates.',
     example: { label: '20 guests, 3 beers each', value: '60 beers = 1 half-barrel keg' }

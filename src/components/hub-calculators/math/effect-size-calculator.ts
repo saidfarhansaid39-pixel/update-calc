@@ -14,11 +14,20 @@ const calcDef: CalcDef = {
       const a = n(v.a), b = n(v.b), c = n(v.c)
       const d = (a - b) / c
       const mag = Math.abs(d) < 0.2 ? 'negligible' : Math.abs(d) < 0.5 ? 'small' : Math.abs(d) < 0.8 ? 'medium' : 'large'
-      return { result: d.toFixed(4), label: "Cohen's d", steps: [step('Formula:', 'd = (' + a + ' - ' + b + ') / ' + c + ' = ' + d.toFixed(4)), step('Interpretation:', 'Effect size is ' + mag + ' (|d| = ' + Math.abs(d).toFixed(2) + ')')] }
+      return { result: d.toFixed(4), label: "Cohen's d", steps: [step('Formula:', 'd = (' + a + ' - ' + b + ') / ' + c + ' = ' + d.toFixed(4)), step('Interpretation:', 'Effect size is ' + mag + ' (|d| = ' + Math.abs(d).toFixed(2) + ')')] ,
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ]}
     },
     formula: 'd = (M1 - M2) / s_pooled',
     description: "Calculate Cohen's d effect size for comparing two group means.",
-    interpretation: "Cohen's d measures the standardized difference between two means."
+    interpretation: "Cohen's d measures the standardized difference between two means.",
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

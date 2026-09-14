@@ -14,7 +14,14 @@ const calcDef: CalcDef = {
         const vals: [number, string][] = [[1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],[100,'C'],[90,'XC'],[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']]
         let roman = '', n = num
         for (const [val, sym] of vals) { while (n >= val) { roman += sym; n -= val } }
-        return { result: roman, label: 'Roman Numeral', steps: [step('Integer:', '' + num), step('Roman:', roman)] }
+        return { result: roman, label: 'Roman Numeral', steps: [step('Integer:', '' + num), step('Roman:', roman)],
+    extras: [
+      { label: "Mathematical Significance", value: "Fundamental concept in number theory and discrete mathematics." },
+      { label: "Computational Note", value: "Large inputs may require optimized algorithms for performance." },
+      { label: "Historical Context", value: "Studied by mathematicians across centuries for its unique properties." },
+      { label: "Related Sequences", value: "Related to other integer sequences and special numbers." },
+      { label: "Pattern Recognition", value: "Observe recurring patterns and relationships between values." }
+    ] }
       } else {
         const romanMap: Record<string, number> = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 }
         let total = 0, prev = 0

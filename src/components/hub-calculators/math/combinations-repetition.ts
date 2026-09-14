@@ -6,10 +6,19 @@ const calcDef: CalcDef = {
     schema: z.object({ n: z.string().min(1).refine(v => !isNaN(parseFloat(v)) && parseFloat(v) >= 1 && Number.isInteger(Number(v)) && Number(v) <= 50, '1-50 integer'), r: z.string().min(1).refine(v => !isNaN(parseFloat(v)) && parseFloat(v) >= 0 && Number.isInteger(Number(v)), '0+ integer') }),
     fields: [numField('n', 'n', { min: 1, max: 50, step: '1' }), numField('r', 'r (chosen)', { min: 0, step: '1' })],
     defaults: { n: '5', r: '3' },
-    compute: (v) => { const nVal = Math.round(n(v.n)), r = Math.round(n(v.r)); const c = fact(nVal + r - 1) / (fact(r) * fact(nVal - 1)); return { result: Math.round(c), label: 'C(n+r-1,r)', steps: [step('C(' + (nVal + r - 1) + ',' + r + ')', '' + Math.round(c))] } },
+    compute: (v) => { const nVal = Math.round(n(v.n)), r = Math.round(n(v.r)); const c = fact(nVal + r - 1) / (fact(r) * fact(nVal - 1)); return { result: Math.round(c), label: 'C(n+r-1,r)', steps: [step('C(' + (nVal + r - 1) + ',' + r + ')', '' + Math.round(c))] ,
+    extras: [
+      { label: "Counting Principle", value: "Understand whether order matters (permutations) or not (combinations)." },
+      { label: "Large Number Warning", value: "Factorials and combinatorial values grow extremely fast." },
+      { label: "Real-World Use", value: "Used in probability, statistics, game theory, and algorithm analysis." },
+      { label: "Formula Reference", value: "nCr = n! / (r!(n-r)!) for combinations; nPr = n! / (n-r)! for permutations." }
+    ]} },
     formula: 'C(n+r-1, r) = (n+r-1)! / (r! (n-1)!).',
     description: 'Calculate combinations with repetition allowed.',
-    interpretation: 'Number of ways to choose r items from n types with repetition.'
+    interpretation: 'Number of ways to choose r items from n types with repetition.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

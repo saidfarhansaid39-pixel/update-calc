@@ -10,11 +10,21 @@ const calcDef: CalcDef = {
       const a = n(v.a), b = n(v.b), nVal = Math.round(n(v.n)); const dx = (b - a) / nVal; let sum = 0
       for (let i = 0; i < nVal; i++) { const xMid = a + (i + 0.5) * dx; sum += xMid * xMid }
       sum *= dx
-      return { result: sum.toFixed(6), label: 'Midpoint approx', steps: [step('dx', dx.toFixed(6)), step('Midpoint sum', sum.toFixed(6))] }
+      return { result: sum.toFixed(6), label: 'Midpoint approx', steps: [step('dx', dx.toFixed(6)), step('Midpoint sum', sum.toFixed(6))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'S = S f(x?mid)dx where x?mid = midpoint of each subinterval.',
     description: 'Midpoint rule for numerical integration of f(x) = x^2.',
-    interpretation: 'Approximate integral using rectangle heights at interval midpoints.'
+    interpretation: 'Approximate integral using rectangle heights at interval midpoints.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

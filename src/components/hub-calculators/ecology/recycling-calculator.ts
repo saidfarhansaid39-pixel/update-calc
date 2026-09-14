@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import type { CalcDef } from '../../../lib/generic-fallback'
+import { step } from '../../../lib/hub-helpers'
 
 const calcDef: CalcDef = {
   schema: z.object({
@@ -16,7 +17,14 @@ const calcDef: CalcDef = {
       { label: 'Electronics', value: 'electronics' },
     ] },
     { name: 'kg', label: 'Amount Recycled', type: 'number', unit: 'kg', min: 0.1, step: '0.1' },
-  ],
+    ],
+  presets: [
+    { label: 'US household (4 people)', values: { wasteKg: '800', recyclingRate: '32', compostingRate: '5' } },
+    { label: 'EU household', values: { wasteKg: '500', recyclingRate: '48', compostingRate: '17' } },
+    { label: 'Zero-waste family', values: { wasteKg: '200', recyclingRate: '70', compostingRate: '20' } },
+    { label: 'High-consumer', values: { wasteKg: '1200', recyclingRate: '15', compostingRate: '2' } },
+    { label: 'Restaurant', values: { wasteKg: '3000', recyclingRate: '25', compostingRate: '30' } }
+    ],
   compute: (v) => {
     const savings: Record<string, number> = { aluminum: 12, paper: 1.5, glass: 0.6, plastic: 3, steel: 2.5, electronics: 20 }
     const co2Saved = (savings[v.material] || 1) * v.kg
@@ -29,7 +37,14 @@ const calcDef: CalcDef = {
         { label: 'Total CO₂ saved', value: `${co2Saved.toFixed(1)} kg` },
         { label: 'Equivalent to', value: `${(co2Saved / 8.887).toFixed(1)} gallons of gasoline not burned` },
       ]
-}
+,
+    extras: [
+      { label: "Environmental Context", value: "Global waste generation is ~2.1 billion tonnes/year and growing faster than population. Landfills are the third-largest source of anthropogenic methane." },
+      { label: "Measurement Method", value: "Waste composition analysis, material flow analysis, diversion rate tracking. Data from municipal records, EPA/EEA reports." },
+      { label: "Conservation Note", value: "Every tonne of recycled material saves 1-4 tonnes of CO₂. Composting reduces landfill methane by 50-80% and produces valuable soil amendment." },
+      { label: "Typical Ranges", value: "US recycling rate: ~32%. EU: ~48%. Best performers (Germany, South Korea): >65%. Per capita waste: 0.3-1.5 kg/day globally." },
+      { label: "Related Concepts", value: "Circular economy, zero waste, extended producer responsibility (EPR), waste hierarchy, cradle-to-cradle design, industrial ecology." }
+    ]}
   },
   description: 'Recycling saves CO₂ emissions compared to producing new materials from virgin resources. Aluminum recycling saves the most CO₂ per kg.',
   formula: 'CO₂ Saved = Amount × Savings Factor | Aluminum: 12, Steel: 2.5, Plastic: 3, Paper: 1.5, Glass: 0.6 kg CO₂/kg',

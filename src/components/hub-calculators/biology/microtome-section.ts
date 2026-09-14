@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Tissue consumed for needed sections', value: `${tissueUsed.toFixed(2)} mm (${(tissueUsed / v.blockSize * 100).toFixed(1)}% of block)` },
         { label: 'Paraffin vs frozen', value: 'Paraffin: 4-5 µm standard | Frozen: 8-20 µm typical for IHC' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Microtome sectioning produces thin tissue slices for microscopy. Section thickness depends on tissue type, embedding medium, and intended application. A typical paraffin block yields hundreds of sections.',
   formula: 'Total sections = Block thickness (µm) / Section thickness (µm) | Paraffin: 3-10 µm | Frozen: 5-30 µm | Plastic: 0.5-3 µm',

@@ -8,7 +8,12 @@ const calcDef: CalcDef = {
       { name: 'liquid', label: 'Liquid', type: 'select', options: [{ label: 'Water', value: 'water' }, { label: 'Milk', value: 'milk' }] }
     ],
     compute: (v) => {
-      const r = parseFloat(v.type); const l = v.oats * r; const cooked = v.oats + l; return { result: l, label: 'Liquid Needed', unit: 'mL', steps: [{ label: 'Oats', value: v.oats + ' g' }, { label: 'Ratio 1:' + r, value: l.toFixed(0) + ' mL' }, { label: 'Cooked weight', value: cooked.toFixed(0) + ' g' }, { label: 'Cook time', value: r > 2.5 ? '20-30 min' : r > 1.7 ? '5-10 min' : '1-3 min' }] }
+      const r = parseFloat(v.type); const l = v.oats * r; const cooked = v.oats + l; return { result: l, label: 'Liquid Needed', unit: 'mL', steps: [{ label: 'Oats', value: v.oats + ' g' }, { label: 'Ratio 1:' + r, value: l.toFixed(0) + ' mL' }, { label: 'Cooked weight', value: cooked.toFixed(0) + ' g' }, { label: 'Cook time', value: r > 2.5 ? '20-30 min' : r > 1.7 ? '5-10 min' : '1-3 min' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Oatmeal ratios: rolled 1:2, steel-cut 1:3, quick 1:1.5.',
     example: { label: '40g rolled oats with milk', value: '80mL milk, cook 5-10 min' }

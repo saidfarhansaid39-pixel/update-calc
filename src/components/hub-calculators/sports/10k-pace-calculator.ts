@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Speed', value: `${speed.toFixed(2)} km/h` },
         { label: 'Estimated VO2', value: `${vo2Est.toFixed(1)} mL/kg/min` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Set your 10K race pace. Calculate the speed and per-kilometer pace needed to hit your 10K personal best or goal time.'
 }

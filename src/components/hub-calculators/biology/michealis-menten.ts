@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'Saturation level', value: `${satPct.toFixed(1)}% of Vmax` },
         { label: 'At [S] = Km, v = ½ Vmax', value: `${(v.vmax / 2).toFixed(2)} µM/min` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The Michaelis-Menten equation describes enzyme kinetics: reaction velocity as a function of substrate concentration. Km reflects substrate affinity, Vmax reflects catalytic capacity.',
   formula: 'v = Vmax × [S] / (Km + [S]) | Km = [S] at ½ Vmax | kcat = Vmax / [E]total | Specificity = kcat/Km',

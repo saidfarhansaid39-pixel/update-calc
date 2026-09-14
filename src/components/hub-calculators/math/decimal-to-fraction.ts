@@ -15,11 +15,20 @@ const calcDef: CalcDef = {
       const mixed = nNum >= nDen ? Math.floor(nNum / nDen) : 0
       const rem = nNum % nDen
       const fracStr = mixed > 0 ? (rem === 0 ? '' + mixed : mixed + ' ' + rem + '/' + nDen) : (rem === 0 ? '0' : '' + Math.round(rem) + '/' + nDen)
-      return { result: fracStr, label: 'Fraction', steps: [step('Decimal:', '' + a), step('Fraction:', fracStr)] }
+      return { result: fracStr, label: 'Fraction', steps: [step('Decimal:', '' + a), step('Fraction:', fracStr)] ,
+    extras: [
+      { label: "How It Works", value: "Simple percentage-based calculation applied to your input values." },
+      { label: "Common Use Case", value: "Used in shopping, budgeting, and everyday financial decisions." },
+      { label: "Input Requirements", value: "All monetary values should be in the same currency." },
+      { label: "Accuracy Note", value: "Results rounded to 2 decimal places for standard currency format." }
+    ]}
     },
     formula: 'Convert decimal to fraction',
     description: 'Convert a decimal number to a fraction.',
-    interpretation: 'The fractional equivalent of the decimal value.'
+    interpretation: 'The fractional equivalent of the decimal value.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

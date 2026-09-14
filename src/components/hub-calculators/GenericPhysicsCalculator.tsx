@@ -77,39 +77,54 @@ export function GenericPhysicsCalculator({ calculator }: Props) {
     }))
   }, [def, v])
 
-  const mainValue = useMemo(() => {
-    if (!def) return undefined
+  const res = useMemo(() => {
+    if (!def) return null
     const vals: Record<string, any> = {}
     for (const f of def.fields) {
       const raw = v[f.name]
-      if (f.type === 'number') {
-        vals[f.name] = raw !== undefined && raw !== '' ? Number(raw) : 0
-      } else {
-        vals[f.name] = raw ?? ''
-      }
+      if (f.type === 'number') { vals[f.name] = raw !== undefined && raw !== '' ? Number(raw) : 0 }
+      else { vals[f.name] = raw ?? '' }
     }
-    const res = memoizedCompute(def)(vals)
-    const parsed = typeof res.result === 'number' ? res.result : parseFloat(String(res.result))
-    return isNaN(parsed) ? undefined : parsed
+    return memoizedCompute(def)(vals)
   }, [def, v])
 
+  const mainValue = useMemo(() => {
+    if (!res) return undefined
+    const parsed = typeof res.result === 'number' ? res.result : parseFloat(String(res.result))
+    return isNaN(parsed) ? undefined : parsed
+  }, [res])
+
+  const physicsInterpretation = useMemo(() => {
+    if (!res) return null
+    const slug = calculator.slug
+    const val = typeof res.result === 'number' ? res.result : parseFloat(String(res.result))
+    if (isNaN(val)) return null
+    const u = res.unit || ''
+    if (slug.includes('force') || slug.includes('newton')) return <div className="text-xs text-blue-600 font-medium mt-1">{val.toFixed(2)} {u} — Newton's Second Law: F = ma. A net force causes acceleration proportional to mass.</div>
+    if (slug.includes('velocity') || slug.includes('speed') || slug.includes('acceleration')) return <div className="text-xs text-emerald-600 font-medium mt-1">{val.toFixed(2)} {u} — Acceleration is the rate of change of velocity over time (a = Δv/Δt).</div>
+    if (slug.includes('energy') || slug.includes('work') || slug.includes('power')) return <div className="text-xs text-amber-600 font-medium mt-1">{val.toFixed(2)} {u} — Energy is conserved in isolated systems. Work = force × distance. Power = work / time.</div>
+    if (slug.includes('momentum') || slug.includes('impulse') || slug.includes('collision')) return <div className="text-xs text-blue-600 font-medium mt-1">{val.toFixed(2)} {u} — Momentum = mass × velocity. In elastic collisions, both momentum and KE are conserved.</div>
+    if (slug.includes('gravit') || slug.includes('weight')) return <div className="text-xs text-emerald-600 font-medium mt-1">{val.toFixed(2)} {u} — Gravitational force: F = G·m₁·m₂/r². On Earth, g ≈ 9.81 m/s².</div>
+    if (slug.includes('pressure') || slug.includes('pascal')) return <div className="text-xs text-amber-600 font-medium mt-1">{val.toFixed(2)} {u} — Pressure = force / area. In fluids, P = ρgh. Atmospheric pressure ≈ 101,325 Pa.</div>
+    if (slug.includes('density') || slug.includes('mass') || slug.includes('volume')) return <div className="text-xs text-blue-600 font-medium mt-1">{val.toFixed(2)} {u} — Density = mass / volume. Water density = 1 g/cm³ at 4°C.</div>
+    if (slug.includes('wave') || slug.includes('frequency') || slug.includes('wavelength')) return <div className="text-xs text-emerald-600 font-medium mt-1">{val.toFixed(2)} {u} — Wave speed = f × λ. EM waves travel at c = 3×10⁸ m/s in vacuum.</div>
+    if (slug.includes('kinetic') || slug.includes('potential')) return <div className="text-xs text-amber-600 font-medium mt-1">{val.toFixed(2)} {u} — KE = ½mv². GPE = mgh. Mechanical energy is conserved without friction.</div>
+    if (slug.includes('thermo') || slug.includes('heat') || slug.includes('temperature')) return <div className="text-xs text-blue-600 font-medium mt-1">{val.toFixed(2)} {u} — First Law: ΔU = Q - W. Heat flows from hot to cold (Second Law).</div>
+    if (slug.includes('electric') || slug.includes('ohm') || slug.includes('voltage') || slug.includes('current') || slug.includes('resistance')) return <div className="text-xs text-emerald-600 font-medium mt-1">{val.toFixed(2)} {u} — Ohm's Law: V = IR. P = VI = I²R = V²/R.</div>
+    if (slug.includes('projectile')) return <div className="text-xs text-amber-600 font-medium mt-1">{val.toFixed(2)} {u} — Horizontal velocity is constant; vertical acceleration = g. Range depends on launch angle (45° = max).</div>
+    if (slug.includes('torque') || slug.includes('lever')) return <div className="text-xs text-blue-600 font-medium mt-1">{val.toFixed(2)} {u} — Torque = force × lever arm. Longer lever arm multiplies force.</div>
+    if (slug.includes('circular') || slug.includes('centripetal')) return <div className="text-xs text-emerald-600 font-medium mt-1">{val.toFixed(2)} {u} — Centripetal force: F = mv²/r. Required for circular motion toward the center.</div>
+    return <div className="text-xs text-gray-500 italic mt-1">{val.toFixed(2)} {u} — Standard physics formula result.</div>
+  }, [res, calculator.slug])
+
   const result = useMemo(() => {
-    if (!def) return <div className="text-center text-gray-400">Select values to calculate</div>
-    const vals: Record<string, any> = {}
-    for (const f of def.fields) {
-      const raw = v[f.name]
-      if (f.type === 'number') {
-        vals[f.name] = raw !== undefined && raw !== '' ? Number(raw) : 0
-      } else {
-        vals[f.name] = raw ?? ''
-      }
-    }
-    const res = memoizedCompute(def)(vals)
+    if (!def || !res) return <div className="text-center text-gray-400">Select values to calculate</div>
     return (
       <div className="text-center space-y-4">
         <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
           <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
           <p className="text-3xl font-bold text-[#06b6d4]">{typeof res.result === 'number' ? res.result.toFixed(4) : res.result} {res.unit}</p>
+          {physicsInterpretation}
         </div>
         <div className="border-t border-gray-200 dark:border-gray-700 pt-4 text-xs text-gray-400 space-y-1">
           {(res.steps ?? []).map((step, i) => (
@@ -118,7 +133,7 @@ export function GenericPhysicsCalculator({ calculator }: Props) {
         </div>
       </div>
     )
-  }, [def, v])
+  }, [def, res, physicsInterpretation])
 
   const formContent = useMemo(() => {
     return <FieldsByMode fields={def.fields} useSlider={useSlider} lockedFields={lockedFields} toggleLock={toggleLock} />

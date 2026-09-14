@@ -8,7 +8,12 @@ const calcDef: CalcDef = {
       { name: 'goal', label: 'Goal', type: 'select', options: [{ label: 'Maintain', value: '1' }, { label: 'Muscle gain', value: '1.1' }, { label: 'Lose weight', value: '0.9' }] }
     ],
     compute: (v) => {
-      const f = parseFloat(v.activity) || 1.2; const g = parseFloat(v.goal) || 1; const r = v.weight * f * g; return { result: r, label: 'Daily Protein', unit: 'g', steps: [{ label: 'Weight', value: v.weight + ' kg' }, { label: 'Activity factor', value: f + ' g/kg' }, { label: 'Goal adjustment', value: g + 'x' }, { label: 'Recommended', value: r.toFixed(0) + ' g/day' }] }
+      const f = parseFloat(v.activity) || 1.2; const g = parseFloat(v.goal) || 1; const r = v.weight * f * g; return { result: r, label: 'Daily Protein', unit: 'g', steps: [{ label: 'Weight', value: v.weight + ' kg' }, { label: 'Activity factor', value: f + ' g/kg' }, { label: 'Goal adjustment', value: g + 'x' }, { label: 'Recommended', value: r.toFixed(0) + ' g/day' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Calculate daily protein needs based on body weight, activity level, and fitness goals. Protein supports muscle repair, immune function, and overall health.',
     example: { label: '70kg, active, muscle gain', value: '~123g protein/day' }

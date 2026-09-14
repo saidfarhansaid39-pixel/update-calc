@@ -9,7 +9,12 @@ const calcDef: CalcDef = {
   ],
   compute: (v) => {
     const s = v.score, o = v.opponent; const total = s + o; const pct = total > 0 ? (s / total) * 100 : 50
-    return { result: s - o, label: 'Point Differential', unit: '', steps: [{ label: 'Your score', value: '' + s }, { label: 'Opponent score', value: '' + o }, { label: 'Win %', value: pct.toFixed(1) + '%' }] }
+    return { result: s - o, label: 'Point Differential', unit: '', steps: [{ label: 'Your score', value: '' + s }, { label: 'Opponent score', value: '' + o }, { label: 'Win %', value: pct.toFixed(1) + '%' }] ,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate sports score differential and win percentage. Useful for tracking game performance, league standings, and team statistics.'
 }

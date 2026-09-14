@@ -9,11 +9,23 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const r = n(v.a), h = n(v.b)
       const vol = Math.PI * r * r * h
-      return { result: vol, label: 'Volume', unit: 'units3', steps: [step('Formula:', 'V = pi x ' + r + '2 x ' + h), step('Result:', 'V = ' + vol.toFixed(4))] }
+      return { result: vol, label: 'Volume', unit: 'units3', steps: [step('Formula:', 'V = pi x ' + r + '2 x ' + h), step('Result:', 'V = ' + vol.toFixed(4))] ,
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ]}
     },
     formula: 'V = pir2h',
     description: 'Calculate the volume of a cylinder.',
-    interpretation: 'The space occupied by a cylinder with the given radius and height.'
+    interpretation: 'The space occupied by a cylinder with the given radius and height.',
+    presets: [
+      { label: 'Small', values: { a: '2' } },
+      { label: 'Medium', values: { a: '5' } },
+      { label: 'Large', values: { a: '10' } }
+    ]
 }
 
 export default calcDef

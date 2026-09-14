@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function FrequencyConverterForm() {
@@ -8,14 +8,12 @@ export default function FrequencyConverterForm() {
   const [value, setValue] = useState<number>(1);
   const [from, setFrom] = useState<string>('hz');
   const [to, setTo] = useState<string>('khz');
-  const [result, setResult] = useState<any>(null);
-
   const toHz: any = { hz: 1, khz: 1000, mhz: 1e6, ghz: 1e9, rpm: 1/60, thz: 1e12 };
 
-  useEffect(() => {
+  const result = useMemo(() => {
     const hz = value * toHz[from];
     const res = hz / toHz[to];
-    setResult(res.toFixed(4));
+    return res.toFixed(4);
   }, [value, from, to]);
 
   return (

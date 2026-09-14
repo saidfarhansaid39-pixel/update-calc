@@ -1,7 +1,7 @@
 'use client'
 import { memoizedCompute } from '@/lib/calc-executor'
 
-import React, { useMemo, useCallback, useState, useEffect } from 'react'
+import React, { useMemo, useCallback, useState } from 'react'
 import { useForm, FormProvider, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -17,6 +17,7 @@ import { healthSchema } from '@/lib/forms/schemas'
 import { getUnits, toBaseUnit, fromBaseUnit } from '@/lib/units'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 import { DynamicHealthBarChart } from '@/components/premium/DynamicCharts'
+import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation'
 import { buildGenericDef } from '@/lib/generic-fallback'
 import { calculateBMRHarrisBenedict } from '@calcuniverse/formulas'
 
@@ -1145,18 +1146,29 @@ function getSchemaForType(t: CalcType) {
   return m[t] || defaultSchema
 }
 
-function getResultComponent(t: CalcType) {
-  const m: Record<string, any> = {
-    bmi: BMIResults, calorie: CalorieResults, bmr: BmrResults, tdee: TdeeResults, macro: MacroResults,
-    pregnancy: PregnancyResults, pace: PaceResults,
-    bp: BPResults, 'army-bf': ArmyBfResults, 'lean-mass': LeanMassResults,
-    'heart-rate-target': HrTargetResults, 'preg-gain': PregGainResults,
-    'conception-date': ConceptionDateResults, 'due-by-conception': DueByConceptionResults,
-    'expected-dd': ExpectedDdResults,
-    ovulation: OvulationResults, period: PeriodResults, 'fertility-window': FertilityWindowResults,
-    'pal-calc': PalCalcResults,
+function HealthResultRenderer({ t, values }: { t: CalcType; values: any }) {
+  switch (t) {
+    case 'bmi': return <BMIResults {...values} />
+    case 'calorie': return <CalorieResults {...values} />
+    case 'bmr': return <BmrResults {...values} />
+    case 'tdee': return <TdeeResults {...values} />
+    case 'macro': return <MacroResults {...values} />
+    case 'pregnancy': return <PregnancyResults {...values} />
+    case 'pace': return <PaceResults {...values} />
+    case 'bp': return <BPResults {...values} />
+    case 'army-bf': return <ArmyBfResults {...values} />
+    case 'lean-mass': return <LeanMassResults {...values} />
+    case 'heart-rate-target': return <HrTargetResults {...values} />
+    case 'preg-gain': return <PregGainResults {...values} />
+    case 'conception-date': return <ConceptionDateResults {...values} />
+    case 'due-by-conception': return <DueByConceptionResults {...values} />
+    case 'expected-dd': return <ExpectedDdResults {...values} />
+    case 'ovulation': return <OvulationResults {...values} />
+    case 'period': return <PeriodResults {...values} />
+    case 'fertility-window': return <FertilityWindowResults {...values} />
+    case 'pal-calc': return <PalCalcResults {...values} />
+    default: return <DefaultResults {...values} />
   }
-  return m[t] || DefaultResults
 }
 
 function DefaultResults({ mainValue }: { mainValue: number }) {
@@ -1265,7 +1277,7 @@ import { calcDefs } from './health'
 import type { CalcDef } from '@/lib/generic-fallback'
 
 function GenericHealthCalculator({ calculator }: { calculator: CalculatorEntry }) {
-  const [values, setValues] = useState<any>({})
+  const [values, setValues] = useState<any>(() => calcDefaults(calculator.slug))
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [result, setResult] = useState<any>(null)
   const [showResults, setShowResults] = useState(false)
@@ -1285,10 +1297,16 @@ function GenericHealthCalculator({ calculator }: { calculator: CalculatorEntry }
   const isRtl = false
   const t = getCalcType(calculator.slug)
   const schema = getSchemaForType(t)
-  const ResultComp = getResultComponent(t)
   const meta = healthMeta[t] || { unit: '', mainLabel: 'Result' }
 
-  useEffect(() => { const d = calcDefaults(calculator.slug); setValues(d); setResult(null); setShowResults(false); setErrors({}) }, [calculator.slug])
+  const [prevSlug, setPrevSlug] = useState(calculator.slug)
+  if (calculator.slug !== prevSlug) {
+    setPrevSlug(calculator.slug)
+    setValues(calcDefaults(calculator.slug))
+    setResult(null)
+    setShowResults(false)
+    setErrors({})
+  }
 
   const handleChange = (key: string, value: string) => {
     setValues((prev: any) => ({ ...prev, [key]: value }))
@@ -1575,7 +1593,7 @@ function GenericHealthCalculator({ calculator }: { calculator: CalculatorEntry }
         </p>
       </div>
       {t === 'bmi' && <BMIScaleBar bmi={result.mainValue} />}
-      {t !== 'bp' && <ResultComp {...values} />}
+      {t !== 'bp' && <HealthResultRenderer t={t} values={values} />}
       {result.steps && (
         <div className="space-y-2">
           {result.steps.map((s: any, i: number) => (
@@ -1591,16 +1609,6 @@ function GenericHealthCalculator({ calculator }: { calculator: CalculatorEntry }
 
   const healthCalcDef = calcDefs[calculator.slug] || (buildGenericDef(calculator) as unknown as CalcDef | null)
 
-  if (healthCalcDef && healthCalcDef.fields.length > 1) {
-    return <HealthCalcDefRenderer calculator={calculator} def={healthCalcDef} />
-  }
-
-  const healthReferences = [
-    { label: 'World Health Organization. Health statistics and information systems.', url: 'https://www.who.int/data/gho' },
-    { label: 'National Institutes of Health. MedlinePlus health information.', url: 'https://medlineplus.gov/' },
-    { label: 'Centers for Disease Control and Prevention. Health data and statistics.', url: 'https://www.cdc.gov/' },
-  ]
-
   const healthChartData = useMemo(() => {
     if (!result?.steps || !Array.isArray(result.steps)) return []
     return result.steps
@@ -1611,6 +1619,17 @@ function GenericHealthCalculator({ calculator }: { calculator: CalculatorEntry }
         value: parseFloat(String(s.value)) || 0,
       }))
   }, [result])
+
+  if (healthCalcDef && healthCalcDef.fields.length > 1) {
+    return <HealthCalcDefRenderer calculator={calculator} def={healthCalcDef} />
+  }
+
+  const healthReferences = [
+    { label: 'World Health Organization. Health statistics and information systems.', url: 'https://www.who.int/data/gho' },
+    { label: 'National Institutes of Health. MedlinePlus health information.', url: 'https://medlineplus.gov/' },
+    { label: 'Centers for Disease Control and Prevention. Health data and statistics.', url: 'https://www.cdc.gov/' },
+  ]
+
   return (
     <PremiumCalculatorShell
       calculator={calculator}
@@ -1702,19 +1721,49 @@ function HealthCalcDefRenderer({ calculator, def }: { calculator: CalculatorEntr
 
   const { vals, res } = computeRes
 
-  const result = useMemo(() => (
-    <div className="text-center space-y-4">
-      <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-        <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
-        <p className="text-3xl font-bold text-[#06b6d4]">{typeof res.result === 'number' ? res.result.toFixed(2) : res.result} {res.unit}</p>
+  const healthInterpretation = useMemo(() => {
+    const slug = calculator.slug
+    const val = typeof res.result === 'number' ? res.result : parseFloat(String(res.result))
+    if (isNaN(val)) return null
+    const unit = res.unit || ''
+    const steps = (res.steps ?? []) as { label: string; value: string }[]
+    const getStep = (label: string) => { const s = steps.find(s => s.label.toLowerCase().includes(label)); return s ? parseFloat(s.value) : NaN }
+    const bmi = slug.includes('bmi') ? val : getStep('bmi') || 0
+    const bpSys = slug.includes('blood-pressure') || slug.includes('bp') ? val : 0
+    const bpDia = getStep('diastolic') || 0
+
+    if (slug.includes('bmi') && bmi > 0) {
+      const category = bmi < 18.5 ? 'Underweight' : bmi < 25 ? 'Normal' : bmi < 30 ? 'Overweight' : bmi < 35 ? 'Obese Class I' : bmi < 40 ? 'Obese Class II' : 'Obese Class III'
+      const color = bmi < 18.5 ? 'text-amber-600' : bmi < 25 ? 'text-emerald-600' : bmi < 30 ? 'text-orange-600' : 'text-red-600'
+      return <div className={`${color} text-xs font-medium`}>{category} — BMI {bmi.toFixed(1)}</div>
+    }
+    if (slug.includes('blood-pressure') || slug.includes('map') || slug.includes('pulse-pressure')) {
+      const category = bpSys < 120 ? 'Normal' : bpSys < 130 ? 'Elevated' : bpSys < 140 ? 'High BP Stage 1' : bpSys < 180 ? 'High BP Stage 2' : 'Hypertensive Crisis'
+      const color = bpSys < 120 ? 'text-emerald-600' : bpSys < 130 ? 'text-amber-600' : 'text-red-600'
+      return <div className={`${color} text-xs font-medium`}>{category}</div>
+    }
+    return null
+  }, [res, calculator.slug])
+
+  const result = useMemo(() => {
+    const slug = calculator.slug
+    const val = typeof res.result === 'number' ? res.result : parseFloat(String(res.result))
+    const riType = slug.includes('bmi') ? 'bmi' as const : slug.includes('bmr') || slug.includes('tdee') ? 'calorie' as const : slug.includes('preg') || slug.includes('pregnancy') ? 'pregnancy' as const : undefined
+    return (
+      <div className="text-center space-y-4">
+        <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
+          <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
+          <p className="text-3xl font-bold text-[#06b6d4]">{typeof res.result === 'number' ? res.result.toFixed(2) : res.result} {res.unit}</p>
+          {healthInterpretation}
+        </div>
+        <div className="border-t border-gray-200 dark:border-gray-700 pt-4 text-xs text-gray-400 space-y-1">
+          {(res.steps ?? []).map((step, i) => (
+            <p key={i}><strong>{step.label}:</strong> {step.value}</p>
+          ))}
+        </div>
       </div>
-      <div className="border-t border-gray-200 dark:border-gray-700 pt-4 text-xs text-gray-400 space-y-1">
-        {(res.steps ?? []).map((step, i) => (
-          <p key={i}><strong>{step.label}:</strong> {step.value}</p>
-        ))}
-      </div>
-    </div>
-  ), [res])
+    )
+  }, [res, healthInterpretation, calculator.slug])
 
   const mainValue = useMemo(() =>
     typeof res.result === 'number' ? res.result : parseFloat(String(res.result)) || 0

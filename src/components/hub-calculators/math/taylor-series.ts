@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const x = n(v.x), nVal = Math.round(n(v.n)); const terms: string[] = []; let sum = 0
       for (let k = 0; k <= nVal; k++) { const term = Math.pow(x, k) / fact(k); terms.push(term.toFixed(6)); sum += term }
-      return { result: sum.toFixed(6), label: 'e^x approx', steps: [step('Terms', terms.join(', ')), step('Sum', sum.toFixed(6))] }
+      return { result: sum.toFixed(6), label: 'e^x approx', steps: [step('Terms', terms.join(', ')), step('Sum', sum.toFixed(6))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'e^x = S x^k/k! from k=0 to n.',
     description: 'Taylor series expansion of e^x around x=0.',
-    interpretation: 'Approximation of e^x using n+1 terms of its Maclaurin series.'
+    interpretation: 'Approximation of e^x using n+1 terms of its Maclaurin series.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

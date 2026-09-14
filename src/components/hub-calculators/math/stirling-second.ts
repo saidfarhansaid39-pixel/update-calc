@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const nVal = Math.round(n(v.n)), k = Math.round(n(v.k)); const S = Array.from({ length: nVal + 1 }, () => Array(nVal + 1).fill(0)); S[0][0] = 1
       for (let i = 1; i <= nVal; i++) for (let j = 1; j <= i; j++) S[i][j] = S[i - 1][j - 1] + j * S[i - 1][j]
-      return { result: S[nVal][k], label: 'S(n,k)', steps: [step('S(' + n + ',' + k + ')', '' + S[nVal][k])] }
+      return { result: S[nVal][k], label: 'S(n,k)', steps: [step('S(' + n + ',' + k + ')', '' + S[nVal][k])] ,
+    extras: [
+      { label: "Mathematical Significance", value: "Fundamental concept in number theory and discrete mathematics." },
+      { label: "Computational Note", value: "Large inputs may require optimized algorithms for performance." },
+      { label: "Historical Context", value: "Studied by mathematicians across centuries for its unique properties." },
+      { label: "Related Sequences", value: "Related to other integer sequences and special numbers." },
+      { label: "Pattern Recognition", value: "Observe recurring patterns and relationships between values." }
+    ]}
     },
     formula: 'S(n,k) = S(n-1,k-1) + k�S(n-1,k).',
     description: 'Calculate Stirling numbers of the second kind S(n,k).',
-    interpretation: 'Number of ways to partition n elements into k non-empty subsets.'
+    interpretation: 'Number of ways to partition n elements into k non-empty subsets.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

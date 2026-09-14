@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'Speed (km/h)', value: `${speedKmh.toFixed(1)} km/h` },
         { label: 'Comparison', value: speedKmh > 25 ? 'Elite sprint speed' : speedKmh > 20 ? 'Good sprint speed' : 'Recreational speed' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate sprint speed from distance and time. Usain Bolt reached 44.7 km/h (12.4 m/s) during his 100m world record. Measure your own top speed.'
 }

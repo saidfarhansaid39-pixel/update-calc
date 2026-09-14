@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'p = cRT', value: `${v.concentration} × 0.0821 × ${tk.toFixed(1)}` },
         { label: 'Osmotic pressure', value: `${pi.toFixed(2)} atm` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Osmotic pressure is the pressure required to prevent solvent flow across a semipermeable membrane. It is proportional to solute concentration and temperature.',
   formula: 'p = cRT (van\'t Hoff equation) | R = 0.082057 L·atm/mol·K',

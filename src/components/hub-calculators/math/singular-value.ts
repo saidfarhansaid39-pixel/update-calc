@@ -15,11 +15,23 @@ const calcDef: CalcDef = {
       const lambda2 = disc >= 0 ? (trace - Math.sqrt(disc)) / 2 : 0
       const sigma1 = lambda1 > 0 ? Math.sqrt(lambda1) : 0
       const sigma2 = lambda2 > 0 ? Math.sqrt(lambda2) : 0
-      return { result: sigma1.toFixed(4) + ', ' + sigma2.toFixed(4), label: 'Singular values', steps: [step('ATA eigenvalues:', 'l1=' + lambda1.toFixed(4) + ', l2=' + lambda2.toFixed(4)), step('Singular values:', 's1=' + sigma1.toFixed(4) + ', s2=' + sigma2.toFixed(4))] }
+      return { result: sigma1.toFixed(4) + ', ' + sigma2.toFixed(4), label: 'Singular values', steps: [step('ATA eigenvalues:', 'l1=' + lambda1.toFixed(4) + ', l2=' + lambda2.toFixed(4)), step('Singular values:', 's1=' + sigma1.toFixed(4) + ', s2=' + sigma2.toFixed(4))] ,
+    extras: [
+      { label: "Unit Circle Reference", value: "Angles measured from positive x-axis counterclockwise." },
+      { label: "Common Angle Values", value: "sin(0°)=0, sin(30°)=0.5, sin(45°)=0.707, sin(60°)=0.866, sin(90°)=1." },
+      { label: "Pythagorean Identity", value: "sin²θ + cos²θ = 1 — fundamental trigonometric relationship." },
+      { label: "Radian vs Degree", value: "Switch between degree and radian mode depending on your problem." },
+      { label: "Periodic Nature", value: "Trigonometric functions repeat every 360° (2π radians)." }
+    ]}
     },
     formula: 'SVD: A = U * Sigma * VT',
     description: 'Calculate singular values of a 2x2 matrix.',
-    interpretation: 'The singular values of the 2x2 matrix.'
+    interpretation: 'The singular values of the 2x2 matrix.',
+    presets: [
+      { label: 'Common 30°', values: { a: '30' } },
+      { label: 'Common 45°', values: { a: '45' } },
+      { label: 'Common 60°', values: { a: '60' } }
+    ]
 }
 
 export default calcDef

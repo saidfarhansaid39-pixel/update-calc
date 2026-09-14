@@ -2,7 +2,16 @@
 
 import React, { useState, useMemo, useCallback, useEffect } from 'react'
 import Image from 'next/image'
-import { Calculator, RotateCcw, Download, Copy, Share2, Printer, TrendingUp, AlertCircle, Info, CheckCircle2, Settings2, Eye, EyeOff, BarChart3, RefreshCw, Plus, Save, Scissors, Trash2, DownloadCloud, FileSpreadsheet, FileText, Lightbulb, Target, Brain, Zap, ChevronDown, ChevronUp, X, AlertTriangle, Sparkles, Edit3, Flag, BookOpen, Layers, Sliders, Table2, Network, GitBranch, LineChart, PieChart, BarChart, Activity, Check, CopyCheck, ExternalLink, Heart, DollarSign, Droplet, Leaf, Microscope, Dumbbell, Globe, Award, ClipboardList, HardHat, Gauge, Clock, Sun, Moon, Atom, GraduationCap, Ruler, ThumbsUp, Linkedin, History, Crosshair } from 'lucide-react'
+import {
+  Calculator, History, RotateCcw, RefreshCw, Plus, Save, Scissors, Trash2,
+  Copy, Share2, Printer, DownloadCloud, FileSpreadsheet, FileText, CopyCheck,
+  TrendingUp, BarChart3, LineChart, PieChart, BarChart, Activity, Network, GitBranch, Table2, Layers,
+  Info, CheckCircle2, X, Check, ExternalLink, ThumbsUp,
+  Eye, EyeOff, Lightbulb, Target, Brain, Zap, Sparkles, Edit3, Flag, BookOpen, Sliders,
+  Moon, Clock, ClipboardList, HardHat, Globe, Linkedin,
+  DollarSign, Droplet, Leaf, Microscope, Dumbbell, Atom, GraduationCap, Ruler,
+  Heart, Gauge, ChevronUp, ChevronDown, AlertTriangle
+} from 'lucide-react'
 import { SchemaMarkup, calculatorSchema, faqSchema, howToSchema, breadcrumbListSchema } from '@/components/SchemaMarkup'
 import { generateCalculatorContent, longFormArticlesReady } from '@/lib/seo/calculator-content-engine'
 import { InformationalSection } from '@/components/content/InformationalSection'
@@ -19,6 +28,7 @@ import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 import { calculatorRegistry } from '@calcuniverse/calculator-registry'
 import { CalculatorModeToggle, type CalcMode } from '@/components/premium/CalculatorModeToggle'
 import { CalculatorModeProvider } from '@/lib/context/CalculatorModeContext'
+import { useAuth } from '@/components/auth/useAuth'
 import { CalculatorLayout } from '@/components/CalculatorLayout'
 import { InternationalizationPanel } from '@/components/premium/InternationalizationPanel'
 import { ExportPanel } from '@/components/premium/ExportPanel'
@@ -39,17 +49,22 @@ import { VisualPresetCards } from '@/components/premium/VisualPresetCards'
 import { ResultQualityBadge } from '@/components/premium/ResultQualityBadge'
 import { InputRangeValidator } from '@/components/premium/InputRangeValidator'
 import { getQualityInfo, getInputRanges } from '@/lib/quality/calculator-quality'
+import { getRangeConfig } from '@/lib/range-visualizer-config'
 import { getExtraFieldsForCalculator } from '@/lib/extra-field-pools'
 import { getHubTheme } from '@/lib/hub-themes'
 import { ExtraFieldsProvider } from '@/lib/context/ExtraFieldsContext'
+import { CurrencyProvider } from '@/lib/context/CurrencyContext'
 import { useAutoSave } from '@/lib/hooks/useAutoSave'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { getLocalizedCalculator } from '@/lib/localized-registry'
 
+import { CalculatorRating } from '@/components/rating/CalculatorRating'
+import { MultiTermComparison } from '@/components/premium/MultiTermComparison'
 import { CalculatorIntro } from '@/components/premium/CalculatorIntro'
 import { CalculatorErrorBoundary, CalculatorEmptyState, CalculatorLoadingSkeleton } from '@/components/premium/CalculatorStates'
 import { generateCalculatorFAQ } from '@/lib/seo/per-calculator-content'
 import type { Currency, MeasurementSystem } from '@/lib/i18n/calculator-i18n'
+import { formatNumber, localeToCountry, localeToCurrency, countryConfigs } from '@/lib/i18n/calculator-i18n'
 
 export type UnitSystem = 'metric' | 'imperial' | 'us'
 
@@ -203,6 +218,8 @@ export interface PremiumCalculatorShellProps {
   rangeVisualizer?: React.ReactNode
   onRestoreValues?: (values: Record<string, string>) => void
   onCalculate?: () => void
+  calculatorType?: string
+  onSaveCalculation?: () => void
 }
 
 const hubIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -224,11 +241,7 @@ const hubIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   sports: TrendingUp,
 }
 
-const unitOptions: { value: UnitSystem; label: string }[] = [
-  { value: 'metric', label: 'Metric' },
-  { value: 'imperial', label: 'Imperial' },
-  { value: 'us', label: 'US' },
-]
+const unitOptions: { value: UnitSystem; label: string }[] = []
 
 
 
@@ -304,8 +317,17 @@ export function PremiumCalculatorShell({
   rangeVisualizer,
   onRestoreValues,
   onCalculate,
+  calculatorType,
+  onSaveCalculation,
 }: PremiumCalculatorShellProps) {
   const locale = useLocale()
+  const t = useTranslations('calculatorUI')
+  const { user: authUser } = useAuth()
+  const unitOptions = useMemo(() => [
+    { value: 'metric' as UnitSystem, label: t('shell.unitMetric') },
+    { value: 'imperial' as UnitSystem, label: t('shell.unitImperial') },
+    { value: 'us' as UnitSystem, label: t('shell.unitUS') },
+  ], [t])
   const [showContent, setShowContent] = useState(false)
   const [showComparison, setShowComparison] = useState(false)
   const [scenarios, setScenarios] = useState<Scenario[]>([])
@@ -319,7 +341,7 @@ export function PremiumCalculatorShell({
   const [extraFieldValues, setExtraFieldValues] = useState<Record<string, string>>({})
   const shareUrl = useMemo(() => {
     if (typeof window !== 'undefined') return window.location.href
-    return `https://www.jdcalc.com/${calculator.hubSlug}/${calculator.slug}`
+    return `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}`
   }, [calculator.hubSlug, calculator.slug])
 
   React.useEffect(() => {
@@ -331,12 +353,12 @@ export function PremiumCalculatorShell({
     try {
       const hasInputs = inputs && Object.keys(inputs).length > 0
       if (hasInputs && result === null) {
-        setCalcError('No result available. Please provide valid inputs.')
+        setCalcError(t('shell.noResultAvailable'))
       } else {
         setCalcError(null)
       }
     } catch (e) {
-      setCalcError(e instanceof Error ? e.message : 'Calculation failed')
+      setCalcError(e instanceof Error ? e.message : t('shell.calculationFailed'))
     }
   }, [result, inputs])
   const [mode, setMode] = useState<CalcMode>(modeProp || 'basic')
@@ -344,9 +366,9 @@ export function PremiumCalculatorShell({
     const levels: Record<CalcMode, number> = { basic: 0, advanced: 1, professional: 2, expert: 3 }
     return levels[mode] || 0
   }, [mode])
-  const [country, setCountry] = useState(countryProp || 'US')
-  const [currency, setCurrency] = useState<Currency>(currencyProp || 'USD')
-  const [measSystem, setMeasSystem] = useState<MeasurementSystem>(measurementSystemProp || 'metric')
+  const [country, setCountry] = useState(countryProp || localeToCountry(locale))
+  const [currency, setCurrency] = useState<Currency>(currencyProp || localeToCurrency(locale))
+  const [measSystem, setMeasSystem] = useState<MeasurementSystem>(measurementSystemProp || countryConfigs[countryProp || localeToCountry(locale)]?.measurement || 'metric')
   const [showAudit, setShowAudit] = useState(false)
   const [showBatch, setShowBatch] = useState(false)
   const [showRestore, setShowRestore] = useState(false)
@@ -390,6 +412,23 @@ export function PremiumCalculatorShell({
     }
   }, [restoreDismissed, hasInputs, autoSave.hasSavedData])
   const tier = calculator.tier as 'tier1' | 'tier2' | 'tier3'
+  const isMortgageOrLoan = calculatorType === 'mortgage' || calculatorType === 'loan'
+  const [reloadKey, setReloadKey] = useState(0)
+
+  const autoRangeConfig = useMemo(() => {
+    if (mainValue === undefined || mainValue === null) return null
+    return getRangeConfig(calculator.slug, mainValue, inputs)
+  }, [calculator.slug, mainValue, inputs])
+
+  const handleReload = useCallback(() => {
+    const saved = autoSave.restore()
+    if (saved && onRestoreValues) {
+      onRestoreValues(saved)
+      setShowRestore(false)
+      setRestoreDismissed(false)
+      setReloadKey(k => k + 1)
+    }
+  }, [autoSave, onRestoreValues])
 
   const handleModeChange = useCallback((newMode: CalcMode) => {
     setMode(newMode)
@@ -466,7 +505,11 @@ export function PremiumCalculatorShell({
         .map(entry => entry.slug)
     } catch { return [] }
   }, [calculator.slug, calculator.category])
-  const [relatedCalculators, setRelatedCalculators] = useState<CalculatorEntry[]>([])
+  const [relatedCalculators, setRelatedCalculators] = useState<CalculatorEntry[]>(() =>
+    calculatorRegistry
+      .filter((entry: { slug: string; category: string }) => entry.slug !== calculator.slug && entry.category === calculator.category)
+      .slice(0, 8)
+  )
   useEffect(() => {
     (async () => {
       const entries = await Promise.all(
@@ -530,6 +573,12 @@ export function PremiumCalculatorShell({
     } catch { /* fallback */ }
   }, [])
 
+  const resultLabel = useMemo(() => {
+    if (copyResultText) return copyResultText
+    if (mainValue !== undefined && !isNaN(mainValue)) return formatNumber(mainValue, locale)
+    return undefined
+  }, [copyResultText, mainValue, locale])
+
   const handleSaveScenario = useCallback(() => {
     if (onSaveScenario) {
       const snapshot = onSaveScenario()
@@ -537,9 +586,21 @@ export function PremiumCalculatorShell({
       setScenarios(prev => [...prev, { id: crypto.randomUUID(), label, snapshot, mainValue }])
     }
     if (inputs) {
-      addEntry(inputs)
+      addEntry(inputs, resultLabel)
     }
-  }, [onSaveScenario, scenarioLabel, scenarios.length, inputs, addEntry, mainValue])
+  }, [onSaveScenario, scenarioLabel, scenarios.length, inputs, addEntry, mainValue, resultLabel])
+
+  const lastAutoSaveRef = React.useRef<string>('')
+  useEffect(() => {
+    if (!hasInputs || result === null || calcError) return
+    const signature = JSON.stringify(inputs) + '|' + (resultLabel ?? '')
+    if (lastAutoSaveRef.current === signature) return
+    const timer = setTimeout(() => {
+      lastAutoSaveRef.current = signature
+      addEntry(inputs!, resultLabel)
+    }, 800)
+    return () => clearTimeout(timer)
+  }, [inputs, hasInputs, result, calcError, resultLabel, addEntry])
 
   const removeScenario = useCallback((id: string) => {
     setScenarios(prev => prev.filter(s => s.id !== id))
@@ -593,141 +654,54 @@ export function PremiumCalculatorShell({
     return () => window.removeEventListener('keydown', handler)
   }, [handleCalculate, formHistory, formHistoryIndex, onRestoreValues])
 
-  const hubFAQs: Record<string, { q: string; a: string }[]> = {
-    financial: [
-      { q: 'What is the difference between simple and compound interest?', a: 'Simple interest is calculated only on the principal amount, while compound interest is calculated on the principal plus accumulated interest. Compound interest grows faster over time making it more powerful for long-term savings.' },
-      { q: 'How does inflation affect my savings?', a: 'Inflation reduces purchasing power over time. If your savings earn less than the inflation rate, your money loses value in real terms. Aim for returns that outpace inflation.' },
-      { q: 'What is a good debt-to-income ratio?', a: 'Lenders generally prefer a debt-to-income ratio below 36%. Ratios above 43% may make it difficult to qualify for mortgages and other major loans.' },
-      { q: 'How much should I save for retirement?', a: 'A common guideline is to save 15% of your pre-tax income annually, including any employer match. Aim to have 1x your salary by age 30, 3x by 40, and 6x by 50.' },
-    ],
-    health: [
-      { q: 'Are these calculators a substitute for medical advice?', a: 'No. These tools provide estimates for educational purposes only. Always consult a qualified healthcare professional for medical decisions.' },
-      { q: 'How often should I check my BMI?', a: 'BMI is a screening tool, not a diagnostic measure. Checking 1-2 times per year is sufficient for most adults, or as recommended by your doctor.' },
-      { q: 'What factors affect BMR besides age and weight?', a: 'BMR is influenced by muscle mass, genetics, hormones, body temperature, and environmental temperature. Muscle mass is the most modifiable factor through exercise.' },
-      { q: 'What is a healthy body fat percentage?', a: 'Essential body fat ranges from 10-13% for women and 2-5% for men. Athletes typically range 14-20% (women) and 6-13% (men). Fitness ranges are 21-24% and 14-17% respectively.' },
-    ],
-    math: [
-      { q: 'How are percentages calculated?', a: 'A percentage is a fraction of 100. To find x% of a number, multiply by x/100. For example, 15% of 200 = 200 × 0.15 = 30.' },
-      { q: 'What is the difference between mean, median, and mode?', a: 'Mean is the average (sum ÷ count). Median is the middle value when sorted. Mode is the most frequent value. Each provides different insight into your data.' },
-      { q: 'What is a ratio?', a: 'A ratio compares two quantities showing their relative sizes. Ratios can be expressed as a:b, a/b, or decimal. They are used to scale recipes, convert units, and compare values.' },
-      { q: 'How do I calculate a tip?', a: 'Multiply the bill total by the tip percentage as a decimal. For 18% tip on a $50 bill: $50 × 0.18 = $9. To split, divide the total bill plus tip by the number of people.' },
-    ],
-    conversion: [
-      { q: 'How do I convert between metric and imperial?', a: 'Use conversion factors such as 1 inch = 2.54 cm, 1 pound = 0.4536 kg, 1 gallon = 3.785 L. Multiply the value by the conversion factor.' },
-      { q: 'How do temperature conversions work?', a: 'Celsius to Fahrenheit: °F = (°C × 9/5) + 32. Fahrenheit to Celsius: °C = (°F - 32) × 5/9. Kelvin = °C + 273.15.' },
-      { q: 'How many significant figures should I use?', a: 'Use the precision of your input values. For most everyday conversions, 2-4 decimal places provide sufficient accuracy.' },
-      { q: 'What is the difference between weight and mass?', a: 'Mass is the amount of matter in an object. Weight is the force of gravity on that mass. On Earth, the difference is negligible for everyday use, but mass is constant everywhere.' },
-    ],
-    'date-time': [
-      { q: 'How many days in each month?', a: 'January (31), February (28/29), March (31), April (30), May (31), June (30), July (31), August (31), September (30), October (31), November (30), December (31).' },
-      { q: 'What is a leap year?', a: 'A leap year occurs every 4 years if the year is divisible by 4 but not by 100 unless also divisible by 400. 2024, 2028, 2032 are leap years.' },
-      { q: 'When does daylight saving time start and end?', a: 'In the US, DST starts the second Sunday of March and ends the first Sunday of November. In Europe, it starts the last Sunday of March and ends the last Sunday of October.' },
-      { q: 'How do time zones work?', a: 'Time zones offset from Coordinated Universal Time (UTC). The US spans UTC-5 to UTC-10. Major zones: Eastern (UTC-5), Central (UTC-6), Mountain (UTC-7), Pacific (UTC-8).' },
-    ],
-    construction: [
-      { q: 'How many square feet in a square yard?', a: 'There are 9 square feet in 1 square yard (3 ft × 3 ft). To convert square feet to square yards, divide by 9.' },
-      { q: 'What size lumber is actually 2x4?', a: 'A nominal 2×4 actually measures 1.5" × 3.5". This is standard for framing lumber. Dimensional lumber shrinks after planing and drying.' },
-      { q: 'How do I calculate concrete volume?', a: 'Concrete volume = length × width × height. For slabs, use feet for length/width and inches for thickness. 1 cubic yard = 27 cubic feet covers about 81 sq ft at 4" thick.' },
-      { q: 'What is the standard stud spacing?', a: 'Wall studs are typically spaced 16 inches on center. Some walls use 24-inch spacing. This affects the number of studs needed and the structural load capacity.' },
-    ],
-    statistics: [
-      { q: 'What is standard deviation?', a: 'Standard deviation measures the spread of data from the mean. A low SD means data points cluster near the mean; a high SD means data is spread out.' },
-      { q: 'What does "statistically significant" mean?', a: 'A result is statistically significant if it is unlikely to have occurred by chance, typically measured by a p-value below 0.05.' },
-      { q: 'How do I calculate probability?', a: 'Probability = number of favorable outcomes / total number of possible outcomes. Probabilities range from 0 (impossible) to 1 (certain).' },
-      { q: 'What is a normal distribution?', a: 'A normal distribution is a bell-shaped curve where most data clusters around the mean. About 68% of data falls within 1 standard deviation, 95% within 2, and 99.7% within 3.' },
-    ],
-    education: [
-      { q: 'How is GPA calculated?', a: 'GPA = (sum of grade points × credits) / total credits. A = 4.0, B = 3.0, C = 2.0, D = 1.0, F = 0.0. Some schools use weighted GPA for honors courses.' },
-      { q: 'What is the difference between a percentage and a letter grade?', a: 'Typically, 90-100% = A, 80-89% = B, 70-79% = C, 60-69% = D, below 60% = F. Some institutions use plus/minus modifiers.' },
-      { q: 'How do I calculate final grade with weighted assignments?', a: 'Multiply each assignment grade by its weight percentage, sum the results, and divide by total weight. This gives your overall weighted average.' },
-      { q: 'What is a good SAT or ACT score?', a: 'SAT ranges from 400-1600 with 1050 as average. ACT ranges from 1-36 with 21 as average. Competitive colleges typically look for SAT 1200+ or ACT 25+.' },
-    ],
-    physics: [
-      { q: 'What is the formula for force?', a: 'Force = mass × acceleration (F = ma). Measured in newtons (N). One newton is the force needed to accelerate 1 kg at 1 m/s².' },
-      { q: 'How does kinetic energy work?', a: 'Kinetic energy = ½ × mass × velocity² (KE = ½mv²). Energy doubles when mass doubles but quadruples when velocity doubles.' },
-      { q: 'What is the speed of light?', a: 'The speed of light in a vacuum is exactly 299,792,458 m/s (≈300,000 km/s or 186,282 mi/s). This is the universal speed limit.' },
-      { q: 'What are Newton\'s three laws of motion?', a: '1) Objects at rest stay at rest. 2) F = ma. 3) Every action has an equal and opposite reaction.' },
-    ],
-    chemistry: [
-      { q: 'What is the mole concept?', a: 'A mole is 6.022 × 10²³ particles (Avogadro\'s number). One mole of a substance has a mass in grams equal to its molecular weight.' },
-      { q: 'How do I balance chemical equations?', a: 'Adjust coefficients so the same number of each atom appears on both sides. Start with the most complex molecule, then balance elements one at a time.' },
-      { q: 'What is pH?', a: 'pH = -log[H+]. pH below 7 is acidic, above 7 is basic (alkaline), and 7 is neutral. Each whole number change represents a 10× change in acidity.' },
-      { q: 'How do dilution calculations work?', a: 'C₁V₁ = C₂V₂ where C is concentration and V is volume. This formula is used when diluting a solution by adding solvent.' },
-    ],
-    engineering: [
-      { q: 'What is Ohm\'s Law?', a: 'Voltage = Current × Resistance (V = IR). Power = Voltage × Current (P = VI). These are fundamental relationships in electrical engineering.' },
-      { q: 'How do gear ratios work?', a: 'Gear ratio = number of teeth on driven gear / number of teeth on driving gear. A higher ratio increases torque but decreases speed.' },
-      { q: 'What is beam deflection?', a: 'Beam deflection is the degree to which a structural element bends under load. It depends on the material, cross-section, length, and applied force.' },
-      { q: 'How is torque calculated?', a: 'Torque = force × distance from pivot point (τ = F × r). Measured in newton-meters (N·m) or pound-feet (lb·ft).' },
-    ],
-    everyday: [
-      { q: 'How do I convert cooking measurements?', a: '1 cup = 8 fl oz = 16 tbsp = 48 tsp. 1 tbsp = 3 tsp. 1 fl oz = 2 tbsp. For dry ingredients, weights vary - 1 cup flour ≈ 120g, 1 cup sugar ≈ 200g.' },
-      { q: 'How do I calculate fuel cost?', a: 'Fuel cost = distance ÷ fuel efficiency × fuel price. For a 300-mile trip at 25 MPG with $3.50/gallon: 300 ÷ 25 × 3.50 = $42.00.' },
-      { q: 'How do I calculate sale price?', a: 'Sale price = original price × (1 - discount%). For 30% off $80: $80 × 0.70 = $56. Add sales tax: price × (1 + tax%).' },
-      { q: 'How do I split a bill?', a: 'Each person pays = total ÷ number of people. For tip: total × tip% ÷ people. For example, $100 bill, 18% tip, 4 people: ($100 + $18) ÷ 4 = $29.50 each.' },
-    ],
-  }
   const generatedFAQs = generateCalculatorFAQ(calculator.slug, calculator.category)
-  const faqs = generatedFAQs.length > 0 ? generatedFAQs.map(f => ({ q: f.question, a: f.answer })) : (hubFAQs[calculator.category] || [])
+  const faqs = generatedFAQs.length > 0 ? generatedFAQs.map(f => ({ q: f.question, a: f.answer })) : (() => {
+    const cat = calculator.category;
+    const catKey = cat.charAt(0).toUpperCase() + cat.slice(1).replace(/-/g, '');
+    const result: { q: string; a: string }[] = [];
+    for (let i = 0; i < 4; i++) {
+      const qk = 'shell.faq' + catKey + 'Q' + i;
+      const ak = 'shell.faq' + catKey + 'A' + i;
+      const q = t(qk);
+      const a = t(ak);
+      if (q && a && q !== qk && a !== ak) {
+        result.push({ q, a });
+      }
+    }
+    return result;
+  })()
 
   const hasLongContent = interpretation || faqs.length > 0 || (calculator.keywords.length > 0)
 
   const tocSections = [
     ...(interpretation ? [{ id: 'what-this-means', label: 'What This Means' }] : []),
     ...(formula || (steps && steps.length > 0) ? [{ id: 'formula', label: 'Formula & Calculation' }] : []),
-    ...(example && example.length > 0 ? [{ id: 'example', label: 'Example' }] : []),
-    ...(calcContent.useCases.length > 0 ? [{ id: 'use-cases', label: 'Use Cases' }] : []),
-    ...(calcContent.commonMistakes.length > 0 ? [{ id: 'common-mistakes', label: 'Common Mistakes' }] : []),
-    ...(calcContent.comparisons.length > 0 ? [{ id: 'comparison-0', label: 'Comparison' }] : []),
-    ...(calcContent.glossary.length > 0 ? [{ id: 'glossary', label: 'Glossary' }] : []),
-    ...(calcContent.longFormArticle && calcContent.longFormArticle.length > 0 ? [{ id: 'educational-guide', label: 'Complete Guide' }] : []),
-    { id: 'guide', label: 'Educational Guide' },
-    ...(faqs.length > 0 ? [{ id: 'faq', label: 'FAQ' }] : []),
+    ...(example && example.length > 0 ? [{ id: 'example', label: t('shell.tocExample') }] : []),
+    ...(calcContent.useCases.length > 0 ? [{ id: 'use-cases', label: t('shell.tocUseCases') }] : []),
+    ...(calcContent.commonMistakes.length > 0 ? [{ id: 'common-mistakes', label: t('shell.tocCommonMistakes') }] : []),
+    ...(calcContent.comparisons.length > 0 ? [{ id: 'comparison-0', label: t('shell.tocComparison') }] : []),
+    ...(calcContent.glossary.length > 0 ? [{ id: 'glossary', label: t('shell.tocGlossary') }] : []),
+    ...(calcContent.longFormArticle && calcContent.longFormArticle.length > 0 ? [{ id: 'educational-guide', label: t('shell.tocCompleteGuide') }] : []),
+    { id: 'guide', label: t('shell.tocEducationalGuide') },
+    ...(faqs.length > 0 ? [{ id: 'faq', label: t('shell.tocFAQ') }] : []),
   ]
   const schemaFaqs = faqs.map(f => ({ question: f.q, answer: f.a }))
 
-  const howItWorks: Record<string, string> = {
-    financial: 'Enter your financial details into the form above. Our tool applies industry-standard formulas to calculate payments, interest, returns, and projections. Results update instantly as you adjust inputs.',
-    health: 'Input your personal metrics such as age, weight, height, and activity level. Our health calculator uses validated medical formulas and research-backed algorithms to provide personalized health assessments.',
-    math: 'Enter your numbers and select the operation you need. Our math solver applies correct mathematical principles and order of operations, providing step-by-step solutions.',
-    conversion: 'Select the conversion type and units, then enter your value. Our converter uses internationally standardized conversion factors to deliver accurate results in real time.',
-    statistics: 'Input your data set values and select the statistical measures you need. Our statistics calculator computes descriptive statistics using validated statistical methods.',
-    education: 'Enter your grades, credit hours, and course levels. Our education calculator computes weighted and unweighted GPA, projects future grades needed, and helps you plan academic goals.',
-    physics: 'Select the physics concept and input your known values. Our physics calculator applies fundamental physical laws and equations to solve for unknown variables.',
-    chemistry: 'Input your chemical values and select the calculation type. Our chemistry calculator performs accurate computations using standardized atomic weights and gas constants.',
-    'date-time': 'Enter your dates and times. Our date-time calculator computes precise differences accounting for leap years, month lengths, and time zones.',
-    construction: 'Enter your project measurements and material preferences. Our construction calculator provides accurate estimates for materials, costs, and quantities.',
-    engineering: 'Input your engineering parameters. Our engineering calculator applies professional standards and formulas to compute technical values.',
-    everyday: 'Enter the relevant values for your everyday calculation. Our tool provides quick, practical results you can apply immediately to real-life situations.',
-  }
-
-  const whatIsExtra: Record<string, string> = {
-    financial: ' This tool helps you make informed financial decisions by providing clear projections of complex financial scenarios.',
-    health: ' Understanding your health metrics is the first step toward better wellness. Use these insights alongside professional medical guidance.',
-    math: ' Mathematical calculations are fundamental to science, engineering, finance, and everyday life.',
-    conversion: ' Accurate unit conversion is essential in science, engineering, travel, cooking, and international trade.',
-    statistics: ' Statistical analysis helps you understand data patterns, make predictions, and draw meaningful conclusions.',
-    education: ' Tracking academic performance helps students set goals and plan their educational journey.',
-    physics: ' Physics principles govern everything from the motion of planets to the behavior of subatomic particles.',
-    chemistry: ' Chemistry calculations are essential for laboratory work, industrial processes, and understanding the material world.',
-    'date-time': ' Precise date and time calculations are critical for project planning, scheduling, and event coordination.',
-    construction: ' Accurate construction estimates save money, reduce waste, and ensure projects are completed on time.',
-    engineering: ' Engineering calculations ensure structures and systems are designed safely and efficiently.',
-    everyday: ' Quick everyday calculations save time and help you make better decisions in daily life.',
-  }
+  const howItWorksKey = 'howItWorks' + calculator.category.charAt(0).toUpperCase() + calculator.category.slice(1).replace(/-/g, '')
+  const whatIsExtraKey = 'whatIsExtra' + calculator.category.charAt(0).toUpperCase() + calculator.category.slice(1).replace(/-/g, '')
 
   return (
     <CalculatorLayout
       title={calculator.title}
       breadcrumbs={[
-        { label: 'Home', href: '/' },
+        { label: t('shell.home'), href: '/' },
         { label: calculator.hubName, href: `/${calculator.hubSlug}` },
         { label: calculator.title, href: `/${calculator.hubSlug}/${calculator.slug}` },
       ]}
     >
       <div className="space-y-6 pb-24 sm:pb-0" style={{ '--hub-accent': hubTheme.accent } as React.CSSProperties}>
         <BreadcrumbNav accent={hubTheme.accent} items={[
-          { label: 'Home', href: '/' },
+          { label: t('shell.home'), href: '/' },
           { label: calculator.hubName, href: `/${calculator.hubSlug}` },
           { label: calculator.title, href: `/${calculator.hubSlug}/${calculator.slug}` },
         ]} />
@@ -742,7 +716,7 @@ export function PremiumCalculatorShell({
         {tocSections.length > 1 && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm">
             <button onClick={() => setShowToC(!showToC)} className="flex items-center justify-between w-full text-sm font-medium text-gray-700 dark:text-gray-300">
-              On this page
+              {t('shell.onThisPage')}
               {showToC ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
             {showToC && (
@@ -769,7 +743,7 @@ export function PremiumCalculatorShell({
               <AlertTriangle className="w-6 h-6 text-red-500 dark:text-red-400 shrink-0 mt-0.5" aria-hidden="true" />
               <div className="min-w-0">
                 <h3 className="text-base font-semibold text-red-700 dark:text-red-300">
-                  Please check your inputs
+                  {t('shell.pleaseCheckInputs')}
                 </h3>
                 <p className="mt-1 text-sm text-red-600 dark:text-red-400">
                   {calcError}
@@ -779,7 +753,8 @@ export function PremiumCalculatorShell({
           </div>
         ) : (
         <CalculatorModeProvider mode={mode}>
-        <div id="calculator" ref={calcRootRef} className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
+        <CurrencyProvider country={country} currency={currency}>
+        <div id="calculator" ref={calcRootRef} className="card-handcrafted p-4 sm:p-6">
           {/* Calculator Mode Toggle & Toolbar */}
           {tierFeatures.modes && (
             <div className="mb-6">
@@ -787,10 +762,10 @@ export function PremiumCalculatorShell({
                 <div className="flex items-center gap-3">
                   <CalculatorModeToggle mode={mode} onChange={handleModeChange} availableModes={availableModes} />
                   <span className="hidden sm:inline text-xs text-gray-400 dark:text-gray-500">
-                    {mode === 'basic' && 'Essential — just the result'}
-                    {mode === 'advanced' && 'Formula, steps & interpretation'}
-                    {mode === 'professional' && 'Charts, examples & deep explanations'}
-                    {mode === 'expert' && 'Scenarios, batch & quality audit'}
+                    {mode === 'basic' && t('shell.modeBasic')}
+                    {mode === 'advanced' && t('shell.modeAdvanced')}
+                    {mode === 'professional' && t('shell.modeProfessional')}
+                    {mode === 'expert' && t('shell.modeExpert')}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -811,7 +786,7 @@ export function PremiumCalculatorShell({
             </div>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
             <div className="space-y-4 max-w-full overflow-x-auto">
               <ExtraFieldsProvider extraFields={extraFieldValues}>
               <ExtraFieldInjector
@@ -824,7 +799,7 @@ export function PremiumCalculatorShell({
               </ExtraFieldInjector>
               </ExtraFieldsProvider>
             </div>
-            <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 sm:p-6 flex flex-col justify-center max-w-full overflow-x-auto min-h-[180px]">
+            <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-4 sm:p-6 flex flex-col justify-center max-w-full overflow-x-auto min-h-[180px]">
               {showTabs && modeLevel >= 1 ? (
                 <ResultTabs
                   mainResult={result}
@@ -844,19 +819,43 @@ export function PremiumCalculatorShell({
             </div>
           </div>
 
+          {isMortgageOrLoan && inputs && Object.keys(inputs).length > 0 && (
+            <MultiTermComparison
+              calculatorType={calculatorType || calculator.slug}
+              inputs={inputs}
+              currentTerm={inputs?.term ? parseInt(inputs.term) : undefined}
+            />
+          )}
+
+          {charts && !(showTabs && modeLevel >= 1) && (
+            <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
+              {charts}
+            </div>
+          )}
+
           {/* Range Visualizer */}
           {rangeVisualizer && (
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
               {rangeVisualizer}
+            </div>
+          )}
+          {!rangeVisualizer && autoRangeConfig && mainValue !== undefined && (
+            <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
+              <RangeVisualizer
+                value={mainValue}
+                ranges={autoRangeConfig.ranges}
+                label={autoRangeConfig.label}
+                formatValue={autoRangeConfig.formatValue}
+              />
             </div>
           )}
 
           {/* Restore saved values banner */}
           {showRestore && onRestoreValues && (
-            <div className="flex items-center justify-between gap-3 p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">
+            <div className="flex items-center justify-between gap-3 p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-2xl text-sm">
               <div className="flex items-center gap-2 text-amber-800 dark:text-amber-200">
                 <RefreshCw className="w-4 h-4 shrink-0" />
-                <span>Restore your previous values?</span>
+                <span>{t('shell.restorePreviousValues')}</span>
               </div>
               <div className="flex items-center gap-2 shrink-0">
                 <button
@@ -867,13 +866,13 @@ export function PremiumCalculatorShell({
                   }}
                   className="px-3 py-1.5 text-xs font-medium bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors min-h-[44px]"
                 >
-                  Restore
+                  {t('shell.restore')}
                 </button>
                 <button
                   onClick={() => { setRestoreDismissed(true); autoSave.clear() }}
                   className="px-3 py-1.5 text-xs font-medium text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-800/30 rounded-lg transition-colors min-h-[44px]"
                 >
-                  Dismiss
+                  {t('shell.dismiss')}
                 </button>
               </div>
             </div>
@@ -896,10 +895,23 @@ export function PremiumCalculatorShell({
           )}
 
           {/* Tier action bar */}
-          {(tierFeatures.export || tierFeatures.comparison || onUnitChange || extraActions || onReset || onToggleSlider) && (
+          {(tierFeatures.export || tierFeatures.comparison || onUnitChange || extraActions || onReset || onToggleSlider || (onSaveCalculation && authUser)) && (
             <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+              {onSaveCalculation && authUser && (
+                <div className="mb-4">
+                  <button
+                    type="button"
+                    onClick={onSaveCalculation}
+                    className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 text-sm font-semibold rounded-lg bg-gradient-to-br from-[#1a3a8a] to-[#06b6d4] text-white shadow-md hover:opacity-90 transition-all"
+                  >
+                    <Save className="w-4 h-4" />
+                    {t('shell.saveCalculation')}
+                  </button>
+                </div>
+              )}
               <ActionToolbar
                 onReset={onReset}
+                onReload={autoSave.hasSavedData ? handleReload : undefined}
                 onUnitChange={onUnitChange as ((unit: string) => void) | undefined}
                 unitOptions={unitOptions}
                 unitSystem={unitSystem}
@@ -909,7 +921,7 @@ export function PremiumCalculatorShell({
                 onShare={handleShare}
                 shareCopied={shareCopied}
                 onCopyResult={(copyResultText || inputs) ? handleCopyResult : undefined}
-                copyResultText="Copy Result"
+                copyResultText={t('shell.copyResult')}
                 onSaveScenario={onSaveScenario ? handleSaveScenario : undefined}
                 showCSV={!!(tierFeatures.export && onExportCSV)}
                 modeLevel={modeLevel}
@@ -957,6 +969,7 @@ export function PremiumCalculatorShell({
             />
           )}
           </div>
+        </CurrencyProvider>
         </CalculatorModeProvider>
         )}
         </CalculatorErrorBoundary>
@@ -977,8 +990,12 @@ export function PremiumCalculatorShell({
           <CalculationHistory
             entries={history}
             onApply={(vals) => {
-              const inputsEl = document.querySelector('[name]')
-              if (inputsEl) inputsEl.closest('form')?.requestSubmit?.()
+              if (onRestoreValues) {
+                onRestoreValues(vals)
+              } else {
+                const inputsEl = document.querySelector('[name]')
+                if (inputsEl) inputsEl.closest('form')?.requestSubmit?.()
+              }
             }}
             onRemove={removeEntry}
             onClear={clearHistory}
@@ -995,9 +1012,9 @@ export function PremiumCalculatorShell({
 
         {/* Data dependent notice */}
         {calculator.dataDependent && (
-          <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-4 text-sm text-amber-800 dark:text-amber-200">
-            <strong>Data-dependent calculator:</strong> This calculator uses periodically refreshed data.
-            {calculator.dataRefreshCadence && <span> Refresh cadence: {calculator.dataRefreshCadence}.</span>}
+          <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-2xl p-4 text-sm text-amber-800 dark:text-amber-200">
+            <strong>{t('shell.dataDependent')}</strong> {t('shell.dataDependentDescription')}
+            {calculator.dataRefreshCadence && <span> {t('shell.refreshCadence')} {calculator.dataRefreshCadence}.</span>}
           </div>
         )}
 
@@ -1008,24 +1025,29 @@ export function PremiumCalculatorShell({
             tier === 'tier2' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300' :
             'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400'
           }`}>
-            {tier === 'tier3' ? 'Premium' : tier === 'tier2' ? 'Standard' : 'Essential'}
+            {tier === 'tier3' ? t('shell.tierPremium') : tier === 'tier2' ? t('shell.tierStandard') : t('shell.tierEssential')}
           </span>
-          {tierFeatures.charts && <span className="flex items-center gap-1"><BarChart3 className="w-3 h-3" /> Charts</span>}
-          {tierFeatures.comparison && <span className="flex items-center gap-1"><TrendingUp className="w-3 h-3" /> Comparison</span>}
-          <span className="flex items-center gap-1"><BookOpen className="w-3 h-3" /> Guide</span>
+          {tierFeatures.charts && <span className="flex items-center gap-1"><BarChart3 className="w-3 h-3" /> {t('shell.featureCharts')}</span>}
+          {tierFeatures.comparison && <span className="flex items-center gap-1"><TrendingUp className="w-3 h-3" /> {t('shell.featureComparison')}</span>}
+          <span className="flex items-center gap-1"><BookOpen className="w-3 h-3" /> {t('shell.featureGuide')}</span>
           {unitSystem && <span className="flex items-center gap-1"><RotateCcw className="w-3 h-3" /> {unitSystem}</span>}
           <HubIcon className="w-3 h-3 text-gray-300 dark:text-gray-600" />
           {userCount !== undefined && (
             <span className="flex items-center gap-1 text-gray-400">
-              <ThumbsUp className="w-3 h-3" /> {userCount.toLocaleString()} users
+              <ThumbsUp className="w-3 h-3" /> {t('shell.usersCount', { count: userCount })}
             </span>
           )}
         </div>
 
+        {/* Star Rating */}
+        <div className="card-handcrafted p-4 sm:p-6">
+          <CalculatorRating />
+        </div>
+
         {/* Formula & Step-by-Step */}
         {modeLevel >= 1 && (formula || (steps && steps.length > 0)) && (
-          <div id="formula" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Formula & Calculation</h2>
+          <div id="formula" className="card-handcrafted p-4 sm:p-6">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('shell.headingFormula')}</h2>
             {formula && (
               <div className="mb-4 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
                 <p className="text-sm font-mono text-gray-700 dark:text-gray-300">{formula}</p>
@@ -1054,8 +1076,8 @@ export function PremiumCalculatorShell({
 
         {/* Educational Charts (Professional+) */}
         {modeLevel >= 2 && tierFeatures.eduCharts && (formulaVariables || conceptNodes || processSteps) && (
-          <div id="educational-charts" className="space-y-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Educational Visualizations</h2>
+          <div id="educational-charts" className="space-y-4 card-handcrafted p-4 sm:p-6">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{t('shell.headingEduVisualizations')}</h2>
             {formulaVariables && <FormulaChart formula={formula || ''} variables={formulaVariables} />}
             {conceptNodes && conceptNodes.length > 0 && <ConceptDiagram nodes={conceptNodes} edges={conceptEdges || []} />}
             {processSteps && <ProcessFlowChart steps={processSteps} />}
@@ -1064,8 +1086,8 @@ export function PremiumCalculatorShell({
 
         {/* Worked Example (Advanced+) */}
         {modeLevel >= 1 && example && example.length > 0 && (
-          <div id="example" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Example Calculation</h2>
+          <div id="example" className="card-handcrafted p-4 sm:p-6">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('shell.headingExampleCalc')}</h2>
             <div className="space-y-2">
               {example.map((step, i) => (
                 <div key={i} className="flex items-start gap-2 text-sm">
@@ -1087,8 +1109,8 @@ export function PremiumCalculatorShell({
 
         {/* Example Chart Generator (Professional+) */}
         {modeLevel >= 2 && tierFeatures.examples && examples && (
-          <div id="examples" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Example Calculations</h2>
+          <div id="examples" className="card-handcrafted p-4 sm:p-6">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('shell.headingExampleCalcs')}</h2>
             <ExampleChartGenerator
               beginner={examples.beginner} typical={examples.typical}
               advanced={examples.advanced} realworld={examples.realworld}
@@ -1099,16 +1121,16 @@ export function PremiumCalculatorShell({
 
         {/* Result Interpretation (Advanced+) */}
         {modeLevel >= 1 && interpretation && (
-          <div id="what-this-means" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What This Means</h2>
+          <div id="what-this-means" className="card-handcrafted p-4 sm:p-6">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{t('shell.headingWhatThisMeans')}</h2>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{interpretation}</p>
           </div>
         )}
 
         {/* Dynamic Explanation (Advanced+) */}
         {modeLevel >= 1 && explanation && (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Your Results Explained</h2>
+          <div className="card-handcrafted p-4 sm:p-6">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">{t('shell.headingYourResults')}</h2>
             <div className="prose dark:prose-invert max-w-none text-sm">
               <p className="text-gray-700 dark:text-gray-300" dangerouslySetInnerHTML={{ __html: explanation.summary }} />
               {explanation.details.length > 0 && (
@@ -1121,7 +1143,7 @@ export function PremiumCalculatorShell({
             </div>
             {explanation.tips.length > 0 && (
               <div className="mt-4 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
-                <p className="text-xs font-semibold text-amber-700 dark:text-amber-300 mb-1.5">Tips</p>
+                <p className="text-xs font-semibold text-amber-700 dark:text-amber-300 mb-1.5">{t('shell.tips')}</p>
                 <ul className="space-y-1">
                   {explanation.tips.map((tip, i) => (
                     <li key={i} className="text-xs text-amber-600 dark:text-amber-400 flex items-start gap-1.5">
@@ -1137,8 +1159,8 @@ export function PremiumCalculatorShell({
 
         {/* Enhanced Result Explanation (Professional+) */}
         {modeLevel >= 2 && tierFeatures.eduCharts && enhancedExplanationProp && mainValue !== undefined && (
-          <div id="enhanced-results" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Your Results Explained</h2>
+          <div id="enhanced-results" className="card-handcrafted p-4 sm:p-6">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('shell.headingYourResults')}</h2>
             <EnhancedResultExplanation
               value={mainValue} label={calculator.title}
               goodRange={enhancedExplanationProp.goodRange}
@@ -1185,31 +1207,31 @@ export function PremiumCalculatorShell({
             onClick={() => setShowContent(!showContent)}
             className="w-full flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
           >
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Educational Guide</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{t('shell.headingEduGuide')}</h2>
             {showContent ? <ChevronUp className="w-5 h-5 text-gray-400" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}
           </button>
           {showContent && (
             <div className="px-4 pb-4 sm:px-6 sm:pb-6">
               <div className="prose dark:prose-invert max-w-none">
-                <h3>What Is {calculator.title}?</h3>
-                <p>{calculator.description}{whatIsExtra[calculator.category] || ''}</p>
+                <h3>{t('shell.headingWhatIs', { title: calculator.title })}</h3>
+                <p>{calculator.description}{t('shell.' + whatIsExtraKey) || ''}</p>
 
-                <h3>How Does It Work?</h3>
-                <p>{howItWorks[calculator.category] || 'Enter your values in the form above. The tool processes your inputs using industry-standard formulas and displays detailed results in real time.'}</p>
+                <h3>{t('shell.headingHowItWorks')}</h3>
+                <p>{t('shell.' + howItWorksKey) || t('shell.howItWorksDefault')}</p>
 
-                <h3>Tips & Best Practices</h3>
+                <h3>{t('shell.headingTipsBestPractices')}</h3>
                 <ul>
-                  <li>Use accurate input values for the most reliable results. Small errors in inputs can compound in the output.</li>
-                  <li>Review the underlying assumptions to ensure they match your specific situation.</li>
-                  <li>Use the preset examples to quickly test common scenarios and understand the tool.</li>
-                  {tierFeatures.comparison && <li>Use the <strong>Save Scenario</strong> button to compare multiple scenarios side by side and find the best option.</li>}
-                  <li>Print or export your results for record-keeping or sharing with a professional.</li>
-                  <li>Bookmark this tool for quick future access when you need it.</li>
+                  <li>{t('shell.tipAccurateInputs')}</li>
+                  <li>{t('shell.tipReviewAssumptions')}</li>
+                  <li>{t('shell.tipPresetExamples')}</li>
+                  {tierFeatures.comparison && <li dangerouslySetInnerHTML={{ __html: t('shell.tipSaveScenario') }} />}
+                  <li>{t('shell.tipPrintExport')}</li>
+                  <li>{t('shell.tipBookmark')}</li>
                 </ul>
 
                 {faqs.length > 0 && (
                   <>
-                    <h3 id="faq">Frequently Asked Questions</h3>
+                    <h3 id="faq">{t('shell.headingFAQ')}</h3>
                     <div className="space-y-3">
                       {faqs.map((faq, i) => (
                         <div key={i}>
@@ -1223,23 +1245,23 @@ export function PremiumCalculatorShell({
 
                 {calculator.keywords.length > 0 && (
                   <>
-                    <h3>Related Topics</h3>
+                    <h3>{t('shell.headingRelatedTopics')}</h3>
                     <ul>
                       {calculator.keywords.slice(0, 8).map((kw, i) => <li key={i}>{kw}</li>)}
                     </ul>
                   </>
                 )}
 
-                <h3>Questions?</h3>
-                <p>If you have questions about this calculator or need help interpreting results, consult a qualified professional in the relevant field. This tool is for educational and informational purposes only.</p>
+                <h3>{t('shell.headingQuestions')}</h3>
+                <p>{t('shell.questionsParagraph')}</p>
               </div>
 
               {/* Author & Reviewer bios */}
               {(author || reviewer) && (
                 <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 space-y-3">
-                  <h3 className="text-sm font-semibold text-gray-900 dark:text-white">About the Authors</h3>
-                  {author && <AuthorCard author={author} label="Author" />}
-                  {reviewer && <AuthorCard author={reviewer} label="Reviewer" />}
+                  <h3 className="text-sm font-semibold text-gray-900 dark:text-white">{t('shell.headingAboutAuthors')}</h3>
+                  {author && <AuthorCard author={author} label={t('shell.authorLabel')} />}
+                  {reviewer && <AuthorCard author={reviewer} label={t('shell.reviewerLabel')} />}
                 </div>
               )}
 
@@ -1247,7 +1269,7 @@ export function PremiumCalculatorShell({
               {references && references.length > 0 && (
                 <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
                   <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                    References ({references.length})
+                    {t('shell.headingReferences', { count: references.length })}
                   </h3>
                   <ol className="space-y-1.5 text-xs text-gray-500 dark:text-gray-400">
                     {references.map((ref, i) => (
@@ -1268,9 +1290,9 @@ export function PremiumCalculatorShell({
           <SchemaMarkup type="Product" data={{
             name: calculator.title,
             description: calculator.description,
-            url: `https://www.jdcalc.com/${calculator.hubSlug}/${calculator.slug}`,
+            url: `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}`,
             category: calculator.hubName,
-            offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
+            offers: { '@type': 'Offer', price: '0', priceCurrency: currency, availability: 'https://schema.org/InStock' },
             applicationCategory: (() => {
               const map: Record<string, string> = { financial: 'FinanceApplication', health: 'HealthApplication', math: 'ScienceApplication', conversion: 'UtilitiesApplication', construction: 'BusinessApplication', statistics: 'DataAnalysisApplication', education: 'EducationalApplication', physics: 'ScienceApplication', chemistry: 'ScienceApplication', engineering: 'EngineeringApplication', everyday: 'LifestyleApplication', food: 'LifestyleApplication', biology: 'ScienceApplication', ecology: 'ScienceApplication', sports: 'SportsApplication', 'date-time': 'UtilitiesApplication' }
               return map[calculator.hubSlug] || 'UtilitiesApplication'
@@ -1287,20 +1309,20 @@ export function PremiumCalculatorShell({
           }} />}
           {steps && steps.length > 0 && <SchemaMarkup type="HowTo" data={howToSchema(steps)} />}
           <SchemaMarkup type="BreadcrumbList" data={breadcrumbListSchema([
-            { name: 'Home', url: `https://www.jdcalc.com` },
-            { name: calculator.hubName, url: `https://www.jdcalc.com/${calculator.hubSlug}` },
-            { name: calculator.title, url: `https://www.jdcalc.com/${calculator.hubSlug}/${calculator.slug}` },
+            { name: 'Home', url: `https://www.calculat.online` },
+            { name: calculator.hubName, url: `https://www.calculat.online/${calculator.hubSlug}` },
+            { name: calculator.title, url: `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}` },
           ])} />
           <SchemaMarkup type="WebApplication" data={{
             name: calculator.title,
             description: calculator.description,
-            url: `https://www.jdcalc.com/${calculator.hubSlug}/${calculator.slug}`,
+            url: `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}`,
             applicationCategory: (() => {
               const map: Record<string, string> = { financial: 'FinanceApplication', health: 'HealthApplication', math: 'ScienceApplication', conversion: 'UtilitiesApplication', construction: 'BusinessApplication', statistics: 'DataAnalysisApplication', education: 'EducationalApplication', physics: 'ScienceApplication', chemistry: 'ScienceApplication', engineering: 'EngineeringApplication', everyday: 'LifestyleApplication', food: 'LifestyleApplication', biology: 'ScienceApplication', ecology: 'ScienceApplication', sports: 'SportsApplication', 'date-time': 'UtilitiesApplication' }
               return map[calculator.hubSlug] || 'UtilitiesApplication'
             })(),
             operatingSystem: 'Web',
-            offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+            offers: { '@type': 'Offer', price: '0', priceCurrency: currency },
           }} />
           {calcContent.useCases.length > 0 && <SchemaMarkup type="ItemList" data={{
             itemListElement: calcContent.useCases.slice(0, 5).map((uc, i) => ({
@@ -1323,9 +1345,9 @@ export function PremiumCalculatorShell({
         </div>
 
         {/* Feedback widget */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
+        <div className="card-handcrafted p-4 sm:p-6">
           <div className="flex items-center justify-between">
-            <p className="text-sm text-gray-600 dark:text-gray-400">Did this calculator help you?</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{t('shell.didThisHelp')}</p>
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setFeedback('yes')}
@@ -1333,7 +1355,7 @@ export function PremiumCalculatorShell({
                   feedback === 'yes' ? 'bg-green-50 dark:bg-green-900/20 border-green-300 text-green-700 dark:text-green-300' : 'border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'
                 }`}
               >
-                <ThumbsUp className="w-3.5 h-3.5" /> Yes
+                <ThumbsUp className="w-3.5 h-3.5" /> {t('shell.yes')}
               </button>
               <button
                 onClick={() => setFeedback('no')}
@@ -1341,7 +1363,7 @@ export function PremiumCalculatorShell({
                   feedback === 'no' ? 'bg-red-50 dark:bg-red-900/20 border-red-300 text-red-700 dark:text-red-300' : 'border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'
                 }`}
               >
-                <ThumbsUp className="w-3.5 h-3.5 rotate-180" /> No
+                <ThumbsUp className="w-3.5 h-3.5 rotate-180" /> {t('shell.no')}
               </button>
             </div>
           </div>
@@ -1355,7 +1377,7 @@ export function PremiumCalculatorShell({
               className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-[#06b6d4] transition-colors"
             >
               <BarChart3 className="w-3.5 h-3.5" />
-              {showAudit ? 'Hide' : 'Show'} AI Quality Audit
+              {showAudit ? t('shell.hideAudit') : t('shell.showAudit')}
               {showAudit ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
             </button>
             {showAudit && <QualityAuditScore categories={generateAuditScores(calculator, tierFeatures)} />}
@@ -1367,11 +1389,11 @@ export function PremiumCalculatorShell({
 
         {/* Related Calculators Carousel */}
         {relatedCalculators.length > 0 && (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
+          <div className="card-handcrafted p-4 sm:p-6">
             <RelatedCalculatorCarousel
               calculators={relatedCalculators}
               hubPath={calculator.hubSlug}
-              title="Related Calculators"
+              title={t('shell.relatedCalculators')}
             />
           </div>
         )}
@@ -1383,23 +1405,23 @@ export function PremiumCalculatorShell({
           <div className="min-w-0 flex-1">
             {mainValue !== undefined ? (
               <div className="min-w-0">
-                <p className="text-[11px] uppercase tracking-wide text-gray-400 dark:text-gray-500">Result</p>
+                <p className="text-[11px] uppercase tracking-wide text-gray-400 dark:text-gray-500">{t('shell.result')}</p>
                 <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
-                  {calculator.title}: <span className="text-[#1a759f] dark:text-[#06b6d4]">{typeof mainValue === 'number' ? mainValue.toLocaleString(undefined, { maximumFractionDigits: 2 }) : mainValue}</span>
+                  {calculator.title}: <span className="text-[#1a759f] dark:text-[#06b6d4]" suppressHydrationWarning>{typeof mainValue === 'number' ? mainValue.toLocaleString(undefined, { maximumFractionDigits: 2 }) : mainValue}</span>
                 </p>
               </div>
             ) : (
-              <p className="text-sm text-gray-500 dark:text-gray-400">Enter your values above</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{t('shell.enterValuesAbove')}</p>
             )}
           </div>
           <button
             type="button"
             onClick={handleCalculate}
-            aria-label={mainValue !== undefined ? 'Recalculate' : 'Calculate'}
+            aria-label={mainValue !== undefined ? t('shell.recalculate') : t('shell.calculate')}
             className="inline-flex touch-target min-w-[44px] flex-shrink-0 items-center justify-center gap-1.5 rounded-xl bg-gradient-to-br from-[#1a3a8a] to-[#06b6d4] px-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:opacity-90 active:scale-[0.98]"
           >
             <Calculator className="h-4 w-4" />
-            {mainValue !== undefined ? 'Recalculate' : 'Calculate'}
+            {mainValue !== undefined ? t('shell.recalculate') : t('shell.calculate')}
           </button>
         </div>
       </div>

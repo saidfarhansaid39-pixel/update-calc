@@ -10,11 +10,20 @@ const calcDef: CalcDef = {
       const whole = Math.round(n(v.a)), num = Math.round(n(v.b)), den = Math.round(n(v.c))
       if (den === 0) return { result: 'Undefined', label: 'Error' }
       const impNum = whole * den + num
-      return { result: '' + impNum + '/' + den, label: 'Improper Fraction', steps: [step('Mixed:', whole + ' ' + num + '/' + den), step('Formula:', '(' + whole + ' x ' + den + ' + ' + num + ') / ' + den), step('Result:', '' + impNum + '/' + den)] }
+      return { result: '' + impNum + '/' + den, label: 'Improper Fraction', steps: [step('Mixed:', whole + ' ' + num + '/' + den), step('Formula:', '(' + whole + ' x ' + den + ' + ' + num + ') / ' + den), step('Result:', '' + impNum + '/' + den)],
+    extras: [
+      { label: "How It Works", value: "Simple percentage-based calculation applied to your input values." },
+      { label: "Common Use Case", value: "Used in shopping, budgeting, and everyday financial decisions." },
+      { label: "Input Requirements", value: "All monetary values should be in the same currency." },
+      { label: "Accuracy Note", value: "Results rounded to 2 decimal places for standard currency format." }
+    ] }
     },
     formula: 'a b/c = (a x c + b)/c',
     description: 'Convert a mixed number to an improper fraction.',
-    interpretation: 'The improper fraction representation of the mixed number.'
+    interpretation: 'The improper fraction representation of the mixed number.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

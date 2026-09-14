@@ -15,6 +15,11 @@ const calcDef: CalcDef = {
       { label: 'Goal time', value: v.hours+'h '+v.minutes+'m' },
       { label: 'Pace needed', value: pMin+':'+pSec.toString().padStart(2,'0')+' /km' },
       { label: 'Speed', value: (v.distance/(totalMin/60)).toFixed(1)+' km/h' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate the pace required to achieve your half marathon (21.1 km) goal time.', formula: 'Pace = goal time (min) / 21.1', interpretation: 'Consistent pacing is critical for half marathon success. Start slightly conservatively.'
 }

@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'BSA (Mosteller)', value: `${bsa.toFixed(2)} m²` },
         { label: 'Reference range', value: 'Adult BSA ~1.7–2.0 m²' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Body Surface Area (BSA) is used in medical dosing for chemotherapy, IV fluids, and burn assessment. The Mosteller formula is the most widely used in clinical practice.',
   formula: 'BSA = v(weight × height / 3600) (Mosteller)',

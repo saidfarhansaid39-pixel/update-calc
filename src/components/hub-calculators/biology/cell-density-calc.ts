@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Cells/mL = (count/squares) × 104 × dilution', value: `${cellsPerMl.toExponential(4)}` },
         { label: 'Total cells in 10 mL', value: `${(cellsPerMl * 10).toExponential(4)}` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Calculate cell concentration from hemocytometer counts. The standard formula accounts for the hemocytometer chamber volume (104 per mL per square) and sample dilution.',
   formula: 'Cells/mL = (total cells counted / squares counted) × 104 × dilution factor | Count at least 100-200 cells for statistical accuracy',

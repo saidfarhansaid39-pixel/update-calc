@@ -11,12 +11,22 @@ const calcDef: CalcDef = {
       const f = ((3 * c / a) - ((b * b) / (a * a))) / 3
       const g = (((2 * Math.pow(b, 3)) / Math.pow(a, 3)) - ((9 * b * c) / Math.pow(a, 2)) + (27 * d / a)) / 27
       const h = (Math.pow(g, 2) / 4) + (Math.pow(f, 3) / 27)
-      if (h > 0) return { result: 'One real root (Cardano)', label: 'Result', steps: [step('f:', '' + f.toFixed(4)), step('g:', '' + g.toFixed(4)), step('h:', '' + h.toFixed(4))] }
+      if (h > 0) return { result: 'One real root (Cardano)', label: 'Result', steps: [step('f:', '' + f.toFixed(4)), step('g:', '' + g.toFixed(4)), step('h:', '' + h.toFixed(4))] ,
+    extras: [
+      { label: "Solution Methods", value: "Can be solved via factoring, formula, or graphical methods." },
+      { label: "Discriminant Insight", value: "The discriminant reveals the number and type of solutions." },
+      { label: "Graphical Meaning", value: "Solutions correspond to x-intercepts on the graph." },
+      { label: "Checking Solutions", value: "Substitute results back into the original equation to verify." },
+      { label: "Real vs Complex", value: "Real solutions appear when discriminant ≥ 0; otherwise complex." }
+    ]}
       return { result: 'Complex roots, use numerical solver', label: 'Note', steps: [step('h <= 0', 'Three real roots (trigonometric solution)')] }
     },
     formula: 'ax3 + bx2 + cx + d = 0 (Cardano method)',
     description: 'Solve a cubic equation ax3 + bx2 + cx + d = 0.',
-    interpretation: 'The roots of the cubic equation.'
+    interpretation: 'The roots of the cubic equation.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'weight', label: 'Weight', type: 'number', unit: 'kg', units: [{ value: 'kg', label: 'kg' }, { value: 'lb', label: 'lb' }], defaultUnit: 'kg', min: 0.5, step: '0.5' }
     ],
     compute: (v) => {
-      const p = v.meat.split('_'); const hpk = parseFloat(p[0]); const tc = parseFloat(p[1]); const isFixed = v.meat.includes('ribs') || v.meat.includes('fish'); const th = isFixed ? hpk : hpk * v.weight; return { result: th * 60, label: 'Smoke Time', unit: 'min', steps: [{ label: 'Meat', value: p.slice(2).join(' ') }, { label: 'Weight', value: isFixed ? 'Fixed' : v.weight + ' kg' }, { label: 'Time', value: th.toFixed(1) + ' hrs (' + (th * 60).toFixed(0) + ' min)' }, { label: 'Target temp', value: tc + '°C' }] }
+      const p = v.meat.split('_'); const hpk = parseFloat(p[0]); const tc = parseFloat(p[1]); const isFixed = v.meat.includes('ribs') || v.meat.includes('fish'); const th = isFixed ? hpk : hpk * v.weight; return { result: th * 60, label: 'Smoke Time', unit: 'min', steps: [{ label: 'Meat', value: p.slice(2).join(' ') }, { label: 'Weight', value: isFixed ? 'Fixed' : v.weight + ' kg' }, { label: 'Time', value: th.toFixed(1) + ' hrs (' + (th * 60).toFixed(0) + ' min)' }, { label: 'Target temp', value: tc + '°C' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Smoking times at 110°C (225°F). Wrap in foil at the stall (~70°C internal).',
     example: { label: '5kg brisket', value: '~7.5 hrs at 110°C' }

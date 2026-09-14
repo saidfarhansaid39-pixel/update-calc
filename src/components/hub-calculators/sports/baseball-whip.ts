@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: 'WHIP', value: `${whip.toFixed(2)}` },
         { label: 'Rating', value: whip < 1.00 ? 'Excellent' : whip < 1.20 ? 'Very Good' : whip < 1.40 ? 'Average' : whip < 1.60 ? 'Below Average' : 'Poor' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate WHIP (Walks plus Hits per Inning Pitched), a key baseball pitching statistic. A WHIP below 1.00 is considered elite; the league average is typically around 1.30.'
 }

@@ -4,7 +4,7 @@ import {
 } from '@calcuniverse/calculator-registry'
 import { ClusterVariant, ClusterFlatEntry } from './types'
 import { getPatternsForCategory, fill, calcVars, ClusterTemplate } from './patterns'
-import { routing } from '@/i18n/routing'
+import { buildHreflang } from '@/lib/buildHreflang'
 
 const _hubSlugCache = new Map<string, string>()
 function hubSlugForCalc(calc: CalculatorEntry): string {
@@ -139,32 +139,24 @@ export function generateClusterStaticParams(hubSlug: string): { slug: string }[]
   return getClusterSlugsForHub(hubSlug).map(slug => ({ slug }))
 }
 
-function buildHreflangCluster(baseUrl: string) {
-  const map: Record<string, string> = {}
-  for (const l of routing.locales) {
-    map[l] = l === routing.defaultLocale ? baseUrl : `https://www.jdcalc.com/${l}${baseUrl.replace('https://www.jdcalc.com', '')}`
-  }
-  return map
-}
-
 export function generateClusterMetadata(slug: string, locale: string = 'en') {
   const cluster = getClusterBySlug(slug)
   if (!cluster) return null
   const { variant, primarySlug, hubSlug } = cluster
-  const url = `https://www.jdcalc.com/${hubSlug}/${slug}`
+  const url = `https://www.calculat.online/${hubSlug}/${slug}`
   const localeStr = locale === 'en' ? 'en_US' : `${locale}_${locale.toUpperCase()}`
   return {
     title: `${variant.title}`,
     description: variant.description,
-    alternates: { canonical: url, languages: buildHreflangCluster(url) },
+    alternates: { canonical: url, languages: buildHreflang(`/${hubSlug}/${slug}`) },
     openGraph: {
       title: variant.title,
       description: variant.description,
       url,
-      siteName: 'JDCALC.com',
+      siteName: 'Calculat',
       type: 'article' as const,
       locale: localeStr,
-      images: [{ url: `https://www.jdcalc.com/api/og/${slug}?locale=${locale}`, width: 1200, height: 630 }],
+      images: [{ url: `https://www.calculat.online/api/og/${slug}?locale=${locale}`, width: 1200, height: 630 }],
     },
     twitter: { card: 'summary_large_image' as const, title: variant.title, description: variant.description },
     robots: { index: true, follow: true },

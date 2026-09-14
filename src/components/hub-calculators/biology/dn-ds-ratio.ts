@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: '? = dN / dS', value: `${ratio.toFixed(4)}` },
         { label: 'Selection inference', value: ratio < 1 ? 'Purifying selection (conserved)' : ratio === 1 ? 'Neutral evolution' : 'Positive/Diversifying selection' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The dN/dS ratio (?) compares the rate of non-synonymous to synonymous substitutions. It is the most widely used test for detecting selection in protein-coding sequences.',
   formula: '? = dN / dS | ? < 1: purifying selection, ? = 1: neutral, ? > 1: positive selection',

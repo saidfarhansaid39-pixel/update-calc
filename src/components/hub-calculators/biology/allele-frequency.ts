@@ -27,7 +27,12 @@ const calcDef: CalcDef = {
         { label: 'Expected Aa = 2pq', value: `${(2 * p * q * 100).toFixed(1)}%` },
         { label: 'Expected aa = q²', value: `${(q * q * 100).toFixed(1)}%` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Calculate allele frequencies (p and q) from observed genotype counts. This is the foundation of population genetics analysis under Hardy-Weinberg assumptions.',
   formula: 'p = (2×nAA + nAa) / (2×N) | q = 1 - p | HW: p²(AA) + 2pq(Aa) + q²(aa) = 1',

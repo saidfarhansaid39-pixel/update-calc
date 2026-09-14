@@ -25,7 +25,12 @@ const calcDef: CalcDef = {
         { label: '2pq (Aa)', value: `${pq.toFixed(3)} = ${(pq * 100).toFixed(1)}%` },
         { label: 'q² (aa)', value: `${q2.toFixed(3)} = ${(q2 * 100).toFixed(1)}%` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The Hardy-Weinberg principle describes allele and genotype frequencies in a non-evolving population under equilibrium conditions.',
   formula: 'p + q = 1 | p² + 2pq + q² = 1',

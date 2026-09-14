@@ -14,11 +14,21 @@ const calcDef: CalcDef = {
         const term = coef + (exp - k > 0 ? 'a' + (exp - k > 1 ? '^' + (exp - k) : '') : '') + (k > 0 ? 'b' + (k > 1 ? '^' + k : '') : '')
         terms.push(term)
       }
-      return { result: terms.join(' + '), label: '(a + b)^' + exp, steps: [step('Formula:', '(a + b)^' + exp + ' = Sum(nCk x a^(n-k) x b^k) from k=0 to ' + exp), step('Expansion:', terms.join(' + '))] }
+      return { result: terms.join(' + '), label: '(a + b)^' + exp, steps: [step('Formula:', '(a + b)^' + exp + ' = Sum(nCk x a^(n-k) x b^k) from k=0 to ' + exp), step('Expansion:', terms.join(' + '))] ,
+    extras: [
+      { label: "Solution Methods", value: "Can be solved via factoring, formula, or graphical methods." },
+      { label: "Discriminant Insight", value: "The discriminant reveals the number and type of solutions." },
+      { label: "Graphical Meaning", value: "Solutions correspond to x-intercepts on the graph." },
+      { label: "Checking Solutions", value: "Substitute results back into the original equation to verify." },
+      { label: "Real vs Complex", value: "Real solutions appear when discriminant ≥ 0; otherwise complex." }
+    ]}
     },
     formula: '(a + b)^n = Sum(nCk � a^(n-k) � b^k)',
     description: 'Expand a binomial expression using the binomial theorem.',
-    interpretation: 'The expanded form of (a + b) raised to the given power.'
+    interpretation: 'The expanded form of (a + b) raised to the given power.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

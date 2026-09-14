@@ -14,6 +14,11 @@ const calcDef: CalcDef = {
     return { result: wkg, label: 'Power-to-Weight', unit: 'W/kg', steps: [
       { label: 'System weight', value: v.weight+' kg' }, { label: 'Power', value: v.power+' W' },
       { label: 'W/kg', value: wkg.toFixed(2)+' W/kg' }, { label: 'Category', value: cat },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate cycling power-to-weight ratio (W/kg). Key metric for climbing and overall cycling performance.', formula: 'W/kg = Power (W) / Weight (kg)', interpretation: '>4.0 W/kg = elite climbing ability. >5.0 W/kg = world-class level.'
 }

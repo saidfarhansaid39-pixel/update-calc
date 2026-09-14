@@ -29,7 +29,12 @@ const calcDef: CalcDef = {
           label: `Codon ${c}`, value: `${n} (${(n / total * 100).toFixed(1)}%)`
 })),
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Codon usage analysis reveals the frequency of each codon in a DNA sequence. Codon bias affects gene expression efficiency in different organisms.',
   formula: 'Codon Frequency = Count(codon) / Total codons × 100%',

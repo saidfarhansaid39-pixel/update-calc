@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function BitrateConverterForm() {
@@ -8,14 +8,12 @@ export default function BitrateConverterForm() {
   const [value, setValue] = useState<number>(1);
   const [from, setFrom] = useState<string>('mbps');
   const [to, setTo] = useState<string>('kbps');
-  const [result, setResult] = useState<any>(null);
-
   const toBps: any = { bps: 1, kbps: 1000, mbps: 1e6, gbps: 1e9, Bps: 8, KBps: 8000, MBps: 8e6, GBps: 8e9 };
 
-  useEffect(() => {
+  const result = useMemo(() => {
     const bps = value * toBps[from];
     const res = bps / toBps[to];
-    setResult(res.toFixed(2));
+    return res.toFixed(2);
   }, [value, from, to]);
 
   return (

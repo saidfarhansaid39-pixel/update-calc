@@ -1,0 +1,47 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build outputs
+.next
+dist
+build
+*.log
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage
+.nyc_output
+
+# Vercel
+.vercel
+
+# Temp
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Cache
+.cache
+.eslintcache
+
+# Large data files
+public/search-index/*.json
+graphify-out/
+
+# Local env
+.env.local
+.env.*.local
+
+# TypeScript
+*.tsbuildinfo

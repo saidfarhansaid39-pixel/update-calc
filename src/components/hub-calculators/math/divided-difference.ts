@@ -16,11 +16,21 @@ const calcDef: CalcDef = {
       const f123 = (f23 - f12) / (xVals[3] - xVals[1])
       const f0123 = (f123 - f012) / (xVals[3] - xVals[0])
       const result = yVals[0] + (x - xVals[0]) * f01 + (x - xVals[0]) * (x - xVals[1]) * f012 + (x - xVals[0]) * (x - xVals[1]) * (x - xVals[2]) * f0123
-      return { result: result.toFixed(4), label: 'f(' + x + ')', steps: [step('Divided diffs:', 'f[0,1]=' + f01.toFixed(2) + ', f[0,1,2]=' + f012.toFixed(2)), step('Interpolated:', 'f(' + x + ') = ' + result.toFixed(4))] }
+      return { result: result.toFixed(4), label: 'f(' + x + ')', steps: [step('Divided diffs:', 'f[0,1]=' + f01.toFixed(2) + ', f[0,1,2]=' + f012.toFixed(2)), step('Interpolated:', 'f(' + x + ') = ' + result.toFixed(4))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'Newton divided difference interpolation',
     description: 'Interpolate using Newton divided difference formula.',
-    interpretation: 'The interpolated value at the given point using divided differences.'
+    interpretation: 'The interpolated value at the given point using divided differences.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

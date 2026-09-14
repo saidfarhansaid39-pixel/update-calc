@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Copy number = ratio × size ratio', value: `${copies.toFixed(0)}` },
         { label: 'Category', value: copies > 100 ? 'High copy' : copies > 20 ? 'Medium copy' : 'Low copy' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Plasmid copy number is the number of plasmid molecules per bacterial cell. It depends on the origin of replication and affects gene expression and DNA yield.',
   formula: 'Copies/cell = (ng plasmid / ng genomic) × (genome size / plasmid size) | pUC ori: 500-700, ColE1: 15-20, pSC101: ~5',

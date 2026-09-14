@@ -19,7 +19,12 @@ const calcDef: CalcDef = {
         { label: 'In kb', value: `${(cdsBp / 1000).toFixed(2)} kb` },
         { label: 'Including stop codon', value: `${cdsBp + 3} bp` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Coding sequence (CDS) length is the number of base pairs from start to stop codon. Each amino acid is encoded by a triplet codon (3 bp). Start codon: ATG, stop codons: TAA/TAG/TGA.',
   formula: 'CDS length (bp) = Number of amino acids × 3 | Average human CDS: ~1,300 bp (433 aa) | Stop codon is not translated but is included in genomic CDS annotation',

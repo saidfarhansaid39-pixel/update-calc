@@ -8,13 +8,22 @@ const calcDef: CalcDef = {
     defaults: { a: '4', b: '7', c: '2', d: '6' },
     compute: (v) => {
       const a = n(v.a), b = n(v.b), c = n(v.c), d = n(v.d); const det = a * d - b * c
-      if (Math.abs(det) < 1e-10) return { result: 'Matrix is singular', label: 'Inverse', steps: [step('det = 0', 'No inverse exists')] }
+      if (Math.abs(det) < 1e-10) return { result: 'Matrix is singular', label: 'Inverse', steps: [step('det = 0', 'No inverse exists')] ,
+    extras: [
+      { label: "Dimension Check", value: "Matrix dimensions must be compatible for the operation." },
+      { label: "Singular Matrix Warning", value: "A determinant of zero means the matrix has no inverse." },
+      { label: "Computational Complexity", value: "Larger matrices require significantly more computation." },
+      { label: "Application", value: "Used in computer graphics, machine learning, and physics simulations." }
+    ]}
       const invA = d / det, invB = -b / det, invC = -c / det, invD = a / det
       return { result: `[[${invA.toFixed(4)}, ${invB.toFixed(4)}], [${invC.toFixed(4)}, ${invD.toFixed(4)}]]`, label: 'Inverse', steps: [step('det', '' + det), step('Inverse', `1/det � [[${d.toFixed(4)}, ${(-b).toFixed(4)}], [${(-c).toFixed(4)}, ${a.toFixed(4)}]]`)] }
     },
     formula: 'A?� = 1/det � [[d, -b], [-c, a]].',
     description: 'Calculate the inverse of a 2x2 matrix.',
-    interpretation: 'The matrix that when multiplied by the original yields the identity.'
+    interpretation: 'The matrix that when multiplied by the original yields the identity.',
+    presets: [
+      { label: 'Example', values: { a: '1', b: '0', c: '0', d: '1' } }
+    ]
 }
 
 export default calcDef

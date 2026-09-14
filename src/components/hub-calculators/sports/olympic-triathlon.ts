@@ -11,6 +11,11 @@ const calcDef: CalcDef = {
       { label: 'Total goal time', value: Math.floor(v.totalMin/60)+'h '+(v.totalMin%60).toFixed(0)+'m' },
       { label: 'Bike speed (40km)', value: (40/(v.totalMin/60*0.5)).toFixed(1)+' km/h' },
       { label: 'Run pace (10km)', value: rMin+':'+rSec.toString().padStart(2,'0')+' /km' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Plan Olympic distance triathlon pacing (1.5km swim, 40km bike, 10km run).', formula: 'Time: ~15% swim, ~50% bike, ~35% run', interpretation: 'Olympic distance is high intensity. Strong bike pacing sets up a fast run split.'
 }

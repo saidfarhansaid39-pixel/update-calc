@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Shape factor (k)', value: `${k}` },
         { label: 'Estimated area', value: `${area.toFixed(2)} cm²` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Leaf area is estimated from linear leaf measurements using a shape factor (k). It is used in plant physiology to assess growth, light interception, and transpiration.',
   formula: 'Leaf Area = Length × Width × k (k ~0.65–0.85 for most dicots)',

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function ViscosityConverterForm() {
@@ -8,14 +8,12 @@ export default function ViscosityConverterForm() {
   const [value, setValue] = useState<number>(1);
   const [from, setFrom] = useState<string>('cP');
   const [to, setTo] = useState<string>('Pa.s');
-  const [result, setResult] = useState<any>(null);
-
   const toPas: any = { 'Pa.s': 1, cP: 0.001, 'mPa.s': 0.001 };
 
-  useEffect(() => {
+  const result = useMemo(() => {
     const pas = value * toPas[from];
     const res = pas / toPas[to];
-    setResult(res.toFixed(4));
+    return res.toFixed(4);
   }, [value, from, to]);
 
   return (

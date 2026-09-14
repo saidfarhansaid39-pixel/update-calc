@@ -15,6 +15,11 @@ const calcDef: CalcDef = {
       { label: 'Work interval', value: work+' s' }, { label: 'Rest interval', value: rest+' s' },
       { label: 'Rounds', value: ''+rds }, { label: 'Work:Rest', value: work+':'+rest },
       { label: 'Total time', value: totalSec+' s ('+totalMin.toFixed(1)+' min)' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Tabata protocol timer: 20 seconds work, 10 seconds rest, repeated for 8 rounds (4 minutes total).', formula: 'Standard Tabata: 20s work / 10s rest × 8 rounds = 4 min', interpretation: 'Tabata training at maximal intensity improves both aerobic and anaerobic systems. Classic Tabata uses 170% VO2max intensity.'
 }

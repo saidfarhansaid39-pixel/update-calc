@@ -33,7 +33,12 @@ const calcDef: CalcDef = {
         { label: 'Run', value: `${v.runMin} min (${runPct.toFixed(1)}%)` },
         { label: 'Total', value: `${Math.floor(total / 60)}h ${(total % 60).toFixed(0)}m (${total.toFixed(0)} min)` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate total triathlon race time from individual swim, bike, run, and transition splits. Transition times (T1 and T2) are often overlooked but can significantly impact overall race performance.'
 }

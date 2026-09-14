@@ -18,7 +18,12 @@ const calcDef: CalcDef = {
         { label: 'MW = n × 110', value: `${mwDa.toFixed(0)} Da` },
         { label: 'MW (kDa)', value: `${(mwDa / 1000).toFixed(2)} kDa` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Estimate protein molecular weight from residue count using average residue mass of 110 Da. A quick approximation for interpreting gel migration and mass spec data.',
   formula: 'MW (Da) = n × 110 Da | Average protein MW (kDa) ˜ n × 0.11 kDa',

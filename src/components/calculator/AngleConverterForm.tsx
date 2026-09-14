@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function AngleConverterForm() {
@@ -8,22 +8,20 @@ export default function AngleConverterForm() {
   const [value, setValue] = useState<number>(90);
   const [from, setFrom] = useState<string>('deg');
   const [to, setTo] = useState<string>('rad');
-  const [result, setResult] = useState<any>(null);
-
   const toRad = (v: number, f: string) => {
     if (f === 'deg') return v * Math.PI / 180;
     if (f === 'grad') return v * Math.PI / 200;
     return v;
   };
 
-  useEffect(() => {
+  const result = useMemo(() => {
     const rad = toRad(value, from);
     let res = 0;
     if (to === 'deg') res = rad * 180 / Math.PI;
     else if (to === 'grad') res = rad * 200 / Math.PI;
     else res = rad;
-    setResult(res.toFixed(4));
-  }, [value, from, to]);
+    return res.toFixed(4);
+  }, [value, from, to, toRad]);
 
   return (
     <div className="space-y-6">

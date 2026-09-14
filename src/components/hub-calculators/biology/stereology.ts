@@ -27,7 +27,12 @@ const calcDef: CalcDef = {
         { label: 'Estimated total count', value: `${estTotal.toFixed(0).toLocaleString()}` },
         { label: 'CE (coefficient of error)', value: 'Should be < 0.1 for reliable estimates (Gundersen method)' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Stereology provides unbiased quantitative estimates of 3D structures from 2D sections. The optical fractionator method combines section sampling, area sampling, and disector height.',
   formula: 'Estimated population = SQ × 1/ssf × 1/asf × 1/hsf | ssf = section sampling fraction, asf = area sampling fraction, hsf = height sampling fraction',

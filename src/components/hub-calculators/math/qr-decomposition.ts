@@ -12,11 +12,20 @@ const calcDef: CalcDef = {
       const r11 = n1, r12 = (q11 * c + q21 * d)
       const q12 = c - r12 * q11, q22 = d - r12 * q21; const n2 = Math.sqrt(q12 * q12 + q22 * q22)
       const q12n = q12 / n2, q22n = q22 / n2; const r22 = n2
-      return { result: `Q=[[${q11.toFixed(4)},${q12n.toFixed(4)}],[${q21.toFixed(4)},${q22n.toFixed(4)}]]`, label: 'QR', steps: [step('Q', `[[${q11.toFixed(4)}, ${q12n.toFixed(4)}], [${q21.toFixed(4)}, ${q22n.toFixed(4)}]]`), step('R', `[[${r11.toFixed(4)}, ${r12.toFixed(4)}], [0, ${r22.toFixed(4)}]]`)] }
+      return { result: `Q=[[${q11.toFixed(4)},${q12n.toFixed(4)}],[${q21.toFixed(4)},${q22n.toFixed(4)}]]`, label: 'QR', steps: [step('Q', `[[${q11.toFixed(4)}, ${q12n.toFixed(4)}], [${q21.toFixed(4)}, ${q22n.toFixed(4)}]]`), step('R', `[[${r11.toFixed(4)}, ${r12.toFixed(4)}], [0, ${r22.toFixed(4)}]]`)] ,
+    extras: [
+      { label: "Dimension Check", value: "Matrix dimensions must be compatible for the operation." },
+      { label: "Singular Matrix Warning", value: "A determinant of zero means the matrix has no inverse." },
+      { label: "Computational Complexity", value: "Larger matrices require significantly more computation." },
+      { label: "Application", value: "Used in computer graphics, machine learning, and physics simulations." }
+    ]}
     },
     formula: 'A = QR. Q orthogonal, R upper triangular.',
     description: 'Compute QR decomposition of a 2x2 matrix.',
-    interpretation: 'QR decomposition factors A into an orthogonal Q and upper triangular R.'
+    interpretation: 'QR decomposition factors A into an orthogonal Q and upper triangular R.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

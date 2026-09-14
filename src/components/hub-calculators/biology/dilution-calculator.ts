@@ -29,7 +29,12 @@ const calcDef: CalcDef = {
         { label: 'V2 (Total volume)', value: `${v.v2} mL` },
         { label: 'C1 × V1 = C2 × V2', value: v1 > 0 ? `${result.toFixed(4)} M` : `${result.toFixed(2)} mL` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Dilution calculations use the formula C1V1 = C2V2 to determine stock volumes or target concentrations for preparing working solutions from concentrates.',
   formula: 'C1 × V1 = C2 × V2',

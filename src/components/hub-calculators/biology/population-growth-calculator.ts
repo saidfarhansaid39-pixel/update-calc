@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Doubling time', value: `${doubling.toFixed(2)} years` },
         { label: 'Final population', value: `${nt.toFixed(0).toLocaleString()}` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Exponential population growth models unrestricted growth at a constant rate. It applies to populations with abundant resources and no limiting factors.',
   formula: 'Nt = N0 × e^(rt) | Doubling time = ln(2)/r',

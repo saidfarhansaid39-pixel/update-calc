@@ -18,7 +18,12 @@ const calcDef: CalcDef = {
         { label: 'Total caffeine', value: `${total} mg` },
         { label: 'Safe limit', value: `~${safe.toFixed(0)} mg (${v.weight} kg × 6 mg/kg)` },
         { label: total > safe ? '⚠️ Exceeds limit' : 'Within safe range', value: total > safe ? `Reduce by ${(total - safe).toFixed(0)} mg` : `${(safe - total).toFixed(0)} mg below limit` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Track caffeine consumption against recommended limits. Health authorities suggest up to 400 mg/day for most adults (about 4 cups of coffee), and no more than 6 mg/kg body weight.',
     example: { label: '3 cups drip coffee, 70kg', value: '285 mg — within safe limit' }

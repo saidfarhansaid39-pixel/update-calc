@@ -1,20 +1,8 @@
-import dynamic from 'next/dynamic';
+import { PremiumCalculatorShell as Shell } from '@/components/premium/PremiumCalculatorShell'
 
-function LoadingFallback() {
-  return (
-    <div className="animate-pulse space-y-4 p-6">
-      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/3" />
-      <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded" />
-      <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded" />
-      <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded" />
-      <div className="h-20 bg-gray-200 dark:bg-gray-700 rounded" />
-    </div>
-  )
-}
+// Rendered on the server (no ssr:false) so the form and computed results are
+// present in the HTML on first paint and are indexable. Charts inside the shell
+// remain client-only (recharts needs the DOM).
+export const PremiumCalculatorShell = Shell
 
-export const PremiumCalculatorShell = dynamic(
-  () => import('@/components/premium/PremiumCalculatorShell').then(m => m.PremiumCalculatorShell),
-  { ssr: false, loading: LoadingFallback }
-);
-
-export type { UnitSystem } from '@/components/premium/PremiumCalculatorShell';
+export type { UnitSystem } from '@/components/premium/PremiumCalculatorShell'

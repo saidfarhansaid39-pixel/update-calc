@@ -14,6 +14,11 @@ const calcDef: CalcDef = {
       { label: 'Current load', value: v.currentLoad.toFixed(0)+' kg' },
       { label: 'Increase', value: increase.toFixed(1)+'%' },
       { label: 'Progression rate', value: increase > 10 ? 'Aggressive (risk of stalling)' : increase > 5 ? 'Optimal progressive overload' : 'Conservative (safe but slow)' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Track progressive overload by comparing training loads between sessions. Aim for 2-5% weekly progression.', formula: 'Increase = ((current - previous) / previous) × 100', interpretation: 'Consistent 2-5% weekly load increases drive long-term strength and hypertrophy gains without excessive injury risk.'
 }

@@ -17,6 +17,11 @@ const calcDef: CalcDef = {
     return { result: v.distance, label: 'Cooper Test', unit: 'm', steps: [
       { label: 'Distance in 12 min', value: v.distance+' m' }, { label: 'Estimated VO2max', value: vo2.toFixed(1)+' mL/kg/min' },
       { label: 'Fitness rating', value: rating },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'The Cooper 12-minute run test predicts VO2max and aerobic capacity from distance covered.', formula: 'VO2max = (distance_km × 3.5) + 3.5', interpretation: 'Greater distance = higher aerobic capacity. Norms vary by age and gender.'
 }

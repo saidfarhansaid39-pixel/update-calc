@@ -41,7 +41,12 @@ const calcDef: CalcDef = {
         { label: 'Risk per pregnancy', value: `${risk}%` },
         { label: 'Details', value: details },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Pedigree risk analysis calculates the probability of inheriting a genetic condition based on the inheritance pattern and parental genetic status.',
   formula: 'AD (one affected parent): 50% | AR (both carriers): 25% | XR (carrier mother): 50% sons affected',

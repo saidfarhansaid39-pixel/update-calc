@@ -53,9 +53,11 @@
     "privacy": "Datenschutz",
     "terms": "Nutzungsbedingungen",
     "contact": "Kontakt",
+    "editorialPolicy": "Redaktionsrichtlinien",
+    "press": "Presse",
     "tagline": "Präzise Werkzeuge für jede Berechnung. Kostenlos, schnell und schön gestaltet.",
     "motto": "Präzision. Intelligenz. Klarheit.",
-    "copyright": "© {year} JDCALC. Alle Rechte vorbehalten."
+    "copyright": "© {year} Calculat. Alle Rechte vorbehalten."
   },
   "hubs": {
     "financial-calculators": "Finanzrechner",
@@ -186,14 +188,16 @@
     "searchNoResultsHint": "Try a different search term or browse calculators by category."
   },
   "seo": {
-    "siteTitle": "JDCALC — Die weltweit intelligenteste Rechner-Plattform",
-    "titleTemplate": "%s | JDCALC",
-    "siteName": "JDCALC",
+    "siteTitle": "Calculat — Die weltweit intelligenteste Rechner-Plattform",
+    "titleTemplate": "%s | Calculat",
+    "siteName": "Calculat",
     "siteDescription": "Präzisionsrechner für Finanzen, Gesundheit, Mathe, Wissenschaft und den Alltag. KI-gestützt, schön gestaltet und völlig kostenlos.",
     "about": "Über uns",
     "privacy": "Datenschutz",
     "terms": "Nutzungsbedingungen",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "editorialPolicy": "Redaktionsrichtlinien",
+    "press": "Presse"
   },
   "content": {
     "sectionOverview": "Überblick",
@@ -1556,7 +1560,7 @@
     "heroBadge": "Die intelligenteste Rechnerplattform",
     "heroTitle": "Berechnen Sie {highlight} mit Präzision",
     "heroHighlight": "alles",
-    "heroSubtitle": "Über 200 Premium-Rechner für Finanzen, Gesundheit, Mathematik, Wissenschaft und den Alltag. Kostenlos, schnell und wunderschön gestaltet.",
+    "heroSubtitle": "Über {count} Rechner für Finanzen, Gesundheit, Mathe, Wissenschaft und Alltag. Kostenlos, schnell und schön gestaltet.",
     "statCalculators": "Rechner",
     "statCategories": "Kategorien",
     "statFree": "Kostenlos",
@@ -1564,7 +1568,7 @@
     "popularTitle": "Beliebte Rechner",
     "popularSubtitle": "Die am häufigsten genutzten Tools unserer Community",
     "trendingTitle": "Trends",
-    "featuresTitle": "Warum JDCALC?",
+    "featuresTitle": "Warum Calculat?",
     "featuresSubtitle": "Gebaut für Präzision, entwickelt für Klarheit",
     "featureFastTitle": "Blitzschnell",
     "featureFastDesc": "Echtzeitberechnungen während der Eingabe, null Wartezeit.",
@@ -1576,7 +1580,21 @@
     "featureDesignDesc": "Makellos auf jedem Gerät mit Dunkelmodus.",
     "ctaTitle": "In Sekunden starten",
     "ctaSubtitle": "Keine Anmeldung erforderlich. Wählen Sie einfach einen Rechner.",
-    "ctaButton": "Rechner entdecken"
+    "ctaButton": "Rechner entdecken",
+    "heroTitlePre": "Berechnen Sie ",
+    "heroTitlePost": " mit Präzision",
+    "allCategories": "Alle Kategorien",
+    "trendAutoLoanName": "Autokredit",
+    "trendAutoLoanDesc": "Ratenrechner für Fahrzeuge",
+    "trend401kName": "401k-Rechner",
+    "trend401kDesc": "Planer für die Altersvorsorge",
+    "trendHouseName": "Hauskauf-Rechner",
+    "trendHouseDesc": "Welches Haus können Sie sich leisten",
+    "trendStudentName": "Studienkredit",
+    "trendStudentDesc": "Rückzahlungsstrategien",
+    "sciTitle": "Wissenschaftlicher Rechner",
+    "sciIntro": "Sie brauchen eine schnelle Berechnung? Nutzen Sie unseren integrierten wissenschaftlichen Rechner mit Trigonometrie, Logarithmen, Potenzen und Konstanten.",
+    "sciNote": "Wechseln Sie zwischen den Modi Standard und Wissenschaftlich. Er ist auf jeder Seite unten rechts verfügbar."
   },
   "extraFields": {
     "activity_job": "Job Activity Level",
@@ -2245,6 +2263,79 @@
     "zip_code_placeholder": "e.g. 90210"
   },
   "calculatorUI": {
+    "shell": {
+      "unitMetric": "Metric",
+      "unitImperial": "Imperial",
+      "unitUS": "US Customary",
+      "calculate": "Calculate",
+      "recalculate": "Recalculate",
+      "result": "Result",
+      "copyResult": "Copy Result",
+      "saveCalculation": "Save Calculation",
+      "restore": "Restore",
+      "restorePreviousValues": "Restore Previous Values",
+      "hideAudit": "Hide Audit Trail",
+      "showAudit": "Show Audit Trail",
+      "dismiss": "Dismiss",
+      "yes": "Yes",
+      "no": "No",
+      "home": "Home",
+      "onThisPage": "On This Page",
+      "tierEssential": "Essential",
+      "tierStandard": "Standard",
+      "tierPremium": "Premium",
+      "modeBasic": "Basic",
+      "modeAdvanced": "Advanced",
+      "modeProfessional": "Professional",
+      "modeExpert": "Expert",
+      "headingWhatIs": "What Is This?",
+      "headingHowItWorks": "How It Works",
+      "headingFormula": "The Formula",
+      "headingExampleCalc": "Example Calculation",
+      "headingExampleCalcs": "Example Calculations",
+      "headingWhatThisMeans": "What This Means",
+      "headingYourResults": "Your Results",
+      "headingEduGuide": "Educational Guide",
+      "headingEduVisualizations": "Visualizations",
+      "headingTipsBestPractices": "Tips & Best Practices",
+      "headingFAQ": "Frequently Asked Questions",
+      "headingQuestions": "Questions?",
+      "headingReferences": "References",
+      "headingRelatedTopics": "Related Calculators",
+      "headingAboutAuthors": "About the Authors",
+      "tocEducationalGuide": "Educational Guide",
+      "tocExample": "Example",
+      "tocComparison": "Comparison",
+      "tocUseCases": "Use Cases",
+      "tocFAQ": "FAQ",
+      "tocGlossary": "Glossary",
+      "tocCompleteGuide": "Complete Guide",
+      "tocCommonMistakes": "Common Mistakes",
+      "tips": "Tips",
+      "tipAccurateInputs": "Use accurate inputs for best results.",
+      "tipPresetExamples": "Try the preset examples to see how it works.",
+      "tipPrintExport": "Print or export your results for record keeping.",
+      "tipBookmark": "Bookmark this calculator for quick access.",
+      "tipSaveScenario": "Save different scenarios to compare outcomes.",
+      "tipReviewAssumptions": "Review the assumptions behind each calculation.",
+      "didThisHelp": "Did this calculator help you?",
+      "pleaseCheckInputs": "Please check your inputs and try again.",
+      "calculationFailed": "Calculation failed. Please check your values.",
+      "enterValuesAbove": "Enter values above to see results.",
+      "noResultAvailable": "No result available",
+      "howItWorksDefault": "Enter your values and click Calculate to see how it works.",
+      "dataDependent": "Data Required",
+      "dataDependentDescription": "Enter values in the form above to get started.",
+      "usersCount": "{count} users have used this calculator",
+      "authorLabel": "Author",
+      "reviewerLabel": "Reviewed by",
+      "relatedCalculators": "Related Calculators",
+      "refreshCadence": "Last updated: {date}",
+      "featureCharts": "Charts & Visualizations",
+      "featureComparison": "Scenario Comparison",
+      "featureGuide": "Educational Guide",
+      "questionsParagraph": "Have questions? Check the FAQ or contact us."
+    },
     "headings": {
       "paymentCalculator": "Payment Calculator"
     },
@@ -2457,11 +2548,11 @@
     },
     "contact": {
       "metaTitle": "Kontakt - Kostenlose Online-Rechner",
-      "metaDescription": "Setzen Sie sich mit dem JDCALC-Team in Verbindung. Wir freuen uns über Ihr Feedback und Ihre Vorschläge.",
+      "metaDescription": "Setzen Sie sich mit dem Calculat-Team in Verbindung. Wir freuen uns über Ihr Feedback und Ihre Vorschläge.",
       "title": "Kontaktieren Sie Uns",
       "intro": "Have feedback, suggestions, or found a bug? We'd love to hear from you.",
       "emailLabel": "Email us at:",
-      "emailAddress": "support@jdcalc.com"
+      "emailAddress": "support@calculat.online"
     },
     "privacy": {
       "metaTitle": "Datenschutzerklärung - Kostenlose Online-Rechner",
@@ -2488,6 +2579,18 @@
       "accuracyText": "We strive for accuracy but make no guarantees. Always verify critical calculations with a qualified professional.",
       "availabilityTitle": "Availability",
       "availabilityText": "We reserve the right to modify or discontinue any calculator tool at any time without notice."
-    }
+    },
+    "editorialPolicy": {
+      "metaTitle": "Redaktionsrichtlinien - Kostenlose Online-Rechner",
+      "metaDescription": "Unsere Redaktionsrichtlinie gewährleistet Genauigkeit, Transparenz und Qualität in allen unseren Rechnertools und Inhalten.",
+      "title": "Redaktionsrichtlinien"
+    },
+    "press": {
+      "metaTitle": "Presse - Kostenlose Online-Rechner",
+      "metaDescription": "Presseressourcen, Medienkit und Kontaktinformationen für das Calculat-Team.",
+      "title": "Presse"
+    },
+    "calculatorBuilderTitle": "Calculator Builder",
+    "calculatorBuilderDescription": "Build your own custom calculators with custom formulas and fields. Free online calculator builder tool."
   }
 }

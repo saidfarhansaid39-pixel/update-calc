@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const d2x = n(v.a), d2y = n(v.b)
       const lap = d2x + d2y
-      return { result: lap.toFixed(4), label: 'Laplacian', steps: [step('Formula:', 'del2 f = d2f/dx2 + d2f/dy2'), step('Result:', '' + lap.toFixed(4))] }
+      return { result: lap.toFixed(4), label: 'Laplacian', steps: [step('Formula:', 'del2 f = d2f/dx2 + d2f/dy2'), step('Result:', '' + lap.toFixed(4))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'del2 f = d2f/dx2 + d2f/dy2',
     description: 'Calculate the Laplacian of a scalar field (2D).',
-    interpretation: 'The sum of second partial derivatives of the scalar field.'
+    interpretation: 'The sum of second partial derivatives of the scalar field.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

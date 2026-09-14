@@ -27,7 +27,12 @@ const calcDef: CalcDef = {
         { label: 'Racing category', value: category },
         { label: 'FTP estimate (95%)', value: `${(wkg * 0.95).toFixed(2)} W/kg for 1-hour effort` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate your cycling power-to-weight ratio (W/kg). This is the most important predictor of climbing performance, determining how fast you can ascend hills.'
 }

@@ -11,11 +11,20 @@ const calcDef: CalcDef = {
       if (nums.length === 0) return { result: 'No data', label: 'Error' }
       const p = n(v.p); const rank = (p / 100) * (nums.length - 1); const lower = Math.floor(rank); const upper = Math.ceil(rank)
       const result = lower === upper ? nums[lower] : nums[lower] + (rank - lower) * (nums[upper] - nums[lower])
-      return { result: result.toFixed(4), label: `${p}th percentile`, steps: [step('Sorted', nums.join(', ')), step('Rank index', rank.toFixed(2)), step('Percentile', result.toFixed(4))] }
+      return { result: result.toFixed(4), label: `${p}th percentile`, steps: [step('Sorted', nums.join(', ')), step('Rank index', rank.toFixed(2)), step('Percentile', result.toFixed(4))],
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ] }
     },
     formula: 'P = value at rank = (p/100) x (n-1). Linear interpolation between adjacent values.',
     description: 'Calculate the percentile rank of a data set.',
-    interpretation: 'The value below which a given percentage of data falls.'
+    interpretation: 'The value below which a given percentage of data falls.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

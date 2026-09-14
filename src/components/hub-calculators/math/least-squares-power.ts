@@ -9,11 +9,20 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const x = n(v.a), y = n(v.b)
       const lny = Math.log(Math.abs(y) || 1), lnx = Math.log(Math.abs(x) || 1)
-      return { result: 'ln(y) = ' + lny.toFixed(4) + ', ln(x) = ' + lnx.toFixed(4), label: 'Power regression', steps: [step('Transform:', 'ln(y) = ln(a) + b*ln(x)'), step('Values:', 'ln(y)=' + lny.toFixed(4) + ', ln(x)=' + lnx.toFixed(4))] }
+      return { result: 'ln(y) = ' + lny.toFixed(4) + ', ln(x) = ' + lnx.toFixed(4), label: 'Power regression', steps: [step('Transform:', 'ln(y) = ln(a) + b*ln(x)'), step('Values:', 'ln(y)=' + lny.toFixed(4) + ', ln(x)=' + lnx.toFixed(4))] ,
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ]}
     },
     formula: 'y = a*x^b, minimize sum (ln(yi) - ln(a) - b*ln(xi))2',
     description: 'Least squares power regression (single point preview).',
-    interpretation: 'The transformed value for power regression.'
+    interpretation: 'The transformed value for power regression.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

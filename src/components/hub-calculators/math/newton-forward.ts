@@ -13,11 +13,21 @@ const calcDef: CalcDef = {
       const d2 = d1.map((_, i) => i < d1.length - 1 ? d1[i + 1] - d1[i] : 0)
       const hVal = 1, p = (x - xVals[0]) / hVal
       const result = yVals[0] + p * d1[0] + p * (p - 1) * d2[0] / 2
-      return { result: result.toFixed(4), label: 'f(' + x + ')', steps: [step('Forward diff d1:', d1.filter(v => v !== 0).join(', ')), step('Forward diff d2:', d2.filter(v => v !== 0).join(', ')), step('Interpolated:', 'f(' + x + ') = ' + result.toFixed(4))] }
+      return { result: result.toFixed(4), label: 'f(' + x + ')', steps: [step('Forward diff d1:', d1.filter(v => v !== 0).join(', ')), step('Forward diff d2:', d2.filter(v => v !== 0).join(', ')), step('Interpolated:', 'f(' + x + ') = ' + result.toFixed(4))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'Newton forward difference interpolation formula',
     description: 'Interpolate using Newton forward difference formula.',
-    interpretation: 'The interpolated value at the given point.'
+    interpretation: 'The interpolated value at the given point.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

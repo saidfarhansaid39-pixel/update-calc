@@ -27,7 +27,12 @@ const calcDef: CalcDef = {
         { label: 'Volume for 10 µg loading', value: loadingVol10 > 0 ? `${loadingVol10.toFixed(1)} µL` : 'N/A' },
         { label: 'Typical yields', value: 'Tissue: 20-100 µg/mg | Cells: 100-300 µg per 106 cells | RIPA buffer extracts total protein' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Protein extraction yield calculation from tissue or cells. Extraction efficiency depends on lysis buffer composition, tissue type, and homogenization method. RIPA buffer is the most common for total protein extraction.',
   formula: 'Total protein (µg) = Concentration (µg/µL) × Volume (µL) | Loading volume for X µg = X / Concentration | RIPA buffer: 50 mM Tris pH 8, 150 mM NaCl, 1% NP-40, 0.5% deoxycholate, 0.1% SDS',

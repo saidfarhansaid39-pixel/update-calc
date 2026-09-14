@@ -21,11 +21,20 @@ const calcDef: CalcDef = {
       const sNum = numResult / g, sDen = denResult / g
       let resultStr = '' + sNum + '/' + sDen
       if (Math.abs(sNum) >= Math.abs(sDen)) { const whole = Math.floor(sNum / sDen); const rem = sNum % sDen; resultStr = rem === 0 ? '' + whole : whole + ' ' + Math.abs(rem) + '/' + Math.abs(sDen) }
-      return { result: resultStr, label: 'Result', steps: [step('Convert to improper:', '' + w1 + ' ' + n1 + '/' + d1 + ' and ' + w2 + ' ' + n2 + '/' + d2), step('Operation:', op), step('Result:', resultStr)] }
+      return { result: resultStr, label: 'Result', steps: [step('Convert to improper:', '' + w1 + ' ' + n1 + '/' + d1 + ' and ' + w2 + ' ' + n2 + '/' + d2), step('Operation:', op), step('Result:', resultStr)],
+    extras: [
+      { label: "How It Works", value: "Simple percentage-based calculation applied to your input values." },
+      { label: "Common Use Case", value: "Used in shopping, budgeting, and everyday financial decisions." },
+      { label: "Input Requirements", value: "All monetary values should be in the same currency." },
+      { label: "Accuracy Note", value: "Results rounded to 2 decimal places for standard currency format." }
+    ] }
     },
     formula: 'Operate on mixed numbers by converting to improper fractions first',
     description: 'Perform arithmetic operations on mixed numbers.',
-    interpretation: 'The result of the operation on the two mixed numbers.'
+    interpretation: 'The result of the operation on the two mixed numbers.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

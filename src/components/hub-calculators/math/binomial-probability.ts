@@ -10,11 +10,21 @@ const calcDef: CalcDef = {
       const nVal = Math.round(n(v.n)), k = Math.round(n(v.k)), p = n(v.p)
       if (k > nVal) return { result: 'k cannot exceed n', label: 'Error' }
       const comb = fact(nVal) / (fact(k) * fact(nVal - k)); const prob = comb * Math.pow(p, k) * Math.pow(1 - p, nVal - k)
-      return { result: prob.toFixed(6), label: 'P(X=k)', steps: [step('Combinations', 'C(' + nVal + ',' + k + ') = ' + Math.round(comb)), step('Probability', prob.toFixed(6)), step('Formula', 'C(n,k) x p^k x (1-p)^(n-k)')] }
+      return { result: prob.toFixed(6), label: 'P(X=k)', steps: [step('Combinations', 'C(' + nVal + ',' + k + ') = ' + Math.round(comb)), step('Probability', prob.toFixed(6)), step('Formula', 'C(n,k) x p^k x (1-p)^(n-k)')],
+    extras: [
+      { label: "Solution Methods", value: "Can be solved via factoring, formula, or graphical methods." },
+      { label: "Discriminant Insight", value: "The discriminant reveals the number and type of solutions." },
+      { label: "Graphical Meaning", value: "Solutions correspond to x-intercepts on the graph." },
+      { label: "Checking Solutions", value: "Substitute results back into the original equation to verify." },
+      { label: "Real vs Complex", value: "Real solutions appear when discriminant ≥ 0; otherwise complex." }
+    ] }
     },
     formula: 'P(X=k) = C(n,k) x p^k x (1-p)^(n-k).',
     description: 'Calculate binomial probability for exactly k successes in n trials.',
-    interpretation: 'The probability of exactly k successes in n independent trials.'
+    interpretation: 'The probability of exactly k successes in n independent trials.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

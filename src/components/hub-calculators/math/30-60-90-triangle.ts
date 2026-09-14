@@ -6,10 +6,20 @@ const calcDef: CalcDef = {
     schema: z.object({ shortLeg: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Must be a number'), longLeg: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Must be a number'), hypotenuse: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Must be a number') }),
     fields: [numField('shortLeg','Short Leg (opposite 30°)'),numField('longLeg','Long Leg (opposite 60°)'),numField('hypotenuse','Hypotenuse (opposite 90°)')],
     defaults: { shortLeg:'5',longLeg:'0',hypotenuse:'0' },
-    compute: (v) => { const sl=n(v.shortLeg),ll=n(v.longLeg),hyp=n(v.hypotenuse); let short=0,long=0,h=0; if(sl>0){short=sl;long=sl*Math.sqrt(3);h=sl*2} else if(ll>0){long=ll;short=ll/Math.sqrt(3);h=short*2} else{h=hyp;short=h/2;long=short*Math.sqrt(3)}; const area=(short*long)/2; return { result:area, label:'Area', unit:'units²', steps:[step('Short Leg:',short.toFixed(4)),step('Long Leg:',long.toFixed(4)),step('Hypotenuse:',h.toFixed(4)),step('Area:',area.toFixed(4)+' units²')] } },
+    compute: (v) => { const sl=n(v.shortLeg),ll=n(v.longLeg),hyp=n(v.hypotenuse); let short=0,long=0,h=0; if(sl>0){short=sl;long=sl*Math.sqrt(3);h=sl*2} else if(ll>0){long=ll;short=ll/Math.sqrt(3);h=short*2} else{h=hyp;short=h/2;long=short*Math.sqrt(3)}; const area=(short*long)/2; return { result:area, label:'Area', unit:'units²', steps:[step('Short Leg:',short.toFixed(4)),step('Long Leg:',long.toFixed(4)),step('Hypotenuse:',h.toFixed(4)),step('Area:',area.toFixed(4)+' units²')] ,
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ]} },
     formula: 'longLeg = shortLeg×√3, hypotenuse = shortLeg×2, area = (shortLeg×longLeg)/2',
     description: 'Solve a 30-60-90 special right triangle given any one side.',
-    interpretation: 'A 30-60-90 triangle has side ratios 1:√3:2.'
+    interpretation: 'A 30-60-90 triangle has side ratios 1:√3:2.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

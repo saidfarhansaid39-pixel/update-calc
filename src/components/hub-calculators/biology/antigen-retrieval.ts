@@ -27,7 +27,12 @@ const calcDef: CalcDef = {
         { label: 'Buffer type', value: isHiPh ? 'High pH (Tris-EDTA, pH 9) — recommended for nuclear antigens' : isLowPh ? 'Low pH (citrate, pH 6) — cytoplasmic antigens' : 'Neutral pH — moderate retrieval' },
         { label: 'Method note', value: hiTemp ? 'Pressure cooker or autoclave needed' : 'Microwave or water bath suitable' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Heat-induced epitope retrieval (HIER) reverses formaldehyde crosslinks to expose masked epitopes. Temperature, time, and buffer pH determine retrieval effectiveness. Over-retrieval damages tissue morphology.',
   formula: 'Severity index = T(°C) × t(min) | Standard: 95-100°C × 20-40 min in citrate (pH 6) or EDTA (pH 9) | Pressure cooker: 120°C × 5-10 min',

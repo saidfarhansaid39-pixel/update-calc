@@ -299,6 +299,76 @@ export function GenericFoodCalculator({ calculator }: Props) {
     })
   }, [form, lockedFields])
 
+  const foodInterpretation = useMemo(() => {
+    if (!resultData) return null
+    const slug = calculator.slug
+    const val = typeof resultData.result === 'number' ? resultData.result : parseFloat(String(resultData.result))
+    if (isNaN(val) || val <= 0) return null
+    const u = resultData.unit || ''
+    if (slug.includes('calorie') || slug.includes('daily-cal') || slug.includes('cal-per-day')) {
+      const cat = val < 1600 ? 'low' : val < 2000 ? 'moderate' : val < 2500 ? 'standard' : val < 3000 ? 'high' : 'very high'
+      return <div className={`text-xs font-medium mt-1 ${cat === 'standard' ? 'text-emerald-600' : cat === 'low' || cat === 'very high' ? 'text-amber-600' : 'text-blue-600'}`}>{val.toFixed(0)} {u} — {cat === 'low' ? 'Below average intake' : cat === 'moderate' ? 'Slightly below average' : cat === 'standard' ? 'Within the typical adult range' : cat === 'high' ? 'Above average — active individuals may need this' : 'Very high — consult a professional'}.</div>
+    }
+    if (slug.includes('protein')) {
+      const gPerKg = val / 70
+      return <div className="text-xs text-emerald-600 font-medium mt-1">{val.toFixed(0)} {u} ({gPerKg.toFixed(1)} g/kg) — RDA is 0.8 g/kg. Athletes may need 1.2-2.0 g/kg.</div>
+    }
+    if (slug.includes('fiber')) {
+      const status = val < 25 ? 'low' : val < 38 ? 'moderate' : 'adequate'
+      return <div className={`text-xs font-medium mt-1 ${status === 'adequate' ? 'text-emerald-600' : status === 'moderate' ? 'text-amber-600' : 'text-orange-600'}`}>{val.toFixed(0)} {u} — {status === 'low' ? 'Below the recommended 25-38g daily' : status === 'moderate' ? 'Moderate — aim for 25-38g daily' : 'Meets the recommended daily target'}.</div>
+    }
+    if (slug.includes('sodium') || slug.includes('salt')) {
+      const status = val < 1500 ? 'excellent' : val < 2300 ? 'good' : val < 3000 ? 'moderate' : 'high'
+      return <div className={`text-xs font-medium mt-1 ${status === 'excellent' || status === 'good' ? 'text-emerald-600' : status === 'moderate' ? 'text-amber-600' : 'text-red-600'}`}>{val.toFixed(0)} {u} — {status === 'excellent' ? 'Excellent — within the ideal AHA limit of 1,500 mg' : status === 'good' ? 'Good — within the FDA limit of 2,300 mg' : status === 'moderate' ? 'Approaching the FDA limit of 2,300 mg' : 'Exceeds the recommended daily limit!'}.</div>
+    }
+    if (slug.includes('sugar')) {
+      const maxRec = 36
+      const status = val <= maxRec ? 'good' : 'high'
+      return <div className={`text-xs font-medium mt-1 ${status === 'good' ? 'text-emerald-600' : 'text-amber-600'}`}>{val.toFixed(0)} {u} — {status === 'good' ? 'Within the AHA limit of 36g (men) / 25g (women) added sugar daily' : 'Exceeds the AHA recommended daily limit for added sugar'}.</div>
+    }
+    if (slug.includes('water') || slug.includes('hydration')) {
+      const target = 2700
+      const status = val >= target ? 'adequate' : 'low'
+      return <div className={`text-xs font-medium mt-1 ${status === 'adequate' ? 'text-emerald-600' : 'text-blue-600'}`}>{val.toFixed(0)} {u} — {status === 'adequate' ? 'Meets or exceeds the general daily recommendation' : 'Below the general recommendation of ~2.7L (women) to 3.7L (men)'}.</div>
+    }
+    if (slug.includes('caffeine') || slug.includes('coffee')) {
+      const status = val <= 400 ? 'safe' : 'high'
+      return <div className={`text-xs font-medium mt-1 ${status === 'safe' ? 'text-emerald-600' : 'text-amber-600'}`}>{val.toFixed(0)} {u} — {status === 'safe' ? 'Within the safe limit of 400 mg/day' : 'Exceeds the recommended 400 mg/day limit'}.</div>
+    }
+    if (slug.includes('alcohol') || slug.includes('beer') || slug.includes('wine')) {
+      const drinks = val / 14
+      const status = drinks <= 2 ? 'moderate' : 'heavy'
+      return <div className={`text-xs font-medium mt-1 ${status === 'moderate' ? 'text-emerald-600' : 'text-amber-600'}`}>{val.toFixed(0)} {u} (~{drinks.toFixed(1)} standard drinks) — {status === 'moderate' ? 'Moderate drinking: up to 1 drink/day (women) / 2 (men)' : 'Exceeds moderate drinking guidelines'}.</div>
+    }
+    if (slug.includes('vitamin') || slug.includes('calcium') || slug.includes('iron') || slug.includes('magnesium') || slug.includes('zinc') || slug.includes('omega') || slug.includes('potassium')) {
+      return <div className="text-xs text-emerald-600 font-medium mt-1">{val.toFixed(1)} {u} — Micronutrients support metabolism, bone health, and immune function. Needs vary by age and gender.</div>
+    }
+    if (slug.includes('bmi') || slug.includes('body-fat') || slug.includes('ideal-weight') || slug.includes('lean-mass')) {
+      const bmi = slug.includes('bmi') ? val : 0
+      const bmiCat = bmi > 0 ? (bmi < 18.5 ? 'Underweight' : bmi < 25 ? 'Normal' : bmi < 30 ? 'Overweight' : bmi < 35 ? 'Obese Class I' : 'Obese Class II') : ''
+      return <div className="text-xs text-amber-600 font-medium mt-1">{val.toFixed(1)} {u}{bmiCat ? ` (${bmiCat})` : ''} — Body composition metrics provide health insight, but individual factors like muscle mass matter.</div>
+    }
+    if (slug.includes('carb') || slug.includes('macro')) {
+      return <div className="text-xs text-amber-600 font-medium mt-1">{val.toFixed(0)} {u} — Carbs provide 4 kcal/g. AMDR is 45-65% of total calories.</div>
+    }
+    if (slug.includes('fat')) {
+      return <div className="text-xs text-blue-600 font-medium mt-1">{val.toFixed(0)} {u} — Fat provides 9 kcal/g. AMDR is 20-35% of calories. Prefer unsaturated fats.</div>
+    }
+    if (slug.includes('bbq') || slug.includes('grill') || slug.includes('smoker') || slug.includes('sous-vide')) {
+      return <div className="text-xs text-blue-600 font-medium mt-1">{val.toFixed(0)} {u} — Safe minimum internal temps: poultry 165°F, ground meats 160°F, steaks 145°F.</div>
+    }
+    if (slug.includes('bread') || slug.includes('pizza') || slug.includes('sourdough') || slug.includes('dough')) {
+      return <div className="text-xs text-emerald-600 font-medium mt-1">{val.toFixed(1)} {u} — Baker's percentages: ingredient weight relative to flour (100%). Hydration 60-75% is typical.</div>
+    }
+    if (slug.includes('recipe-cost') || slug.includes('food-cost') || slug.includes('meal-cost') || slug.includes('serving')) {
+      return <div className="text-xs text-amber-600 font-medium mt-1">${val.toFixed(2)} {u} — Cost per serving. Compare with restaurant prices: home cooking typically saves 60%.</div>
+    }
+    if (slug.includes('temp') || slug.includes('oven') || slug.includes('cooking-time') || slug.includes('convection') || slug.includes('air-fryer')) {
+      return <div className="text-xs text-blue-600 font-medium mt-1">{val.toFixed(0)} {u} — Convection: reduce temp by 25°F or time by 25% vs conventional recipes.</div>
+    }
+    return <div className="text-xs text-gray-500 italic mt-1">{val.toFixed(1)} {u} — Values based on general guidelines. Individual needs may vary.</div>
+  }, [resultData, calculator.slug])
+
   const foodAuthor = { name: 'Chef Maria Rossi', photoUrl: 'https://i.pravatar.cc/150?u=chef-maria', credential: 'RD, CPT', title: 'Registered Dietitian & Culinary Expert', linkedIn: 'https://www.linkedin.com/in/maria-rossi-food' }
   const foodReferences = [
     { label: 'USDA. Dietary Guidelines for Americans. 2020-2025. 9th Edition.', url: 'https://www.dietaryguidelines.gov/' },
@@ -315,6 +385,7 @@ export function GenericFoodCalculator({ calculator }: Props) {
               <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
                 <p className="text-xs text-gray-500 dark:text-gray-400">{resultData.label}</p>
                 <p className="text-3xl font-bold text-[#06b6d4]">{Number(resultData.result).toFixed(resultData.unit === '$' ? 2 : resultData.unit === '%' ? 1 : resultData.unit === 'kcal/day' || resultData.unit === 'kcal' || resultData.unit === 'min' || resultData.unit === 'g' || resultData.unit === 'meals' ? 0 : 2)} <span className="text-sm font-normal text-gray-500">{resultData.unit}</span></p>
+                {foodInterpretation}
               </div>
               {(resultData.steps ?? []).length > 0 && (
                 <div className="border-t border-gray-200 dark:border-gray-700 pt-4">

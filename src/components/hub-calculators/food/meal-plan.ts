@@ -18,7 +18,12 @@ const calcDef: CalcDef = {
         { label: 'Total meals', value: `${totalMeals}` },
         { label: 'Total calories', value: `${totalCalories.toFixed(0)} kcal (${(totalCalories / v.days / v.mealsPerDay).toFixed(0)} kcal/meal)` },
         { label: 'Total prep time', value: `${totalPrepMin} min (${(totalPrepMin / 60).toFixed(1)} hrs)` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Plan your weekly meals by calculating total meals, calories, and prep time. Perfect for meal prepping and grocery planning — scale portions across the week.',
     example: { label: '3 meals/day, 7 days, moderate', value: '21 meals, 10,500 kcal, 10.5 hrs prep' }

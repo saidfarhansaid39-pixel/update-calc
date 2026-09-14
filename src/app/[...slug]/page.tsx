@@ -1,16 +1,74 @@
-import { isValidHubSlug } from '@/lib/hub-data'
+import { notFound } from 'next/navigation'
+import { isValidHubSlug, findCalculator } from '@/lib/hub-data'
+import { AUTHORS } from '@/lib/authors'
 import { CalculatorPageContent, generateCalculatorMetadata } from '@/components/hub-pages/calculator-page-content'
 import { HubLandingContent, generateHubLandingMetadata } from '@/components/hub-pages/hub-landing'
 import { routing } from '@/i18n/routing'
+import { buildHreflang } from '@/lib/buildHreflang'
 import HomePage from '../page'
 import AboutPage, { generateMetadata as genAboutMeta } from '../about/page'
 import ContactPage, { generateMetadata as genContactMeta } from '../contact/page'
 import PrivacyPage, { generateMetadata as genPrivacyMeta } from '../privacy/page'
 import TermsPage, { generateMetadata as genTermsMeta } from '../terms/page'
 import CalculatorBuilderPage, { generateMetadata as genCalcBuilderMeta } from '../calculator-builder/page'
+import SuggestCalculatorPage from '../suggest-calculator/page'
 import NotFoundPage, { generateMetadata as genNotFoundMeta } from '../not-found/page'
+import AuthorListingPage, { generateMetadata as genAuthorListingMeta } from '../author/page'
+import AuthorPage, { generateMetadata as genAuthorMeta } from '../author/[id]/page'
 
-export const revalidate = 3600
+export const revalidate = 86400
+export const dynamic = 'force-static'
+
+export async function generateStaticParams() {
+  const { calculatorRegistry } = await import('@calcuniverse/calculator-registry')
+  const { getAllHubSlugs } = await import('@/lib/hub-data')
+  const { routing } = await import('@/i18n/routing')
+
+  const hubs = getAllHubSlugs()
+  const locales = routing.locales.filter((l: string) => l !== 'en')
+  const params: { slug: string[] }[] = []
+
+  for (const locale of locales) {
+    params.push({ slug: [locale] })
+  }
+
+  const staticPages = ['about', 'contact', 'privacy', 'terms', 'calculator-builder', 'suggest-calculator', 'author']
+  for (const page of staticPages) {
+    for (const locale of locales) {
+      params.push({ slug: [locale, page] })
+    }
+  }
+
+  for (const authorId of Object.keys(AUTHORS)) {
+    for (const locale of locales) {
+      params.push({ slug: [locale, 'author', authorId] })
+    }
+    params.push({ slug: ['author', authorId] })
+  }
+
+  for (const hub of hubs) {
+    for (const locale of locales) {
+      params.push({ slug: [locale, hub] })
+    }
+  }
+
+  const manualCalcs = calculatorRegistry.filter((c: any) => !/\d$/.test(c.slug))
+  for (const calc of manualCalcs) {
+    for (const locale of locales) {
+      params.push({ slug: [locale, calc.hubSlug, calc.slug] })
+    }
+  }
+
+  for (const hub of hubs) {
+    params.push({ slug: [hub] })
+  }
+
+  for (const calc of manualCalcs) {
+    params.push({ slug: [calc.hubSlug, calc.slug] })
+  }
+
+  return params
+}
 
 const VALID_LOCALES = routing.locales as readonly string[]
 const STATIC_PAGES: Record<string, React.ComponentType<any>> = {
@@ -19,9 +77,11 @@ const STATIC_PAGES: Record<string, React.ComponentType<any>> = {
   privacy: PrivacyPage,
   terms: TermsPage,
   'calculator-builder': CalculatorBuilderPage,
+  'suggest-calculator': SuggestCalculatorPage,
   'not-found': NotFoundPage,
+  author: AuthorListingPage,
 }
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.jdcalc.com'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculat.online'
 
 function stripLocale(slug: string[]): string[] {
   if (slug.length > 0 && VALID_LOCALES.includes(slug[0])) {
@@ -38,16 +98,16 @@ function getLocaleFromSlug(slug: string[]): string {
 }
 
 const LOCALE_TITLES: Record<string, string> = {
-  en: 'JDCALC - Precision Calculators & Unit Converters',
-  es: 'JDCALC - Calculadoras de Precisión y Conversores de Unidades',
-  fr: 'JDCALC - Calculatrices et Convertisseurs de Précision',
-  de: 'JDCALC - Präzisionsrechner und Einheitenumrechner',
-  pt: 'JDCALC - Calculadoras de Precisão e Conversores de Unidades',
-  ru: 'JDCALC - Точные калькуляторы и конвертеры единиц',
-  ar: 'JDCALC - حاسبات دقيقة ومحولات وحدات',
-  hi: 'JDCALC - सटीक कैलकुलेटर और यूनिट कन्वर्टर',
-  ja: 'JDCALC - 精密計算機と単位変換',
-  'zh-CN': 'JDCALC - 精确计算器和单位转换器',
+  en: 'Calculat - Precision Calculators & Unit Converters',
+  es: 'Calculat - Calculadoras de Precisión y Conversores de Unidades',
+  fr: 'Calculat - Calculatrices et Convertisseurs de Précision',
+  de: 'Calculat - Präzisionsrechner und Einheitenumrechner',
+  pt: 'Calculat - Calculadoras de Precisão e Conversores de Unidades',
+  ru: 'Calculat - Точные калькуляторы и конвертеры единиц',
+  ar: 'Calculat - حاسبات دقيقة ومحولات وحدات',
+  hi: 'Calculat - सटीक कैलकुलेटर और यूनिट कन्वर्टर',
+  ja: 'Calculat - 精密計算機と単位変換',
+  'zh-CN': 'Calculat - 精确计算器和单位转换器',
 }
 
 const LOCALE_DESCRIPTIONS: Record<string, string> = {
@@ -63,15 +123,7 @@ const LOCALE_DESCRIPTIONS: Record<string, string> = {
   'zh-CN': '免费在线计算器，涵盖金融、健康、数学、科学、转换和日常生活。快速、准确、设计精美。',
 }
 
-function buildHreflang(path: string) {
-  const map: Record<string, string> = { 'x-default': `${siteUrl}${path}` }
-  for (const l of routing.locales) {
-    map[l] = l === 'en' ? `${siteUrl}${path}` : `${siteUrl}/${l}${path}`
-  }
-  return map
-}
-
-export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }) {
+export async function generateMetadata({ params, searchParams }: { params: Promise<{ slug: string[] }>, searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
   const { slug: rawSlug } = await params
   const locale = getLocaleFromSlug(rawSlug)
   const slug = stripLocale(rawSlug)
@@ -84,7 +136,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title,
       description,
       alternates: { canonical: url, languages: buildHreflang('/') },
-      openGraph: { title, description, url, siteName: 'JDCALC', type: 'website', locale: locale === 'en' ? 'en_US' : `${locale}_${locale.toUpperCase()}`, images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }] },
+      openGraph: { title, description, url, siteName: 'Calculat', type: 'website', locale: locale === 'en' ? 'en_US' : `${locale}_${locale.toUpperCase()}`, images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }] },
       twitter: { card: 'summary_large_image', title, description },
     }
   }
@@ -96,19 +148,49 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         case 'contact': return genContactMeta()
         case 'privacy': return genPrivacyMeta()
         case 'terms': return genTermsMeta()
-        case 'calculator-builder': return genCalcBuilderMeta()
+        case 'calculator-builder': {
+          const meta = await genCalcBuilderMeta()
+          return {
+            ...meta,
+            robots: locale === 'en' ? { index: true, follow: true } : { index: false, follow: true },
+          }
+        }
+        case 'suggest-calculator': {
+          return {
+            title: 'Suggest a Calculator | Calculat',
+            description: 'Have an idea for a new calculator? Submit your suggestion to Calculat and help us build the tools you need.',
+            alternates: { canonical: `${siteUrl}/suggest-calculator` },
+            robots: locale === 'en' ? { index: true, follow: true } : { index: false, follow: true },
+          }
+        }
         case 'not-found': return genNotFoundMeta()
+        case 'author': {
+          const meta = await genAuthorListingMeta()
+          return {
+            ...meta,
+            robots: locale === 'en' ? { index: true, follow: true } : { index: false, follow: true },
+          }
+        }
       }
     }
-    if (!isValidHubSlug(slug[0])) return {}
-    return generateHubLandingMetadata(slug[0], 1)
+    if (!isValidHubSlug(slug[0])) notFound()
+    const sp = await searchParams
+    const metadataPage = Math.max(1, parseInt(sp.page as string) || 1)
+    return generateHubLandingMetadata(slug[0], metadataPage)
   }
-  if (slug.length !== 2) return {}
-  if (!isValidHubSlug(slug[0])) return {}
+  if (slug[0] === 'author') {
+    const meta = await genAuthorMeta({ params: Promise.resolve({ id: slug[1] }) })
+    return {
+      ...meta,
+      robots: locale === 'en' ? { index: true, follow: true } : { index: false, follow: true },
+    }
+  }
+  if (slug.length !== 2) notFound()
+  if (!isValidHubSlug(slug[0])) notFound()
   return generateCalculatorMetadata(slug[0], slug[1])
 }
 
-export default async function CatchAllPage({ params }: { params: Promise<{ slug: string[] }> }) {
+export default async function CatchAllPage({ params, searchParams }: { params: Promise<{ slug: string[] }>, searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
   const { slug: rawSlug } = await params
   const slug = stripLocale(rawSlug)
 
@@ -121,11 +203,17 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       const Page = STATIC_PAGES[slug[0]]
       return <Page />
     }
-    if (!isValidHubSlug(slug[0])) return <NotFoundPage />
-    return <HubLandingContent hubSlug={slug[0]} searchParams={Promise.resolve({})} />
+    if (!isValidHubSlug(slug[0])) notFound()
+    return <HubLandingContent hubSlug={slug[0]} searchParams={searchParams} />
   }
 
-  if (slug.length !== 2) return <NotFoundPage />
-  if (!isValidHubSlug(slug[0])) return <NotFoundPage />
+  if (slug[0] === 'author') {
+    return <AuthorPage params={Promise.resolve({ id: slug[1] })} />
+  }
+  if (slug.length !== 2) notFound()
+  if (!isValidHubSlug(slug[0])) notFound()
+  if (/\d$/.test(slug[1])) notFound()
+  const calc = await findCalculator(slug[1], slug[0])
+  if (!calc) notFound()
   return <CalculatorPageContent hubSlug={slug[0]} slug={slug[1]} />
 }

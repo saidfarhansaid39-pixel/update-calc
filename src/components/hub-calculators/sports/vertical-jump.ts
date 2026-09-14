@@ -16,6 +16,11 @@ const calcDef: CalcDef = {
     return { result: v.height, label: 'Vertical Jump', unit: 'cm', steps: [
       { label: 'Jump height', value: v.height+' cm' }, { label: 'Estimated power', value: power.toFixed(2)+' kW' },
       { label: 'Takeoff velocity', value: Math.sqrt(2*9.81*v.height/100).toFixed(2)+' m/s' }, { label: 'Rating', value: r },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Measure vertical jump height and estimated lower body power. Key test for basketball, volleyball, and football athletes.', formula: 'Power = √(4·g·h) · g · m / 1000', interpretation: 'Vertical jump is the gold standard for lower body power assessment. >75cm is excellent for most sports.'
 }

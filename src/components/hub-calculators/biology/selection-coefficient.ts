@@ -19,7 +19,12 @@ const calcDef: CalcDef = {
         { label: 'If s=1: completely lethal', value: s >= 1 ? 'Yes' : 'No' },
         { label: 'If s=0: no selection', value: s <= 0.001 ? 'Yes' : 'No' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The selection coefficient (s) measures the intensity of natural selection against a genotype. It is the reduction in fitness relative to the most fit genotype.',
   formula: 's = 1 - w, where w = relative fitness (0 = w = 1) | w = 1 means no selection disadvantage',

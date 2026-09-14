@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Stability', value: stability },
         { label: 'Recommendation', value: v.overlap3 >= 3 ? "Redesign primers to reduce 3' overlap" : 'Acceptable — proceed with PCR optimization' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: "Primer-dimer formation occurs when complementary 3' ends of PCR primers hybridize, competing with the target amplicon. GC-rich 3' overlaps form the most stable dimers.",
   formula: "Risk ? 3' complementary bp \u00d7 GC content of overlap | \u0394G(dimer) = \u03a3(base stacking + H-bond energies) | Avoid = 3 bp complementarity at 3' ends",

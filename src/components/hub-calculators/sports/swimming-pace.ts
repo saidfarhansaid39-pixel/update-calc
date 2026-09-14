@@ -18,6 +18,11 @@ const calcDef: CalcDef = {
       { label: 'Distance', value: v.distance+' m' }, { label: 'Time', value: v.hours+'h '+v.minutes+'m '+v.seconds+'s' },
       { label: 'Pace/100m', value: pMin+':'+pSec.toString().padStart(2,'0')+' min/100m' },
       { label: 'Speed', value: speed.toFixed(2)+' km/h' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate swimming pace per 100m and average speed. CSS (Critical Swim Speed) is threshold pace.', formula: 'Pace per 100m = total time (s) / (distance / 100)', interpretation: 'Lower pace per 100m = faster swimming. CSS approximates lactate threshold pace.'
 }

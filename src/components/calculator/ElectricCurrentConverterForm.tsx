@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function ElectricCurrentConverterForm() {
@@ -8,14 +8,12 @@ export default function ElectricCurrentConverterForm() {
   const [value, setValue] = useState<number>(1);
   const [from, setFrom] = useState<string>('A');
   const [to, setTo] = useState<string>('mA');
-  const [result, setResult] = useState<any>(null);
-
   const toA: any = { A: 1, mA: 0.001, uA: 0.000001, kA: 1000 };
 
-  useEffect(() => {
+  const result = useMemo(() => {
     const a = value * toA[from];
     const res = a / toA[to];
-    setResult(res.toFixed(4));
+    return res.toFixed(4);
   }, [value, from, to]);
 
   return (

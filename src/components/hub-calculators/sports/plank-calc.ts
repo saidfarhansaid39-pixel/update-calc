@@ -9,6 +9,11 @@ const calcDef: CalcDef = {
     return { result: v.time, label: 'Plank Hold', unit: 's', steps: [
       { label: 'Hold time', value: v.time+' s ('+(v.time/60).toFixed(1)+' min)' }, { label: 'Rating', value: r },
       { label: 'Standards', value: 'Exc:>180s, Good:120-180s, Avg:60-119s' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Measure core endurance with the plank test. Assesses isometric core strength and stability.', formula: 'Isometric hold time to failure', interpretation: 'Longer plank times indicate better core stability. 2+ minutes is excellent.'
 }

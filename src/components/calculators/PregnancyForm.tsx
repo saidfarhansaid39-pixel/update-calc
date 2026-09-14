@@ -85,6 +85,7 @@ export function PregnancyForm() {
     handleCalculate();
   }, []);
 
+  const handleClearPreg = () => { setResults(null); setInputDate(new Date().toISOString().split('T')[0]); setCycleLength(28); setCalcMethod('lmp'); };
   return (
     <div className="flex flex-col gap-6 font-sans text-[13px] text-[#333333]">
       <div className="flex bg-[#3366aa] text-white w-full max-w-[480px]">
@@ -123,7 +124,7 @@ export function PregnancyForm() {
 
             <div className="pl-[160px] flex gap-2 mt-4">
               <Button onClick={handleCalculate}>Calculate</Button>
-              <Button variant="secondary" onClick={() => {}}>Clear</Button>
+              <Button variant="secondary" onClick={handleClearPreg}>Clear</Button>
             </div>
           </FormPanel>
         </div>

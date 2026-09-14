@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Calories burned', value: `${kcal.toFixed(0)} kcal` },
         { label: 'Estimated steps', value: `${stepsEst.toFixed(0)} steps` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate calories burned during daily walking. Walking is a low-impact activity that contributes significantly to total daily energy expenditure.'
 }

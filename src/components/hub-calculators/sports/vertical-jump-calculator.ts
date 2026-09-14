@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Takeoff velocity', value: `${Math.sqrt(2 * 9.81 * v.height / 100).toFixed(2)} m/s` },
         { label: 'Standard', value: 'Exc: >75cm, Good: 65-74cm, Avg: 55-64cm' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Measure your vertical jump power using jump height. The vertical jump is a key test of lower body power and is used in sports like basketball, volleyball, and football.'
 }

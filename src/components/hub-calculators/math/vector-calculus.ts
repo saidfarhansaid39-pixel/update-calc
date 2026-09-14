@@ -10,11 +10,20 @@ const calcDef: CalcDef = {
       const a = n(v.a), b = n(v.b), c = n(v.c), d = n(v.d)
       const dot = a * c + b * d
       const cross = a * d - b * c
-      return { result: 'dot=' + dot + ', cross=' + cross, label: 'Vector calc', steps: [step('Dot:', '' + dot), step('Cross (2D):', '' + cross)] }
+      return { result: 'dot=' + dot + ', cross=' + cross, label: 'Vector calc', steps: [step('Dot:', '' + dot), step('Cross (2D):', '' + cross)] ,
+    extras: [
+      { label: "Dimension Check", value: "Matrix dimensions must be compatible for the operation." },
+      { label: "Singular Matrix Warning", value: "A determinant of zero means the matrix has no inverse." },
+      { label: "Computational Complexity", value: "Larger matrices require significantly more computation." },
+      { label: "Application", value: "Used in computer graphics, machine learning, and physics simulations." }
+    ]}
     },
     formula: 'Vector calculus operations',
     description: 'Vector calculus operations on 2D vectors.',
-    interpretation: 'The dot and cross products of the vectors.'
+    interpretation: 'The dot and cross products of the vectors.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

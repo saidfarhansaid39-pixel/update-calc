@@ -9,11 +9,20 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const a = n(v.a), b = n(v.b)
       if (b === 0) return { result: 'Undefined', label: 'Error' }
-      return { result: a / b, label: 'Decimal', steps: [step('Formula:', '' + a + ' / ' + b + ' = ' + (a / b))] }
+      return { result: a / b, label: 'Decimal', steps: [step('Formula:', '' + a + ' / ' + b + ' = ' + (a / b))],
+    extras: [
+      { label: "How It Works", value: "Simple percentage-based calculation applied to your input values." },
+      { label: "Common Use Case", value: "Used in shopping, budgeting, and everyday financial decisions." },
+      { label: "Input Requirements", value: "All monetary values should be in the same currency." },
+      { label: "Accuracy Note", value: "Results rounded to 2 decimal places for standard currency format." }
+    ] }
     },
     formula: 'decimal = numerator / denominator',
     description: 'Convert a fraction to a decimal.',
-    interpretation: 'The decimal equivalent of the fraction.'
+    interpretation: 'The decimal equivalent of the fraction.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

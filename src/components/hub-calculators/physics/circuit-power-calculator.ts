@@ -1,10 +1,24 @@
 import { z } from 'zod'
+import { step } from '../../../lib/hub-helpers'
 import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ voltage: z.string().min(1).refine(v => parseFloat(v) >= 0, '>0'), current: z.string().min(1).refine(v => parseFloat(v) > 0, '>0') }),
   fields: [{ name: 'voltage', label: 'Voltage', type: 'number', unit: 'V', min: 0, step: '0.1' }, { name: 'current', label: 'Current', type: 'number', unit: 'A', min: 0.001, step: '0.001' }],
-  compute: (v) => ({ result: v.voltage * v.current, label: 'Power', unit: 'W', steps: [{ label: 'Formula', value: 'P = VI' }, { label: 'Substitute', value: `${v.voltage} × ${v.current}` }, { label: 'Result', value: `${(v.voltage * v.current).toFixed(2)} W` }] }),
+  defaults: { work: '1000', time: '2' },
+  presets: [
+    { label: 'Light bulb (60 J in 1 s)', values: { work: '60', time: '1' } },
+    { label: 'Car engine (300 kJ in 6 s)', values: { work: '300000', time: '6' } },
+    { label: 'Human output (2000 J in 10 s)', values: { work: '2000', time: '10' } },
+  ],
+  compute: (v) => ({ result: v.voltage * v.current, label: 'Power', unit: 'W', steps: [{ label: 'Formula', value: 'P = VI' }, { label: 'Substitute', value: `${v.voltage} × ${v.current}` }, { label: 'Result', value: `${(v.voltage * v.current).toFixed(2)} W` }],
+      extras: [
+        { label: 'Real-World Application', value: 'Power ratings define engines, appliances, and human output. A 100 W bulb uses 100 J/s. A typical car engine produces ~100 kW (134 hp).' },
+        { label: 'Common Values', value: 'Human resting: ~80 W. Cycling: 200-400 W. Microwave: 800-1200 W. Car engine: 50-300 kW. Power plant: 500-1000 MW.' },
+        { label: 'Precision Tip', value: 'Power = work/time = energy/time. Electrical power: P = IV = I²R. Mechanical power: P = Fv = τω.' },
+        { label: 'Related Formula', value: 'Energy = Power × time. 1 kWh = 3.6 MJ. Horsepower: 1 hp = 745.7 W. Apparent power (AC): S = VI (VA).' },
+        { label: 'Unit Conversion Note', value: '1 W = 1 J/s. 1 hp = 745.7 W. 1 kW = 1.34 hp. 1 MW = 10^6 W. 1 GW = 10^9 W.' }
+      ] }),
   description: 'Electrical power is the product of voltage and current. P = VI.',
   formula: 'P = V × I',
   interpretation: 'A 120 V circuit drawing 10 A delivers 1200 W. Power dissipation in resistors converts electrical energy to heat.'

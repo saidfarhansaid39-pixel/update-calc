@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'Average speed', value: `${speed.toFixed(1)} km/h` },
         { label: 'Time per 10 km', value: `${(10 / speed * 60).toFixed(1)} min at this speed` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate your cycling average speed from distance and ride time. Speed is the most basic measure of cycling performance and pacing.'
 }

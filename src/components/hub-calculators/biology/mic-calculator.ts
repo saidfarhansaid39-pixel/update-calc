@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Formula', value: `${v.startingConc} / ${v.dilutionFactor}^${v.clearWell - 1}` },
         { label: 'MIC', value: `${mic.toFixed(3)} µg/mL` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Minimum Inhibitory Concentration (MIC) is the lowest antimicrobial concentration that inhibits visible microbial growth. It is determined by serial dilution assays.',
   formula: 'MIC = Starting conc. / (DF)^(Well # – 1)',

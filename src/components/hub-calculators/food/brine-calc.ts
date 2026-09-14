@@ -8,7 +8,12 @@ const calcDef: CalcDef = {
       { name: 'sugar', label: 'Add Sugar?', type: 'select', options: [{ label: 'Yes (equal parts)', value: 'yes' }, { label: 'No', value: 'no' }] }
     ],
     compute: (v) => {
-      const sp = parseFloat(v.type); const s = v.water * 1000 * sp / 100; const su = v.sugar === 'yes' ? s : 0; return { result: s, label: 'Salt Needed', unit: 'g', steps: [{ label: 'Water', value: v.water + ' L' }, { label: sp + '% salt', value: s.toFixed(0) + ' g' }, su > 0 ? { label: 'Sugar', value: su.toFixed(0) + ' g' } : { label: 'Sugar', value: 'None' }] }
+      const sp = parseFloat(v.type); const s = v.water * 1000 * sp / 100; const su = v.sugar === 'yes' ? s : 0; return { result: s, label: 'Salt Needed', unit: 'g', steps: [{ label: 'Water', value: v.water + ' L' }, { label: sp + '% salt', value: s.toFixed(0) + ' g' }, su > 0 ? { label: 'Sugar', value: su.toFixed(0) + ' g' } : { label: 'Sugar', value: 'None' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Brine percentages: 5% standard, 3% light, 8% strong. Dissolve fully before adding meat.',
     example: { label: '2L water, 5% brine with sugar', value: '100g salt + 100g sugar' }

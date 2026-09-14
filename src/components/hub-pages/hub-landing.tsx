@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from '@/lib/navigation'
-import { notFound } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 import { Calculator, DollarSign, Heart, Sigma, ArrowLeftRight, Calendar, Hammer, BarChart3, GraduationCap, Atom, FlaskConical, Cog, Globe, UtensilsCrossed, Dna, TreePine, Trophy, ChevronLeft, ChevronRight } from 'lucide-react'
 import { getHubMeta, isValidHubSlug, getAllHubSlugs } from '@/lib/hub-data'
 import { getHubTheme } from '@/lib/hub-themes'
 import { getRelatedHubs } from '@/lib/hub-relations'
 import { HubNav } from '@/components/hub/HubNav'
 import { HubIcon } from '@/components/hub/HubIcon'
+import { SchemaMarkup, breadcrumbListSchema } from '@/components/SchemaMarkup'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 
 let _clusterMod: any = null
@@ -15,10 +16,61 @@ async function cluster() {
   return _clusterMod
 }
 import { getLocale, getTranslations } from 'next-intl/server'
-import { routing } from '@/i18n/routing'
+import { buildHreflang } from '@/lib/buildHreflang'
 
-const siteUrl = 'https://www.jdcalc.com'
+const siteUrl = 'https://www.calculat.online'
 const PER_PAGE = 60
+
+function PaginationBar({ page, totalPages, hubSlug }: { page: number; totalPages: number; hubSlug: string }) {
+  if (totalPages <= 1) return null
+  const pages: (number | '...')[] = []
+  for (let i = 1; i <= totalPages; i++) {
+    if (i === 1 || i === totalPages || Math.abs(i - page) <= 2) {
+      pages.push(i)
+    } else if (pages[pages.length - 1] !== '...') {
+      pages.push('...')
+    }
+  }
+  return (
+    <nav aria-label="Pagination" className="flex items-center justify-center gap-1.5 mt-8 mb-4">
+      {page > 1 && (
+        <Link
+          href={page === 2 ? `/${hubSlug}` : `/${hubSlug}?page=${page - 1}`}
+          className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#1a3a8a] hover:text-white dark:hover:bg-[#06b6d4] transition-colors"
+        >
+          <ChevronLeft className="w-4 h-4" />
+          Prev
+        </Link>
+      )}
+      {pages.map((p, i) =>
+        p === '...' ? (
+          <span key={`ellipsis-${i}`} className="px-2 text-gray-400 text-sm">...</span>
+        ) : (
+          <Link
+            key={p}
+            href={p === 1 ? `/${hubSlug}` : `/${hubSlug}?page=${p}`}
+            className={`w-9 h-9 flex items-center justify-center text-sm font-medium rounded-lg transition-colors ${
+              p === page
+                ? 'bg-[#1a3a8a] text-white'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#1a3a8a] hover:text-white dark:hover:bg-[#06b6d4]'
+            }`}
+          >
+            {p}
+          </Link>
+        )
+      )}
+      {page < totalPages && (
+        <Link
+          href={`/${hubSlug}?page=${page + 1}`}
+          className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#1a3a8a] hover:text-white dark:hover:bg-[#06b6d4] transition-colors"
+        >
+          Next
+          <ChevronRight className="w-4 h-4" />
+        </Link>
+      )}
+    </nav>
+  )
+}
 
 const hubIcons: Record<string, React.ElementType> = {
   'financial-calculators': DollarSign,
@@ -74,15 +126,6 @@ function getTierLabel(tier: string): string {
   }
 }
 
-function buildHreflang(baseUrl: string) {
-  const path = baseUrl.replace(siteUrl, '')
-  const map: Record<string, string> = { 'x-default': `${siteUrl}${path}` }
-  for (const l of routing.locales) {
-    map[l] = l === 'en' ? `${siteUrl}${path}` : `${siteUrl}/${l}${path}`
-  }
-  return map
-}
-
 export function generateHubStaticParams() {
   return getAllHubSlugs().map(hubSlug => ({ hubSlug }))
 }
@@ -96,23 +139,23 @@ export async function generateHubLandingMetadata(hubSlug: string, page: number =
     ? (locale === 'en' ? `${siteUrl}/${hubSlug}` : `${siteUrl}/${locale}/${hubSlug}`)
     : (locale === 'en' ? `${siteUrl}/${hubSlug}?page=${page}` : `${siteUrl}/${locale}/${hubSlug}?page=${page}`)
   const rawTitle = page === 1 ? meta.title : `${meta.title} — Page ${page}`
-  const title = rawTitle.length > 45 ? rawTitle : `${rawTitle} | JDCALC`
+  const title = rawTitle.length > 45 ? rawTitle : `${rawTitle} | Calculat`
   const desc = meta.description.length > 155 ? meta.description.substring(0, 152).replace(/\s+\S*$/, '') + '...' : meta.description
   const robots = page === 1 ? { index: true, follow: true } as const : { index: false, follow: true } as const
   return {
     title,
     description: desc,
     alternates: {
-      canonical: url,
-      languages: buildHreflang(`${siteUrl}/${hubSlug}`),
+      canonical: page === 1 ? url : (locale === 'en' ? `${siteUrl}/${hubSlug}` : `${siteUrl}/${locale}/${hubSlug}`),
+      languages: buildHreflang(`/${hubSlug}`),
     },
     openGraph: {
       title,
       description: desc,
       url,
-      siteName: 'JDCALC',
+      siteName: 'Calculat',
       type: 'website',
-      images: [{ url: `${siteUrl}/api/og/${hubSlug}?locale=${locale}`, width: 1200, height: 630 }],
+      images: [{ url: `${siteUrl}/api/og/${hubSlug}?locale=${locale}`, width: 1200, height: 630, alt: desc }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -139,9 +182,13 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
   const hubDescription = meta.description
   const calculators = meta.calculators
 
-  const totalPages = Math.ceil(calculators.length / PER_PAGE)
+  const manualCalcs = calculators.filter((c: CalculatorEntry) => !/\d$/.test(c.slug))
+  const totalPages = Math.ceil(manualCalcs.length / PER_PAGE)
+  if (totalPages >= 1 && page > totalPages) {
+    permanentRedirect(locale === 'en' ? `/${hubSlug}` : `/${locale}/${hubSlug}`)
+  }
   const start = (page - 1) * PER_PAGE
-  const pageCalcs = calculators.slice(start, start + PER_PAGE)
+  const manualPageCalcs = manualCalcs.slice(start, start + PER_PAGE)
 
   const { getClusterSlugsForHub: getCS, getClusterBySlug: getCB } = await cluster()
   const clusterSlugs = getCS(hubSlug)
@@ -155,8 +202,6 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
     }
   }
 
-  const localePrefix = `/${locale}`
-
   const { calculatorRegistry } = await import('@calcuniverse/calculator-registry')
   const countByHub: Record<string, number> = {}
   for (const c of calculatorRegistry) {
@@ -167,62 +212,30 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
     .filter((s) => isValidHubSlug(s))
     .map((s) => ({ slug: s, name: th(s), count: countByHub[s] || 0 }))
 
-  function PaginationBar() {
-    if (totalPages <= 1) return null
-    const pages: (number | '...')[] = []
-    for (let i = 1; i <= totalPages; i++) {
-      if (i === 1 || i === totalPages || Math.abs(i - page) <= 2) {
-        pages.push(i)
-      } else if (pages[pages.length - 1] !== '...') {
-        pages.push('...')
-      }
-    }
-    return (
-      <nav aria-label="Pagination" className="flex items-center justify-center gap-1.5 mt-8 mb-4">
-        {page > 1 && (
-          <Link
-            href={page === 2 ? `${localePrefix}/${hubSlug}` : `${localePrefix}/${hubSlug}?page=${page - 1}`}
-            className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#1a3a8a] hover:text-white dark:hover:bg-[#06b6d4] transition-colors"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            Prev
-          </Link>
-        )}
-        {pages.map((p, i) =>
-          p === '...' ? (
-            <span key={`ellipsis-${i}`} className="px-2 text-gray-400 text-sm">...</span>
-          ) : (
-            <Link
-              key={p}
-              href={p === 1 ? `${localePrefix}/${hubSlug}` : `${localePrefix}/${hubSlug}?page=${p}`}
-              className={`w-9 h-9 flex items-center justify-center text-sm font-medium rounded-lg transition-colors ${
-                p === page
-                  ? 'bg-[#1a3a8a] text-white'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#1a3a8a] hover:text-white dark:hover:bg-[#06b6d4]'
-              }`}
-            >
-              {p}
-            </Link>
-          )
-        )}
-        {page < totalPages && (
-          <Link
-            href={`${localePrefix}/${hubSlug}?page=${page + 1}`}
-            className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#1a3a8a] hover:text-white dark:hover:bg-[#06b6d4] transition-colors"
-          >
-            Next
-            <ChevronRight className="w-4 h-4" />
-          </Link>
-        )}
-      </nav>
-    )
+  const hubUrl = locale === 'en' ? `${siteUrl}/${hubSlug}` : `${siteUrl}/${locale}/${hubSlug}`
+  const collectionPageSchema = {
+    name: hubTitle,
+    description: hubDescription,
+    url: hubUrl,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: manualPageCalcs.map((calc: CalculatorEntry, index: number) => ({
+        '@type': 'ListItem',
+        position: start + index + 1,
+        url: locale === 'en' ? `${siteUrl}/${hubSlug}/${calc.slug}` : `${siteUrl}/${locale}/${hubSlug}/${calc.slug}`,
+        name: calc.title,
+      })),
+    },
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900" style={{ '--hub-accent': theme.accent } as React.CSSProperties}>
+    <>
+      <SchemaMarkup type="CollectionPage" locale={locale} data={collectionPageSchema} />
+      <SchemaMarkup type="BreadcrumbList" locale={locale} data={breadcrumbListSchema([{ name: 'Home', url: siteUrl }, { name: hubTitle, url: hubUrl }], locale)} />
+      <div className="min-h-screen bg-white dark:bg-gray-900" style={{ '--hub-accent': theme.accent } as React.CSSProperties}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-6">
-          <Link href={localePrefix || '/'} className="transition-colors hover:text-[color:var(--hub-accent)]">{tc('home')}</Link>
+          <Link href="/" className="transition-colors hover:text-[color:var(--hub-accent)]">{tc('home')}</Link>
           <span>/</span>
           <span className="text-gray-900 dark:text-white">{hubTitle}</span>
         </div>
@@ -246,11 +259,11 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
           <div className="rounded-xl p-4 text-center border" style={{ backgroundColor: `rgb(${theme.accentRgb} / 0.08)`, borderColor: `rgb(${theme.accentRgb} / 0.2)` }}>
-            <p className="text-2xl font-bold" style={{ color: theme.accent }}>{calculators.length}</p>
+            <p className="text-2xl font-bold" style={{ color: theme.accent }}>{manualCalcs.length}</p>
             <p className="text-xs text-gray-500 dark:text-gray-400">Calculators</p>
           </div>
           <div className="rounded-xl p-4 text-center border" style={{ backgroundColor: `rgb(${theme.accentRgb} / 0.08)`, borderColor: `rgb(${theme.accentRgb} / 0.2)` }}>
-            <p className="text-2xl font-bold" style={{ color: theme.accent }}>{calculators.filter((c: CalculatorEntry) => c.tier === 'tier3').length}</p>
+            <p className="text-2xl font-bold" style={{ color: theme.accent }}>{manualCalcs.filter((c: CalculatorEntry) => c.tier === 'tier3').length}</p>
             <p className="text-xs text-gray-500 dark:text-gray-400">Flagship Tools</p>
           </div>
           <div className="rounded-xl p-4 text-center border" style={{ backgroundColor: `rgb(${theme.accentRgb} / 0.08)`, borderColor: `rgb(${theme.accentRgb} / 0.2)` }}>
@@ -276,7 +289,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
                   return (
                     <Link
                       key={cs}
-                      href={`${localePrefix}/${hubSlug}/${cs}`}
+                      href={`/${hubSlug}/${cs}`}
                       className="text-xs px-3 py-1.5 rounded-full bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-colors border border-gray-200 dark:border-gray-600"
                     >
                       {entry.variant.title}
@@ -288,15 +301,13 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
           </div>
         )}
 
-        <PaginationBar />
-
-        {calculators.length === 0 ? (
+        {manualCalcs.length === 0 ? (
           <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-10 shadow-sm text-center" role="status">
             <div aria-hidden className="text-5xl mb-4 select-none">{theme.emoji}</div>
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{th('emptyTitle')}</h2>
             <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md mx-auto mb-6">{th('emptyMessage')}</p>
             <Link
-              href={localePrefix || '/'}
+              href="/"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-medium hover:opacity-90 transition-opacity min-h-[44px]"
             >
               {tc('goHome')}
@@ -304,12 +315,12 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
           </div>
         ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {pageCalcs.map((calc: CalculatorEntry) => {
+          {manualPageCalcs.map((calc: CalculatorEntry) => {
             const CalcIcon = getCalcIcon(calc.title)
             return (
               <Link
                 key={calc.slug}
-                href={`${localePrefix}/${hubSlug}/${calc.slug}`}
+                href={`/${hubSlug}/${calc.slug}`}
                 className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 border-l-4 rounded-xl p-5 hover:shadow-md transition-all hover:-translate-y-0.5"
                 style={{ borderLeftColor: theme.accent }}
               >
@@ -336,7 +347,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
         </div>
         )}
 
-        <PaginationBar />
+        <PaginationBar page={page} totalPages={totalPages} hubSlug={hubSlug} />
 
         {relatedHubs.length > 0 && (
           <section className="mt-12">
@@ -349,7 +360,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
                 return (
                   <Link
                     key={hub.slug}
-                    href={`${localePrefix}/${hub.slug}`}
+                    href={`/${hub.slug}`}
                     className="group flex items-center gap-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-4 hover:shadow-md transition-all hover:-translate-y-0.5 border-l-4"
                     style={{ borderLeftColor: theme.accent }}
                   >
@@ -375,5 +386,6 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
         )}
       </div>
     </div>
+    </>
   )
 }

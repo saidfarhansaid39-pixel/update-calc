@@ -18,7 +18,12 @@ const calcDef: CalcDef = {
         { label: 'Daily deficit/surplus', value: `${dailyDeficit.toFixed(0)} kcal/day` },
         { label: 'Estimated maintenance', value: `${maint.toFixed(0)} kcal/day` },
         { label: 'Target daily calories', value: `${Math.max(1200, calGoal).toFixed(0)} kcal/day` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Set a daily calorie target based on your goal weight and desired timeline. Uses 7,700 kcal per kg of body weight as the energy equivalent of fat loss.',
     example: { label: '70kg → 65kg in 1 month', value: '~1,700 kcal/day' }

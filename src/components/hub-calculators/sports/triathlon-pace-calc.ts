@@ -16,6 +16,11 @@ const calcDef: CalcDef = {
       { label: 'Total time', value: v.totalMin+' min ('+Math.floor(v.totalMin/60)+'h '+(v.totalMin%60).toFixed(0)+'m)' },
       { label: 'Pace', value: Math.floor(pace)+':'+Math.round((pace%1)*60).toString().padStart(2,'0')+' /km' },
       { label: 'Avg speed', value: speed.toFixed(1)+' km/h' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate overall triathlon pace across swim, bike, and run disciplines from total distance and time.', formula: 'Overall pace = total time / total distance', interpretation: 'Overall pace provides a single performance metric for comparing across triathlon formats.'
 }

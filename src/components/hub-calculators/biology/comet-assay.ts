@@ -22,7 +22,12 @@ const calcDef: CalcDef = {
         { label: 'Damage level', value: damage },
         { label: 'Score 50-100 comets/sample', value: 'Use median OTM for statistical analysis' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The comet assay (single-cell gel electrophoresis) measures DNA damage in individual cells. Damaged DNA migrates from the nucleus, forming a comet-like tail. Greater damage = longer, brighter tail.',
   formula: 'Olive Tail Moment (OTM) = Tail length × %DNA in tail / 100 | %Tail DNA is the most reliable parameter | Alkaline comet: detects SSBs + DSBs + alkali-labile sites',

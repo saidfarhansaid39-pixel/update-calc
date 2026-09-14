@@ -13,11 +13,21 @@ const calcDef: CalcDef = {
       const sum = digits.reduce((s, d) => s + Math.pow(d, power), 0)
       const isArmstrong = sum === parseInt(nStr)
       const armstrongLabel = power === 3 ? 'Armstrong' : 'Narcissistic'
-      return { result: isArmstrong ? 'Yes, ' + armstrongLabel + ' number' : 'No, not a ' + armstrongLabel + ' number', label: 'Check', steps: [step('Number:', nStr), step('Digits:', '' + power), step('Sum:', digits.map((d, i) => '' + d + '^' + power).join(' + ') + ' = ' + sum), step('Result:', '' + (isArmstrong ? 'Equal' : 'Not equal'))] }
+      return { result: isArmstrong ? 'Yes, ' + armstrongLabel + ' number' : 'No, not a ' + armstrongLabel + ' number', label: 'Check', steps: [step('Number:', nStr), step('Digits:', '' + power), step('Sum:', digits.map((d, i) => '' + d + '^' + power).join(' + ') + ' = ' + sum), step('Result:', '' + (isArmstrong ? 'Equal' : 'Not equal'))] ,
+    extras: [
+      { label: "Mathematical Significance", value: "Fundamental concept in number theory and discrete mathematics." },
+      { label: "Computational Note", value: "Large inputs may require optimized algorithms for performance." },
+      { label: "Historical Context", value: "Studied by mathematicians across centuries for its unique properties." },
+      { label: "Related Sequences", value: "Related to other integer sequences and special numbers." },
+      { label: "Pattern Recognition", value: "Observe recurring patterns and relationships between values." }
+    ]}
     },
     formula: 'Sum of each digit raised to the power of number of digits equals the number',
     description: 'Check if a number is an Armstrong (narcissistic) number.',
-    interpretation: 'An Armstrong number equals the sum of its digits each raised to the power of the number of digits.'
+    interpretation: 'An Armstrong number equals the sum of its digits each raised to the power of the number of digits.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

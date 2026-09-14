@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'LBM (Boer)', value: `${lbm.toFixed(1)} kg` },
         { label: 'Body fat estimate', value: `${v.weight > 0 ? ((1 - lbm / v.weight) * 100).toFixed(1) : '—'} %` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Lean Body Mass (LBM) is the weight of bones, organs, skin, and muscle minus body fat. The Boer formula provides a validated estimate from height, weight, and gender.',
   formula: 'Male: LBM = 0.407w + 0.267h – 19.2 | Female: LBM = 0.252w + 0.473h – 48.3',

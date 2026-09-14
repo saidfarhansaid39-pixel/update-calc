@@ -22,7 +22,12 @@ const calcDef: CalcDef = {
         { label: 'Strength level', value: standards },
         { label: 'Total body strength', value: epley > 200 ? 'Elite posterior chain' : epley > 150 ? 'Strong posterior chain' : 'Developing posterior chain' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Estimate your deadlift one-rep max. The deadlift is the ultimate test of total body strength, engaging the posterior chain and core.'
 }

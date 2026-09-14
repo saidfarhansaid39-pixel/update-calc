@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'gender', label: 'Gender', type: 'select', options: [{ label: 'Male', value: 'male' }, { label: 'Female (19-50)', value: 'female' }, { label: 'Female (51+)', value: 'female51' }, { label: 'Pregnant', value: 'pregnant' }] }
     ],
     compute: (v) => {
-      let r = 8; if (v.gender === 'female') r = 18; else if (v.gender === 'female51') r = 8; else if (v.gender === 'pregnant') r = 27; return { result: r, label: 'Daily Iron', unit: 'mg', steps: [{ label: 'Age', value: v.age + ' years' }, { label: 'Life stage', value: v.gender }, { label: 'RDA', value: r + ' mg' }] }
+      let r = 8; if (v.gender === 'female') r = 18; else if (v.gender === 'female51') r = 8; else if (v.gender === 'pregnant') r = 27; return { result: r, label: 'Daily Iron', unit: 'mg', steps: [{ label: 'Age', value: v.age + ' years' }, { label: 'Life stage', value: v.gender }, { label: 'RDA', value: r + ' mg' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Daily iron requirements based on age, gender, and life stage. Iron is crucial for oxygen transport and energy metabolism.',
     example: { label: '30yr female', value: '18 mg/day' }

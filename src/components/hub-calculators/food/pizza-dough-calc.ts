@@ -8,7 +8,12 @@ const calcDef: CalcDef = {
       { name: 'hydration', label: 'Hydration', type: 'select', options: [{ label: '60% (firm)', value: '60' }, { label: '65% (standard)', value: '65' }, { label: '70% (airy)', value: '70' }] }
     ],
     compute: (v) => {
-      const db = parseInt(v.size); const td = v.pizzas * db; const fl = td / (1 + parseFloat(v.hydration)/100 + 0.02 + 0.006); const wa = fl * parseFloat(v.hydration)/100; const sa = fl * 0.02; const ye = fl * 0.006; return { result: td, label: 'Total Dough', unit: 'g', steps: [{ label: 'Pizzas', value: v.pizzas + ' x ' + db + 'g' }, { label: 'Flour', value: fl.toFixed(0) + ' g' }, { label: 'Water (' + v.hydration + '%)', value: wa.toFixed(0) + ' g' }, { label: 'Salt (2%)', value: sa.toFixed(1) + ' g' }, { label: 'Yeast (0.6%)', value: ye.toFixed(1) + ' g' }] }
+      const db = parseInt(v.size); const td = v.pizzas * db; const fl = td / (1 + parseFloat(v.hydration)/100 + 0.02 + 0.006); const wa = fl * parseFloat(v.hydration)/100; const sa = fl * 0.02; const ye = fl * 0.006; return { result: td, label: 'Total Dough', unit: 'g', steps: [{ label: 'Pizzas', value: v.pizzas + ' x ' + db + 'g' }, { label: 'Flour', value: fl.toFixed(0) + ' g' }, { label: 'Water (' + v.hydration + '%)', value: wa.toFixed(0) + ' g' }, { label: 'Salt (2%)', value: sa.toFixed(1) + ' g' }, { label: 'Yeast (0.6%)', value: ye.toFixed(1) + ' g' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Pizza dough by baker\'s percentages. Higher hydration = lighter, airier crust.',
     example: { label: '2 x 12" pizzas, 65% hydration', value: '600g dough' }

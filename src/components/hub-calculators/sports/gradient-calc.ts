@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Slope distance', value: `${distSlope.toFixed(1)} m` },
         { label: 'Category', value: grade < 3 ? 'Gentle' : grade < 6 ? 'Moderate' : grade < 10 ? 'Steep' : grade < 15 ? 'Very steep' : 'Extreme' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate gradient percentage and angle from rise and horizontal distance. Grade percentage is the ratio of vertical rise to horizontal distance, used in road cycling, hiking, and construction.'
 }

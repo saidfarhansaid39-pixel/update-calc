@@ -4,6 +4,16 @@ export const loanSchema = z.object({
   principal: z.string().min(1, 'Required').refine(v => !isNaN(parseFloat(v)) && parseFloat(v) > 0, 'Must be > 0'),
   rate: z.string().min(1, 'Required').refine(v => !isNaN(parseFloat(v)) && parseFloat(v) >= 0, 'Must be >= 0'),
   term: z.string().min(1, 'Required').refine(v => !isNaN(parseFloat(v)) && parseFloat(v) > 0, 'Must be > 0'),
+  frequency: z.string().optional().default('monthly'),
+  compoundFrequency: z.string().optional().default('monthly'),
+  loanType: z.string().optional().default('amortized'),
+  originationFee: z.string().optional().default('0'),
+  originationFeeType: z.string().optional().default('out-of-pocket'),
+  prepaidFees: z.string().optional().default('0'),
+  loanedFees: z.string().optional().default('0'),
+  faceValue: z.string().optional().default('0'),
+  purchasePrice: z.string().optional().default('0'),
+  extraPayment: z.string().optional().default('0'),
 })
 
 export const investmentSchema = z.object({
@@ -11,6 +21,8 @@ export const investmentSchema = z.object({
   monthly: z.string().min(1, 'Required').refine(v => !isNaN(parseFloat(v)) && parseFloat(v) >= 0, 'Must be >= 0'),
   rate: z.string().min(1, 'Required').refine(v => !isNaN(parseFloat(v)) && parseFloat(v) >= 0, 'Must be >= 0'),
   years: z.string().min(1, 'Required').refine(v => !isNaN(parseFloat(v)) && parseFloat(v) > 0, 'Must be > 0'),
+  compoundFrequency: z.string().optional().default('monthly'),
+  contribFrequency: z.string().optional().default('monthly'),
 })
 
 export const healthSchema = z.object({
@@ -60,6 +72,7 @@ export const mortgageSchema = z.object({
   hoa: z.string().optional().default('0').refine(v => !isNaN(parseFloat(v || '0')) && parseFloat(v || '0') >= 0, 'Must be >= 0'),
   extraPayment: z.string().optional().default('0').refine(v => !isNaN(parseFloat(v || '0')) && parseFloat(v || '0') >= 0, 'Must be >= 0'),
   frequency: z.string().optional().default('monthly'),
+  compoundFrequency: z.string().optional().default('monthly'),
 })
 
 export const tipSchema = z.object({
@@ -71,7 +84,15 @@ export const tipSchema = z.object({
 export const retirementSchema = z.object({
   age: z.string().min(1, 'Required').refine(v => !isNaN(parseFloat(v)) && parseFloat(v) > 0, 'Must be > 0'),
   retirementAge: z.string().min(1, 'Required').refine(v => !isNaN(parseFloat(v)) && parseFloat(v) > 0, 'Must be > 0'),
+  lifeExpectancy: z.string().optional(),
   savings: z.string().min(1, 'Required').refine(v => !isNaN(parseFloat(v)) && parseFloat(v) >= 0, 'Must be >= 0'),
   monthly: z.string().min(1, 'Required').refine(v => !isNaN(parseFloat(v)) && parseFloat(v) >= 0, 'Must be >= 0'),
   rate: z.string().min(1, 'Required').refine(v => !isNaN(parseFloat(v)) && parseFloat(v) >= 0, 'Must be >= 0'),
+  compoundFrequency: z.string().optional().default('monthly'),
+  currentIncome: z.string().optional(),
+  incomeGoalPct: z.string().optional(),
+  pension: z.string().optional(),
+  retirementMode: z.string().optional().default('project'),
+  desiredIncome: z.string().optional().default('0'),
+  withdrawal: z.string().optional().default('0'),
 })

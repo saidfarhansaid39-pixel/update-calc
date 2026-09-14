@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'Germination rate', value: `${pct.toFixed(1)}%` },
         { label: 'Quality', value: pct >= 90 ? 'Excellent' : pct >= 70 ? 'Good' : pct >= 50 ? 'Fair' : 'Poor' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Seed germination rate is the percentage of seeds that successfully sprout. High germination rates indicate seed viability and proper growing conditions.',
   formula: 'Germination Rate (%) = (Germinated seeds / Total seeds) × 100',

@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Control range', value: 'Spontaneous: 0-5‰ (varies by cell type and donor)' },
         { label: 'Cytokinesis-block (CBMN)', value: 'Cytochalasin B blocks cytokinesis — score only binucleated cells' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'The cytokinesis-block micronucleus (CBMN) assay measures chromosome damage. Micronuclei form from acentric chromosome fragments or whole chromosomes that lag during anaphase.',
   formula: 'MN frequency (‰) = (number of MN / number of BN cells) × 1000 | Score 500-2,000 binucleated cells per sample',

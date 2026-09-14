@@ -33,7 +33,12 @@ const calcDef: CalcDef = {
         { label: 'Weekly miles', value: `${(total * 0.6214).toFixed(1)} mi` },
         { label: 'Weekly volume category', value: total < 20 ? 'Low' : total < 40 ? 'Moderate' : total < 60 ? 'High' : 'Very High' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Track your weekly running mileage. Log distance for each day of the week to monitor training volume, consistency, and progression over time.'
 }

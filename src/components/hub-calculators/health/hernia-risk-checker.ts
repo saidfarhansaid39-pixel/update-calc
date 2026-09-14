@@ -12,7 +12,12 @@ const calcDef: CalcDef = {
     { name:'familyHernia', label:'Family history of hernia?', type:'select', options:[{ label:'No', value:'no' },{ label:'Yes', value:'yes' }] },
     { name:'priorHernia', label:'Prior hernia repair?', type:'select', options:[{ label:'No', value:'no' },{ label:'Yes', value:'yes' }] }
   ],
-  compute: (v) => { const a=parseInt(v.age)||45; const bmi=parseFloat(v.bmi)||25; let score=0; if(a>=50) score+=2; else if(a>=40) score+=1; if(v.gender==='male') score+=2; if(bmi>=30) score+=2; else if(bmi>=25) score+=1; if(v.smoking==='yes') score+=1; if(v.constipation==='yes') score+=1; if(v.heavyLifting==='yes') score+=2; if(v.familyHernia==='yes') score+=1; if(v.priorHernia==='yes') score+=2; let risk='Low'; if(score>=8) risk='High'; else if(score>=4) risk='Moderate'; return { result:score, label:'Hernia Risk Score', unit:'/13', steps:[{ label:'Risk Score', value:score+'/13' },{ label:'Risk Category', value:risk }] } },
+  compute: (v) => { const a=parseInt(v.age)||45; const bmi=parseFloat(v.bmi)||25; let score=0; if(a>=50) score+=2; else if(a>=40) score+=1; if(v.gender==='male') score+=2; if(bmi>=30) score+=2; else if(bmi>=25) score+=1; if(v.smoking==='yes') score+=1; if(v.constipation==='yes') score+=1; if(v.heavyLifting==='yes') score+=2; if(v.familyHernia==='yes') score+=1; if(v.priorHernia==='yes') score+=2; let risk='Low'; if(score>=8) risk='High'; else if(score>=4) risk='Moderate'; return { result:score, label:'Hernia Risk Score', unit:'/13', steps:[{ label:'Risk Score', value:score+'/13' },{ label:'Risk Category', value:risk }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'Hernia risk assessment based on demographic, lifestyle, and occupational risk factors.',
   formula: 'Weighted scoring: age, male gender, BMI, smoking, constipation, heavy lifting, family/prior history.',
   interpretation: '0-3 Low risk, 4-7 Moderate risk, 8-13 High risk. Preventive measures recommended for moderate-high risk.'

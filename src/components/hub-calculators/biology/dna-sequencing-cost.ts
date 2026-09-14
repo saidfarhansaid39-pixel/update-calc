@@ -26,7 +26,12 @@ const calcDef: CalcDef = {
         { label: 'Total cost', value: `$${total.toFixed(2)}` },
         { label: 'Context', value: 'Human WGS 30× ˜ $672 (at $7/Gb)' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: "Estimate sequencing project costs: data output = genome size \u00d7 coverage. NGS costs have dropped dramatically (Moore's law of sequencing) making WGS increasingly affordable.",
   formula: 'Total data (Gb) = Genome size (Gb) × Coverage | Cost = Total Gb × $/Gb | Human genome 3.2 Gb × 30× ˜ 96 Gb',

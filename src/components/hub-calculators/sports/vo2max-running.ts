@@ -9,6 +9,11 @@ const calcDef: CalcDef = {
     return { result: vo2, label: 'VO2 at this Speed', unit: 'mL/kg/min', steps: [
       { label: 'Speed', value: v.speedKmh+' km/h ('+smin.toFixed(0)+' m/min)' },
       { label: 'VO2', value: vo2.toFixed(1)+' mL/kg/min' }, { label: 'METs', value: (vo2/3.5).toFixed(1)+' METs' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Estimate oxygen cost of running using ACSM metabolic equation. Running VO2 increases linearly with speed.', formula: 'VO2 = 0.2 × speed (m/min) + 3.5', interpretation: 'Higher running speeds require proportionally more oxygen consumption.'
 }

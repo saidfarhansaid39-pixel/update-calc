@@ -9,11 +9,20 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const ax = n(v.ax), ay = n(v.ay), bx = n(v.bx), by = n(v.by)
       const result = ax * bx + ay * by
-      return { result, label: 'v1 . v2', steps: [step('Formula:', '(' + ax + ')(' + bx + ') + (' + ay + ')(' + by + ')'), step('Result:', '' + result)] }
+      return { result, label: 'v1 . v2', steps: [step('Formula:', '(' + ax + ')(' + bx + ') + (' + ay + ')(' + by + ')'), step('Result:', '' + result)] ,
+    extras: [
+      { label: "Dimension Check", value: "Matrix dimensions must be compatible for the operation." },
+      { label: "Singular Matrix Warning", value: "A determinant of zero means the matrix has no inverse." },
+      { label: "Computational Complexity", value: "Larger matrices require significantly more computation." },
+      { label: "Application", value: "Used in computer graphics, machine learning, and physics simulations." }
+    ]}
     },
     formula: 'v . w = vx*wx + vy*wy',
     description: 'Calculate the dot product of two 2D vectors.',
-    interpretation: 'The sum of the products of corresponding components.'
+    interpretation: 'The sum of the products of corresponding components.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

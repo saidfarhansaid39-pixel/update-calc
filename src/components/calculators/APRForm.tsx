@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button, FormGroup, FormPanel } from '@/components/CalculatorFormElements';
 import { generateAmortizationSchedule } from '@/lib/calculators/amortizationEngine';
+import { useCurrencyFormat } from '@/lib/hooks/useCurrencyFormat';
 
 // APR calculation using Newton-Raphson or binary search
 function calculateAPR(loanAmount: number, monthlyPayment: number, termMonths: number, upfrontFees: number): number {
@@ -62,8 +63,9 @@ export function APRForm() {
     handleCalculate();
   }, []);
 
-  const formatCurrency = (val: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val);
+  const formatCurrency = useCurrencyFormat('USD');
 
+    const handleClear = () => { setResults(null); setInputs({ loanAmount: 100000, loanTermYears: 30, loanTermMonths: 0, interestRate: 6, fees: 2500 }); };
   return (
     <div className="flex flex-col gap-6 font-sans text-[13px] text-[#333333]">
       <div className="flex flex-col md:flex-row gap-6">
@@ -93,7 +95,7 @@ export function APRForm() {
 
             <div className="pl-[140px] flex gap-2 mt-4">
               <Button onClick={handleCalculate}>Calculate</Button>
-              <Button variant="secondary" onClick={() => {}}>Clear</Button>
+              <Button variant="secondary" onClick={handleClear}>Clear</Button>
             </div>
           </FormPanel>
         </div>

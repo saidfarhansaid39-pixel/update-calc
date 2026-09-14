@@ -14,6 +14,11 @@ const calcDef: CalcDef = {
       { label: 'BMR (Mifflin-St Jeor)', value: `${bmr.toFixed(0)} kcal/day` },
       { label: 'Activity multiplier', value: `${(Number(v.activity) || 1.55).toFixed(2)}×` },
       { label: 'TDEE (maintenance)', value: `${tdee.toFixed(0)} kcal/day` },
+    ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
     ]} },
     description: 'Daily calorie needs based on the Mifflin-St Jeor equation, adjusted for activity level. This is your Total Daily Energy Expenditure (TDEE) for weight maintenance.',
     example: { label: '70kg, 175cm, 30yr, moderate', value: '~2,450 kcal/day' }

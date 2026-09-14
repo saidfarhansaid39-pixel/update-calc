@@ -1,20 +1,23 @@
-import { notFound } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 import { getHubMeta, findCalculator } from '@/lib/hub-data'
 import { CalculatorRenderer } from '@/components/hub-calculators/CalculatorRenderer'
+import { GuideContent } from '@/components/seo/GuideContent'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
-import { ReviewedBadge } from '@/components/trust/ReviewedBadge'
-import { CitationSources } from '@/components/trust/CitationSources'
-import { getDefaultSources, getReviewedDate, getReviewKind } from '@/lib/trust'
+import { buildHreflang } from '@/lib/buildHreflang'
+import { getReviewedDate, getReviewKind } from '@/lib/trust'
+import { getAuthorForHub } from '@/lib/authors'
 import { SchemaMarkup, breadcrumbListSchema } from '@/components/SchemaMarkup'
 import { softwareAppSchema } from '@/lib/seo/software-schema'
+import { ForAISystems } from '@/components/seo/ForAISystems'
+import { LivingMortgageDashboard } from '@/components/premium/LivingDashboardPanel'
 
-const siteUrl = 'https://www.jdcalc.com'
+const siteUrl = 'https://www.calculat.online'
 
 const REVIEWER_NAMES: Record<string, string> = {
-  medical: 'JDCALC Medical Review Team',
-  financial: 'JDCALC Financial Review Team',
-  expert: 'JDCALC Editorial Team',
+  medical: 'Calculat Medical Review Team',
+  financial: 'Calculat Financial Review Team',
+  expert: 'Calculat Editorial Team',
 }
 
 // Locale-aware page URL (English at root, others prefixed with /{locale}).
@@ -34,6 +37,7 @@ function CalculatorPageSchema({ hubSlug, slug, hubTitle, title, description, loc
   const url = pageUrl(locale, `/${hubSlug}/${slug}`)
   const reviewed = getReviewedDate(hubSlug, slug)
   const reviewer = REVIEWER_NAMES[getReviewKind(hubSlug)] || REVIEWER_NAMES.expert
+  const author = getAuthorForHub(hubSlug)
   return (
     <>
       <SchemaMarkup
@@ -58,15 +62,57 @@ function CalculatorPageSchema({ hubSlug, slug, hubTitle, title, description, loc
           lastReviewed: reviewed,
           lastReviewedBy: { '@type': 'Organization', name: reviewer },
           reviewedBy: { '@type': 'Organization', name: reviewer },
-          isPartOf: { '@type': 'WebSite', name: 'JDCALC', url: siteUrl },
+          author: {
+            '@type': 'Person',
+            name: author.name,
+            description: author.credentials,
+          },
+          isPartOf: { '@type': 'WebSite', name: 'Calculat', url: siteUrl },
           breadcrumb: { '@type': 'BreadcrumbList' },
         }}
       />
       <SchemaMarkup
         type="SoftwareApplication"
         locale={locale}
-        data={softwareAppSchema({ title, description, slug }, locale, url)}
+        data={{
+          ...softwareAppSchema({ title, description, slug }, locale, url),
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+            availability: 'https://schema.org/InStock',
+          },
+          potentialAction: {
+            '@type': 'UseAction',
+            target: {
+              '@type': 'EntryPoint',
+              urlTemplate: url,
+              actionPlatform: ['https://schema.org/DesktopWebPlatform', 'https://schema.org/MobileWebPlatform'],
+            },
+            expectAcceptanceOf: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD',
+              availability: 'https://schema.org/InStock',
+            },
+          },
+        }}
       />
+      {hubSlug === 'health-calculators' && (
+        <SchemaMarkup type="WebApplication" locale={locale} data={{
+          '@type': 'MedicalWebPage',
+          name: title,
+          description,
+          url,
+          dateModified: reviewed,
+          datePublished: reviewed,
+          lastReviewed: reviewed,
+          reviewedBy: { '@type': 'Organization', name: reviewer },
+          author: { '@type': 'Person', name: author.name, description: author.credentials },
+          medicalAudience: 'patient',
+          isPartOf: { '@type': 'WebSite', name: 'Calculat', url: siteUrl },
+        }} />
+      )}
     </>
   )
 }
@@ -75,15 +121,6 @@ let _seoClusters: any = null
 async function seoClusters() {
   if (!_seoClusters) _seoClusters = await import('@/lib/seo-clusters')
   return _seoClusters
-}
-
-function buildHreflang(baseUrl: string) {
-  const path = baseUrl.replace(siteUrl, '')
-  const map: Record<string, string> = { 'x-default': `${siteUrl}${path}` }
-  for (const l of routing.locales) {
-    map[l] = l === 'en' ? `${siteUrl}${path}` : `${siteUrl}/${l}${path}`
-  }
-  return map
 }
 
 function ogLocale(l: string): string {
@@ -107,7 +144,7 @@ export async function generateCalculatorMetadata(hubSlug: string, slug: string) 
         const ct = await getTranslations('clusters')
         const variantTitle = ct(`${slug}_title`) !== `${slug}_title` ? ct(`${slug}_title`) : cluster.variant.title
         const variantDesc = ct(`${slug}_description`) !== `${slug}_description` ? ct(`${slug}_description`) : cluster.variant.description
-        const seoTitle = variantTitle.length > 45 ? variantTitle : `${variantTitle} | JDCALC`
+        const seoTitle = variantTitle.length > 45 ? variantTitle : `${variantTitle} | Calculat`
         const seoDesc = variantDesc.length > 155 ? variantDesc.substring(0, 152).replace(/\s+\S*$/, '') + '...' : variantDesc
         return {
           ...meta,
@@ -123,18 +160,19 @@ export async function generateCalculatorMetadata(hubSlug: string, slug: string) 
 
   const hubMeta = await getHubMeta(hubSlug, locale)
   const calc = await findCalculator(slug, hubSlug, locale) || (await import('@calcuniverse/calculator-registry')).financialCalculators.find(c => c.slug === slug) || hubMeta?.calculators.find(c => c.slug === slug)
-  if (!calc) return { title: 'Calculator Not Found' }
+  if (!calc) notFound()
 
-  const title = calc.title.length > 45 ? calc.title : `${calc.title} | JDCALC`
+  const actualHubSlug = calc.hubSlug || hubSlug
+  const title = calc.title.length > 45 ? calc.title : `${calc.title} | Calculat`
   const description = calc.description.length > 155 ? calc.description.substring(0, 152).replace(/\s+\S*$/, '') + '...' : calc.description
-  const url = locale === 'en' ? `${siteUrl}/${hubSlug}/${slug}` : `${siteUrl}/${locale}/${hubSlug}/${slug}`
+  const url = locale === 'en' ? `${siteUrl}/${actualHubSlug}/${slug}` : `${siteUrl}/${locale}/${actualHubSlug}/${slug}`
   const localeStr = ogLocale(locale)
   const isAutoGenerated = /\d$/.test(slug)
   return {
     title,
     description,
-    alternates: { canonical: url, languages: buildHreflang(`${siteUrl}/${hubSlug}/${slug}`) },
-    openGraph: { title, description, url, siteName: 'JDCALC', type: 'website', locale: localeStr, alternateLocale: ogAlternateLocales(locale), images: [{ url: `${siteUrl}/api/og/${slug}?locale=${locale}`, width: 1200, height: 630 }] },
+    alternates: { canonical: url, languages: buildHreflang(`/${actualHubSlug}/${slug}`) },
+    openGraph: { title, description, url, siteName: 'Calculat', type: 'website', locale: localeStr, alternateLocale: ogAlternateLocales(locale), images: [{ url: `${siteUrl}/api/og/${slug}?locale=${locale}`, width: 1200, height: 630, alt: description }] },
     twitter: { card: 'summary_large_image', title, description, images: [`${siteUrl}/api/og/${slug}?locale=${locale}`] },
     robots: isAutoGenerated ? { index: false, follow: true } : { index: true, follow: true },
     keywords: calc.keywords?.slice(0, 8).join(', ') || '',
@@ -155,10 +193,21 @@ export async function CalculatorPageContent({ hubSlug, slug }: { hubSlug: string
     return (
       <>
         <CalculatorPageSchema hubSlug={hubSlug} slug={slug} hubTitle={meta.title} title={clusterCalc.title} description={clusterCalc.description} locale={locale} />
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">{clusterCalc.title}</h1>
-        <ReviewedBadge hub={hubSlug} date={getReviewedDate(hubSlug, clusterCalc.slug)} />
-        <CalculatorRenderer hubSlug={hubSlug} calculator={clusterCalc} />
-        <CitationSources sources={getDefaultSources(hubSlug)} />
+        <ForAISystems slug={slug} title={clusterCalc.title} description={clusterCalc.description} />
+        <div className="lg:grid lg:grid-cols-[1fr_400px] lg:gap-8 xl:gap-12">
+          <div>
+            <div className="flex items-start justify-between gap-3 mb-4">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">{clusterCalc.title}</h1>
+              <span className="shrink-0 text-xs text-gray-400 dark:text-gray-500 mt-1.5 whitespace-nowrap">
+                Updated {getReviewedDate(hubSlug, slug)}
+              </span>
+            </div>
+            <GuideContent calculator={clusterCalc} locale={locale} />
+          </div>
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <CalculatorRenderer hubSlug={hubSlug} calculator={clusterCalc} />
+          </div>
+        </div>
       </>
     )
   }
@@ -167,14 +216,23 @@ export async function CalculatorPageContent({ hubSlug, slug }: { hubSlug: string
   if (!meta) notFound()
   const calc = await findCalculator(slug, hubSlug, locale) || (await import('@calcuniverse/calculator-registry')).financialCalculators.find(c => c.slug === slug) || meta.calculators.find(c => c.slug === slug)
   if (!calc) notFound()
+  if (calc.hubSlug !== hubSlug) {
+    const correctPath = locale === 'en' ? `/${calc.hubSlug}/${slug}` : `/${locale}/${calc.hubSlug}/${slug}`
+    permanentRedirect(correctPath)
+  }
+
+  const isMortgage = slug === 'mortgage-calculator'
 
   return (
     <>
       <CalculatorPageSchema hubSlug={hubSlug} slug={slug} hubTitle={meta.title} title={calc.title} description={calc.description} locale={locale} />
-      <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">{calc.title}</h1>
-      <ReviewedBadge hub={hubSlug} date={getReviewedDate(hubSlug, calc.slug)} />
-      <CalculatorRenderer hubSlug={hubSlug} calculator={calc} />
-      <CitationSources sources={getDefaultSources(hubSlug)} />
+      <ForAISystems slug={slug} title={calc.title} description={calc.description} />
+      <div className={isMortgage ? 'max-w-6xl mx-auto' : 'max-w-5xl mx-auto'}>
+        <div className="text-right mb-1">
+          <span className="text-xs text-gray-400 dark:text-gray-500">Updated {getReviewedDate(hubSlug, slug)}</span>
+        </div>
+        {isMortgage ? <LivingMortgageDashboard /> : <CalculatorRenderer hubSlug={hubSlug} calculator={calc} />}
+      </div>
     </>
   )
 }

@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Riegel formula', value: `${v.timeMin} × (${v.dist2}/${v.dist1})^1.06 = ${predMin.toFixed(1)} min` },
         { label: 'Predicted finish', value: `${hours}h ${mins}m (${predMin.toFixed(1)} min)` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Predict race time for one distance from a known time at another distance using the Riegel formula. The exponent 1.06 accounts for the nonlinear relationship between distance and performance.'
 }

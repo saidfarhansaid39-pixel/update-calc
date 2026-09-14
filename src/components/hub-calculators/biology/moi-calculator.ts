@@ -26,7 +26,12 @@ const calcDef: CalcDef = {
         { label: 'Volume = VP / titer', value: `${volMl.toExponential(4)} mL` },
         { label: 'Expected infection rate (Poisson)', value: `${inPct.toFixed(1)}% of cells` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Multiplicity of Infection (MOI) is the ratio of infectious viral particles to target cells. The Poisson distribution governs the proportion of cells infected at a given MOI.',
   formula: 'MOI = VP / cells | Volume = (cells × MOI) / titer | P(infected) = 1 - e^(-MOI) | MOI = 1 ? ~63% cells infected',

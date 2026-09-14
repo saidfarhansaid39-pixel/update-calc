@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Estimated intronic (~5× exonic)', value: `${intronic.toLocaleString()} bp` },
         { label: 'Total gene length', value: `${total.toLocaleString()} bp (${(total / 1000).toFixed(1)} kb)` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Estimate gene length from exon count and average exon size. Eukaryotic genes consist of exons (coding) interspersed with introns (non-coding) that are typically much larger.',
   formula: 'Gene length ˜ Exons × avg exon size × (1 + intron/exon ratio) | Human avg: 27 kb, 8-9 exons, avg exon ~170 bp, introns ~5× larger',

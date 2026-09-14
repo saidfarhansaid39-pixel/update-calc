@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'stuffing', label: 'Stuffing', type: 'select', options: [{ label: 'Unstuffed', value: '0' }, { label: 'Stuffed', value: '15' }] }
     ],
     compute: (v) => {
-      const extra = parseFloat(v.stuffing); const totalMin = v.weight * 13 + extra; return { result: totalMin, label: 'Roast Time', unit: 'min', steps: [{ label: 'Weight', value: v.weight + ' kg' }, { label: 'Base (13 min/kg)', value: (v.weight * 13).toFixed(0) + ' min' }, { label: extra > 0 ? 'Stuffed +15 min' : 'Unstuffed', value: extra > 0 ? '+15 min' : 'No adjustment' }, { label: 'Total', value: totalMin.toFixed(0) + ' min (~' + (totalMin/60).toFixed(1) + ' hrs)' }, { label: 'Target temp', value: '74°C (165°F) in thigh' }] }
+      const extra = parseFloat(v.stuffing); const totalMin = v.weight * 13 + extra; return { result: totalMin, label: 'Roast Time', unit: 'min', steps: [{ label: 'Weight', value: v.weight + ' kg' }, { label: 'Base (13 min/kg)', value: (v.weight * 13).toFixed(0) + ' min' }, { label: extra > 0 ? 'Stuffed +15 min' : 'Unstuffed', value: extra > 0 ? '+15 min' : 'No adjustment' }, { label: 'Total', value: totalMin.toFixed(0) + ' min (~' + (totalMin/60).toFixed(1) + ' hrs)' }, { label: 'Target temp', value: '74°C (165°F) in thigh' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Turkey roasting times. 13 min/kg unstuffed. Cook to 74°C (165°F) in the thigh.',
     example: { label: '5kg turkey, unstuffed', value: '~65 min (~1.1 hrs)' }

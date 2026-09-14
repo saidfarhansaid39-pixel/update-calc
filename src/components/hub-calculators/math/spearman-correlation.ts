@@ -25,11 +25,20 @@ const calcDef: CalcDef = {
       const n = x.length
       const rho = 1 - (6 * dSq) / (n * (n * n - 1))
       const strength = Math.abs(rho) >= 0.8 ? 'very strong' : Math.abs(rho) >= 0.6 ? 'strong' : Math.abs(rho) >= 0.4 ? 'moderate' : Math.abs(rho) >= 0.2 ? 'weak' : 'very weak'
-      return { result: rho.toFixed(4), label: "Spearman's rho", steps: [step('Ranks computed', n + ' pairs'), step('Formula:', 'rho = 1 - (6 x ' + dSq + ') / (' + n + ' x (' + n + '2 - 1)) = ' + rho.toFixed(4)), step('Interpretation:', strength + ' ' + (rho >= 0 ? 'positive' : 'negative') + ' correlation')] }
+      return { result: rho.toFixed(4), label: "Spearman's rho", steps: [step('Ranks computed', n + ' pairs'), step('Formula:', 'rho = 1 - (6 x ' + dSq + ') / (' + n + ' x (' + n + '2 - 1)) = ' + rho.toFixed(4)), step('Interpretation:', strength + ' ' + (rho >= 0 ? 'positive' : 'negative') + ' correlation')],
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ] }
     },
     formula: 'rho = 1 - (6 x Sum(di2)) / (n x (n2 - 1))',
     description: "Calculate Spearman's rank correlation coefficient between two variables.",
-    interpretation: "Spearman's rho measures the monotonic relationship between two ranked variables."
+    interpretation: "Spearman's rho measures the monotonic relationship between two ranked variables.",
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

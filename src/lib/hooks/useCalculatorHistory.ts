@@ -7,6 +7,7 @@ export interface HistoryEntry {
   slug: string
   title: string
   inputs: Record<string, string>
+  result?: string
   timestamp: number
 }
 
@@ -39,12 +40,13 @@ export function useCalculatorHistory(slug: string, title: string) {
     setHistory(loadHistory())
   }, [])
 
-  const addEntry = useCallback((inputs: Record<string, string>) => {
+  const addEntry = useCallback((inputs: Record<string, string>, result?: string) => {
     const entry: HistoryEntry = {
       id: crypto.randomUUID(),
       slug,
       title,
       inputs,
+      result,
       timestamp: Date.now(),
     }
     setHistory(prev => {
@@ -70,7 +72,7 @@ export function useCalculatorHistory(slug: string, title: string) {
   }, [])
 
   const exportCSV = useCallback(() => {
-    const headers = ['ID', 'Calculator', 'Slug', 'Timestamp', 'Date', 'Time', 'Inputs']
+    const headers = ['ID', 'Calculator', 'Slug', 'Timestamp', 'Date', 'Time', 'Inputs', 'Result']
     const rows = history.map(e => [
       e.id,
       `"${e.title}"`,
@@ -79,6 +81,7 @@ export function useCalculatorHistory(slug: string, title: string) {
       new Date(e.timestamp).toLocaleDateString(),
       new Date(e.timestamp).toLocaleTimeString(),
       `"${Object.entries(e.inputs).map(([k, v]) => `${k}: ${v}`).join('; ')}"`,
+      `"${(e.result ?? '').replace(/"/g, '""')}"`,
     ])
     return [headers.join(','), ...rows.map(r => r.join(','))].join('\n')
   }, [history])

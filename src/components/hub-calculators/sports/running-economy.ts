@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Typical reference', value: `~210 mL/kg/km for trained runners` },
         { label: 'Efficiency', value: efficiency },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate running economy (oxygen cost per kilometer at a given speed). Better running economy means using less oxygen to maintain the same pace, indicating more efficient running form.'
 }

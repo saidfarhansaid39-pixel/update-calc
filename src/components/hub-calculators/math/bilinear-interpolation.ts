@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const x = n(v.x), y = n(v.y); // assume unit square corners: f00=0, f10=1, f01=1, f11=2
       const f = 0 * (1 - x) * (1 - y) + 1 * x * (1 - y) + 1 * (1 - x) * y + 2 * x * y
-      return { result: f.toFixed(4), label: 'Interpolated value', steps: [step('Weights', `w00=${((1 - x) * (1 - y)).toFixed(4)}, w10=${(x * (1 - y)).toFixed(4)}, w01=${((1 - x) * y).toFixed(4)}, w11=${(x * y).toFixed(4)}`), step('Result', f.toFixed(4))] }
+      return { result: f.toFixed(4), label: 'Interpolated value', steps: [step('Weights', `w00=${((1 - x) * (1 - y)).toFixed(4)}, w10=${(x * (1 - y)).toFixed(4)}, w01=${((1 - x) * y).toFixed(4)}, w11=${(x * y).toFixed(4)}`), step('Result', f.toFixed(4))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'Bilinear interpolation on unit square with sample values.',
     description: 'Bilinear interpolation on a 2D unit square.',
-    interpretation: 'Weighted average of four corner values based on distance.'
+    interpretation: 'Weighted average of four corner values based on distance.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

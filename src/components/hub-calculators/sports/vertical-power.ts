@@ -13,6 +13,11 @@ const calcDef: CalcDef = {
       { label: 'Jump height', value: v.jumpCm+' cm' }, { label: 'Body weight', value: v.weightKg+' kg' },
       { label: 'Takeoff velocity', value: takeoffV.toFixed(2)+' m/s' },
       { label: 'Peak power', value: peakPower.toFixed(0)+' W' }, { label: 'Relative power', value: (peakPower/v.weightKg).toFixed(1)+' W/kg' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate peak power output from vertical jump height using the Lewis formula. Power = 2.21 × weight × √(jump height × g).', formula: 'Peak Power = 2.21 × weight × √(2·g·h)', interpretation: 'Higher peak power indicates greater explosive lower body strength. Elite jumpers produce 50+ W/kg.'
 }

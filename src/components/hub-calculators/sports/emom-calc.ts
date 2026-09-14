@@ -13,6 +13,11 @@ const calcDef: CalcDef = {
       { label: 'Work per minute', value: v.workSec+' s' }, { label: 'Rest per minute', value: restSec+' s' },
       { label: 'Total minutes', value: ''+v.minutes }, { label: 'Work:Rest ratio', value: v.workSec+':'+restSec },
       { label: 'Total work', value: totalWork+' s ('+(totalWork/60).toFixed(1)+' min)' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Plan EMOM (Every Minute On the Minute) workouts. Complete prescribed work in <60s, rest the remainder.', formula: 'Rest = 60s - work time; Work:Rest ratio = work:(60-work)', interpretation: 'EMOM workouts build work capacity and pacing discipline. Adjust work duration to maintain quality across all rounds.'
 }

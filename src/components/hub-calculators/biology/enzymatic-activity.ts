@@ -30,7 +30,12 @@ const calcDef: CalcDef = {
         { label: 'Activity', value: `${activity.toExponential(4)} U/mL` },
         { label: 'One unit (U)', value: '1 µmol product formed per minute' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Enzymatic activity is measured as the rate of product formation per unit of enzyme. One unit (U) is defined as the amount of enzyme that converts 1 µmol of substrate per minute.',
   formula: 'Activity (U/mL) = (?OD × total volume) / (e × path length × time × sample volume) × 106',

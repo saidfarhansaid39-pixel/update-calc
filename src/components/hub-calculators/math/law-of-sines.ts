@@ -10,11 +10,21 @@ const calcDef: CalcDef = {
       const a = n(v.a), A = n(v.b), B = n(v.c)
       const Arad = A * (Math.PI / 180), Brad = B * (Math.PI / 180)
       const b = (a / Math.sin(Arad)) * Math.sin(Brad)
-      return { result: b.toFixed(4), label: 'Side b', steps: [step('Law of Sines:', 'a / sin(A) = b / sin(B)'), step('Substitute:', a + ' / sin(' + A + 'deg) = b / sin(' + B + 'deg)'), step('Solve:', 'b = ' + a + ' x sin(' + B + 'deg) / sin(' + A + 'deg) = ' + b.toFixed(4))] }
+      return { result: b.toFixed(4), label: 'Side b', steps: [step('Law of Sines:', 'a / sin(A) = b / sin(B)'), step('Substitute:', a + ' / sin(' + A + 'deg) = b / sin(' + B + 'deg)'), step('Solve:', 'b = ' + a + ' x sin(' + B + 'deg) / sin(' + A + 'deg) = ' + b.toFixed(4))] ,
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ]}
     },
     formula: 'a / sin(A) = b / sin(B) = c / sin(C)',
     description: 'Find an unknown side using the law of sines.',
-    interpretation: 'The ratio of a side length to the sine of its opposite angle is constant.'
+    interpretation: 'The ratio of a side length to the sine of its opposite angle is constant.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

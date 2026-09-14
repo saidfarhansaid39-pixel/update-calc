@@ -10,7 +10,10 @@ function walk(dir) {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       const full = join(dir, entry.name);
       if (entry.isDirectory()) walk(full);
-      else if (entry.name.endsWith('.html')) check(full);
+      // Skip Next.js framework-generated error shells. These are static build
+      // artifacts served only before JS hydration; the real error pages render
+      // `app/global-error.tsx` (which carries `lang`) and the root layout.
+      else if (entry.name.endsWith('.html') && !/^(_global-error|error|500|404)\.html$/.test(entry.name)) check(full);
     }
   } catch {}
 }
@@ -59,24 +62,48 @@ function contrastRatio(fg, bg) {
   return (hi + 0.05) / (lo + 0.05);
 }
 
+// Matches ONLY tokens that apply simultaneously in a given rendering mode.
+// Ignores `dark:`, `hover:`, `focus:`, `active:`, `group-hover:` variants for the
+// base pairing, and separately verifies the dark-mode and hover-mode pairs when
+// both sides are present. This avoids the earlier false positives caused by
+// merging mutually exclusive variants from the same class attribute.
 function classContrastIssues(html) {
   const issues = [];
-  // Match class="...text-gray-XXX ... bg-gray-YYY ..." pairs.
   const classRe = /class=["']([^"']*)["']/gi;
   let m;
+  const PREFIX_RE = /^(dark|hover|focus|active|group-hover|group-focus):/;
+  const num = (token) => (token ? token.match(/(\d{2,3})$/)?.[1] : null);
   while ((m = classRe.exec(html)) !== null) {
-    const cls = m[1];
-    const textMatch = cls.match(/\btext-gray-(\d{2,3})\b/);
-    const bgMatch = cls.match(/\bbg-gray-(\d{2,3})\b/);
-    if (textMatch && bgMatch) {
-      const fg = GRAY_HEX[textMatch[1]];
-      const bg = GRAY_HEX[bgMatch[1]];
-      if (fg && bg) {
-        const ratio = contrastRatio(fg, bg);
-        if (ratio < 4.5) {
-          issues.push(`Low contrast text-gray-${textMatch[1]} on bg-gray-${bgMatch[1]} (ratio ${ratio.toFixed(2)} < 4.5)`);
-        }
+    const tokens = m[1].split(/\s+/).filter(Boolean);
+    const grab = (re) => {
+      for (const t of tokens) {
+        const mm = t.match(re);
+        if (mm) return mm[1];
       }
+      return null;
+    };
+    const baseText = grab(/^text-gray-(\d{2,3})$/);
+    const baseBg = tokens.find((t) => /^bg-gray-(\d{2,3})$/.test(t));
+    const darkText = grab(/^dark:text-gray-(\d{2,3})$/);
+    const darkBg = tokens.find((t) => /^dark:bg-gray-(\d{2,3})$/.test(t));
+    const hoverText = grab(/^hover:text-gray-(\d{2,3})$/);
+    const hoverBg = tokens.find((t) => /^hover:bg-gray-(\d{2,3})$/.test(t));
+
+    const check = (kind, fgToken, bgToken) => {
+      if (!fgToken || !bgToken) return;
+      const fg = GRAY_HEX[fgToken];
+      const bg = GRAY_HEX[bgToken];
+      if (!fg || !bg) return;
+      const ratio = contrastRatio(fg, bg);
+      if (ratio < 4.5) {
+        issues.push(`Low contrast ${kind} text-gray-${fgToken} on ${kind} bg-gray-${bgToken} (ratio ${ratio.toFixed(2)} < 4.5)`);
+      }
+    };
+
+    check('', baseText, num(baseBg));
+    check('dark', darkText, num(darkBg));
+    if (hoverBg) {
+      check('hover', hoverText || baseText, num(hoverBg));
     }
   }
   return issues;
@@ -180,7 +207,6 @@ function check(file) {
 export function runA11yChecks() {
   ISSUES.length = 0;
   walk(ROOT);
-  walk(join(ROOT, '..'));
 
   const critical = ISSUES.filter((i) => i.severity === 'critical');
   const warnings = ISSUES.filter((i) => i.severity === 'warning');

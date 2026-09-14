@@ -28,7 +28,12 @@ const calcDef: CalcDef = {
         { label: '% Input = 2^(-?Ct + adj) × 100%', value: `${pctInput.toFixed(3)}%` },
         { label: 'Fold enrichment vs IgG/neg control', value: foldEnrichment > 2 ? `${foldEnrichment.toFixed(1)}x enrichment` : 'Not significantly enriched' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Chromatin Immunoprecipitation (ChIP) followed by qPCR quantifies protein-DNA interactions. Percent input method normalizes IP signal to the total chromatin input, controlling for chromatin amount and amplification efficiency.',
   formula: '% Input = 2^(-(IP Ct - Input Ct) + log2(dilution factor)) × 100% | Fold enrichment = %Input(IP) / %Input(IgG or negative control)',

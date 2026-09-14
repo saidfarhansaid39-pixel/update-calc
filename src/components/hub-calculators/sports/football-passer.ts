@@ -33,7 +33,12 @@ const calcDef: CalcDef = {
         { label: 'Passer Rating', value: `${rating.toFixed(1)}` },
         { label: 'Grade', value: rating > 100 ? 'Excellent' : rating > 85 ? 'Good' : rating > 70 ? 'Average' : rating > 55 ? 'Below Average' : 'Poor' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate the NFL Passer Rating formula, which combines completion percentage, yards per attempt, touchdown percentage, and interception percentage. A perfect rating is 158.3.'
 }

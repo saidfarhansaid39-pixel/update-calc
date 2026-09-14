@@ -10,11 +10,23 @@ const calcDef: CalcDef = {
       const r = n(v.a), theta = n(v.b)
       const thetaRad = theta * (Math.PI / 180)
       const area = 0.5 * r * r * (thetaRad - Math.sin(thetaRad))
-      return { result: area, label: 'Segment Area', unit: 'units2', steps: [step('Angle in rad', thetaRad.toFixed(6) + ' rad'), step('Area = 1/2r2(theta - sin theta)', area.toFixed(6))] }
+      return { result: area, label: 'Segment Area', unit: 'units2', steps: [step('Angle in rad', thetaRad.toFixed(6) + ' rad'), step('Area = 1/2r2(theta - sin theta)', area.toFixed(6))] ,
+    extras: [
+      { label: "Real-World Application", value: "Used in architecture, engineering, and design for spatial calculations." },
+      { label: "Formula Derivation", value: "Derived from geometric definitions and spatial relationships." },
+      { label: "Unit Check", value: "All lengths must be in the same unit for accurate results." },
+      { label: "Precision Note", value: "Uses standard geometric constants for calculation." },
+      { label: "Related Shapes", value: "Explore volume and area calculators for other 2D and 3D shapes." }
+    ]}
     },
     formula: 'A = 1/2r2(theta - sin theta) (theta in radians)',
     description: 'Calculate the area of a circular segment.',
-    interpretation: 'The area between a chord and its corresponding arc.'
+    interpretation: 'The area between a chord and its corresponding arc.',
+    presets: [
+      { label: 'Small', values: { a: '3', b: '4' } },
+      { label: 'Medium', values: { a: '6', b: '8' } },
+      { label: 'Large', values: { a: '10', b: '12' } }
+    ]
 }
 
 export default calcDef

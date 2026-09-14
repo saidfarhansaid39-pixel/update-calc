@@ -4,8 +4,9 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, ChevronUp, TrendingUp, Info } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
-interface SubCalcResult {
+export interface SubCalcResult {
   label: string
   value: string
   description?: string
@@ -21,6 +22,7 @@ interface SubCalcPanelProps {
 
 export function SubCalcPanel({ title, icon: Icon, results, defaultOpen = false }: SubCalcPanelProps) {
   const [open, setOpen] = useState(defaultOpen)
+  const { currencySymbol } = useCurrency()
 
   if (results.length === 0) return null
 
@@ -59,7 +61,7 @@ export function SubCalcPanel({ title, icon: Icon, results, defaultOpen = false }
                       {r.badge === 'positive' && <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">Good</span>}
                       {r.badge === 'negative' && <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300">Attention</span>}
                     </div>
-                    <p className="font-semibold text-gray-900 dark:text-white mt-0.5">{r.value}</p>
+                    <p className="font-semibold text-gray-900 dark:text-white mt-0.5">{r.value.replace(/\$/g, currencySymbol)}</p>
                     {r.description && (
                       <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 flex items-start gap-1">
                         <Info className="w-3 h-3 mt-0.5 shrink-0" />

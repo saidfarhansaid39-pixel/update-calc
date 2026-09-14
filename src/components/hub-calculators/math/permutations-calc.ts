@@ -8,13 +8,22 @@ const calcDef: CalcDef = {
     defaults: { a: '10', b: '3' },
     compute: (v) => {
       const np = Math.round(n(v.a)), r = Math.round(n(v.b))
-      if (r > np) return { result: 0, label: 'nPr (r > n)', steps: [step('Error:', 'Cannot choose ' + r + ' from ' + np + ' (r > n)')] }
+      if (r > np) return { result: 0, label: 'nPr (r > n)', steps: [step('Error:', 'Cannot choose ' + r + ' from ' + np + ' (r > n)')] ,
+    extras: [
+      { label: "Counting Principle", value: "Understand whether order matters (permutations) or not (combinations)." },
+      { label: "Large Number Warning", value: "Factorials and combinatorial values grow extremely fast." },
+      { label: "Real-World Use", value: "Used in probability, statistics, game theory, and algorithm analysis." },
+      { label: "Formula Reference", value: "nCr = n! / (r!(n-r)!) for combinations; nPr = n! / (n-r)! for permutations." }
+    ]}
       const result = fact(np) / fact(np - r)
       return { result, label: 'P(' + np + ', ' + r + ')', steps: [step('Formula:', 'nPr = ' + np + '! / (' + np + ' - ' + r + ')!'), step('Result:', '' + result)] }
     },
     formula: 'nPr = n! / (n-r)!',
     description: 'Calculate the number of permutations (n permute r).',
-    interpretation: 'The number of ways to choose and arrange r items from n items where order matters.'
+    interpretation: 'The number of ways to choose and arrange r items from n items where order matters.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

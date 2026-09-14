@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'Pass accuracy', value: `${pct.toFixed(1)}%` },
         { label: 'Benchmark', value: pct > 85 ? 'Excellent (elite midfielder)' : pct > 78 ? 'Very Good' : pct > 70 ? 'Average' : 'Below average' },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate soccer passing accuracy percentage. Top-tier midfielders typically maintain 85-90% pass completion rates in competitive matches.'
 }

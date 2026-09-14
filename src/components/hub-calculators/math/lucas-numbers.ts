@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const nVal = Math.round(n(v.n)); let a = 2, b = 1
       for (let i = 1; i < nVal; i++) { const t = a; a = b; b = t + b }
-      return { result: nVal === 0 ? 2 : a, label: 'L?', steps: [step('n', '' + nVal), step('L?', '' + (nVal === 0 ? 2 : a))] }
+      return { result: nVal === 0 ? 2 : a, label: 'L?', steps: [step('n', '' + nVal), step('L?', '' + (nVal === 0 ? 2 : a))] ,
+    extras: [
+      { label: "Mathematical Significance", value: "Fundamental concept in number theory and discrete mathematics." },
+      { label: "Computational Note", value: "Large inputs may require optimized algorithms for performance." },
+      { label: "Historical Context", value: "Studied by mathematicians across centuries for its unique properties." },
+      { label: "Related Sequences", value: "Related to other integer sequences and special numbers." },
+      { label: "Pattern Recognition", value: "Observe recurring patterns and relationships between values." }
+    ]}
     },
     formula: 'L0 = 2, L1 = 1, L? = L??1 + L??2.',
     description: 'Calculate the nth Lucas number.',
-    interpretation: 'Lucas numbers follow the same recurrence as Fibonacci with different starting values.'
+    interpretation: 'Lucas numbers follow the same recurrence as Fibonacci with different starting values.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

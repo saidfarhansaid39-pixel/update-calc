@@ -13,6 +13,11 @@ const calcDef: CalcDef = {
       { label: 'Days until planned use', value: `${v.days} days` },
       { label: 'Max safe storage', value: `${maxDays} days` },
       { label: 'Result', value: safe ? `${v.days} days — within safe limit` : `${maxDays} days — exceeds safe limit!` },
+    ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
     ]}},
     description: 'Check if your food will stay fresh based on storage method. General guidelines: fridge 7 days, freezer 90 days, pantry 30 days, counter 3 days.',
     example: { label: 'Cooked chicken, fridge, 5 days', value: 'Safe (within 7-day limit)' }

@@ -10,7 +10,12 @@ const calcDef: CalcDef = {
     { name:'odynophagia', label:'Painful Swallowing (0-4)', type:'number', min:0, max:4, step:'1' },
     { name:'coughFreq', label:'Chronic Cough / Hoarseness (0-4)', type:'number', min:0, max:4, step:'1' }
   ],
-  compute: (v) => { const s=parseInt(v.heartburnFreq||'0')+parseInt(v.regurgitationFreq||'0')+parseInt(v.chestPainFreq||'0')+parseInt(v.dysphagiaFreq||'0')+parseInt(v.odynophagia||'0')+parseInt(v.coughFreq||'0'); let sev='Low probability'; if(s>=15) sev='High probability GERD'; else if(s>=9) sev='Moderate probability GERD'; return { result:s, label:'GERD Symptom Score', unit:'/24', steps:[{ label:'Score', value:s+'/24' },{ label:'Assessment', value:sev }] } },
+  compute: (v) => { const s=parseInt(v.heartburnFreq||'0')+parseInt(v.regurgitationFreq||'0')+parseInt(v.chestPainFreq||'0')+parseInt(v.dysphagiaFreq||'0')+parseInt(v.odynophagia||'0')+parseInt(v.coughFreq||'0'); let sev='Low probability'; if(s>=15) sev='High probability GERD'; else if(s>=9) sev='Moderate probability GERD'; return { result:s, label:'GERD Symptom Score', unit:'/24', steps:[{ label:'Score', value:s+'/24' },{ label:'Assessment', value:sev }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'GERD symptom assessment based on frequency and severity of reflux-related symptoms.',
   formula: 'Sum of 6 symptom domains scored 0-4. Range 0-24.',
   interpretation: '0-8 Low probability GERD, 9-14 Moderate probability, 15-24 High probability GERD.'

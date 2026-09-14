@@ -12,7 +12,10 @@ import type { UnitSystem } from '@/components/premium/PremiumCalculatorShell'
 import { ModeFieldGroup } from '@/components/premium/ModeFieldGroup'
 import { getFinFormula, finSlugOverrides } from '@/lib/seo/formula-generator'
 import { DynamicLoanDonutChart as LoanDonutChart, DynamicInvestmentGrowthChart as InvestmentGrowthChart, DynamicAmortizationChart as AmortizationChart, DynamicComparisonBarChart as ComparisonBarChart } from '@/components/premium/DynamicCharts'
+import { AmortizationSchedule } from '@/components/calc-panel/AmortizationSchedule'
+import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation'
 import { loanSchema, investmentSchema, mortgageSchema, retirementSchema } from '@/lib/forms/schemas'
+import { FieldsByMode } from '@/lib/calc-field-helper'
 
 type CalcType =
   | 'loan' | 'investment' | 'mortgage' | 'retirement' | 'salary' | 'tax' | 'budget' | 'debt'
@@ -587,6 +590,158 @@ function getCalcType(slug: string): CalcType {
   return 'loan'
 }
 
+const alreadyUpgradedTypes = new Set(['mortgage', 'investment', 'retirement', 'salary', 'debt', 'tax', 'budget', 'savingsGoal', 'loan', 'amortization'])
+
+const finInterpretations: Record<string, string> = {
+  simpleInterest: 'Simple interest: I = P × r × t. Interest is calculated only on the principal, not on accumulated interest.',
+  apyCalc: 'APY accounts for compounding. The Rule of 72 estimates doubling time. Higher compounding frequency = higher APY.',
+  aprCalc: 'APR is the annual rate including fees. It is typically higher than the nominal interest rate.',
+  futureValue: 'Future value shows how much an investment grows with compound interest over time with regular contributions.',
+  presentValue: 'Present value discounts future money to today\'s value. A dollar today is worth more than a dollar tomorrow.',
+  roi: 'ROI measures gain relative to cost. CAGR gives the annualized return rate over the investment period.',
+  npv: 'NPV = sum of discounted cash flows - initial investment. NPV ≥ 0 means the investment meets the required return.',
+  irr: 'IRR is the discount rate making NPV = 0. Higher IRR indicates a more profitable investment opportunity.',
+  paybackPeriod: 'Payback period = initial investment / annual cash flow. Shorter payback is generally preferred.',
+  breakEven: 'Break-even point = fixed costs / (price - variable cost per unit). This is the unit sales needed to cover costs.',
+  bondYield: 'Yield to maturity is the total return anticipated on a bond if held until it matures.',
+  bondPrice: 'Bond prices move inversely to interest rates. When rates rise, bond prices fall.',
+  couponPayment: 'Coupon payment = face value × coupon rate / payment frequency. Bonds typically pay semi-annually.',
+  taxEquivalentYield: 'Tax-equivalent yield = municipal yield / (1 - tax rate). Compares tax-free vs taxable bond yields.',
+  dividendYield: 'Dividend yield = annual dividend / price per share × 100%. It measures income return on a stock investment.',
+  dividendPayout: 'Payout ratio = dividends / net income. It shows the percentage of earnings paid to shareholders.',
+  eps: 'EPS = net income / shares outstanding. Higher EPS generally indicates more profitable companies.',
+  pe: 'P/E ratio = price / EPS. A high P/E may indicate growth expectations; a low P/E may indicate undervaluation.',
+  pb: 'P/B ratio = price / book value per share. Values below 1 may indicate the stock is undervalued.',
+  ps: 'P/S ratio = price / sales per share. Useful for valuing companies that are not yet profitable.',
+  peg: 'PEG = P/E / earnings growth rate. A PEG near 1 is considered fairly valued.',
+  dividendGrowthRate: 'CAGR of dividends over time shows how fast a company has been growing its dividend payments.',
+  payoutRatio: 'Payout ratio = dividends per share / EPS. A sustainable payout ratio is typically 30-60% for most companies.',
+  retentionRatio: 'Retention ratio = 1 - payout ratio. It shows the percentage of earnings reinvested in the business.',
+  stockAverageCost: 'Average cost basis = total cost / total shares. Used to calculate capital gains for tax purposes.',
+  dollarCostAveraging: 'DCA involves investing a fixed amount regularly. It reduces the impact of market volatility over time.',
+  costBasis: 'Cost basis includes purchase price plus commissions. It determines capital gains when selling.',
+  portfolioReturn: 'Portfolio return = weighted average of individual asset returns. Diversification reduces risk.',
+  sharpeRatio: 'Sharpe ratio = (portfolio return - risk-free rate) / standard deviation. Higher values indicate better risk-adjusted returns.',
+  sortinoRatio: 'Sortino ratio is similar to Sharpe but only considers downside deviation. Higher is better.',
+  alpha: 'Alpha measures excess return relative to the market. Positive alpha indicates outperformance.',
+  beta: 'Beta measures volatility relative to the market. β > 1 means more volatile than market; β < 1 means less volatile.',
+  rSquared: 'R² measures how much of a portfolio\'s return is explained by market returns. Ranges from 0 to 1.',
+  valueAtRisk: 'VaR estimates the maximum potential loss over a given period at a specified confidence level.',
+  dti: 'DTI = monthly debt payments / monthly income. Lenders prefer DTI below 36% for mortgage approval.',
+  ltv: 'LTV = loan amount / property value. LTV above 80% typically requires private mortgage insurance (PMI).',
+  dscr: 'DSCR = net operating income / debt service. Lenders typically require DSCR > 1.25 for commercial loans.',
+  interestCoverage: 'Interest coverage = EBIT / interest expense. A ratio below 1.5 may indicate financial distress.',
+  fixedChargeCoverage: 'FCCR measures a company\'s ability to cover fixed charges including leases and interest.',
+  tie: 'TIE = EBIT / interest expense. Higher values indicate greater ability to meet interest obligations.',
+  workingCapital: 'Working capital = current assets - current liabilities. Positive working capital indicates short-term financial health.',
+  currentRatio: 'Current ratio = current assets / current liabilities. A ratio above 1 indicates ability to pay short-term obligations.',
+  quickRatio: 'Quick ratio = (current assets - inventory) / current liabilities. A stricter measure of liquidity than current ratio.',
+  cashRatio: 'Cash ratio = cash / current liabilities. The most conservative liquidity measure.',
+  inventoryTurnover: 'Inventory turnover = COGS / average inventory. Higher turnover indicates efficient inventory management.',
+  assetTurnover: 'Asset turnover = revenue / average total assets. Measures how efficiently a company uses its assets.',
+  roa: 'ROA = net income / average total assets. Measures how efficiently assets generate profit.',
+  roe: 'ROE = net income / average equity. A key measure of profitability for shareholders.',
+  debtToAsset: 'Debt-to-assets = total debt / total assets. Indicates what percentage of assets is financed by debt.',
+  debtToEquity: 'Debt-to-equity = total debt / total equity. Higher ratios indicate more leverage and financial risk.',
+  rentVsBuy: 'Rent vs buy compares total costs over time. Buying builds equity but has higher upfront costs and maintenance.',
+  houseAffordability: 'The 28/36 rule: housing costs should not exceed 28% of gross income; total debt should not exceed 36%.',
+  closingCosts: 'Closing costs typically range from 2-5% of the home price. They include loan origination, appraisal, and title fees.',
+  rentalIncome: 'Rental income - expenses = cash flow. Positive cash flow indicates a profitable rental property.',
+  capRate: 'Cap rate = NOI / property value. A higher cap rate indicates higher potential return but also higher risk.',
+  cashOnCash: 'Cash-on-cash return = annual cash flow / total cash invested. Measures return on the actual cash invested.',
+  noiCalc: 'NOI = rental income - vacancy - operating expenses. Used to calculate cap rate and property value.',
+  roiRental: 'ROI for rental properties = (annual rental income - expenses) / total investment. Considers both rental income and appreciation.',
+  incomeTax: 'Income tax is calculated on taxable income after deductions. Marginal rates increase with income brackets.',
+  taxBracket: 'The US has progressive tax brackets. Only income within each bracket is taxed at that bracket rate.',
+  marginalTaxRate: 'The marginal tax rate applies to the next dollar earned. This helps evaluate additional income decisions.',
+  effectiveTaxRate: 'Effective tax rate = total tax / total income. This is your average tax rate across all brackets.',
+  capitalGainsTax: 'Capital gains are taxed at preferential rates: 0%, 15%, or 20% depending on income and holding period.',
+  dividendTax: 'Qualified dividends are taxed at capital gains rates. Ordinary dividends are taxed as regular income.',
+  selfEmploymentTax: 'Self-employed individuals pay both employer and employee portions of Social Security and Medicare (15.3%).',
+  salesTax: 'Sales tax rates vary by state and locality. Some items like groceries may be exempt.',
+  vat: 'VAT (Value Added Tax) is a consumption tax applied at each stage of production. Common outside the US.',
+  estateTax: 'The federal estate tax exemption for 2025 is ~$13.99 million per individual. Rates range from 18-40%.',
+  taxRefundEstimator: 'A tax refund occurs when withholding exceeds actual tax liability. Adjusting withholding avoids large refunds.',
+  itemizedVsStandardDeduction: 'Itemize deductions if they exceed the standard deduction ($14,600 single / $29,200 married in 2024).',
+  amt: 'The Alternative Minimum Tax ensures high-income taxpayers pay a minimum amount. It disallows certain deductions.',
+  cryptoProfit: 'Cryptocurrency gains are taxable as property. Short-term gains are taxed as ordinary income.',
+  cryptoMining: 'Mining income is taxable at fair market value when received. Mining expenses (electricity, equipment) are deductible.',
+  cryptoStaking: 'Staking rewards are taxable as income when received. Price appreciation is capital gains when sold.',
+  impermanentLoss: 'Impermanent loss occurs when the price ratio of pooled assets changes. It can reduce LP returns.',
+  cryptoTax: 'Crypto transactions are taxable events. Wash sale rules do not apply to crypto (as of 2024).',
+  lifeInsurance: 'Life insurance needs: 10-12× annual income + debts + future expenses (college, funeral).',
+  termVsWholeLife: 'Term life is cheaper and provides pure protection. Whole life is more expensive but builds cash value.',
+  disability: 'Disability insurance replaces 50-70% of income. The elimination period is the waiting time before benefits start.',
+  creditUtilization: 'Credit utilization = total balance / total limit × 100%. Keep below 30% for good credit scores.',
+  creditScore: 'FICO scores: payment history (35%), utilization (30%), length (15%), mix (10%), inquiries (10%).',
+  balanceTransfer: 'Balance transfers can save interest during the promo period. The transfer fee (3-5%) adds to the balance.',
+  emergencyFund: 'Financial experts recommend 3-6 months of essential expenses in an easily accessible emergency fund.',
+  sinkingFund: 'A sinking fund saves for a known future expense. Calculate monthly savings needed to reach the goal.',
+  collegeSavings: '529 plans offer tax-free growth for qualified education expenses. State tax deductions may apply.',
+  netWorth: 'Net worth = assets - liabilities. Tracking net worth over time is a key measure of financial progress.',
+  debtSnowball: 'The debt snowball method pays smallest balances first for psychological motivation and momentum.',
+  debtAvalanche: 'The debt avalanche method pays highest-interest debt first to minimize total interest paid.',
+  debtPayoffPlan: 'Accelerating debt payoff saves interest. Even small extra payments significantly reduce the payoff timeline.',
+  debtConsolidationSavings: 'Debt consolidation at a lower rate can reduce monthly payments and total interest over the loan term.',
+  pension: 'A 401(k) or pension plan grows tax-deferred. Employer matching is essentially free money — contribute enough to get the full match.',
+  socialSecurity: 'Social Security benefits are based on your 35 highest-earning years. Delaying benefits increases monthly payments.',
+  annuity: 'An annuity provides guaranteed income. Fixed annuities offer predictable payments; variable annuities offer growth potential.',
+  safeWithdrawalRate: 'The 4% rule suggests withdrawing 4% of retirement savings annually, adjusted for inflation, for 30 years.',
+  rmd: 'RMDs begin at age 73 (SECURE 2.0). Failure to take RMDs results in a 25% penalty on the amount not withdrawn.',
+  businessValuation: 'Business valuation methods: asset-based, market multiple, and income (DCF) approaches.',
+  startupCosts: 'Startup costs include equipment, licenses, legal fees, marketing, and initial inventory. Plan for 6+ months of runway.',
+  runway: 'Runway = cash / burn rate. Startups typically need 12-18 months of runway to reach profitability.',
+  burnRate: 'Burn rate = (start cash - end cash) / months. A lower burn rate extends runway and reduces dilution.',
+  cac: 'CAC = total sales & marketing cost / new customers acquired. Lower CAC indicates more efficient customer acquisition.',
+  ltvCalc: 'LTV = average revenue per customer / churn rate. Higher LTV indicates more valuable customer relationships.',
+  ltvCacRatio: 'LTV:CAC ratio should be at least 3:1 for a healthy business. Below 1:1 means you lose money per customer.',
+  churnRate: 'Churn rate = lost customers / starting customers. Reducing churn by 5% can increase profits by 25-95%.',
+  mrr: 'MRR = subscribers × average revenue per subscriber. Monthly recurring revenue is a key SaaS metric.',
+  arr: 'ARR = MRR × 12. Annual recurring revenue measures predictable subscription revenue.',
+  unitEconomics: 'Unit economics: contribution margin = price - variable cost. Fixed costs are spread across units sold.',
+  contributionMargin: 'Contribution margin = revenue - variable costs. It shows how much revenue contributes to fixed costs and profit.',
+  operatingLeverage: 'Operating leverage = contribution margin / operating income. Higher leverage means more profit sensitivity to sales.',
+  financialLeverage: 'Financial leverage = EBIT / EBT. Higher leverage amplifies both gains and losses from debt financing.',
+  grossProfit: 'Gross profit = revenue - COGS. Gross margin = gross profit / revenue. Higher margins indicate pricing power.',
+  netProfit: 'Net profit = revenue - all expenses. Net margin = net profit / revenue. The bottom line of business performance.',
+  profitMargin: 'Profit margin = profit / revenue × 100%. Profit margins vary significantly by industry.',
+  costVolumeProfit: 'CVP analysis shows how changes in costs and volume affect profit. Break-even is where revenue = total costs.',
+  markupCalc: 'Markup = (price - cost) / cost × 100%. Margin = (price - cost) / price × 100%. They are different metrics.',
+  carAffordability: 'Car affordability: total transportation costs should not exceed 15-20% of monthly take-home pay.',
+  childCare: 'Child care costs average $8,000-$17,000 per year per child in the US. Tax credits can offset some costs.',
+  petExpense: 'Pet ownership costs average $1,500-$3,000 per year for dogs and $800-$1,500 for cats.',
+  fiftyThirtyTwenty: 'The 50/30/20 rule: 50% of income for needs, 30% for wants, 20% for savings and debt repayment.',
+  zeroBasedBudget: 'Zero-based budgeting: income - expenses = 0. Every dollar is assigned a purpose for maximum awareness.',
+  envelopeSystem: 'The envelope system allocates cash to spending categories. When the envelope is empty, spending stops.',
+  payYourselfFirst: 'Pay yourself first: automatically save a percentage of income before paying bills. Automate savings.',
+  weddingBudget: 'The average US wedding costs $30,000. Set priorities and allocate the budget accordingly.',
+  vacationBudget: 'The average vacation costs $1,500-$4,000 per person. Book early and travel off-peak for savings.',
+  holidayBudget: 'Holiday spending averages $800-$1,000 per person. Set a budget and stick to it to avoid debt.',
+  groceryBudget: 'Average monthly grocery cost: $250-$400 per person. Meal planning and bulk buying reduce costs.',
+  monthlyBudget: 'A monthly budget tracks income and expenses. Review and adjust regularly for financial success.',
+  annualBudget: 'An annual budget provides a comprehensive view of yearly finances. Include irregular expenses.',
+  homeInsurance: 'Homeowners insurance covers dwelling, personal property, and liability. Shop around for best rates.',
+  autoInsurance: 'Auto insurance rates depend on vehicle, driving history, location, and credit. Higher deductibles lower premiums.',
+  healthInsuranceComparison: 'Compare plans by total cost: premiums + deductibles + coinsurance. Lower premiums often mean higher deductibles.',
+  deductibleVsPremium: 'A high-deductible health plan (HDHP) has lower premiums. An HSA can offset the higher deductible.',
+  outOfPocketMaximum: 'The out-of-pocket maximum is the most you pay in a year. After reaching it, insurance covers 100%.',
+  propertyTaxDeduction: 'State and local taxes (SALT) are deductible up to $10,000 ($5,000 married filing separately).',
+  giftTax: 'The annual gift tax exclusion is $18,000 per recipient (2024). Gifts above this reduce the lifetime exemption.',
+  inheritanceTax: 'Inheritance tax is paid by the beneficiary. Only a few states impose it. The federal estate tax is different.',
+  sideHustleTax: 'Side hustle income is taxable. Track all expenses to maximize deductions against the income.',
+  gigEconomyTax: 'Gig workers are independent contractors. Pay estimated quarterly taxes to avoid penalties.',
+  interestIncomeTax: 'Interest income is taxed as ordinary income at your marginal tax rate.',
+  rentalIncomeTax: 'Rental income is taxable. Expenses including mortgage interest, repairs, and depreciation are deductible.',
+  loanComparison: 'Compare loan options by APR and total cost. A lower APR saves money over the loan term.',
+  biweeklyPayment: 'Biweekly payments make 26 half-payments per year (= 13 full payments). This pays off loans faster and saves interest.',
+}
+
+function getFinInterpretation(type: string): React.ReactNode {
+  const text = finInterpretations[type]
+  if (!text) return null
+  return <div className="border-t border-gray-100 dark:border-gray-800 pt-3 mt-3 text-xs text-gray-500 italic">{text}</div>
+}
+
 const defaultSchema = z.object({ val: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Must be a number') })
 
 const salarySchema = z.object({
@@ -759,6 +914,10 @@ function PaymentResults({ p, r, t }: { p: number; r: number; t: number }) {
   }
   const totalPayment = monthlyPayment * numPayments
   const totalInterest = totalPayment - p
+  const payoffDate = new Date()
+  payoffDate.setMonth(payoffDate.getMonth() + numPayments)
+  const payoffDateStr = payoffDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+  const interestPct = p > 0 ? (totalInterest / p) * 100 : 0
   const amortData = Array.from({ length: Math.min(t, 30) }, (_, i) => {
     const year = i + 1
     const remainingMonths = numPayments - year * 12
@@ -770,28 +929,80 @@ function PaymentResults({ p, r, t }: { p: number; r: number; t: number }) {
     }
     return { year, balance: Math.max(0, balance) }
   })
+
   return (
     <div className="space-y-4">
-      <div className="text-center space-y-4">
-        <div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Monthly Payment</p>
-          <p className="text-3xl font-bold text-[#1a3a8a]">${monthlyPayment.toFixed(2)}</p>
+      {/* Primary result */}
+      <div className="text-center">
+        <p className="text-sm text-gray-500 dark:text-gray-400">Monthly Payment</p>
+        <p className="text-3xl font-bold text-[#1a3a8a]">${monthlyPayment.toFixed(2)}</p>
+      </div>
+
+      {/* Monthly + Total breakdown table */}
+      <div className="overflow-x-auto">
+        <table className="w-full text-xs border-collapse">
+          <thead>
+            <tr className="bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+              <th className="p-2 text-left font-medium text-gray-500"></th>
+              <th className="p-2 text-right font-medium text-gray-500">Monthly</th>
+              <th className="p-2 text-right font-medium text-gray-500">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-gray-100 dark:border-gray-800">
+              <td className="p-2 text-left font-medium text-gray-700 dark:text-gray-300">Principal &amp; Interest</td>
+              <td className="p-2 text-right text-gray-700 dark:text-gray-300">${monthlyPayment.toFixed(2)}</td>
+              <td className="p-2 text-right text-gray-700 dark:text-gray-300">${totalPayment.toFixed(2)}</td>
+            </tr>
+            <tr className="bg-gray-50 dark:bg-gray-800/50 font-semibold border-t-2 border-gray-300 dark:border-gray-600">
+              <td className="p-2 text-left text-gray-800 dark:text-gray-200">Total Out-of-Pocket</td>
+              <td className="p-2 text-right text-gray-800 dark:text-gray-200">${monthlyPayment.toFixed(2)}</td>
+              <td className="p-2 text-right text-gray-800 dark:text-gray-200">${totalPayment.toFixed(2)}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      {/* Summary cards */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+          <p className="text-xs text-gray-400">Loan Amount</p>
+          <p className="text-sm font-bold text-gray-900 dark:text-white">${p.toFixed(2)}</p>
         </div>
-        <div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Total Payment</p>
-          <p className="text-xl font-bold text-gray-900 dark:text-white">${totalPayment.toFixed(2)}</p>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+          <p className="text-xs text-gray-400">Total Interest</p>
+          <p className="text-sm font-bold text-[#d62828]">${totalInterest.toFixed(2)}</p>
         </div>
-        <div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Total Interest</p>
-          <p className="text-xl font-bold text-[#d62828]">${totalInterest.toFixed(2)}</p>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+          <p className="text-xs text-gray-400">Payoff Date</p>
+          <p className="text-sm font-bold text-gray-900 dark:text-white">{payoffDateStr}</p>
         </div>
-        <div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Interest / Principal</p>
-          <p className="text-sm text-gray-600 dark:text-gray-400">{p > 0 ? ((totalInterest / p) * 100).toFixed(1) : 0}% of loan amount</p>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+          <p className="text-xs text-gray-400">Interest / Principal</p>
+          <p className="text-sm font-bold text-amber-600">{interestPct.toFixed(1)}%</p>
         </div>
       </div>
-      <LoanDonutChart principal={p} totalInterest={totalInterest} />
-      <AmortizationChart data={amortData} />
+
+      {/* Interpretation */}
+      <ResultInterpretation
+        type="loan"
+        values={{ monthlyPayment, totalPayment, totalInterest, principal: p, rate: r, term: t, loanAmount: p }}
+      />
+
+      {/* Charts */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <LoanDonutChart principal={p} totalInterest={totalInterest} />
+        <AmortizationChart data={amortData} />
+      </div>
+
+      {/* Full amortization schedule */}
+      <AmortizationSchedule
+        principal={p}
+        rate={r}
+        term={t}
+        periodsPerYear={12}
+      />
+
       {t > 0 && (
         <div className="text-xs text-gray-400 text-center space-y-1">
           <p>Term: {t} years ({numPayments} payments) | Rate: {r}%</p>
@@ -875,6 +1086,10 @@ function InvestmentResults({ initial, monthly, rate, years, extraFields }: { ini
           </div>
         )}
       </div>
+      <ResultInterpretation
+        type="investment"
+        values={{ futureValue, totalContributions, totalInterest: Math.max(0, totalInterest), rate, years }}
+      />
       <InvestmentGrowthChart data={growthData} />
     </div>
   )
@@ -910,6 +1125,7 @@ function MortgageResults({ price, down, rate, term, propertyTax, homeInsurance, 
   const paymentPeriodLabel = isBiweekly ? 'bi-weekly' : '/mo'
   const totalPayment = periodicPayment * numPeriods
   const totalInterest = totalPayment - principal
+  const downPct = price > 0 ? (down / price) * 100 : 0
 
   // Extra payment impact
   let payoffPeriods = numPeriods
@@ -935,53 +1151,133 @@ function MortgageResults({ price, down, rate, term, propertyTax, homeInsurance, 
   const annualPaymentTotal = periodicPayment * periodsPerYear
   const monthlyEquivalent = annualPaymentTotal / 12
   const totalMonthly = monthlyEquivalent + monthlyPITI + extraPayment
+  const totalInterestPct = principal > 0 ? (totalInterest / principal) * 100 : 0
+  const payoffDate = new Date()
+  payoffDate.setMonth(payoffDate.getMonth() + Math.ceil(numPeriods / (periodsPerYear / 12)))
+  const payoffDateStr = payoffDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
 
   return (
     <div className="space-y-4">
-      <div className="text-center space-y-4">
-        <div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">{paymentLabel}</p>
-          <p className="text-3xl font-bold text-[#1a3a8a]">${periodicPayment.toFixed(2)}</p>
-          {isBiweekly && <p className="text-xs text-gray-400 mt-1">˜ ${monthlyEquivalent.toFixed(2)}/mo equivalent</p>}
-        </div>
-        <div className="grid grid-cols-2 gap-2 text-xs">
-          <div className="p-2 bg-white dark:bg-gray-800 rounded-lg">
-            <p className="text-gray-400">Principal + Interest</p>
-            <p className="text-sm font-bold text-gray-900 dark:text-white">${periodicPayment.toFixed(2)} {paymentPeriodLabel}</p>
-          </div>
-          <div className="p-2 bg-white dark:bg-gray-800 rounded-lg">
-            <p className="text-gray-400">Total Monthly (inc. taxes/fees)</p>
-            <p className="text-sm font-bold text-gray-900 dark:text-white">${totalMonthly.toFixed(2)}</p>
-          </div>
-          {propertyTax > 0 && <div className="p-2 bg-white dark:bg-gray-800 rounded-lg"><p className="text-gray-400">Property Tax</p><p className="text-sm font-bold text-gray-900 dark:text-white">${monthlyTax.toFixed(2)}/mo</p></div>}
-          {homeInsurance > 0 && <div className="p-2 bg-white dark:bg-gray-800 rounded-lg"><p className="text-gray-400">Insurance</p><p className="text-sm font-bold text-gray-900 dark:text-white">${monthlyInsurance.toFixed(2)}/mo</p></div>}
-          {pmiRate > 0 && <div className="p-2 bg-white dark:bg-gray-800 rounded-lg"><p className="text-gray-400">PMI</p><p className="text-sm font-bold text-amber-500">${monthlyPMI.toFixed(2)}/mo</p></div>}
-          {hoa > 0 && <div className="p-2 bg-white dark:bg-gray-800 rounded-lg"><p className="text-gray-400">HOA</p><p className="text-sm font-bold text-gray-900 dark:text-white">${hoa.toFixed(2)}/mo</p></div>}
-        </div>
-        <div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Loan Amount</p>
-          <p className="text-xl font-bold text-gray-900 dark:text-white">${principal.toFixed(2)}</p>
-        </div>
-        <div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Total Interest</p>
-          <p className="text-xl font-bold text-[#d62828]">${totalInterest.toFixed(2)}</p>
-        </div>
-        <div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Down Payment</p>
-          <p className="text-lg font-bold text-[#06b6d4]">${down.toFixed(2)} ({price > 0 ? ((down / price) * 100).toFixed(1) : 0}%)</p>
-        </div>
-        {periodsPerYear > 12 && (
-          <div className="p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
-            <p className="text-sm font-medium text-green-700 dark:text-green-300">{periodsPerYear} payments/year — saves ${(monthlyEquivalent * term * 12 - totalPayment).toFixed(0)} in interest vs monthly</p>
-          </div>
-        )}
-        {extraPerPeriod > 0 && (
-          <div className="p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
-            <p className="text-sm font-medium text-amber-700 dark:text-amber-300">Extra ${extraPerPeriod.toFixed(2)}/{isBiweekly ? '2wks' : 'mo'} saves {numPeriods > 0 ? Math.round(numPeriods - payoffPeriods) : 0} payments & ${(totalPayment - totalWithExtra).toFixed(0)} in interest</p>
-          </div>
-        )}
+      {/* Primary result */}
+      <div className="text-center">
+        <p className="text-sm text-gray-500 dark:text-gray-400">{paymentLabel}</p>
+        <p className="text-3xl font-bold text-[#1a3a8a]">${periodicPayment.toFixed(2)}</p>
+        {isBiweekly && <p className="text-xs text-gray-400 mt-1">˜ ${monthlyEquivalent.toFixed(2)}/mo equivalent</p>}
       </div>
+
+      {/* Monthly + Total breakdown table */}
+      <div className="overflow-x-auto">
+        <table className="w-full text-xs border-collapse">
+          <thead>
+            <tr className="bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+              <th className="p-2 text-left font-medium text-gray-500"></th>
+              <th className="p-2 text-right font-medium text-gray-500">{isBiweekly ? 'Bi-Weekly' : 'Monthly'}</th>
+              <th className="p-2 text-right font-medium text-gray-500">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-gray-100 dark:border-gray-800">
+              <td className="p-2 text-left font-medium text-gray-700 dark:text-gray-300">Principal &amp; Interest</td>
+              <td className="p-2 text-right text-gray-700 dark:text-gray-300">${periodicPayment.toFixed(2)}</td>
+              <td className="p-2 text-right text-gray-700 dark:text-gray-300">${totalPayment.toFixed(2)}</td>
+            </tr>
+            {propertyTax > 0 && (
+              <tr className="border-b border-gray-100 dark:border-gray-800">
+                <td className="p-2 text-left text-gray-600 dark:text-gray-400">Property Tax</td>
+                <td className="p-2 text-right text-gray-600 dark:text-gray-400">${monthlyTax.toFixed(2)}</td>
+                <td className="p-2 text-right text-gray-600 dark:text-gray-400">${(monthlyTax * numPeriods).toFixed(2)}</td>
+              </tr>
+            )}
+            {homeInsurance > 0 && (
+              <tr className="border-b border-gray-100 dark:border-gray-800">
+                <td className="p-2 text-left text-gray-600 dark:text-gray-400">Home Insurance</td>
+                <td className="p-2 text-right text-gray-600 dark:text-gray-400">${monthlyInsurance.toFixed(2)}</td>
+                <td className="p-2 text-right text-gray-600 dark:text-gray-400">${(monthlyInsurance * numPeriods).toFixed(2)}</td>
+              </tr>
+            )}
+            {pmiRate > 0 && (
+              <tr className="border-b border-gray-100 dark:border-gray-800">
+                <td className="p-2 text-left text-amber-600">PMI</td>
+                <td className="p-2 text-right text-amber-600">${monthlyPMI.toFixed(2)}</td>
+                <td className="p-2 text-right text-amber-600">${(monthlyPMI * numPeriods).toFixed(2)}</td>
+              </tr>
+            )}
+            {hoa > 0 && (
+              <tr className="border-b border-gray-100 dark:border-gray-800">
+                <td className="p-2 text-left text-gray-600 dark:text-gray-400">HOA</td>
+                <td className="p-2 text-right text-gray-600 dark:text-gray-400">${hoa.toFixed(2)}</td>
+                <td className="p-2 text-right text-gray-600 dark:text-gray-400">${(hoa * numPeriods).toFixed(2)}</td>
+              </tr>
+            )}
+            <tr className="bg-gray-50 dark:bg-gray-800/50 font-semibold border-t-2 border-gray-300 dark:border-gray-600">
+              <td className="p-2 text-left text-gray-800 dark:text-gray-200">Total Out-of-Pocket</td>
+              <td className="p-2 text-right text-gray-800 dark:text-gray-200">${totalMonthly.toFixed(2)}</td>
+              <td className="p-2 text-right text-[#d62828] font-bold">${(totalPayment + monthlyPITI * numPeriods).toFixed(2)}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      {/* Summary cards */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+          <p className="text-xs text-gray-400">Loan Amount</p>
+          <p className="text-sm font-bold text-gray-900 dark:text-white">${principal.toFixed(2)}</p>
+        </div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+          <p className="text-xs text-gray-400">Total Interest</p>
+          <p className="text-sm font-bold text-[#d62828]">${totalInterest.toFixed(2)}</p>
+        </div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+          <p className="text-xs text-gray-400">Payoff Date</p>
+          <p className="text-sm font-bold text-gray-900 dark:text-white">{payoffDateStr}</p>
+        </div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+          <p className="text-xs text-gray-400">Down Payment</p>
+          <p className="text-sm font-bold text-[#06b6d4]">${down.toFixed(2)} ({downPct.toFixed(1)}%)</p>
+        </div>
+      </div>
+
+      {periodsPerYear > 12 && (
+        <div className="p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
+          <p className="text-sm font-medium text-green-700 dark:text-green-300">{periodsPerYear} payments/year — saves ${(monthlyEquivalent * term * 12 - totalPayment).toFixed(0)} in interest vs monthly</p>
+        </div>
+      )}
+      {extraPerPeriod > 0 && (
+        <div className="p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
+          <p className="text-sm font-medium text-amber-700 dark:text-amber-300">Extra ${extraPerPeriod.toFixed(2)}/{isBiweekly ? '2wks' : 'mo'} saves {numPeriods > 0 ? Math.round(numPeriods - payoffPeriods) : 0} payments & ${(totalPayment - totalWithExtra).toFixed(0)} in interest</p>
+        </div>
+      )}
+
+      {/* Interpretation */}
+      <ResultInterpretation
+        type="mortgage"
+        values={{
+          monthlyPayment: totalMonthly,
+          totalPayment,
+          totalInterest,
+          principal,
+          rate,
+          term,
+          downPaymentPct: downPct,
+          extraPayment,
+          loanAmount: principal,
+        }}
+      />
+
+      {/* Charts */}
       <LoanDonutChart principal={principal} totalInterest={totalInterest} />
+
+      {/* Full amortization schedule */}
+      <AmortizationSchedule
+        principal={principal}
+        rate={effectiveRate}
+        term={term}
+        periodsPerYear={periodsPerYear}
+        extraPayment={extraPayment}
+        monthlyFees={monthlyPITI}
+        startDate={new Date()}
+      />
     </div>
   )
 }
@@ -996,7 +1292,10 @@ function RetirementResults({ age, retirementAge, savings, monthly, rate, extraFi
   } else {
     futureValue = savings + monthly * months
   }
+  const totalContributions = savings + monthly * months
+  const totalInterest = futureValue - totalContributions
   const withdrawalRate = futureValue * 0.04
+  const monthlyDraw = withdrawalRate / 12
   const growthData = Array.from({ length: Math.max(years, 1) }, (_, i) => {
     const y = i + 1
     const m = y * 12
@@ -1028,6 +1327,10 @@ function RetirementResults({ age, retirementAge, savings, monthly, rate, extraFi
           <p className="text-lg font-bold text-gray-900 dark:text-white">{years} years</p>
         </div>
       </div>
+      <ResultInterpretation
+        type="retirement"
+        values={{ futureValue, monthly, totalContributions, totalInterest: Math.max(0, totalInterest), currentAge: age, retirementAge, monthlyDraw }}
+      />
       {growthData.length > 0 && <InvestmentGrowthChart data={growthData} />}
     </div>
   )
@@ -1045,8 +1348,8 @@ function SalaryResults({ amount, period, extraFields }: { amount: number; period
   const weekly = annual / 52
   const hourly = annual / 2080
   return (
-    <div className="text-center space-y-3">
-      <div>
+    <div className="space-y-4">
+      <div className="text-center">
         <p className="text-sm text-gray-500 dark:text-gray-400">Annual Salary</p>
         <p className="text-2xl font-bold text-[#1a3a8a]">${annual.toFixed(2)}</p>
       </div>
@@ -1055,6 +1358,7 @@ function SalaryResults({ amount, period, extraFields }: { amount: number; period
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg"><p className="text-xs text-gray-500">Weekly</p><p className="text-sm font-bold text-gray-900 dark:text-white">${weekly.toFixed(2)}</p></div>
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg"><p className="text-xs text-gray-500">Hourly</p><p className="text-sm font-bold text-gray-900 dark:text-white">${hourly.toFixed(2)}</p></div>
       </div>
+      <ResultInterpretation type="salary" values={{ hourly, monthly, annual }} currencySymbol="$" />
     </div>
   )
 }
@@ -1076,20 +1380,16 @@ function DebtResults({ balance, rate, monthly, extraFields }: { balance: number;
   } else if (monthlyRate <= 0) {
     months = Math.ceil(balance / monthly)
   }
+  const payoffDate = new Date(); payoffDate.setMonth(payoffDate.getMonth() + months)
   return (
-    <div className="text-center space-y-4">
-      <div>
-        <p className="text-sm text-gray-500 dark:text-gray-400">Payoff Time</p>
-        <p className="text-3xl font-bold text-[#1a3a8a]">{months} months ({Math.floor(months / 12)}yr {months % 12}mo)</p>
+    <div className="space-y-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Payoff Time</p><p className="text-sm font-bold text-gray-900 dark:text-white">{months} months ({Math.floor(months / 12)}yr {months % 12}mo)</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Total Interest</p><p className="text-sm font-bold text-[#d62828]">${totalInterest.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Total Cost</p><p className="text-sm font-bold text-gray-900 dark:text-white">${(balance + totalInterest).toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Payoff Date</p><p className="text-sm font-bold text-gray-900 dark:text-white">{payoffDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</p></div>
       </div>
-      <div>
-        <p className="text-sm text-gray-500 dark:text-gray-400">Total Interest</p>
-        <p className="text-xl font-bold text-[#d62828]">${totalInterest.toFixed(2)}</p>
-      </div>
-      <div>
-        <p className="text-sm text-gray-500 dark:text-gray-400">Total Cost</p>
-        <p className="text-xl font-bold text-gray-900 dark:text-white">${(balance + totalInterest).toFixed(2)}</p>
-      </div>
+      <ResultInterpretation type="debt" values={{ balance, monthly, totalInterest }} currencySymbol="$" />
     </div>
   )
 }
@@ -1097,6 +1397,9 @@ function DebtResults({ balance, rate, monthly, extraFields }: { balance: number;
 function BudgetResults({ income, housing, food, transport, utilities, other }: { income: number; housing: number; food: number; transport: number; utilities: number; other: number }) {
   const totalExpenses = housing + food + transport + utilities + other
   const remaining = income - totalExpenses
+  const needs = housing + utilities
+  const wants = food + transport + other
+  const savings = Math.max(0, remaining)
   const categories = [
     { name: 'Housing', value: housing, color: '#06b6d4' },
     { name: 'Food', value: food, color: '#06b6d4' },
@@ -1106,20 +1409,13 @@ function BudgetResults({ income, housing, food, transport, utilities, other }: {
   ].filter(c => c.value > 0)
   return (
     <div className="space-y-4">
-      <div className="text-center space-y-2">
-        <div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Total Expenses</p>
-          <p className="text-2xl font-bold text-gray-900 dark:text-white">${totalExpenses.toFixed(2)}</p>
-        </div>
-        <div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Remaining</p>
-          <p className={`text-xl font-bold ${remaining >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>${remaining.toFixed(2)}</p>
-        </div>
-        <div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Savings Rate</p>
-          <p className="text-lg font-bold text-gray-900 dark:text-white">{income > 0 ? ((remaining / income) * 100).toFixed(1) : 0}%</p>
-        </div>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Total Expenses</p><p className="text-sm font-bold text-gray-900 dark:text-white">${totalExpenses.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Remaining</p><p className={`text-sm font-bold ${remaining >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>${remaining.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Savings Rate</p><p className="text-sm font-bold text-gray-900 dark:text-white">{income > 0 ? ((remaining / income) * 100).toFixed(1) : 0}%</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Needs/Wants/Savings</p><p className="text-sm font-bold text-gray-900 dark:text-white">{income > 0 ? `${((needs/income)*100).toFixed(0)}/${((wants/income)*100).toFixed(0)}/${((savings/income)*100).toFixed(0)}` : '—'}</p></div>
       </div>
+      <ResultInterpretation type="budget" values={{ income, needs, wants, savings }} currencySymbol="$" />
       {categories.length > 0 && (
         <div className="h-40">
           <ComparisonBarChart data={categories} />
@@ -1133,19 +1429,13 @@ function TaxResults({ income, rate, extraFields }: { income: number; rate: numbe
   const tax = income * (rate / 100)
   const afterTax = income - tax
   return (
-    <div className="text-center space-y-4">
-      <div>
-        <p className="text-sm text-gray-500 dark:text-gray-400">Tax Amount</p>
-        <p className="text-3xl font-bold text-[#d62828]">${tax.toFixed(2)}</p>
+    <div className="space-y-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Tax Amount</p><p className="text-sm font-bold text-[#d62828]">${tax.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">After-Tax Income</p><p className="text-sm font-bold text-[#1a3a8a]">${afterTax.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Effective Rate</p><p className="text-sm font-bold text-gray-900 dark:text-white">{rate}%</p></div>
       </div>
-      <div>
-        <p className="text-sm text-gray-500 dark:text-gray-400">After-Tax Income</p>
-        <p className="text-xl font-bold text-[#1a3a8a]">${afterTax.toFixed(2)}</p>
-      </div>
-      <div>
-        <p className="text-sm text-gray-500 dark:text-gray-400">Effective Rate</p>
-        <p className="text-lg font-bold text-gray-900 dark:text-white">{rate}%</p>
-      </div>
+      <ResultInterpretation type="tax" values={{ income, taxOwed: tax, effectiveRate: rate }} currencySymbol="$" />
     </div>
   )
 }
@@ -1470,7 +1760,18 @@ function SinkingFundResults({ goal, rate, years }: { goal: number; rate: number;
 function SavingsGoalResults({ goal, current, rate, years, monthlyAdd }: { goal: number; current: number; rate: number; years: number; monthlyAdd: number }) {
   const mr = rate / 100 / 12; const m = years * 12; let proj = current
   if (mr > 0) proj = current * Math.pow(1 + mr, m) + monthlyAdd * ((Math.pow(1 + mr, m) - 1) / mr); else proj = current + monthlyAdd * m
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Projected</p><p className={`text-3xl font-bold ${proj >= goal ? 'text-[#1a3a8a]' : 'text-amber-500'}`}>${proj.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Goal: ${goal.toFixed(2)} | {proj >= goal ? 'On track!' : `Short $${(goal - proj).toFixed(2)}`}</p></div></div>
+  const totalContributions = current + monthlyAdd * m
+  return (
+    <div className="space-y-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Projected</p><p className={`text-sm font-bold ${proj >= goal ? 'text-[#1a3a8a]' : 'text-amber-500'}`}>${proj.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Goal</p><p className="text-sm font-bold text-gray-900 dark:text-white">${goal.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Total Contributions</p><p className="text-sm font-bold text-gray-900 dark:text-white">${totalContributions.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Gap</p><p className={`text-sm font-bold ${proj >= goal ? 'text-green-600' : 'text-[#d62828]'}`}>{proj >= goal ? '$0' : `$${(goal - proj).toFixed(2)}`}</p></div>
+      </div>
+      <ResultInterpretation type="savings" values={{ goal, current, monthly: monthlyAdd, years }} currencySymbol="$" />
+    </div>
+  )
 }
 function CollegeSavingsResults({ goal, current, years, rate, monthly }: { goal: number; current: number; years: number; rate: number; monthly: number }) {
   const mr = rate / 100 / 12; const m = years * 12; let proj = current
@@ -1808,6 +2109,7 @@ export function GenericFinancialCalculator({ calculator }: Props) {
   const defaults = calcDefaults(calculator.slug, calculator)
   const [lockedFields, setLockedFields] = useState<Set<string>>(new Set())
   const [extraFields, setExtraFields] = useState<Record<string, string>>({})
+  const calcDefForSlug = calcDefs[calculator.slug]
 
   const toggleLock = useCallback((name: string) => {
     setLockedFields(prev => {
@@ -1830,163 +2132,213 @@ export function GenericFinancialCalculator({ calculator }: Props) {
   const watched = useWatch({ control: form.control })
   const v = watched as any
 
+  const resultData = useMemo(() => {
+    if (!calcDefForSlug?.compute) return null
+    const v = watched as any
+    const numericVals: Record<string, number> = {}
+    const selectFieldNames = new Set(calcDefForSlug.fields?.filter(f => f.type === 'select').map(f => f.name) || [])
+    Object.entries(v).forEach(([key, val]) => {
+      if (key.endsWith('Unit')) return
+      if (val === undefined || val === '') return
+      if (selectFieldNames.has(key)) { numericVals[key] = val as any; return }
+      numericVals[key] = parseFloat(String(val)) || 0
+    })
+    return calcDefForSlug.compute(numericVals)
+  }, [watched, calcDefForSlug])
+
   const result = useMemo(() => {
+    if (calcDefForSlug && resultData) {
+      const val = Number(resultData.result)
+      return (
+        <div className="text-center space-y-4">
+          {val > 0 ? (
+            <>
+              <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
+                <p className="text-xs text-gray-500 dark:text-gray-400">{resultData.label}</p>
+                <p className="text-3xl font-bold text-[#06b6d4]">{val.toFixed(2)} <span className="text-sm font-normal text-gray-500">{resultData.unit}</span></p>
+                {getFinInterpretation(calcType)}
+              </div>
+              {(resultData.steps ?? []).length > 0 && (
+                <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+                  <p className="text-xs font-medium text-gray-500 mb-2 text-left">Step-by-Step</p>
+                  <div className="space-y-1.5">
+                    {(resultData.steps ?? []).map((s, i) => (
+                      <p key={i} className="text-xs text-left text-gray-600 dark:text-gray-400">
+                        <span className="text-[#06b6d4] font-medium">{i + 1}.</span> {s.label}: <span className="text-gray-800 dark:text-gray-200">{s.value}</span>
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="py-8">
+              <p className="text-gray-400 text-sm">Enter your details above</p>
+              <p className="text-gray-400 text-xs mt-1">{calcDefForSlug?.description || ''}</p>
+            </div>
+          )}
+        </div>
+      )
+    }
     const vals = watched as any
     const n = (v: any) => parseFloat(v) || 0
+    let inner: React.ReactNode = null
     switch (calcType) {
-      case 'mortgage': return <MortgageResults price={n(vals.homePrice)} down={n(vals.downPayment)} rate={n(vals.rate)} term={n(vals.term)} propertyTax={n(vals.propertyTax)} homeInsurance={n(vals.homeInsurance)} pmiRate={n(vals.pmiRate)} hoa={n(vals.hoa)} extraPayment={n(vals.extraPayment)} frequency={vals.frequency} extraFields={extraFields} />
-      case 'investment': return <InvestmentResults initial={n(vals.initial)} monthly={n(vals.monthly)} rate={n(vals.rate)} years={n(vals.years)} extraFields={extraFields} />
-      case 'retirement': return <RetirementResults age={n(vals.age)} retirementAge={n(vals.retirementAge)} savings={n(vals.savings)} monthly={n(vals.monthly)} rate={n(vals.rate)} extraFields={extraFields} />
-      case 'salary': return <SalaryResults amount={n(vals.amount)} period={vals.period || 'annual'} extraFields={extraFields} />
-      case 'debt': return <DebtResults balance={n(vals.balance)} rate={n(vals.rate)} monthly={n(vals.monthly)} extraFields={extraFields} />
-      case 'tax': return <TaxResults income={n(vals.income)} rate={n(vals.rate)} extraFields={extraFields} />
-      case 'budget': return <BudgetResults income={n(vals.income)} housing={n(vals.housing)} food={n(vals.food)} transport={n(vals.transport)} utilities={n(vals.utilities)} other={n(vals.other)} />
-      case 'simpleInterest': return <SimpleInterestResults principal={n(vals.principal)} rate={n(vals.rate)} years={n(vals.years)} />
-      case 'apyCalc': return <ApyCalcResults rate={n(vals.rate)} compound={vals.compound || 'monthly'} years={n(vals.years)} />
-      case 'aprCalc': return <ApyCalcResults rate={n(vals.rate)} compound={vals.compound || 'monthly'} years={n(vals.years)} />
-      case 'futureValue': return <FutureValueResults present={n(vals.present)} rate={n(vals.rate)} years={n(vals.years)} monthlyAdd={n(vals.monthlyAdd)} />
-      case 'presentValue': return <PresentValueResults present={n(vals.present)} rate={n(vals.rate)} years={n(vals.years)} />
-      case 'roi': return <RoiResults initial={n(vals.initial)} final={n(vals.final)} years={n(vals.years)} />
-      case 'npv': return <NpvResults initial={n(vals.initial)} cashFlows={n(vals.cashFlows)} rate={n(vals.rate)} years={n(vals.years)} />
-      case 'irr': return <IrrResults initial={n(vals.initial)} cashFlow={n(vals.cashFlow)} years={n(vals.years)} />
-      case 'paybackPeriod': return <PaybackResults initial={n(vals.initial)} cashFlow={n(vals.cashFlow)} />
-      case 'breakEven': return <BreakEvenResults fixedCosts={n(vals.fixedCosts)} pricePerUnit={n(vals.pricePerUnit)} varCostPerUnit={n(vals.varCostPerUnit)} />
-      case 'bondYield': return <BondYieldResults price={n(vals.price)} faceValue={n(vals.faceValue)} coupon={n(vals.coupon)} years={n(vals.years)} />
-      case 'bondPrice': return <BondPriceResults faceValue={n(vals.faceValue)} coupon={n(vals.coupon)} rate={n(vals.rate)} years={n(vals.years)} />
-      case 'couponPayment': return <CouponPaymentResults faceValue={n(vals.faceValue)} couponRate={n(vals.couponRate)} freq={vals.freq || 'semiannual'} />
-      case 'taxEquivalentYield': return <TaxEquivYieldResults muniYield={n(vals.muniYield)} taxRate={n(vals.taxRate)} />
-      case 'dividendYield': return <DividendYieldResults pricePerShare={n(vals.pricePerShare)} annualDividend={n(vals.annualDividend)} />
-      case 'dividendPayout': return <DividendPayoutResults dividends={n(vals.dividends)} netIncome={n(vals.netIncome)} />
-      case 'eps': return <EpsResults netIncome={n(vals.netIncome)} shares={n(vals.shares)} />
-      case 'pe': return <PeResults price={n(vals.price)} eps={n(vals.eps)} />
-      case 'pb': return <PbResults price={n(vals.price)} bookValue={n(vals.bookValue)} />
-      case 'ps': return <PsResults price={n(vals.price)} salesPerShare={n(vals.salesPerShare)} />
-      case 'peg': return <PegResults pe={n(vals.pe)} growth={n(vals.growth)} />
-      case 'dividendGrowthRate': return <DividendGrowthResults currentDividend={n(vals.currentDividend)} years={n(vals.years)} priorDividend={n(vals.priorDividend)} />
-      case 'payoutRatio': return <PayoutRatioResults dividendsPerShare={n(vals.dividendsPerShare)} eps={n(vals.eps)} />
-      case 'retentionRatio': return <RetentionRatioResults payoutRatio={n(vals.payoutRatio)} />
-      case 'stockAverageCost': return <StockAvgCostResults shares={n(vals.shares)} totalCost={n(vals.totalCost)} newShares={n(vals.newShares)} newPrice={n(vals.newPrice)} />
-      case 'dollarCostAveraging': return <DcaResults monthlyInvest={n(vals.monthlyInvest)} pricePerShare={n(vals.pricePerShare)} months={n(vals.months)} />
-      case 'costBasis': return <CostBasisResults purchasePrice={n(vals.purchasePrice)} shares={n(vals.shares)} commissions={n(vals.commissions)} />
-      case 'portfolioReturn': return <PortfolioReturnResults return1={n(vals.return1)} weight1={n(vals.weight1)} return2={n(vals.return2)} weight2={n(vals.weight2)} />
-      case 'sharpeRatio': return <SharpeResults portfolioReturn={n(vals.portfolioReturn)} riskFreeRate={n(vals.riskFreeRate)} stdDev={n(vals.stdDev)} />
-      case 'sortinoRatio': return <SortinoResults portfolioReturn={n(vals.portfolioReturn)} riskFreeRate={n(vals.riskFreeRate)} downsideDev={n(vals.downsideDev)} />
-      case 'alpha': return <AlphaResults portfolioReturn={n(vals.portfolioReturn)} riskFreeRate={n(vals.riskFreeRate)} beta={n(vals.beta)} marketReturn={n(vals.marketReturn)} />
-      case 'beta': return <BetaResults stockReturn={n(vals.stockReturn)} marketReturn={n(vals.marketReturn)} />
-      case 'rSquared': return <RSquaredResults correlation={n(vals.correlation)} />
-      case 'valueAtRisk': return <VaRResults portfolioValue={n(vals.portfolioValue)} meanReturn={n(vals.meanReturn)} stdDev={n(vals.stdDev)} confidence={vals.confidence || '95'} />
-      case 'dti': return <DtiResults monthlyDebt={n(vals.monthlyDebt)} monthlyIncome={n(vals.monthlyIncome)} />
-      case 'ltv': return <LtvResults loanAmount={n(vals.loanAmount)} propertyValue={n(vals.propertyValue)} />
-      case 'dscr': return <DscrResults noi={n(vals.noi)} debtService={n(vals.debtService)} />
-      case 'interestCoverage': return <CoverageResults ebit={n(vals.ebit)} interestExpense={n(vals.interestExpense)} />
-      case 'fixedChargeCoverage': return <CoverageResults ebit={n(vals.ebit)} interestExpense={n(vals.interestExpense)} />
-      case 'tie': return <CoverageResults ebit={n(vals.ebit)} interestExpense={n(vals.interestExpense)} />
-      case 'workingCapital': return <WorkingCapitalResults currentAssets={n(vals.currentAssets)} currentLiabilities={n(vals.currentLiabilities)} />
-      case 'currentRatio': return <WorkingCapitalResults currentAssets={n(vals.currentAssets)} currentLiabilities={n(vals.currentLiabilities)} />
-      case 'quickRatio': return <WorkingCapitalResults currentAssets={n(vals.currentAssets)} currentLiabilities={n(vals.currentLiabilities)} />
-      case 'cashRatio': return <WorkingCapitalResults currentAssets={n(vals.currentAssets)} currentLiabilities={n(vals.currentLiabilities)} />
-      case 'inventoryTurnover': return <TurnoverResults cogs={n(vals.cogs)} avgInventory={n(vals.avgInventory)} />
-      case 'assetTurnover': return <AssetTurnoverResults revenue={n(vals.revenue)} avgAssets={n(vals.avgAssets)} />
-      case 'roa': return <RoaRoeResults netIncome={n(vals.netIncome)} avgEquity={n(vals.avgEquity)} avgAssets={n(vals.avgAssets)} />
-      case 'roe': return <RoaRoeResults netIncome={n(vals.netIncome)} avgEquity={n(vals.avgEquity)} avgAssets={n(vals.avgAssets)} />
-      case 'debtToAsset': return <DebtRatioResults totalDebt={n(vals.totalDebt)} totalEquity={n(vals.totalEquity)} totalAssets={n(vals.totalAssets)} />
-      case 'debtToEquity': return <DebtRatioResults totalDebt={n(vals.totalDebt)} totalEquity={n(vals.totalEquity)} totalAssets={n(vals.totalAssets)} />
-      case 'rentVsBuy': return <RentVsBuyResults rent={n(vals.rent)} homePrice={n(vals.homePrice)} downPayment={n(vals.downPayment)} rate={n(vals.rate)} years={n(vals.years)} propertyTax={n(vals.propertyTax)} />
-      case 'houseAffordability': return <AffordabilityResults income={n(vals.income)} rate={n(vals.rate)} downPayment={n(vals.downPayment)} term={n(vals.term)} />
-      case 'closingCosts': return <ClosingCostsResults homePrice={n(vals.homePrice)} downPayment={n(vals.downPayment)} />
-      case 'rentalIncome': return <RentalIncomeResults monthlyRent={n(vals.monthlyRent)} expenses={n(vals.expenses)} downPayment={n(vals.downPayment)} propertyValue={n(vals.propertyValue)} />
-      case 'capRate': return <CapRateResults noi={n(vals.noi)} propertyValue={n(vals.propertyValue)} />
-      case 'cashOnCash': return <CashOnCashResults annualCashFlow={n(vals.annualCashFlow)} totalInvested={n(vals.totalInvested)} />
-      case 'noiCalc': return <NoiResults rentalIncome={n(vals.rentalIncome)} vacancyRate={n(vals.vacancyRate)} operatingExpenses={n(vals.operatingExpenses)} />
-      case 'roiRental': return <RentalIncomeResults monthlyRent={n(vals.monthlyRent)} expenses={n(vals.expenses)} downPayment={n(vals.downPayment)} propertyValue={n(vals.propertyValue)} />
-      case 'incomeTax': return <TaxResults income={n(vals.income)} rate={n(vals.rate)} />
-      case 'taxBracket': return <TaxBracketResults income={n(vals.income)} bracketStart={n(vals.bracketStart)} bracketRate={n(vals.bracketRate)} baseTax={n(vals.baseTax)} />
-      case 'marginalTaxRate': return <MarginalTaxResults income={n(vals.income)} additionalIncome={n(vals.additionalIncome)} rate={n(vals.rate)} />
-      case 'effectiveTaxRate': return <EffectiveTaxResults totalTax={n(vals.totalTax)} totalIncome={n(vals.totalIncome)} />
-      case 'capitalGainsTax': return <CapitalGainsResults costBasis={n(vals.costBasis)} salePrice={n(vals.salePrice)} taxRate={n(vals.taxRate)} />
-      case 'dividendTax': return <DividendTaxResults dividends={n(vals.dividends)} taxRate={n(vals.taxRate)} />
-      case 'selfEmploymentTax': return <SelfEmploymentResults netEarnings={n(vals.netEarnings)} expenseRate={n(vals.expenseRate)} />
-      case 'salesTax': return <SalesTaxResults price={n(vals.price)} taxRate={n(vals.taxRate)} />
-      case 'vat': return <VatResults price={n(vals.price)} vatRate={n(vals.vatRate)} />
-      case 'estateTax': return <EstateTaxResults estateValue={n(vals.estateValue)} exemption={n(vals.exemption)} taxRate={n(vals.taxRate)} />
-      case 'taxRefundEstimator': return <TaxRefundResults withheld={n(vals.withheld)} taxLiability={n(vals.taxLiability)} />
-      case 'itemizedVsStandardDeduction': return <ItemizedResults income={n(vals.income)} itemized={n(vals.itemized)} standard={n(vals.standard)} />
-      case 'amt': return <AmtResults income={n(vals.income)} exemption={n(vals.exemption)} rate={n(vals.rate)} />
-      case 'cryptoProfit': return <CryptoProfitResults buyPrice={n(vals.buyPrice)} sellPrice={n(vals.sellPrice)} quantity={n(vals.quantity)} />
-      case 'cryptoMining': return <CryptoMiningResults hashRate={n(vals.hashRate)} power={n(vals.power)} />
-      case 'cryptoStaking': return <CryptoStakingResults amount={n(vals.amount)} apy={n(vals.apy)} years={n(vals.years)} />
-      case 'impermanentLoss': return <ImpermanentLossResults priceRatio={n(vals.priceRatio)} investA={n(vals.investA)} investB={n(vals.investB)} />
-      case 'cryptoTax': return <CryptoProfitResults buyPrice={n(vals.buyPrice)} sellPrice={n(vals.sellPrice)} quantity={n(vals.quantity)} />
-      case 'lifeInsurance': return <LifeInsuranceResults income={n(vals.income)} years={n(vals.years)} debts={n(vals.debts)} funeral={n(vals.funeral)} />
-      case 'termVsWholeLife': return <TermVsWholeLifeResults age={n(vals.age)} termPremium={n(vals.termPremium)} wholePremium={n(vals.wholePremium)} years={n(vals.years)} />
-      case 'disability': return <DisabilityResults income={n(vals.income)} benefitPct={n(vals.benefitPct)} elimination={n(vals.elimination)} />
-      case 'creditUtilization': return <CreditUtilResults totalBalance={n(vals.totalBalance)} totalLimit={n(vals.totalLimit)} />
-      case 'creditScore': return <CreditScoreResults paymentHistory={n(vals.paymentHistory)} utilization={n(vals.utilization)} length={n(vals.length)} mix={n(vals.mix)} inquiries={n(vals.inquiries)} />
-      case 'balanceTransfer': return <BalanceTransferResults balance={n(vals.balance)} promoRate={n(vals.promoRate)} promoMonths={n(vals.promoMonths)} feeRate={n(vals.feeRate)} />
-      case 'emergencyFund': return <EmergencyFundResults monthlyExpenses={n(vals.monthlyExpenses)} months={n(vals.months)} />
-      case 'sinkingFund': return <SinkingFundResults goal={n(vals.goal)} rate={n(vals.rate)} years={n(vals.years)} />
-      case 'savingsGoal': return <SavingsGoalResults goal={n(vals.goal)} current={n(vals.current)} rate={n(vals.rate)} years={n(vals.years)} monthlyAdd={n(vals.monthlyAdd)} />
-      case 'collegeSavings': return <CollegeSavingsResults goal={n(vals.goal)} current={n(vals.current)} years={n(vals.years)} rate={n(vals.rate)} monthly={n(vals.monthly)} />
-      case 'netWorth': return <NetWorthResults assets={n(vals.assets)} liabilities={n(vals.liabilities)} />
-      case 'debtSnowball': return <DebtSnowballResults totalDebt={n(vals.totalDebt)} minPayment={n(vals.minPayment)} extraPayment={n(vals.extraPayment)} rate={n(vals.rate)} />
-      case 'debtAvalanche': return <DebtAvalancheResults totalDebt={n(vals.totalDebt)} minPayment={n(vals.minPayment)} extraPayment={n(vals.extraPayment)} rate={n(vals.rate)} />
-      case 'debtPayoffPlan': return <DebtPayoffPlanResults balance={n(vals.balance)} rate={n(vals.rate)} monthly={n(vals.monthly)} goalMonths={n(vals.goalMonths)} />
-      case 'debtConsolidationSavings': return <ConsolidationSavingsResults totalDebt={n(vals.totalDebt)} currentRate={n(vals.currentRate)} newRate={n(vals.newRate)} term={n(vals.term)} />
-      case 'pension': return <PensionResults currentSavings={n(vals.currentSavings)} monthlyContrib={n(vals.monthlyContrib)} rate={n(vals.rate)} years={n(vals.years)} />
-      case 'socialSecurity': return <SocialSecurityResults age={n(vals.age)} earnings={n(vals.earnings)} retirementAge={n(vals.retirementAge)} />
-      case 'annuity': return <AnnuityResults principal={n(vals.principal)} rate={n(vals.rate)} years={n(vals.years)} />
-      case 'safeWithdrawalRate': return <SafeWithdrawalResults savings={n(vals.savings)} withdrawalRate={n(vals.withdrawalRate)} />
-      case 'rmd': return <RmdResults balance={n(vals.balance)} age={n(vals.age)} />
-      case 'businessValuation': return <BusinessValResults revenue={n(vals.revenue)} ebitda={n(vals.ebitda)} multiple={n(vals.multiple)} />
-      case 'startupCosts': return <StartupCostsResults equipment={n(vals.equipment)} license={n(vals.license)} marketing={n(vals.marketing)} legal={n(vals.legal)} inventory={n(vals.inventory)} />
-      case 'runway': return <RunwayResults cash={n(vals.cash)} monthlyBurn={n(vals.monthlyBurn)} monthlyRevenue={n(vals.monthlyRevenue)} />
-      case 'burnRate': return <BurnRateResults startCash={n(vals.startCash)} endCash={n(vals.endCash)} months={n(vals.months)} />
-      case 'cac': return <CACResults salesCost={n(vals.salesCost)} newCustomers={n(vals.newCustomers)} />
-      case 'ltvCalc': return <LTVCResults avgRevenue={n(vals.avgRevenue)} churnRate={n(vals.churnRate)} />
-      case 'ltvCacRatio': return <LTVCACRatioResults ltv={n(vals.ltv)} cac={n(vals.cac)} />
-      case 'churnRate': return <ChurnResults lostCustomers={n(vals.lostCustomers)} startCustomers={n(vals.startCustomers)} />
-      case 'mrr': return <MRRResults subscribers={n(vals.subscribers)} avgPrice={n(vals.avgPrice)} />
-      case 'arr': return <ARRResults mrr={n(vals.mrr)} />
-      case 'unitEconomics': return <UnitEconResults price={n(vals.price)} varCost={n(vals.varCost)} fixedCost={n(vals.fixedCost)} units={n(vals.units)} />
-      case 'contributionMargin': return <ContributionMarginResults revenue={n(vals.revenue)} varCosts={n(vals.varCosts)} />
-      case 'operatingLeverage': return <OperatingLeverageResults revenue={n(vals.revenue)} varCosts={n(vals.varCosts)} fixedCosts={n(vals.fixedCosts)} />
-      case 'financialLeverage': return <FinLeverageResults ebit={n(vals.ebit)} interest={n(vals.interest)} />
-      case 'grossProfit': return <GrossProfitFunc revenue={n(vals.revenue)} cogs={n(vals.cogs)} />
-      case 'netProfit': return <NetProfitResults revenue={n(vals.revenue)} expenses={n(vals.expenses)} />
-      case 'profitMargin': return <ProfitMarginResults revenue={n(vals.revenue)} profit={n(vals.profit)} />
-      case 'costVolumeProfit': return <CostVolumeResults fixedCosts={n(vals.fixedCosts)} pricePerUnit={n(vals.pricePerUnit)} varCostPerUnit={n(vals.varCostPerUnit)} units={n(vals.units)} />
-      case 'markupCalc': return <MarkupResults cost={n(vals.cost)} markup={n(vals.markup)} />
-      case 'carAffordability': return <CarAffordResults monthlyPayment={n(vals.monthlyPayment)} rate={n(vals.rate)} term={n(vals.term)} />
-      case 'childCare': return <ChildCareResults weeklyCost={n(vals.weeklyCost)} weeksPerYear={n(vals.weeksPerYear)} />
-      case 'petExpense': return <PetExpenseResults food={n(vals.food)} vet={n(vals.vet)} supplies={n(vals.supplies)} other={n(vals.other)} />
-      case 'fiftyThirtyTwenty': return <BudgetRuleResults income={n(vals.income)} needs={n(vals.needs)} wants={n(vals.wants)} savings={n(vals.savings)} />
-      case 'zeroBasedBudget': return <ZeroBasedBudgetResults income={n(vals.income)} category1={n(vals.category1)} category2={n(vals.category2)} category3={n(vals.category3)} category4={n(vals.category4)} />
-      case 'envelopeSystem': return <EnvelopeBudgetResults income={n(vals.income)} envelopes={n(vals.envelopes)} perEnvelope={n(vals.perEnvelope)} />
-      case 'payYourselfFirst': return <PayYourselfFirstResults income={n(vals.income)} savingsPct={n(vals.savingsPct)} />
-      case 'weddingBudget': return <WeddingBudgetResults guestCount={n(vals.guestCount)} budget={n(vals.budget)} />
-      case 'vacationBudget': return <VacationBudgetResults transport={n(vals.transport)} lodging={n(vals.lodging)} food={n(vals.food)} activities={n(vals.activities)} />
-      case 'holidayBudget': return <HolidayBudgetResults gifts={n(vals.gifts)} travel={n(vals.travel)} food={n(vals.food)} decorations={n(vals.decorations)} />
-      case 'groceryBudget': return <GroceryBudgetResults householdSize={n(vals.householdSize)} weeklyTarget={n(vals.weeklyTarget)} />
-      case 'monthlyBudget': return <MonthlyBudgetResults income={n(vals.income)} housing={n(vals.housing)} food={n(vals.food)} transport={n(vals.transport)} utilities={n(vals.utilities)} other={n(vals.other)} />
-      case 'annualBudget': return <AnnualBudgetResults income={n(vals.income)} housing={n(vals.housing)} food={n(vals.food)} transport={n(vals.transport)} utilities={n(vals.utilities)} savings={n(vals.savings)} />
-      case 'homeInsurance': return <HomeInsResults homeValue={n(vals.homeValue)} deductible={n(vals.deductible)} />
-      case 'autoInsurance': return <AutoInsResults carValue={n(vals.carValue)} deductible={n(vals.deductible)} />
-      case 'healthInsuranceComparison': return <HealthInsCompResults premium1={n(vals.premium1)} deductible1={n(vals.deductible1)} oopMax1={n(vals.oopMax1)} premium2={n(vals.premium2)} deductible2={n(vals.deductible2)} oopMax2={n(vals.oopMax2)} />
-      case 'deductibleVsPremium': return <DeductibleVsPremiumResults lowPremium={n(vals.lowPremium)} lowDeductible={n(vals.lowDeductible)} highPremium={n(vals.highPremium)} highDeductible={n(vals.highDeductible)} />
-      case 'outOfPocketMaximum': return <OopResults deductible={n(vals.deductible)} coinsurance={n(vals.coinsurance)} oopMax={n(vals.oopMax)} />
-      case 'propertyTaxDeduction': return <PropertyTaxDeductionResults propertyTaxPaid={n(vals.propertyTaxPaid)} marginalRate={n(vals.marginalRate)} />
-      case 'giftTax': return <GiftTaxResults giftAmount={n(vals.giftAmount)} annualExclusion={n(vals.annualExclusion)} />
-      case 'inheritanceTax': return <InheritanceTaxResults inheritanceAmount={n(vals.inheritanceAmount)} stateExemption={n(vals.stateExemption)} taxRate={n(vals.taxRate)} />
-      case 'sideHustleTax': return <SideHustleTaxResults income={n(vals.income)} expenses={n(vals.expenses)} otherIncome={n(vals.otherIncome)} />
-      case 'gigEconomyTax': return <SideHustleTaxResults income={n(vals.income)} expenses={n(vals.expenses)} otherIncome={n(vals.otherIncome)} />
-      case 'interestIncomeTax': return <TaxResults income={n(vals.income)} rate={n(vals.rate)} />
-      case 'rentalIncomeTax': return <RentIncomeTaxResults rentIncome={n(vals.rentIncome)} expenses={n(vals.expenses)} depreciation={n(vals.depreciation)} />
-      case 'amortization': return <PaymentResults p={n(vals.principal)} r={n(vals.rate)} t={n(vals.term)} />
-      case 'loanComparison': return <LoanComparisonResults amount={n(vals.amount)} rate1={n(vals.rate1)} term1={n(vals.term1)} rate2={n(vals.rate2)} term2={n(vals.term2)} />
-      case 'biweeklyPayment': return <BiweeklyPayResults principal={n(vals.principal)} rate={n(vals.rate)} term={n(vals.term)} />
-      default: return <PaymentResults p={n(vals.principal)} r={n(vals.rate)} t={n(vals.term)} />
+      case 'mortgage': inner = <MortgageResults price={n(vals.homePrice)} down={n(vals.downPayment)} rate={n(vals.rate)} term={n(vals.term)} propertyTax={n(vals.propertyTax)} homeInsurance={n(vals.homeInsurance)} pmiRate={n(vals.pmiRate)} hoa={n(vals.hoa)} extraPayment={n(vals.extraPayment)} frequency={vals.frequency} extraFields={extraFields} />; break
+      case 'investment': inner = <InvestmentResults initial={n(vals.initial)} monthly={n(vals.monthly)} rate={n(vals.rate)} years={n(vals.years)} extraFields={extraFields} />; break
+      case 'retirement': inner = <RetirementResults age={n(vals.age)} retirementAge={n(vals.retirementAge)} savings={n(vals.savings)} monthly={n(vals.monthly)} rate={n(vals.rate)} extraFields={extraFields} />; break
+      case 'salary': inner = <SalaryResults amount={n(vals.amount)} period={vals.period || 'annual'} extraFields={extraFields} />; break
+      case 'debt': inner = <DebtResults balance={n(vals.balance)} rate={n(vals.rate)} monthly={n(vals.monthly)} extraFields={extraFields} />; break
+      case 'tax': inner = <TaxResults income={n(vals.income)} rate={n(vals.rate)} extraFields={extraFields} />; break
+      case 'budget': inner = <BudgetResults income={n(vals.income)} housing={n(vals.housing)} food={n(vals.food)} transport={n(vals.transport)} utilities={n(vals.utilities)} other={n(vals.other)} />; break
+      case 'simpleInterest': inner = <SimpleInterestResults principal={n(vals.principal)} rate={n(vals.rate)} years={n(vals.years)} />; break
+      case 'apyCalc': inner = <ApyCalcResults rate={n(vals.rate)} compound={vals.compound || 'monthly'} years={n(vals.years)} />; break
+      case 'aprCalc': inner = <ApyCalcResults rate={n(vals.rate)} compound={vals.compound || 'monthly'} years={n(vals.years)} />; break
+      case 'futureValue': inner = <FutureValueResults present={n(vals.present)} rate={n(vals.rate)} years={n(vals.years)} monthlyAdd={n(vals.monthlyAdd)} />; break
+      case 'presentValue': inner = <PresentValueResults present={n(vals.present)} rate={n(vals.rate)} years={n(vals.years)} />; break
+      case 'roi': inner = <RoiResults initial={n(vals.initial)} final={n(vals.final)} years={n(vals.years)} />; break
+      case 'npv': inner = <NpvResults initial={n(vals.initial)} cashFlows={n(vals.cashFlows)} rate={n(vals.rate)} years={n(vals.years)} />; break
+      case 'irr': inner = <IrrResults initial={n(vals.initial)} cashFlow={n(vals.cashFlow)} years={n(vals.years)} />; break
+      case 'paybackPeriod': inner = <PaybackResults initial={n(vals.initial)} cashFlow={n(vals.cashFlow)} />; break
+      case 'breakEven': inner = <BreakEvenResults fixedCosts={n(vals.fixedCosts)} pricePerUnit={n(vals.pricePerUnit)} varCostPerUnit={n(vals.varCostPerUnit)} />; break
+      case 'bondYield': inner = <BondYieldResults price={n(vals.price)} faceValue={n(vals.faceValue)} coupon={n(vals.coupon)} years={n(vals.years)} />; break
+      case 'bondPrice': inner = <BondPriceResults faceValue={n(vals.faceValue)} coupon={n(vals.coupon)} rate={n(vals.rate)} years={n(vals.years)} />; break
+      case 'couponPayment': inner = <CouponPaymentResults faceValue={n(vals.faceValue)} couponRate={n(vals.couponRate)} freq={vals.freq || 'semiannual'} />; break
+      case 'taxEquivalentYield': inner = <TaxEquivYieldResults muniYield={n(vals.muniYield)} taxRate={n(vals.taxRate)} />; break
+      case 'dividendYield': inner = <DividendYieldResults pricePerShare={n(vals.pricePerShare)} annualDividend={n(vals.annualDividend)} />; break
+      case 'dividendPayout': inner = <DividendPayoutResults dividends={n(vals.dividends)} netIncome={n(vals.netIncome)} />; break
+      case 'eps': inner = <EpsResults netIncome={n(vals.netIncome)} shares={n(vals.shares)} />; break
+      case 'pe': inner = <PeResults price={n(vals.price)} eps={n(vals.eps)} />; break
+      case 'pb': inner = <PbResults price={n(vals.price)} bookValue={n(vals.bookValue)} />; break
+      case 'ps': inner = <PsResults price={n(vals.price)} salesPerShare={n(vals.salesPerShare)} />; break
+      case 'peg': inner = <PegResults pe={n(vals.pe)} growth={n(vals.growth)} />; break
+      case 'dividendGrowthRate': inner = <DividendGrowthResults currentDividend={n(vals.currentDividend)} years={n(vals.years)} priorDividend={n(vals.priorDividend)} />; break
+      case 'payoutRatio': inner = <PayoutRatioResults dividendsPerShare={n(vals.dividendsPerShare)} eps={n(vals.eps)} />; break
+      case 'retentionRatio': inner = <RetentionRatioResults payoutRatio={n(vals.payoutRatio)} />; break
+      case 'stockAverageCost': inner = <StockAvgCostResults shares={n(vals.shares)} totalCost={n(vals.totalCost)} newShares={n(vals.newShares)} newPrice={n(vals.newPrice)} />; break
+      case 'dollarCostAveraging': inner = <DcaResults monthlyInvest={n(vals.monthlyInvest)} pricePerShare={n(vals.pricePerShare)} months={n(vals.months)} />; break
+      case 'costBasis': inner = <CostBasisResults purchasePrice={n(vals.purchasePrice)} shares={n(vals.shares)} commissions={n(vals.commissions)} />; break
+      case 'portfolioReturn': inner = <PortfolioReturnResults return1={n(vals.return1)} weight1={n(vals.weight1)} return2={n(vals.return2)} weight2={n(vals.weight2)} />; break
+      case 'sharpeRatio': inner = <SharpeResults portfolioReturn={n(vals.portfolioReturn)} riskFreeRate={n(vals.riskFreeRate)} stdDev={n(vals.stdDev)} />; break
+      case 'sortinoRatio': inner = <SortinoResults portfolioReturn={n(vals.portfolioReturn)} riskFreeRate={n(vals.riskFreeRate)} downsideDev={n(vals.downsideDev)} />; break
+      case 'alpha': inner = <AlphaResults portfolioReturn={n(vals.portfolioReturn)} riskFreeRate={n(vals.riskFreeRate)} beta={n(vals.beta)} marketReturn={n(vals.marketReturn)} />; break
+      case 'beta': inner = <BetaResults stockReturn={n(vals.stockReturn)} marketReturn={n(vals.marketReturn)} />; break
+      case 'rSquared': inner = <RSquaredResults correlation={n(vals.correlation)} />; break
+      case 'valueAtRisk': inner = <VaRResults portfolioValue={n(vals.portfolioValue)} meanReturn={n(vals.meanReturn)} stdDev={n(vals.stdDev)} confidence={vals.confidence || '95'} />; break
+      case 'dti': inner = <DtiResults monthlyDebt={n(vals.monthlyDebt)} monthlyIncome={n(vals.monthlyIncome)} />; break
+      case 'ltv': inner = <LtvResults loanAmount={n(vals.loanAmount)} propertyValue={n(vals.propertyValue)} />; break
+      case 'dscr': inner = <DscrResults noi={n(vals.noi)} debtService={n(vals.debtService)} />; break
+      case 'interestCoverage': inner = <CoverageResults ebit={n(vals.ebit)} interestExpense={n(vals.interestExpense)} />; break
+      case 'fixedChargeCoverage': inner = <CoverageResults ebit={n(vals.ebit)} interestExpense={n(vals.interestExpense)} />; break
+      case 'tie': inner = <CoverageResults ebit={n(vals.ebit)} interestExpense={n(vals.interestExpense)} />; break
+      case 'workingCapital': inner = <WorkingCapitalResults currentAssets={n(vals.currentAssets)} currentLiabilities={n(vals.currentLiabilities)} />; break
+      case 'currentRatio': inner = <WorkingCapitalResults currentAssets={n(vals.currentAssets)} currentLiabilities={n(vals.currentLiabilities)} />; break
+      case 'quickRatio': inner = <WorkingCapitalResults currentAssets={n(vals.currentAssets)} currentLiabilities={n(vals.currentLiabilities)} />; break
+      case 'cashRatio': inner = <WorkingCapitalResults currentAssets={n(vals.currentAssets)} currentLiabilities={n(vals.currentLiabilities)} />; break
+      case 'inventoryTurnover': inner = <TurnoverResults cogs={n(vals.cogs)} avgInventory={n(vals.avgInventory)} />; break
+      case 'assetTurnover': inner = <AssetTurnoverResults revenue={n(vals.revenue)} avgAssets={n(vals.avgAssets)} />; break
+      case 'roa': inner = <RoaRoeResults netIncome={n(vals.netIncome)} avgEquity={n(vals.avgEquity)} avgAssets={n(vals.avgAssets)} />; break
+      case 'roe': inner = <RoaRoeResults netIncome={n(vals.netIncome)} avgEquity={n(vals.avgEquity)} avgAssets={n(vals.avgAssets)} />; break
+      case 'debtToAsset': inner = <DebtRatioResults totalDebt={n(vals.totalDebt)} totalEquity={n(vals.totalEquity)} totalAssets={n(vals.totalAssets)} />; break
+      case 'debtToEquity': inner = <DebtRatioResults totalDebt={n(vals.totalDebt)} totalEquity={n(vals.totalEquity)} totalAssets={n(vals.totalAssets)} />; break
+      case 'rentVsBuy': inner = <RentVsBuyResults rent={n(vals.rent)} homePrice={n(vals.homePrice)} downPayment={n(vals.downPayment)} rate={n(vals.rate)} years={n(vals.years)} propertyTax={n(vals.propertyTax)} />; break
+      case 'houseAffordability': inner = <AffordabilityResults income={n(vals.income)} rate={n(vals.rate)} downPayment={n(vals.downPayment)} term={n(vals.term)} />; break
+      case 'closingCosts': inner = <ClosingCostsResults homePrice={n(vals.homePrice)} downPayment={n(vals.downPayment)} />; break
+      case 'rentalIncome': inner = <RentalIncomeResults monthlyRent={n(vals.monthlyRent)} expenses={n(vals.expenses)} downPayment={n(vals.downPayment)} propertyValue={n(vals.propertyValue)} />; break
+      case 'capRate': inner = <CapRateResults noi={n(vals.noi)} propertyValue={n(vals.propertyValue)} />; break
+      case 'cashOnCash': inner = <CashOnCashResults annualCashFlow={n(vals.annualCashFlow)} totalInvested={n(vals.totalInvested)} />; break
+      case 'noiCalc': inner = <NoiResults rentalIncome={n(vals.rentalIncome)} vacancyRate={n(vals.vacancyRate)} operatingExpenses={n(vals.operatingExpenses)} />; break
+      case 'roiRental': inner = <RentalIncomeResults monthlyRent={n(vals.monthlyRent)} expenses={n(vals.expenses)} downPayment={n(vals.downPayment)} propertyValue={n(vals.propertyValue)} />; break
+      case 'incomeTax': inner = <TaxResults income={n(vals.income)} rate={n(vals.rate)} />; break
+      case 'taxBracket': inner = <TaxBracketResults income={n(vals.income)} bracketStart={n(vals.bracketStart)} bracketRate={n(vals.bracketRate)} baseTax={n(vals.baseTax)} />; break
+      case 'marginalTaxRate': inner = <MarginalTaxResults income={n(vals.income)} additionalIncome={n(vals.additionalIncome)} rate={n(vals.rate)} />; break
+      case 'effectiveTaxRate': inner = <EffectiveTaxResults totalTax={n(vals.totalTax)} totalIncome={n(vals.totalIncome)} />; break
+      case 'capitalGainsTax': inner = <CapitalGainsResults costBasis={n(vals.costBasis)} salePrice={n(vals.salePrice)} taxRate={n(vals.taxRate)} />; break
+      case 'dividendTax': inner = <DividendTaxResults dividends={n(vals.dividends)} taxRate={n(vals.taxRate)} />; break
+      case 'selfEmploymentTax': inner = <SelfEmploymentResults netEarnings={n(vals.netEarnings)} expenseRate={n(vals.expenseRate)} />; break
+      case 'salesTax': inner = <SalesTaxResults price={n(vals.price)} taxRate={n(vals.taxRate)} />; break
+      case 'vat': inner = <VatResults price={n(vals.price)} vatRate={n(vals.vatRate)} />; break
+      case 'estateTax': inner = <EstateTaxResults estateValue={n(vals.estateValue)} exemption={n(vals.exemption)} taxRate={n(vals.taxRate)} />; break
+      case 'taxRefundEstimator': inner = <TaxRefundResults withheld={n(vals.withheld)} taxLiability={n(vals.taxLiability)} />; break
+      case 'itemizedVsStandardDeduction': inner = <ItemizedResults income={n(vals.income)} itemized={n(vals.itemized)} standard={n(vals.standard)} />; break
+      case 'amt': inner = <AmtResults income={n(vals.income)} exemption={n(vals.exemption)} rate={n(vals.rate)} />; break
+      case 'cryptoProfit': inner = <CryptoProfitResults buyPrice={n(vals.buyPrice)} sellPrice={n(vals.sellPrice)} quantity={n(vals.quantity)} />; break
+      case 'cryptoMining': inner = <CryptoMiningResults hashRate={n(vals.hashRate)} power={n(vals.power)} />; break
+      case 'cryptoStaking': inner = <CryptoStakingResults amount={n(vals.amount)} apy={n(vals.apy)} years={n(vals.years)} />; break
+      case 'impermanentLoss': inner = <ImpermanentLossResults priceRatio={n(vals.priceRatio)} investA={n(vals.investA)} investB={n(vals.investB)} />; break
+      case 'cryptoTax': inner = <CryptoProfitResults buyPrice={n(vals.buyPrice)} sellPrice={n(vals.sellPrice)} quantity={n(vals.quantity)} />; break
+      case 'lifeInsurance': inner = <LifeInsuranceResults income={n(vals.income)} years={n(vals.years)} debts={n(vals.debts)} funeral={n(vals.funeral)} />; break
+      case 'termVsWholeLife': inner = <TermVsWholeLifeResults age={n(vals.age)} termPremium={n(vals.termPremium)} wholePremium={n(vals.wholePremium)} years={n(vals.years)} />; break
+      case 'disability': inner = <DisabilityResults income={n(vals.income)} benefitPct={n(vals.benefitPct)} elimination={n(vals.elimination)} />; break
+      case 'creditUtilization': inner = <CreditUtilResults totalBalance={n(vals.totalBalance)} totalLimit={n(vals.totalLimit)} />; break
+      case 'creditScore': inner = <CreditScoreResults paymentHistory={n(vals.paymentHistory)} utilization={n(vals.utilization)} length={n(vals.length)} mix={n(vals.mix)} inquiries={n(vals.inquiries)} />; break
+      case 'balanceTransfer': inner = <BalanceTransferResults balance={n(vals.balance)} promoRate={n(vals.promoRate)} promoMonths={n(vals.promoMonths)} feeRate={n(vals.feeRate)} />; break
+      case 'emergencyFund': inner = <EmergencyFundResults monthlyExpenses={n(vals.monthlyExpenses)} months={n(vals.months)} />; break
+      case 'sinkingFund': inner = <SinkingFundResults goal={n(vals.goal)} rate={n(vals.rate)} years={n(vals.years)} />; break
+      case 'savingsGoal': inner = <SavingsGoalResults goal={n(vals.goal)} current={n(vals.current)} rate={n(vals.rate)} years={n(vals.years)} monthlyAdd={n(vals.monthlyAdd)} />; break
+      case 'collegeSavings': inner = <CollegeSavingsResults goal={n(vals.goal)} current={n(vals.current)} years={n(vals.years)} rate={n(vals.rate)} monthly={n(vals.monthly)} />; break
+      case 'netWorth': inner = <NetWorthResults assets={n(vals.assets)} liabilities={n(vals.liabilities)} />; break
+      case 'debtSnowball': inner = <DebtSnowballResults totalDebt={n(vals.totalDebt)} minPayment={n(vals.minPayment)} extraPayment={n(vals.extraPayment)} rate={n(vals.rate)} />; break
+      case 'debtAvalanche': inner = <DebtAvalancheResults totalDebt={n(vals.totalDebt)} minPayment={n(vals.minPayment)} extraPayment={n(vals.extraPayment)} rate={n(vals.rate)} />; break
+      case 'debtPayoffPlan': inner = <DebtPayoffPlanResults balance={n(vals.balance)} rate={n(vals.rate)} monthly={n(vals.monthly)} goalMonths={n(vals.goalMonths)} />; break
+      case 'debtConsolidationSavings': inner = <ConsolidationSavingsResults totalDebt={n(vals.totalDebt)} currentRate={n(vals.currentRate)} newRate={n(vals.newRate)} term={n(vals.term)} />; break
+      case 'pension': inner = <PensionResults currentSavings={n(vals.currentSavings)} monthlyContrib={n(vals.monthlyContrib)} rate={n(vals.rate)} years={n(vals.years)} />; break
+      case 'socialSecurity': inner = <SocialSecurityResults age={n(vals.age)} earnings={n(vals.earnings)} retirementAge={n(vals.retirementAge)} />; break
+      case 'annuity': inner = <AnnuityResults principal={n(vals.principal)} rate={n(vals.rate)} years={n(vals.years)} />; break
+      case 'safeWithdrawalRate': inner = <SafeWithdrawalResults savings={n(vals.savings)} withdrawalRate={n(vals.withdrawalRate)} />; break
+      case 'rmd': inner = <RmdResults balance={n(vals.balance)} age={n(vals.age)} />; break
+      case 'businessValuation': inner = <BusinessValResults revenue={n(vals.revenue)} ebitda={n(vals.ebitda)} multiple={n(vals.multiple)} />; break
+      case 'startupCosts': inner = <StartupCostsResults equipment={n(vals.equipment)} license={n(vals.license)} marketing={n(vals.marketing)} legal={n(vals.legal)} inventory={n(vals.inventory)} />; break
+      case 'runway': inner = <RunwayResults cash={n(vals.cash)} monthlyBurn={n(vals.monthlyBurn)} monthlyRevenue={n(vals.monthlyRevenue)} />; break
+      case 'burnRate': inner = <BurnRateResults startCash={n(vals.startCash)} endCash={n(vals.endCash)} months={n(vals.months)} />; break
+      case 'cac': inner = <CACResults salesCost={n(vals.salesCost)} newCustomers={n(vals.newCustomers)} />; break
+      case 'ltvCalc': inner = <LTVCResults avgRevenue={n(vals.avgRevenue)} churnRate={n(vals.churnRate)} />; break
+      case 'ltvCacRatio': inner = <LTVCACRatioResults ltv={n(vals.ltv)} cac={n(vals.cac)} />; break
+      case 'churnRate': inner = <ChurnResults lostCustomers={n(vals.lostCustomers)} startCustomers={n(vals.startCustomers)} />; break
+      case 'mrr': inner = <MRRResults subscribers={n(vals.subscribers)} avgPrice={n(vals.avgPrice)} />; break
+      case 'arr': inner = <ARRResults mrr={n(vals.mrr)} />; break
+      case 'unitEconomics': inner = <UnitEconResults price={n(vals.price)} varCost={n(vals.varCost)} fixedCost={n(vals.fixedCost)} units={n(vals.units)} />; break
+      case 'contributionMargin': inner = <ContributionMarginResults revenue={n(vals.revenue)} varCosts={n(vals.varCosts)} />; break
+      case 'operatingLeverage': inner = <OperatingLeverageResults revenue={n(vals.revenue)} varCosts={n(vals.varCosts)} fixedCosts={n(vals.fixedCosts)} />; break
+      case 'financialLeverage': inner = <FinLeverageResults ebit={n(vals.ebit)} interest={n(vals.interest)} />; break
+      case 'grossProfit': inner = <GrossProfitFunc revenue={n(vals.revenue)} cogs={n(vals.cogs)} />; break
+      case 'netProfit': inner = <NetProfitResults revenue={n(vals.revenue)} expenses={n(vals.expenses)} />; break
+      case 'profitMargin': inner = <ProfitMarginResults revenue={n(vals.revenue)} profit={n(vals.profit)} />; break
+      case 'costVolumeProfit': inner = <CostVolumeResults fixedCosts={n(vals.fixedCosts)} pricePerUnit={n(vals.pricePerUnit)} varCostPerUnit={n(vals.varCostPerUnit)} units={n(vals.units)} />; break
+      case 'markupCalc': inner = <MarkupResults cost={n(vals.cost)} markup={n(vals.markup)} />; break
+      case 'carAffordability': inner = <CarAffordResults monthlyPayment={n(vals.monthlyPayment)} rate={n(vals.rate)} term={n(vals.term)} />; break
+      case 'childCare': inner = <ChildCareResults weeklyCost={n(vals.weeklyCost)} weeksPerYear={n(vals.weeksPerYear)} />; break
+      case 'petExpense': inner = <PetExpenseResults food={n(vals.food)} vet={n(vals.vet)} supplies={n(vals.supplies)} other={n(vals.other)} />; break
+      case 'fiftyThirtyTwenty': inner = <BudgetRuleResults income={n(vals.income)} needs={n(vals.needs)} wants={n(vals.wants)} savings={n(vals.savings)} />; break
+      case 'zeroBasedBudget': inner = <ZeroBasedBudgetResults income={n(vals.income)} category1={n(vals.category1)} category2={n(vals.category2)} category3={n(vals.category3)} category4={n(vals.category4)} />; break
+      case 'envelopeSystem': inner = <EnvelopeBudgetResults income={n(vals.income)} envelopes={n(vals.envelopes)} perEnvelope={n(vals.perEnvelope)} />; break
+      case 'payYourselfFirst': inner = <PayYourselfFirstResults income={n(vals.income)} savingsPct={n(vals.savingsPct)} />; break
+      case 'weddingBudget': inner = <WeddingBudgetResults guestCount={n(vals.guestCount)} budget={n(vals.budget)} />; break
+      case 'vacationBudget': inner = <VacationBudgetResults transport={n(vals.transport)} lodging={n(vals.lodging)} food={n(vals.food)} activities={n(vals.activities)} />; break
+      case 'holidayBudget': inner = <HolidayBudgetResults gifts={n(vals.gifts)} travel={n(vals.travel)} food={n(vals.food)} decorations={n(vals.decorations)} />; break
+      case 'groceryBudget': inner = <GroceryBudgetResults householdSize={n(vals.householdSize)} weeklyTarget={n(vals.weeklyTarget)} />; break
+      case 'monthlyBudget': inner = <MonthlyBudgetResults income={n(vals.income)} housing={n(vals.housing)} food={n(vals.food)} transport={n(vals.transport)} utilities={n(vals.utilities)} other={n(vals.other)} />; break
+      case 'annualBudget': inner = <AnnualBudgetResults income={n(vals.income)} housing={n(vals.housing)} food={n(vals.food)} transport={n(vals.transport)} utilities={n(vals.utilities)} savings={n(vals.savings)} />; break
+      case 'homeInsurance': inner = <HomeInsResults homeValue={n(vals.homeValue)} deductible={n(vals.deductible)} />; break
+      case 'autoInsurance': inner = <AutoInsResults carValue={n(vals.carValue)} deductible={n(vals.deductible)} />; break
+      case 'healthInsuranceComparison': inner = <HealthInsCompResults premium1={n(vals.premium1)} deductible1={n(vals.deductible1)} oopMax1={n(vals.oopMax1)} premium2={n(vals.premium2)} deductible2={n(vals.deductible2)} oopMax2={n(vals.oopMax2)} />; break
+      case 'deductibleVsPremium': inner = <DeductibleVsPremiumResults lowPremium={n(vals.lowPremium)} lowDeductible={n(vals.lowDeductible)} highPremium={n(vals.highPremium)} highDeductible={n(vals.highDeductible)} />; break
+      case 'outOfPocketMaximum': inner = <OopResults deductible={n(vals.deductible)} coinsurance={n(vals.coinsurance)} oopMax={n(vals.oopMax)} />; break
+      case 'propertyTaxDeduction': inner = <PropertyTaxDeductionResults propertyTaxPaid={n(vals.propertyTaxPaid)} marginalRate={n(vals.marginalRate)} />; break
+      case 'giftTax': inner = <GiftTaxResults giftAmount={n(vals.giftAmount)} annualExclusion={n(vals.annualExclusion)} />; break
+      case 'inheritanceTax': inner = <InheritanceTaxResults inheritanceAmount={n(vals.inheritanceAmount)} stateExemption={n(vals.stateExemption)} taxRate={n(vals.taxRate)} />; break
+      case 'sideHustleTax': inner = <SideHustleTaxResults income={n(vals.income)} expenses={n(vals.expenses)} otherIncome={n(vals.otherIncome)} />; break
+      case 'gigEconomyTax': inner = <SideHustleTaxResults income={n(vals.income)} expenses={n(vals.expenses)} otherIncome={n(vals.otherIncome)} />; break
+      case 'interestIncomeTax': inner = <TaxResults income={n(vals.income)} rate={n(vals.rate)} />; break
+      case 'rentalIncomeTax': inner = <RentIncomeTaxResults rentIncome={n(vals.rentIncome)} expenses={n(vals.expenses)} depreciation={n(vals.depreciation)} />; break
+      case 'amortization': inner = <PaymentResults p={n(vals.principal)} r={n(vals.rate)} t={n(vals.term)} />; break
+      case 'loanComparison': inner = <LoanComparisonResults amount={n(vals.amount)} rate1={n(vals.rate1)} term1={n(vals.term1)} rate2={n(vals.rate2)} term2={n(vals.term2)} />; break
+      case 'biweeklyPayment': inner = <BiweeklyPayResults principal={n(vals.principal)} rate={n(vals.rate)} term={n(vals.term)} />; break
+      default: inner = <PaymentResults p={n(vals.principal)} r={n(vals.rate)} t={n(vals.term)} />; break
     }
-  }, [watched, calcType])
+    if (alreadyUpgradedTypes.has(calcType)) return inner
+    return <>{inner}{getFinInterpretation(calcType)}</>
+  }, [watched, calcType, calcDefForSlug, resultData, extraFields])
 
   const field = (name: string, label: string, opts?: { min?: number; max?: number; step?: number; lockable?: boolean; unit?: string }) =>
     useSlider
@@ -2168,6 +2520,10 @@ export function GenericFinancialCalculator({ calculator }: Props) {
   }
 
   const formContent = useMemo(() => {
+    const calcDefForSlug = calcDefs[calculator.slug]
+    if (calcDefForSlug?.fields) {
+      return <FieldsByMode fields={calcDefForSlug.fields as any} useSlider={useSlider} lockedFields={lockedFields} toggleLock={toggleLock} />
+    }
     switch (calcType) {
       case 'mortgage':
         return (
@@ -2311,7 +2667,7 @@ export function GenericFinancialCalculator({ calculator }: Props) {
         )
       }
     }
-  }, [calcType, form, useSlider, lockedFields, toggleLock])
+  }, [calcType, form, useSlider, lockedFields, toggleLock, calcDefForSlug, calculator.slug])
 
   const saveScenario = useCallback(() => {
     const vals = watched as Record<string, string>
@@ -2503,6 +2859,7 @@ export function GenericFinancialCalculator({ calculator }: Props) {
   ]
 
   const mainValue = useMemo(() => {
+    if (resultData && typeof resultData.result === 'number') return resultData.result
     const vals = watched as any
     const n = (v: any) => parseFloat(v) || 0
     switch (calcType) {
@@ -2701,7 +3058,7 @@ export function GenericFinancialCalculator({ calculator }: Props) {
         return 0
       }
     }
-  }, [watched, calcType])
+  }, [watched, calcType, resultData])
 
   const copyResultText = useMemo(() => {
     const lines: string[] = [calculator.title]

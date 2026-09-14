@@ -9,11 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const x0 = n(v.x0), y0 = n(v.y0), x1 = n(v.x1), y1 = n(v.y1), x = n(v.x)
       const t = (x - x0) / (x1 - x0); const y = y0 + t * (y1 - y0)
-      return { result: y.toFixed(4), label: 'Interpolated y', steps: [step('t', t.toFixed(4)), step('y = y0 + t(y1-y0)', y.toFixed(4))] }
+      return { result: y.toFixed(4), label: 'Interpolated y', steps: [step('t', t.toFixed(4)), step('y = y0 + t(y1-y0)', y.toFixed(4))] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'y = y0 + (x - x0) � (y1 - y0) / (x1 - x0).',
     description: 'Linear interpolation between two points.',
-    interpretation: 'Estimated y value at the target x using linear interpolation.'
+    interpretation: 'Estimated y value at the target x using linear interpolation.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

@@ -69,6 +69,7 @@ export function FractionForm() {
     });
   };
 
+    const handleClear = () => { setResult(null); setF1W(''); setF1N(1); setF1D(2); setOp('+'); setF2W(''); setF2N(1); setF2D(3); };
   return (
     <div className="flex flex-col gap-6 font-sans text-[13px] text-[#333333]">
       <div className="bg-[#f0f0f0] border border-[#cccccc] p-4 inline-flex flex-col md:flex-row items-center gap-4 max-w-fit">
@@ -105,7 +106,7 @@ export function FractionForm() {
 
         <div className="ml-4 flex gap-2">
           <Button onClick={handleCalculate} className="px-6">=</Button>
-          <Button variant="secondary" onClick={() => {}}>Clear</Button>
+          <Button variant="secondary" onClick={handleClear}>Clear</Button>
         </div>
       </div>
 

@@ -26,7 +26,12 @@ const calcDef: CalcDef = {
         { label: 'Quality', value: quality },
         { label: 'PAM requirement', value: "SpCas9: NGG at 3' end of target" },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'CRISPR-Cas9 guide RNA design parameters. Optimal guides are 20 nt with 40-60% GC. Tm, length, and GC content predict on-target efficiency and specificity.',
   formula: 'Tm ˜ 2(AT) + 4(GC) | Optimal: 18-22 nt, GC 40-60%, no poly-T (RNA pol III terminator)',

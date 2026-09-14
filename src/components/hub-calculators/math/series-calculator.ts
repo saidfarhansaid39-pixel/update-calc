@@ -14,11 +14,21 @@ const calcDef: CalcDef = {
       else if (type === 'geometric') sum = start * (1 - Math.pow(2, nTerms)) / (1 - 2)
       else if (type === 'sum-squares') { for (let i = 1; i <= nTerms; i++) sum += i * i; sum *= start }
       else if (type === 'sum-cubes') { for (let i = 1; i <= nTerms; i++) sum += i * i * i; sum *= start }
-      return { result: sum, label: 'Sum', steps: [step('Type:', type), step('Sum:', '' + sum)] }
+      return { result: sum, label: 'Sum', steps: [step('Type:', type), step('Sum:', '' + sum)] ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'Arithmetic: S = n/2 x (2a + (n-1)d)',
     description: 'Calculate the sum of arithmetic, geometric, or power series.',
-    interpretation: 'The total sum of the series terms.'
+    interpretation: 'The total sum of the series terms.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

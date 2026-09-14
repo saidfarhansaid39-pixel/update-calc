@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'Molarity = moles / volume', value: `${molarity.toExponential(4)} M` },
         { label: 'In mM', value: `${(molarity * 1000).toFixed(2)} mM` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Molarity (M) is the number of moles of solute per liter of solution. It is the most common concentration unit in biological and chemical laboratory work.',
   formula: 'M = n / V = mass / (MW × V) | n = moles, MW = molecular weight (g/mol), V = volume (L)',

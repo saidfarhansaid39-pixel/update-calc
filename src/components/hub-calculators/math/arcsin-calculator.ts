@@ -9,11 +9,23 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const x = n(v.a)
       const result = Math.asin(x) * (180 / Math.PI)
-      return { result: result.toFixed(4), label: 'arcsin(x) in degrees', steps: [step('Formula:', 'arcsin(' + x + ')'), step('Result:', '' + result.toFixed(4) + 'deg')] }
+      return { result: result.toFixed(4), label: 'arcsin(x) in degrees', steps: [step('Formula:', 'arcsin(' + x + ')'), step('Result:', '' + result.toFixed(4) + 'deg')] ,
+    extras: [
+      { label: "Unit Circle Reference", value: "Angles measured from positive x-axis counterclockwise." },
+      { label: "Common Angle Values", value: "sin(0°)=0, sin(30°)=0.5, sin(45°)=0.707, sin(60°)=0.866, sin(90°)=1." },
+      { label: "Pythagorean Identity", value: "sin²θ + cos²θ = 1 — fundamental trigonometric relationship." },
+      { label: "Radian vs Degree", value: "Switch between degree and radian mode depending on your problem." },
+      { label: "Periodic Nature", value: "Trigonometric functions repeat every 360° (2π radians)." }
+    ]}
     },
     formula: 'arcsin(x) in degrees',
     description: 'Calculate the inverse sine (arcsin) of a value.',
-    interpretation: 'The angle whose sine is the given value, returned in degrees.'
+    interpretation: 'The angle whose sine is the given value, returned in degrees.',
+    presets: [
+      { label: 'Common 30°', values: { a: '30' } },
+      { label: 'Common 45°', values: { a: '45' } },
+      { label: 'Common 60°', values: { a: '60' } }
+    ]
 }
 
 export default calcDef

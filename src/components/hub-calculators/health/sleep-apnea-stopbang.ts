@@ -12,7 +12,12 @@ const calcDef: CalcDef = {
     { name:'neck40', label:'Neck circumference > 40 cm?', type:'select', options:[{ label:'No', value:'no' },{ label:'Yes', value:'yes' }] },
     { name:'genderMale', label:'Gender is male?', type:'select', options:[{ label:'No', value:'no' },{ label:'Yes', value:'yes' }] }
   ],
-  compute: (v) => { const score=[v.snoring,v.tired,v.observed,v.pressure,v.bmi35,v.age50,v.neck40,v.genderMale].filter(x=>x==='yes').length; let risk='Low'; if(score>=5) risk='High'; else if(score>=3) risk='Intermediate'; return { result:score, label:'STOP-BANG Score', unit:'/8', steps:[{ label:'Score', value:score+'/8' },{ label:'OSA Risk', value:risk }] } },
+  compute: (v) => { const score=[v.snoring,v.tired,v.observed,v.pressure,v.bmi35,v.age50,v.neck40,v.genderMale].filter(x=>x==='yes').length; let risk='Low'; if(score>=5) risk='High'; else if(score>=3) risk='Intermediate'; return { result:score, label:'STOP-BANG Score', unit:'/8', steps:[{ label:'Score', value:score+'/8' },{ label:'OSA Risk', value:risk }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'STOP-BANG screening tool for obstructive sleep apnea risk assessment.',
   formula: 'Score 1 point each for Snoring, Tired, Observed apnea, Pressure, BMI>35, Age>50, Neck>40cm, Male gender.',
   interpretation: '0-2: Low risk. 3-4: Intermediate risk. 5-8: High risk of moderate-severe OSA.'

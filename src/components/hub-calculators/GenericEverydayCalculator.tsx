@@ -622,7 +622,7 @@ function GPAResults({ grades }: { grades: string }) {
 }
 
 function RandomResults() {
-  const num = useMemo(() => Math.floor(Math.random() * 100) + 1, [])
+  const [num] = useState(() => Math.floor(Math.random() * 100) + 1)
   return (
     <div className="text-center space-y-3">
       <p className="text-4xl font-bold text-[#06b6d4]">{num}</p>
@@ -638,6 +638,7 @@ function PasswordResults({ length, upper, digits, symbols }: { length: number; u
     if (digits === 'yes') chars += '0123456789'
     if (symbols === 'yes') chars += '!@#$%^&*()_+-=[]{}|;:,.<>?'
     let result = ''
+    // eslint-disable-next-line react-hooks/purity
     for (let i = 0; i < length; i++) result += chars[Math.floor(Math.random() * chars.length)]
     return result
   }, [length, upper, digits, symbols])
@@ -741,6 +742,109 @@ function GenericEverydayCalculator({ calculator }: Props) {
     return Object.fromEntries(Object.entries(vals).filter(([, v]) => v !== undefined && v !== ''))
   }, [watched])
 
+  function getEverydayInterpretation(slug: string, val?: number | string, unit?: string): React.ReactNode {
+    if (typeof val === 'string') val = parseFloat(val)
+    if (slug.includes('gpa') || slug.includes('grade')) {
+      const gpa = val || 0
+      const level = gpa >= 3.7 ? 'excellent' : gpa >= 3.0 ? 'good' : gpa >= 2.0 ? 'average' : 'below average'
+      return <div className={`text-xs font-medium mt-1 ${level === 'excellent' || level === 'good' ? 'text-emerald-600' : level === 'average' ? 'text-blue-600' : 'text-amber-600'}`}>GPA {gpa.toFixed(2)} — {level}. A 4.0 is a perfect A average.</div>
+    }
+    if (slug.includes('password') && !slug.includes('check')) return <div className="text-xs text-emerald-600 font-medium mt-1">Strong passwords use 12+ characters with uppercase, digits, and symbols. Avoid common words.</div>
+    if (slug.includes('password-check') || slug.includes('strength')) return <div className="text-xs text-amber-600 font-medium mt-1">A strong password has 95^length possible combinations. Aim for 95^12 or more for security.</div>
+    if (slug.includes('budget') || slug.includes('50-30-20')) return <div className="text-xs text-blue-600 font-medium mt-1">The 50/30/20 rule: 50% needs, 30% wants, 20% savings. Adjust based on your financial goals.</div>
+    if (slug.includes('snowball') || slug.includes('debt')) return <div className="text-xs text-emerald-600 font-medium mt-1">Snowball: pay smallest debts first for motivation. Avalanche: pay highest interest first for savings.</div>
+    if (slug.includes('net-worth')) {
+      const nw = val || 0
+      return <div className={`text-xs font-medium mt-1 ${nw >= 0 ? 'text-emerald-600' : 'text-amber-600'}`}>Net worth: ${nw.toLocaleString()} — {nw >= 0 ? 'Positive net worth indicates financial health' : 'Focus on reducing debt and building assets'}.</div>
+    }
+    if (slug.includes('emergency-fund')) {
+      const months = val || 0
+      return <div className={`text-xs font-medium mt-1 ${months >= 3 ? 'text-emerald-600' : months >= 1 ? 'text-amber-600' : 'text-red-600'}`}>{months.toFixed(1)} months — Experts recommend 3-6 months of expenses in an emergency fund.</div>
+    }
+    if (slug.includes('sleep') || slug.includes('nap') || slug.includes('bedtime') || slug.includes('wake')) {
+      const hrs = val || 0
+      const level = hrs >= 7 && hrs <= 9 ? 'adequate' : hrs < 7 ? 'low' : 'high'
+      return <div className={`text-xs font-medium mt-1 ${level === 'adequate' ? 'text-emerald-600' : 'text-amber-600'}`}>{hrs.toFixed(1)} hours — {level === 'adequate' ? 'Within the recommended 7-9 hours for adults' : level === 'low' ? 'Below the recommended 7-9 hours' : 'Above the recommended 7-9 hours'}.</div>
+    }
+    if (slug.includes('water') || slug.includes('hydration') || slug.includes('water-intake')) {
+      const target = 2700; const level = val ? (val >= target ? 'adequate' : 'low') : ''
+      return level ? <div className={`text-xs font-medium mt-1 ${level === 'adequate' ? 'text-emerald-600' : 'text-blue-600'}`}>{val?.toFixed(0)} {unit} — {level === 'adequate' ? 'Meets general daily recommendation (~2.7L women, 3.7L men)' : 'Below the general recommendation'}.</div> : null
+    }
+    if (slug.includes('caffeine')) {
+      const level = val ? (val <= 400 ? 'safe' : 'high') : ''
+      return level ? <div className={`text-xs font-medium mt-1 ${level === 'safe' ? 'text-emerald-600' : 'text-amber-600'}`}>{val?.toFixed(0)} {unit} — {level === 'safe' ? 'Within the 400 mg/day safe limit' : 'Exceeds the 400 mg/day limit'}.</div> : null
+    }
+    if (slug.includes('bac') || slug.includes('alcohol') || slug.includes('blood-alcohol')) {
+      const bac = val || 0; const level = bac >= 0.08 ? 'impaired' : bac >= 0.05 ? 'caution' : bac >= 0.02 ? 'mild' : 'sober'
+      return <div className={`text-xs font-medium mt-1 ${level === 'impaired' ? 'text-red-600' : level === 'caution' ? 'text-amber-600' : 'text-emerald-600'}`}>{bac.toFixed(3)} BAC — {level === 'impaired' ? 'Legally impaired (≥0.08% in most US states)' : level === 'caution' ? 'May be impaired — avoid driving' : level === 'mild' ? 'Slight effects — some impairment begins at 0.02%' : 'No significant impairment'}.</div>
+    }
+    if (slug.includes('calorie') || slug.includes('burned') || slug.includes('walking-cal') || slug.includes('running-cal') || slug.includes('cycling-cal') || slug.includes('swimming-cal')) {
+      return <div className="text-xs text-blue-600 font-medium mt-1">{val?.toFixed(0)} {unit} — Calories burned depend on weight, intensity, and duration. MET values estimate energy expenditure.</div>
+    }
+    if (slug.includes('paint') || slug.includes('wallpaper') || slug.includes('tile') || slug.includes('floor') || slug.includes('rug') || slug.includes('carpet')) {
+      return <div className="text-xs text-emerald-600 font-medium mt-1">{val?.toFixed(1)} {unit} — Always buy 10-15% extra for waste and mistakes.</div>
+    }
+    if (slug.includes('moving') || slug.includes('storage')) {
+      return <div className="text-xs text-amber-600 font-medium mt-1">{val ? `$${val.toFixed(0)}` : ''} — Moving costs vary by distance and volume. Get at least 3 quotes.</div>
+    }
+    if (slug.includes('commute') || slug.includes('fuel') || slug.includes('gas') || slug.includes('toll')) {
+      return <div className="text-xs text-blue-600 font-medium mt-1">{val ? `$${val.toFixed(2)}` : ''} — Track commuting costs. Remote work or transit can save significantly.</div>
+    }
+    if (slug.includes('ev') || slug.includes('electric-vehicle')) {
+      return <div className="text-xs text-emerald-600 font-medium mt-1">{val?.toFixed(2)} {unit} — EVs cost 3-5x less per mile than gas. Home charging is cheapest.</div>
+    }
+    if (slug.includes('carbon') || slug.includes('footprint')) {
+      const avg = 4.8; const level = val ? (val > avg ? 'above' : val < avg * 0.5 ? 'below' : 'average') : ''
+      return level ? <div className={`text-xs font-medium mt-1 ${level === 'below' ? 'text-emerald-600' : level === 'average' ? 'text-blue-600' : 'text-amber-600'}`}>{val?.toFixed(1)} tons CO₂e — {level === 'below' ? 'Below the global average of 4.8 tons/person' : level === 'average' ? 'Near the global average of 4.8 tons/person' : 'Above the global average of 4.8 tons/person'}.</div> : null
+    }
+    if (slug.includes('pet') || slug.includes('dog-years') || slug.includes('cat-years') || slug.includes('pet-age')) {
+      return <div className="text-xs text-blue-600 font-medium mt-1">{val?.toFixed(1)} {unit} — Old rule: 1 dog year = 7 human years. Small breeds age slower than large breeds.</div>
+    }
+    if (slug.includes('pomodoro') || slug.includes('productivity') || slug.includes('time-block') || slug.includes('task')) {
+      return <div className="text-xs text-emerald-600 font-medium mt-1">Pomodoro Technique: 25 min work, 5 min break. Four cycles then a 15-30 min break.</div>
+    }
+    if (slug.includes('prime')) {
+      return <div className="text-xs text-amber-600 font-medium mt-1">{val?.toFixed(0)} {unit} — A prime number is divisible only by 1 and itself. First primes: 2, 3, 5, 7, 11, 13.</div>
+    }
+    if (slug.includes('tv-size') || slug.includes('projector')) {
+      return <div className="text-xs text-emerald-600 font-medium mt-1">{val?.toFixed(1)} {unit} — Optimal viewing: 1.5-2.5× diagonal for 4K, 2-3× for 1080p.</div>
+    }
+    if (slug.includes('lottery') || slug.includes('bingo') || slug.includes('poker') || slug.includes('raffle') || slug.includes('sweepstakes')) {
+      const odds = val && val > 0 ? (1 / val * 100).toFixed(4) : 'very low'
+      return <div className="text-xs text-blue-600 font-medium mt-1">1 in {val?.toFixed(0) || '?'} chance ({odds}%) — Lottery odds are extremely low. Play for fun, not investment.</div>
+    }
+    if (slug.includes('unit-price') || slug.includes('price-oz') || slug.includes('price-lb')) {
+      return <div className="text-xs text-emerald-600 font-medium mt-1">{val ? `$${val.toFixed(4)} ${unit}` : ''} — Compare per-unit prices. Larger packages aren't always cheaper.</div>
+    }
+    if (slug.includes('gym') || slug.includes('membership')) {
+      return <div className="text-xs text-emerald-600 font-medium mt-1">{val ? `$${val.toFixed(2)}/visit` : ''} — A $50/month gym used 3×/week costs ~$4.17/visit.</div>
+    }
+    if (slug.includes('freelance') || slug.includes('commission') || slug.includes('overtime') || slug.includes('salary-hourly') || slug.includes('hourly-salary')) {
+      return <div className="text-xs text-amber-600 font-medium mt-1">{val ? `$${val.toFixed(2)}` : ''} — Freelancers should set rates 25-30% higher to cover taxes and benefits.</div>
+    }
+    if (slug.includes('fee') || slug.includes('paypal') || slug.includes('stripe') || slug.includes('ebay') || slug.includes('etsy') || slug.includes('amazon') || slug.includes('crowdfunding')) {
+      return <div className="text-xs text-blue-600 font-medium mt-1">{val ? `$${val.toFixed(2)}` : ''} — Platform fees reduce net revenue. Factor them into pricing.</div>
+    }
+    if (slug.includes('fast-food')) return <div className="text-xs text-emerald-600 font-medium mt-1">Fast food averages $5-15/meal. Home cooking costs ~60% less.</div>
+    if (slug.includes('tire-pressure')) {
+      const psi = val || 0
+      return <div className={`text-xs font-medium mt-1 ${psi >= 30 && psi <= 35 ? 'text-emerald-600' : 'text-amber-600'}`}>{psi.toFixed(0)} PSI — {psi >= 30 && psi <= 35 ? 'Within typical range (30-35 PSI)' : 'Check manufacturer recommendation (typically 30-35 PSI)'}. Check monthly when cold.</div>
+    }
+    if (slug.includes('subscription') || slug.includes('streaming')) {
+      return <div className="text-xs text-blue-600 font-medium mt-1">{val ? `$${val.toFixed(2)}/mo` : ''} — Average US household spends ~$50/mo on 3-4 streaming services.</div>
+    }
+    if (slug.includes('diaper') || slug.includes('formula') || slug.includes('baby')) {
+      return <div className="text-xs text-emerald-600 font-medium mt-1">{val ? `$${val.toFixed(0)}` : ''} — First year costs ~$12,000-16,000. Diapers alone are $70-80/month.</div>
+    }
+    if (slug.includes('soil') || slug.includes('mulch') || slug.includes('compost') || slug.includes('raised-bed')) {
+      return <div className="text-xs text-blue-600 font-medium mt-1">{val?.toFixed(1)} {unit} — Measure your space first. Soil is sold in cubic yards or bags.</div>
+    }
+    if (slug.includes('cooking') || slug.includes('meal-prep') || slug.includes('leftover') || slug.includes('pizza') || slug.includes('coffee-calc')) {
+      return <div className="text-xs text-emerald-600 font-medium mt-1">{val ? `$${val.toFixed(2)}` : ''} — Home cooking saves ~60% vs dining out. Meal prep reduces daily costs.</div>
+    }
+    return null
+  }
+
   const result = useMemo(() => {
   const calcDef = calcDefs[calculator.slug] || calcDefs[calcType]
   if (calcDef) {
@@ -756,6 +860,7 @@ function GenericEverydayCalculator({ calculator }: Props) {
           <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
             <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
             <p className="text-3xl font-bold text-[#06b6d4]">{typeof res.result === 'number' ? res.result.toFixed(4) : res.result} {res.unit}</p>
+            {getEverydayInterpretation(calculator.slug, res.result, res.unit)}
           </div>
           <div className="border-t border-gray-200 dark:border-gray-700 pt-4 text-xs text-gray-400 space-y-1">
             {(res.steps ?? []).map((step, i) => (

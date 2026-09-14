@@ -5,6 +5,11 @@ export interface Author {
   bio: string;
   avatar?: string;
   specialty: string[];     // hub slugs they review
+  sameAs?: {
+    linkedin?: string;
+    twitter?: string;
+    website?: string;
+  };
 }
 
 export const AUTHORS: Record<string, Author> = {
@@ -14,6 +19,11 @@ export const AUTHORS: Record<string, Author> = {
     credentials: 'MD, MPH',
     bio: 'Board-certified physician with 12 years in preventive medicine. Reviews health, nutrition, and life-science calculators.',
     specialty: ['health-calculators', 'biology-calculators', 'food-calculators'],
+    sameAs: {
+      linkedin: 'https://www.linkedin.com/company/calculat',
+      twitter: 'https://x.com/calculat',
+      website: 'https://www.calculat.online/about',
+    },
   },
   'james-mitchell': {
     id: 'james-mitchell',
@@ -21,6 +31,11 @@ export const AUTHORS: Record<string, Author> = {
     credentials: 'Chartered Financial Analyst',
     bio: 'Former investment banker with 15 years advising on retirement and mortgage planning. Reviews finance and math calculators.',
     specialty: ['financial-calculators', 'math-calculators'],
+    sameAs: {
+      linkedin: 'https://www.linkedin.com/company/calculat',
+      twitter: 'https://x.com/calculat',
+      website: 'https://www.calculat.online/about',
+    },
   },
   'dr-elena-petrova': {
     id: 'dr-elena-petrova',
@@ -28,6 +43,11 @@ export const AUTHORS: Record<string, Author> = {
     credentials: 'PhD, Physics',
     bio: 'Professor of physics with 18 years researching mechanics and thermodynamics. Reviews physics, chemistry, and engineering calculators.',
     specialty: ['physics-calculators', 'chemistry-calculators', 'engineering-calculators'],
+    sameAs: {
+      linkedin: 'https://www.linkedin.com/company/calculat',
+      twitter: 'https://x.com/calculat',
+      website: 'https://www.calculat.online/about',
+    },
   },
   'marcus-johnson': {
     id: 'marcus-johnson',
@@ -35,6 +55,11 @@ export const AUTHORS: Record<string, Author> = {
     credentials: 'MSc, Mathematics Educator',
     bio: 'High-school math teacher and curriculum developer with 14 years of classroom experience. Reviews math, statistics, and education calculators.',
     specialty: ['math-calculators', 'statistics-calculators', 'education-calculators', 'conversion-calculators'],
+    sameAs: {
+      linkedin: 'https://www.linkedin.com/company/calculat',
+      twitter: 'https://x.com/calculat',
+      website: 'https://www.calculat.online/about',
+    },
   },
   'priya-sharma': {
     id: 'priya-sharma',
@@ -42,6 +67,11 @@ export const AUTHORS: Record<string, Author> = {
     credentials: 'Licensed Civil Engineer',
     bio: 'Civil engineer specializing in construction estimation and structural design. Reviews construction, everyday, and sports calculators.',
     specialty: ['construction-calculators', 'everyday-calculators', 'sports-calculators', 'ecology-calculators', 'date-time-calculators'],
+    sameAs: {
+      linkedin: 'https://www.linkedin.com/company/calculat',
+      twitter: 'https://x.com/calculat',
+      website: 'https://www.calculat.online/about',
+    },
   },
 };
 

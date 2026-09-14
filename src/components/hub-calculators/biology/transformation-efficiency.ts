@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Efficiency = (colonies × dilution) / DNA', value: `${eff.toExponential(4)} CFU/µg` },
         { label: 'Rating', value: eff > 1e9 ? 'Very high' : eff > 1e8 ? 'High' : eff > 1e7 ? 'Standard' : eff > 1e6 ? 'Low' : 'Poor' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Transformation efficiency measures how many competent cells take up and express plasmid DNA. It is expressed as colony-forming units per microgram of DNA.',
   formula: 'Efficiency (CFU/µg) = (colonies × dilution factor) / µg DNA plated',

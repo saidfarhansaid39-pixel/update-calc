@@ -53,9 +53,11 @@
     "privacy": "Política de Privacidad",
     "terms": "Términos del Servicio",
     "contact": "Contacto",
+    "editorialPolicy": "Política Editorial",
+    "press": "Prensa",
     "tagline": "Herramientas de precisión para cada cálculo. Gratis, rápidas y con un diseño impecable.",
     "motto": "Precisión. Inteligencia. Claridad.",
-    "copyright": "© {year} JDCALC. Todos los derechos reservados."
+    "copyright": "© {year} Calculat. Todos los derechos reservados."
   },
   "hubs": {
     "financial-calculators": "Calculadoras Financieras",
@@ -186,14 +188,16 @@
     "searchNoResultsHint": "Try a different search term or browse calculators by category."
   },
   "seo": {
-    "siteTitle": "JDCALC — La plataforma de calculadoras más inteligente del mundo",
-    "titleTemplate": "%s | JDCALC",
-    "siteName": "JDCALC",
+    "siteTitle": "Calculat — La plataforma de calculadoras más inteligente del mundo",
+    "titleTemplate": "%s | Calculat",
+    "siteName": "Calculat",
     "siteDescription": "Calculadoras de precisión para finanzas, salud, matemáticas, ciencias y la vida cotidiana. Impulsadas por IA, con un diseño hermoso y completamente gratis.",
     "about": "Acerca de",
     "privacy": "Privacidad",
     "terms": "Términos",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "editorialPolicy": "Política Editorial",
+    "press": "Prensa"
   },
   "content": {
     "sectionOverview": "Descripción general",
@@ -1556,7 +1560,7 @@
     "heroBadge": "La plataforma de calculadoras más inteligente",
     "heroTitle": "Calcula {highlight} con precisión",
     "heroHighlight": "cualquier cosa",
-    "heroSubtitle": "Más de 200 calculadoras premium para finanzas, salud, matemáticas, ciencias y la vida cotidiana. Gratis, rápidas y con un diseño impecable.",
+    "heroSubtitle": "Más de {count} calculadoras para finanzas, salud, matemáticas, ciencia y vida diaria. Gratis, rápidas y con un diseño cuidado.",
     "statCalculators": "Calculadoras",
     "statCategories": "Categorías",
     "statFree": "Gratis",
@@ -1564,7 +1568,7 @@
     "popularTitle": "Calculadoras Populares",
     "popularSubtitle": "Las herramientas más usadas por nuestra comunidad",
     "trendingTitle": "Tendencias",
-    "featuresTitle": "¿Por qué JDCALC?",
+    "featuresTitle": "¿Por qué Calculat?",
     "featuresSubtitle": "Construido para la precisión, diseñado para la claridad",
     "featureFastTitle": "Rápido como un rayo",
     "featureFastDesc": "Cálculos en tiempo real mientras escribes, sin esperas.",
@@ -1576,7 +1580,21 @@
     "featureDesignDesc": "Impecable en cualquier dispositivo con modo oscuro.",
     "ctaTitle": "Empieza a calcular en segundos",
     "ctaSubtitle": "Sin registro. Solo elige una calculadora y comienza.",
-    "ctaButton": "Explorar Calculadoras"
+    "ctaButton": "Explorar Calculadoras",
+    "heroTitlePre": "Calcula ",
+    "heroTitlePost": " con precisión",
+    "allCategories": "Todas las Categorías",
+    "trendAutoLoanName": "Préstamo de Auto",
+    "trendAutoLoanDesc": "Calculadora de pagos del coche",
+    "trend401kName": "Calculadora 401k",
+    "trend401kDesc": "Planificador de ahorro para la jubilación",
+    "trendHouseName": "Vivienda Asequible",
+    "trendHouseDesc": "Cuánta casa puedes pagar",
+    "trendStudentName": "Préstamo Estudiantil",
+    "trendStudentDesc": "Estrategias de pago",
+    "sciTitle": "Calculadora Científica",
+    "sciIntro": "¿Necesitas un cálculo rápido? Usa nuestra calculadora científica integrada con trigonometría, logaritmos, potencias y constantes.",
+    "sciNote": "Cambia entre modos Básico y Científico. Está siempre disponible en la esquina inferior derecha de cada página."
   },
   "extraFields": {
     "activity_job": "Job Activity Level",
@@ -2245,6 +2263,79 @@
     "zip_code_placeholder": "e.g. 90210"
   },
   "calculatorUI": {
+    "shell": {
+      "unitMetric": "Metric",
+      "unitImperial": "Imperial",
+      "unitUS": "US Customary",
+      "calculate": "Calculate",
+      "recalculate": "Recalculate",
+      "result": "Result",
+      "copyResult": "Copy Result",
+      "saveCalculation": "Save Calculation",
+      "restore": "Restore",
+      "restorePreviousValues": "Restore Previous Values",
+      "hideAudit": "Hide Audit Trail",
+      "showAudit": "Show Audit Trail",
+      "dismiss": "Dismiss",
+      "yes": "Yes",
+      "no": "No",
+      "home": "Home",
+      "onThisPage": "On This Page",
+      "tierEssential": "Essential",
+      "tierStandard": "Standard",
+      "tierPremium": "Premium",
+      "modeBasic": "Basic",
+      "modeAdvanced": "Advanced",
+      "modeProfessional": "Professional",
+      "modeExpert": "Expert",
+      "headingWhatIs": "What Is This?",
+      "headingHowItWorks": "How It Works",
+      "headingFormula": "The Formula",
+      "headingExampleCalc": "Example Calculation",
+      "headingExampleCalcs": "Example Calculations",
+      "headingWhatThisMeans": "What This Means",
+      "headingYourResults": "Your Results",
+      "headingEduGuide": "Educational Guide",
+      "headingEduVisualizations": "Visualizations",
+      "headingTipsBestPractices": "Tips & Best Practices",
+      "headingFAQ": "Frequently Asked Questions",
+      "headingQuestions": "Questions?",
+      "headingReferences": "References",
+      "headingRelatedTopics": "Related Calculators",
+      "headingAboutAuthors": "About the Authors",
+      "tocEducationalGuide": "Educational Guide",
+      "tocExample": "Example",
+      "tocComparison": "Comparison",
+      "tocUseCases": "Use Cases",
+      "tocFAQ": "FAQ",
+      "tocGlossary": "Glossary",
+      "tocCompleteGuide": "Complete Guide",
+      "tocCommonMistakes": "Common Mistakes",
+      "tips": "Tips",
+      "tipAccurateInputs": "Use accurate inputs for best results.",
+      "tipPresetExamples": "Try the preset examples to see how it works.",
+      "tipPrintExport": "Print or export your results for record keeping.",
+      "tipBookmark": "Bookmark this calculator for quick access.",
+      "tipSaveScenario": "Save different scenarios to compare outcomes.",
+      "tipReviewAssumptions": "Review the assumptions behind each calculation.",
+      "didThisHelp": "Did this calculator help you?",
+      "pleaseCheckInputs": "Please check your inputs and try again.",
+      "calculationFailed": "Calculation failed. Please check your values.",
+      "enterValuesAbove": "Enter values above to see results.",
+      "noResultAvailable": "No result available",
+      "howItWorksDefault": "Enter your values and click Calculate to see how it works.",
+      "dataDependent": "Data Required",
+      "dataDependentDescription": "Enter values in the form above to get started.",
+      "usersCount": "{count} users have used this calculator",
+      "authorLabel": "Author",
+      "reviewerLabel": "Reviewed by",
+      "relatedCalculators": "Related Calculators",
+      "refreshCadence": "Last updated: {date}",
+      "featureCharts": "Charts & Visualizations",
+      "featureComparison": "Scenario Comparison",
+      "featureGuide": "Educational Guide",
+      "questionsParagraph": "Have questions? Check the FAQ or contact us."
+    },
     "headings": {
       "paymentCalculator": "Payment Calculator"
     },
@@ -2457,11 +2548,11 @@
     },
     "contact": {
       "metaTitle": "Contacto - Calculadoras Gratuitas en Línea",
-      "metaDescription": "Póngase en contacto con el equipo de JDCALC. Agradecemos sus comentarios y sugerencias.",
+      "metaDescription": "Póngase en contacto con el equipo de Calculat. Agradecemos sus comentarios y sugerencias.",
       "title": "Contáctenos",
       "intro": "Have feedback, suggestions, or found a bug? We'd love to hear from you.",
       "emailLabel": "Email us at:",
-      "emailAddress": "support@jdcalc.com"
+      "emailAddress": "support@calculat.online"
     },
     "privacy": {
       "metaTitle": "Política de Privacidad - Calculadoras Gratuitas en Línea",
@@ -2488,6 +2579,18 @@
       "accuracyText": "We strive for accuracy but make no guarantees. Always verify critical calculations with a qualified professional.",
       "availabilityTitle": "Availability",
       "availabilityText": "We reserve the right to modify or discontinue any calculator tool at any time without notice."
-    }
+    },
+    "editorialPolicy": {
+      "metaTitle": "Política Editorial - Calculadoras Gratuitas en Línea",
+      "metaDescription": "Nuestra política editorial garantiza precisión, transparencia y calidad en todas nuestras herramientas y contenido.",
+      "title": "Política Editorial"
+    },
+    "press": {
+      "metaTitle": "Prensa - Calculadoras Gratuitas en Línea",
+      "metaDescription": "Recursos de prensa, kit de medios e información de contacto para el equipo de Calculat.",
+      "title": "Prensa"
+    },
+    "calculatorBuilderTitle": "Calculator Builder",
+    "calculatorBuilderDescription": "Build your own custom calculators with custom formulas and fields. Free online calculator builder tool."
   }
 }

@@ -17,6 +17,11 @@ const calcDef: CalcDef = {
       { label: 'Deficit', value: `${def} kcal/day` },
       { label: 'Target intake', value: `${target.toFixed(0)} kcal/day` },
       { label: 'Estimated weekly loss', value: `${weeklyLoss.toFixed(2)} kg (${(weeklyLoss * 2.20462).toFixed(1)} lbs)` },
+    ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
     ]} },
     description: 'Calculate calorie intake for weight loss by applying a deficit to your TDEE. A 500 kcal/day deficit yields ~0.5 kg (1 lb) loss per week — safe and sustainable.',
     example: { label: '70kg, 175cm, 30yr, moderate, 500 deficit', value: '~1,950 kcal/day' }

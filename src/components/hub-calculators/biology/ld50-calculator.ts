@@ -24,7 +24,12 @@ const calcDef: CalcDef = {
         { label: 'LD50 (log10)', value: `${ld50Log.toFixed(2)}` },
         { label: 'Toxicity class', value: ld50Est <= 5 ? 'Extremely toxic' : ld50Est <= 50 ? 'Highly toxic' : ld50Est <= 500 ? 'Moderately toxic' : 'Slightly toxic' },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'LD50 is the median lethal dose — the dose required to kill 50% of a test population. It is a standard measure of acute toxicity in pharmacology and toxicology.',
   formula: 'LD50 = 10^(log dose at ~50% mortality) | Probit analysis for precise calculation',

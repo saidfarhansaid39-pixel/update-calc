@@ -9,7 +9,12 @@ const calcDef: CalcDef = {
     { name:'age', label:'Age >60 years', type:'select', options:[{ label:'No (0)', value:'0' },{ label:'Yes (1)', value:'1' }] },
     { name:'pleuralEffusion', label:'Pleural Effusion on Imaging', type:'select', options:[{ label:'No (0)', value:'0' },{ label:'Yes (1)', value:'1' }] }
   ],
-  compute: (v) => { const score=parseInt(v.bun||'0')+parseInt(v.impairedMental||'0')+parseInt(v.sirs||'0')+parseInt(v.age||'0')+parseInt(v.pleuralEffusion||'0'); let mortality='<1%'; if(score>=4) mortality='>15%'; else if(score>=3) mortality='8-15%'; else if(score>=2) mortality='3-8%'; return { result:score, label:'BISAP Score', unit:'/5', steps:[{ label:'BISAP Score', value:score+'/5' },{ label:'Predicted Mortality', value:mortality }] } },
+  compute: (v) => { const score=parseInt(v.bun||'0')+parseInt(v.impairedMental||'0')+parseInt(v.sirs||'0')+parseInt(v.age||'0')+parseInt(v.pleuralEffusion||'0'); let mortality='<1%'; if(score>=4) mortality='>15%'; else if(score>=3) mortality='8-15%'; else if(score>=2) mortality='3-8%'; return { result:score, label:'BISAP Score', unit:'/5', steps:[{ label:'BISAP Score', value:score+'/5' },{ label:'Predicted Mortality', value:mortality }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'BISAP (Bedside Index for Severity in Acute Pancreatitis) 5-point scoring system.',
   formula: '1 point each: BUN>25, Impaired Mental Status, SIRS≥2, Age>60, Pleural Effusion. Range 0-5.',
   interpretation: '0-1: <1% mortality. 2: 3% mortality. 3: 8% mortality. 4: 15% mortality. 5: >20% mortality.'

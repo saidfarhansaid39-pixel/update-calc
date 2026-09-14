@@ -22,7 +22,12 @@ const calcDef: CalcDef = {
         { label: 'Rating', value: rating },
         { label: 'Standards (male)', value: isMale ? 'Exc: >45, Good: 35-45, Avg: 25-34' : 'Exc: >30, Good: 20-29, Avg: 12-19' },
         v.age ? { label: `${v.age} yr benchmark`, value: isMale ? `Target: ${Math.round(35 - v.age * 0.15)}` : `Target: ${Math.round(25 - v.age * 0.12)}` } : { label: '', value: '' },
-      ].filter(s => s.label)
+      ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ].filter(s => s.label)
 }
   },
   description: 'Assess upper body endurance with the pushup test. The ACSM pushup test measures muscular endurance and is part of standard fitness assessments.'

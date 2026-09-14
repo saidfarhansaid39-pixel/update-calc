@@ -6,18 +6,18 @@ export function getLabelKey(name: string): string {
 }
 
 export function localizeLabel(field: ExtraFieldDef, t: ReturnType<typeof useTranslations<'extraFields'>>): string {
-  return t(getLabelKey(field.name)) || field.label
+  try { return t(getLabelKey(field.name)) } catch { return field.label }
 }
 
 export function localizePlaceholder(field: ExtraFieldDef, t: ReturnType<typeof useTranslations<'extraFields'>>): string | undefined {
   if (!field.placeholder) return undefined
-  return t(getLabelKey(field.name) + '_placeholder') || field.placeholder
+  try { return t(getLabelKey(field.name) + '_placeholder') } catch { return field.placeholder }
 }
 
 export function localizeOption(field: ExtraFieldDef, value: string, t: ReturnType<typeof useTranslations<'extraFields'>>): string {
   const option = field.options?.find(o => o.value === value)
   if (!option) return value
-  return t(getLabelKey(field.name) + '_' + value.replace(/\./g, '_')) || option.label
+  try { return t(getLabelKey(field.name) + '_' + value.replace(/\./g, '_')) } catch { return option.label }
 }
 
 export function localizeExtraField(field: ExtraFieldDef, t: ReturnType<typeof useTranslations<'extraFields'>>, extraFieldValues?: Record<string, string>): ExtraFieldDef {

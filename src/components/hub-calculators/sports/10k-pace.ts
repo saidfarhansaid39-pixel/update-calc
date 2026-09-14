@@ -15,6 +15,11 @@ const calcDef: CalcDef = {
       { label: 'Finish time', value: totalMin.toFixed(0)+' min' },
       { label: 'Pace', value: pMin+':'+pSec.toString().padStart(2,'0')+' /km' },
       { label: 'Speed', value: (v.distance/(totalMin/60)).toFixed(1)+' km/h' },
+    ],
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
     ]}
   }, description: 'Calculate your 10K race pace. Plan splits for a successful 10 km race day.', formula: 'Pace = goal time (min) / 10', interpretation: '10K pace is between 5K and half-marathon effort. Find a sustainable rhythm.'
 }

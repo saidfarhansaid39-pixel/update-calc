@@ -9,12 +9,21 @@ const calcDef: CalcDef = {
     compute: (v) => {
       const a = n(v.a), b = n(v.b), d = n(v.d)
       const l11 = Math.sqrt(a), l21 = b / l11, l22 = Math.sqrt(d - l21 * l21)
-      if (isNaN(l22)) return { result: 'Matrix not positive definite', label: 'Cholesky', steps: [step('Error', 'Matrix must be symmetric positive definite')] }
+      if (isNaN(l22)) return { result: 'Matrix not positive definite', label: 'Cholesky', steps: [step('Error', 'Matrix must be symmetric positive definite')] ,
+    extras: [
+      { label: "Dimension Check", value: "Matrix dimensions must be compatible for the operation." },
+      { label: "Singular Matrix Warning", value: "A determinant of zero means the matrix has no inverse." },
+      { label: "Computational Complexity", value: "Larger matrices require significantly more computation." },
+      { label: "Application", value: "Used in computer graphics, machine learning, and physics simulations." }
+    ]}
       return { result: `L=[[${l11.toFixed(4)},0],[${l21.toFixed(4)},${l22.toFixed(4)}]]`, label: 'Cholesky Factor', steps: [step('L11', l11.toFixed(4)), step('L21', l21.toFixed(4)), step('L22', l22.toFixed(4))] }
     },
     formula: 'A = LL?. L lower triangular with positive diagonal.',
     description: 'Compute Cholesky decomposition of a symmetric positive-definite 2x2 matrix.',
-    interpretation: 'Cholesky decomposition is a special case of LU for symmetric PD matrices.'
+    interpretation: 'Cholesky decomposition is a special case of LU for symmetric PD matrices.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

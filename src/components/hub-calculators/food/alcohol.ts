@@ -20,7 +20,12 @@ const calcDef: CalcDef = {
         { label: 'Estimated BAC', value: `${bac.toFixed(3)}%` },
         { label: 'Calories from alcohol', value: `~${calories.toFixed(0)} kcal` },
         bac > 0.08 ? { label: '⚠️ Over legal limit', value: '0.08% is the legal driving limit in most regions' } : { label: 'Legal status', value: 'Below 0.08% legal limit (driving may still be impaired at lower levels)' },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Estimate blood alcohol content (BAC) based on consumption and body weight. BAC depends on many factors including food intake, metabolism, and time. Never drink and drive.',
     example: { label: '3 beers (5%), 70kg', value: 'BAC ~0.073% (~105 kcal)' }

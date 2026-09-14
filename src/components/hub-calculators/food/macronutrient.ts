@@ -18,7 +18,12 @@ const calcDef: CalcDef = {
         { label: 'Fat', value: `${fat.toFixed(0)} g (${v.fatPct}% of calories)` },
         { label: 'Carbs (remaining)', value: `${carbs.toFixed(0)} g (${(carbCal / v.calories * 100).toFixed(0)}% of calories)` },
         { label: 'Total calories', value: `${(protein * 4 + fat * 9 + carbs * 4).toFixed(0)} kcal` },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Detailed macronutrient calculation using weight-based protein recommendations and fat percentage. The remaining calories are allocated to carbohydrates for a complete profile.',
     example: { label: '70kg, 2000 kcal, athlete, 25% fat', value: 'P:140g C:235g F:56g' }

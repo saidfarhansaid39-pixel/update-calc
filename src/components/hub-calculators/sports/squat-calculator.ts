@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Lander', value: `${lander.toFixed(1)} kg` },
         { label: 'Strength level', value: standards },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate your squat one-rep max. The squat is the primary lower body strength lift and key measure of overall leg power.'
 }

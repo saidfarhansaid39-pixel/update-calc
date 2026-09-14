@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function AccelerationConverterForm() {
@@ -8,14 +8,12 @@ export default function AccelerationConverterForm() {
   const [value, setValue] = useState<number>(1);
   const [from, setFrom] = useState<string>('ms2');
   const [to, setTo] = useState<string>('g');
-  const [result, setResult] = useState<any>(null);
-
   const toMs2: any = { ms2: 1, gs: 9.80665, fts2: 0.3048, mphs: 0.44704 };
 
-  useEffect(() => {
+  const result = useMemo(() => {
     const ms2 = value * toMs2[from];
     const res = ms2 / toMs2[to];
-    setResult(res.toFixed(4));
+    return res.toFixed(4);
   }, [value, from, to]);
 
   return (

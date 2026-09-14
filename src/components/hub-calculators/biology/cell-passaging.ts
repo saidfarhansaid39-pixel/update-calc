@@ -21,7 +21,12 @@ const calcDef: CalcDef = {
         { label: 'Common flask split', value: `Try 1:${Math.round(splitRatio)} or nearest standard ratio` },
         { label: 'Doublings before harvest', value: `${Math.log2(splitRatio).toFixed(1)} population doublings` },
       ]
-}
+,
+    extras: [
+      { label: "Measurement note", value: "Results depend on accurate input. Use calibrated instruments for precise data." },
+      { label: "Clinical context", value: "Reference ranges may vary by laboratory. Consult your healthcare provider." },
+      { label: "WHO reference", value: "World Health Organization guidelines used where applicable." }
+    ]}
   },
   description: 'Cell passaging (splitting) maintains healthy cultures by transferring cells to fresh media at lower density. The split ratio determines how many new flasks can be seeded from one confluent flask.',
   formula: 'Split ratio = Current confluence / Target confluence | Common: 1:2, 1:3, 1:4, 1:10 | Passage number increases by 1 per trypsinization',

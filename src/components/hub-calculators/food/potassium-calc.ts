@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'activity', label: 'Activity', type: 'select', options: [{ label: 'Sedentary', value: '1' }, { label: 'Moderate', value: '1.2' }, { label: 'Active', value: '1.4' }, { label: 'Athlete', value: '1.6' }] }
     ],
     compute: (v) => {
-      const r = Math.min(4700, v.weight * 35 * v.activity); return { result: r, label: 'Daily Potassium', unit: 'mg', steps: [{ label: 'Weight', value: v.weight + ' kg' }, { label: 'Base (35 mg/kg)', value: (v.weight * 35).toFixed(0) + ' mg' }, { label: 'Activity multiplier', value: v.activity + 'x' }, { label: 'Recommended', value: r.toFixed(0) + ' mg (max: 4700)' }] }
+      const r = Math.min(4700, v.weight * 35 * v.activity); return { result: r, label: 'Daily Potassium', unit: 'mg', steps: [{ label: 'Weight', value: v.weight + ' kg' }, { label: 'Base (35 mg/kg)', value: (v.weight * 35).toFixed(0) + ' mg' }, { label: 'Activity multiplier', value: v.activity + 'x' }, { label: 'Recommended', value: r.toFixed(0) + ' mg (max: 4700)' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Daily potassium needs based on body weight and activity. Potassium supports heart function, muscle contractions, and fluid balance.',
     example: { label: '70kg, moderate', value: '~2,940 mg/day' }

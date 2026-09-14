@@ -18,7 +18,12 @@ const calcDef: CalcDef = {
         { label: 'Acid (25%) — citrus/vinegar', value: `${acid.toFixed(0)} g` },
         { label: 'Seasonings (25%)', value: `${seasonings.toFixed(0)} g` },
         { label: 'Marinate time', value: '30 min (fish), 2-4 hrs (chicken), 4-12 hrs (beef/pork)' },
-      ]}
+      ],
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Calculate marinade ingredients based on meat weight. Classic ratio: 50% oil, 25% acid (vinegar/citrus), 25% seasonings. Adjust marinate time by protein type.',
     example: { label: '500g chicken, medium (50%)', value: '250g marinade: 125g oil, 63g acid, 63g seasonings' }

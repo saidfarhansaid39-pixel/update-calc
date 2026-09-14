@@ -12,11 +12,20 @@ const calcDef: CalcDef = {
       const weights = [0.7110930099, 0.2785177336, 0.0103892565].slice(0, n)
       let sum = 0; const pts: string[] = []
       for (let i = 0; i < n; i++) { pts.push('x' + (i + 1) + '=' + nodes[i].toFixed(4) + ', w=' + weights[i].toFixed(4)); sum += weights[i] * Math.cos(nodes[i]) }
-      return { result: sum.toFixed(6), label: 'Gauss-Laguerre approx', steps: [step('Nodes/Weights:', pts.join('; ')), step('Approx integral:', '' + sum.toFixed(6))] }
+      return { result: sum.toFixed(6), label: 'Gauss-Laguerre approx', steps: [step('Nodes/Weights:', pts.join('; ')), step('Approx integral:', '' + sum.toFixed(6))] ,
+    extras: [
+      { label: "How It Works", value: "Performs the calculation step by step using standard formulas." },
+      { label: "Common Use Case", value: "Used when you need a quick and accurate mathematical result." },
+      { label: "Input Requirements", value: "Ensure all inputs are valid numbers within acceptable ranges." },
+      { label: "Accuracy Note", value: "Floating point precision may affect results at extreme values." }
+    ]}
     },
     formula: 'int_0^inf f(x)e-x dx approx sum wi f(xi)',
     description: 'Gauss-Laguerre quadrature approximation.',
-    interpretation: 'The approximate integral over [0, inf) using Laguerre nodes.'
+    interpretation: 'The approximate integral over [0, inf) using Laguerre nodes.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef

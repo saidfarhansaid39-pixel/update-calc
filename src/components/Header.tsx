@@ -1,14 +1,23 @@
 'use client';
 
-import { Link, usePathname } from '@/lib/navigation';
+import { Link, usePathname, useRouter } from '@/lib/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { Search, Menu, X, Moon, Sun, ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher'
+import { PopularSearches } from '@/components/search/PopularSearches'
+import { useAuth } from '@/components/auth/useAuth'
 
 export function Header() {
   const t = useTranslations('nav')
   const pathname = usePathname()
+  const router = useRouter()
+  const { user, logout } = useAuth()
+
+  const handleLogout = async () => {
+    await logout()
+    router.push('/')
+  }
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
@@ -135,7 +144,7 @@ export function Header() {
                 </svg>
               </div>
               <span className="text-lg font-bold tracking-tight">
-                <span className="text-[#1a3a8a] dark:text-[#3d61b0]">JD</span><span className="text-[#06b6d4]">CALC</span>
+                <span className="text-[#1a3a8a] dark:text-[#3d61b0]">Calcu</span><span className="text-[#06b6d4]">lat</span>
               </span>
             </Link>
           </div>
@@ -199,6 +208,38 @@ export function Header() {
               {dark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
 
+            {user ? (
+              <div className="hidden md:flex items-center gap-1">
+                <Link
+                  href="/my-calculations"
+                  className="px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
+                >
+                  My Calculations
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div className="hidden md:flex items-center gap-1">
+                <Link
+                  href="/login"
+                  className="px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/register"
+                  className="px-3 py-2 text-sm font-semibold text-white bg-gradient-to-br from-[#1a3a8a] to-[#06b6d4] rounded-lg hover:opacity-90 transition-all duration-200"
+                >
+                  Register
+                </Link>
+              </div>
+            )}
+
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="md:hidden p-2 rounded-lg text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 touch-target"
@@ -224,6 +265,9 @@ export function Header() {
                 autoFocus
               />
             </div>
+            <div className="mt-3">
+              <PopularSearches />
+            </div>
           </div>
         )}
 
@@ -242,6 +286,43 @@ export function Header() {
                     {link.label}
                   </Link>
                 ))}
+
+                <div className="mt-2 pt-2 border-t border-gray-200 dark:border-gray-800 flex flex-col gap-1">
+                  {user ? (
+                    <>
+                      <Link
+                        href="/my-calculations"
+                        onClick={() => setMenuOpen(false)}
+                        className="px-3 py-2.5 min-h-[44px] text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                      >
+                        My Calculations
+                      </Link>
+                      <button
+                        onClick={() => { setMenuOpen(false); handleLogout() }}
+                        className="px-3 py-2.5 min-h-[44px] text-left text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                      >
+                        Logout
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <Link
+                        href="/login"
+                        onClick={() => setMenuOpen(false)}
+                        className="px-3 py-2.5 min-h-[44px] text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                      >
+                        Login
+                      </Link>
+                      <Link
+                        href="/register"
+                        onClick={() => setMenuOpen(false)}
+                        className="px-3 py-2.5 min-h-[44px] text-sm font-medium text-white bg-gradient-to-br from-[#1a3a8a] to-[#06b6d4] rounded-lg hover:opacity-90 transition-all"
+                      >
+                        Register
+                      </Link>
+                    </>
+                  )}
+                </div>
               </nav>
             </div>
           </div>

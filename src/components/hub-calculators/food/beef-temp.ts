@@ -8,7 +8,12 @@ const calcDef: CalcDef = {
       { name: 'weight', label: 'Weight', type: 'number', unit: 'g', min: 100, step: '50' }
     ],
     compute: (v) => {
-      const tc = parseFloat(v.doneness); const tf = tc * 9/5 + 32; const mp500 = parseFloat(v.cut); const time = (v.weight / 500) * mp500; return { result: tc, label: 'Target Temp', unit: '°C', steps: [{ label: 'Doneness', value: tc + '°C / ' + tf.toFixed(0) + '°F' }, { label: 'Weight', value: v.weight + ' g' }, { label: 'Cook time', value: time.toFixed(1) + ' min' }, { label: 'Rest', value: '5-10 min' }] }
+      const tc = parseFloat(v.doneness); const tf = tc * 9/5 + 32; const mp500 = parseFloat(v.cut); const time = (v.weight / 500) * mp500; return { result: tc, label: 'Target Temp', unit: '°C', steps: [{ label: 'Doneness', value: tc + '°C / ' + tf.toFixed(0) + '°F' }, { label: 'Weight', value: v.weight + ' g' }, { label: 'Cook time', value: time.toFixed(1) + ' min' }, { label: 'Rest', value: '5-10 min' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Beef doneness temperatures. USDA: 63°C (145°F) for whole cuts with rest.',
     example: { label: '300g steak, medium-rare', value: '57°C (135°F), ~4 min' }

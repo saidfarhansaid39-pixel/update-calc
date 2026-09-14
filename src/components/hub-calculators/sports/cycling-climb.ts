@@ -30,7 +30,12 @@ const calcDef: CalcDef = {
         { label: 'Estimated time', value: `${Math.floor(timeMin / 60)}h ${(timeMin % 60).toFixed(0)}m` },
         { label: 'VAM', value: `${(v.gainM / (timeMin / 60)).toFixed(0)} m/hr` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate climbing speed and time from distance, elevation gain, power output, and system weight. Grade is the steepness percentage—a 10% grade climbs 10 meters per 100 meters forward.'
 }

@@ -23,7 +23,12 @@ const calcDef: CalcDef = {
         { label: 'Calories burned', value: `${kcal.toFixed(0)} kcal` },
         { label: 'Cal/min', value: `${kcalPerMin.toFixed(1)} kcal/min` },
       ]
-}
+,
+    extras: [
+      { label: "Training tip", value: "Track progress consistently rather than comparing single measurements." },
+      { label: "Rest note", value: "Adequate rest and recovery are essential for performance gains." },
+      { label: "Individual variation", value: "Results vary by age, fitness level, and training history." }
+    ]}
   },
   description: 'Calculate calories burned during any activity using MET values from the Compendium of Physical Activities.'
 }

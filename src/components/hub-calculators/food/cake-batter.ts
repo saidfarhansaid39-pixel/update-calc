@@ -7,7 +7,12 @@ const calcDef: CalcDef = {
       { name: 'panSize', label: 'Pan Size', type: 'select', options: [{ label: '8" round (4 cups)', value: '4' }, { label: '9" round (5 cups)', value: '5' }, { label: '8x8" square (6 cups)', value: '6' }, { label: '9x13" (10 cups)', value: '10' }, { label: 'Cupcake (12 per batch)', value: '2.5' }] }
     ],
     compute: (v) => {
-      const cups = parseFloat(v.panSize); const tc = v.pans * cups; return { result: tc, label: 'Total Batter', unit: 'cups', steps: [{ label: 'Pan type', value: cups + ' cups capacity' }, { label: 'Pans', value: v.pans }, { label: 'Total batter', value: tc.toFixed(1) + ' cups' }, { label: 'Fill rule', value: 'Fill 1/2 to 2/3 full' }] }
+      const cups = parseFloat(v.panSize); const tc = v.pans * cups; return { result: tc, label: 'Total Batter', unit: 'cups', steps: [{ label: 'Pan type', value: cups + ' cups capacity' }, { label: 'Pans', value: v.pans }, { label: 'Total batter', value: tc.toFixed(1) + ' cups' }, { label: 'Fill rule', value: 'Fill 1/2 to 2/3 full' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Cake batter quantities. Fill pans 1/2 to 2/3 full. 9" round = 5 cups.',
     example: { label: '2 x 9" round pans', value: '10 cups batter' }

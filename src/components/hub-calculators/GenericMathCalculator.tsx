@@ -135,6 +135,73 @@ export default function GenericMathCalculator({ calculator }: { calculator: Calc
   </>
 ), [calcDef, register, errors, lockedFields, toggleLock, form])
 
+function getMathInterpretation(slug: string, val?: number | string, unit?: string): React.ReactNode {
+  const nval = typeof val === 'number' ? val : parseFloat(String(val ?? ''))
+  if (isNaN(nval)) return null
+  if (slug.includes('area') || slug.includes('surface-area')) {
+    return <div className="text-xs text-blue-600 font-medium mt-1">{nval.toFixed(4)} {unit} — The result represents the total area enclosed within the shape.</div>
+  }
+  if (slug.includes('volume') || slug.includes('capacity')) {
+    return <div className="text-xs text-blue-600 font-medium mt-1">{nval.toFixed(4)} {unit} — The space occupied by the 3D shape.</div>
+  }
+  if (slug.includes('pythagorean') || slug.includes('hypotenuse')) {
+    return <div className="text-xs text-emerald-600 font-medium mt-1">{nval.toFixed(4)} {unit} — a² + b² = c². The hypotenuse is the longest side of a right triangle.</div>
+  }
+  if (slug.includes('slope')) {
+    return <div className="text-xs text-blue-600 font-medium mt-1">Slope: {nval.toFixed(4)} — {nval > 0 ? 'Positive (rising)' : nval < 0 ? 'Negative (falling)' : 'Zero (horizontal)'} line.</div>
+  }
+  if (slug.includes('quadratic') || slug.includes('discriminant')) {
+    return <div className={`text-xs font-medium mt-1 ${nval > 0 ? 'text-emerald-600' : nval === 0 ? 'text-amber-600' : 'text-red-600'}`}>Δ = {nval.toFixed(4)} — {nval > 0 ? 'Two distinct real roots' : nval === 0 ? 'One real (double) root' : 'Complex roots'}.</div>
+  }
+  if (slug.includes('standard-deviation') || slug.includes('std-dev')) {
+    return <div className="text-xs text-blue-600 font-medium mt-1">σ = {nval.toFixed(4)} — About 68% of data falls within ±1σ, 95% within ±2σ.</div>
+  }
+  if (slug.includes('mean') || slug.includes('average')) {
+    return <div className="text-xs text-blue-600 font-medium mt-1">Mean: {nval.toFixed(4)} — The sum of all values divided by the count.</div>
+  }
+  if (slug.includes('median')) {
+    return <div className="text-xs text-blue-600 font-medium mt-1">Median: {nval.toFixed(4)} — The middle value when data is sorted.</div>
+  }
+  if (slug.includes('correlation') || slug.includes('r-squared')) {
+    const abs = Math.abs(nval)
+    return <div className={`text-xs font-medium mt-1 ${abs >= 0.7 ? 'text-emerald-600' : abs >= 0.4 ? 'text-blue-600' : 'text-amber-600'}`}>r = {nval.toFixed(4)} — {abs >= 0.7 ? 'Strong' : abs >= 0.4 ? 'Moderate' : 'Weak'} relationship.</div>
+  }
+  if (slug.includes('percentage') || slug.includes('percent')) {
+    return <div className="text-xs text-blue-600 font-medium mt-1">{nval.toFixed(2)}% — Value expressed as a percentage.</div>
+  }
+  if (slug.includes('ratio')) {
+    return <div className="text-xs text-blue-600 font-medium mt-1">{nval.toFixed(4)} — A ratio comparing two quantities.</div>
+  }
+  if (slug.includes('fraction') || slug.includes('simplify')) {
+    return <div className="text-xs text-emerald-600 font-medium mt-1">Simplified to lowest terms.</div>
+  }
+  if (slug.includes('trig') || slug.includes('sin') || slug.includes('cos') || slug.includes('tan')) {
+    return <div className="text-xs text-blue-600 font-medium mt-1">{nval.toFixed(6)} — Trigonometric value in the range [-1, 1] for sine/cosine.</div>
+  }
+  if (slug.includes('log') || slug.includes('logarithm')) {
+    return <div className="text-xs text-blue-600 font-medium mt-1">log = {nval.toFixed(6)} — The exponent to which the base must be raised.</div>
+  }
+  if (slug.includes('factorial')) {
+    return <div className="text-xs text-amber-600 font-medium mt-1">{nval.toLocaleString()} — n! = n × (n-1) × ... × 1. Grows extremely fast.</div>
+  }
+  if (slug.includes('prime')) {
+    return <div className="text-xs text-emerald-600 font-medium mt-1">A prime number is divisible only by 1 and itself.</div>
+  }
+  if (slug.includes('probability') || slug.includes('permutation') || slug.includes('combination')) {
+    return <div className="text-xs text-blue-600 font-medium mt-1">{nval.toLocaleString()} — Number of possible arrangements/combinations.</div>
+  }
+  if (slug.includes('angle') || slug.includes('degree') || slug.includes('radian')) {
+    return <div className="text-xs text-blue-600 font-medium mt-1">{nval.toFixed(4)} {unit} — Angle measurement.</div>
+  }
+  if (slug.includes('distance') || slug.includes('midpoint')) {
+    return <div className="text-xs text-blue-600 font-medium mt-1">{nval.toFixed(4)} {unit} — The distance between two points in coordinate space.</div>
+  }
+  if (slug.includes('matrix') || slug.includes('determinant')) {
+    return <div className="text-xs text-blue-600 font-medium mt-1">{nval.toFixed(4)} — {nval !== 0 ? 'Matrix is invertible (det ≠ 0)' : 'Matrix is singular (det = 0)'}.</div>
+  }
+  return null
+}
+
 const result = useMemo(() => {
   if (!computed) return null
   const fmt = (v: number | string) => {
@@ -151,6 +218,7 @@ const result = useMemo(() => {
       <div className="text-2xl font-bold text-slate-900 dark:text-white">
         {computed.label}: {fmt(computed.result)}{computed.unit ? ' ' + computed.unit : ''}
       </div>
+      {getMathInterpretation(calculator.slug, computed.result, computed.unit)}
       {computed.steps && computed.steps.length > 0 && (
         <div className="space-y-2">
           <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300">Steps</h3>

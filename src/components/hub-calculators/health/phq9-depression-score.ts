@@ -13,7 +13,12 @@ const calcDef: CalcDef = {
     { name:'q8', label:'Moving/speaking slowly or being fidgety/restless', type:'select', options:[{ label:'Not at all (0)', value:'0' },{ label:'Several days (1)', value:'1' },{ label:'More than half the days (2)', value:'2' },{ label:'Nearly every day (3)', value:'3' }] },
     { name:'q9', label:'Thoughts you would be better off dead or harming yourself', type:'select', options:[{ label:'Not at all (0)', value:'0' },{ label:'Several days (1)', value:'1' },{ label:'More than half the days (2)', value:'2' },{ label:'Nearly every day (3)', value:'3' }] }
   ],
-  compute: (v) => { const s=[0,1,2,3,4,5,6,7,8].reduce((acc,i)=>acc+parseInt(v['q'+(i+1)])||0,0); let sev='Minimal'; if(s>=20) sev='Severe'; else if(s>=15) sev='Moderately Severe'; else if(s>=10) sev='Moderate'; else if(s>=5) sev='Mild'; return { result:s, label:'PHQ-9 Score', unit:'/27', steps:[{ label:'Total Score', value:s+'/27' },{ label:'Severity', value:sev }] } },
+  compute: (v) => { const s=[0,1,2,3,4,5,6,7,8].reduce((acc,i)=>acc+parseInt(v['q'+(i+1)])||0,0); let sev='Minimal'; if(s>=20) sev='Severe'; else if(s>=15) sev='Moderately Severe'; else if(s>=10) sev='Moderate'; else if(s>=5) sev='Mild'; return { result:s, label:'PHQ-9 Score', unit:'/27', steps:[{ label:'Total Score', value:s+'/27' },{ label:'Severity', value:sev }] ,
+    extras: [
+      { label: "Medical disclaimer", value: "This is for informational purposes only. Consult a healthcare provider." },
+      { label: "Individual variation", value: "Results may vary by age, sex, ethnicity, and medical history." },
+      { label: "Trend note", value: "Track measurements over time rather than relying on a single reading." }
+    ]} },
   description: 'PHQ-9 depression screening tool with 9 items scored 0-3 for past 2 weeks.',
   formula: 'Sum of 9 items (0-3 each). Total range 0-27. Higher scores indicate greater depression severity.',
   interpretation: '0-4 Minimal, 5-9 Mild, 10-14 Moderate, 15-19 Moderately Severe, 20-27 Severe depression.'

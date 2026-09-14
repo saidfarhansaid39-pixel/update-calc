@@ -8,7 +8,12 @@ const calcDef: CalcDef = {
       { name: 'power', label: 'Power', type: 'select', options: [{ label: '700W', value: '1.3' }, { label: '900W', value: '1' }, { label: '1200W', value: '0.85' }] }
     ],
     compute: (v) => {
-      const b = parseFloat(v.food); const t = b * v.amount * v.power; return { result: t, label: 'Microwave Time', unit: 'min', steps: [{ label: 'Base', value: b + ' min per serving' }, { label: 'Amount', value: v.amount }, { label: 'Power adj', value: v.power + 'x' }, { label: 'Total', value: t.toFixed(1) + ' min' }] }
+      const b = parseFloat(v.food); const t = b * v.amount * v.power; return { result: t, label: 'Microwave Time', unit: 'min', steps: [{ label: 'Base', value: b + ' min per serving' }, { label: 'Amount', value: v.amount }, { label: 'Power adj', value: v.power + 'x' }, { label: 'Total', value: t.toFixed(1) + ' min' }] ,
+    extras: [
+      { label: "Serving note", value: "Adjust quantities based on number of servings needed." },
+      { label: "Dietary note", value: "Consult a dietitian for personalized nutritional advice." },
+      { label: "Substitution tip", value: "Substitutions may alter taste, texture, and nutritional content." }
+    ]}
     },
     description: 'Microwave times adjusted for wattage. Stir halfway and let stand 1-2 min.',
     example: { label: '2 cups veggies at 900W', value: '10 min' }

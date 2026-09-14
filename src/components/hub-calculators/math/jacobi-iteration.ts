@@ -10,11 +10,21 @@ const calcDef: CalcDef = {
       const a = n(v.a), b = n(v.b), c = n(v.c), d = n(v.d), e = n(v.e), f = n(v.f)
       let x = 0, y = 0, xp = 0, yp = 0; const steps: { label: string; value: string }[] = []
       for (let i = 0; i < 5; i++) { x = (c - b * yp) / a; y = (f - d * xp) / e; steps.push(step(`Iter ${i + 1}`, `x=${x.toFixed(4)}, y=${y.toFixed(4)}`)); xp = x; yp = y }
-      return { result: `x=${x.toFixed(6)}, y=${y.toFixed(6)}`, label: 'Solution', steps }
+      return { result: `x=${x.toFixed(6)}, y=${y.toFixed(6)}`, label: 'Solution', steps ,
+    extras: [
+      { label: "Convergence Check", value: "Ensure the method converges for your specific problem parameters." },
+      { label: "Error Bound", value: "Numerical methods have inherent approximation error — smaller steps reduce it." },
+      { label: "Step Size Impact", value: "Smaller step sizes improve accuracy but increase computation time." },
+      { label: "Real Applications", value: "Used in physics, engineering, and economics for dynamic systems." },
+      { label: "Numerical vs Analytical", value: "Numerical methods approximate; analytical solutions are exact." }
+    ]}
     },
     formula: 'x??1 = (c - by?)/a, y??1 = (f - dx?)/e. Jacobi iteration.',
     description: 'Jacobi iterative method for linear systems.',
-    interpretation: 'Iterative solution using previous iteration values.'
+    interpretation: 'Iterative solution using previous iteration values.',
+    presets: [
+      { label: 'Default', values: {  } }
+    ]
 }
 
 export default calcDef
