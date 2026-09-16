@@ -104,6 +104,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="dns-prefetch" href="https://open.er-api.com" />
         <link rel="dns-prefetch" href="https://financialmodelingprep.com" />
         <meta name="theme-color" content="#1a3a8a" />
+        <meta name="google-site-verification" content="6JE119hbevVMs4yAVVaMZlrdiM3GLm4TwEsO3IwfitQ" />
         {process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION && (
           <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION} />
         )}
