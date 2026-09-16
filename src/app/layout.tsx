@@ -97,6 +97,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang={locale} dir={isRtl(locale as Locale) ? 'rtl' : 'ltr'} className={`no-js ${fontVariables}`} suppressHydrationWarning>
       <head>
         <link rel="manifest" href="/manifest.json" />
+        <link rel="alternate" type="text/plain" title="LLMs — Calculat" href="/llms.txt" />
         <link rel="preconnect" href="https://i.pravatar.cc" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://plausible.io" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://vitals.vercel-analytics.com" crossOrigin="anonymous" />

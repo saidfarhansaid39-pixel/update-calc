@@ -19,6 +19,11 @@ import AuthorPage, { generateMetadata as genAuthorMeta } from '../author/[id]/pa
 export const revalidate = 86400
 export const dynamic = 'force-static'
 
+// Static pre-render is intentionally LIMITED to high-value pages so the build
+// fits the Vercel Hobby builder's disk (ENOSPC: .next ~8.9GB at 36,700 pages).
+// Every other URL still resolves: `dynamicParams` defaults to true, so it is
+// rendered on demand and cached for `revalidate` seconds (ISR). This keeps the
+// full sitemap (36k+ URLs) crawlable without pre-building all of it.
 export async function generateStaticParams() {
   const { calculatorRegistry } = await import('@calcuniverse/calculator-registry')
   const { getAllHubSlugs } = await import('@/lib/hub-data')
@@ -43,7 +48,6 @@ export async function generateStaticParams() {
     for (const locale of locales) {
       params.push({ slug: [locale, 'author', authorId] })
     }
-    params.push({ slug: ['author', authorId] })
   }
 
   for (const hub of hubs) {
@@ -52,18 +56,18 @@ export async function generateStaticParams() {
     }
   }
 
-  const manualCalcs = calculatorRegistry.filter((c: any) => !/\d$/.test(c.slug))
-  for (const calc of manualCalcs) {
-    for (const locale of locales) {
-      params.push({ slug: [locale, calc.hubSlug, calc.slug] })
-    }
-  }
-
   for (const hub of hubs) {
     params.push({ slug: [hub] })
   }
 
-  for (const calc of manualCalcs) {
+  // Pre-render only flagship (tier3) calculators in English (the highest-value
+  // SEO pages). Earlier tiers and all localized variants render on demand (ISR),
+  // which keeps the static output a tiny fraction of the full registry.
+  const calcTiers = (process.env.BUILD_STATIC_CALC_TIERS || 'tier3').split(',').map((t) => t.trim()).filter(Boolean)
+  const flagshipCalcs = calculatorRegistry.filter(
+    (c: any) => !/\d$/.test(c.slug) && calcTiers.includes(c.tier)
+  )
+  for (const calc of flagshipCalcs) {
     params.push({ slug: [calc.hubSlug, calc.slug] })
   }
 
