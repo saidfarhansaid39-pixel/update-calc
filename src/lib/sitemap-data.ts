@@ -1,15 +1,32 @@
-import type { MetadataRoute } from 'next'
 import { calculatorRegistry } from '@calcuniverse/calculator-registry'
 import { getAllClusterSlugs, getClusterBySlug } from '@/lib/seo-clusters'
 import { routing, isoLangs } from '@/i18n/routing'
 import { getReviewedDate } from '@/lib/trust'
+import { AUTHORS } from '@/lib/authors'
 
-const siteUrl = 'https://www.calculat.online'
+export const siteUrl = 'https://www.calculat.online'
 
 const BUILD_DATE = new Date()
 
 const locales = routing.locales
 const defaultLocale = routing.defaultLocale
+
+export type SitemapChangeFrequency =
+  | 'always'
+  | 'hourly'
+  | 'daily'
+  | 'weekly'
+  | 'monthly'
+  | 'yearly'
+  | 'never'
+
+export interface SitemapEntry {
+  url: string
+  lastModified?: Date
+  changeFrequency?: SitemapChangeFrequency
+  priority?: number
+  alternates?: { languages?: Record<string, string> }
+}
 
 const hubs = [
   'financial-calculators', 'health-calculators', 'math-calculators',
@@ -18,8 +35,6 @@ const hubs = [
   'chemistry-calculators', 'engineering-calculators', 'everyday-calculators',
   'food-calculators', 'biology-calculators', 'ecology-calculators', 'sports-calculators',
 ]
-
-import { AUTHORS } from '@/lib/authors'
 
 const blogArticles = [
   'mortgage-tips-2026', 'bmi-limitations', 'retirement-savings-guide',
@@ -58,7 +73,7 @@ function alternatesFor(path: string, localized = true): Record<string, string> {
 }
 
 interface EntryOpts {
-  changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency']
+  changeFrequency: SitemapChangeFrequency
   priority: number
   lastModified?: Date
 }
@@ -74,7 +89,7 @@ const englishOnlyStaticPages = new Set([
   ...Object.keys(AUTHORS).map(id => `/author/${id}`),
 ])
 
-function entriesForPath(locale: string, path: string, opts: EntryOpts, localized = true): MetadataRoute.Sitemap[number] {
+function entriesForPath(locale: string, path: string, opts: EntryOpts, localized = true): SitemapEntry {
   return {
     url: localeUrl(locale, path),
     lastModified: opts.lastModified || BUILD_DATE,
@@ -84,15 +99,10 @@ function entriesForPath(locale: string, path: string, opts: EntryOpts, localized
   }
 }
 
-export async function generateSitemaps() {
-  return [
-    ...locales.map(locale => ({ id: locale })),
-    { id: 'static' as const },
-  ]
-}
+/** ids emitted at /sitemap/{id}.xml and referenced from /sitemap.xml */
+export const sitemapShardIds: readonly string[] = [...locales, 'static'] as const
 
-export default async function sitemap(props: { id: string | Promise<string> }): Promise<MetadataRoute.Sitemap> {
-  const id = await props.id
+export async function buildSitemapEntries(id: string): Promise<SitemapEntry[]> {
   if (id === 'static') {
     return [
       ...staticPages.map(p => entriesForPath(defaultLocale, p, {
@@ -107,7 +117,7 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
   }
 
   const locale = id
-  const entries: MetadataRoute.Sitemap = []
+  const entries: SitemapEntry[] = []
 
   for (const p of staticPages) {
     if (locale !== defaultLocale && englishOnlyStaticPages.has(p)) continue
@@ -161,4 +171,46 @@ export default async function sitemap(props: { id: string | Promise<string> }): 
   }
 
   return entries
+}
+
+export function escapeXml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
+export function sitemapIndexXml(): string {
+  const sitemaps = sitemapShardIds
+    .map(id => {
+      return `  <sitemap>\n    <loc>${escapeXml(`${siteUrl}/sitemap/${id}.xml`)}</loc>\n    <lastmod>${BUILD_DATE.toISOString()}</lastmod>\n  </sitemap>`
+    })
+    .join('\n')
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemaps}\n</sitemapindex>`
+}
+
+export function sitemapUrlsetXml(entries: SitemapEntry[]): string {
+  const urls = entries
+    .map(entry => {
+      const lines = [`      <loc>${escapeXml(entry.url)}</loc>`]
+      if (entry.lastModified) {
+        lines.push(`      <lastmod>${entry.lastModified.toISOString()}</lastmod>`)
+      }
+      if (entry.changeFrequency) {
+        lines.push(`      <changefreq>${entry.changeFrequency}</changefreq>`)
+      }
+      if (entry.priority !== undefined) {
+        lines.push(`      <priority>${entry.priority}</priority>`)
+      }
+      if (entry.alternates?.languages) {
+        for (const [lang, href] of Object.entries(entry.alternates.languages)) {
+          lines.push(`      <xhtml:link rel="alternate" hreflang="${escapeXml(lang)}" href="${escapeXml(href)}" />`)
+        }
+      }
+      return `    <url>\n${lines.join('\n')}\n    </url>`
+    })
+    .join('\n')
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls}\n</urlset>`
 }
