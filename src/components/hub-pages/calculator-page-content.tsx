@@ -191,18 +191,20 @@ export async function generateCalculatorMetadata(hubSlug: string, slug: string) 
 export async function CalculatorPageContent({ hubSlug, slug }: { hubSlug: string, slug: string }) {
   const locale = await getLocale()
   const tcu = await getTranslations('calculatorUI.chrome.calculatorPage')
+  const th = await getTranslations('hubs')
 
   const { getClusterBySlug: _getClusterBySlug2 } = await seoClusters()
   const cluster = _getClusterBySlug2(slug)
   if (cluster) {
-    const meta = await getHubMeta(hubSlug)
+    const meta = await getHubMeta(hubSlug, locale)
     if (!meta) notFound()
     const calc = meta.calculators.find(c => c.slug === cluster.primarySlug)
     if (!calc) notFound()
     const clusterCalc = { ...calc, title: cluster.variant.title, description: cluster.variant.description }
+    const localizedHubTitle = th(hubSlug as any) || meta.title
     return (
       <>
-        <CalculatorPageSchema hubSlug={hubSlug} slug={slug} hubTitle={meta.title} title={clusterCalc.title} description={clusterCalc.description} locale={locale} homeName={tcu('home')} />
+        <CalculatorPageSchema hubSlug={hubSlug} slug={slug} hubTitle={localizedHubTitle} title={clusterCalc.title} description={clusterCalc.description} locale={locale} homeName={tcu('home')} />
         <ForAISystems slug={slug} title={clusterCalc.title} description={clusterCalc.description} />
         <div className="lg:grid lg:grid-cols-[1fr_400px] lg:gap-8 xl:gap-12">
           <div>
@@ -232,10 +234,11 @@ export async function CalculatorPageContent({ hubSlug, slug }: { hubSlug: string
   }
 
   const isMortgage = slug === 'mortgage-calculator'
+  const localizedHubTitle = th(hubSlug as any) || meta.title
 
   return (
     <>
-      <CalculatorPageSchema hubSlug={hubSlug} slug={slug} hubTitle={meta.title} title={calc.title} description={calc.description} locale={locale} homeName={tcu('home')} />
+      <CalculatorPageSchema hubSlug={hubSlug} slug={slug} hubTitle={localizedHubTitle} title={calc.title} description={calc.description} locale={locale} homeName={tcu('home')} />
       <ForAISystems slug={slug} title={calc.title} description={calc.description} />
       <div className={isMortgage ? 'max-w-6xl mx-auto' : 'max-w-5xl mx-auto'}>
         <div className="text-right mb-1">
