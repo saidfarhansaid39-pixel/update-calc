@@ -70,7 +70,6 @@ function CalculatorPageSchema({ hubSlug, slug, hubTitle, title, description, loc
             url: `https://www.calculat.online/author/${author.id}`,
           },
           isPartOf: { '@type': 'WebSite', name: 'Calculat', url: siteUrl },
-          breadcrumb: { '@type': 'BreadcrumbList' },
           mainEntity: {
             '@type': 'SoftwareApplication',
             name: title,
