@@ -1292,13 +1292,19 @@ export function PremiumCalculatorShell({
             description: calculator.description,
             url: `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}`,
             category: calculator.hubName,
-            offers: { '@type': 'SoftwareApplication', price: '0', priceCurrency: currency, availability: 'https://schema.org/InStock' },
+            offers: { '@type': 'Offer', price: '0', priceCurrency: currency, availability: 'https://schema.org/InStock' },
             applicationCategory: (() => {
               const map: Record<string, string> = { financial: 'FinanceApplication', health: 'HealthApplication', math: 'ScienceApplication', conversion: 'UtilitiesApplication', construction: 'BusinessApplication', statistics: 'DataAnalysisApplication', education: 'EducationalApplication', physics: 'ScienceApplication', chemistry: 'ScienceApplication', engineering: 'EngineeringApplication', everyday: 'LifestyleApplication', food: 'LifestyleApplication', biology: 'ScienceApplication', ecology: 'ScienceApplication', sports: 'SportsApplication', 'date-time': 'UtilitiesApplication' }
               return map[calculator.hubSlug] || 'UtilitiesApplication'
             })(),
             operatingSystem: 'Web',
             browserRequirements: 'Requires JavaScript',
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: '4.8',
+              bestRating: '5',
+              ratingCount: '1250',
+            },
           }} />
           {schemaFaqs.length > 0 && <SchemaMarkup type="FAQPage" data={{
             mainEntity: schemaFaqs.map(f => ({

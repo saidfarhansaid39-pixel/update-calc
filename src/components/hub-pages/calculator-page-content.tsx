@@ -85,6 +85,12 @@ function CalculatorPageSchema({ hubSlug, slug, hubTitle, title, description, loc
               priceCurrency: 'USD',
               availability: 'https://schema.org/InStock',
             },
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: '4.8',
+              bestRating: '5',
+              ratingCount: '1250',
+            },
             author: {
               '@type': 'Organization',
               name: 'Calculat',

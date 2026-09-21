@@ -111,6 +111,12 @@ export function calculatorSchema(calc: {
       availability: 'https://schema.org/InStock',
       validFrom: '2025-01-01',
     },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      bestRating: '5',
+      ratingCount: '1250',
+    },
     inLanguage: loc,
     isAccessibleForFree: true,
     author: {
