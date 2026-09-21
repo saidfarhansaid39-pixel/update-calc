@@ -8,11 +8,11 @@ export const dynamic = 'force-static'
 
 export async function generateMetadata() {
   return {
-    title: 'A-Z Index of All Calculators — Calculat',
-    description: 'Browse every Calculat calculator from A to Z. Find the perfect calculator for your needs with our complete alphabetical index.',
+    title: 'A-Z Index of All Calculators Online — Calculat',
+    description: 'Browse every Calculat calculator online from A to Z. Find the perfect calculator online for your needs with our complete alphabetical index of 4,270+ tools.',
     alternates: { canonical: siteUrl + '/a-z-index' },
-    openGraph: { title: 'A-Z Index of All Calculators — Calculat', description: 'Browse every Calculat calculator from A to Z.', url: siteUrl + '/a-z-index', siteName: 'Calculat', type: 'website', images: [{ url: siteUrl + '/og-image.png', width: 1200, height: 630 }] },
-    twitter: { card: 'summary_large_image', title: 'A-Z Index of All Calculators — Calculat', description: 'Browse every Calculat calculator from A to Z.' },
+    openGraph: { title: 'A-Z Index of All Calculators Online — Calculat', description: 'Browse every Calculat calculator online from A to Z.', url: siteUrl + '/a-z-index', siteName: 'Calculat', type: 'website', images: [{ url: siteUrl + '/og-image.png', width: 1200, height: 630 }] },
+    twitter: { card: 'summary_large_image', title: 'A-Z Index of All Calculators Online — Calculat', description: 'Browse every Calculat calculator online from A to Z.' },
   }
 }
 
@@ -41,8 +41,8 @@ export default async function AZIndexPage() {
         { name: 'Home', url: siteUrl },
         { name: 'A-Z Index', url: siteUrl + '/a-z-index' },
       ])} />
-      <h1 className="text-3xl font-bold mb-2">A-Z Index of All Calculators</h1>
-      <p className="text-gray-600 dark:text-gray-400 mb-8">Browse all calculators alphabetically. Click a letter to jump to that section.</p>
+      <h1 className="text-3xl font-bold mb-2">A-Z Index of All Calculators Online</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-8">Browse all {calculatorRegistry.length.toLocaleString()}+ calculator online tools alphabetically. Click a letter to jump to that section.</p>
       <nav className="sticky top-16 z-10 flex flex-wrap gap-1.5 mb-8 p-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur rounded-lg border border-gray-200 dark:border-gray-800" aria-label="Letter navigation">
         {LETTERS.map(l => {
           const hasEntries = grouped.has(l)

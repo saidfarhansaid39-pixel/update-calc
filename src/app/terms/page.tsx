@@ -53,11 +53,11 @@ export default async function TermsPage() {
           isPartOf: { '@type': 'WebSite', name: 'Calculat', url: siteUrl },
         }}
       />
-      <h1 className="text-3xl font-bold mb-6">Terms of Service</h1>
+      <h1 className="text-3xl font-bold mb-6">Terms of Service — Calculator Online</h1>
       <div className="prose dark:prose-invert max-w-none space-y-4">
-        <p>Last updated: January 2025</p>
+        <p>Last updated: January 2025. These terms apply to all calculator online tools on Calculat.</p>
         <h2 className="text-xl font-semibold mt-8">Use of Service</h2>
-        <p>Calculat provides free online calculators for informational purposes. While we strive for accuracy, results should not replace professional advice for financial, medical, or legal decisions.</p>
+        <p>Calculat provides free calculator online tools for informational purposes. While we strive for accuracy, results from our calculator online should not replace professional advice for financial, medical, or legal decisions.</p>
         <h2 className="text-xl font-semibold mt-8">Accuracy</h2>
         <p>We make every effort to ensure calculation accuracy. However, we cannot guarantee 100% error-free results. Users should verify critical calculations independently.</p>
         <h2 className="text-xl font-semibold mt-8">Limitation of Liability</h2>

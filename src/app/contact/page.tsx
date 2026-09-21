@@ -53,9 +53,9 @@ export default async function ContactPage() {
           isPartOf: { '@type': 'WebSite', name: 'Calculat', url: siteUrl },
         }}
       />
-      <h1 className="text-3xl font-bold mb-6">Contact Us</h1>
+      <h1 className="text-3xl font-bold mb-6">Contact Us — Calculator Online Support</h1>
       <div className="prose dark:prose-invert max-w-none space-y-4">
-        <p>Have a question, suggestion, or feedback? We&apos;d love to hear from you.</p>
+        <p>Have a question, suggestion, or feedback about our calculator online? We&apos;d love to hear from you.</p>
         <p>Email us at: <a href="mailto:support@calculat.online" className="text-primary hover:underline">support@calculat.online</a></p>
         <p>We typically respond within 24-48 hours on business days.</p>
         <h2 className="text-xl font-semibold mt-8">Report an Issue</h2>

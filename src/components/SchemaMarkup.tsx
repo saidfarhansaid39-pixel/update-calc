@@ -39,16 +39,16 @@ const siteNames: Record<string, string> = {
 }
 
 export const siteDescriptions: Record<string, string> = {
-  en: 'Precision calculators for finance, health, math, science, and everyday life. Free, fast, and beautifully designed.',
-  es: 'Calculadoras de precisión para finanzas, salud, matemáticas, ciencias y la vida cotidiana. Gratis, rápidas y hermosamente diseñadas.',
-  fr: 'Calculatrices de précision pour la finance, la santé, les mathématiques, les sciences et la vie quotidienne. Gratuites, rapides et magnifiquement conçues.',
-  de: 'Präzisionsrechner für Finanzen, Gesundheit, Mathematik, Wissenschaft und den Alltag. Kostenlos, schnell und schön gestaltet.',
-  pt: 'Calculadoras de precisão para finanças, saúde, matemática, ciências e vida cotidiana. Grátis, rápidas e lindamente projetadas.',
-  ru: 'Прецизионные калькуляторы для финансов, здоровья, математики, науки и повседневной жизни. Бесплатно, быстро и красиво.',
-  ar: 'حاسبات دقيقة للمالية والصحة والرياضيات والعلوم والحياة اليومية. مجانية وسريعة ومصممة بشكل جميل.',
-  hi: 'वित्त, स्वास्थ्य, गणित, विज्ञान और रोजमर्रा की जिंदगी के लिए सटीक कैलकुलेटर। मुफ्त, तेज और खूबसूरती से डिजाइन किए गए।',
-  ja: '金融、健康、数学、科学、日常生活のための高精度計算機。無料、高速、美しいデザイン。',
-  'zh-CN': '金融、健康、数学、科学和日常生活的精确计算器。免费、快速、设计精美。',
+  en: 'Free calculator online for finance, health, math, science, conversion, and everyday life. 4,270+ instant calculators online with step-by-step formulas.',
+  es: 'Calculadora online gratis para finanzas, salud, matemáticas, ciencias, conversiones y vida cotidiana. Más de 4.270 calculadoras online instantáneas.',
+  fr: 'Calculatrice en ligne gratuite pour finances, santé, maths, sciences, conversion et quotidien. Plus de 4 270 calculateurs en ligne instantanés.',
+  de: 'Kostenloser Online-Rechner für Finanzen, Gesundheit, Mathematik, Wissenschaft, Umrechnung und Alltag. Über 4.270 sofortige Online-Rechner.',
+  pt: 'Calculadora online gratuita para finanças, saúde, matemática, ciências, conversão e vida cotidiana. Mais de 4.270 calculadoras online instantâneas.',
+  ru: 'Бесплатный онлайн-калькулятор для финансов, здоровья, математики, науки, конвертации и повседневной жизни. Более 4 270 мгновенных онлайн-калькуляторов.',
+  ar: 'حاسبة مجانية عبر الإنترنت للمالية والصحة والرياضيات والعلوم والتحويل والحياة اليومية. أكثر من 4270 حاسبة عبر الإنترنت.',
+  hi: 'वित्त, स्वास्थ्य, गणित, विज्ञान, रूपांतरण और दैनिक जीवन के लिए मुफ्त ऑनलाइन कैलकुलेटर। 4,270+ तत्काल ऑनलाइन कैलकुलेटर।',
+  ja: '金融、健康、数学、科学、変換、日常生活のための無料オンライン計算機。4,270以上の即時オンライン計算機。',
+  'zh-CN': '金融、健康、数学、科学、转换和日常生活的免费在线计算器。4,270+ 即时在线计算器。',
 }
 
 export function websiteSchema(locale: string) {
@@ -56,6 +56,14 @@ export function websiteSchema(locale: string) {
     name: siteNames[locale] || siteNames.en,
     url: siteUrl,
     description: siteDescriptions[locale] || siteDescriptions.en,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${siteUrl}/search?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
   }
 }
 
@@ -89,17 +97,31 @@ export function calculatorSchema(calc: {
     ? `${siteUrl}/${calc.hubSlug}/${calc.slug}`
     : `${siteUrl}/${loc}/${calc.hubSlug}/${calc.slug}`
   return {
-    '@type': 'Product',
+    '@type': 'SoftwareApplication',
     name: calc.title,
     description: calc.description,
     url,
-    category: calc.hubName,
-    inLanguage: loc,
+    applicationCategory: 'UtilitiesApplication',
+    applicationSubcategory: 'Calculator',
+    operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
       availability: 'https://schema.org/InStock',
+      validFrom: '2025-01-01',
+    },
+    inLanguage: loc,
+    isAccessibleForFree: true,
+    author: {
+      '@type': 'Organization',
+      name: 'Calculat',
+      url: siteUrl,
+    },
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Calculat',
+      url: siteUrl,
     },
   }
 }

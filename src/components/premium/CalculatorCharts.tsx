@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { useTranslations } from 'next-intl'
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend, LineChart, Line, XAxis, YAxis, CartesianGrid, BarChart, Bar } from 'recharts'
 import { useCurrency } from '@/lib/context/CurrencyContext'
 
@@ -33,17 +34,18 @@ interface DataPoint {
 }
 
 export function LoanDonutChart({ principal, totalInterest }: { principal: number; totalInterest: number }) {
+  const t = useTranslations('calculatorUI')
   const { currencySymbol } = useCurrency()
   const data = [
     { name: 'Principal', value: Math.max(0, principal) },
     { name: 'Total Interest', value: Math.max(0, totalInterest) },
   ]
   if (principal <= 0 && totalInterest <= 0) {
-    return <div className="w-full min-h-[120px] flex items-center justify-center text-xs text-gray-400 dark:text-gray-500">Enter loan details to see breakdown</div>
+    return <div className="w-full min-h-[120px] flex items-center justify-center text-xs text-gray-400 dark:text-gray-500">{t('premium.charts.enterLoanDetails')}</div>
   }
   return (
-    <div className="w-full" role="img" aria-label={`Payment breakdown: ${curr(principal, currencySymbol)} principal, ${curr(totalInterest, currencySymbol)} total interest`}>
-      <p className="text-xs font-semibold text-gray-600 dark:text-gray-300 mb-2 text-center">Payment Breakdown</p>
+    <div className="w-full" role="img" aria-label={t('premium.charts.paymentBreakdownAria', { principal: curr(principal, currencySymbol), interest: curr(totalInterest, currencySymbol) })}>
+      <p className="text-xs font-semibold text-gray-600 dark:text-gray-300 mb-2 text-center">{t('premium.charts.paymentBreakdown')}</p>
       <ResponsiveContainer width="100%" height={240}>
         <PieChart>
           <Pie data={data} cx="50%" cy="50%" innerRadius={60} outerRadius={90} paddingAngle={2} dataKey="value" isAnimationActive={false}>
@@ -64,15 +66,16 @@ export function InvestmentGrowthChart({
   data: { year: number; value: number; contributions: number }[]
   onDotClick?: (point: DataPoint) => void
 }) {
+  const t = useTranslations('calculatorUI')
   const { currencySymbol } = useCurrency()
   const { currency } = useCurrency()
   if (data.length === 0) {
-    return <div className="w-full min-h-[120px] flex items-center justify-center text-xs text-gray-400 dark:text-gray-500">Enter investment details to see growth projection</div>
+    return <div className="w-full min-h-[120px] flex items-center justify-center text-xs text-gray-400 dark:text-gray-500">{t('premium.charts.enterInvestmentDetails')}</div>
   }
   const lastYear = data[data.length - 1]
   return (
-    <div className="w-full" role="img" aria-label={`Investment growth projection: ${curr(lastYear?.value ?? 0, currencySymbol)} portfolio value after ${lastYear?.year} years`}>
-      <p className="text-xs font-semibold text-gray-600 dark:text-gray-300 mb-2 text-center">Growth Projection</p>
+    <div className="w-full" role="img" aria-label={t('premium.charts.investmentGrowthAria', { value: curr(lastYear?.value ?? 0, currencySymbol), years: String(lastYear?.year ?? '') })}>
+      <p className="text-xs font-semibold text-gray-600 dark:text-gray-300 mb-2 text-center">{t('premium.charts.growthProjection')}</p>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={data} onClick={(e) => {
           if (e?.activePayload?.[0]?.payload && onDotClick) {
@@ -94,7 +97,7 @@ export function InvestmentGrowthChart({
           <YAxis tick={{ fontSize: 10 }} tickFormatter={(v: number) => `${currencySymbol}${(v / 1000).toFixed(0)}k`} />
           <Tooltip content={<ChartTooltip currencySymbol={currencySymbol} />} />
           <Legend />
-          <Line type="monotone" dataKey="value" stroke="url(#valueGrad)" strokeWidth={2} name="Portfolio Value" dot={onDotClick ? (props: any) => {
+          <Line type="monotone" dataKey="value" stroke="url(#valueGrad)" strokeWidth={2} name={t('premium.charts.portfolioValue')} dot={onDotClick ? (props: any) => {
             const { cx, cy, payload } = props
             return (
               <circle
@@ -108,12 +111,12 @@ export function InvestmentGrowthChart({
               />
             )
           } : false} isAnimationActive={false} />
-          <Line type="monotone" dataKey="contributions" stroke="url(#contribGrad)" strokeWidth={2} name="Total Contributions" dot={false} isAnimationActive={false} />
+          <Line type="monotone" dataKey="contributions" stroke="url(#contribGrad)" strokeWidth={2} name={t('premium.charts.totalContributions')} dot={false} isAnimationActive={false} />
         </LineChart>
       </ResponsiveContainer>
       {onDotClick && (
         <p className="text-xs text-center text-gray-400 dark:text-gray-500 mt-1">
-          Click any data point to jump to that year
+          {t('premium.charts.clickToJumpYear')}
         </p>
       )}
     </div>
@@ -121,14 +124,15 @@ export function InvestmentGrowthChart({
 }
 
 export function ComparisonBarChart({ data, onBarClick }: { data: { name: string; value: number; color: string }[]; onBarClick?: (name: string) => void }) {
+  const t = useTranslations('calculatorUI')
   const { currencySymbol } = useCurrency()
   if (!data || !data.length) {
-    return <div className="w-full min-h-[120px] flex items-center justify-center text-xs text-gray-400 dark:text-gray-500">Add items to compare</div>
+    return <div className="w-full min-h-[120px] flex items-center justify-center text-xs text-gray-400 dark:text-gray-500">{t('premium.charts.addItemsToCompare')}</div>
   }
   const maxItem = data.reduce((a, b) => (a.value > b.value ? a : b), data[0])
   return (
-    <div className="w-full" role="img" aria-label={`Comparison chart: ${maxItem?.name} has highest value of ${curr(maxItem?.value ?? 0, currencySymbol)}`}>
-      <p className="text-xs font-semibold text-gray-600 dark:text-gray-300 mb-2 text-center">Comparison</p>
+    <div className="w-full" role="img" aria-label={t('premium.charts.comparisonAria', { name: maxItem?.name ?? '', value: curr(maxItem?.value ?? 0, currencySymbol) })}>
+      <p className="text-xs font-semibold text-gray-600 dark:text-gray-300 mb-2 text-center">{t('premium.charts.comparison')}</p>
       <ResponsiveContainer width="100%" height={240}>
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke={chartGridStroke} className="dark:stroke-gray-700" />
@@ -147,14 +151,15 @@ export function ComparisonBarChart({ data, onBarClick }: { data: { name: string;
 }
 
 export function AmortizationChart({ data, onDotClick }: { data: { year: number; balance: number }[]; onDotClick?: (point: DataPoint) => void }) {
+  const t = useTranslations('calculatorUI')
   const { currencySymbol } = useCurrency()
   if (data.length === 0) {
-    return <div className="w-full min-h-[120px] flex items-center justify-center text-xs text-gray-400 dark:text-gray-500">Enter loan details to see amortization schedule</div>
+    return <div className="w-full min-h-[120px] flex items-center justify-center text-xs text-gray-400 dark:text-gray-500">{t('premium.charts.enterLoanAmortization')}</div>
   }
   const last = data[data.length - 1]
   return (
-    <div className="w-full" role="img" aria-label={`Amortization schedule: ${curr(last?.balance ?? 0, currencySymbol)} remaining balance after ${last?.year} years`}>
-      <p className="text-xs font-semibold text-gray-600 dark:text-gray-300 mb-2 text-center">Amortization Schedule</p>
+    <div className="w-full" role="img" aria-label={t('premium.charts.amortizationAria', { value: curr(last?.balance ?? 0, currencySymbol), years: String(last?.year ?? '') })}>
+      <p className="text-xs font-semibold text-gray-600 dark:text-gray-300 mb-2 text-center">{t('premium.charts.amortizationSchedule')}</p>
       <ResponsiveContainer width="100%" height={240}>
         <LineChart data={data} onClick={(e) => {
           if (e?.activePayload?.[0]?.payload && onDotClick) {
@@ -171,7 +176,7 @@ export function AmortizationChart({ data, onDotClick }: { data: { year: number; 
           <XAxis dataKey="year" tick={{ fontSize: 10 }} />
           <YAxis tick={{ fontSize: 10 }} tickFormatter={(v: number) => `${currencySymbol}${(v / 1000).toFixed(0)}k`} />
           <Tooltip content={<ChartTooltip currencySymbol={currencySymbol} />} />
-          <Line type="monotone" dataKey="balance" stroke="url(#balanceGrad)" strokeWidth={2} name="Remaining Balance" dot={onDotClick ? (props: any) => {
+          <Line type="monotone" dataKey="balance" stroke="url(#balanceGrad)" strokeWidth={2} name={t('premium.charts.remainingBalance')} dot={onDotClick ? (props: any) => {
             const { cx, cy, payload } = props
             return (
               <circle
@@ -189,7 +194,7 @@ export function AmortizationChart({ data, onDotClick }: { data: { year: number; 
       </ResponsiveContainer>
       {onDotClick && (
         <p className="text-xs text-center text-gray-400 dark:text-gray-500 mt-1">
-          Click any point to jump to that year
+          {t('premium.charts.clickToJumpYearAmort')}
         </p>
       )}
     </div>

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { TrendingUp, TrendingDown, Minus, AlertTriangle, Lightbulb, Target, ArrowRight, BarChart3, ChevronDown, ChevronUp, Info } from 'lucide-react'
 
 interface Benchmark {
@@ -45,6 +46,7 @@ interface EnhancedExplanationProps {
 export function EnhancedResultExplanation({
   value, label, unit, goodRange, benchmarks, nextActions, optimizations, warnings, resultInsights, detailedExplanation,
 }: EnhancedExplanationProps) {
+  const t = useTranslations('calculatorUI')
   const valStr = value.toLocaleString(undefined, { maximumFractionDigits: 2 })
   const isGood = goodRange ? value >= goodRange.min && value <= goodRange.max : undefined
   const [showDetail, setShowDetail] = useState(false)
@@ -60,8 +62,8 @@ export function EnhancedResultExplanation({
         {isGood !== undefined && (
           <div className="flex items-center justify-center gap-1 mt-1">
             {isGood
-              ? <><TrendingUp className="w-4 h-4 text-green-500" /><span className="text-xs text-green-600 dark:text-green-400">Within healthy range</span></>
-              : <><AlertTriangle className="w-4 h-4 text-red-500" /><span className="text-xs text-red-500">Outside recommended range</span></>
+              ? <><TrendingUp className="w-4 h-4 text-green-500" /><span className="text-xs text-green-600 dark:text-green-400">{t('premium.enhancedExplain.withinHealthyRange')}</span></>
+              : <><AlertTriangle className="w-4 h-4 text-red-500" /><span className="text-xs text-red-500">{t('premium.enhancedExplain.outsideRecommendedRange')}</span></>
             }
           </div>
         )}
@@ -76,7 +78,7 @@ export function EnhancedResultExplanation({
           >
             <span className="flex items-center gap-2">
               <Info className="w-4 h-4 text-[#06b6d4]" />
-              Explain in Detail
+              {t('premium.enhancedExplain.explainInDetail')}
             </span>
             {showDetail ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </button>
@@ -84,19 +86,19 @@ export function EnhancedResultExplanation({
             <div className="px-4 pb-4 space-y-3 text-sm">
               {detailedExplanation.whatItMeans && (
                 <div>
-                  <p className="font-medium text-gray-900 dark:text-white">What this means</p>
+                  <p className="font-medium text-gray-900 dark:text-white">{t('premium.enhancedExplain.whatThisMeansDetail')}</p>
                   <p className="text-gray-600 dark:text-gray-400">{detailedExplanation.whatItMeans}</p>
                 </div>
               )}
               {detailedExplanation.whyItMatters && (
                 <div>
-                  <p className="font-medium text-gray-900 dark:text-white">Why it matters</p>
+                  <p className="font-medium text-gray-900 dark:text-white">{t('premium.enhancedExplain.whyItMatters')}</p>
                   <p className="text-gray-600 dark:text-gray-400">{detailedExplanation.whyItMatters}</p>
                 </div>
               )}
               {detailedExplanation.whatAffectsIt && detailedExplanation.whatAffectsIt.length > 0 && (
                 <div>
-                  <p className="font-medium text-gray-900 dark:text-white">What affects it</p>
+                  <p className="font-medium text-gray-900 dark:text-white">{t('premium.enhancedExplain.whatAffectsIt')}</p>
                   <ul className="space-y-1">
                     {detailedExplanation.whatAffectsIt.map((item, i) => (
                       <li key={i} className="text-gray-600 dark:text-gray-400 flex items-start gap-1.5">
@@ -109,7 +111,7 @@ export function EnhancedResultExplanation({
               )}
               {detailedExplanation.howToImprove && detailedExplanation.howToImprove.length > 0 && (
                 <div>
-                  <p className="font-medium text-gray-900 dark:text-white">How to improve</p>
+                  <p className="font-medium text-gray-900 dark:text-white">{t('premium.enhancedExplain.howToImprove')}</p>
                   <ul className="space-y-1">
                     {detailedExplanation.howToImprove.map((item, i) => (
                       <li key={i} className="text-gray-600 dark:text-gray-400 flex items-start gap-1.5">
@@ -144,9 +146,9 @@ export function EnhancedResultExplanation({
             />
           </div>
           <div className="flex justify-between text-[10px] text-gray-400">
-            <span>Low</span>
-            <span className="font-medium text-gray-500">Good: {goodRange.min}–{goodRange.max}{unit}</span>
-            <span>High</span>
+            <span>{t('premium.enhancedExplain.low')}</span>
+            <span className="font-medium text-gray-500">{t('premium.enhancedExplain.goodRange', { min: String(goodRange.min), max: String(goodRange.max) })}{unit}</span>
+            <span>{t('premium.enhancedExplain.high')}</span>
           </div>
         </div>
       )}
@@ -156,7 +158,7 @@ export function EnhancedResultExplanation({
         <div>
           <div className="flex items-center gap-1.5 mb-2">
             <BarChart3 className="w-4 h-4 text-gray-400" />
-            <p className="text-xs font-medium text-gray-500">Industry Benchmarks</p>
+            <p className="text-xs font-medium text-gray-500">{t('premium.enhancedExplain.industryBenchmarks')}</p>
           </div>
           <div className="space-y-1.5">
             {benchmarks.map((b, i) => (
@@ -177,7 +179,7 @@ export function EnhancedResultExplanation({
         <div className="p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl">
           <div className="flex items-center gap-1.5 mb-1.5">
             <AlertTriangle className="w-4 h-4 text-amber-500" />
-            <p className="text-xs font-semibold text-amber-700 dark:text-amber-300">Warnings</p>
+            <p className="text-xs font-semibold text-amber-700 dark:text-amber-300">{t('premium.enhancedExplain.warnings')}</p>
           </div>
           <ul className="space-y-1">
             {warnings.map((w, i) => (
@@ -195,7 +197,7 @@ export function EnhancedResultExplanation({
         <div>
           <div className="flex items-center gap-1.5 mb-2">
             <Lightbulb className="w-4 h-4 text-amber-500" />
-            <p className="text-xs font-medium text-gray-500">Key Insights</p>
+            <p className="text-xs font-medium text-gray-500">{t('premium.enhancedExplain.keyInsights')}</p>
           </div>
           <ul className="space-y-1.5">
             {resultInsights.map((ri, i) => (
@@ -213,7 +215,7 @@ export function EnhancedResultExplanation({
         <div>
           <div className="flex items-center gap-1.5 mb-2">
             <Target className="w-4 h-4 text-[#06b6d4]" />
-            <p className="text-xs font-medium text-gray-500">Recommended Next Actions</p>
+            <p className="text-xs font-medium text-gray-500">{t('premium.enhancedExplain.recommendedNextActions')}</p>
           </div>
           <div className="space-y-2">
             {nextActions.map((a, i) => (
@@ -238,19 +240,19 @@ export function EnhancedResultExplanation({
         <div>
           <div className="flex items-center gap-1.5 mb-2">
             <ArrowRight className="w-4 h-4 text-purple-500" />
-            <p className="text-xs font-medium text-gray-500">Optimization Suggestions</p>
+            <p className="text-xs font-medium text-gray-500">{t('premium.enhancedExplain.optimizationSuggestions')}</p>
           </div>
           <div className="space-y-1.5">
             {optimizations.map((o, i) => (
               <div key={i} className="flex items-center justify-between px-3 py-2 bg-purple-50 dark:bg-purple-900/10 rounded-lg text-xs">
                 <div>
                   <p className="font-medium text-gray-900 dark:text-white">{o.label}</p>
-                  <p className="text-gray-500 dark:text-gray-400">Impact: {o.impact}</p>
+                  <p className="text-gray-500 dark:text-gray-400">{t('premium.enhancedExplain.impact', { impact: o.impact })}</p>
                 </div>
                 <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${
                   o.effort === 'low' ? 'bg-green-100 text-green-600' : o.effort === 'medium' ? 'bg-amber-100 text-amber-600' : 'bg-red-100 text-red-600'
                 }`}>
-                  {o.effort} effort
+                  {t('premium.enhancedExplain.effort', { effort: o.effort })}
                 </span>
               </div>
             ))}

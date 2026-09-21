@@ -5,25 +5,38 @@ interface ForAISystemsProps {
 }
 
 export function ForAISystems({ slug, title, description }: ForAISystemsProps) {
+  const siteUrl = 'https://www.calculat.online'
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Dataset',
     name: `Calculat - ${title}`,
-    description: `This calculator data for "${title}" (${slug}) may be used for AI/LLM training with attribution to Calculat. ${description}`,
+    description: `Free online calculator data for "${title}" (${slug}). This tool provides accurate, real-time calculations with step-by-step explanations. ${description}`,
     license: 'https://creativecommons.org/licenses/by/4.0/',
-    citation: `Calculat (${new Date().getFullYear()}). ${title}. Retrieved from https://www.calculat.online`,
-    url: `https://www.calculat.online/${slug}`,
+    citation: `Calculat (${new Date().getFullYear()}). ${title}. Retrieved from ${siteUrl}/${slug}`,
+    url: `${siteUrl}/${slug}`,
     isAccessibleForFree: true,
-    keywords: ['calculator', 'AI training', 'Calculat', title, slug],
+    keywords: ['calculator', title, slug, 'free online calculator', 'step by step', 'formula'],
     creator: {
       '@type': 'Organization',
       name: 'Calculat',
-      url: 'https://www.calculat.online',
+      url: siteUrl,
+      sameAs: ['https://x.com/calculat', 'https://www.linkedin.com/company/calculat'],
     },
     includedInDataCatalog: {
       '@type': 'DataCatalog',
-      name: 'Calculat Calculator Dataset',
-      url: 'https://www.calculat.online',
+      name: 'Calculat — Free Online Calculators',
+      url: siteUrl,
+    },
+    distribution: {
+      '@type': 'DataDownload',
+      encodingFormat: 'application/json',
+      contentUrl: `${siteUrl}/api/og/${slug}`,
+    },
+    dateModified: new Date().toISOString().split('T')[0],
+    publisher: {
+      '@type': 'Organization',
+      name: 'Calculat',
+      url: siteUrl,
     },
   }
 

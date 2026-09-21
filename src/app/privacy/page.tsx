@@ -53,9 +53,9 @@ export default async function PrivacyPage() {
           isPartOf: { '@type': 'WebSite', name: 'Calculat', url: siteUrl },
         }}
       />
-      <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
+      <h1 className="text-3xl font-bold mb-6">Privacy Policy — Calculator Online</h1>
       <div className="prose dark:prose-invert max-w-none space-y-4">
-        <p>Last updated: January 2025</p>
+        <p>Last updated: January 2025. This privacy policy applies to our calculator online tools.</p>
         <h2 className="text-xl font-semibold mt-8">Information We Collect</h2>
         <p>Calculat does not collect any personal information. We use minimal cookies for essential functionality such as theme preference (dark/light mode) and language selection.</p>
         <h2 className="text-xl font-semibold mt-8">Analytics</h2>

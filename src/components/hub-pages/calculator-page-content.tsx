@@ -26,13 +26,14 @@ function pageUrl(locale: string, path: string): string {
 }
 
 // Emits locale-aware BreadcrumbList + WebPage JSON-LD for a calculator page.
-function CalculatorPageSchema({ hubSlug, slug, hubTitle, title, description, locale }: {
+function CalculatorPageSchema({ hubSlug, slug, hubTitle, title, description, locale, homeName }: {
   hubSlug: string
   slug: string
   hubTitle: string
   title: string
   description: string
   locale: string
+  homeName: string
 }) {
   const url = pageUrl(locale, `/${hubSlug}/${slug}`)
   const reviewed = getReviewedDate(hubSlug, slug)
@@ -44,7 +45,7 @@ function CalculatorPageSchema({ hubSlug, slug, hubTitle, title, description, loc
         type="BreadcrumbList"
         locale={locale}
         data={breadcrumbListSchema([
-          { name: 'Home', url: pageUrl(locale, '') || pageUrl(locale, '/') },
+          { name: homeName, url: pageUrl(locale, '') || pageUrl(locale, '/') },
           { name: hubTitle, url: pageUrl(locale, `/${hubSlug}`) },
           { name: title, url },
         ], locale)}
@@ -65,35 +66,29 @@ function CalculatorPageSchema({ hubSlug, slug, hubTitle, title, description, loc
           author: {
             '@type': 'Person',
             name: author.name,
-            description: author.credentials,
+            jobTitle: author.credentials,
+            url: `https://www.calculat.online/author/${author.id}`,
           },
           isPartOf: { '@type': 'WebSite', name: 'Calculat', url: siteUrl },
           breadcrumb: { '@type': 'BreadcrumbList' },
-        }}
-      />
-      <SchemaMarkup
-        type="SoftwareApplication"
-        locale={locale}
-        data={{
-          ...softwareAppSchema({ title, description, slug }, locale, url),
-          offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'USD',
-            availability: 'https://schema.org/InStock',
-          },
-          potentialAction: {
-            '@type': 'UseAction',
-            target: {
-              '@type': 'EntryPoint',
-              urlTemplate: url,
-              actionPlatform: ['https://schema.org/DesktopWebPlatform', 'https://schema.org/MobileWebPlatform'],
-            },
-            expectAcceptanceOf: {
+          mainEntity: {
+            '@type': 'SoftwareApplication',
+            name: title,
+            description,
+            url,
+            applicationCategory: 'UtilitiesApplication',
+            applicationSubcategory: 'Calculator',
+            operatingSystem: 'Any',
+            offers: {
               '@type': 'Offer',
               price: '0',
               priceCurrency: 'USD',
               availability: 'https://schema.org/InStock',
+            },
+            author: {
+              '@type': 'Organization',
+              name: 'Calculat',
+              url: siteUrl,
             },
           },
         }}
@@ -108,8 +103,16 @@ function CalculatorPageSchema({ hubSlug, slug, hubTitle, title, description, loc
           datePublished: reviewed,
           lastReviewed: reviewed,
           reviewedBy: { '@type': 'Organization', name: reviewer },
-          author: { '@type': 'Person', name: author.name, description: author.credentials },
-          medicalAudience: 'patient',
+          author: {
+            '@type': 'Person',
+            name: author.name,
+            jobTitle: author.credentials,
+            url: `https://www.calculat.online/author/${author.id}`,
+          },
+          medicalAudience: {
+            '@type': 'PeopleAudience',
+            suggestedMinAge: 18,
+          },
           isPartOf: { '@type': 'WebSite', name: 'Calculat', url: siteUrl },
         }} />
       )}
@@ -181,6 +184,7 @@ export async function generateCalculatorMetadata(hubSlug: string, slug: string) 
 
 export async function CalculatorPageContent({ hubSlug, slug }: { hubSlug: string, slug: string }) {
   const locale = await getLocale()
+  const tcu = await getTranslations('calculatorUI.chrome.calculatorPage')
 
   const { getClusterBySlug: _getClusterBySlug2 } = await seoClusters()
   const cluster = _getClusterBySlug2(slug)
@@ -192,14 +196,14 @@ export async function CalculatorPageContent({ hubSlug, slug }: { hubSlug: string
     const clusterCalc = { ...calc, title: cluster.variant.title, description: cluster.variant.description }
     return (
       <>
-        <CalculatorPageSchema hubSlug={hubSlug} slug={slug} hubTitle={meta.title} title={clusterCalc.title} description={clusterCalc.description} locale={locale} />
+        <CalculatorPageSchema hubSlug={hubSlug} slug={slug} hubTitle={meta.title} title={clusterCalc.title} description={clusterCalc.description} locale={locale} homeName={tcu('home')} />
         <ForAISystems slug={slug} title={clusterCalc.title} description={clusterCalc.description} />
         <div className="lg:grid lg:grid-cols-[1fr_400px] lg:gap-8 xl:gap-12">
           <div>
             <div className="flex items-start justify-between gap-3 mb-4">
               <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">{clusterCalc.title}</h1>
               <span className="shrink-0 text-xs text-gray-400 dark:text-gray-500 mt-1.5 whitespace-nowrap">
-                Updated {getReviewedDate(hubSlug, slug)}
+                {tcu('updated', { date: getReviewedDate(hubSlug, slug) })}
               </span>
             </div>
             <GuideContent calculator={clusterCalc} locale={locale} />
@@ -225,11 +229,11 @@ export async function CalculatorPageContent({ hubSlug, slug }: { hubSlug: string
 
   return (
     <>
-      <CalculatorPageSchema hubSlug={hubSlug} slug={slug} hubTitle={meta.title} title={calc.title} description={calc.description} locale={locale} />
+      <CalculatorPageSchema hubSlug={hubSlug} slug={slug} hubTitle={meta.title} title={calc.title} description={calc.description} locale={locale} homeName={tcu('home')} />
       <ForAISystems slug={slug} title={calc.title} description={calc.description} />
       <div className={isMortgage ? 'max-w-6xl mx-auto' : 'max-w-5xl mx-auto'}>
         <div className="text-right mb-1">
-          <span className="text-xs text-gray-400 dark:text-gray-500">Updated {getReviewedDate(hubSlug, slug)}</span>
+          <span className="text-xs text-gray-400 dark:text-gray-500">{tcu('updated', { date: getReviewedDate(hubSlug, slug) })}</span>
         </div>
         {isMortgage ? <LivingMortgageDashboard /> : <CalculatorRenderer hubSlug={hubSlug} calculator={calc} />}
       </div>

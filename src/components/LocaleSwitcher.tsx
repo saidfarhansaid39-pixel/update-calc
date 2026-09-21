@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from '@/lib/navigation'
 import { routing, localeNames, type Locale } from '@/i18n/routing'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Languages, ChevronDown, Check } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
 
@@ -10,6 +10,7 @@ export function LocaleSwitcher({ variant = 'dropdown' }: { variant?: 'dropdown' 
   const pathname = usePathname()
   const router = useRouter()
   const currentLocale = useLocale() as Locale
+  const tc = useTranslations('chrome')
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -32,7 +33,7 @@ export function LocaleSwitcher({ variant = 'dropdown' }: { variant?: 'dropdown' 
         <button
           onClick={() => setOpen(!open)}
           className="flex items-center gap-1 px-2 py-1.5 text-xs font-medium text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
-          aria-label="Switch language"
+          aria-label={tc('switchLanguage')}
           aria-expanded={open}
         >
           <Languages className="w-3.5 h-3.5" />
@@ -65,7 +66,7 @@ export function LocaleSwitcher({ variant = 'dropdown' }: { variant?: 'dropdown' 
       <button
         onClick={() => setOpen(!open)}
         className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
-        aria-label="Switch language"
+        aria-label={tc('switchLanguage')}
         aria-expanded={open}
       >
         <Languages className="w-4 h-4" />

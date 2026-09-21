@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Plus, Trash2, Download, Play, AlertTriangle, Table, X } from 'lucide-react'
 
 interface BatchField {
@@ -19,6 +20,7 @@ interface BatchCalculatorProps {
 }
 
 export function BatchCalculator({ title, fields, onCalculate, show, onToggle }: BatchCalculatorProps) {
+  const t = useTranslations('calculatorUI')
   const [rows, setRows] = useState<Record<string, string>[]>([Object.fromEntries(fields.map(f => [f.name, '']))])
   const [results, setResults] = useState<{ label: string; value: string }[][] | null>(null)
   const [showPanel, setShowPanel] = useState(false)
@@ -74,15 +76,15 @@ export function BatchCalculator({ title, fields, onCalculate, show, onToggle }: 
       >
         <span className="flex items-center gap-2">
           <Table className="w-4 h-4 text-[#06b6d4]" />
-          Batch Mode
+          {t('premium.batch.batchMode')}
         </span>
-        <span className="text-[10px] text-gray-400">Process multiple rows at once</span>
+        <span className="text-[10px] text-gray-400">{t('premium.batch.processMultipleRows')}</span>
       </button>
 
       {displayPanel && (
         <div className="px-4 pb-4 space-y-3">
           <p className="text-xs text-gray-500 dark:text-gray-400">
-            Enter multiple sets of values and process them all at once. Results appear in a table below.
+            {t('premium.batch.enterMultipleSets')}
           </p>
 
           {/* Data table */}
@@ -114,7 +116,7 @@ export function BatchCalculator({ title, fields, onCalculate, show, onToggle }: 
                             onChange={e => updateRow(rowIndex, f.name, e.target.value)}
                             className="w-full px-1.5 py-1 text-xs bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded text-gray-700 dark:text-gray-300"
                           >
-                            <option value="">Select...</option>
+                            <option value="">{t('premium.batch.select')}</option>
                             {f.options?.map(o => <option key={o} value={o}>{o}</option>)}
                           </select>
                         ) : (
@@ -154,20 +156,20 @@ export function BatchCalculator({ title, fields, onCalculate, show, onToggle }: 
               onClick={addRow}
               className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-lg border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-600 dark:text-gray-300"
             >
-              <Plus className="w-3 h-3" /> Add Row
+              <Plus className="w-3 h-3" /> {t('premium.batch.addRow')}
             </button>
             <button
               onClick={handleCalculate}
               className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#1a3a8a] text-white hover:bg-[#0a1d4f] transition-colors"
             >
-              <Play className="w-3 h-3" /> Calculate All ({rows.length})
+              <Play className="w-3 h-3" /> {t('premium.batch.calculateAll', { count: rows.length })}
             </button>
             {results && (
               <button
                 onClick={handleExportCSV}
                 className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-lg border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-600 dark:text-gray-300"
               >
-                <Download className="w-3 h-3" /> Export CSV
+                <Download className="w-3 h-3" /> {t('premium.batch.exportCsv')}
               </button>
             )}
           </div>
@@ -176,7 +178,7 @@ export function BatchCalculator({ title, fields, onCalculate, show, onToggle }: 
           {results && (
             <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg text-xs text-green-700 dark:text-green-300 flex items-center gap-2">
               <AlertTriangle className="w-3.5 h-3.5" />
-              Processed {results.length} row(s) successfully
+              {t('premium.batch.processedRows', { count: results.length })}
             </div>
           )}
         </div>

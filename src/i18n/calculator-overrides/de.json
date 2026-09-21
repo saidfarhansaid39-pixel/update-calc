@@ -17014,5 +17014,68 @@
   "golf-driving": {
     "title": "Golf Driving Entfernung",
     "description": "Kostenlos Golf Driving Distance — Sports performance and fitness calculator for athletes, coaches, and trainers."
-  }
-}
+  },
+  "pet-bmi": {
+    "title": "BMI-Rechner für Haustiere",
+    "description": "Kostenloser BMI-Rechner für Haustiere — Berechnen Sie sofort den Body-Mass-Index von Hund und Katze. Ordnen Sie das Gewicht als untergewichtig, gesund oder übergewichtig ein und erhalten Sie hilfreiche Hinweise. Ideal für verantwortungsvolle Tierhalter."
+  },
+  "logistics-calculator": {
+    "title": "Logistik-Rechner",
+    "description": "Kostenloser Logistik-Rechner — Schätzen Sie Transportkosten, -zeiten und -ressourcen schnell. Planen Sie Routen, vergleichen Sie Tarife und optimieren Sie Ihre Lieferungen über ein einziges Dashboard. Ideal für Versandleiter und kleine Transportunternehmen."
+  },
+  "logistics-cost": {
+    "title": "Logistikkosten-Rechner",
+    "description": "Kostenloser Logistikkosten-Rechner — Schlüsseln Sie Ihre Gesamtversandkosten auf: Transport, Kraftstoff, Maut und Verpackung. Vergleichen Sie Optionen und sparen Sie bei jeder Lieferung. Ideal für Unternehmen, die ihre Logistikkosten senken möchten."
+  },
+  "logistics-freight": {
+    "title": "Frachtkosten-Rechner",
+    "description": "Kostenloser Frachtkosten-Rechner — Berechnen Sie die Warentransportkosten nach Gewicht, Volumen und Entfernung. Schätzen Sie Tarife per LKW, Bahn, Schiff oder Flugzeug und planen Sie Ihr Budget. Ideal für Exporteure, Importeure und Spediteure."
+  },
+  "logistics-routing": {
+    "title": "Logistik-Routenplaner",
+    "description": "Kostenloser Logistik-Routenplaner — Optimieren Sie Lieferrouten, um Zeit und Sprit zu sparen. Vergleichen Sie Distanzen, Lieferzeiten und Kosten. Ideal für Lieferflotten und Urban-Courier."
+  },
+  "logistics-warehouse": {
+    "title": "Lagerflächen-Rechner",
+    "description": "Kostenloser Lagerflächen-Rechner — Berechnen Sie Ihre Lagerkapazität aus Fläche und Höhe. Schätzen Sie, wie viele Einheiten oder Paletten passen, und optimieren Sie die Raumnutzung. Ideal für Lagerverwaltung und Bestandsmanagement."
+  },
+  "auto-loan-ber": {
+    "title": "Autokredit-Rechner",
+    "description": "Kostenloser Autokredit-Rechner — Berechnen Sie Monatsrate, Gesamtzinsen und Kreditkosten. Passen Sie Laufzeit und Anzahlung an, um den passenden Plan zu finden. Ideal für Autokäufer."
+  },
+  "auto-equity": {
+    "title": "Auto-Wert-Rechner",
+    "description": "Kostenloser Auto-Wert-Rechner — Schätzen Sie den Fahrzeugwert und Ihr Eigenkapital, indem Sie die Restschuld abziehen. Geeignet für Verkauf, Refinanzierung oder die nächste Anschaffung. Praktisch für Autobesitzer."
+  },
+  "auto-expression": {
+    "title": "Ausdrucks-Rechner",
+    "description": "Kostenloser Ausdrucks-Rechner — Werten Sie mathematische Ausdrücke mit Klammern, Potenzen und Grundoperationen sofort aus. Präzise Ergebnisse Schritt für Schritt. Ideal für Schüler und Profis."
+  },
+  "auto-fire": {
+    "title": "FIRE-Rechner",
+    "description": "Kostenloser FIRE-Rechner — Planen Sie Ihre finanzielle Unabhängigkeit und den vorzeitigen Ruhestand. Berechnen Sie Zielkapital, jährliche Entnahmen und Zeit bis zur Rente. Ideal für alle, die finanzielle Freiheit anstreben."
+  },
+  "auto-gym": {
+    "title": "Fitnessstudio-Rechner",
+    "description": "Kostenloser Fitnessstudio-Rechner — Berechnen Sie Trainingsgewichte, Wochenvolumen und die Steigerung von Sätzen und Wiederholungen. Organisieren Sie Ihr Krafttraining und verfolgen Sie Ihre Fortschritte. Ideal für Amateure und Sportler."
+  },
+  "auto-hiit": {
+    "title": "HIIT-Rechner",
+    "description": "Kostenloser HIIT-Rechner — Planen Sie hochintensive Intervalltrainings nach Dauer und Intensität. Schätzen Sie Kalorienverbrauch und Belastung pro Einheit. Ideal für Zuhause und Studio."
+  },
+  "auto-leg": {
+    "title": "Bein-Rechner",
+    "description": "Kostenloser Bein-Rechner — Planen Sie Ihr Beintraining mit Sätzen, Wiederholungen und Gewichten. Schätzen Sie das Wochenvolumen und vermeiden Sie Übertraining. Ideal für Bodybuilder und Gewichtheber."
+  },
+  "auto-meal": {
+    "title": "Mahlzeiten-Rechner",
+    "description": "Kostenloser Mahlzeiten-Rechner — Ermitteln Sie Kalorien, Proteine und Makronährstoffe Ihrer Mahlzeiten. Planen Sie die tägliche Verteilung und passen Sie die Portionen an. Ideal für die Essensplanung."
+  },
+  "auto-sleep": {
+    "title": "Schlaf-Rechner",
+    "description": "Kostenloser Schlaf-Rechner — Berechnen Sie die ideale Zubettgeh- oder Aufstehzeit anhand von 90-Minuten-Schlafzyklen. Vermeiden Sie das Aufwachen mitten im Zyklus und wachen Sie erholt auf. Perfekt für besseren Schlaf."
+  },
+  "auto-workout": {
+    "title": "Trainings-Rechner",
+    "description": "Kostenloser Trainings-Rechner — Planen Sie Kraft-, Cardio- und Mobilisationsübungen nach Ihrem Niveau und Ihrer Zeit. Schätzen Sie Kalorienverbrauch und Wochenbelastung. Ideal für klares, strukturiertes Training."
+  }}

@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { useTranslations } from 'next-intl'
 import { CheckCircle, BookOpen, ExternalLink } from 'lucide-react'
 import type { QualityInfo } from '@/lib/quality/calculator-quality'
 
@@ -16,15 +17,15 @@ const accuracyColors: Record<string, string> = {
   standard: 'text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700',
 }
 
-const accuracyLabels: Record<string, string> = {
-  high: 'High accuracy',
-  medium: 'Estimated (±)',
-  standard: 'Standard formula',
-}
-
 export function ResultQualityBadge({ quality }: ResultQualityBadgeProps) {
+  const t = useTranslations('calculatorUI')
   const accuracyClass = accuracyColors[quality.accuracy] || accuracyColors.standard
-  const accuracyLabel = accuracyLabels[quality.accuracy] || accuracyLabels.standard
+  const accuracyLabel =
+    quality.accuracy === 'high'
+      ? t('premium.resultQualityBadge.accuracyHigh')
+      : quality.accuracy === 'medium'
+        ? t('premium.resultQualityBadge.accuracyEstimated')
+        : t('premium.resultQualityBadge.accuracyStandard')
 
   return (
     <div className="flex flex-wrap items-center gap-2">
@@ -44,7 +45,7 @@ export function ResultQualityBadge({ quality }: ResultQualityBadgeProps) {
           className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-medium text-[#06b6d4] bg-[#1a3a8a]/5 dark:bg-[#1a3a8a]/10 border border-[#06b6d4]/20 hover:bg-[#1a3a8a]/10 transition-colors"
         >
           <ExternalLink className="w-3 h-3" />
-          {quality.referenceLabel} verified
+          {t('premium.resultQualityBadge.verified', { label: quality.referenceLabel })}
         </a>
       )}
       {quality.formulaSource && (

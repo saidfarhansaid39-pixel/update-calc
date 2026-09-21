@@ -582,13 +582,13 @@ export function PremiumCalculatorShell({
   const handleSaveScenario = useCallback(() => {
     if (onSaveScenario) {
       const snapshot = onSaveScenario()
-      const label = scenarioLabel || `Scenario ${scenarios.length + 1}`
+      const label = scenarioLabel || t('premium.shell.scenario', { count: scenarios.length + 1 })
       setScenarios(prev => [...prev, { id: crypto.randomUUID(), label, snapshot, mainValue }])
     }
     if (inputs) {
       addEntry(inputs, resultLabel)
     }
-  }, [onSaveScenario, scenarioLabel, scenarios.length, inputs, addEntry, mainValue, resultLabel])
+  }, [onSaveScenario, scenarioLabel, scenarios.length, inputs, addEntry, mainValue, resultLabel, t])
 
   const lastAutoSaveRef = React.useRef<string>('')
   useEffect(() => {
@@ -674,8 +674,8 @@ export function PremiumCalculatorShell({
   const hasLongContent = interpretation || faqs.length > 0 || (calculator.keywords.length > 0)
 
   const tocSections = [
-    ...(interpretation ? [{ id: 'what-this-means', label: 'What This Means' }] : []),
-    ...(formula || (steps && steps.length > 0) ? [{ id: 'formula', label: 'Formula & Calculation' }] : []),
+    ...(interpretation ? [{ id: 'what-this-means', label: t('shell.headingWhatThisMeans') }] : []),
+    ...(formula || (steps && steps.length > 0) ? [{ id: 'formula', label: t('premium.shell.tocFormulaCalculation') }] : []),
     ...(example && example.length > 0 ? [{ id: 'example', label: t('shell.tocExample') }] : []),
     ...(calcContent.useCases.length > 0 ? [{ id: 'use-cases', label: t('shell.tocUseCases') }] : []),
     ...(calcContent.commonMistakes.length > 0 ? [{ id: 'common-mistakes', label: t('shell.tocCommonMistakes') }] : []),
@@ -979,8 +979,8 @@ export function PremiumCalculatorShell({
           {modeLevel >= 3 && tierFeatures.comparison && (
             <BatchCalculator
             title={calculator.title}
-            fields={[{ name: 'value1', label: 'Value 1', type: 'number' }, { name: 'value2', label: 'Value 2', type: 'number' }]}
-            onCalculate={(rows) => rows.map(() => [{ label: 'Result', value: '—' }])}
+            fields={[{ name: 'value1', label: `${t('premium.batch.value')} 1`, type: 'number' }, { name: 'value2', label: `${t('premium.batch.value')} 2`, type: 'number' }]}
+            onCalculate={(rows) => rows.map(() => [{ label: t('premium.batch.result'), value: '—' }])}
             show={showBatch}
             onToggle={() => setShowBatch(!showBatch)}
           />
@@ -1062,7 +1062,7 @@ export function PremiumCalculatorShell({
                       <p className="text-gray-600 dark:text-gray-400">{step.label}</p>
                       <div className="flex items-center gap-1">
                         <p className="font-mono font-medium text-gray-900 dark:text-white">{step.value}</p>
-                        <button onClick={() => handleCopyValue(`${step.label}: ${step.value}`, `step-${i}`)} className="p-1 text-gray-400 hover:text-[#06b6d4] transition-colors" aria-label={`Copy ${step.label}`}>
+                        <button onClick={() => handleCopyValue(`${step.label}: ${step.value}`, `step-${i}`)} className="p-1 text-gray-400 hover:text-[#06b6d4] transition-colors" aria-label={t('premium.shell.copyStep', { label: step.label })}>
                           {copiedValue === `step-${i}` ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                         </button>
                       </div>
@@ -1096,7 +1096,7 @@ export function PremiumCalculatorShell({
                     <p className="text-gray-600 dark:text-gray-400">{step.label}</p>
                     <div className="flex items-center gap-1">
                       <p className="font-mono font-medium text-gray-900 dark:text-white">{step.value}</p>
-                      <button onClick={() => handleCopyValue(`${step.label}: ${step.value}`, `example-${i}`)} className="p-1 text-gray-400 hover:text-amber-600 transition-colors" aria-label={`Copy ${step.label}`}>
+                      <button onClick={() => handleCopyValue(`${step.label}: ${step.value}`, `example-${i}`)} className="p-1 text-gray-400 hover:text-amber-600 transition-colors" aria-label={t('premium.shell.copyStep', { label: step.label })}>
                         {copiedValue === `example-${i}` ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                       </button>
                     </div>
@@ -1287,12 +1287,12 @@ export function PremiumCalculatorShell({
             </div>
           )}
 
-          <SchemaMarkup type="Product" data={{
+          <SchemaMarkup type="WebApplication" data={{
             name: calculator.title,
             description: calculator.description,
             url: `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}`,
             category: calculator.hubName,
-            offers: { '@type': 'Offer', price: '0', priceCurrency: currency, availability: 'https://schema.org/InStock' },
+            offers: { '@type': 'SoftwareApplication', price: '0', priceCurrency: currency, availability: 'https://schema.org/InStock' },
             applicationCategory: (() => {
               const map: Record<string, string> = { financial: 'FinanceApplication', health: 'HealthApplication', math: 'ScienceApplication', conversion: 'UtilitiesApplication', construction: 'BusinessApplication', statistics: 'DataAnalysisApplication', education: 'EducationalApplication', physics: 'ScienceApplication', chemistry: 'ScienceApplication', engineering: 'EngineeringApplication', everyday: 'LifestyleApplication', food: 'LifestyleApplication', biology: 'ScienceApplication', ecology: 'ScienceApplication', sports: 'SportsApplication', 'date-time': 'UtilitiesApplication' }
               return map[calculator.hubSlug] || 'UtilitiesApplication'
@@ -1309,7 +1309,7 @@ export function PremiumCalculatorShell({
           }} />}
           {steps && steps.length > 0 && <SchemaMarkup type="HowTo" data={howToSchema(steps)} />}
           <SchemaMarkup type="BreadcrumbList" data={breadcrumbListSchema([
-            { name: 'Home', url: `https://www.calculat.online` },
+            { name: t('shell.home'), url: `https://www.calculat.online` },
             { name: calculator.hubName, url: `https://www.calculat.online/${calculator.hubSlug}` },
             { name: calculator.title, url: `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}` },
           ])} />

@@ -11,6 +11,7 @@ function shortKey(hubSlug: string): string {
 export async function HubNav({ activeSlug }: { activeSlug?: string }) {
   const locale = await getLocale()
   const t = await getTranslations('hubs')
+  const tc = await getTranslations('chrome')
   const { calculatorRegistry } = await import('@calcuniverse/calculator-registry')
 
   const slugs = getAllHubSlugs()
@@ -23,7 +24,7 @@ export async function HubNav({ activeSlug }: { activeSlug?: string }) {
 
   return (
     <nav
-      aria-label="Calculator categories"
+      aria-label={tc('categoriesAria')}
       className="w-full"
     >
       <div className="flex items-center gap-2 overflow-x-auto pb-2 -mx-1 px-1 [scrollbar-width:thin]">

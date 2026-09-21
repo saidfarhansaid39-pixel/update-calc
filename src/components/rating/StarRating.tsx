@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react'
 import { Star } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 const STORAGE_PREFIX = 'calculat_rating_'
 
@@ -26,6 +27,7 @@ interface StarRatingProps {
 }
 
 export function StarRating({ calculatorSlug }: StarRatingProps) {
+  const t = useTranslations('chrome')
   const [hovered, setHovered] = useState(0)
   const [userRating, setUserRating] = useState(0)
   const [allRatings, setAllRatings] = useState<number[]>([])
@@ -70,7 +72,7 @@ export function StarRating({ calculatorSlug }: StarRatingProps) {
               onMouseEnter={() => setHovered(star)}
               onMouseLeave={() => setHovered(0)}
               className="p-0.5 transition-transform hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#06b6d4] rounded-sm"
-              aria-label={`Rate ${star} star${star > 1 ? 's' : ''}`}
+              aria-label={t('rateStars', { count: star })}
             >
               <Star
                 className={`w-5 h-5 ${
@@ -85,8 +87,8 @@ export function StarRating({ calculatorSlug }: StarRatingProps) {
       </div>
       <p className="text-xs text-gray-500 dark:text-gray-400">
         {allRatings.length > 0
-          ? `${avgRating.toFixed(1)}/5 (${allRatings.length} rating${allRatings.length !== 1 ? 's' : ''})`
-          : 'No ratings yet'}
+          ? `${avgRating.toFixed(1)}/5 (${t('ratingsCount', { count: allRatings.length })})`
+          : t('noRatingsYet')}
       </p>
     </div>
   )

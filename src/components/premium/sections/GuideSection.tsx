@@ -176,12 +176,12 @@ export function GuideSection({ locale, t, th, calculator, showContent, onToggleC
         </div>
       )}
 
-      <SchemaMarkup type="Product" data={{
+      <SchemaMarkup type="WebApplication" data={{
         name: calculator.title,
         description: calculator.description,
         url: `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}`,
         category: calculator.hubName,
-        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
+        offers: { '@type': 'SoftwareApplication', price: '0', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
         applicationCategory: applicationCategory,
         operatingSystem: 'Web',
         browserRequirements: 'Requires JavaScript',

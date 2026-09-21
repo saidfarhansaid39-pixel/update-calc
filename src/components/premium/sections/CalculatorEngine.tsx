@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { useTranslations } from 'next-intl'
 import { RefreshCw } from 'lucide-react'
 import { CalculatorModeToggle, type CalcMode } from '@/components/premium/CalculatorModeToggle'
 import { CalculatorModeProvider } from '@/lib/context/CalculatorModeContext'
@@ -27,10 +28,10 @@ import type { Currency, MeasurementSystem } from '@/lib/i18n/calculator-i18n'
 import type { UnitSystem, Preset, Scenario, PremiumCalculatorShellProps } from '@/components/premium/PremiumCalculatorShell'
 import type { TierFeatures } from './types'
 
-const unitOptions: { value: UnitSystem; label: string }[] = [
-  { value: 'metric', label: 'Metric' },
-  { value: 'imperial', label: 'Imperial' },
-  { value: 'us', label: 'US' },
+const unitOptionDefs: { value: UnitSystem; labelKey: string }[] = [
+  { value: 'metric', labelKey: 'shell.unitMetric' },
+  { value: 'imperial', labelKey: 'shell.unitImperial' },
+  { value: 'us', labelKey: 'shell.unitUS' },
 ]
 
 interface CalculatorEngineProps {
@@ -98,6 +99,9 @@ export function CalculatorEngine(props: CalculatorEngineProps) {
     showBatch, onToggleBatch, shareUrl, extraActions, scenarios, onRemoveScenario, scenarioLabel,
   } = props
 
+  const t = useTranslations('calculatorUI')
+  const unitOptions = unitOptionDefs.map(o => ({ value: o.value, label: t(o.labelKey) }))
+
   return (
     <CalculatorModeProvider mode={mode}>
       <div id="calculator" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
@@ -108,10 +112,10 @@ export function CalculatorEngine(props: CalculatorEngineProps) {
               <div className="flex items-center gap-3">
                 <CalculatorModeToggle mode={mode} onChange={onModeChange} availableModes={availableModes} />
                 <span className="hidden sm:inline text-xs text-gray-400 dark:text-gray-500">
-                  {mode === 'basic' && 'Essential — just the result'}
-                  {mode === 'advanced' && 'Formula, steps & interpretation'}
-                  {mode === 'professional' && 'Charts, examples & deep explanations'}
-                  {mode === 'expert' && 'Scenarios, batch & quality audit'}
+                  {mode === 'basic' && t('premium.calculatorEngine.modeBasicDesc')}
+                  {mode === 'advanced' && t('premium.calculatorEngine.modeAdvancedDesc')}
+                  {mode === 'professional' && t('premium.calculatorEngine.modeProfessionalDesc')}
+                  {mode === 'expert' && t('premium.calculatorEngine.modeExpertDesc')}
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -164,7 +168,7 @@ export function CalculatorEngine(props: CalculatorEngineProps) {
           <div className="flex items-center justify-between gap-3 p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">
             <div className="flex items-center gap-2 text-amber-800 dark:text-amber-200">
               <RefreshCw className="w-4 h-4 shrink-0" />
-              <span>Restore your previous values?</span>
+              <span>{t('premium.calculatorEngine.restorePreviousValues')}</span>
             </div>
             <div className="flex items-center gap-2 shrink-0">
               <button
@@ -175,13 +179,13 @@ export function CalculatorEngine(props: CalculatorEngineProps) {
                 }}
                 className="px-3 py-1.5 text-xs font-medium bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors min-h-[44px]"
               >
-                Restore
+                {t('shell.restore')}
               </button>
               <button
                 onClick={() => { setRestoreDismissed(true); autoSave.clear() }}
                 className="px-3 py-1.5 text-xs font-medium text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-800/30 rounded-lg transition-colors min-h-[44px]"
               >
-                Dismiss
+                {t('shell.dismiss')}
               </button>
             </div>
           </div>
@@ -217,7 +221,7 @@ export function CalculatorEngine(props: CalculatorEngineProps) {
               onShare={onShare}
               shareCopied={shareCopied}
               onCopyResult={(copyResultText || inputs) ? onCopyResult : undefined}
-              copyResultText="Copy Result"
+              copyResultText={t('shell.copyResult')}
                 onSaveScenario={onSaveScenario}
               showCSV={showCSV}
               modeLevel={modeLevel}

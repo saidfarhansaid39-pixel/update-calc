@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { Code2, Copy, Check } from 'lucide-react'
 
 interface EmbedWidgetProps {
@@ -16,6 +17,7 @@ export function EmbedWidget({ slug, title, hubSlug }: EmbedWidgetProps) {
   const [open, setOpen] = useState(false)
   const [copied, setCopied] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+  const t = useTranslations('calculatorUI')
 
   const embedCode = `<iframe src="https://www.calculat.online/${hubSlug}/${slug}" width="100%" height="600" frameborder="0" title="${title.replace(/"/g, '&quot;')}"></iframe>`
 
@@ -42,16 +44,16 @@ export function EmbedWidget({ slug, title, hubSlug }: EmbedWidgetProps) {
       <button
         onClick={() => setOpen((o) => !o)}
         className={ghostBtn}
-        aria-label="Open embed options"
+        aria-label={t('premium.embedWidget.openOptions')}
         aria-expanded={open}
       >
         <Code2 className="w-3.5 h-3.5 shrink-0" />
-        <span>Embed</span>
+        <span>{t('premium.embedWidget.embed')}</span>
       </button>
       {open && (
         <div className="absolute top-full right-0 mt-2 z-50 min-w-[340px] rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-3 shadow-lg">
           <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">
-            Embed this calculator
+            {t('premium.embedWidget.embedThis')}
           </p>
           <pre className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3 text-xs text-gray-600 dark:text-gray-300 overflow-x-auto mb-3 font-mono whitespace-pre-wrap">
             <code>{embedCode}</code>
@@ -59,14 +61,14 @@ export function EmbedWidget({ slug, title, hubSlug }: EmbedWidgetProps) {
           <button
             onClick={handleCopy}
             className="min-h-[44px] px-3 py-1.5 text-xs font-medium rounded-lg border transition-colors inline-flex items-center gap-1.5 border-primary bg-primary text-white hover:bg-primary/90"
-            aria-label={copied ? 'Embed code copied' : 'Copy embed code'}
+            aria-label={copied ? t('premium.embedWidget.codeCopiedAria') : t('premium.embedWidget.copyCodeAria')}
           >
             {copied ? (
               <Check className="w-3.5 h-3.5 shrink-0" />
             ) : (
               <Copy className="w-3.5 h-3.5 shrink-0" />
             )}
-            {copied ? 'Copied' : 'Copy code'}
+            {copied ? t('premium.embedWidget.copied') : t('premium.embedWidget.copyCode')}
           </button>
         </div>
       )}

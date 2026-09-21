@@ -1,13 +1,39 @@
 {
   "name": "Calculat - Free Online Calculators",
   "short_name": "Calculat",
-  "description": "4,270 calculators across 16 categories. BMI, mortgage, math, conversion and more.",
+  "description": "4,270+ free online calculators across 16 categories. BMI, mortgage, loan, math, conversion and more. Expert-reviewed, step-by-step explanations.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#06b6d4",
+  "categories": ["utilities", "education", "finance", "health"],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "/",
+  "id": "/",
   "icons": [
-    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Mortgage Calculator",
+      "short_name": "Mortgage",
+      "url": "/financial-calculators/mortgage-calculator",
+      "description": "Calculate your monthly mortgage payment"
+    },
+    {
+      "name": "BMI Calculator",
+      "short_name": "BMI",
+      "url": "/health-calculators/bmi-calculator",
+      "description": "Calculate your Body Mass Index"
+    },
+    {
+      "name": "Currency Converter",
+      "short_name": "Currency",
+      "url": "/financial-calculators/currency-calculator",
+      "description": "Convert between world currencies"
+    }
   ]
 }

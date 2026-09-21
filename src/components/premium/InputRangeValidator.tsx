@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { useTranslations } from 'next-intl'
 import { AlertTriangle, Info } from 'lucide-react'
 import type { InputRange } from '@/lib/quality/calculator-quality'
 
@@ -10,6 +11,7 @@ interface InputRangeValidatorProps {
 }
 
 export function InputRangeValidator({ ranges, inputs }: InputRangeValidatorProps) {
+  const t = useTranslations('calculatorUI')
   if (!inputs || !Object.keys(ranges).length) return null
 
   const warnings: { field: string; message: string; hint?: string }[] = []
@@ -23,13 +25,19 @@ export function InputRangeValidator({ ranges, inputs }: InputRangeValidatorProps
     if (numValue < range.min) {
       warnings.push({
         field: range.label || fieldName,
-        message: `Value (${numValue}) is below the typical minimum (${range.min}${range.unit ? ' ' + range.unit : ''})`,
+        message: t('premium.inputRangeValidator.belowMin', {
+          value: String(numValue),
+          min: String(range.min) + (range.unit ? ' ' + range.unit : ''),
+        }),
         hint: range.hint,
       })
     } else if (numValue > range.max) {
       warnings.push({
         field: range.label || fieldName,
-        message: `Value (${numValue}) exceeds the typical maximum (${range.max}${range.unit ? ' ' + range.unit : ''})`,
+        message: t('premium.inputRangeValidator.aboveMax', {
+          value: String(numValue),
+          max: String(range.max) + (range.unit ? ' ' + range.unit : ''),
+        }),
         hint: range.hint,
       })
     }

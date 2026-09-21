@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useMemo, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { 
   Sparkles, Brain, ChevronDown, ChevronUp, AlertTriangle, 
   TrendingUp, Target, Info, CheckCircle2, XCircle, MinusCircle, Copy
@@ -72,6 +73,7 @@ export function EnhancedResultCard({
   const [showEnhanced, setShowEnhanced] = useState(false)
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
   const { currencySymbol } = useCurrency()
+  const t = useTranslations('calculatorUI')
   
   const localUnit = useMemo(() => primary.unit ? fmtUnit(primary.unit, currencySymbol) : undefined, [primary.unit, currencySymbol])
 
@@ -115,10 +117,10 @@ export function EnhancedResultCard({
           <button
             onClick={() => handleCopy(`${primary.value}${localUnit ? ' ' + localUnit : ''}`, -1)}
             className="mt-2 inline-flex items-center gap-1 text-xs text-gray-400 hover:text-[#06b6d4] transition-colors"
-            aria-label="Copy result"
+aria-label={t('premium.enhancedResult.copyResultAria')}
           >
             {copiedIndex === -1 ? <CheckCircle2 size={12} /> : <Copy size={12} />}
-            {copiedIndex === -1 ? 'Copied' : 'Copy'}
+            {copiedIndex === -1 ? t('premium.enhancedResult.copied') : t('premium.enhancedResult.copy')}
           </button>
           
           {/* Good range indicator */}
@@ -127,12 +129,12 @@ export function EnhancedResultCard({
               {isGoodRange ? (
                 <>
                   <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                  <span className="text-xs text-emerald-600 dark:text-emerald-400">Within healthy range</span>
+                  <span className="text-xs text-emerald-600 dark:text-emerald-400">{t('premium.enhancedResult.withinHealthyRange')}</span>
                 </>
               ) : (
                 <>
                   <AlertTriangle className="w-4 h-4 text-red-500" />
-                  <span className="text-xs text-red-500">Outside recommended range</span>
+                  <span className="text-xs text-red-500">{t('premium.enhancedResult.outsideRecommendedRange')}</span>
                 </>
               )}
             </div>
@@ -155,11 +157,11 @@ export function EnhancedResultCard({
                 </div>
                 <button
                   onClick={() => handleCopy(`${item.value}${item.unit ? ' ' + fmtUnit(item.unit, currencySymbol) : ''}`, i)}
-                  className="mt-1 text-xs text-gray-400 hover:text-[#06b6d4] transition-colors"
-                  aria-label={`Copy ${item.label}`}
+className="mt-1 text-xs text-gray-400 hover:text-[#06b6d4] transition-colors"
+                  aria-label={t('premium.enhancedResult.copyItemAria', { label: item.label })}
                 >
                   {copiedIndex === i ? <CheckCircle2 size={10} className="inline" /> : <Copy size={10} className="inline" />}
-                  <span className="ml-0.5">{copiedIndex === i ? 'Copied' : 'Copy'}</span>
+                  <span className="ml-0.5">{copiedIndex === i ? t('premium.enhancedResult.copied') : t('premium.enhancedResult.copy')}</span>
                 </button>
               </div>
             ))}
@@ -169,7 +171,7 @@ export function EnhancedResultCard({
         {/* Steps */}
         {steps && steps.length > 0 && (
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Calculation Steps</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">{t('premium.enhancedResult.calculationSteps')}</p>
             <div className="space-y-1.5">
               {steps.map((step, i) => (
                 <div key={i} className="flex items-start gap-2 text-sm">
@@ -193,15 +195,15 @@ export function EnhancedResultCard({
               onClick={() => setShowInterpretation(!showInterpretation)}
               className="flex items-center justify-between w-full text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#06b6d4] transition-colors"
             >
-              <div className="flex items-center gap-2">
+<div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#06b6d4]" />
-                <span>What This Means</span>
+                <span>{t('premium.enhancedResult.whatThisMeans')}</span>
               </div>
               {showInterpretation ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
             {showInterpretation && (
               <div className="rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 p-3">
-                <p className="text-xs font-semibold text-blue-700 dark:text-blue-300 mb-0.5">Interpretation</p>
+                <p className="text-xs font-semibold text-blue-700 dark:text-blue-300 mb-0.5">{t('premium.enhancedResult.interpretation')}</p>
                 <p className="text-sm text-blue-600 dark:text-blue-200 leading-relaxed">{fmtUnit(interpretation, currencySymbol)}</p>
               </div>
             )}
@@ -215,9 +217,9 @@ export function EnhancedResultCard({
               onClick={() => setShowEnhanced(!showEnhanced)}
               className="flex items-center justify-between w-full text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#06b6d4] transition-colors"
             >
-              <div className="flex items-center gap-2">
+<div className="flex items-center gap-2">
                 <Brain className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-                <span>Enhanced Analysis</span>
+                <span>{t('premium.enhancedResult.enhancedAnalysis')}</span>
               </div>
               {showEnhanced ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
@@ -228,7 +230,7 @@ export function EnhancedResultCard({
                 {enhancedExplanation.goodRange && (
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Healthy Range</span>
+                      <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">{t('premium.enhancedResult.healthyRange')}</span>
                       <span className="text-xs font-medium text-gray-700 dark:text-gray-300">
                         {enhancedExplanation.goodRange.min.toLocaleString()} – {enhancedExplanation.goodRange.max.toLocaleString()}{primary.unit ? ` ${fmtUnit(primary.unit, currencySymbol)}` : ''}
                       </span>
@@ -239,10 +241,10 @@ export function EnhancedResultCard({
                       <div className="absolute inset-y-0 right-0 w-1/4 bg-red-300 dark:bg-red-800/40" />
                       <div className="absolute top-0.5 bottom-0.5 w-1.5 bg-[#1a3a8a] rounded-full shadow-md transition-all duration-500" style={{ left: '50%' }} />
                     </div>
-                    <div className="flex justify-between text-[10px] text-gray-400">
-                      <span>Low</span>
-                      <span className="font-medium text-gray-500">Good: {enhancedExplanation.goodRange.min}–{enhancedExplanation.goodRange.max}</span>
-                      <span>High</span>
+<div className="flex justify-between text-[10px] text-gray-400">
+                      <span>{t('premium.enhancedResult.low')}</span>
+                      <span className="font-medium text-gray-500">{t('premium.enhancedResult.goodRange', { min: String(enhancedExplanation.goodRange.min), max: String(enhancedExplanation.goodRange.max) })}</span>
+                      <span>{t('premium.enhancedResult.high')}</span>
                     </div>
                   </div>
                 )}
@@ -250,7 +252,7 @@ export function EnhancedResultCard({
                 {/* Benchmarks */}
                 {enhancedExplanation.benchmarks && enhancedExplanation.benchmarks.length > 0 && (
                   <div className="space-y-1.5">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Benchmarks</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">{t('premium.enhancedResult.benchmarks')}</p>
                     <div className="space-y-1">
                       {enhancedExplanation.benchmarks.map((b, i) => (
                         <div key={i} className="flex items-center justify-between px-2 py-1.5 rounded-lg bg-gray-50 dark:bg-gray-800/50">
@@ -267,7 +269,7 @@ export function EnhancedResultCard({
                 {/* Warnings */}
                 {enhancedExplanation.warnings && enhancedExplanation.warnings.length > 0 && (
                   <div className="space-y-1">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Warnings</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">{t('premium.enhancedResult.warnings')}</p>
                     <div className="space-y-1">
                       {enhancedExplanation.warnings.map((w, i) => (
                         <div key={i} className="flex items-start gap-2 px-2 py-1.5 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800">
@@ -282,7 +284,7 @@ export function EnhancedResultCard({
                 {/* Next Actions */}
                 {enhancedExplanation.nextActions && enhancedExplanation.nextActions.length > 0 && (
                   <div className="space-y-1">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Next Actions</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">{t('premium.enhancedResult.nextActions')}</p>
                     <div className="space-y-1">
                       {enhancedExplanation.nextActions.map((a, i) => (
                         <div key={i} className="flex items-start gap-2 px-2 py-1.5 rounded-lg bg-gray-50 dark:bg-gray-800/50">
@@ -296,7 +298,7 @@ export function EnhancedResultCard({
                             a.priority === 'medium' ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300' :
                             'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
                           )}>
-                            {a.priority || 'low'}
+{a.priority === 'high' ? t('premium.enhancedResult.priorityHigh') : a.priority === 'medium' ? t('premium.enhancedResult.priorityMedium') : t('premium.enhancedResult.priorityLow')}
                           </span>
                         </div>
                       ))}
@@ -307,7 +309,7 @@ export function EnhancedResultCard({
                 {/* Insights */}
                 {enhancedExplanation.insights && enhancedExplanation.insights.length > 0 && (
                   <div className="space-y-1">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Key Insights</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">{t('premium.enhancedResult.keyInsights')}</p>
                     <div className="space-y-1">
                       {enhancedExplanation.insights.map((insight, i) => (
                         <div key={i} className="flex items-start gap-2 px-2 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800">
@@ -322,23 +324,23 @@ export function EnhancedResultCard({
                 {/* Detailed Explanation */}
                 {enhancedExplanation.detailedExplanation && (
                   <div className="space-y-3 pt-2 border-t border-gray-200 dark:border-gray-700">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Detailed Explanation</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">{t('premium.enhancedResult.detailedExplanation')}</p>
                     <div className="space-y-2 text-sm">
                       {enhancedExplanation.detailedExplanation.whatItMeans && (
                         <div>
-                          <p className="font-medium text-gray-900 dark:text-white">What this means</p>
+                          <p className="font-medium text-gray-900 dark:text-white">{t('premium.enhancedResult.whatThisMeansDetail')}</p>
                           <p className="text-gray-600 dark:text-gray-400">{enhancedExplanation.detailedExplanation.whatItMeans}</p>
                         </div>
                       )}
                       {enhancedExplanation.detailedExplanation.whyItMatters && (
                         <div>
-                          <p className="font-medium text-gray-900 dark:text-white">Why it matters</p>
+                          <p className="font-medium text-gray-900 dark:text-white">{t('premium.enhancedResult.whyItMatters')}</p>
                           <p className="text-gray-600 dark:text-gray-400">{enhancedExplanation.detailedExplanation.whyItMatters}</p>
                         </div>
                       )}
                       {enhancedExplanation.detailedExplanation.whatAffectsIt && enhancedExplanation.detailedExplanation.whatAffectsIt.length > 0 && (
                         <div>
-                          <p className="font-medium text-gray-900 dark:text-white">What affects it</p>
+                          <p className="font-medium text-gray-900 dark:text-white">{t('premium.enhancedResult.whatAffectsIt')}</p>
                           <ul className="space-y-1 list-disc list-inside text-gray-600 dark:text-gray-400">
                             {enhancedExplanation.detailedExplanation.whatAffectsIt.map((item, i) => (
                               <li key={i}>{item}</li>
@@ -348,7 +350,7 @@ export function EnhancedResultCard({
                       )}
                       {enhancedExplanation.detailedExplanation.howToImprove && enhancedExplanation.detailedExplanation.howToImprove.length > 0 && (
                         <div>
-                          <p className="font-medium text-gray-900 dark:text-white">How to improve</p>
+                          <p className="font-medium text-gray-900 dark:text-white">{t('premium.enhancedResult.howToImprove')}</p>
                           <ul className="space-y-1 list-disc list-inside text-emerald-700 dark:text-emerald-300">
                             {enhancedExplanation.detailedExplanation.howToImprove.map((item, i) => (
                               <li key={i}>{item}</li>

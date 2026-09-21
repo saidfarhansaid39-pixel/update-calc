@@ -5,7 +5,7 @@ import { ScientificCalculatorForm } from '@/components/calculators/ScientificCal
 import { SearchBarWrapper } from '@/components/SearchBarWrapper';
 import { HubNav } from '@/components/hub/HubNav';
 import { HubIcon } from '@/components/hub/HubIcon';
-import { SchemaMarkup, organizationSchema, siteDescriptions } from '@/components/SchemaMarkup';
+import { SchemaMarkup, organizationSchema, siteDescriptions, faqSchema } from '@/components/SchemaMarkup';
 import { softwareAppSchema } from '@/lib/seo/software-schema';
 
 export const dynamic = 'force-static'
@@ -16,8 +16,10 @@ export async function generateMetadata() {
   const { getLocale, getTranslations } = await import('next-intl/server')
   const locale = await getLocale()
   const t = await getTranslations('homepage')
-  const title = locale === 'en' ? 'Calculat - Precision Calculators & Unit Converters' : `Calculat - ${t('heroBadge')}`
-  const description = t('heroSubtitle')
+  const title = locale === 'en' ? 'Calculator Online — Free | 4,270+ Tools | Calculat' : `Calculat - ${t('heroBadge')}`
+  const description = locale === 'en'
+    ? 'Free calculator online for finance, health, math, unit conversion & more. 4,270+ instant calculators with step-by-step formulas. No sign-up needed.'
+    : t('heroSubtitle')
   const routing = (await import('@/i18n/routing')).routing
   const languages: Record<string, string> = { 'x-default': siteUrl }
   for (const l of routing.locales) {
@@ -26,8 +28,22 @@ export async function generateMetadata() {
   return {
     title,
     description,
+    keywords: locale === 'en' ? [
+      'calculator online', 'online calculator', 'free calculator', 'calculator online free',
+      'financial calculator', 'health calculator', 'math calculator', 'unit converter',
+      'mortgage calculator', 'BMI calculator', 'loan calculator', 'tip calculator',
+      'scientific calculator', 'calorie calculator', 'salary calculator',
+    ] : undefined,
     alternates: { canonical: siteUrl, languages },
-    openGraph: { title, description, url: siteUrl, siteName: 'Calculat', type: 'website', locale: locale === 'en' ? 'en_US' : locale === 'zh-CN' ? 'zh_CN' : `${locale}_${locale.toUpperCase()}`, images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }] },
+    openGraph: {
+      title: locale === 'en' ? 'Calculator Online — Free | 4,270+ Tools | Calculat' : title,
+      description,
+      url: siteUrl,
+      siteName: 'Calculat',
+      type: 'website',
+      locale: locale === 'en' ? 'en_US' : locale === 'zh-CN' ? 'zh_CN' : `${locale}_${locale.toUpperCase()}`,
+      images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630, alt: 'Calculat — Free Online Calculator Platform' }],
+    },
     twitter: { card: 'summary_large_image', title, description, images: [`${siteUrl}/og-image.png`] },
   }
 }
@@ -104,6 +120,12 @@ export default async function Home() {
         locale={locale}
       />
       <SchemaMarkup type="Organization" data={organizationSchema(locale)} locale={locale} />
+      <SchemaMarkup type="FAQPage" data={faqSchema([
+        { question: 'What is the best calculator online for finance?', answer: 'Calculat offers over 500 financial calculators online including mortgage, loan, investment, retirement, and tax calculators. Each provides instant results with step-by-step explanations and expert-reviewed formulas.' },
+        { question: 'Is this calculator online free to use?', answer: 'Yes, Calculat is 100% free. All 4,270+ calculators online are available without sign-up, no ads, and no hidden fees. Use our calculator online as much as you need.' },
+        { question: 'Can I use this calculator online on my phone?', answer: 'Absolutely. Our calculator online is fully responsive and works perfectly on phones, tablets, and desktops. Every calculator online adapts to your screen size.' },
+        { question: 'How accurate is your calculator online?', answer: 'Our calculators online use industry-standard formulas and are accurate to 15 decimal places. Each calculator online is reviewed by qualified experts (CFA, MD, PE, PhD) for accuracy.' },
+      ])} />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-white via-[#e0e7ff]/10 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="absolute inset-0 bg-mesh-light dark:bg-mesh-dark pointer-events-none" />
@@ -142,6 +164,28 @@ export default async function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SEO Content: Calculator Online */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4">{t('seoTitle')}</h2>
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+            {t('seoIntro')}
+          </p>
+          <div className="grid sm:grid-cols-3 gap-4 text-left">
+            {[
+              { title: 'Finance Calculators Online', desc: 'Mortgage, loan, investment, retirement, and tax calculators. Get instant results with our finance calculator online.' },
+              { title: 'Health Calculators Online', desc: 'BMI, BMR, calorie, body fat, and pregnancy calculators. Accurate health metrics from our calculator online.' },
+              { title: 'Math Calculators Online', desc: 'Algebra, geometry, statistics, and conversion calculators. Solve any problem with our math calculator online.' },
+            ].map((item, i) => (
+              <div key={i} className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 border border-gray-100 dark:border-gray-700">
+                <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-2">{item.title}</h3>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -286,6 +330,41 @@ export default async function Home() {
       </section>
 
       <MediaMentions />
+
+      {/* FAQ Section - Calculator Online */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white text-center mb-8">Frequently Asked Questions About Our Calculator Online</h2>
+          <div className="space-y-4">
+            {[
+              {
+                q: 'What is the best calculator online for finance?',
+                a: 'Calculat offers over 500 financial calculators online including mortgage, loan, investment, retirement, and tax calculators. Each provides instant results with step-by-step explanations and expert-reviewed formulas.',
+              },
+              {
+                q: 'Is this calculator online free to use?',
+                a: 'Yes, Calculat is 100% free. All 4,270+ calculators online are available without sign-up, no ads, and no hidden fees. Use our calculator online as much as you need.',
+              },
+              {
+                q: 'Can I use this calculator online on my phone?',
+                a: 'Absolutely. Our calculator online is fully responsive and works perfectly on phones, tablets, and desktops. Every calculator online adapts to your screen size.',
+              },
+              {
+                q: 'How accurate is your calculator online?',
+                a: 'Our calculators online use industry-standard formulas and are accurate to 15 decimal places. Each calculator online is reviewed by qualified experts (CFA, MD, PE, PhD) for accuracy.',
+              },
+            ].map((faq, i) => (
+              <details key={i} className="bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 p-4 group">
+                <summary className="font-semibold text-gray-900 dark:text-white text-sm cursor-pointer list-none flex items-center justify-between">
+                  {faq.q}
+                  <span className="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mt-3 leading-relaxed">{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">

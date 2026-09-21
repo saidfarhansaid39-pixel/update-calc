@@ -17014,5 +17014,68 @@
   "golf-driving": {
     "title": "Distance de drive de golf",
     "description": "Distance de drive de golf gratuite — Calculatrice de performance et de condition physique sportive pour les athlètes, les entraîneurs et les coachs."
-  }
-}
+  },
+  "pet-bmi": {
+    "title": "Calculatrice d’IMC pour animaux",
+    "description": "Calculatrice d’IMC pour animaux gratuite — Calculez instantanément l’indice de masse corporelle de votre chien ou chat. Classez le poids comme insuffisant, sain ou en surpoids et obtenez des conseils utiles. Idéale pour les propriétaires attentifs à la santé de leur animal."
+  },
+  "logistics-calculator": {
+    "title": "Calculateur logistique",
+    "description": "Calculateur logistique gratuit — Estimez rapidement les coûts, délais et ressources de transport. Planifiez des itinéraires, comparez les tarifs et optimisez vos livraisons depuis un tableau de bord unique. Idéal pour les responsables d’expédition et les petites entreprises de transport."
+  },
+  "logistics-cost": {
+    "title": "Calculateur de coûts logistiques",
+    "description": "Calculateur de coûts logistiques gratuit — Décomposez le coût total de vos envois : transport, carburant, péages et emballage. Comparez plusieurs options et économisez sur chaque livraison. Parfait pour les entreprises qui souhaitent réduire leur budget logistique."
+  },
+  "logistics-freight": {
+    "title": "Calculateur de fret",
+    "description": "Calculateur de fret gratuit — Estimez le coût du transport de marchandises selon le poids, le volume et la distance. Évaluez les tarifs par camion, train, bateau ou avion et planifiez votre budget. Idéal pour exportateurs, importateurs et transitaires."
+  },
+  "logistics-routing": {
+    "title": "Planificateur d’itinéraires logistiques",
+    "description": "Planificateur d’itinéraires logistiques gratuit — Optimisez vos tournées de livraison pour économiser temps et carburant. Comparez distances, délais et coûts entre plusieurs routes. Parfait pour les flottes de livraison et coursiers urbains."
+  },
+  "logistics-warehouse": {
+    "title": "Calculateur d’espace d’entrepôt",
+    "description": "Calculateur d’espace d’entrepôt gratuit — Calculez la capacité de votre entrepôt en fonction de la surface et de la hauteur. Estimez le nombre d’unités ou de palettes possibles et optimisez l’espace. Idéal pour la gestion des stocks et du stockage."
+  },
+  "auto-loan-ber": {
+    "title": "Calculateur de prêt auto",
+    "description": "Calculateur de prêt auto gratuit — Calculez vos mensualités, le total des intérêts et le coût du prêt. Ajustez la durée et l’apport pour trouver le plan qui correspond à votre budget. Parfait pour les futurs acheteurs de voiture."
+  },
+  "auto-equity": {
+    "title": "Calculateur de valeur automobile",
+    "description": "Calculateur de valeur automobile gratuit — Estimez la valeur de votre véhicule et votre capital net en déduisant le solde du prêt. Idéal pour vendre, refinancer ou planifier votre prochain achat. Utile pour les propriétaires de voiture."
+  },
+  "auto-expression": {
+    "title": "Calculateur d’expressions",
+    "description": "Calculateur d’expressions gratuit — Évaluez des expressions mathématiques en un instant avec parenthèses, puissances et opérations de base. Obtenez des résultats précis. Parfait pour étudiants et professionnels."
+  },
+  "auto-fire": {
+    "title": "Calculateur FIRE",
+    "description": "Calculateur FIRE gratuit — Planifiez votre indépendance financière et votre retraite anticipée. Calculez le capital cible, les retraits annuels et le temps restant avant la retraite. Idéal pour viser la liberté financière."
+  },
+  "auto-gym": {
+    "title": "Calculateur de gym",
+    "description": "Calculateur de gym gratuit — Calculez les charges de travail, le volume hebdomadaire et la progression des séries et répétitions. Organisez votre routine de force et suivez vos progrès. Parfait pour amateurs et sportifs."
+  },
+  "auto-hiit": {
+    "title": "Calculateur HIIT",
+    "description": "Calculateur HIIT gratuit — Concevez des séances d’intervalles à haute intensité selon la durée et l’intensité. Estimez les calories brûlées et la charge par séance. Idéal à la maison comme en salle."
+  },
+  "auto-leg": {
+    "title": "Calculateur de jambes",
+    "description": "Calculateur de jambes gratuit — Planifiez vos séances de musculation des jambes avec séries, répétitions et charges. Estimez le volume hebdomadaire et évitez le surentraînement. Parfait pour les culturistes et les haltérophiles."
+  },
+  "auto-meal": {
+    "title": "Calculateur de repas",
+    "description": "Calculateur de repas gratuit — Déterminez les calories, protéines et macronutriments de vos repas. Planifiez la répartition quotidienne et ajustez vos portions selon vos objectifs. Idéal pour la planification de repas."
+  },
+  "auto-sleep": {
+    "title": "Calculateur de sommeil",
+    "description": "Calculateur de sommeil gratuit — Calculez l’heure idéale pour vous coucher ou vous réveiller selon les cycles de 90 minutes. Évitez de vous réveiller en plein cycle et réveillez-vous en forme. Parfait pour mieux dormir."
+  },
+  "auto-workout": {
+    "title": "Calculateur d’entraînement",
+    "description": "Calculateur d’entraînement gratuit — Planifiez des séances de force, cardio et mobilité selon votre niveau et votre temps disponible. Estimez la dépense calorique et la charge hebdomadaire. Idéal pour s’entraîner avec un plan clair."
+  }}

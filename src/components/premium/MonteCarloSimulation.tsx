@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useMemo, useState, useCallback, useEffect, useRef } from 'react'
+import { useTranslations } from 'next-intl'
 import { 
   BarChart3, TrendingUp, TrendingDown, AlertTriangle, 
   Maximize2, Minimize2, Info, Play, Pause, RefreshCw,
@@ -88,6 +89,7 @@ export function MonteCarloSimulation({
   className,
   autoRun = false,
 }: MonteCarloProps) {
+  const t = useTranslations('calculatorUI')
   const [running, setRunning] = useState(false)
   const [completed, setCompleted] = useState(false)
   const [progress, setProgress] = useState(0)
@@ -159,7 +161,7 @@ export function MonteCarloSimulation({
       if (abortRef.current) return
 
       const finalSamples = batchResults.filter(isFinite)
-      if (finalSamples.length === 0) throw new Error('No valid samples generated')
+      if (finalSamples.length === 0) throw new Error(t('premium.monteCarlo.noValidSamples'))
 
       const sorted = [...finalSamples].sort((a, b) => a - b)
       const mean = finalSamples.reduce((a, b) => a + b, 0) / finalSamples.length
@@ -204,12 +206,12 @@ export function MonteCarloSimulation({
       })
       setCompleted(true)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Simulation failed')
+      setError(err instanceof Error ? err.message : t('premium.monteCarlo.simulationFailed'))
     } finally {
       setRunning(false)
       setProgress(100)
     }
-  }, [compute, baseInputs, inputs, iterations])
+  }, [compute, baseInputs, inputs, iterations, t])
 
   const stopSimulation = useCallback(() => {
     abortRef.current = true
@@ -239,16 +241,16 @@ export function MonteCarloSimulation({
 
   const exportCSV = useCallback(() => {
     if (!results) return
-    const headers = ['Metric', 'Value']
+    const headers = [t('premium.monteCarlo.csvMetric'), t('premium.monteCarlo.csvValue')]
     const rows = [
-      ['Mean', formatVal(results.mean)],
-      ['Median', formatVal(results.median)],
-      ['Std Dev', formatVal(results.stdDev)],
-      ['Min', formatVal(results.min)],
-      ['Max', formatVal(results.max)],
+      [t('premium.monteCarlo.statMean'), formatVal(results.mean)],
+      [t('premium.monteCarlo.statMedian'), formatVal(results.median)],
+      [t('premium.monteCarlo.statStdDev'), formatVal(results.stdDev)],
+      [t('premium.monteCarlo.statMin'), formatVal(results.min)],
+      [t('premium.monteCarlo.statMax'), formatVal(results.max)],
       ...Object.entries(results.percentiles).map(([p, v]) => [`P${p}`, formatVal(v)]),
     ]
-    const csv = [['Metric', 'Value'], ...rows].map(r => r.join(',')).join('\n')
+    const csv = [headers, ...rows].map(r => r.join(',')).join('\n')
     const blob = new Blob([csv], { type: 'text/csv' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
@@ -256,7 +258,7 @@ export function MonteCarloSimulation({
     a.download = `monte-carlo-${Date.now()}.csv`
     a.click()
     URL.revokeObjectURL(url)
-  }, [results])
+  }, [results, t])
 
   return (
     <div className={cn('rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden', className)}>
@@ -267,9 +269,9 @@ export function MonteCarloSimulation({
               <Zap className="w-5 h-5 text-purple-600 dark:text-purple-400" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Monte Carlo Simulation</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t('premium.monteCarlo.title')}</h3>
               <p className="text-xs text-gray-500 dark:text-gray-400">
-                Probabilistic analysis of <span className="font-medium">{mainOutputLabel}</span>
+                {t('premium.monteCarlo.subtitle', { label: mainOutputLabel })}
               </p>
             </div>
           </div>
@@ -279,11 +281,11 @@ export function MonteCarloSimulation({
               onChange={e => setViewMode(e.target.value as 'summary' | 'histogram' | 'percentiles')}
               className="text-xs px-2 py-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-cyan-500"
             >
-              <option value="summary">Summary</option>
-              <option value="histogram">Histogram</option>
-              <option value="percentiles">Percentiles</option>
+              <option value="summary">{t('premium.monteCarlo.viewSummary')}</option>
+              <option value="histogram">{t('premium.monteCarlo.viewHistogram')}</option>
+              <option value="percentiles">{t('premium.monteCarlo.viewPercentiles')}</option>
             </select>
-            <button onClick={exportCSV} disabled={!results} className="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 disabled:opacity-50" title="Export CSV">
+            <button onClick={exportCSV} disabled={!results} className="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 disabled:opacity-50" title={t('premium.monteCarlo.exportCsv')}>
               <Download className="w-4 h-4" />
             </button>
             <button onClick={() => setExpanded(!expanded)} className="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
@@ -307,7 +309,7 @@ export function MonteCarloSimulation({
           {!running && !completed && (
             <div className="text-center py-8">
               <BarChart3 className="w-12 h-12 text-gray-300 dark:text-gray-600 mx-auto mb-3" />
-              <p className="text-gray-500 dark:text-gray-400 mb-4">Run Monte Carlo simulation to analyze output distribution</p>
+              <p className="text-gray-500 dark:text-gray-400 mb-4">{t('premium.monteCarlo.runPrompt')}</p>
               <div className="flex flex-wrap items-center justify-center gap-2">
                 <input
                   type="number"
@@ -318,7 +320,7 @@ export function MonteCarloSimulation({
                   step={100}
                   className="w-24 px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800"
                 />
-                <span className="text-sm text-gray-500">iterations</span>
+                <span className="text-sm text-gray-500">{t('premium.monteCarlo.iterationsLabel')}</span>
               </div>
               <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
                 <button
@@ -326,10 +328,10 @@ export function MonteCarloSimulation({
                   className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded-lg bg-gradient-to-br from-purple-600 to-purple-400 text-white shadow-md hover:opacity-90 transition-all min-h-[44px]"
                 >
                   <Play className="w-4 h-4" />
-                  Run Simulation
+                  {t('premium.monteCarlo.runSimulation')}
                 </button>
                 <button onClick={resetSimulation} className="px-3 py-2 text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors min-h-[44px]">
-                  Reset
+                  {t('premium.monteCarlo.reset')}
                 </button>
               </div>
             </div>
@@ -347,10 +349,10 @@ export function MonteCarloSimulation({
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300 min-w-[50px]">{progress}%</span>
               </div>
               <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
-                Running {Math.round(progress / 100 * iterations).toLocaleString()} of {iterations.toLocaleString()} iterations…
+                {t('premium.monteCarlo.running', { current: Math.round(progress / 100 * iterations).toLocaleString(), total: iterations.toLocaleString() })}
               </p>
               <button onClick={stopSimulation} className="w-full px-3 py-2 text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors min-h-[44px]">
-                Stop Simulation
+                {t('premium.monteCarlo.stopSimulation')}
               </button>
             </div>
           )}
@@ -359,27 +361,27 @@ export function MonteCarloSimulation({
             <div className="space-y-4">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 <StatCard 
-                  label="Mean" 
+                  label={t('premium.monteCarlo.statMean')} 
                   value={formatVal(results.mean)} 
                   unit={mainOutputUnit}
                   color="blue"
                   baseline={baseOutput}
                 />
                 <StatCard 
-                  label="Median" 
+                  label={t('premium.monteCarlo.statMedian')} 
                   value={formatVal(results.median)} 
                   unit={mainOutputUnit}
                   color="green"
                   baseline={baseOutput}
                 />
                 <StatCard 
-                  label="Std Dev" 
+                  label={t('premium.monteCarlo.statStdDev')} 
                   value={formatVal(results.stdDev)} 
                   unit={mainOutputUnit}
                   color="amber"
                 />
                 <StatCard 
-                  label="Range" 
+                  label={t('premium.monteCarlo.statRange')} 
                   value={`${formatVal(results.min)} – ${formatVal(results.max)}`} 
                   unit={mainOutputUnit}
                   color="purple"
@@ -399,7 +401,7 @@ export function MonteCarloSimulation({
 
               {viewMode === 'histogram' && (
                 <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-                  <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-3">Output Distribution</h4>
+                  <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-3">{t('premium.monteCarlo.outputDistribution')}</h4>
                   <DynamicComparisonBarChart
                     data={results.histogram.map(h => ({
                       name: formatVal(h.bin),
@@ -415,10 +417,10 @@ export function MonteCarloSimulation({
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-gray-200 dark:border-gray-700">
-                        <th className="text-left py-2 px-3 font-medium text-gray-500">Percentile</th>
-                        <th className="text-right py-2 px-3 font-medium text-gray-500">Value</th>
-                        <th className="text-right py-2 px-3 font-medium text-gray-500">vs Base</th>
-                        <th className="text-right py-2 px-3 font-medium text-gray-500">Probability</th>
+                        <th className="text-left py-2 px-3 font-medium text-gray-500">{t('premium.monteCarlo.percentile')}</th>
+                        <th className="text-right py-2 px-3 font-medium text-gray-500">{t('premium.monteCarlo.value')}</th>
+                        <th className="text-right py-2 px-3 font-medium text-gray-500">{t('premium.monteCarlo.vsBase')}</th>
+                        <th className="text-right py-2 px-3 font-medium text-gray-500">{t('premium.monteCarlo.probability')}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -441,13 +443,13 @@ export function MonteCarloSimulation({
                 <div className="flex items-start gap-2">
                   <Info className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
                   <div className="text-sm text-blue-700 dark:text-blue-300 leading-relaxed">
-                    <p className="font-medium">Interpretation:</p>
+                    <p className="font-medium">{t('premium.monteCarlo.interpretation')}</p>
                     <ul className="list-disc list-inside space-y-1 mt-1">
-                      <li>The <strong>mean</strong> is the expected value; <strong>median</strong> is the 50th percentile (robust to outliers).</li>
-                      <li>If mean ≠ median significantly, the distribution is skewed.</li>
-                      <li><strong>Std Dev</strong> measures spread. ~68% of outcomes fall within ±1σ of mean.</li>
-                      <li>Use <strong>P5–P95</strong> for a 90% confidence interval.</li>
-                      <li>Run more iterations for smoother distributions (10K+ recommended).</li>
+                      <li>{t('premium.monteCarlo.bulletMean')}</li>
+                      <li>{t('premium.monteCarlo.bulletSkewed')}</li>
+                      <li>{t('premium.monteCarlo.bulletStdDev')}</li>
+                      <li>{t('premium.monteCarlo.bulletP95')}</li>
+                      <li>{t('premium.monteCarlo.bulletIterations')}</li>
                     </ul>
                   </div>
                 </div>
@@ -458,22 +460,22 @@ export function MonteCarloSimulation({
           <div className="flex flex-wrap items-center justify-between pt-3 border-t border-gray-200 dark:border-gray-700">
             <div className="flex items-center gap-2">
               <span className="text-xs text-gray-500 dark:text-gray-400">
-                {completed && results ? `Completed ${results.samples.length.toLocaleString()} iterations` : 'Ready'}
+                {completed && results ? t('premium.monteCarlo.completedIterations', { count: results.samples.length.toLocaleString() }) : t('premium.monteCarlo.ready')}
               </span>
             </div>
             <div className="flex flex-wrap items-center gap-2">
               {running ? (
                 <button onClick={stopSimulation} className="px-3 py-2 text-sm font-medium rounded-lg border border-red-300 dark:border-red-700 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors min-h-[44px]">
-                  Stop
+                  {t('premium.monteCarlo.stop')}
                 </button>
               ) : (
                 <button onClick={runSimulation} className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded-lg bg-gradient-to-br from-purple-600 to-purple-400 text-white shadow-md hover:opacity-90 transition-all min-h-[44px]">
                   <Play className="w-4 h-4" />
-                  {completed ? 'Re-run' : 'Run Simulation'}
+                  {completed ? t('premium.monteCarlo.rerun') : t('premium.monteCarlo.runSimulation')}
                 </button>
               )}
               <button onClick={resetSimulation} className="px-3 py-2 text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors min-h-[44px]">
-                Reset
+                {t('premium.monteCarlo.reset')}
               </button>
             </div>
           </div>
@@ -484,6 +486,7 @@ export function MonteCarloSimulation({
 }
 
 function StatCard({ label, value, unit, color, baseline }: { label: string; value: string; unit?: string; color: string; baseline?: number }) {
+  const t = useTranslations('calculatorUI')
   const colorMap: Record<string, string> = {
     blue: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300',
     green: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300',
@@ -504,7 +507,7 @@ function StatCard({ label, value, unit, color, baseline }: { label: string; valu
       </div>
       {diff && (
         <p className="mt-1 text-xs text-blue-600 dark:text-blue-400">
-          {parseFloat(diff) >= 0 ? '+' : ''}{diff} vs base
+          {parseFloat(diff) >= 0 ? '+' : ''}{diff} {t('premium.monteCarlo.vsBaseShort')}
         </p>
       )}
     </div>

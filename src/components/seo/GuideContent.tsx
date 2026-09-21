@@ -96,7 +96,7 @@ export async function GuideContent({ calculator, locale }: GuideContentProps) {
   }
 
   return (
-    <section aria-label="Full calculator guide" className="mt-12 border-t border-gray-200 pt-10">
+    <section aria-label={t('guide.labels.fullGuide')} className="mt-12 border-t border-gray-200 pt-10">
       <SchemaMarkup type="HowTo" data={howToSchema(howToSteps)} />
       <div className="max-w-4xl mx-auto mb-8">
         <ReviewedBadge hub={calculator.hubSlug} date={getReviewedDate(calculator.hubSlug, calculator.slug)} />
@@ -184,17 +184,17 @@ export async function GuideContent({ calculator, locale }: GuideContentProps) {
                       {section.content}
                     </div>
                     <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-900 dark:bg-blue-950">
-                      <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:text-blue-300">Formula</p>
+                      <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:text-blue-300">{t('guide.labels.formula')}</p>
                       <code className="block text-base font-semibold text-gray-900 dark:text-gray-100">{guide.expert.formula}</code>
                     </div>
                     <div className="mt-4">
-                      <p className="mb-2 text-sm font-semibold text-gray-900 dark:text-gray-100">Variables</p>
+                      <p className="mb-2 text-sm font-semibold text-gray-900 dark:text-gray-100">{t('guide.labels.variables')}</p>
                       <table className="w-full overflow-hidden rounded-lg border border-gray-200 text-sm dark:border-gray-800">
                         <thead className="bg-gray-50 dark:bg-gray-900">
                           <tr>
-                            <th className="px-3 py-2 text-left font-medium text-gray-700 dark:text-gray-300">Variable</th>
-                            <th className="px-3 py-2 text-left font-medium text-gray-700 dark:text-gray-300">Meaning</th>
-                            <th className="px-3 py-2 text-left font-medium text-gray-700 dark:text-gray-300">Unit</th>
+                            <th className="px-3 py-2 text-left font-medium text-gray-700 dark:text-gray-300">{t('guide.labels.variable')}</th>
+                            <th className="px-3 py-2 text-left font-medium text-gray-700 dark:text-gray-300">{t('guide.labels.meaning')}</th>
+                            <th className="px-3 py-2 text-left font-medium text-gray-700 dark:text-gray-300">{t('guide.labels.unit')}</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -222,14 +222,14 @@ export async function GuideContent({ calculator, locale }: GuideContentProps) {
                       {section.content}
                     </div>
                     <div className="mt-4">
-                      <p className="mb-2 text-sm font-semibold text-gray-900 dark:text-gray-100">Worked example</p>
+                      <p className="mb-2 text-sm font-semibold text-gray-900 dark:text-gray-100">{t('guide.labels.workedExample')}</p>
                       <ol className="list-decimal list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400">
                         {guide.expert.workedExample.steps.map((step, i) => (
                           <li key={i}>{step}</li>
                         ))}
                       </ol>
                       <p className="mt-3 rounded-md border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm font-medium text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950 dark:text-emerald-300">
-                        Result: {guide.expert.workedExample.result}
+                        {t('guide.labels.result')}: {guide.expert.workedExample.result}
                       </p>
                     </div>
                   </article>

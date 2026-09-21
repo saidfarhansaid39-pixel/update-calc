@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import { setRequestLocale } from 'next-intl/server'
 import { isValidHubSlug, findCalculator } from '@/lib/hub-data'
 import { AUTHORS } from '@/lib/authors'
 import { CalculatorPageContent, generateCalculatorMetadata } from '@/components/hub-pages/calculator-page-content'
@@ -17,7 +18,10 @@ import AuthorListingPage, { generateMetadata as genAuthorListingMeta } from '../
 import AuthorPage, { generateMetadata as genAuthorMeta } from '../author/[id]/page'
 
 export const revalidate = 86400
-export const dynamic = 'force-static'
+// NOTE: do NOT use `dynamic = 'force-static'` here — it makes `headers()`
+// return empty, which disables next-intl locale detection (the proxy sets
+// `x-next-intl-locale`) and forces every page to render in English.
+// Locale-correct rendering (ISR via `revalidate`) takes priority.
 
 // Static pre-render is intentionally LIMITED to high-value pages so the build
 // fits the Vercel Hobby builder's disk (ENOSPC: .next ~8.9GB at 36,700 pages).
@@ -130,6 +134,7 @@ const LOCALE_DESCRIPTIONS: Record<string, string> = {
 export async function generateMetadata({ params, searchParams }: { params: Promise<{ slug: string[] }>, searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
   const { slug: rawSlug } = await params
   const locale = getLocaleFromSlug(rawSlug)
+  setRequestLocale(locale)
   const slug = stripLocale(rawSlug)
 
   if (slug.length === 0) {
@@ -196,6 +201,8 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
 
 export default async function CatchAllPage({ params, searchParams }: { params: Promise<{ slug: string[] }>, searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
   const { slug: rawSlug } = await params
+  const locale = getLocaleFromSlug(rawSlug)
+  setRequestLocale(locale)
   const slug = stripLocale(rawSlug)
 
   if (slug.length === 0) {

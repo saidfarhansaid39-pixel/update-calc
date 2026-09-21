@@ -65,23 +65,22 @@ export default async function AboutPage() {
           isPartOf: { '@type': 'WebSite', name: 'Calculat', url: siteUrl },
         }}
       />
-      <h1 className="text-3xl font-bold mb-6">About Calculat</h1>
+      <h1 className="text-3xl font-bold mb-6">About Calculat — Free Calculator Online</h1>
       <div className="prose dark:prose-invert max-w-none space-y-4">
-        <p>Calculat is a comprehensive collection of free online calculators covering finance, health, math, science, conversion, and everyday life. Our mission is to provide fast, accurate, and beautifully designed calculation tools for everyone.</p>
-        <p>With 16 categories and thousands of calculators, we help students, professionals, and everyday users solve problems quickly and accurately.</p>
-        <h2 className="text-xl font-semibold mt-8">Our Mission</h2>
-        <p>To make complex calculations simple and accessible to everyone, regardless of their background or expertise.</p>
-        <h2 className="text-xl font-semibold mt-8">Why Calculat?</h2>
+        <p>Calculat is the leading calculator online platform, offering a comprehensive collection of free calculators for finance, health, math, science, conversion, and everyday life. Our calculator online is fast, accurate, and beautifully designed for everyone.</p>
+        <p>With 16 categories and thousands of calculator online tools, we help students, professionals, and everyday users solve problems quickly and accurately.</p>
+        <h2 className="text-xl font-semibold mt-8">Why Choose Our Calculator Online?</h2>
         <ul className="list-disc pl-6 space-y-2">
-          <li><strong>Free & Accessible</strong> — All calculators are completely free to use</li>
-          <li><strong>Fast & Accurate</strong> — Powered by precise formulas and instant computation</li>
+          <li><strong>Free & Accessible</strong> — Every calculator online is completely free to use, no sign-up required</li>
+          <li><strong>Fast & Accurate</strong> — Our calculator online uses precise formulas and instant computation</li>
           <li><strong>Beautiful Design</strong> — Modern, clean interface that works on all devices</li>
-          <li><strong>Comprehensive</strong> — Thousands of calculators across 16 categories</li>
-          <li><strong>Multi-language</strong> — Available in 10 languages</li>
+          <li><strong>Comprehensive</strong> — 4,270+ calculator online tools across 16 categories</li>
+          <li><strong>Multi-language</strong> — Calculator online available in 10 languages</li>
+          <li><strong>Expert-Reviewed</strong> — Every calculator online is reviewed by qualified professionals (CFA, MD, PE, PhD)</li>
         </ul>
         <h2 className="text-xl font-semibold mt-8">Our Experts</h2>
         <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-          Every calculator on Calculat is reviewed by a qualified subject-matter expert before publication and re-checked on a regular schedule.
+          Every calculator online on Calculat is reviewed by a qualified subject-matter expert before publication and re-checked on a regular schedule.
         </p>
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           {AUTHOR_LIST.map((author) => (

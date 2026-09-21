@@ -17014,5 +17014,68 @@
   "golf-driving": {
     "title": "Golf Driving Distância",
     "description": "Distância de Taco de Golfe grátis — Calculadora de desempenho esportivo e condicionamento físico para atletas, treinadores e técnicos."
-  }
-}
+  },
+  "pet-bmi": {
+    "title": "Calculadora de IMC para Pets",
+    "description": "Calculadora de IMC para pets gratuita — Calcule instantaneamente o índice de massa corporal de cães e gatos. Classifique o peso como abaixo, saudável ou acima do peso e receba orientações úteis. Perfeita para tutores que acompanham a saúde dos animais."
+  },
+  "logistics-calculator": {
+    "title": "Calculadora de Logística",
+    "description": "Calculadora de logística gratuita — Estime rapidamente custos, prazos e recursos de transporte. Planeje rotas, compare tarifas e otimize suas entregas em um único painel. Ideal para gestores de expedição e pequenas empresas de transporte."
+  },
+  "logistics-cost": {
+    "title": "Calculadora de Custos Logísticos",
+    "description": "Calculadora de custos logísticos gratuita — Detalhe o custo total dos seus envios: transporte, combustível, pedágios e embalagem. Compare opções e economize em cada entrega. Perfeita para empresas que desejam reduzir o gasto logístico."
+  },
+  "logistics-freight": {
+    "title": "Calculadora de Frete",
+    "description": "Calculadora de frete gratuita — Calcule o custo do transporte de mercadorias por peso, volume e distância. Estime tarifas de caminhão, trem, navio ou avião e planeje seu orçamento. Ideal para exportadores, importadores e despachantes."
+  },
+  "logistics-routing": {
+    "title": "Planejador de Rotas Logísticas",
+    "description": "Planejador de rotas logísticas gratuito — Otimize rotas de entrega para economizar tempo e combustível. Compare distâncias, prazos e custos entre rotas. Perfeito para frotas de entrega e entregadores urbanos."
+  },
+  "logistics-warehouse": {
+    "title": "Calculadora de Espaço de Armazém",
+    "description": "Calculadora de espaço de armazém gratuita — Calcule a capacidade do seu armazém com base em área e altura. Estime quantas unidades ou paletes cabem e otimize o uso do espaço. Ideal para gestão de armazéns e inventário."
+  },
+  "auto-loan-ber": {
+    "title": "Calculadora de Empréstimo Automotivo",
+    "description": "Calculadora de empréstimo automotivo gratuita — Calcule as parcelas mensais, o total de juros e o custo do empréstimo. Ajuste o prazo e a entrada para encontrar o plano ideal para o seu orçamento. Perfeita para compradores de carro."
+  },
+  "auto-equity": {
+    "title": "Calculadora de Valor do Veículo",
+    "description": "Calculadora de valor do veículo gratuita — Estime o valor do seu carro e seu patrimônio líquido subtraindo o saldo do financiamento. Útil para vender, refinanciar ou planejar a próxima compra. Prática para proprietários de veículos."
+  },
+  "auto-expression": {
+    "title": "Calculadora de Expressões",
+    "description": "Calculadora de expressões gratuita — Avalie expressões matemáticas na hora com parênteses, potências e operações básicas. Obtenha resultados precisos. Perfeita para estudantes e profissionais."
+  },
+  "auto-fire": {
+    "title": "Calculadora FIRE",
+    "description": "Calculadora FIRE gratuita — Planeje sua independência financeira e aposentadoria antecipada. Calcule o capital-alvo, os saques anuais e o tempo até a aposentadoria. Ideal para quem busca liberdade financeira."
+  },
+  "auto-gym": {
+    "title": "Calculadora de Academia",
+    "description": "Calculadora de academia gratuita — Calcule cargas de trabalho, volume semanal e progressão de séries e repetições. Organize sua rotina de força e acompanhe seu progresso. Perfeita para amadores e atletas."
+  },
+  "auto-hiit": {
+    "title": "Calculadora HIIT",
+    "description": "Calculadora HIIT gratuita — Visão geral de treinos intervalados de alta intensidade por duração e intensidade. Estime calorias queimadas e carga por sessão. Ideal para casa ou academia."
+  },
+  "auto-leg": {
+    "title": "Calculadora de Pernas",
+    "description": "Calculadora de pernas gratuita — Planeje seus treinos de pernas com séries, repetições e cargas. Estime o volume semanal e evite o overtraining. Perfeita para fisiculturistas e levantadores."
+  },
+  "auto-meal": {
+    "title": "Calculadora de Refeições",
+    "description": "Calculadora de refeições gratuita — Determine calorias, proteínas e macronutrientes das suas refeições. Planeje o reparte diário e ajuste as porções aos seus objetivos. Ideal para planejamento de dieta."
+  },
+  "auto-sleep": {
+    "title": "Calculadora de Sono",
+    "description": "Calculadora de sono gratuita — Calcule o horário ideal para dormir ou acordar com base em ciclos de 90 minutos. Evite acordar no meio do ciclo e acorde descansado. Perfeita para melhorar o descanso."
+  },
+  "auto-workout": {
+    "title": "Calculadora de Treino",
+    "description": "Calculadora de treino gratuita — Planeje sessões de força, cardio e mobilidade conforme seu nível e tempo disponível. Estime o gasto calórico e a carga semanal. Ideal para treinar com um plano claro."
+  }}

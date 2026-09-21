@@ -1,0 +1,51 @@
+{
+  "calculatorUI": {
+    "chrome": {
+      "hubLanding": {
+        "paginationAria": "Pagination",
+        "prev": "Prev",
+        "next": "Next",
+        "tierFlagship": "Flagship",
+        "tierStandard": "Standard",
+        "tierEssential": "Essential",
+        "calculators": "Calculators",
+        "flagshipTools": "Flagship Tools",
+        "liveData": "Live Data",
+        "free": "Free",
+        "toUse": "To Use",
+        "popularVariations": "Popular Variations",
+        "exploreRelatedHubs": "Explore related hubs",
+        "calculatorCount": "{count} calculators"
+      },
+      "calculatorPage": {
+        "home": "Home",
+        "updated": "Updated {date}"
+      },
+      "searchBar": {
+        "all": "All",
+        "recentSearches": "Recent searches",
+        "popularCalculators": "Popular calculators",
+        "resultCount": "{n} result{s} for “{q}”",
+        "didYouMean": "Did you mean: <bold>{title}</bold>?",
+        "noResults": "No calculators found",
+        "searchAria": "Search all calculators",
+        "searchPlaceholder": "Search all calculators...",
+        "clearSearchAria": "Clear search",
+        "resultsAria": "Search results"
+      },
+      "trust": {
+        "sources": "Sources",
+        "byLine": "by {name}, {credentials} · Last reviewed {date}",
+        "medicallyReviewed": "Medically reviewed",
+        "financiallyReviewed": "Financially reviewed",
+        "expertReviewed": "Expert reviewed",
+        "linkedin": "LinkedIn",
+        "twitter": "X / Twitter",
+        "website": "Website",
+        "linkedinAria": "{name} on LinkedIn",
+        "twitterAria": "{name} on X / Twitter",
+        "websiteAria": "{name} website"
+      }
+    }
+  }
+}

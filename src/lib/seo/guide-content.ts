@@ -1934,54 +1934,54 @@ export async function generateGuide(calc: CalculatorEntry, t?: TranslateFn, loca
     : whatIsContent
 
   const formulaContent = expert
-    ? `The ${name} is built on the following formula. Each variable is defined with its units below, and a fully worked example shows how to apply it step by step.`
+    ? (t ? t('guide.body.formula.expertIntro', { name }) : `The ${name} is built on the following formula. Each variable is defined with its units below, and a fully worked example shows how to apply it step by step.`)
     : generateFormulaSection(localizedCalc, t)
 
   const exampleContent = expert
-    ? `Work through a practical, numbers-driven example of the ${name} below.`
+    ? (t ? t('guide.body.example.expertIntro', { name }) : `Work through a practical, numbers-driven example of the ${name} below.`)
     : generateExampleSection(localizedCalc, t)
 
   const sections: GuideSection[] = [
     {
       id: 'what-is',
-      title: t ? t('sections.whatIs', { name }) : `What is the ${name}?`,
+      title: t ? t('guide.section_whatIs', { name }) : `What is the ${name}?`,
       content: enhancedWhatIs,
     },
     {
       id: 'how-to-use',
-      title: t ? t('sections.howToUse', { name: shortName || name }) : `How to Use ${shortName ? 'the ' + shortName : 'This Calculator'}`,
+      title: t ? t('guide.section_howToUse', { name: shortName || name }) : `How to Use ${shortName ? 'the ' + shortName : 'This Calculator'}`,
       content: generateHowToUse(localizedCalc, t),
     },
     {
       id: 'formula',
-      title: t ? t('sections.formula') : 'The Formula Behind the Calculation',
+      title: t ? t('guide.section_formula') : 'The Formula Behind the Calculation',
       content: formulaContent,
     },
     {
       id: 'example',
-      title: t ? t('sections.example') : 'Example Calculation',
+      title: t ? t('guide.section_example') : 'Example Calculation',
       content: exampleContent,
     },
     {
       id: 'use-cases',
-      title: t ? t('sections.useCases') : 'Common Use Cases',
+      title: t ? t('guide.section_useCases') : 'Common Use Cases',
       content: useCases.map((c, i) => `${i + 1}. ${c}`).join('\n\n'),
     },
     {
       id: 'tips',
-      title: t ? t('sections.tips') : 'Tips for Best Results',
+      title: t ? t('guide.section_tips') : 'Tips for Best Results',
       content: tips.map(t => `  - ${t}`).join('\n'),
     },
     {
       id: 'related',
-      title: t ? t('sections.related') : 'Related Calculators',
+      title: t ? t('guide.section_related') : 'Related Calculators',
       content: related.length > 0
         ? related.map(r => `- [${r.title}](/${r.hubSlug}/${r.slug}) — ${r.description.split('.')[0]}`).join('\n')
         : 'Explore other calculators in the same category for more helpful tools.',
     },
     {
       id: 'faq',
-      title: t ? t('sections.faq') : 'Frequently Asked Questions',
+      title: t ? t('guide.section_faq') : 'Frequently Asked Questions',
       content: faqs.map(faq => `**${faq.question}**\n\n${faq.answer}`).join('\n\n'),
     },
   ]

@@ -10,6 +10,7 @@ import { useAuth } from '@/components/auth/useAuth'
 
 export function Header() {
   const t = useTranslations('nav')
+  const tc = useTranslations('chrome')
   const pathname = usePathname()
   const router = useRouter()
   const { user, logout } = useAuth()
@@ -214,13 +215,13 @@ export function Header() {
                   href="/my-calculations"
                   className="px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
                 >
-                  My Calculations
+                  {tc('myCalculations')}
                 </Link>
                 <button
                   onClick={handleLogout}
                   className="px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
                 >
-                  Logout
+                  {tc('logout')}
                 </button>
               </div>
             ) : (
@@ -229,13 +230,13 @@ export function Header() {
                   href="/login"
                   className="px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
                 >
-                  Login
+                  {tc('login')}
                 </Link>
                 <Link
                   href="/register"
                   className="px-3 py-2 text-sm font-semibold text-white bg-gradient-to-br from-[#1a3a8a] to-[#06b6d4] rounded-lg hover:opacity-90 transition-all duration-200"
                 >
-                  Register
+                  {tc('register')}
                 </Link>
               </div>
             )}
@@ -275,7 +276,7 @@ export function Header() {
         {menuOpen && (
           <div id="mobile-menu" ref={mobileMenuRef} className="md:hidden overflow-hidden animate-fade-in-down overscroll-contain">
             <div className="pb-4 border-t border-gray-200 dark:border-gray-800 pt-4">
-              <nav aria-label="Mobile navigation" className="flex flex-col gap-1">
+              <nav aria-label={tc('mobileNav')} className="flex flex-col gap-1">
                 {allLinks.map((link) => (
                   <Link
                     key={link.label}
@@ -295,13 +296,13 @@ export function Header() {
                         onClick={() => setMenuOpen(false)}
                         className="px-3 py-2.5 min-h-[44px] text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
                       >
-                        My Calculations
+                        {tc('myCalculations')}
                       </Link>
                       <button
                         onClick={() => { setMenuOpen(false); handleLogout() }}
                         className="px-3 py-2.5 min-h-[44px] text-left text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
                       >
-                        Logout
+                        {tc('logout')}
                       </button>
                     </>
                   ) : (
@@ -311,14 +312,14 @@ export function Header() {
                         onClick={() => setMenuOpen(false)}
                         className="px-3 py-2.5 min-h-[44px] text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
                       >
-                        Login
+                        {tc('login')}
                       </Link>
                       <Link
                         href="/register"
                         onClick={() => setMenuOpen(false)}
                         className="px-3 py-2.5 min-h-[44px] text-sm font-medium text-white bg-gradient-to-br from-[#1a3a8a] to-[#06b6d4] rounded-lg hover:opacity-90 transition-all"
                       >
-                        Register
+                        {tc('register')}
                       </Link>
                     </>
                   )}

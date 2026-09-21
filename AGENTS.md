@@ -313,3 +313,28 @@ Rules:
   - `src/app/sitemap/[id]/route.ts` — SSG route handler (strips `.xml`, 404 on unknown id) serving `<urlset>` per shard; `generateStaticParams()` returns all 11 shard ids.
 - **Verified** — `pnpm typecheck` exit 0, `pnpm test` 37/37 pass; full build green (`/sitemap.xml` static + 11 SSG shards, 0 errors, verbatim `sitemap.xml.body` + 11 `*.xml.body` files). Local `next start` smoke test: `/sitemap.xml` + `/sitemap/en.xml` both 200 `application/xml`; unknown shard 404. Live after deploy: `https://www.calculat.online/sitemap.xml` serves valid sitemapindex (11 `<sitemap>` entries, `application/xml`), `/sitemap/en.xml` 200 urlset, `/sitemap/nope.xml` 404. Commit `700b264`, pushed, deployed (`dpl_AR1siyZNunYwugA3dj1xtpCpE99t`, READY, production target). Note: GSC may cache the old HTML error for ~1–2 days; use "Re-test" in Search Console.
 - **File map** — `src/lib/sitemap-data.ts` (shared), `src/app/sitemap.xml/route.ts` (index), `src/app/sitemap/[id]/route.ts` (shards), `robots.ts` unchanged (`sitemap: https://www.calculat.online/sitemap.xml`).
+
+### Locale Detection Fix + Translation Completion (Sep 18, 2026)
+
+#### CRITICAL: locale was silently disabled site-wide
+- **Symptom** — every non-EN URL (`/fr/*`, `/es/*`, …) rendered English body, `<html lang="en">`, and English `<title>`. All completed translation work was invisible.
+- **Root cause** — `export const dynamic = 'force-static'` in `src/app/[...slug]/page.tsx`. Under `force-static`, `headers()` returns empty, so next-intl's `getRequestLocale()` never saw the proxy's `x-next-intl-locale` header; `getRequestConfig` fell back to `routing.defaultLocale` (`en`). The proxy itself was correct (it set the header + `Content-Language` + `NEXT_LOCALE` cookie). A `/debugheaders` probe route had `force-dynamic`, which masked the bug.
+- **Fix** — removed `export const dynamic = 'force-static'` from `src/app/[...slug]/page.tsx` (kept `revalidate = 86400`); added `setRequestLocale(locale)` in the catch-all page. Reverted temporary debug code in `src/i18n/request.ts`, removed the `[PROXY]` log, deleted the `src/app/debugheaders/` route.
+- **Verified** — `pnpm typecheck` 0 errors; `pnpm test` 37/37; full build 709/709, 0 errors; `/[...slug]` is now `ƒ (Dynamic)`. Local `next start`: `/fr/...` returns ISR `Cache-Control: public, s-maxage=3600, stale-while-revalidate=86400`. Live: `/fr/about` → `lang="fr"`, *"À Propos - Calculatrices Gratuites en Ligne"*; `/fr/health-calculators/bmi-calculator` → *"Calculatrice IMC"*; `/es/about` → *"Acerca de - Calculadoras Gratuitas en Línea"*; `/de/...` → *"BMI-Rechner"*.
+- **Caveat** — `.next` shrank 858 MB → 372 MB. On Vercel the response is served `private, no-cache` (dynamic); the `searchParams` → Suspense refinement is still the path to edge-cacheable ISR for on-demand URLs.
+
+#### Translation completion — message layer (all 10 locales, 2,641 leaves)
+- **`scripts/merge-i18n-fragments.mjs`** deep-merges every `src/i18n/fragments/<concern>/{locale}.json` into `src/i18n/messages/{locale}.json` and asserts EN-key parity. Never hand-edit `messages/*.json`.
+- **New fragments** — `src/i18n/fragments/gap/{locale}.json` (`extraFields`, 664 keys × 9 locales) and `src/i18n/fragments/gap-ui/{locale}.json` (`calculatorUI`, `pages`, `articles`, `common`, `notFound`, `hubs`).
+- **Discovered debt** — `extraFields` (664) had been reported translated earlier but was still byte-identical English in every locale; now genuinely translated (es/fr/de/pt/ru/ar/hi/ja/zh-CN), preserving units/acronyms/`{placeholders}`/`{bold}...{/bold}`.
+- **Remaining identical-to-English after merge** — 2–18 per locale, all legitimate (brand `%s | Calculat`, `support@calculat.online`, proper nouns Mifflin-St Jeor / Katch-McArdle, cognates). Parity OK for all 9 non-EN locales.
+- **Live-verified** — `/fr/.../bmi-calculator` contains `Niveau d'activité`, `Revenu annuel`, `Enregistrer le calcul`, `Qu'est-ce que c'est`; `/ar/...` → `مستوى النشاط`, `حساب الحفظ` (حفظ الحساب); `/ja/...` → `これは何ですか`, `年齢`.
+- **Deployed** — `vercel --prod --yes`, READY, aliased to `https://www.calculat.online`.
+
+#### Known remaining localization debt (NOT yet addressed)
+- **Hardcoded English in components** (audited): global chrome (`Header.tsx` Login/Register/My Calculations; `Footer.tsx` L31/L53), `CookieConsent.tsx`, `ErrorCard.tsx`, `LocaleSwitcher.tsx`, `PopularSearches.tsx`, `HubNav.tsx`, `StarRating.tsx`, `calc-panel/ResultCard.tsx`.
+- **Static page bodies hardcode English** despite `getTranslations('pages.*')` being called for metadata only: `src/app/{about,contact,privacy,terms,press,editorial-policy,a-z-index,accessibility}/page.tsx`. The `pages.*` body keys exist but are legacy/unused text; localizing bodies needs new keys + wiring.
+- **`src/components/premium/sections/**`** largely hardcoded (`GuideSection`, `ExplanationSection`, `ExampleSection`, `InterpretationSection`, `FeedbackWidget`, `ShellHeader`, …); `qualityAuditScore`, `CalculatorModeToggle`, `LivingDashboardPanel`, `EducationalCharts`, `HubCharts`, `InternalLinkingGrid`, `ExtraFieldInjector`, `CalculatorStates`, `DynamicCharts`.
+- **Article bodies** in `src/components/calculator/*Article.tsx` (15 files) wired to `articles` but prose still English.
+- **`src/app/blog/**`, `author/**`, `login/`, `register/`, `my-calculations/`, `suggest-calculator/`, `calculator-builder/`** hardcoded.
+- **`src/components/hub-calculators/**` (~2,118 files)** has no next-intl imports at all — largest separate content-localization project.

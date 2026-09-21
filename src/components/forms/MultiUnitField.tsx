@@ -1,6 +1,7 @@
 'use client'
 
-import React from 'react'
+import React, { useMemo } from 'react'
+import { useTranslations } from 'next-intl'
 
 interface UnitOption {
   value: string
@@ -29,6 +30,11 @@ export function MultiUnitField({
 }: MultiUnitFieldProps) {
   const [activeUnit, setActiveUnit] = React.useState(defaultUnit || units[0]?.value || '')
   const [inputValue, setInputValue] = React.useState('')
+  const tf = useTranslations('calculatorUI')
+  const translatedLabel = useMemo(() => {
+    const key = 'formLabels.' + name
+    return tf.has(key) ? tf(key) : label
+  }, [name, label, tf])
 
   React.useEffect(() => {
     if (value !== undefined && activeUnit) {
@@ -73,14 +79,14 @@ export function MultiUnitField({
     <div className="space-y-1.5">
       <div className="flex items-center justify-between">
         <label htmlFor={fieldId} className="text-xs font-medium text-gray-700 dark:text-gray-300">
-          {label}
+          {translatedLabel}
         </label>
         {onLockToggle && (
           <button
             type="button"
             onClick={onLockToggle}
             className={`text-[10px] px-1.5 py-0.5 rounded transition-colors ${locked ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'}`}
-            aria-label={locked ? `Unlock ${label}` : `Lock ${label}`}
+            aria-label={locked ? `Unlock ${translatedLabel}` : `Lock ${translatedLabel}`}
             title={locked ? 'Locked' : 'Click to lock'}
           >
             {locked ? '🔒' : '🔓'}
@@ -98,13 +104,13 @@ export function MultiUnitField({
           step={step}
           disabled={locked}
           className={`flex-1 px-3 py-2 text-sm border rounded-lg bg-white dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#06b6d4] transition-colors ${locked ? 'opacity-60 cursor-not-allowed border-dashed border-gray-300 dark:border-gray-600' : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'}`}
-          aria-label={`${label} value`}
+          aria-label={`${translatedLabel} value`}
         />
         <select
           value={activeUnit}
           onChange={(e) => handleUnitChange(e.target.value)}
           className="px-2 py-2 text-xs border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#06b6d4]"
-          aria-label={`${label} unit`}
+          aria-label={`${translatedLabel} unit`}
         >
           {units.map(u => (
             <option key={u.value} value={u.value}>{u.label}</option>

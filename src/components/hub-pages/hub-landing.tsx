@@ -21,7 +21,7 @@ import { buildHreflang } from '@/lib/buildHreflang'
 const siteUrl = 'https://www.calculat.online'
 const PER_PAGE = 60
 
-function PaginationBar({ page, totalPages, hubSlug }: { page: number; totalPages: number; hubSlug: string }) {
+function PaginationBar({ page, totalPages, hubSlug, t }: { page: number; totalPages: number; hubSlug: string; t: (key: string) => string }) {
   if (totalPages <= 1) return null
   const pages: (number | '...')[] = []
   for (let i = 1; i <= totalPages; i++) {
@@ -32,14 +32,14 @@ function PaginationBar({ page, totalPages, hubSlug }: { page: number; totalPages
     }
   }
   return (
-    <nav aria-label="Pagination" className="flex items-center justify-center gap-1.5 mt-8 mb-4">
+    <nav aria-label={t('paginationAria')} className="flex items-center justify-center gap-1.5 mt-8 mb-4">
       {page > 1 && (
         <Link
           href={page === 2 ? `/${hubSlug}` : `/${hubSlug}?page=${page - 1}`}
           className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#1a3a8a] hover:text-white dark:hover:bg-[#06b6d4] transition-colors"
         >
           <ChevronLeft className="w-4 h-4" />
-          Prev
+          {t('prev')}
         </Link>
       )}
       {pages.map((p, i) =>
@@ -64,7 +64,7 @@ function PaginationBar({ page, totalPages, hubSlug }: { page: number; totalPages
           href={`/${hubSlug}?page=${page + 1}`}
           className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#1a3a8a] hover:text-white dark:hover:bg-[#06b6d4] transition-colors"
         >
-          Next
+          {t('next')}
           <ChevronRight className="w-4 h-4" />
         </Link>
       )}
@@ -117,11 +117,11 @@ function getTierColor(tier: string): string {
   }
 }
 
-function getTierLabel(tier: string): string {
+function getTierLabel(tier: string, t: (key: string) => string): string {
   switch (tier) {
-    case 'tier3': return 'Flagship'
-    case 'tier2': return 'Standard'
-    case 'tier1': return 'Essential'
+    case 'tier3': return t('tierFlagship')
+    case 'tier2': return t('tierStandard')
+    case 'tier1': return t('tierEssential')
     default: return ''
   }
 }
@@ -138,9 +138,9 @@ export async function generateHubLandingMetadata(hubSlug: string, page: number =
   const url = page === 1
     ? (locale === 'en' ? `${siteUrl}/${hubSlug}` : `${siteUrl}/${locale}/${hubSlug}`)
     : (locale === 'en' ? `${siteUrl}/${hubSlug}?page=${page}` : `${siteUrl}/${locale}/${hubSlug}?page=${page}`)
-  const rawTitle = page === 1 ? meta.title : `${meta.title} — Page ${page}`
-  const title = rawTitle.length > 45 ? rawTitle : `${rawTitle} | Calculat`
-  const desc = meta.description.length > 155 ? meta.description.substring(0, 152).replace(/\s+\S*$/, '') + '...' : meta.description
+  const rawTitle = page === 1 ? `${meta.title} Online` : `${meta.title} Online — Page ${page}`
+  const title = rawTitle.length > 60 ? rawTitle.substring(0, 57).replace(/\s+\S*$/, '') + '...' : `${rawTitle} | Calculat`
+  const desc = meta.description.length > 155 ? meta.description.substring(0, 152).replace(/\s+\S*$/, '') + '...' : `${meta.description} Free calculator online tools.`
   const robots = page === 1 ? { index: true, follow: true } as const : { index: false, follow: true } as const
   return {
     title,
@@ -176,6 +176,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
 
    const th = await getTranslations('hubs')
    const tc = await getTranslations('common')
+   const tch = await getTranslations('calculatorUI.chrome.hubLanding')
   const Icon = hubIcons[hubSlug] || Calculator
   const theme = getHubTheme(hubSlug)
   const hubTitle = th(hubSlug)
@@ -231,7 +232,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
   return (
     <>
       <SchemaMarkup type="CollectionPage" locale={locale} data={collectionPageSchema} />
-      <SchemaMarkup type="BreadcrumbList" locale={locale} data={breadcrumbListSchema([{ name: 'Home', url: siteUrl }, { name: hubTitle, url: hubUrl }], locale)} />
+      <SchemaMarkup type="BreadcrumbList" locale={locale} data={breadcrumbListSchema([{ name: tc('home'), url: siteUrl }, { name: hubTitle, url: hubUrl }], locale)} />
       <div className="min-h-screen bg-white dark:bg-gray-900" style={{ '--hub-accent': theme.accent } as React.CSSProperties}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-6">
@@ -251,8 +252,8 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
               <Icon className="h-8 w-8 text-white" />
             </div>
             <div className="min-w-0">
-              <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">{hubTitle}</h1>
-              <p className="text-base sm:text-lg text-white/90 max-w-2xl">{hubDescription}</p>
+              <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">{hubTitle} Online</h1>
+              <p className="text-base sm:text-lg text-white/90 max-w-2xl">{hubDescription} Explore our free calculator online tools below.</p>
             </div>
           </div>
         </div>
@@ -260,25 +261,25 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
           <div className="rounded-xl p-4 text-center border" style={{ backgroundColor: `rgb(${theme.accentRgb} / 0.08)`, borderColor: `rgb(${theme.accentRgb} / 0.2)` }}>
             <p className="text-2xl font-bold" style={{ color: theme.accent }}>{manualCalcs.length}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Calculators</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{tch('calculators')}</p>
           </div>
           <div className="rounded-xl p-4 text-center border" style={{ backgroundColor: `rgb(${theme.accentRgb} / 0.08)`, borderColor: `rgb(${theme.accentRgb} / 0.2)` }}>
             <p className="text-2xl font-bold" style={{ color: theme.accent }}>{manualCalcs.filter((c: CalculatorEntry) => c.tier === 'tier3').length}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Flagship Tools</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{tch('flagshipTools')}</p>
           </div>
           <div className="rounded-xl p-4 text-center border" style={{ backgroundColor: `rgb(${theme.accentRgb} / 0.08)`, borderColor: `rgb(${theme.accentRgb} / 0.2)` }}>
             <p className="text-2xl font-bold" style={{ color: theme.accent }}>{calculators.filter((c: CalculatorEntry) => c.dataDependent).length}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Live Data</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{tch('liveData')}</p>
           </div>
           <div className="rounded-xl p-4 text-center border" style={{ backgroundColor: `rgb(${theme.accentRgb} / 0.08)`, borderColor: `rgb(${theme.accentRgb} / 0.2)` }}>
-            <p className="text-2xl font-bold" style={{ color: theme.accent }}>Free</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">To Use</p>
+            <p className="text-2xl font-bold" style={{ color: theme.accent }}>{tch('free')}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{tch('toUse')}</p>
           </div>
         </div>
 
         {page === 1 && clusterByPrimary.size > 0 && (
           <div className="mb-8 p-4 rounded-xl border" style={{ backgroundColor: `rgb(${theme.accentRgb} / 0.06)`, borderColor: `rgb(${theme.accentRgb} / 0.18)` }}>
-            <h2 className="text-sm font-semibold mb-3" style={{ color: theme.accent }}>Popular Variations</h2>
+            <h2 className="text-sm font-semibold mb-3" style={{ color: theme.accent }}>{tch('popularVariations')}</h2>
             <div className="flex flex-wrap gap-2">
               {Array.from(clusterByPrimary.entries()).slice(0, 15).map(([primary, variants]) => {
                 const calc = calculators.find(c => c.slug === primary)
@@ -333,10 +334,10 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
                     <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">{calc.description}</p>
                     <div className="flex items-center gap-2 mt-2">
                       <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${getTierColor(calc.tier)}`}>
-                        {getTierLabel(calc.tier)}
+                        {getTierLabel(calc.tier, tch)}
                       </span>
                       {calc.dataDependent && (
-                        <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">Live Data</span>
+                        <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">{tch('liveData')}</span>
                       )}
                     </div>
                   </div>
@@ -347,12 +348,12 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
         </div>
         )}
 
-        <PaginationBar page={page} totalPages={totalPages} hubSlug={hubSlug} />
+        <PaginationBar page={page} totalPages={totalPages} hubSlug={hubSlug} t={tch} />
 
         {relatedHubs.length > 0 && (
           <section className="mt-12">
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-              Explore related hubs
+              {tch('exploreRelatedHubs')}
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {relatedHubs.map((hub) => {
@@ -375,7 +376,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
                         {hub.name}
                       </h3>
                       <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-                        {hub.count} calculators
+                        {tch('calculatorCount', { count: hub.count })}
                       </p>
                     </div>
                   </Link>

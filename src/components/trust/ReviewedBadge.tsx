@@ -1,21 +1,17 @@
 import { getAuthorForHub } from '@/lib/authors';
 import { getReviewKind, type ReviewKind } from '@/lib/trust';
+import { getTranslations } from 'next-intl/server';
 
-const COPY: Record<ReviewKind, { heading: string; sub: string }> = {
-  medical: { heading: 'Medically reviewed', sub: 'Medically reviewed' },
-  financial: { heading: 'Financially reviewed', sub: 'Financially reviewed' },
-  expert: { heading: 'Expert reviewed', sub: 'Expert reviewed' },
-};
-
-export function ReviewedBadge({ hub, date, kind }: { hub: string; date: string; kind?: ReviewKind }) {
+export async function ReviewedBadge({ hub, date, kind }: { hub: string; date: string; kind?: ReviewKind }) {
+  const t = await getTranslations('calculatorUI.chrome.trust');
   const author = getAuthorForHub(hub);
   const reviewKind: ReviewKind = kind || getReviewKind(hub);
   const headingText =
     reviewKind === 'medical'
-      ? 'Medically reviewed'
+      ? t('medicallyReviewed')
       : reviewKind === 'financial'
-        ? 'Financially reviewed'
-        : 'Expert reviewed';
+        ? t('financiallyReviewed')
+        : t('expertReviewed');
 
   return (
     <div className="flex items-center gap-3 rounded-lg border border-green-200 bg-green-50 p-3 dark:border-green-900/50 dark:bg-green-950/30">
@@ -25,7 +21,7 @@ export function ReviewedBadge({ hub, date, kind }: { hub: string; date: string; 
       <div className="text-sm">
         <p className="font-medium text-gray-900 dark:text-white">{headingText}</p>
         <p className="text-gray-600 dark:text-gray-400">
-          by {author.name}, {author.credentials} · Last reviewed {date}
+          {t('byLine', { name: author.name, credentials: author.credentials, date })}
         </p>
       </div>
     </div>

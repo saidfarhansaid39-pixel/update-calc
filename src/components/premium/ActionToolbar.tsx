@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import {
   Printer,
   FileText,
@@ -62,7 +63,7 @@ export function ActionToolbar({
   shareCopied,
   onCopyResult,
   resultCopied,
-  copyResultText = 'Copy',
+  copyResultText,
   inputs,
   onSaveScenario,
   showCSV,
@@ -75,6 +76,7 @@ export function ActionToolbar({
   embedWidget,
   citationGenerator,
 }: ActionToolbarProps) {
+  const t = useTranslations('calculatorUI')
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -99,7 +101,7 @@ export function ActionToolbar({
           value={unitSystem}
           onChange={(e) => onUnitChange(e.target.value)}
           className={`${btnBase} border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 cursor-pointer`}
-          aria-label="Unit system"
+          aria-label={t('premium.actionToolbar.unitSystem')}
         >
           {unitOptions.map((opt) => (
             <option key={opt.value} value={opt.value}>
@@ -114,81 +116,81 @@ export function ActionToolbar({
         <button
           onClick={onToggleSlider}
           className={useSlider ? accentBtn : ghostBtn}
-          aria-label={useSlider ? 'Disable sliders' : 'Enable sliders'}
+          aria-label={useSlider ? t('premium.actionToolbar.disableSliders') : t('premium.actionToolbar.enableSliders')}
           aria-pressed={useSlider}
         >
           <Sliders className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
           <span className="hidden sm:inline">
-            {useSlider ? 'Sliders On' : 'Sliders'}
+            {useSlider ? t('premium.actionToolbar.slidersOn') : t('premium.actionToolbar.sliders')}
           </span>
         </button>
       )}
 
       {/* Reload (restore last saved) */}
       {onReload && (
-        <button onClick={onReload} className={ghostBtn} aria-label="Reload last saved values">
+        <button onClick={onReload} className={ghostBtn} aria-label={t('premium.actionToolbar.reloadAria')}>
           <History className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-          <span className="hidden sm:inline">Reload</span>
+          <span className="hidden sm:inline">{t('premium.actionToolbar.reload')}</span>
         </button>
       )}
 
       {/* Reset */}
       {onReset && (
-        <button onClick={onReset} className={ghostBtn} aria-label="Reset all values">
+        <button onClick={onReset} className={ghostBtn} aria-label={t('premium.actionToolbar.resetAria')}>
           <RefreshCw className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-          <span className="hidden sm:inline">Reset</span>
+          <span className="hidden sm:inline">{t('premium.actionToolbar.reset')}</span>
         </button>
       )}
 
       {/* Desktop group — secondary actions */}
       <div className="hidden md:flex items-center gap-2">
         {onExport && (
-          <button onClick={() => onExport('print')} className={ghostBtn} aria-label="Print results">
+          <button onClick={() => onExport('print')} className={ghostBtn} aria-label={t('premium.actionToolbar.printAria')}>
             <Printer className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-            Print
+            {t('premium.actionToolbar.print')}
           </button>
         )}
         {showCSV && onExport && (
-          <button onClick={() => onExport('csv')} className={ghostBtn} aria-label="Export results as CSV">
+          <button onClick={() => onExport('csv')} className={ghostBtn} aria-label={t('premium.actionToolbar.exportCsvAria')}>
             <FileText className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-            CSV
+            {t('premium.actionToolbar.csv')}
           </button>
         )}
         {onShare && (
-          <button onClick={onShare} className={ghostBtn} aria-label={shareCopied ? 'Link copied to clipboard' : 'Share calculator link'}>
+          <button onClick={onShare} className={ghostBtn} aria-label={shareCopied ? t('premium.actionToolbar.linkCopiedAria') : t('premium.actionToolbar.shareLinkAria')}>
             {shareCopied ? (
               <Check className="w-3.5 h-3.5 shrink-0 text-green-500" aria-hidden="true" />
             ) : (
               <Share2 className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
             )}
-            {shareCopied ? 'Copied' : 'Share'}
+            {shareCopied ? t('premium.actionToolbar.copied') : t('premium.actionToolbar.share')}
           </button>
         )}
         {onCopyResult && (
-          <button onClick={onCopyResult} className={ghostBtn} aria-label={resultCopied ? 'Result copied to clipboard' : 'Copy result to clipboard'}>
+          <button onClick={onCopyResult} className={ghostBtn} aria-label={resultCopied ? t('premium.actionToolbar.resultCopiedAria') : t('premium.actionToolbar.copyResultAria')}>
             {resultCopied ? (
               <Check className="w-3.5 h-3.5 shrink-0 text-green-500" aria-hidden="true" />
             ) : (
               <Copy className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
             )}
-            {resultCopied ? 'Copied' : copyResultText}
+            {resultCopied ? t('premium.actionToolbar.copied') : (copyResultText ?? t('premium.enhancedResult.copy'))}
           </button>
         )}
         {modeLevel != null && modeLevel >= 3 && tierFeatures?.comparison && onSaveScenario && (
-          <button onClick={onSaveScenario} className={ghostBtn} aria-label="Save current scenario">
+          <button onClick={onSaveScenario} className={ghostBtn} aria-label={t('premium.actionToolbar.saveScenarioAria')}>
             <Plus className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-            Save
+            {t('premium.actionToolbar.save')}
           </button>
         )}
         {modeLevel != null && modeLevel >= 3 && tierFeatures?.comparison && onToggleBatch && (
           <button
             onClick={() => onToggleBatch(!showBatch)}
             className={showBatch ? accentBtn : ghostBtn}
-            aria-label={showBatch ? 'Close batch comparison' : 'Open batch comparison'}
+            aria-label={showBatch ? t('premium.actionToolbar.closeBatchAria') : t('premium.actionToolbar.openBatchAria')}
             aria-pressed={showBatch}
           >
             <Layers className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-            Batch
+            {t('premium.actionToolbar.batch')}
           </button>
         )}
         {shareButtons}
@@ -202,12 +204,12 @@ export function ActionToolbar({
         <button
           onClick={() => setDropdownOpen((o) => !o)}
           className={ghostBtn}
-          aria-label="More actions"
+          aria-label={t('premium.actionToolbar.moreActionsAria')}
           aria-expanded={dropdownOpen}
           aria-haspopup="menu"
         >
           <MoreHorizontal className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-          <span>More</span>
+          <span>{t('premium.actionToolbar.more')}</span>
         </button>
 
           {dropdownOpen && (
@@ -219,11 +221,11 @@ export function ActionToolbar({
                   setDropdownOpen(false)
                 }}
                 className={ghostBtn}
-                aria-label="Reload last saved values"
+                aria-label={t('premium.actionToolbar.reloadAria')}
                 role="menuitem"
               >
                 <History className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-                Reload
+                {t('premium.actionToolbar.reload')}
               </button>
             )}
             {onExport && (
@@ -233,11 +235,11 @@ export function ActionToolbar({
                   setDropdownOpen(false)
                 }}
                 className={ghostBtn}
-                aria-label="Print results"
+                aria-label={t('premium.actionToolbar.printAria')}
                 role="menuitem"
               >
                 <Printer className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-                Print
+                {t('premium.actionToolbar.print')}
               </button>
             )}
             {showCSV && onExport && (
@@ -247,11 +249,11 @@ export function ActionToolbar({
                   setDropdownOpen(false)
                 }}
                 className={ghostBtn}
-                aria-label="Export results as CSV"
+                aria-label={t('premium.actionToolbar.exportCsvAria')}
                 role="menuitem"
               >
                 <FileText className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-                CSV
+                {t('premium.actionToolbar.csv')}
               </button>
             )}
             {onShare && (
@@ -261,7 +263,7 @@ export function ActionToolbar({
                   setDropdownOpen(false)
                 }}
                 className={ghostBtn}
-                aria-label={shareCopied ? 'Link copied to clipboard' : 'Share calculator link'}
+                aria-label={shareCopied ? t('premium.actionToolbar.linkCopiedAria') : t('premium.actionToolbar.shareLinkAria')}
                 role="menuitem"
               >
                 {shareCopied ? (
@@ -269,7 +271,7 @@ export function ActionToolbar({
                 ) : (
                   <Share2 className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                 )}
-                {shareCopied ? 'Copied' : 'Share'}
+                {shareCopied ? t('premium.actionToolbar.copied') : t('premium.actionToolbar.share')}
               </button>
             )}
             {onCopyResult && (
@@ -279,7 +281,7 @@ export function ActionToolbar({
                   setDropdownOpen(false)
                 }}
                 className={ghostBtn}
-                aria-label={resultCopied ? 'Result copied to clipboard' : 'Copy result to clipboard'}
+                aria-label={resultCopied ? t('premium.actionToolbar.resultCopiedAria') : t('premium.actionToolbar.copyResultAria')}
                 role="menuitem"
               >
                 {resultCopied ? (
@@ -287,7 +289,7 @@ export function ActionToolbar({
                 ) : (
                   <Copy className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                 )}
-                {resultCopied ? 'Copied' : copyResultText}
+                {resultCopied ? t('premium.actionToolbar.copied') : (copyResultText ?? t('premium.enhancedResult.copy'))}
               </button>
             )}
             {modeLevel != null && modeLevel >= 3 && tierFeatures?.comparison && onSaveScenario && (
@@ -297,11 +299,11 @@ export function ActionToolbar({
                   setDropdownOpen(false)
                 }}
                 className={ghostBtn}
-                aria-label="Save current scenario"
+                aria-label={t('premium.actionToolbar.saveScenarioAria')}
                 role="menuitem"
               >
                 <Plus className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-                Save
+                {t('premium.actionToolbar.save')}
               </button>
             )}
             {modeLevel != null && modeLevel >= 3 && tierFeatures?.comparison && onToggleBatch && (
@@ -311,11 +313,11 @@ export function ActionToolbar({
                   setDropdownOpen(false)
                 }}
                 className={showBatch ? accentBtn : ghostBtn}
-                aria-label={showBatch ? 'Close batch comparison' : 'Open batch comparison'}
+                aria-label={showBatch ? t('premium.actionToolbar.closeBatchAria') : t('premium.actionToolbar.openBatchAria')}
                 role="menuitem"
               >
                 <Layers className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-                Batch
+                {t('premium.actionToolbar.batch')}
               </button>
             )}
             {shareButtons}

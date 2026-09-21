@@ -11,7 +11,7 @@ export function ClientLocaleWrapper({ children, initialMessages }: { children: R
     const locales = ['en', 'es', 'fr', 'de', 'pt', 'ru', 'ar', 'hi', 'ja', 'zh-CN']
     const pathLocale = window.location.pathname.split('/')[1]
     const fromUrl = locales.includes(pathLocale) ? pathLocale : null
-    const cookieMatch = document.cookie.match(/(?:^|;\s*)NEXT_LOCALE=([^;]*)/)
+    const cookieMatch = document.cookie.match(/(?:^|;\\s*)NEXT_LOCALE=([^;]*)/)
     const fromCookie = cookieMatch?.[1]
     const fromBrowser = navigator.language?.split('-')[0]
     const resolved = fromUrl || fromCookie || fromBrowser || 'en'

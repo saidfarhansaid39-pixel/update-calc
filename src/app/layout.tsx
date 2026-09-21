@@ -58,22 +58,27 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale()
   return {
     metadataBase: new URL(siteUrl),
-    title: 'Calculat - Precision Calculators & Unit Converters',
-    description: 'Free online calculators for finance, health, math, science, conversion, and everyday life. Fast, accurate, and beautifully designed.',
-    keywords: ['calculator', 'online calculator', 'free calculator', 'financial calculator', 'health calculator', 'math calculator', 'unit converter', 'Calculat'],
+    title: 'Calculat — Free Calculator Online | 4,270+ Tools',
+    description: 'Free calculator online for finance, health, math, unit conversion & more. 4,270+ instant calculators online with step-by-step formulas. No sign-up.',
+    keywords: [
+      'calculator online', 'online calculator', 'free calculator online', 'calculator online free',
+      'financial calculator', 'health calculator', 'math calculator', 'unit converter',
+      'mortgage calculator online', 'BMI calculator online', 'loan calculator online',
+      'tip calculator online', 'scientific calculator online', 'calorie calculator online',
+    ],
     openGraph: {
       type: 'website',
       url: siteUrl,
       siteName: 'Calculat',
-      title: 'Calculat - Precision Calculators & Unit Converters',
-      description: 'Free online calculators for finance, health, math, science, conversion, and everyday life.',
+      title: 'Calculat — Free Calculator Online | 4,270+ Tools',
+      description: 'Free calculator online for finance, health, math, unit conversion & more. 4,270+ instant calculators online with step-by-step formulas.',
       locale: locale === 'en' ? 'en_US' : locale === 'zh-CN' ? 'zh_CN' : `${locale}_${locale.toUpperCase()}`,
-      images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }],
+      images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630, alt: 'Calculat — Free Calculator Online' }],
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Calculat',
-      description: 'Free online calculators for finance, health, math, science, conversion, and everyday life.',
+      title: 'Calculat — Free Calculator Online | 4,270+ Tools',
+      description: 'Free calculator online for finance, health, math, unit conversion & more. 4,270+ instant calculators online.',
     },
     icons: { icon: '/favicon.svg' },
     robots: { index: true, follow: true },
@@ -131,6 +136,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           description: siteDescriptions[locale],
           sameAs: ['https://www.calculat.online', 'https://x.com/calculat', 'https://www.linkedin.com/company/calculat'],
           contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', availableLanguage: ['en', 'es', 'fr', 'de', 'pt', 'ru', 'ar', 'hi', 'ja', 'zh-CN'] },
+          knowsAbout: ['Financial Planning', 'Health Metrics', 'Mathematics', 'Unit Conversion', 'Physics', 'Chemistry', 'Engineering', 'Statistics', 'Education', 'Construction', 'Biology', 'Ecology', 'Sports Science', 'Everyday Calculations'],
+          areaServed: { '@type': 'World' },
+          foundingDate: '2025',
+          vatID: 'US-EIN',
         }} />
         <ClientLocaleWrapper initialMessages={messages}>
           <ServiceWorkerRegister />
@@ -148,11 +157,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           </AuthProvider>
           <PopupCalculatorWidget />
           <Footer />
+          <CookieConsent />
         </ClientLocaleWrapper>
         <Suspense fallback={null}>
           <Analytics />
         </Suspense>
-        <CookieConsent />
         <WebVitals />
       </body>
     </html>

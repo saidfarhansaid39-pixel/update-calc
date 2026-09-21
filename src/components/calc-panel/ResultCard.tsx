@@ -3,6 +3,7 @@
 import React, { useMemo, useState } from 'react'
 import { Copy, Check } from 'lucide-react'
 import { useCurrency } from '@/lib/context/CurrencyContext'
+import { useTranslations } from 'next-intl'
 
 interface ResultValue {
   label: string
@@ -42,6 +43,8 @@ function fmtUnit(u: string, sym: string) {
 export function ResultCard({ title, primary, secondary, interpretation, steps, className = '' }: ResultCardProps) {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
   const { currencySymbol } = useCurrency()
+  const t = useTranslations('chrome')
+  const ta = useTranslations('actions')
   const localUnit = useMemo(() => primary.unit ? fmtUnit(primary.unit, currencySymbol) : undefined, [primary.unit, currencySymbol])
 
   const handleCopy = async (text: string, index: number) => {
@@ -77,10 +80,10 @@ export function ResultCard({ title, primary, secondary, interpretation, steps, c
           <button
             onClick={() => handleCopy(`${primary.value}${localUnit ? ' ' + localUnit : ''}`, -1)}
             className="mt-2 inline-flex items-center gap-1 text-xs text-gray-400 hover:text-[#06b6d4] transition-colors"
-            aria-label="Copy result"
+            aria-label={t('copyResultAria')}
           >
             {copiedIndex === -1 ? <Check size={12} /> : <Copy size={12} />}
-            {copiedIndex === -1 ? 'Copied' : 'Copy'}
+            {copiedIndex === -1 ? ta('copied') : ta('copy')}
           </button>
         </div>
 
@@ -101,10 +104,10 @@ export function ResultCard({ title, primary, secondary, interpretation, steps, c
                 <button
                   onClick={() => handleCopy(`${item.value}${item.unit ? ' ' + fmtUnit(item.unit, currencySymbol) : ''}`, i)}
                   className="mt-1 text-xs text-gray-400 hover:text-[#06b6d4] transition-colors"
-                  aria-label={`Copy ${item.label}`}
+                  aria-label={`${ta('copy')} ${item.label}`}
                 >
                   {copiedIndex === i ? <Check size={10} className="inline" /> : <Copy size={10} className="inline" />}
-                  <span className="ml-0.5">{copiedIndex === i ? 'Copied' : 'Copy'}</span>
+                  <span className="ml-0.5">{copiedIndex === i ? ta('copied') : ta('copy')}</span>
                 </button>
               </div>
             ))}
@@ -114,7 +117,7 @@ export function ResultCard({ title, primary, secondary, interpretation, steps, c
         {/* Steps */}
         {steps && steps.length > 0 && (
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Calculation Steps</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">{t('calculationSteps')}</p>
             <div className="space-y-1.5">
               {steps.map((step, i) => (
                 <div key={i} className="flex items-start gap-2 text-sm">
@@ -134,7 +137,7 @@ export function ResultCard({ title, primary, secondary, interpretation, steps, c
         {/* Interpretation */}
         {interpretation && (
           <div className="rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 p-3">
-            <p className="text-xs font-semibold text-blue-700 dark:text-blue-300 mb-0.5">What This Means</p>
+            <p className="text-xs font-semibold text-blue-700 dark:text-blue-300 mb-0.5">{t('whatThisMeans')}</p>
             <p className="text-sm text-blue-600 dark:text-blue-200 leading-relaxed">{fmtUnit(interpretation, currencySymbol)}</p>
           </div>
         )}

@@ -5,19 +5,18 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: '/api/og/',
-      },
-      {
-        userAgent: '*',
         allow: '/',
+        disallow: ['/api/', '/_next/', '/search-index/'],
       },
       {
-        userAgent: '*',
-        disallow: '/api/',
-      },
-      {
-        userAgent: ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-User', 'PerplexityBot', 'Google-Extended', 'Applebot-Extended'],
+        userAgent: ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-User', 'PerplexityBot', 'Google-Extended', 'Applebot-Extended', 'Bytespider', 'Amazonbot'],
         allow: '/',
+        disallow: ['/api/', '/_next/'],
+      },
+      {
+        userAgent: ['anthropic-ai', 'Meta-ExternalAgent', 'FacebookBot'],
+        allow: '/',
+        disallow: ['/api/', '/_next/'],
       },
     ],
     sitemap: 'https://www.calculat.online/sitemap.xml',

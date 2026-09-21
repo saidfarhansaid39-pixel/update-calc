@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { useTranslations } from 'next-intl'
 import { Globe, ChevronDown } from 'lucide-react'
 import { useId } from 'react'
 import { countryConfigs, countryNames, currencySymbols, type Currency, type Locale, type MeasurementSystem } from '@/lib/i18n/calculator-i18n'
@@ -17,6 +18,7 @@ interface InternationalizationPanelProps {
 export function InternationalizationPanel({
   country, currency, measurement, onCountryChange, onCurrencyChange, onMeasurementChange,
 }: InternationalizationPanelProps) {
+  const t = useTranslations('calculatorUI')
   const countries = Object.keys(countryConfigs)
   const config = countryConfigs[country]
   const countryId = useId()
@@ -26,7 +28,7 @@ export function InternationalizationPanel({
   return (
     <div className="flex items-center gap-2 flex-wrap">
       <Globe className="w-4 h-4 text-gray-400" aria-hidden="true" />
-      <label htmlFor={countryId} className="sr-only">Country</label>
+      <label htmlFor={countryId} className="sr-only">{t('premium.i18nPanel.country')}</label>
       <select
         id={countryId}
         value={country}
@@ -43,7 +45,7 @@ export function InternationalizationPanel({
           <option key={c} value={c}>{countryNames[c]} ({c})</option>
         ))}
       </select>
-      <label htmlFor={currencyId} className="sr-only">Currency</label>
+      <label htmlFor={currencyId} className="sr-only">{t('premium.i18nPanel.currency')}</label>
       <select
         id={currencyId}
         value={currency}
@@ -55,16 +57,16 @@ export function InternationalizationPanel({
           return <option key={c} value={cfg.currency}>{currencySymbols[cfg.currency]} {cfg.currency}</option>
         })}
       </select>
-      <label htmlFor={measurementId} className="sr-only">Measurement system</label>
+      <label htmlFor={measurementId} className="sr-only">{t('premium.i18nPanel.measurementSystem')}</label>
       <select
         id={measurementId}
         value={measurement}
         onChange={e => onMeasurementChange(e.target.value as MeasurementSystem)}
         className="text-xs border border-gray-200 dark:border-gray-600 rounded-lg px-3 min-h-[36px] py-1.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300"
       >
-        <option value="metric">Metric</option>
-        <option value="imperial">Imperial</option>
-        <option value="us">US Customary</option>
+        <option value="metric">{t('premium.i18nPanel.metric')}</option>
+        <option value="imperial">{t('premium.i18nPanel.imperial')}</option>
+        <option value="us">{t('premium.i18nPanel.usCustomary')}</option>
       </select>
     </div>
   )

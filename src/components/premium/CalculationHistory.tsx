@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { Clock, Trash2, RotateCcw, History, Search, Download, X, AlertTriangle } from 'lucide-react'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import type { HistoryEntry } from '@/lib/hooks/useCalculatorHistory'
 import { formatDate, formatDateTime } from '@/lib/i18n/calculator-i18n'
 
@@ -26,6 +26,7 @@ export function CalculationHistory({
   searchQuery = '', onSearchChange, clearConfirm = false, onClearConfirm, calcStats,
 }: CalculationHistoryProps) {
   const locale = useLocale()
+  const t = useTranslations('calculatorUI')
   if (entries.length === 0 && !show) return null
 
   return (
@@ -35,7 +36,7 @@ export function CalculationHistory({
         className="inline-flex items-center gap-1.5 text-xs font-medium text-gray-500 dark:text-gray-400 hover:text-[#06b6d4] transition-colors"
       >
         <History className="w-3.5 h-3.5" />
-        Recent calculations ({entries.length})
+        {t('premium.calculationHistory.recentCalculations', { count: entries.length })}
       </button>
 
       {show && (
@@ -48,7 +49,7 @@ export function CalculationHistory({
                 type="text"
                 value={searchQuery}
                 onChange={e => onSearchChange(e.target.value)}
-                placeholder="Filter by date, calculator, or value..."
+                placeholder={t('premium.calculationHistory.searchPlaceholder')}
                 className="w-full pl-7 pr-7 py-1.5 text-xs border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 placeholder-gray-400"
               />
               {searchQuery && (
@@ -64,7 +65,7 @@ export function CalculationHistory({
             <div className="flex flex-wrap gap-1.5">
               {Object.entries(calcStats).slice(0, 5).map(([slug, stat]) => (
                 <span key={slug} className="px-2 py-0.5 bg-gray-50 dark:bg-gray-900 rounded-full text-[10px] text-gray-500 dark:text-gray-400">
-                  {stat.title}: {stat.count} uses
+                  {t('premium.calculationHistory.statUses', { title: stat.title, count: stat.count })}
                 </span>
               ))}
             </div>
@@ -73,7 +74,7 @@ export function CalculationHistory({
           {/* History entries */}
           <div className="space-y-1.5 max-h-60 overflow-y-auto">
             {entries.length === 0 ? (
-              <p className="text-[10px] text-gray-400 text-center py-2">No matching entries found</p>
+              <p className="text-[10px] text-gray-400 text-center py-2">{t('premium.calculationHistory.noMatchingEntries')}</p>
             ) : (
               entries.slice(0, 20).map(entry => {
                 const date = new Date(entry.timestamp)
@@ -88,7 +89,7 @@ export function CalculationHistory({
                     <button
                       onClick={() => onApply(entry.inputs)}
                       className="flex-1 text-left min-w-0 text-gray-600 dark:text-gray-400 hover:text-[#06b6d4] transition-colors"
-                      title="Restore this calculation"
+                      title={t('premium.calculationHistory.restoreThis')}
                     >
                       <span className="block truncate">{Object.values(entry.inputs).filter(Boolean).join(', ')}</span>
                       {entry.result && (
@@ -101,7 +102,7 @@ export function CalculationHistory({
                     <button
                       onClick={() => onRemove(entry.id)}
                       className="text-gray-400 hover:text-red-500 transition-colors shrink-0 opacity-0 group-hover:opacity-100"
-                      title="Remove from history"
+                      title={t('premium.calculationHistory.removeFromHistory')}
                     >
                       <Trash2 className="w-3 h-3" />
                     </button>
@@ -127,7 +128,7 @@ export function CalculationHistory({
                 }}
                 className="text-[10px] text-gray-400 hover:text-[#06b6d4] transition-colors flex items-center gap-1"
               >
-                <Download className="w-2.5 h-2.5" /> Export CSV
+                <Download className="w-2.5 h-2.5" /> {t('premium.calculationHistory.exportCsv')}
               </button>
             )}
 
@@ -136,25 +137,25 @@ export function CalculationHistory({
                 onClick={() => onClearConfirm(true)}
                 className="text-[10px] text-gray-400 hover:text-red-500 transition-colors flex items-center gap-1"
               >
-                <Trash2 className="w-2.5 h-2.5" /> Clear all
+                <Trash2 className="w-2.5 h-2.5" /> {t('premium.calculationHistory.clearAll')}
               </button>
             )}
 
             {clearConfirm && onClearConfirm && (
               <div className="flex items-center gap-2 p-2 bg-red-50 dark:bg-red-900/20 rounded-lg">
                 <AlertTriangle className="w-3 h-3 text-red-500" />
-                <span className="text-[10px] text-red-600 dark:text-red-400">Clear all history?</span>
+                <span className="text-[10px] text-red-600 dark:text-red-400">{t('premium.calculationHistory.clearAllQuestion')}</span>
                 <button
                   onClick={onClear}
                   className="text-[10px] px-2 py-0.5 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
                 >
-                  Confirm
+                  {t('premium.calculationHistory.confirm')}
                 </button>
                 <button
                   onClick={() => onClearConfirm(false)}
                   className="text-[10px] px-2 py-0.5 text-gray-500 hover:text-gray-700 transition-colors"
                 >
-                  Cancel
+                  {t('premium.calculationHistory.cancel')}
                 </button>
               </div>
             )}

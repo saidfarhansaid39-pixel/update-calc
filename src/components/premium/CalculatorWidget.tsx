@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Code, Copy, Check, ExternalLink, Monitor, Smartphone } from 'lucide-react'
 
 interface CalculatorWidgetProps {
@@ -10,6 +11,7 @@ interface CalculatorWidgetProps {
 }
 
 export function CalculatorWidget({ slug, title, category }: CalculatorWidgetProps) {
+  const t = useTranslations('calculatorUI')
   const [showEmbed, setShowEmbed] = useState(false)
   const [embedType, setEmbedType] = useState<'iframe' | 'script'>('iframe')
   const [width, setWidth] = useState(400)
@@ -39,7 +41,7 @@ export function CalculatorWidget({ slug, title, category }: CalculatorWidgetProp
       >
         <span className="flex items-center gap-2">
           <Code className="w-4 h-4 text-[#06b6d4]" />
-          Embed this calculator
+          {t('premium.calculatorWidget.embedThis')}
         </span>
         {showEmbed ? '-' : '+'}
       </button>
@@ -47,22 +49,22 @@ export function CalculatorWidget({ slug, title, category }: CalculatorWidgetProp
       {showEmbed && (
         <div className="px-4 pb-4 space-y-3">
           <p className="text-xs text-gray-500 dark:text-gray-400">
-            Add this calculator to your website with a simple embed code.
+            {t('premium.calculatorWidget.addToSite')}
           </p>
 
           {/* Preview */}
           <div className="p-3 bg-gray-50 dark:bg-gray-900 rounded-lg flex items-center justify-center" style={{ minHeight: 80 }}>
             <div className="text-center">
               <Monitor className="w-8 h-8 text-gray-300 dark:text-gray-600 mx-auto mb-1" />
-              <p className="text-[10px] text-gray-400">{title} widget preview</p>
-              <p className="text-[10px] text-gray-400">{width}×{height} · {theme} theme</p>
+              <p className="text-[10px] text-gray-400">{t('premium.calculatorWidget.widgetPreview', { title })}</p>
+              <p className="text-[10px] text-gray-400">{t('premium.calculatorWidget.sizeTheme', { width, height, theme: theme === 'light' ? t('premium.calculatorWidget.light') : t('premium.calculatorWidget.dark') })}</p>
             </div>
           </div>
 
           {/* Customization */}
           <div className="grid grid-cols-3 gap-2">
             <div>
-              <label className="text-[10px] font-medium text-gray-500 dark:text-gray-400">Width (px)</label>
+              <label className="text-[10px] font-medium text-gray-500 dark:text-gray-400">{t('premium.calculatorWidget.width')}</label>
               <input
                 type="number" value={width} min={200} max={1200} step={10}
                 onChange={e => setWidth(Number(e.target.value))}
@@ -70,7 +72,7 @@ export function CalculatorWidget({ slug, title, category }: CalculatorWidgetProp
               />
             </div>
             <div>
-              <label className="text-[10px] font-medium text-gray-500 dark:text-gray-400">Height (px)</label>
+              <label className="text-[10px] font-medium text-gray-500 dark:text-gray-400">{t('premium.calculatorWidget.height')}</label>
               <input
                 type="number" value={height} min={300} max={1200} step={10}
                 onChange={e => setHeight(Number(e.target.value))}
@@ -78,13 +80,13 @@ export function CalculatorWidget({ slug, title, category }: CalculatorWidgetProp
               />
             </div>
             <div>
-              <label className="text-[10px] font-medium text-gray-500 dark:text-gray-400">Theme</label>
+              <label className="text-[10px] font-medium text-gray-500 dark:text-gray-400">{t('premium.calculatorWidget.theme')}</label>
               <select
                 value={theme} onChange={e => setTheme(e.target.value as 'light' | 'dark')}
                 className="w-full px-2 py-1 text-xs border border-gray-200 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300"
               >
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
+                <option value="light">{t('premium.calculatorWidget.light')}</option>
+                <option value="dark">{t('premium.calculatorWidget.dark')}</option>
               </select>
             </div>
           </div>
@@ -113,19 +115,19 @@ export function CalculatorWidget({ slug, title, category }: CalculatorWidgetProp
             <button
               onClick={handleCopy}
               className="absolute top-2 right-2 p-1.5 bg-gray-700 hover:bg-gray-600 rounded text-white transition-colors"
-              title="Copy code"
+              title={t('premium.calculatorWidget.copyCode')}
             >
               {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
             </button>
           </div>
 
-          {copied && <p className="text-[10px] text-green-500 text-center">Copied to clipboard!</p>}
+          {copied && <p className="text-[10px] text-green-500 text-center">{t('premium.calculatorWidget.copiedToClipboard')}</p>}
 
           <a
             href={`${baseUrl}/api/widget/${slug}`} target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-[10px] text-[#06b6d4] hover:underline"
           >
-            <ExternalLink className="w-3 h-3" /> Advanced embed options
+            <ExternalLink className="w-3 h-3" /> {t('premium.calculatorWidget.advancedOptions')}
           </a>
         </div>
       )}

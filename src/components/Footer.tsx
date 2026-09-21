@@ -7,6 +7,7 @@ export async function Footer() {
   const locale = await getLocale()
   const t = await getTranslations('footer')
   const s = await getTranslations('seo')
+  const tc = await getTranslations('chrome')
 
   const sections = [
     {
@@ -28,7 +29,7 @@ export async function Footer() {
         { label: t('biology'), href: '/biology-calculators' },
         { label: t('ecology'), href: '/ecology-calculators' },
         { label: t('sports'), href: '/sports-calculators' },
-        { label: 'All Calculators (A-Z)', href: '/a-z-index' },
+        { label: tc('allCalculatorsAz'), href: '/a-z-index' },
       ],
     },
     {
@@ -50,7 +51,7 @@ export async function Footer() {
         { label: s('contact'), href: '/contact' },
         { label: s('editorialPolicy'), href: '/editorial-policy' },
         { label: s('press'), href: '/press' },
-        { label: 'Suggest a Calculator', href: '/suggest-calculator' },
+        { label: tc('suggestCalculator'), href: '/suggest-calculator' },
       ],
     },
   ]

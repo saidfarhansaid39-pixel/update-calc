@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useMemo, useState, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { BarChart3, TrendingUp, TrendingDown, AlertTriangle, Maximize2, Minimize2, Info, Download } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { DynamicComparisonBarChart } from '@/components/premium/DynamicCharts'
@@ -53,6 +54,7 @@ export function SensitivityAnalysis({
   className,
   steps = 10,
 }: SensitivityAnalysisProps) {
+  const t = useTranslations('calculatorUI')
   const [expanded, setExpanded] = useState(true)
   const [sortBy, setSortBy] = useState<'impact' | 'name' | 'sensitivity'>('impact')
 
@@ -107,6 +109,12 @@ const chartData = useMemo(() =>
     low: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300',
   }
 
+  const impactLabels = {
+    high: t('premium.sensitivity.impactHigh'),
+    medium: t('premium.sensitivity.impactMedium'),
+    low: t('premium.sensitivity.impactLow'),
+  }
+
   const formatVal = (val: number) => {
     if (val >= 1e9) return `${(val / 1e9).toFixed(2)}B`
     if (val >= 1e6) return `${(val / 1e6).toFixed(2)}M`
@@ -115,7 +123,7 @@ const chartData = useMemo(() =>
   }
 
   const exportCSV = useCallback(() => {
-    const headers = ['Input', 'Base Output', 'Min Output', 'Max Output', 'Swing', 'Impact', 'Direction', 'Sensitivity (%)']
+    const headers = [t('premium.sensitivity.csvInput'), t('premium.sensitivity.csvBaseOutput'), t('premium.sensitivity.csvMinOutput'), t('premium.sensitivity.csvMaxOutput'), t('premium.sensitivity.csvSwing'), t('premium.sensitivity.csvImpact'), t('premium.sensitivity.csvDirection'), t('premium.sensitivity.csvSensitivity')]
     const rows = results.map(r => [
       r.inputLabel,
       formatVal(r.baseOutput),
@@ -134,7 +142,7 @@ const chartData = useMemo(() =>
     a.download = `sensitivity-analysis-${Date.now()}.csv`
     a.click()
     URL.revokeObjectURL(url)
-  }, [results])
+  }, [results, t])
 
   return (
     <div className={cn('rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden', className)}>
@@ -145,9 +153,9 @@ const chartData = useMemo(() =>
               <BarChart3 className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Sensitivity Analysis</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t('premium.sensitivity.title')}</h3>
               <p className="text-xs text-gray-500 dark:text-gray-400">
-                How input variations affect <span className="font-medium">{mainOutputLabel}</span>
+                {t('premium.sensitivity.subtitle', { label: mainOutputLabel })}
               </p>
             </div>
           </div>
@@ -157,21 +165,21 @@ const chartData = useMemo(() =>
               onChange={e => setSortBy(e.target.value as 'impact' | 'name' | 'sensitivity')}
               className="text-xs px-2 py-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-cyan-500"
             >
-              <option value="impact">Sort by Impact</option>
-              <option value="sensitivity">Sort by Sensitivity</option>
-              <option value="name">Sort by Name</option>
+              <option value="impact">{t('premium.sensitivity.sortImpact')}</option>
+              <option value="sensitivity">{t('premium.sensitivity.sortSensitivity')}</option>
+              <option value="name">{t('premium.sensitivity.sortName')}</option>
             </select>
             <button
               onClick={exportCSV}
               className="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 min-h-[44px] min-w-[44px] flex items-center justify-center"
-              title="Export CSV"
+              title={t('premium.sensitivity.exportCsv')}
             >
               <Download className="w-4 h-4" />
             </button>
             <button
               onClick={() => setExpanded(!expanded)}
               className="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-              aria-label={expanded ? 'Collapse' : 'Expand'}
+              aria-label={expanded ? t('premium.sensitivity.collapse') : t('premium.sensitivity.expand')}
             >
               {expanded ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
             </button>
@@ -189,14 +197,14 @@ const chartData = useMemo(() =>
 
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-xs font-medium text-gray-500 dark:text-gray-400 px-1">
-              <span className="w-40">Input</span>
-              <span className="w-24 text-right">Base</span>
-              <span className="w-24 text-right">Min</span>
-              <span className="w-24 text-right">Max</span>
-              <span className="w-24 text-right">Swing</span>
-              <span className="w-20">Impact</span>
-              <span className="w-20">Direction</span>
-              <span className="w-20">Sensitivity</span>
+              <span className="w-40">{t('premium.sensitivity.colInput')}</span>
+              <span className="w-24 text-right">{t('premium.sensitivity.colBase')}</span>
+              <span className="w-24 text-right">{t('premium.sensitivity.colMin')}</span>
+              <span className="w-24 text-right">{t('premium.sensitivity.colMax')}</span>
+              <span className="w-24 text-right">{t('premium.sensitivity.colSwing')}</span>
+              <span className="w-20">{t('premium.sensitivity.colImpact')}</span>
+              <span className="w-20">{t('premium.sensitivity.colDirection')}</span>
+              <span className="w-20">{t('premium.sensitivity.colSensitivity')}</span>
             </div>
             
             {results.map((result, idx) => (
@@ -228,7 +236,7 @@ const chartData = useMemo(() =>
                     impactColors[result.impact]
                   )}>
                     {result.direction === 'positive' ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
-                    {result.impact.charAt(0).toUpperCase() + result.impact.slice(1)}
+                    {impactLabels[result.impact]}
                   </span>
                 </div>
                 <div className="w-20">
@@ -250,12 +258,12 @@ const chartData = useMemo(() =>
             <div className="flex items-start gap-2">
               <Info className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
               <div className="text-sm text-blue-700 dark:text-blue-300 leading-relaxed">
-                <p className="font-medium">Interpretation Guide:</p>
+                <p className="font-medium">{t('premium.sensitivity.interpretationGuide')}</p>
                 <ul className="list-disc list-inside space-y-1 mt-1">
-                  <li><strong>High Impact</strong> (&gt;20% output change): Small input changes cause large output swings. Monitor these closely.</li>
-                  <li><strong>Medium Impact</strong> (5-20%): Moderate sensitivity. Consider ranges in planning.</li>
-                  <li><strong>Low Impact</strong> (&lt;5%): Output is robust to this input's variation.</li>
-                  <li><strong>Sensitivity %</strong> = Swing ÷ Base Output. Higher % means more sensitive.</li>
+                  <li>{t('premium.sensitivity.bulletHighImpact')}</li>
+                  <li>{t('premium.sensitivity.bulletMediumImpact')}</li>
+                  <li>{t('premium.sensitivity.bulletLowImpact')}</li>
+                  <li>{t('premium.sensitivity.bulletFormula')}</li>
                 </ul>
               </div>
             </div>

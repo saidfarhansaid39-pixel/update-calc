@@ -24,6 +24,7 @@ function AuthorAvatar({ author }: { author: Author }) {
 
 export async function AuthorBioCard({ hub, slug }: { hub: string; slug?: string }) {
   const t = await getTranslations()
+  const tch = await getTranslations('calculatorUI.chrome.trust')
   const author = getAuthorForHub(hub)
   const reviewKind = getReviewKind(hub)
   const reviewKindLabel =
@@ -66,10 +67,10 @@ export async function AuthorBioCard({ hub, slug }: { hub: string; slug?: string 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-blue-600 transition-colors"
-                aria-label={`${author.name} on LinkedIn`}
+                aria-label={tch('linkedinAria', { name: author.name })}
               >
                 <Linkedin className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">LinkedIn</span>
+                <span className="hidden sm:inline">{tch('linkedin')}</span>
               </a>
             )}
             {author.sameAs.twitter && (
@@ -78,10 +79,10 @@ export async function AuthorBioCard({ hub, slug }: { hub: string; slug?: string 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-blue-600 transition-colors"
-                aria-label={`${author.name} on X / Twitter`}
+                aria-label={tch('twitterAria', { name: author.name })}
               >
                 <Twitter className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">X / Twitter</span>
+                <span className="hidden sm:inline">{tch('twitter')}</span>
               </a>
             )}
             {author.sameAs.website && (
@@ -90,10 +91,10 @@ export async function AuthorBioCard({ hub, slug }: { hub: string; slug?: string 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-blue-600 transition-colors"
-                aria-label={`${author.name} website`}
+                aria-label={tch('websiteAria', { name: author.name })}
               >
                 <Globe className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">Website</span>
+                <span className="hidden sm:inline">{tch('website')}</span>
               </a>
             )}
           </div>

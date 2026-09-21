@@ -115,14 +115,15 @@ export function SearchBar() {
   const debounceRef = useRef<ReturnType<typeof setTimeout>>();
 
   const t = useTranslations('hubs');
+  const tch = useTranslations('calculatorUI.chrome.searchBar');
   const hubShortLabel = useCallback(
     (slug: string) => t(`name_${slug.replace('-calculators', '')}`),
     [t],
   );
 
   const hubFilters = useMemo(
-    () => [{ slug: 'all', label: 'All' }, ...HUB_SLUGS.map((s) => ({ slug: s, label: hubShortLabel(s) }))],
-    [hubShortLabel],
+    () => [{ slug: 'all', label: tch('all') }, ...HUB_SLUGS.map((s) => ({ slug: s, label: hubShortLabel(s) }))],
+    [hubShortLabel, tch],
   );
 
   useEffect(() => {
@@ -269,10 +270,10 @@ export function SearchBar() {
           role="combobox"
           aria-expanded={showDropdown}
           aria-haspopup="listbox"
-          aria-label="Search all calculators"
+          aria-label={tch('searchAria')}
           aria-controls="search-results-listbox"
           aria-autocomplete="list"
-          placeholder="Search all calculators..."
+          placeholder={tch('searchPlaceholder')}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -282,7 +283,7 @@ export function SearchBar() {
         {searchTerm && (
           <button
             type="button"
-            aria-label="Clear search"
+            aria-label={tch('clearSearchAria')}
             onClick={() => {
               setSearchTerm('');
               setShowDropdown(false);
@@ -302,7 +303,7 @@ export function SearchBar() {
         <div
           id="search-results-listbox"
           role="listbox"
-          aria-label="Search results"
+          aria-label={tch('resultsAria')}
           className="absolute top-full left-0 right-0 mt-1 z-50 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg overflow-hidden max-h-[70vh] overflow-y-auto"
         >
           {/* Hub filter chips */}
@@ -332,7 +333,7 @@ export function SearchBar() {
               {recent.length > 0 && (
                 <div className="px-3 pt-2 pb-1">
                   <p className="text-[11px] font-semibold uppercase tracking-wide text-gray-400 mb-1 flex items-center gap-1">
-                    <History className="w-3 h-3" /> Recent searches
+                    <History className="w-3 h-3" /> {tch('recentSearches')}
                   </p>
                   <div className="flex flex-wrap gap-1.5">
                     {recent.map((term) => (
@@ -351,7 +352,7 @@ export function SearchBar() {
               )}
               <div className="px-3 pt-2 pb-1">
                 <p className="text-[11px] font-semibold uppercase tracking-wide text-gray-400 mb-1 flex items-center gap-1">
-                  <TrendingUp className="w-3 h-3" /> Popular calculators
+                  <TrendingUp className="w-3 h-3" /> {tch('popularCalculators')}
                 </p>
                 <ul>
                   {POPULAR.map((r, i) => (
@@ -376,7 +377,7 @@ export function SearchBar() {
           ) : (
             <div className="py-1">
               <div role="status" aria-live="polite" className="px-4 py-1.5 text-xs text-gray-500 dark:text-gray-300">
-                {filtered.length} result{filtered.length === 1 ? '' : 's'} for &ldquo;{trimmed}&rdquo;
+                {tch('resultCount', { n: filtered.length, s: filtered.length === 1 ? '' : 's', q: trimmed })}
               </div>
               {filtered.length === 0 ? (
                 didYouMean ? (
@@ -385,10 +386,15 @@ export function SearchBar() {
                     onClick={() => handleSelect(didYouMean.slug, didYouMean.hubSlug)}
                     className="w-full text-left px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                   >
-                    Did you mean: <span className="font-semibold text-[#1a3a8a] dark:text-[#06b6d4]">{didYouMean.title}</span>?
+                    {tch.rich('didYouMean', {
+                    title: didYouMean.title,
+                    bold: (chunks) => (
+                      <span className="font-semibold text-[#1a3a8a] dark:text-[#06b6d4]">{chunks}</span>
+                    ),
+                  })}
                   </button>
                 ) : (
-                  <div className="px-4 py-3 text-sm text-gray-400 text-center">No calculators found</div>
+                  <div className="px-4 py-3 text-sm text-gray-400 text-center">{tch('noResults')}</div>
                 )
               ) : (
                 filtered.map((r, i) => (

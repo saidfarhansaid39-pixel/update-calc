@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { useTranslations } from 'next-intl'
 import { Lightbulb, Target, Zap } from 'lucide-react'
 
 interface Preset {
@@ -16,12 +17,13 @@ interface VisualPresetCardsProps {
 const presetIcons = [Lightbulb, Target, Zap, Lightbulb, Target, Zap]
 
 export function VisualPresetCards({ presets, onApply }: VisualPresetCardsProps) {
+  const t = useTranslations('calculatorUI')
   if (!presets.length) return null
 
   return (
     <div className="space-y-3">
       <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-        Try an example scenario
+        {t('premium.visualPresetCards.tryExample')}
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
         {presets.map((preset, i) => {

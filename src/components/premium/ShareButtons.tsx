@@ -1,8 +1,8 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
+import { useTranslations, useLocale } from 'next-intl'
 import { Share2, MessageCircle, Users, Linkedin, Image, Mail } from 'lucide-react'
-import { useLocale } from 'next-intl'
 
 interface ShareButtonsProps {
   url: string
@@ -15,31 +15,31 @@ const ghostBtn =
 
 const shareItems = [
   {
-    label: 'Twitter / X',
+    labelKey: 'itemTwitter',
     icon: MessageCircle,
     getUrl: (url: string, title: string, _desc?: string, _locale?: string) =>
       `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`,
   },
   {
-    label: 'Facebook',
+    labelKey: 'itemFacebook',
     icon: Users,
     getUrl: (url: string, _title: string, _desc?: string, _locale?: string) =>
       `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
   },
   {
-    label: 'LinkedIn',
+    labelKey: 'itemLinkedIn',
     icon: Linkedin,
     getUrl: (url: string, _title: string, _desc?: string, _locale?: string) =>
       `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
   },
   {
-    label: 'Pinterest',
+    labelKey: 'itemPinterest',
     icon: Image,
     getUrl: (url: string, _title: string, desc?: string, _locale?: string) =>
       `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&description=${encodeURIComponent(desc || _title)}`,
   },
   {
-    label: 'Email',
+    labelKey: 'itemEmail',
     icon: Mail,
     getUrl: (url: string, title: string, desc?: string, _locale?: string) =>
       `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(desc || title + '\n' + url)}`,
@@ -50,6 +50,7 @@ export function ShareButtons({ url, title, description }: ShareButtonsProps) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const locale = useLocale()
+  const t = useTranslations('calculatorUI')
 
   useEffect(() => {
     function handleMouseDown(e: MouseEvent) {
@@ -66,27 +67,28 @@ export function ShareButtons({ url, title, description }: ShareButtonsProps) {
       <button
         onClick={() => setOpen((o) => !o)}
         className={ghostBtn}
-        aria-label="Open share options"
+        aria-label={t('premium.shareButtons.openOptions')}
         aria-expanded={open}
       >
         <Share2 className="w-3.5 h-3.5 shrink-0" />
-        <span>Share</span>
+        <span>{t('premium.shareButtons.share')}</span>
       </button>
       {open && (
         <div className="absolute top-full right-0 mt-2 z-50 flex flex-col gap-1 min-w-[180px] rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 shadow-lg">
           {shareItems.map((item) => {
             const href = item.getUrl(url, title, description, locale)
+            const itemLabel = t(`premium.shareButtons.${item.labelKey}`)
             return (
               <a
-                key={item.label}
+                key={item.labelKey}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={ghostBtn}
-                aria-label={`Share on ${item.label}`}
+                aria-label={t('premium.shareButtons.shareOn', { label: itemLabel })}
               >
                 <item.icon className="w-3.5 h-3.5 shrink-0" />
-                {item.label}
+                {itemLabel}
               </a>
             )
           })}
