@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { CalculatorFormField } from '@/components/forms/CalculatorFormField'
 import { ModeFieldGroup } from '@/components/premium/ModeFieldGroup'
+import { useTranslations } from 'next-intl'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 import { DynamicMathPieChart } from '@/components/premium/DynamicCharts'
 import { buildGenericDef } from '@/lib/generic-fallback'
@@ -55,6 +56,11 @@ export default function GenericMathCalculator({ calculator }: { calculator: Calc
     });
   }, []);
 
+  const tf = useTranslations('calculatorUI')
+  const tl = useCallback((key: string, fallback: string) => {
+    try { return tf.has('formLabels.' + key) ? tf('formLabels.' + key) : fallback } catch { return fallback }
+  }, [tf])
+
   const form = useForm({
     resolver: zodResolver(calcDef?.schema || z.object({})),
     defaultValues: calcDef?.defaults || {},
@@ -73,7 +79,7 @@ export default function GenericMathCalculator({ calculator }: { calculator: Calc
   const renderField = (field: FieldDef) =>
     field.type === 'select' && field.options ? (
       <div key={field.name}>
-        <label className="text-sm font-medium text-slate-700 dark:text-slate-300">{field.label}</label>
+        <label className="text-sm font-medium text-slate-700 dark:text-slate-300">{tl(field.name, field.label)}</label>
         <select {...register(field.name)} className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
           {field.options.map((opt) => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
         </select>

@@ -1,7 +1,10 @@
+'use client'
+
 import React from 'react'
 import { Link } from '@/lib/navigation'
 import { CalculatorContent } from '@/lib/seo/calculator-content-engine'
 import { Users, ArrowRight, Grid3X3 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 
 interface NavigationalSectionProps {
@@ -37,6 +40,8 @@ const hubCategoryMap: Record<string, string> = {
 }
 
 export function NavigationalSection({ calculator, content, allCalculators }: NavigationalSectionProps) {
+  const tc = useTranslations('content')
+  const tg = useTranslations('guide')
   const hubSlug = hubCategoryMap[calculator.category] || calculator.hubSlug
 
   const relatedCalculators = allCalculators
@@ -52,7 +57,7 @@ export function NavigationalSection({ calculator, content, allCalculators }: Nav
         <div id="audience" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
             <Users className="w-5 h-5 text-blue-500" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Who Should Use This Calculator?</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{tc('whoShouldUse')}</h2>
           </div>
           <div className="flex flex-wrap gap-2">
             {content.relevantAudience.map((audience, i) => (
@@ -68,23 +73,23 @@ export function NavigationalSection({ calculator, content, allCalculators }: Nav
       <div id="hub-navigation" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
         <div className="flex items-center gap-2 mb-4">
           <Grid3X3 className="w-5 h-5 text-[#06b6d4]" />
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Explore More in {calculator.hubName}</h2>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{tc('exploreMoreIn', { hubName: calculator.hubName })}</h2>
         </div>
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-          Browse our complete collection of {calculator.category} calculators for more tools and resources.
+          {tc('browseCollection', { category: calculator.category })}
         </p>
         <Link
           href={`/${hubSlug}`}
           className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#1a3a8a] text-white rounded-lg text-sm font-medium hover:bg-[#0a1d4f] transition-colors"
         >
-          View All {calculator.hubName} <ArrowRight className="w-4 h-4" />
+          {tc('viewAll', { hubName: calculator.hubName })} <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
 
       {/* Related Calculators (as actual links) */}
       {relatedCalculators.length > 0 && (
         <div id="related-links" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Related Calculators</h2>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{tg('labels.relatedCalculators')}</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
             {relatedCalculators.map((rc) => (
               <Link

@@ -1,6 +1,9 @@
+'use client'
+
 import React from 'react'
 import { CalculatorContent } from '@/lib/seo/calculator-content-engine'
 import { BarChart3, ThumbsUp, ThumbsDown, Shuffle, Award } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface CommercialSectionProps {
   title: string
@@ -8,6 +11,7 @@ interface CommercialSectionProps {
 }
 
 export function CommercialSection({ title, content }: CommercialSectionProps) {
+  const tc = useTranslations('content')
 
   if (!content.comparisons.length && !content.alternatives.length) return null
 
@@ -24,9 +28,9 @@ export function CommercialSection({ title, content }: CommercialSectionProps) {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gray-200 dark:border-gray-700">
-                  <th className="px-6 py-2 text-left font-medium text-gray-500 dark:text-gray-400 w-1/4">Factor</th>
-                  <th className="px-6 py-2 text-left font-medium text-gray-500 dark:text-gray-400 w-[35%]">Manual Approach</th>
-                  <th className="px-6 py-2 text-left font-medium text-[#06b6d4] w-[35%]">Our Calculator</th>
+                  <th className="px-6 py-2 text-left font-medium text-gray-500 dark:text-gray-400 w-1/4">{tc('factor')}</th>
+                  <th className="px-6 py-2 text-left font-medium text-gray-500 dark:text-gray-400 w-[35%]">{tc('manualApproach')}</th>
+                  <th className="px-6 py-2 text-left font-medium text-[#06b6d4] w-[35%]">{tc('ourCalculator')}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
@@ -48,12 +52,12 @@ export function CommercialSection({ title, content }: CommercialSectionProps) {
 
       {/* Pros & Cons */}
       <div id="pros-cons" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Pros & Cons</h2>
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{tc('prosCons')}</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
             <div className="flex items-center gap-2 mb-3">
               <ThumbsUp className="w-4 h-4 text-green-500" />
-              <h3 className="font-medium text-green-700 dark:text-green-400 text-sm">Pros</h3>
+              <h3 className="font-medium text-green-700 dark:text-green-400 text-sm">{tc('pros')}</h3>
             </div>
             <ul className="space-y-2">
               {content.prosCons.pros.map((pro, i) => (
@@ -67,7 +71,7 @@ export function CommercialSection({ title, content }: CommercialSectionProps) {
           <div>
             <div className="flex items-center gap-2 mb-3">
               <ThumbsDown className="w-4 h-4 text-red-500" />
-              <h3 className="font-medium text-red-700 dark:text-red-400 text-sm">Cons</h3>
+              <h3 className="font-medium text-red-700 dark:text-red-400 text-sm">{tc('cons')}</h3>
             </div>
             <ul className="space-y-2">
               {content.prosCons.cons.map((con, i) => (
@@ -86,7 +90,7 @@ export function CommercialSection({ title, content }: CommercialSectionProps) {
         <div id="alternatives" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
             <Shuffle className="w-5 h-5 text-orange-500" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Alternatives to Consider</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{tc('alternatives')}</h2>
           </div>
           <div className="grid gap-3">
             {content.alternatives.map((alt, i) => (
@@ -106,7 +110,7 @@ export function CommercialSection({ title, content }: CommercialSectionProps) {
       <div id="recommendations" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
         <div className="flex items-center gap-2 mb-4">
           <Award className="w-5 h-5 text-amber-500" />
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Expert Recommendations</h2>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{tc('expertRecommendations')}</h2>
         </div>
         <div className="space-y-3">
           {content.expertRecommendations.map((rec, i) => (

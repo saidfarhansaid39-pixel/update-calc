@@ -4,6 +4,7 @@ import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Lock, Unlock } from 'lucide-react'
 import { useCurrency } from '@/lib/context/CurrencyContext'
+import { useTranslations } from 'next-intl'
 import { tryAutoConvert } from '@/lib/auto-convert'
 
 interface UnitOption {
@@ -34,7 +35,12 @@ export function CalculatorSlider({
   const value = watch(name)
   const error = errors[name]
   const { currencySymbol, measurement } = useCurrency()
-  const displayLabel = useMemo(() => label.replace('($)', `(${currencySymbol})`), [label, currencySymbol])
+  const tf = useTranslations('calculatorUI')
+  const translatedLabel = useMemo(() => {
+    const key = 'formLabels.' + name
+    return tf.has(key) ? tf(key) : label
+  }, [name, label, tf])
+  const displayLabel = useMemo(() => translatedLabel.replace('($)', `(${currencySymbol})`), [translatedLabel, currencySymbol])
   const [conversionHint, setConversionHint] = useState<string | null>(null)
   const inputRef = useRef<HTMLInputElement | null>(null)
 

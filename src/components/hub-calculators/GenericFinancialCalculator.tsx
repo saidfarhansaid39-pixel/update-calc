@@ -10,6 +10,7 @@ import { UnitToggle } from '@/components/forms/UnitToggle'
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic'
 import type { UnitSystem } from '@/components/premium/PremiumCalculatorShell'
 import { ModeFieldGroup } from '@/components/premium/ModeFieldGroup'
+import { useTranslations } from 'next-intl'
 import { getFinFormula, finSlugOverrides } from '@/lib/seo/formula-generator'
 import { DynamicLoanDonutChart as LoanDonutChart, DynamicInvestmentGrowthChart as InvestmentGrowthChart, DynamicAmortizationChart as AmortizationChart, DynamicComparisonBarChart as ComparisonBarChart } from '@/components/premium/DynamicCharts'
 import { AmortizationSchedule } from '@/components/calc-panel/AmortizationSchedule'
@@ -1101,6 +1102,10 @@ function MortgageResults({ price, down, rate, term, propertyTax, homeInsurance, 
   frequency?: string
   extraFields?: Record<string, string>
 }) {
+  const tf = useTranslations('calculatorUI')
+  const tl = useCallback((key: string, fallback: string) => {
+    try { return tf.has('formLabels.' + key) ? tf('formLabels.' + key) : fallback } catch { return fallback }
+  }, [tf])
   const n = (v: string | undefined) => { const p = parseFloat(v || ''); return isNaN(p) ? undefined : p }
   const inflationRate = n(extraFields?.extra_inflation_rate)
   const effectiveRate = inflationRate !== undefined ? rate - inflationRate : rate
@@ -1221,19 +1226,19 @@ function MortgageResults({ price, down, rate, term, propertyTax, homeInsurance, 
       {/* Summary cards */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-          <p className="text-xs text-gray-400">Loan Amount</p>
+          <p className="text-xs text-gray-400">{tl('loanAmount', 'Loan Amount')}</p>
           <p className="text-sm font-bold text-gray-900 dark:text-white">${principal.toFixed(2)}</p>
         </div>
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-          <p className="text-xs text-gray-400">Total Interest</p>
+          <p className="text-xs text-gray-400">{tl('totalInterest', 'Total Interest')}</p>
           <p className="text-sm font-bold text-[#d62828]">${totalInterest.toFixed(2)}</p>
         </div>
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-          <p className="text-xs text-gray-400">Payoff Date</p>
+          <p className="text-xs text-gray-400">{tl('payoffDate', 'Payoff Date')}</p>
           <p className="text-sm font-bold text-gray-900 dark:text-white">{payoffDateStr}</p>
         </div>
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-          <p className="text-xs text-gray-400">Down Payment</p>
+          <p className="text-xs text-gray-400">{tl('downPayment', 'Down Payment')}</p>
           <p className="text-sm font-bold text-[#06b6d4]">${down.toFixed(2)} ({downPct.toFixed(1)}%)</p>
         </div>
       </div>
@@ -2120,6 +2125,11 @@ export function GenericFinancialCalculator({ calculator }: Props) {
     })
   }, [])
 
+  const tf = useTranslations('calculatorUI')
+  const tl = useCallback((key: string, fallback: string) => {
+    try { return tf.has('formLabels.' + key) ? tf('formLabels.' + key) : fallback } catch { return fallback }
+  }, [tf])
+
   const calcType = getCalcType(calculator.slug)
   const presets = getPresets(calcType)
 
@@ -2346,7 +2356,7 @@ export function GenericFinancialCalculator({ calculator }: Props) {
       : <CalculatorFormField key={name} name={name} label={label} min={opts?.min} max={opts?.max} step={(opts?.step ?? 1).toString()} locked={opts?.lockable !== false ? lockedFields.has(name) : undefined} onLockToggle={opts?.lockable !== false ? toggleLock : undefined} />
   const sel = (name: string, label: string, options: { value: string; label: string }[]) => (
     <div key={name}>
-      <label className="text-sm font-medium text-gray-700 dark:text-gray-300">{label}</label>
+      <label className="text-sm font-medium text-gray-700 dark:text-gray-300">{tl(name, label)}</label>
       <select {...form.register(name)} className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
         {options.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
       </select>
@@ -2532,9 +2542,9 @@ export function GenericFinancialCalculator({ calculator }: Props) {
             {field('downPayment', 'Down Payment', { max: 2000000, step: 1000 })}
             {field('rate', 'Interest Rate %', { min: 0, max: 30, step: 0.01 })}
             {field('term', 'Loan Term (years)', { min: 1, max: 40, step: 1 })}
-            <ModeFieldGroup minMode="advanced" label="Additional Costs">
+            <ModeFieldGroup minMode="advanced" label={tl('additionalCosts', 'Additional Costs')}>
               <details className="text-sm">
-                <summary className="cursor-pointer text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 font-medium">Additional costs</summary>
+                <summary className="cursor-pointer text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 font-medium">{tl('additionalCosts', 'Additional costs')}</summary>
                 <div className="mt-2 space-y-3">
                   {field('propertyTax', 'Annual Property Tax', { min: 0, max: 50000, step: 100 })}
                   {field('homeInsurance', 'Annual Insurance', { min: 0, max: 10000, step: 50 })}
@@ -2544,13 +2554,13 @@ export function GenericFinancialCalculator({ calculator }: Props) {
                 </div>
               </details>
             </ModeFieldGroup>
-            <ModeFieldGroup minMode="professional" label="Payment Frequency">
+            <ModeFieldGroup minMode="professional" label={tl('paymentFrequency', 'Payment Frequency')}>
               <div>
-                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Payment Frequency</label>
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">{tl('paymentFrequency', 'Payment Frequency')}</label>
                 <select {...form.register('frequency')} className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
-                  <option value="monthly">Monthly (12/yr)</option>
-                  <option value="biweekly">Bi-Weekly (26/yr)</option>
-                  <option value="accelerated">Accelerated Bi-Weekly</option>
+                  <option value="monthly">{tl('monthly', 'Monthly')} (12/yr)</option>
+                  <option value="biweekly">{tl('biweekly', 'Bi-Weekly')} (26/yr)</option>
+                  <option value="accelerated">{tl('acceleratedBiweekly', 'Accelerated Bi-Weekly')}</option>
                 </select>
               </div>
             </ModeFieldGroup>
@@ -2565,11 +2575,11 @@ export function GenericFinancialCalculator({ calculator }: Props) {
             {field('years', 'Investment Period (yrs)', { min: 1, max: 60, step: 1 })}
             {field('inflationRate', 'Expected Inflation %', { min: 0, max: 20, step: 0.1, lockable: false })}
             <div>
-              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Contribution Frequency</label>
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">{tl('contributionFrequency', 'Contribution Frequency')}</label>
               <select {...form.register('contribFrequency')} className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
-                <option value="monthly">Monthly</option>
-                <option value="quarterly">Quarterly</option>
-                <option value="annually">Annually</option>
+                <option value="monthly">{tl('monthly', 'Monthly')}</option>
+                <option value="quarterly">{tl('quarterly', 'Quarterly')}</option>
+                <option value="annually">{tl('annually', 'Annually')}</option>
               </select>
             </div>
           </>

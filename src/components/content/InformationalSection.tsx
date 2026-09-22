@@ -1,6 +1,9 @@
+ 'use client'
+
 import React from 'react'
 import { CalculatorContent, LongFormSection } from '@/lib/seo/calculator-content-engine'
 import { Lightbulb, AlertTriangle, BookOpen, Network, BookText, ChevronRight } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface InformationalSectionProps {
   title: string
@@ -9,6 +12,7 @@ interface InformationalSectionProps {
 }
 
 export function InformationalSection({ title, description, content }: InformationalSectionProps) {
+  const tc = useTranslations('content')
 
   return (
     <div className="space-y-6">
@@ -19,7 +23,7 @@ export function InformationalSection({ title, description, content }: Informatio
         <div id="use-cases" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
             <Lightbulb className="w-5 h-5 text-amber-500" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Real-World Use Cases</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{tc('realWorldUseCases')}</h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {content.useCases.map((uc, i) => (
@@ -37,7 +41,7 @@ export function InformationalSection({ title, description, content }: Informatio
         <div id="common-mistakes" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
             <AlertTriangle className="w-5 h-5 text-red-500" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Common Mistakes to Avoid</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{tc('commonMistakes')}</h2>
           </div>
           <div className="space-y-3">
             {content.commonMistakes.map((m, i) => (
@@ -55,7 +59,7 @@ export function InformationalSection({ title, description, content }: Informatio
         <div id="glossary" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
             <BookOpen className="w-5 h-5 text-blue-500" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Glossary of Terms</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{tc('glossary')}</h2>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {content.glossary.map((g, i) => (
@@ -73,7 +77,7 @@ export function InformationalSection({ title, description, content }: Informatio
         <div id="educational-guide" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
           <div className="flex items-center gap-2 mb-6">
             <BookText className="w-5 h-5 text-emerald-500" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Complete Guide</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{tc('completeGuide')}</h2>
           </div>
           <div className="space-y-8">
             {content.longFormArticle.map((section, i) => (
@@ -88,7 +92,7 @@ export function InformationalSection({ title, description, content }: Informatio
         <div id="related-concepts" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
             <Network className="w-5 h-5 text-purple-500" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Related Concepts</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{tc('relatedConcepts')}</h2>
           </div>
           <div className="flex flex-wrap gap-2">
             {content.relatedConcepts.map((concept, i) => (

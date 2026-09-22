@@ -200,37 +200,46 @@
     "press": "Пресса"
   },
   "content": {
-    "sectionOverview": "Обзор",
-    "sectionHowToUse": "Как использовать",
-    "sectionFormula": "Формула",
-    "sectionExample": "Пример",
-    "sectionUseCases": "Примеры использования",
-    "sectionTips": "Советы и рекомендации",
-    "sectionRelated": "Связанные инструменты",
-    "sectionFaq": "Часто задаваемые вопросы",
-    "whatThisMeans": "Что это значит",
-    "resultsExplained": "Объяснение результатов",
-    "howItWorks": "Как это работает?",
-    "educationalGuide": "Образовательное руководство",
-    "references": "Ссылки ({count})",
-    "relatedTopics": "Связанные темы",
-    "wasThisHelpful": "Было ли это руководство полезным?",
-    "wasCalcHelpful": "Помог ли вам этот калькулятор?",
-    "realWorldUseCases": "Реальные примеры использования",
+    "alternatives": "Альтернативы для рассмотрения",
+    "browseCollection": "Смотрите полную коллекцию калькуляторов {category} — больше инструментов и материалов.",
     "commonMistakes": "Распространённые ошибки",
-    "glossary": "Глоссарий терминов",
-    "prosCons": "Плюсы и минусы",
-    "pros": "Плюсы",
+    "completeGuide": "Полное руководство",
     "cons": "Минусы",
-    "expertRecommendations": "Рекомендации экспертов",
-    "whoShouldUse": "Кому следует использовать этот калькулятор?",
-    "exploreMoreIn": "Изучить больше в {hubName}",
-    "keyInsights": "Ключевые идеи",
-    "optimizationSuggestions": "Рекомендации по оптимизации",
-    "qualityAudit": "ИИ-аудит качества",
+    "educationalGuide": "Образовательное руководство",
     "excellent": "Отлично — превосходит отраслевые стандарты",
+    "expertRecommendations": "Рекомендации экспертов",
+    "expertTips": "Советы экспертов для точных результатов",
+    "exploreMoreIn": "Изучить больше в {hubName}",
+    "factor": "Фактор",
+    "glossary": "Глоссарий терминов",
     "good": "Хорошо — требуется небольшая доработка",
-    "needsImprovement": "Требует улучшения"
+    "howItWorks": "Как это работает?",
+    "keyInsights": "Ключевые идеи",
+    "manualApproach": "Ручной подход",
+    "needsImprovement": "Требует улучшения",
+    "optimizationSuggestions": "Рекомендации по оптимизации",
+    "ourCalculator": "Наш калькулятор",
+    "pros": "Плюсы",
+    "prosCons": "Плюсы и минусы",
+    "qualityAudit": "ИИ-аудит качества",
+    "realWorldUseCases": "Реальные примеры использования",
+    "references": "Ссылки ({count})",
+    "relatedConcepts": "Связанные понятия",
+    "relatedTopics": "Связанные темы",
+    "resultsExplained": "Объяснение результатов",
+    "sectionExample": "Пример",
+    "sectionFaq": "Часто задаваемые вопросы",
+    "sectionFormula": "Формула",
+    "sectionHowToUse": "Как использовать",
+    "sectionOverview": "Обзор",
+    "sectionRelated": "Связанные инструменты",
+    "sectionTips": "Советы и рекомендации",
+    "sectionUseCases": "Примеры использования",
+    "viewAll": "Смотреть все: {hubName}",
+    "wasCalcHelpful": "Помог ли вам этот калькулятор?",
+    "wasThisHelpful": "Было ли это руководство полезным?",
+    "whatThisMeans": "Что это значит",
+    "whoShouldUse": "Кому следует использовать этот калькулятор?"
   },
   "guide": {
     "completeGuide": "Полное руководство по: {name}",
@@ -2358,257 +2367,454 @@
       "paymentCalculator": "Калькулятор платежей"
     },
     "formLabels": {
-      "homePrice": "Цена жилья",
-      "downPayment": "Первоначальный взнос",
-      "loanTerm": "Срок кредита",
-      "interestRate": "Процентная ставка",
-      "loanAmount": "Сумма кредита",
-      "monthlyPay": "Ежемесячный платёж",
-      "salaryAmount": "Сумма зарплаты",
-      "hoursPerWeek": "Часов в неделю",
-      "daysPerWeek": "Дней в неделю",
-      "holidaysPerYear": "Праздников в год",
-      "vacationDaysPerYear": "Дней отпуска в год",
-      "pretaxIncome": "Ваш доход до вычета налогов",
-      "monthlyDebt": "Ваш ежемесячный платёж по долгам",
-      "startDate": "Дата начала",
-      "extraPayment": "Дополнительный платёж",
-      "principal": "Сумма кредита ($)",
-      "rate": "Процентная ставка (%)",
-      "term": "Срок кредита (лет)",
-      "age": "Возраст (лет)",
-      "height": "Рост (см)",
-      "weight": "Вес (кг)",
-      "gender": "Пол",
-      "male": "Мужской",
-      "female": "Женский",
-      "waist": "Талия (см)",
-      "hip": "Бёдра (см)",
-      "neck": "Шея (см)",
-      "bodyFat": "Процент жира (%)",
-      "bmrFormula": "Формула BMR",
-      "healthGoal": "Цель для здоровья",
-      "activityLevel": "Уровень активности",
-      "targetWeightChange": "Целевое изменение веса",
-      "dailyStepGoal": "Дневной целевой показатель шагов",
-      "sleepHours": "Сон в сутки (часы)",
-      "stressLevel": "Уровень стресса (1-10)",
-      "systolicBP": "Систолическое давление (mmHg)",
-      "diastolicBP": "Диастолическое давление (mmHg)",
-      "calories": "Калории",
-      "protein": "Белки (г)",
-      "carbs": "Углеводы (г)",
-      "fat": "Жиры (г)",
-      "fiber": "Клетчатка (г)",
-      "sugar": "Сахар (г)",
-      "sodium": "Натрий (мг)",
-      "waterIntake": "Потребление воды (oz)",
-      "hours": "Часы",
-      "minutes": "Минуты",
-      "seconds": "Секунды",
-      "distance": "Расстояние",
-      "speed": "Скорость",
-      "temperature": "Температура",
-      "length": "Длина",
-      "width": "Ширина",
-      "height_dim": "Высота",
-      "depth": "Глубина",
-      "radius": "Радиус",
-      "diameter": "Диаметр",
-      "volume": "Объём",
-      "area": "Площадь",
-      "frequency": "Частота",
-      "voltage": "Напряжение",
-      "current": "Сила тока (Амперы)",
-      "resistance": "Сопротивление (Омы)",
-      "power": "Мощность (Ватты)",
-      "mass": "Масса",
-      "time": "Время",
-      "angle": "Угол",
-      "pressure": "Давление",
-      "energy": "Энергия",
-      "force": "Сила",
-      "salary_annual": "Годовая зарплата ($)",
-      "salary_hourly": "Почасовая оплата ($)",
-      "salary_weekly": "Недельный заработок ($)",
-      "salary_biweekly": "Двухнедельный заработок ($)",
-      "salary_monthly": "Месячный заработок ($)",
       "a": "Расстояние от левой опоры",
+      "acceleratedBiweekly": "Ускоренные два раза в неделю",
       "act": "Балл ACT",
       "activities": "Балл за внеучебную деятельность (1-10)",
+      "activity": "Activity (0-2)",
+      "activityLevel": "Уровень активности",
+      "addedSugar": "Added Sugar (g)",
+      "additionalCosts": "Дополнительные расходы",
+      "adjustableRate": "Изменяемая ставка",
       "admission": "Коэффициент зачисления (%)",
+      "age": "Возраст (лет)",
+      "agitation": "Agitation (0-7)",
       "airfare": "Авиабилеты ($)",
+      "albumin": "Albumin",
       "alpha": "Коэффициент (α)",
+      "alteredMentalStatus": "Altered Mental Status",
       "amount": "Сумма",
+      "angle": "Угол",
+      "annualIncome": "Годовой доход",
+      "annually": "Ежегодно",
+      "anxiety": "Anxiety (0-7)",
+      "appearance": "Appearance (0-2)",
+      "area": "Площадь",
+      "armPeriod": "Период ARM",
+      "ascites": "Ascites",
+      "ascvd": "ASCVD Risk",
       "assignments": "Средний балл за задания (%)",
+      "averageHr": "Average HR",
       "avgAssets": "Средние активы ($)",
       "b": "Ширина сечения (b)",
       "balance": "Остаток ($)",
+      "balloonPayment": "Баллонный платёж",
       "basicSupplies": "Базовые материалы на студента ($)",
+      "bedTime": "Bed Time",
+      "beverage": "Beverage",
+      "bicarbonate": "Bicarbonate (mEq/L)",
+      "bilirubin": "Bilirubin",
       "birth": "Дата рождения",
+      "biweekly": "Дважды в неделю",
+      "bmi": "BMI",
+      "bmr": "BMR",
+      "bmrFormula": "Формула BMR",
+      "bodyFat": "Процент жира (%)",
+      "bodyRoundness": "Body Roundness Index",
       "breakM": "Перерыв (минуты)",
       "breakMin": "Перерыв (мин)",
       "breaks": "Минуты перерыва в час",
+      "bsa": "Body Surface Area",
+      "bun": "BUN (mg/dL)",
       "c": "Ёмкость",
+      "calcium": "Calcium (mg)",
+      "caliper": "Skinfold Caliper",
+      "calories": "Калории",
+      "carb": "Carbs (g)",
+      "carbs": "Углеводы (г)",
       "cards": "Всего карточек",
+      "cerebrovascular": "Cerebrovascular",
+      "chadsVasc": "CHA₂DS₂-VASc",
       "chars": "Введённых символов",
+      "chloride": "Chloride (mEq/L)",
       "classSize": "Размер класса",
+      "climate": "Climate",
       "clockIn": "Приход",
       "clockOut": "Уход",
+      "closingCosts": "Расходы при закрытии",
+      "compound": "Начисление процентов",
+      "compoundingFrequency": "Частота начисления",
+      "conceptionDate": "Conception Date",
       "content": "Балл за содержание (0-100)",
+      "contributionFrequency": "Частота взносов",
+      "coping": "How often coping well? (0-3)",
       "correct": "Правильных вопросов",
       "cost": "Стоимость ($)",
       "count": "Количество",
       "courses": "Количество курсов",
       "cp": "Химия/Физика (118-132)",
+      "creatinine": "Creatinine (mg/dL)",
       "creativity": "Креативность",
+      "creditScore": "Кредитный рейтинг",
       "credits": "Зачётные часы (через запятую)",
+      "currency": "Валюта",
+      "current": "Сила тока (Амперы)",
+      "currentAge": "Текущий возраст",
       "currentAssets": "Текущие активы ($)",
       "currentCredits": "Накопленные кредиты",
       "currentGpa": "Текущий GPA",
       "currentLiabilities": "Текущие обязательства ($)",
+      "currentWeight": "Current Weight (kg)",
+      "cycleLength": "Cycle Length (days)",
       "d": "Диаметр",
       "daily": "Дневной лимит изучения",
+      "dailyCalories": "Daily Calories",
+      "dailyStepGoal": "Дневной целевой показатель шагов",
+      "dailySteps": "Daily Steps",
       "date": "Дата",
       "days": "Дни",
+      "daysPerWeek": "Дней в неделю",
+      "debtToIncome": "Соотношение долга к доходу",
       "decimal": "Десятичные часы",
       "deductible": "Франшиза ($)",
+      "deductions": "Вычеты",
       "deltaL": "Изменение длины",
       "deltaT": "Изменение температуры",
       "density": "Плотность",
+      "dependents": "Иждивенцы",
+      "depth": "Глубина",
       "desired": "Желаемая итоговая оценка (%)",
+      "diabetes": "Diabetes",
+      "diabetic": "Diabetic",
+      "dialysis": "Dialysis",
+      "diameter": "Диаметр",
+      "diastolic": "Diastolic BP",
+      "diastolicBP": "Диастолическое давление (mmHg)",
       "difficulty": "Коэффициент сложности",
       "displacement": "Перемещение",
+      "distance": "Расстояние",
+      "dosePerKg": "Dose per kg (mg/kg)",
+      "downPayment": "Первоначальный взнос",
+      "drinks": "Drinks",
+      "dropFactor": "Drop Factor (gtt/mL)",
+      "dueDate": "Due Date",
+      "duration": "Duration (minutes)",
       "e": "Модуль Юнга",
       "earned": "Набранные баллы",
       "ebit": "EBIT ($)",
       "efc": "Ожидаемый семейный взнос (EFC)",
       "end": "Дата окончания",
+      "endDiastolicVolume": "End-Diastolic Volume (mL)",
       "endH": "Час окончания",
       "endM": "Минута окончания",
+      "endSystolicVolume": "End-Systolic Volume (mL)",
+      "energy": "Энергия",
       "equipment": "Оборудование (%)",
       "errors": "Ошибки",
       "exams": "Средний балл экзаменов (%)",
+      "exerciseHr": "Exercise Heart Rate",
+      "expectedReturn": "Ожидаемая доходность",
       "expenses": "Ежемесячные расходы ($)",
+      "extraPayment": "Дополнительный платёж",
+      "eyeOpening": "Eye Opening (1-4)",
       "faceValue": "Номинальная стоимость ($)",
+      "fat": "Жиры (г)",
       "fees": "Годовые сборы ($)",
+      "female": "Женский",
+      "ffmi": "Fat-Free Mass Index",
+      "fiO2": "FiO₂ (0.21-1.0)",
+      "fiber": "Клетчатка (г)",
+      "filingStatus": "Статус подачи",
+      "firstHcg": "First HCG Level",
+      "fitnessAge": "Fitness Age",
       "fixedCosts": "Постоянные затраты ($)",
       "food": "Питание в месяц ($)",
+      "force": "Сила",
+      "formula": "Формула",
+      "frameSize": "Frame Size",
+      "framingham": "Framingham Risk",
       "freq": "Частота",
+      "frequency": "Частота",
       "from": "Из",
       "fromUnit": "Из",
+      "fundalHeight": "Fundal Height (cm)",
       "g2": "Оценка курса 2 (%)",
       "gamma": "Показатель адиабаты (γ)",
+      "gcs": "GCS (3-15)",
+      "gender": "Пол",
+      "glucose": "Glucose (mg/dL)",
       "goal": "Цель",
       "gpa": "Ваш GPA",
       "grade": "Оценка",
       "grades": "Баллы оценок (через запятую)",
       "grants": "Гранты ($/год)",
+      "grimace": "Grimace (0-2)",
+      "grossIncome": "Валовый доход",
       "h": "Высота (h)",
       "h1": "Часы 1",
       "h2": "Часы 2",
+      "hcg": "HCG Level",
+      "hdl": "HDL",
+      "healthGoal": "Цель для здоровья",
+      "heartAge": "Heart Age",
+      "heartFailure": "Heart Failure",
+      "heartRate": "Heart Rate (bpm)",
+      "height": "Рост (см)",
+      "height_dim": "Высота",
+      "hematocrit": "Hematocrit (%)",
+      "hip": "Бёдра (см)",
+      "hoaFees": "Квартплата",
+      "holidaysPerYear": "Праздников в год",
+      "homePrice": "Цена жилья",
       "honors": "Курсы с отличием/AP (через запятую Д/Н)",
+      "hours": "Часы",
+      "hoursDrinking": "Hours Drinking",
+      "hoursElapsed": "Hours Elapsed",
       "hoursPerDay": "Доступные часы в день",
       "hoursPerTask": "Часы на задачу",
+      "hoursPerWeek": "Часов в неделю",
       "housing": "Жильё ($)",
+      "hrAfterMinRest": "HR After 1 Min Rest",
+      "hrZone": "Heart Rate Zone",
+      "hrv": "Heart Rate Variability",
       "humanYears": "Человеческие годы",
+      "hypertension": "Hypertension",
       "i": "Момент инерции (I)",
       "income": "Доход ($)",
+      "inflationRate": "Уровень инфляции",
+      "infusionTime": "Infusion Time (hours)",
       "initial": "Первоначальные инвестиции ($)",
       "inputRpm": "Входная скорость (RPM)",
+      "inr": "INR",
+      "insurance": "Страховка",
+      "intensity": "Intensity (%)",
       "interestExpense": "Процентные расходы ($)",
+      "interestRate": "Процентная ставка",
+      "iron": "Iron (mg)",
       "k": "Жёсткость пружины",
       "k1": "Жёсткость пружины 1",
       "l": "Индуктивность",
+      "leanMass": "Lean Body Mass",
+      "length": "Длина",
+      "lifeExpectancy": "Продолжительность жизни",
+      "lightActivity": "Light Activity (hours)",
       "listening": "Аудирование (0-30)",
+      "liverDisease": "Liver Disease",
+      "lmp": "Last Menstrual Period",
       "load": "Нагрузка",
+      "loanAmount": "Сумма кредита",
+      "loanTerm": "Срок кредита",
       "m1": "Мин 1",
       "m2": "Мин 2",
+      "macro": "Macro Goal",
+      "male": "Мужской",
+      "mass": "Масса",
       "math": "Балл по математике (200-800)",
       "meals": "Питание ($)",
       "meetings": "Встречи (ч/нед)",
+      "metMinutes": "MET Minutes",
+      "metValue": "MET Value",
       "method": "Метод",
       "minGpa": "Минимальный GPA",
+      "minutes": "Минуты",
+      "minutesPerSession": "Minutes per Session",
       "mode": "Конфигурация",
+      "moderateActivity": "Moderate Activity (hours)",
+      "monthly": "Ежемесячно",
+      "monthlyDebt": "Ваш ежемесячный платёж по долгам",
+      "monthlyIncome": "Месячный доход",
+      "monthlyPay": "Ежемесячный платёж",
+      "monthlyPayment": "Ежемесячный платёж",
       "months": "Количество месяцев",
       "motivation": "Оценка мотивации (%)",
+      "motorResponse": "Motor Response (1-6)",
       "mu": "Вязкость жидкости (μ)",
       "n": "Коэффициент Мэннинга (n)",
       "n1": "Первичные витки",
       "n2": "Вторичные витки",
+      "napDuration": "Nap Duration (min)",
+      "nausea": "Nausea/Vomiting (0-7)",
+      "navyBf": "Navy Body Fat",
+      "neat": "NEAT",
+      "neck": "Шея (см)",
+      "neoplasm": "Neoplasm",
       "netIncome": "Чистый доход ($)",
+      "newConfusion": "New Confusion",
       "newDaily": "Новых карточек в день",
+      "nursingHome": "Nursing Home",
+      "obGcs": "OB GCS",
+      "onHtnTreatment": "On HTN Treatment",
+      "orientation": "Orientation (0-4)",
       "origL": "Первоначальная длина",
       "other": "Прочие расходы в месяц ($)",
+      "ouncesPerDrink": "Ounces per Drink",
+      "oxygenSaturation": "Oxygen Saturation (%)",
       "p1": "Давление в точке 1",
+      "paco2": "PaCO₂ (mmHg)",
       "pages": "Страниц для изучения",
+      "pal": "Physical Activity Level",
+      "pao2": "PaO₂ (mmHg)",
+      "paymentFrequency": "Периодичность платежей",
+      "paymentStart": "Дата начала платежей",
+      "payoffDate": "Дата погашения",
+      "peakHr": "Peak HR",
       "percentile": "Оценка процентиля",
       "period": "Период",
+      "periodLength": "Period Length (days)",
+      "ph": "pH",
       "plannedCredits": "Планируемые кредиты",
+      "pleuralEffusion": "Pleural Effusion",
+      "ponderal": "Ponderal Index",
       "portfolioReturn": "Доходность портфеля %",
+      "power": "Мощность (Ватты)",
       "pr": "Коэффициент давления (P₂/P₁)",
+      "prePregnancyWeight": "Pre-Pregnancy Weight (kg)",
+      "pregWeightGain": "Pregnancy Weight Gain",
+      "pregnant": "Pregnant",
+      "prepayment": "Досрочное погашение",
       "present": "Дней присутствия",
+      "pressure": "Давление",
+      "pretaxIncome": "Ваш доход до вычета налогов",
       "price": "Цена ($)",
+      "principal": "Сумма кредита ($)",
+      "principalAndInterest": "Основной долг и проценты",
       "programFee": "Программный сбор ($)",
+      "propertyDetails": "Параметры недвижимости",
+      "propertyTax": "Налог на недвижимость",
       "propertyValue": "Стоимость недвижимости ($)",
+      "protein": "Белки (г)",
+      "pulse": "Pulse (0-2)",
       "q": "Расход (Q)",
+      "qt": "QT Interval (ms)",
       "quality": "Балл качества (0-100)",
       "quant": "Количественный (0-60)",
+      "quarterly": "Ежеквартально",
       "questions": "Вопросы",
       "r": "Сопротивление",
+      "radius": "Радиус",
       "rank": "Позиция в классе (top %)",
+      "rate": "Процентная ставка (%)",
       "reading": "Балл по чтению (200-800)",
+      "recoveryHr": "Recovery Heart Rate",
       "registration": "Регистрация ($)",
       "regular": "Баллы обычных курсов (через запятую)",
+      "renalDisease": "Renal Disease",
       "rent": "Аренда в месяц ($)",
       "required": "Требуемая посещаемость (%)",
+      "resistance": "Сопротивление (Омы)",
+      "respiration": "Respiration (0-2)",
+      "respiratoryRate": "Respiratory Rate",
+      "restingHr": "Resting HR",
       "retirementAge": "Возраст выхода на пенсию",
       "revenue": "Выручка ($)",
       "rho": "Плотность (ρ)",
       "riskFreeRate": "Безрисковая ставка %",
+      "rmssd": "RMSSD (ms)",
+      "rr": "RR Interval (ms)",
       "sAlt": "Знакопеременное напряжение (S_a)",
+      "salaryAmount": "Сумма зарплаты",
+      "salary_annual": "Годовая зарплата ($)",
+      "salary_biweekly": "Двухнедельный заработок ($)",
+      "salary_hourly": "Почасовая оплата ($)",
+      "salary_monthly": "Месячный заработок ($)",
+      "salary_weekly": "Недельный заработок ($)",
       "sat": "Балл SAT",
+      "saturatedFat": "Saturated Fat (g)",
       "savings": "Сбережения ($/год)",
+      "savingsRate": "Норма сбережений",
       "science": "Естественные науки (1-36)",
       "score": "Балл",
+      "secondHcg": "Second HCG Level",
+      "seconds": "Секунды",
+      "sedentaryHours": "Sedentary (hours)",
+      "serumCreatinine": "Serum Creatinine (mg/dL)",
+      "serumNa": "Serum Na (mEq/L)",
+      "servings": "Servings",
       "shares": "Акции в обращении",
       "size": "Размер",
+      "sleep": "Sleep (hours)",
+      "sleepHours": "Сон в сутки (часы)",
+      "smm": "Skeletal Muscle Mass",
+      "smoker": "Smoker",
+      "sodium": "Натрий (мг)",
       "sources": "Количество источников",
       "span": "Пролёт балки",
       "speaking": "Говорение (0-30)",
+      "speed": "Скорость",
       "spending": "Ежемесячные расходы ($)",
+      "standingHours": "Standing Hours",
       "start": "Дата начала",
+      "startDate": "Дата начала",
       "startH": "Час начала",
       "startM": "Минута начала",
+      "steps": "Steps",
+      "stress": "Stress Level (1-10)",
+      "stressLevel": "Уровень стресса (1-10)",
+      "stressed": "How often stressed? (0-3)",
+      "strokeTia": "Stroke/TIA",
+      "strokeVolume": "Stroke Volume (mL)",
       "students": "Студенты",
       "studyHrs": "Всего часов занятий необходимо",
       "subjects": "Предметы",
+      "sugar": "Сахар (г)",
+      "sunExposure": "Sun Exposure",
       "supplies": "Материалы ($/год)",
+      "sweats": "Sweats (0-7)",
+      "systolic": "Systolic BP",
+      "systolicBP": "Систолическое давление (mmHg)",
       "t": "Толщина плиты",
       "t1": "Температура на входе (T₁)",
       "t1H": "Часы 1",
       "target": "Целевая дата",
+      "targetHr": "Target Heart Rate",
+      "targetWeightChange": "Целевое изменение веса",
       "tasks": "Количество задач",
       "taxRate": "Налоговая ставка %",
+      "tdee": "TDEE",
+      "temperature": "Температура",
+      "term": "Срок кредита (лет)",
       "thickness": "Толщина",
+      "time": "Время",
       "to": "В",
+      "toUnit": "В",
       "topics": "Темы для изучения",
       "total": "Максимальное количество баллов",
+      "totalBurnSurfaceArea": "Total Burn Surface Area (%)",
+      "totalCost": "Общая стоимость",
       "totalDebt": "Общий долг ($)",
-      "toUnit": "В",
+      "totalInterest": "Общие проценты",
+      "totalMonthly": "Итого в месяц",
       "transport": "Транспорт в месяц ($)",
       "travel": "Командировочные расходы ($)",
+      "treatedForHtn": "Treated for HTN",
+      "tremor": "Tremor (0-7)",
+      "trimp": "Training Impulse",
       "tuition": "Годовая плата за обучение ($)",
       "type": "Тип",
+      "unableToControl": "How often unable to control? (0-3)",
+      "unit": "Единица",
       "units": "Единицы",
+      "urineCreatinine": "Urine Creatinine (mg/dL)",
+      "urineNa": "Urine Na (mEq/L)",
       "v1": "Первичное напряжение",
+      "vacationDaysPerYear": "Дней отпуска в год",
       "value": "Значение",
+      "vascularDisease": "Vascular Disease",
       "velocity": "Скорость",
       "verbal": "Вербальный (0-60)",
+      "verbalResponse": "Verbal Response (1-5)",
+      "vigorousActivity": "Vigorous Activity (hours)",
       "visa": "Виза/страховка ($)",
+      "vitaminD": "Vitamin D (IU)",
+      "vo2": "VO2 Max",
+      "voltage": "Напряжение",
+      "volume": "Объём",
+      "waist": "Талия (см)",
       "wakeH": "Час пробуждения",
       "wakeM": "Минута пробуждения",
+      "wakeTime": "Wake Time",
+      "walkingHours": "Walking Hours",
+      "waterIntake": "Потребление воды (oz)",
+      "waterNeeds": "Water Needs (oz)",
+      "weekOfGestation": "Week of Gestation",
+      "weekdaySleep": "Weekday Sleep (hours)",
+      "weekendSleep": "Weekend Sleep (hours)",
       "weeks": "Количество недель",
+      "weight": "Вес (кг)",
+      "whr": "Waist-to-Hip Ratio",
+      "whtr": "Waist-to-Height Ratio",
+      "width": "Ширина",
+      "withdrawalRate": "Норма вывода средств",
       "words": "Прочитано слов",
       "writing": "Балл по письму (200-800)",
       "year": "Год",
@@ -3215,5 +3421,2203 @@
     "whatThisMeans": "Что это значит",
     "rateStars": "{count, plural, one {Оценить на {count} звезду} few {Оценить на {count} звезды} many {Оценить на {count} звёзд} other {Оценить на {count} звёзд}}",
     "ratingsCount": "{count, plural, one {# оценка} few {# оценки} many {# оценок} other {# оценок}}"
+  },
+  "contentEngine": {
+    "whatIs": "{title} — это бесплатный онлайн-инструмент, который помогает {keyPhrase}. Создан для {persona}, он мгновенно выдаёт точные результаты. Независимо от того, занимаетесь ли вы {activity}, этот калькулятор упрощает сложные вычисления, чтобы вы могли сосредоточиться на {goal}.",
+    "audience": {
+      "financial": {
+        "persona": "покупателя жилья, инвестора или финансового планировщика",
+        "activity": "управляете личными финансами",
+        "goal": "принятии взвешенных финансовых решений и накоплении капитала"
+      },
+      "health": {
+        "persona": "человека, заботящегося о здоровье",
+        "activity": "отслеживаете показатели здоровья",
+        "goal": "понимании своего тела и улучшении самочувствия"
+      },
+      "math": {
+        "persona": "школьника, учителя или специалиста",
+        "activity": "решаете математические задачи",
+        "goal": "точных вычислениях и понимании математики"
+      },
+      "conversion": {
+        "persona": "путешественника, повара, инженера или студента",
+        "activity": "переводите одни единицы в другие",
+        "goal": "мгновенных точных переводах единиц"
+      },
+      "date-time": {
+        "persona": "менеджера проектов, организатора событий или любознательного человека",
+        "activity": "рассчитываете даты и сроки",
+        "goal": "эффективном управлении временем"
+      },
+      "construction": {
+        "persona": "подрядчика, архитектора или домашнего мастера",
+        "activity": "планируете строительные проекты",
+        "goal": "точной оценке материалов и затрат"
+      },
+      "statistics": {
+        "persona": "исследователя, аналитика или дата-сайентиста",
+        "activity": "анализируете наборы данных",
+        "goal": "понимании закономерностей и обоснованных выводах"
+      },
+      "education": {
+        "persona": "школьника, учителя или методиста",
+        "activity": "отслеживаете успеваемость",
+        "goal": "улучшении оценок и учебных планах"
+      },
+      "physics": {
+        "persona": "школьника, инженера или любителя науки",
+        "activity": "решаете задачи по физике",
+        "goal": "понимании законов физики и их применения"
+      },
+      "chemistry": {
+        "persona": "химика, студента или лаборанта",
+        "activity": "выполняете химические расчёты",
+        "goal": "точных результатах экспериментов"
+      },
+      "engineering": {
+        "persona": "инженера, конструктора или технического специалиста",
+        "activity": "решаете инженерные задачи",
+        "goal": "проектировании безопасных систем"
+      },
+      "everyday": {
+        "persona": "любого, кто управляет делами и решениями",
+        "activity": "выполняете повседневные расчёты",
+        "goal": "экономии времени и лучших решениях"
+      },
+      "food": {
+        "persona": "домашнего повара, шефа или любителя питания",
+        "activity": "готовите и планируете меню",
+        "goal": "уверенном создании вкусной еды"
+      },
+      "biology": {
+        "persona": "биолога, студента или любителя науки",
+        "activity": "изучаете живые организмы",
+        "goal": "понимании биологических процессов"
+      },
+      "ecology": {
+        "persona": "эколога, студента или защитника природы",
+        "activity": "изучаете экосистемы",
+        "goal": "понимании и защите природы"
+      },
+      "sports": {
+        "persona": "спортсмена, тренера или любителя фитнеса",
+        "activity": "улучшаете спортивные результаты",
+        "goal": "росте формы и профилактике травм"
+      }
+    },
+    "adjectives": {
+      "financial": "Финансовая",
+      "health": "Медицинская",
+      "math": "Математическая",
+      "conversion": "Конверсионная",
+      "date-time": "Тайм-менеджмента",
+      "construction": "Строительная",
+      "statistics": "Статистическая",
+      "education": "Образовательная",
+      "physics": "Физическая",
+      "chemistry": "Химическая",
+      "engineering": "Инженерная",
+      "everyday": "Продуктивная",
+      "food": "Кулинарная",
+      "biology": "Биологическая",
+      "ecology": "Экологическая",
+      "sports": "Спортивная"
+    },
+    "useCases": {
+      "financial": [
+        {
+          "title": "Планирование стратегии {topicLower}",
+          "description": "Моделируйте разные финансовые сценарии и находите оптимальный подход."
+        },
+        {
+          "title": "Сравнение вариантов {topicLower}",
+          "description": "Вводите переменные рядом, чтобы сравнить исходы и выбрать лучший."
+        },
+        {
+          "title": "Бюджетирование {topicLower}",
+          "description": "Включите расчёты {topicLower} в общий финансовый план для точности."
+        },
+        {
+          "title": "В учебных целях",
+          "description": "Поймите, как работает {topicLower}, экспериментируя со значениями."
+        }
+      ],
+      "health": [
+        {
+          "title": "Отслеживание {topicLower}",
+          "description": "Следите за {topicLower} во времени, выявляйте тренды и принимайте решения о здоровье."
+        },
+        {
+          "title": "Цели по {topicLower}",
+          "description": "Ставьте реалистичные цели на основе текущих показателей."
+        },
+        {
+          "title": "Консультации с врачами",
+          "description": "Делитесь результатами {topicLower} с врачами для точных консультаций."
+        },
+        {
+          "title": "Знания о здоровье",
+          "description": "Поймите, что значит {topicLower} и как это связано с профилактикой."
+        }
+      ],
+      "math": [
+        {
+          "title": "Решение задач {topicLower}",
+          "description": "Быстро считайте значения {topicLower} для учёбы, работы и быта."
+        },
+        {
+          "title": "Проверка работы",
+          "description": "Проверяйте ручные расчёты перед сдачей заданий."
+        },
+        {
+          "title": "Обучение {topicLower}",
+          "description": "Используйте калькулятор как наглядное пособие для понятий и применений."
+        },
+        {
+          "title": "Прикладная математика",
+          "description": "Применяйте {topicLower} в бюджете, строительстве и анализе данных."
+        }
+      ],
+      "conversion": [
+        {
+          "title": "Зарубежные поездки",
+          "description": "Переводите валюты, температуры и меры в поездках."
+        },
+        {
+          "title": "Кулинария",
+          "description": "Переводите метрические и имперские единицы для рецептов со всего мира."
+        },
+        {
+          "title": "Учёба и работа",
+          "description": "Точные переводы единиц в науке, проектах и заданиях."
+        },
+        {
+          "title": "Онлайн-покупки",
+          "description": "Сравнивайте характеристики в разных системах единиц."
+        }
+      ],
+      "date-time": [
+        {
+          "title": "Планирование проектов",
+          "description": "Точно считайте длительности, дедлайны и вехи."
+        },
+        {
+          "title": "Организация событий",
+          "description": "Определяйте точное время между датами для планирования."
+        },
+        {
+          "title": "Возраст и годовщины",
+          "description": "Считайте точный возраст и время с важных событий."
+        },
+        {
+          "title": "Деловые сроки",
+          "description": "Отслеживайте договоры, платежи и поставки."
+        }
+      ],
+      "construction": [
+        {
+          "title": "Смета проекта",
+          "description": "Считайте потребность в {topicLower} до закупки материалов."
+        },
+        {
+          "title": "Планирование затрат",
+          "description": "Точно бюджетируйте количества и стоимость."
+        },
+        {
+          "title": "Общение с подрядчиками",
+          "description": "Давайте точные спецификации и проверяйте сметы."
+        },
+        {
+          "title": "Ремонт своими руками",
+          "description": "Планируйте ремонт уверенно с точными замерами."
+        }
+      ],
+      "statistics": [
+        {
+          "title": "Анализ данных",
+          "description": "Применяйте расчёты {topicLower} к опросам, экспериментам и метрикам."
+        },
+        {
+          "title": "Исследования",
+          "description": "Используйте калькулятор для работ со статистикой и проверкой гипотез."
+        },
+        {
+          "title": "Контроль качества",
+          "description": "Следите за качеством через статистический контроль процессов."
+        },
+        {
+          "title": "Принятие решений",
+          "description": "Опирайтесь на статистику в решениях на основе данных."
+        }
+      ],
+      "education": [
+        {
+          "title": "Учебное планирование",
+          "description": "Считайте {topicLower} для траектории и реальных целей по оценкам."
+        },
+        {
+          "title": "Поступление",
+          "description": "Определяйте средний балл для поступления и стипендий."
+        },
+        {
+          "title": "Отслеживание прогресса",
+          "description": "Следите за успеваемостью и корректируйте подготовку."
+        },
+        {
+          "title": "Диалог с родителями",
+          "description": "Делитесь метриками для совместного учебного планирования."
+        }
+      ],
+      "physics": [
+        {
+          "title": "Домашка и экзамены",
+          "description": "Быстро решайте задачи {topicLower} и проверяйте работу."
+        },
+        {
+          "title": "Лабораторные",
+          "description": "Считайте теоретические значения и сравнивайте с опытом."
+        },
+        {
+          "title": "Инженерные применения",
+          "description": "Применяйте принципы {topicLower} в реальном проектировании."
+        },
+        {
+          "title": "Явления природы",
+          "description": "Изучите, как {topicLower} управляет от планет до частиц."
+        }
+      ],
+      "chemistry": [
+        {
+          "title": "Лабораторные работы",
+          "description": "Точно считайте {topicLower} для опытов и анализов."
+        },
+        {
+          "title": "Домашка и учёба",
+          "description": "Проверяйте задания и связи между величинами."
+        },
+        {
+          "title": "Промышленные процессы",
+          "description": "Считайте {topicLower} для производства и контроля качества."
+        },
+        {
+          "title": "Планирование безопасности",
+          "description": "Определяйте безопасные концентрации до опытов."
+        }
+      ],
+      "engineering": [
+        {
+          "title": "Проектирование и анализ",
+          "description": "Считайте {topicLower}, обеспечивая безопасность и эффективность."
+        },
+        {
+          "title": "Прототипирование",
+          "description": "Проверяйте параметры {topicLower} до сборки прототипов."
+        },
+        {
+          "title": "Проверка норм",
+          "description": "Убедитесь, что расчёты {topicLower} соответствуют стандартам."
+        },
+        {
+          "title": "Диагностика",
+          "description": "Находите проблемы {topicLower} в существующих системах."
+        }
+      ],
+      "everyday": [
+        {
+          "title": "Ежедневные решения",
+          "description": "Используйте расчёты {topicLower} для умных решений каждый день."
+        },
+        {
+          "title": "Покупки и бюджет",
+          "description": "Считайте {topicLower} для выгодных покупок и домашнего бюджета."
+        },
+        {
+          "title": "Управление временем",
+          "description": "Применяйте {topicLower} для эффективного расписания."
+        },
+        {
+          "title": "Любопытство",
+          "description": "Удовлетворите любопытство о {topicLower} и его пользе."
+        }
+      ],
+      "food": [
+        {
+          "title": "Масштабирование рецептов",
+          "description": "Подгоняйте меры {topicLower} под число порций."
+        },
+        {
+          "title": "Планирование питания",
+          "description": "Отслеживайте {topicLower} для целей диеты."
+        },
+        {
+          "title": "Заготовки",
+          "description": "Считайте {topicLower} для эффективной готовки и закупок."
+        },
+        {
+          "title": "Диетические ограничения",
+          "description": "Подгоняйте {topicLower} под безнатриевые и безглютеновые диеты."
+        }
+      ],
+      "biology": [
+        {
+          "title": "Исследования и анализ",
+          "description": "Считайте {topicLower} для науки, полевых работ и лабораторий."
+        },
+        {
+          "title": "Учёба",
+          "description": "Поймите {topicLower} через практические расчёты."
+        },
+        {
+          "title": "Медицинские применения",
+          "description": "Применяйте {topicLower} в клинике для диагностики."
+        },
+        {
+          "title": "Экомониторинг",
+          "description": "Используйте {topicLower} для биоиндикаторов здоровья экосистем."
+        }
+      ],
+      "ecology": [
+        {
+          "title": "Экооценка",
+          "description": "Считайте {topicLower} для оценки воздействия на среду."
+        },
+        {
+          "title": "Планирование охраны",
+          "description": "Используйте данные {topicLower} для стратегий сохранения ресурсов."
+        },
+        {
+          "title": "Научные работы",
+          "description": "Применяйте {topicLower} в экологических исследованиях."
+        },
+        {
+          "title": "Отчёты устойчивости",
+          "description": "Формируйте метрики {topicLower} для отчётности и норм."
+        }
+      ],
+      "sports": [
+        {
+          "title": "Оптимизация тренировок",
+          "description": "Считайте {topicLower} для лучшего плана тренировок."
+        },
+        {
+          "title": "Отслеживание формы",
+          "description": "Следите за {topicLower} для измерения прогресса."
+        },
+        {
+          "title": "Подготовка к стартам",
+          "description": "Используйте данные {topicLower} для соревнований."
+        },
+        {
+          "title": "Профилактика травм",
+          "description": "Отслеживайте {topicLower} для выявления рисков травм."
+        }
+      ]
+    },
+    "mistakes": {
+      "financial": [
+        {
+          "mistake": "Игнорирование комиссий и издержек",
+          "solution": "Всегда включайте комиссии, сборы и налоги для реалистичных результатов."
+        },
+        {
+          "mistake": "Номинальные ставки вместо эффективных",
+          "solution": "Используйте эффективные годовые ставки с учётом капитализации."
+        },
+        {
+          "mistake": "Без поправки на инфляцию",
+          "solution": "Для долгосрочных прогнозов используйте реальную доходность."
+        },
+        {
+          "mistake": "Забытая частота капитализации",
+          "solution": "Проверьте: годовая, месячная или дневная капитализация."
+        }
+      ],
+      "health": [
+        {
+          "mistake": "Неточные измерения",
+          "solution": "Измеряйтесь в одно время суток поверенными приборами."
+        },
+        {
+          "mistake": "Игнор индивидуальности",
+          "solution": "Средние по популяции — лишь ориентир; результаты индивидуальны."
+        },
+        {
+          "mistake": "Результаты как диагноз",
+          "solution": "Калькуляторы дают оценки, а не диагнозы. Консультируйтесь с врачом."
+        },
+        {
+          "mistake": "Забытая активность",
+          "solution": "Точные данные активности исключают пере- и недооценку."
+        }
+      ],
+      "math": [
+        {
+          "mistake": "Неверный порядок действий",
+          "solution": "Строго соблюдайте порядок: скобки, степени, умножение/деление, сложение/вычитание."
+        },
+        {
+          "mistake": "Раннее округление",
+          "solution": "Сохраняйте точность в промежуточных шагах, округляйте итог."
+        },
+        {
+          "mistake": "Смешение единиц",
+          "solution": "Приведите все значения к одним единицам до расчёта."
+        },
+        {
+          "mistake": "Забытые особые случаи",
+          "solution": "Проверяйте деление на ноль и граничные случаи."
+        }
+      ],
+      "conversion": [
+        {
+          "mistake": "Путаница галлонов US и UK",
+          "solution": "Проверьте: US (3,785 л) или имперский (4,546 л) — разница 20%."
+        },
+        {
+          "mistake": "Игнор значащих цифр",
+          "solution": "Результат не точнее самого неточного измерения."
+        },
+        {
+          "mistake": "Смешение коротких и длинных тонн",
+          "solution": "Уточните: короткие US, длинные UK или метрические тонны."
+        },
+        {
+          "mistake": "Забытое смещение температур",
+          "solution": "Перевод температур непропорционален: сначала смещение, потом масштаб."
+        }
+      ],
+      "date-time": [
+        {
+          "mistake": "Забытые високосные годы",
+          "solution": "Периоды через февраль високосного года длиннее на день."
+        },
+        {
+          "mistake": "Игнор часовых поясов",
+          "solution": "Сначала переведите оба времени в UTC."
+        },
+        {
+          "mistake": "Ошибки включительного счёта",
+          "solution": "Решите, считаются ли начальная и конечная даты."
+        },
+        {
+          "mistake": "Забытый переход на летнее время",
+          "solution": "Переходы добавляют/убирают час. Проверяйте близкие даты."
+        }
+      ],
+      "construction": [
+        {
+          "mistake": "Забытый запас на отходы",
+          "solution": "Добавляйте 10–15% материала на обрезки и ошибки."
+        },
+        {
+          "mistake": "Смешение футов и метров",
+          "solution": "Приведите все замеры к одной системе до расчёта площадей."
+        },
+        {
+          "mistake": "Игнор толщины материалов",
+          "solution": "Вычитайте швы и рамы при внутренних размерах."
+        },
+        {
+          "mistake": "Недооценка работ",
+          "solution": "Материалы — лишь часть затрат: добавьте работы и разрешения."
+        }
+      ],
+      "statistics": [
+        {
+          "mistake": "Корреляция вместо причинности",
+          "solution": "Сильная корреляция не доказывает причину. Ищите скрытые переменные."
+        },
+        {
+          "mistake": "Среднее при асимметрии",
+          "solution": "При выбросах медиана лучше отражает центр."
+        },
+        {
+          "mistake": "Игнор размера выборки",
+          "solution": "Малые выборки нестабильны. Больше данных — меньше ошибка."
+        },
+        {
+          "mistake": "Неверное толкование p-value",
+          "solution": "Малое p-value измеряет не силу эффекта, а свидетельства против нулевой гипотезы."
+        }
+      ],
+      "education": [
+        {
+          "mistake": "Без взвешивания по кредитам",
+          "solution": "A за 4-кредитный курс весомее, чем за 1-кредитный."
+        },
+        {
+          "mistake": "Смешение шкал оценок",
+          "solution": "Не смешивайте проценты, буквы и 4.0 без перевода к общей шкале."
+        },
+        {
+          "mistake": "Забытые отчисления",
+          "solution": "Проверьте правила вуза: часть отчислений влияет на средний балл."
+        },
+        {
+          "mistake": "Округление промежуточных",
+          "solution": "Сохраняйте десятичные; раннее округление меняет итог."
+        }
+      ],
+      "physics": [
+        {
+          "mistake": "Смешение СИ и имперских единиц",
+          "solution": "Приведите всё к одной системе (лучше СИ) до формул."
+        },
+        {
+          "mistake": "Забытое направление векторов",
+          "solution": "Сила, скорость, ускорение имеют направление. Следите за знаками."
+        },
+        {
+          "mistake": "Игнор трения",
+          "solution": "Идеальные модели опускают трение; для реальности учитывайте его."
+        },
+        {
+          "mistake": "Путаница массы и веса",
+          "solution": "Масса (кг) постоянна; вес (Н) зависит от гравитации."
+        }
+      ],
+      "chemistry": [
+        {
+          "mistake": "Неуравненное уравнение",
+          "solution": "Всегда уравнивайте уравнение до стехиометрии."
+        },
+        {
+          "mistake": "Путаница молярности и моляльности",
+          "solution": "Молярность — моли на литр раствора; моляльность — на кг растворителя."
+        },
+        {
+          "mistake": "Устаревшие атомные массы",
+          "solution": "Используйте актуальные массы IUPAC — они уже в калькуляторе."
+        },
+        {
+          "mistake": "Игнор значащих цифр",
+          "solution": "Указывайте результат с точностью самого неточного прибора."
+        }
+      ],
+      "engineering": [
+        {
+          "mistake": "Пропущенный запас прочности",
+          "solution": "Всегда применяйте нормативный запас для вашего применения."
+        },
+        {
+          "mistake": "Смешение систем единиц",
+          "solution": "Ошибка единиц погубила Mars Climate Orbiter ($125 млн). Проверяйте дважды."
+        },
+        {
+          "mistake": "Игнор допусков",
+          "solution": "Проектируйте с допусками производства, а не номиналами."
+        },
+        {
+          "mistake": "Экстраполяция вне диапазона",
+          "solution": "Эмпирические формулы верны лишь в калиброванном диапазоне."
+        }
+      ],
+      "everyday": [
+        {
+          "mistake": "Забытые налоги и чаевые",
+          "solution": "Добавляйте налоги и чаевые к итоговой стоимости покупок."
+        },
+        {
+          "mistake": "Скидка с завышенной цены",
+          "solution": "Проверяйте реальную исходную цену перед «большой скидкой»."
+        },
+        {
+          "mistake": "Накопленные подписки",
+          "solution": "Суммируйте все ежемесячные списания: мелочь растёт быстро."
+        },
+        {
+          "mistake": "Округление всегда вниз",
+          "solution": "В бюджете округляйте траты вверх для запаса."
+        }
+      ],
+      "food": [
+        {
+          "mistake": "Мука по объёму",
+          "solution": "Взвешивайте муку в граммах: стакан гуляет на 20%."
+        },
+        {
+          "mistake": "Без поправки на высоту",
+          "solution": "В горах уменьшайте дрожжи и сахар, добавляйте жидкость."
+        },
+        {
+          "mistake": "Игнор тары",
+          "solution": "Вычитайте вес посуды для точного нетто."
+        },
+        {
+          "mistake": "Линейное масштабирование времени",
+          "solution": "Двойной рецепт — не двойное время. Корректируйте и проверяйте термометром."
+        }
+      ],
+      "biology": [
+        {
+          "mistake": "Путаница генотипа и фенотипа",
+          "solution": "Генотип — генетическая конституция; фенотип включает среду."
+        },
+        {
+          "mistake": "Игнор размера выборки",
+          "solution": "Единичные наблюдения не представляют популяции."
+        },
+        {
+          "mistake": "Смешение единиц концентрации",
+          "solution": "Уточняйте молярность, мг/дл, ppm до сравнения."
+        },
+        {
+          "mistake": "Забытые контроли",
+          "solution": "Без контрольной группы эффекты не приписать фактору."
+        }
+      ],
+      "ecology": [
+        {
+          "mistake": "Путаница углеродного и экоследа",
+          "solution": "Углеродный считает ПГ; экологический включает землю и воду."
+        },
+        {
+          "mistake": "Игнор сезонности",
+          "solution": "Экометрики сезонны. Отбирайте пробы в разное время года."
+        },
+        {
+          "mistake": "Экстраполяция одного участка",
+          "solution": "Экосистемы пространственно разные. Берите несколько точек."
+        },
+        {
+          "mistake": "Забытые CO₂-эквиваленты",
+          "solution": "Переводите метан и закись азота в CO₂-эквивалент."
+        }
+      ],
+      "sports": [
+        {
+          "mistake": "220-минус-возраст без поправок",
+          "solution": "Ошибка формулы ±12 уд/мин. Используйте тесты под ваш уровень."
+        },
+        {
+          "mistake": "Игнор дней восстановления",
+          "solution": "Прогресс идёт в восстановлении. Отдыхайте между жёсткими сессиями."
+        },
+        {
+          "mistake": "Сравнение VO₂ без нормы",
+          "solution": "Выражайте VO₂ в мл/кг/мин для честного сравнения."
+        },
+        {
+          "mistake": "Слишком быстрый рост нагрузки",
+          "solution": "Правило 10%: не больше +10% объёма в неделю."
+        }
+      ]
+    },
+    "pros": [
+      "Мгновенные результаты {topic} без ручных вычислений",
+      "Встроенные проверенные {adj} формулы от профессионалов",
+      "Интерактивные графики для лучшего понимания",
+      "Бесплатно, без регистрации и скачивания",
+      "Работает на любом устройстве с интернетом"
+    ],
+    "cons": [
+      "Требуется подключение к интернету",
+      "Результаты — оценки на основе введённых данных",
+      "Ограничен готовыми типами расчётов и параметрами",
+      "Не заменяет профессиональную консультацию в важных решениях"
+    ],
+    "alternatives": [
+      {
+        "name": "Ручная таблица {topic}",
+        "description": "Создайте свой калькулятор {topic} в Excel или Google Sheets. Полная свобода, но нужны знания формул и время."
+      },
+      {
+        "name": "Другие онлайн-инструменты {topic}",
+        "description": "Другие бесплатные калькуляторы {topic} дают базовые функции. Сравните возможности и точность."
+      },
+      {
+        "name": "Профессиональное {adj} ПО",
+        "description": "Профессиональный софт с расширенными функциями {topic}. Лучшее для частого использования, обычно платное."
+      }
+    ],
+    "recommendations": [
+      "Для точных результатов {topic} измеряйте и проверяйте все значения перед вводом.",
+      "Используйте «Сохранить сценарий», чтобы сравнить варианты {topic} и выбрать лучший.",
+      "Пересчитывайте {topic} регулярно по мере изменения обстоятельств.",
+      "Сочетайте данные {topic} с другими нашими калькуляторами для полного анализа.",
+      "Делитесь результатами {topic} со специалистами для персональных рекомендаций."
+    ],
+    "audiences": {
+      "financial": [
+        "Покупатели жилья",
+        "Инвесторы",
+        "Финпланировщики",
+        "Студенты",
+        "Малый бизнес"
+      ],
+      "health": [
+        "Заботящиеся о здоровье",
+        "Любители фитнеса",
+        "Медработники",
+        "Диетологи",
+        "Персональные тренеры"
+      ],
+      "math": [
+        "Школьники",
+        "Учителя",
+        "Инженеры",
+        "Учёные",
+        "Специалисты"
+      ],
+      "conversion": [
+        "Путешественники",
+        "Повара",
+        "Инженеры",
+        "Студенты",
+        "Онлайн-покупатели"
+      ],
+      "date-time": [
+        "Менеджеры проектов",
+        "Организаторы событий",
+        "Разработчики",
+        "Исследователи",
+        "HR-специалисты"
+      ],
+      "construction": [
+        "Подрядчики",
+        "Архитекторы",
+        "Домашние мастера",
+        "Домовладельцы",
+        "Строители"
+      ],
+      "statistics": [
+        "Исследователи",
+        "Аналитики данных",
+        "Студенты",
+        "Бизнес-аналитики",
+        "Контроль качества"
+      ],
+      "education": [
+        "Школьники",
+        "Учителя",
+        "Методисты",
+        "Родители",
+        "Администраторы"
+      ],
+      "physics": [
+        "Школьники",
+        "Инженеры",
+        "Учителя физики",
+        "Исследователи",
+        "Любители науки"
+      ],
+      "chemistry": [
+        "Химики",
+        "Лаборанты",
+        "Студенты",
+        "Исследователи",
+        "Отраслевые учёные"
+      ],
+      "engineering": [
+        "Инженеры",
+        "Конструкторы",
+        "Технические менеджеры",
+        "Студенты",
+        "Контроль качества"
+      ],
+      "everyday": [
+        "Потребители",
+        "Покупатели",
+        "Планировщики",
+        "Экономные",
+        "Все, кто решает ежедневно"
+      ],
+      "food": [
+        "Домашние повара",
+        "Шефы",
+        "Диетологи",
+        "Планировщики меню",
+        "Пекари"
+      ],
+      "biology": [
+        "Биологи",
+        "Студенты",
+        "Исследователи",
+        "Медработники",
+        "Экологи"
+      ],
+      "ecology": [
+        "Экологи",
+        "Защитники природы",
+        "Студенты",
+        "Политики",
+        "Исследователи"
+      ],
+      "sports": [
+        "Спортсмены",
+        "Тренеры",
+        "Персональные тренеры",
+        "Спортивные учёные",
+        "Любители фитнеса"
+      ]
+    },
+    "glossary": {
+      "financial": [
+        {
+          "term": "Капитал",
+          "definition": "Изначальная сумма займа или инвестиций без процентов."
+        },
+        {
+          "term": "Сложный процент",
+          "definition": "Проценты на начальный капитал и накопленные проценты прошлых периодов."
+        },
+        {
+          "term": "Годовая процентная ставка",
+          "definition": "Годовая стоимость займа с процентами и комиссиями, в процентах."
+        },
+        {
+          "term": "Амортизация",
+          "definition": "Распределение займа на серию фиксированных платежей во времени."
+        },
+        {
+          "term": "Инфляция",
+          "definition": "Темп роста общего уровня цен, снижающий покупательную способность."
+        },
+        {
+          "term": "Ликвидность",
+          "definition": "Скорость превращения актива в деньги без существенной потери стоимости."
+        },
+        {
+          "term": "Диверсификация",
+          "definition": "Распределение инвестиций по активам для снижения риска портфеля."
+        },
+        {
+          "term": "Чистый капитал",
+          "definition": "Активы минус обязательства; общее финансовое здоровье."
+        }
+      ],
+      "health": [
+        {
+          "term": "ИМТ (индекс массы тела)",
+          "definition": "Мера жировой массы по росту и весу для категорий веса."
+        },
+        {
+          "term": "Основной обмен (BMR)",
+          "definition": "Калории, сжигаемые в покое для базовых функций организма."
+        },
+        {
+          "term": "Общий расход (TDEE)",
+          "definition": "Калории за день, включая основной обмен, спорт и быт."
+        },
+        {
+          "term": "Макронутриенты",
+          "definition": "Нутриенты в больших количествах: белки, жиры, углеводы."
+        },
+        {
+          "term": "Процент жира",
+          "definition": "Доля жировой массы; ключевой показатель формы и здоровья."
+        },
+        {
+          "term": "Пульсовая зона",
+          "definition": "Диапазон процента от макс. пульса для целевой интенсивности."
+        }
+      ],
+      "math": [
+        {
+          "term": "Процент",
+          "definition": "Доля или отношение как часть 100, знак %."
+        },
+        {
+          "term": "Отношение",
+          "definition": "Сравнение двух величин по относительному размеру."
+        },
+        {
+          "term": "Среднее",
+          "definition": "Среднее арифметическое: сумма, делённая на количество."
+        },
+        {
+          "term": "Медиана",
+          "definition": "Среднее значение упорядоченного ряда, делит его пополам."
+        },
+        {
+          "term": "Стандартное отклонение",
+          "definition": "Мера разброса значений вокруг среднего."
+        },
+        {
+          "term": "Показатель степени",
+          "definition": "Число умножений основания само на себя."
+        }
+      ],
+      "conversion": [
+        {
+          "term": "Коэффициент перевода",
+          "definition": "Множитель для перевода величины из одних единиц в другие."
+        },
+        {
+          "term": "Единицы СИ",
+          "definition": "Международная система единиц; современная метрическая система."
+        },
+        {
+          "term": "Имперская система",
+          "definition": "Традиционная система США и Британии: дюймы, футы, фунты, галлоны."
+        },
+        {
+          "term": "Значащие цифры",
+          "definition": "Цифры числа, несущие информацию о его точности."
+        },
+        {
+          "term": "Основная единица",
+          "definition": "Фундаментальная единица по стандарту, от неё производят другие."
+        }
+      ],
+      "date-time": [
+        {
+          "term": "UTC (всемирное время)",
+          "definition": "Основной стандарт времени для регулировки часов в мире."
+        },
+        {
+          "term": "Високосный год",
+          "definition": "Год из 366 дней каждые 4 года для синхронизации календаря."
+        },
+        {
+          "term": "Летнее время",
+          "definition": "Перевод часов в тёплые месяцы для длинного светового вечера."
+        },
+        {
+          "term": "Метка Unix",
+          "definition": "Секунды с 1 января 1970, 00:00:00 UTC."
+        },
+        {
+          "term": "ISO 8601",
+          "definition": "Международный стандарт дат и времени: ГГГГ-ММ-ДДTЧЧ:мм:ссZ."
+        }
+      ],
+      "construction": [
+        {
+          "term": "Квадратные футы",
+          "definition": "Площадь в квадратных футах: длина на ширину."
+        },
+        {
+          "term": "Несущая стена",
+          "definition": "Стена, держащая вес вышележащего: крышу и этажи."
+        },
+        {
+          "term": "PSI (фунты на кв. дюйм)",
+          "definition": "Единица давления для прочности бетона и допусков."
+        },
+        {
+          "term": "R-значение",
+          "definition": "Мера теплосопротивления изоляции тепловому потоку."
+        },
+        {
+          "term": "Пролёт",
+          "definition": "Расстояние между опорами: балками, фермами."
+        }
+      ],
+      "statistics": [
+        {
+          "term": "Популяция",
+          "definition": "Вся группа, которую изучает статистика."
+        },
+        {
+          "term": "Выборка",
+          "definition": "Подмножество популяции для её представления в анализе."
+        },
+        {
+          "term": "Корреляция",
+          "definition": "Статистическая мера связи двух переменных."
+        },
+        {
+          "term": "p-значение",
+          "definition": "Вероятность столь же экстремальных результатов при нулевой гипотезе."
+        },
+        {
+          "term": "Нормальное распределение",
+          "definition": "Симметричный колокол; большинство значений у среднего."
+        },
+        {
+          "term": "Дисперсия",
+          "definition": "Средний квадрат отклонения от среднего; мера разброса."
+        }
+      ],
+      "education": [
+        {
+          "term": "Средний балл (GPA)",
+          "definition": "Числовая успеваемость из оценок и кредитов."
+        },
+        {
+          "term": "Кредитный час",
+          "definition": "Единица учебной нагрузки: час занятий в неделю за семестр."
+        },
+        {
+          "term": "Взвешенный GPA",
+          "definition": "GPA с бонусами за продвинутые курсы."
+        },
+        {
+          "term": "Процентиль",
+          "definition": "Оценка, ниже которой заданный процент сдающих."
+        },
+        {
+          "term": "Стандартизированный тест",
+          "definition": "Единый тест для сравнения сдающих."
+        }
+      ],
+      "physics": [
+        {
+          "term": "Законы Ньютона",
+          "definition": "Три закона связи движения и сил."
+        },
+        {
+          "term": "Кинетическая энергия",
+          "definition": "Энергия движения тела, ½mv²."
+        },
+        {
+          "term": "Потенциальная энергия",
+          "definition": "Запасённая энергия положения или конфигурации."
+        },
+        {
+          "term": "Ускорение",
+          "definition": "Изменение скорости во времени, м/с²."
+        },
+        {
+          "term": "Импульс",
+          "definition": "Произведение массы и скорости; сохраняется в замкнутых системах."
+        },
+        {
+          "term": "Длина волны",
+          "definition": "Расстояние между гребнями волны, обратно частоте."
+        }
+      ],
+      "chemistry": [
+        {
+          "term": "Моль",
+          "definition": "Единица 6,022 × 10²³ частиц (число Авогадро) для количества вещества."
+        },
+        {
+          "term": "Молярность",
+          "definition": "Концентрация: моли растворённого на литр раствора (моль/л)."
+        },
+        {
+          "term": "Стехиометрия",
+          "definition": "Расчёт реагентов и продуктов по уравненным уравнениям."
+        },
+        {
+          "term": "pH",
+          "definition": "Мера концентрации ионов водорода: кислотность (pH < 7) или щёлочность."
+        },
+        {
+          "term": "Число Авогадро",
+          "definition": "6,022 × 10²³: частиц в моле вещества."
+        }
+      ],
+      "engineering": [
+        {
+          "term": "Крутящий момент",
+          "definition": "Скручивающая сила вращения: сила × плечо."
+        },
+        {
+          "term": "Напряжение",
+          "definition": "Сила на площадь в материале, в паскалях (Па) или psi."
+        },
+        {
+          "term": "Деформация",
+          "definition": "Деформация относительно исходной длины под напряжением."
+        },
+        {
+          "term": "Запас прочности",
+          "definition": "Отношение предельной прочности к допустимому напряжению."
+        },
+        {
+          "term": "Модуль упругости",
+          "definition": "Мера жёсткости против упругой деформации."
+        }
+      ],
+      "everyday": [
+        {
+          "term": "Цена распродажи",
+          "definition": "Сниженная цена после скидки с исходной."
+        },
+        {
+          "term": "Налог с продаж",
+          "definition": "Налог на потребление при продаже товаров и услуг."
+        },
+        {
+          "term": "Среднегодовой темп роста",
+          "definition": "Средний годовой рост инвестиций за период свыше года."
+        },
+        {
+          "term": "Окупаемость инвестиций",
+          "definition": "Отношение чистой прибыли к затратам, в процентах."
+        }
+      ],
+      "food": [
+        {
+          "term": "Тара",
+          "definition": "Вес пустой посуды, вычитаемый из брутто для нетто ингредиента."
+        },
+        {
+          "term": "Выход (%)",
+          "definition": "Съедобная часть после чистки, готовки или обработки."
+        },
+        {
+          "term": "Пекарский процент",
+          "definition": "Пропорции ингредиентов относительно веса муки."
+        },
+        {
+          "term": "Калорийность",
+          "definition": "Калории на грамм продукта; для диеты и веса."
+        }
+      ],
+      "biology": [
+        {
+          "term": "Генотип",
+          "definition": "Генетическая конституция: аллели от обоих родителей."
+        },
+        {
+          "term": "Фенотип",
+          "definition": "Наблюдаемые признаки из генотипа и среды."
+        },
+        {
+          "term": "Частота аллелей",
+          "definition": "Относительная частота варианта гена в генофонде."
+        },
+        {
+          "term": "Ёмкость среды",
+          "definition": "Максимальная устойчивая численность популяции."
+        },
+        {
+          "term": "Индекс биоразнообразия",
+          "definition": "Количественная мера видового разнообразия."
+        }
+      ],
+      "ecology": [
+        {
+          "term": "Углеродный след",
+          "definition": "Суммарные выбросы ПГ человека/продукта в CO₂-эквиваленте."
+        },
+        {
+          "term": "Экологическая ниша",
+          "definition": "Роль вида в среде, включая ресурсы и связи."
+        },
+        {
+          "term": "Трофический уровень",
+          "definition": "Место в пищевой цепи: от продуцентов до хищников."
+        },
+        {
+          "term": "Биомасса",
+          "definition": "Общая масса живых организмов на площади в момент времени."
+        },
+        {
+          "term": "Экосистемные услуги",
+          "definition": "Польза экосистем: обеспечение, регуляция, поддержка, культура."
+        }
+      ],
+      "sports": [
+        {
+          "term": "МПК (VO₂max)",
+          "definition": "Макс. потребление кислорода при нагрузке; мера выносливости."
+        },
+        {
+          "term": "Резерв пульса",
+          "definition": "Разница макс. пульса и покоя; для тренировочных зон."
+        },
+        {
+          "term": "Одноповторный максимум (1ПМ)",
+          "definition": "Макс. вес на одно полное повторение упражнения."
+        },
+        {
+          "term": "Анаэробный порог",
+          "definition": "Интенсивность, где лактат растёт быстрее утилизации."
+        },
+        {
+          "term": "Дефицит калорий",
+          "definition": "Потребление меньше расхода — снижение веса."
+        }
+      ]
+    },
+    "concepts": {
+      "financial": [
+        "Сложный процент",
+        "Инфляция",
+        "Управление рисками",
+        "Распределение активов",
+        "Налоговое планирование",
+        "Пенсионное планирование",
+        "Диверсификация",
+        "Временная стоимость денег",
+        "Амортизация"
+      ],
+      "health": [
+        "Состав тела",
+        "Макронутриенты",
+        "Здоровье сердца",
+        "Метаболизм",
+        "Гидратация",
+        "Качество сна",
+        "Управление стрессом",
+        "Нормы активности"
+      ],
+      "math": [
+        "Алгебра",
+        "Матанализ",
+        "Геометрия",
+        "Тригонометрия",
+        "Статистика",
+        "Теория чисел",
+        "Дискретная математика",
+        "Линейная алгебра"
+      ],
+      "conversion": [
+        "Метрическая система",
+        "Имперская система",
+        "Шкалы температур",
+        "Обмен валют",
+        "Единицы хранения данных",
+        "Часовые пояса",
+        "Угловые меры"
+      ],
+      "date-time": [
+        "Часовые пояса",
+        "Календарные системы",
+        "Астрономическое время",
+        "Метка Unix",
+        "ISO 8601",
+        "Летнее время",
+        "Високосные секунды"
+      ],
+      "construction": [
+        "Строительная механика",
+        "Материаловедение",
+        "Строительные нормы",
+        "Управление проектами",
+        "Геодезия",
+        "ОВК-проектирование",
+        "Сантехника"
+      ],
+      "statistics": [
+        "Теория вероятностей",
+        "Регрессионный анализ",
+        "Проверка гипотез",
+        "Байесовская статистика",
+        "Временные ряды",
+        "Планирование экспериментов"
+      ],
+      "education": [
+        "Теории обучения",
+        "Учебные планы",
+        "Педагогическая психология",
+        "Методы оценки",
+        "Техники учёбы",
+        "Карьерное планирование"
+      ],
+      "physics": [
+        "Классическая механика",
+        "Термодинамика",
+        "Электромагнетизм",
+        "Квантовая физика",
+        "Относительность",
+        "Гидродинамика",
+        "Оптика"
+      ],
+      "chemistry": [
+        "Органическая химия",
+        "Неорганическая химия",
+        "Физическая химия",
+        "Аналитическая химия",
+        "Биохимия",
+        "Термохимия"
+      ],
+      "engineering": [
+        "Машиностроение",
+        "Строительство",
+        "Электротехника",
+        "Химическая инженерия",
+        "Программная инженерия",
+        "Системный дизайн"
+      ],
+      "everyday": [
+        "Личные финансы",
+        "Домоводство",
+        "Тайм-менеджмент",
+        "Кулинария",
+        "Стратегии покупок",
+        "Здоровье"
+      ],
+      "food": [
+        "Наука о питании",
+        "Кулинарное искусство",
+        "Химия пищи",
+        "Диетические нормы",
+        "Планирование меню",
+        "Безопасность пищи"
+      ],
+      "biology": [
+        "Клеточная биология",
+        "Генетика",
+        "Эволюция",
+        "Экология",
+        "Молекулярная биология",
+        "Физиология",
+        "Микробиология"
+      ],
+      "ecology": [
+        "Науки об окружающей среде",
+        "Природоохранная биология",
+        "Климатология",
+        "Устойчивое развитие",
+        "Экополитика",
+        "Восстановление экосистем"
+      ],
+      "sports": [
+        "Физиология нагрузок",
+        "Спортивное питание",
+        "Биомеханика",
+        "Спортивная психология",
+        "Теория тренировок",
+        "Профилактика травм"
+      ]
+    },
+    "comparisons": {
+      "financial": [
+        {
+          "title": "Ручной расчёт {topic} и наш калькулятор",
+          "items": [
+            {
+              "label": "Скорость",
+              "manual": "Минуты и часы на расчёт",
+              "calculator": "Мгновенный результат за миллисекунды"
+            },
+            {
+              "label": "Точность",
+              "manual": "Арифметические ошибки и ошибки формул",
+              "calculator": "Гарантированная точность проверенных формул"
+            },
+            {
+              "label": "Сложность",
+              "manual": "Нужно знать финансовые формулы",
+              "calculator": "Знание формул не требуется"
+            },
+            {
+              "label": "Сценарии",
+              "manual": "Пересчёт каждого сценария долгий",
+              "calculator": "Меняйте ввод и сравнивайте мгновенно"
+            },
+            {
+              "label": "Визуализация",
+              "manual": "Ручные графики в таблицах",
+              "calculator": "Встроенные графики и разборы"
+            }
+          ],
+          "summary": "Наш калькулятор {topic} убирает ручные ошибки и сокращает счёт с минут до секунд — с наглядностью, недоступной вручную."
+        },
+        {
+          "title": "Калькулятор {topic} и таблица",
+          "items": [
+            {
+              "label": "Настройка",
+              "manual": "Нужно строить и проверять формулы",
+              "calculator": "Готов к работе с встроенной логикой"
+            },
+            {
+              "label": "Поиск ошибок",
+              "manual": "Ошибки таблиц часты и незаметны",
+              "calculator": "Проверка ввода исключает типовые ошибки"
+            },
+            {
+              "label": "Портативность",
+              "manual": "Привязка к ПО и файлам",
+              "calculator": "Доступ с любого устройства с интернетом"
+            },
+            {
+              "label": "Обновления",
+              "manual": "Ручные правки формул",
+              "calculator": "Всегда актуальные методы расчёта"
+            }
+          ],
+          "summary": "Таблицы гибки, но наш калькулятор {topic} быстрее настраивается, реже ошибается и доступен везде."
+        }
+      ],
+      "health": [
+        {
+          "title": "Ручной расчёт {topic} и наш калькулятор",
+          "items": [
+            {
+              "label": "Сложность формул",
+              "manual": "Много формул с разными переменными",
+              "calculator": "Автовыбор формулы по вводу"
+            },
+            {
+              "label": "Перевод единиц",
+              "manual": "Ручной перевод метрика/империя",
+              "calculator": "Автоперевод с переключателем"
+            },
+            {
+              "label": "Трактовка",
+              "manual": "Нужны внешние справочники",
+              "calculator": "Встроенная интерпретация и контекст"
+            },
+            {
+              "label": "Динамика",
+              "manual": "Нет встроенного отслеживания",
+              "calculator": "Сохраняйте сценарии и сравнивайте"
+            }
+          ],
+          "summary": "Наш калькулятор {topic} упрощает оценку здоровья, автоматизируя сложные формулы и мгновенно трактуя результаты."
+        }
+      ],
+      "math": [
+        {
+          "title": "Ручной расчёт {topic} и наш калькулятор",
+          "items": [
+            {
+              "label": "Скорость",
+              "manual": "Пошаговый ручной счёт",
+              "calculator": "Мгновенные результаты"
+            },
+            {
+              "label": "Проверка",
+              "manual": "Без пересчёта не проверить",
+              "calculator": "Копируйте и делитесь для проверки"
+            },
+            {
+              "label": "Обучение",
+              "manual": "Формулу надо знать заранее",
+              "calculator": "Показывает формулу и шаги"
+            }
+          ],
+          "summary": "Наш калькулятор {topic} мгновенно проверяет работу и объясняет математику."
+        }
+      ],
+      "conversion": [
+        {
+          "title": "Ручной перевод {topic} и наш калькулятор",
+          "items": [
+            {
+              "label": "Коэффициенты",
+              "manual": "Искать и применять верные коэффициенты",
+              "calculator": "Встроенная авторитетная база"
+            },
+            {
+              "label": "Точность",
+              "manual": "Ошибки округления копятся",
+              "calculator": "Сквозная высокая точность"
+            },
+            {
+              "label": "Двусторонний",
+              "manual": "Обратный перевод считать отдельно",
+              "calculator": "Мгновенный двусторонний перевод"
+            }
+          ],
+          "summary": "Наш конвертер {topic} убирает поиск и ошибки: мгновенные точные результаты."
+        }
+      ],
+      "date-time": [
+        {
+          "title": "Ручной расчёт {topic} и наш калькулятор",
+          "items": [
+            {
+              "label": "Високосные годы",
+              "manual": "Ручной учёт високосных",
+              "calculator": "Автоматическая логика календаря"
+            },
+            {
+              "label": "Часовые пояса",
+              "manual": "Сложные ручные сдвиги",
+              "calculator": "Простой выбор пояса"
+            },
+            {
+              "label": "Точность",
+              "manual": "Часты ошибки на день",
+              "calculator": "Точная арифметика дат"
+            }
+          ],
+          "summary": "Наш калькулятор {topic} автоматически учитывает все календарные тонкости."
+        }
+      ],
+      "construction": [
+        {
+          "title": "Ручная смета {topic} и наш калькулятор",
+          "items": [
+            {
+              "label": "Отходы материала",
+              "manual": "Легко забыть запас на отходы",
+              "calculator": "Встроенный расчёт процента отходов"
+            },
+            {
+              "label": "Перевод единиц",
+              "manual": "Перевод между системами мер",
+              "calculator": "Все переводы автоматически"
+            },
+            {
+              "label": "Цены",
+              "manual": "Ручной поиск актуальных цен",
+              "calculator": "Обновите цены — пересчёт мгновенный"
+            }
+          ],
+          "summary": "Наш калькулятор {topic} экономит часы ручной сметы и снижает дорогие ошибки заказа."
+        }
+      ],
+      "statistics": [
+        {
+          "title": "Ручной анализ {topic} и наш калькулятор",
+          "items": [
+            {
+              "label": "Время счёта",
+              "manual": "Утомительные ручные вычисления",
+              "calculator": "Мгновенная статистика"
+            },
+            {
+              "label": "Выбор формулы",
+              "manual": "Выбор верного статтеста",
+              "calculator": "Ведомое применение формул"
+            },
+            {
+              "label": "Визуализация",
+              "manual": "Графики строить отдельно",
+              "calculator": "Встроенная визуализация"
+            }
+          ],
+          "summary": "Наш калькулятор {topic} превращает рутину в мгновенные наглядные инсайты."
+        }
+      ],
+      "education": [
+        {
+          "title": "Ручной расчёт {topic} и наш калькулятор",
+          "items": [
+            {
+              "label": "Взвешивание",
+              "manual": "Сложное взвешенное среднее вручную",
+              "calculator": "Автовзвешивание по кредитам"
+            },
+            {
+              "label": "Сценарии",
+              "manual": "Долгий what-if анализ",
+              "calculator": "Мгновенный прогноз оценок"
+            },
+            {
+              "label": "Шкалы",
+              "manual": "Знание разных шкал оценок",
+              "calculator": "Поддержка нескольких систем"
+            }
+          ],
+          "summary": "Наш калькулятор {topic} снимает сложность подсчёта оценок — фокус на учёбе."
+        }
+      ],
+      "physics": [
+        {
+          "title": "Ручной расчёт {topic} и наш калькулятор",
+          "items": [
+            {
+              "label": "Применение формул",
+              "manual": "Вспомнить и применить верную формулу",
+              "calculator": "Выберите понятие, введите, получите ответ"
+            },
+            {
+              "label": "Единицы",
+              "manual": "Ручной перевод в СИ",
+              "calculator": "Автоведение единиц"
+            },
+            {
+              "label": "Проверка",
+              "manual": "Трудно найти ошибку",
+              "calculator": "Пошаговый разбор каждой стадии"
+            }
+          ],
+          "summary": "Наш калькулятор {topic} помогает проверять работу и понимать ход решения."
+        }
+      ],
+      "chemistry": [
+        {
+          "title": "Ручной расчёт {topic} и наш калькулятор",
+          "items": [
+            {
+              "label": "Атомные массы",
+              "manual": "Поиск по таблице Менделеева",
+              "calculator": "Встроенная база атомных масс"
+            },
+            {
+              "label": "Единицы",
+              "manual": "Ручной перевод молярность/моляльность",
+              "calculator": "Автоведение единиц концентрации"
+            },
+            {
+              "label": "Ошибки",
+              "manual": "Мелочи копятся в многошаговых расчётах",
+              "calculator": "Проверка на каждом шаге"
+            }
+          ],
+          "summary": "Наш калькулятор {topic} снижает лабораторные ошибки и ускоряет подготовку опытов."
+        }
+      ],
+      "engineering": [
+        {
+          "title": "Ручной расчёт {topic} и наш калькулятор",
+          "items": [
+            {
+              "label": "Нормы",
+              "manual": "Ручные ссылки на стандарты",
+              "calculator": "Встроенные нормы и формулы"
+            },
+            {
+              "label": "Скорость итераций",
+              "manual": "Медленный цикл проектирования",
+              "calculator": "Мгновенная подстройка параметров"
+            },
+            {
+              "label": "Документация",
+              "manual": "Расчёты документировать отдельно",
+              "calculator": "Лёгкий экспорт результатов"
+            }
+          ],
+          "summary": "Наш калькулятор {topic} ускоряет проектные циклы с профессиональной точностью."
+        }
+      ],
+      "everyday": [
+        {
+          "title": "Ручной расчёт {topic} и наш калькулятор",
+          "items": [
+            {
+              "label": "Устный счёт",
+              "manual": "Прикидки с возможными ошибками",
+              "calculator": "Точные результаты всегда"
+            },
+            {
+              "label": "Актуальные ставки",
+              "manual": "Ручное отслеживание изменений",
+              "calculator": "Обновите ввод под текущие ставки"
+            },
+            {
+              "label": "Скорость",
+              "manual": "Устный счёт занимает время",
+              "calculator": "Мгновенные результаты"
+            }
+          ],
+          "summary": "Наш калькулятор {topic} помогает решать бытовые вопросы точно и мгновенно."
+        }
+      ],
+      "food": [
+        {
+          "title": "Ручной расчёт {topic} и наш калькулятор",
+          "items": [
+            {
+              "label": "Пропорции",
+              "manual": "Ручное пропорциональное масштабирование",
+              "calculator": "Автомасштаб с переводом единиц"
+            },
+            {
+              "label": "Питательность",
+              "manual": "Поиск и расчёт БЖУ на порцию",
+              "calculator": "Мгновенный разбор питательности"
+            },
+            {
+              "label": "Коррекция партий",
+              "manual": "Долгие пересчёты партий",
+              "calculator": "Меняйте порции — всё обновится"
+            }
+          ],
+          "summary": "Наш калькулятор {topic} убирает гадание из масштабирования рецептов."
+        }
+      ],
+      "biology": [
+        {
+          "title": "Ручной расчёт {topic} и наш калькулятор",
+          "items": [
+            {
+              "label": "Обработка данных",
+              "manual": "Ручной ввод и счёт",
+              "calculator": "Автоматические вычисления и анализ"
+            },
+            {
+              "label": "Статистика",
+              "manual": "Нужны отдельные статпакеты",
+              "calculator": "Встроенная биостатистика"
+            },
+            {
+              "label": "Повторяемость",
+              "manual": "Ручное трудно воспроизвести",
+              "calculator": "Стабильные результаты всегда"
+            }
+          ],
+          "summary": "Наш калькулятор {topic} ускоряет анализ биоданных и повышает точность."
+        }
+      ],
+      "ecology": [
+        {
+          "title": "Ручной расчёт {topic} и наш калькулятор",
+          "items": [
+            {
+              "label": "Сложные формулы",
+              "manual": "Множество связанных формул",
+              "calculator": "Интегрированная цепочка"
+            },
+            {
+              "label": "Данные",
+              "manual": "Данные разбросаны по источникам",
+              "calculator": "Централизованные ввод и вывод"
+            },
+            {
+              "label": "Сценарии",
+              "manual": "Долгий what-if анализ",
+              "calculator": "Быстрое сравнение сценариев"
+            }
+          ],
+          "summary": "Наш калькулятор {topic} делает экоанализ доступным, точным и повторяемым."
+        }
+      ],
+      "sports": [
+        {
+          "title": "Ручной расчёт {topic} и наш калькулятор",
+          "items": [
+            {
+              "label": "Знание формул",
+              "manual": "Знание формул спортнауки",
+              "calculator": "Просто введите свои метрики"
+            },
+            {
+              "label": "Прогресс",
+              "manual": "Ручные журнал и счёт",
+              "calculator": "Отслеживайте и сравнивайте форму"
+            },
+            {
+              "label": "Точность",
+              "manual": "Ошибки округления многошагово",
+              "calculator": "Точные расчёты под атлета"
+            }
+          ],
+          "summary": "Наш калькулятор {topic} помогает тренерам решать на данных без научной экспертизы."
+        }
+      ]
+    },
+    "domainCtx": {
+      "financial": {
+        "whatLabel": "финансовый показатель",
+        "whyImportant": "От ипотеки до доходности: верные цифры — это тысячи сэкономленных или заработанных.",
+        "formulaLead": "Центральная финансовая формула",
+        "appFocus": "рост портфеля, погашение кредитов и пенсия",
+        "methodLabel": "финансовые формулы",
+        "precisionContext": "точность до копейки",
+        "tipArea": "процентные ставки и периоды капитализации",
+        "riskLabel": "финансовый"
+      },
+      "health": {
+        "whatLabel": "показатель здоровья",
+        "whyImportant": "Ваши цифры здоровья — жизненные признаки общего благополучия.",
+        "formulaLead": "Физиологическая основа",
+        "appFocus": "фитнес-трекинг, медосмотры и велнес",
+        "methodLabel": "физиологические формулы",
+        "precisionContext": "клиническая значимость",
+        "tipArea": "условия и время измерения",
+        "riskLabel": "медицинский"
+      },
+      "math": {
+        "whatLabel": "математическое понятие",
+        "whyImportant": "Понимание формул открывает более глубокое видение мира.",
+        "formulaLead": "Фундаментальное выражение",
+        "appFocus": "учёба, инженерный дизайн и наука",
+        "methodLabel": "математические методы",
+        "precisionContext": "нужная десятичная точность",
+        "tipArea": "допущения и граничные случаи",
+        "riskLabel": "численный"
+      },
+      "conversion": {
+        "whatLabel": "перевод единиц",
+        "whyImportant": "Ошибочный перевод губит рецепт или подрывает конструкцию.",
+        "formulaLead": "Соотношение перевода",
+        "appFocus": "путешествия, рецепты, спецификации и наука",
+        "methodLabel": "коэффициенты перевода",
+        "precisionContext": "уместные значащие цифры",
+        "tipArea": "согласованность единиц и округление",
+        "riskLabel": "конверсионный"
+      },
+      "date-time": {
+        "whatLabel": "расчёт времени",
+        "whyImportant": "Точные длительности и дедлайны помогают планировать.",
+        "formulaLead": "Арифметика времени",
+        "appFocus": "графики проектов, события и дедлайны",
+        "methodLabel": "календарная математика",
+        "precisionContext": "день или час",
+        "tipArea": "часовые пояса и летнее время",
+        "riskLabel": "плановый"
+      },
+      "construction": {
+        "whatLabel": "строительный замер",
+        "whyImportant": "Точные сметы предотвращают дорогой передел и дают соответствие нормам.",
+        "formulaLead": "Строительная инженерная формула",
+        "appFocus": "смета материалов, конструкции и нормы",
+        "methodLabel": "строительные стандарты",
+        "precisionContext": "доля дюйма",
+        "tipArea": "запасы на отходы и местные нормы",
+        "riskLabel": "конструктивный"
+      },
+      "statistics": {
+        "whatLabel": "статистическая мера",
+        "whyImportant": "Верный метод определяет достоверность выводов.",
+        "formulaLead": "Статистическая формула",
+        "appFocus": "проверка гипотез, анализ данных и валидация",
+        "methodLabel": "статистические методы",
+        "precisionContext": "доверительный интервал",
+        "tipArea": "размер выборки и распределение",
+        "riskLabel": "статистический"
+      },
+      "education": {
+        "whatLabel": "учебный показатель",
+        "whyImportant": "Учебные измерения помогают следить за прогрессом.",
+        "formulaLead": "Формула образовательной оценки",
+        "appFocus": "оценки, проверка знаний и прогресс",
+        "methodLabel": "образовательные стандарты",
+        "precisionContext": "критерии оценивания",
+        "tipArea": "кривые оценок и взвешивание",
+        "riskLabel": "учебный"
+      },
+      "physics": {
+        "whatLabel": "физическая величина",
+        "whyImportant": "Расчёты физики описывают фундаментальные законы вселенной.",
+        "formulaLead": "Физическое уравнение",
+        "appFocus": "механика, электромагнетизм, термодинамика и кванты",
+        "methodLabel": "физические константы",
+        "precisionContext": "уместные значащие цифры",
+        "tipArea": "системы единиц (СИ и империя) и погрешности",
+        "riskLabel": "физический"
+      },
+      "chemistry": {
+        "whatLabel": "химическая величина",
+        "whyImportant": "Точные химрасчёты критичны для лабораторий, фармы и экологии.",
+        "formulaLead": "Химическое соотношение",
+        "appFocus": "стехиометрия, растворы и выходы реакций",
+        "methodLabel": "химические принципы",
+        "precisionContext": "молярная точность",
+        "tipArea": "температура, давление и чистота реактивов",
+        "riskLabel": "химический"
+      },
+      "engineering": {
+        "whatLabel": "инженерный параметр",
+        "whyImportant": "Инженерные расчёты держат здания, схемы и системы в безопасности.",
+        "formulaLead": "Проектная формула",
+        "appFocus": "прочностной анализ, схемы и оптимизация",
+        "methodLabel": "инженерные стандарты",
+        "precisionContext": "проектный допуск",
+        "tipArea": "запасы прочности, материалы и нормы",
+        "riskLabel": "инженерный"
+      },
+      "everyday": {
+        "whatLabel": "бытовой расчёт",
+        "whyImportant": "Верные бытовые расчёты экономят деньги, время и нервы.",
+        "formulaLead": "Практическая формула",
+        "appFocus": "бюджет, покупки, планы и дом",
+        "methodLabel": "бытовая математика",
+        "precisionContext": "практичный запас",
+        "tipArea": "прикидка против точного счёта",
+        "riskLabel": "практический"
+      },
+      "food": {
+        "whatLabel": "кулинарная мера",
+        "whyImportant": "Точные меры дают стабильный результат готовки.",
+        "formulaLead": "Кулинарное соотношение",
+        "appFocus": "рецепты, питание и пропорции выпечки",
+        "methodLabel": "кулинарные стандарты",
+        "precisionContext": "грамм или ложка",
+        "tipArea": "плотность ингредиентов и замены",
+        "riskLabel": "кулинарный"
+      },
+      "biology": {
+        "whatLabel": "биологический параметр",
+        "whyImportant": "Биорасчёты двигают медицину, агро и охрану природы.",
+        "formulaLead": "Биологическое соотношение",
+        "appFocus": "популяции, дозировки и темпы роста",
+        "methodLabel": "биологические методики",
+        "precisionContext": "порог биологической значимости",
+        "tipArea": "условия опытов и контроли",
+        "riskLabel": "биологический"
+      },
+      "ecology": {
+        "whatLabel": "экологический индикатор",
+        "whyImportant": "Экорасчёты нужны для грамотного природопользования.",
+        "formulaLead": "Экологическая модель",
+        "appFocus": "углеродный след, ресурсы и охрана",
+        "methodLabel": "экологические метрики",
+        "precisionContext": "экологическая значимость",
+        "tipArea": "сезонность и сбор данных",
+        "riskLabel": "экологический"
+      },
+      "sports": {
+        "whatLabel": "спортивная метрика",
+        "whyImportant": "Спортсмены и тренеры опираются на метрики для умных тренировок.",
+        "formulaLead": "Формула спортивной науки",
+        "appFocus": "результаты, нагрузка и травмы",
+        "methodLabel": "стандарты спортивной науки",
+        "precisionContext": "значимый прирост",
+        "tipArea": "индивидуальность и восстановление",
+        "riskLabel": "спортивный"
+      }
+    },
+    "longFormFixed": {
+      "guideTitle": "Полное руководство по {topic}",
+      "guideContent": "{description} Это руководство объясняет ключевые понятия, математику расчёта и применение результатов в жизни. Новичок ли вы в {topicLower} или углубляете знания — найдёте практику и ясные объяснения.",
+      "howCalcTitle": "Как считается {topic}",
+      "howCalcContent": "Расчёт {topic} идёт системным процессом для надёжных повторяемых результатов. Понимание помогает пользоваться калькулятором эффективнее.",
+      "coreFormula": "Центральная формула: {formula}",
+      "coreLogic": "Центральная логика расчёта",
+      "coreFormulaText": "Формула {formula} — основа калькулятора. Каждая переменная — ваш ввод. Их связь определяет результат.",
+      "coreLogicText": "Калькулятор применяет устоявшиеся {method} к вашим данным. Каждый шаг опирается на предыдущий, промежуточные значения видны.",
+      "inputReq": "Требования к вводу",
+      "inputReqText": "Нужно {v3} ключевых ввода для полного расчёта. Опции уточняют особые сценарии.",
+      "processing": "Обработка и проверка",
+      "processingText": "Перед счётом калькулятор проверяет допустимые диапазоны и согласованность единиц. Необычный ввод помечается.",
+      "tipsTitle": "Советы экспертов для точных результатов",
+      "tipsContent": "Следуйте рекомендациям для надёжных результатов калькулятора {topic} и избегайте типичных ловушек.",
+      "doubleCheck": "Проверяйте {method}",
+      "doubleCheckText": "Ошибки ввода — частая причина неточности. Сверяйте значения с источником.",
+      "whatIf": "Тестируйте несколько сценариев",
+      "whatIfText": "Проверьте хотя бы {v3} комбинаций, чтобы понять чувствительность результата.",
+      "benchmarks": "Сверяйтесь с ориентирами",
+      "benchmarksText": "Калькулятор даёт отраслевые диапазоны для быстрой оценки результата.",
+      "walkTitle": "Пример: считаем {topic} по шагам",
+      "walkContent": "Разберём практический пример с реалистичными значениями: как калькулятор {topic} обрабатывает ввод до итога.",
+      "walkSetup": "Начинаем со значения {v1}",
+      "walkSetupText": "Введите {v1} как главный ввод. Второстепенные оставьте по умолчанию.",
+      "walkAdjust": "Меняем на {v2}",
+      "walkAdjustText": "Смените главный ввод на {v2}. Наблюдайте изменение в реальном времени.",
+      "walkInterpret": "Толкование итога",
+      "walkInterpretText": "Значение — ваш {topicLower} при заданных допущениях. Сравните с диапазонами. В ожидаемом диапазоне сценарий в норме.",
+      "faqTitle": "Частые вопросы",
+      "faqContent": "Типовые вопросы о {topic} и их решение калькулятором.",
+      "defaultDeepTitle": "Внутри расчёта {topic}",
+      "defaultDeepContent": "Калькулятор {topic} сочетает {v3} ключевые переменные в точной удобной формуле. Каждый ввод следует устоявшимся {method}. Этапы: сбор, проверка, счёт, показ."
+    },
+    "deep": {
+      "financial": [
+        {
+          "title": "Как время и ставки формируют финансовый итог",
+          "content": "Расчёт {topic} чувствителен к двум вводам: горизонту и ставке. Малые правки дают сильно разные исходы, ведь финформулы экспоненциальны. Понимание помогает приоритизировать переменные для переговоров.",
+          "subs": [
+            {
+              "heading": "Временная стоимость денег",
+              "text": "Время — мощнейшая переменная финрасчётов. Калькулятор показывает, как время растит или дисконтирует итоги."
+            },
+            {
+              "heading": "Чувствительность к ставкам",
+              "text": "Полпункта ставки — реальные деньги. Меняйте ставки и сразу видите эффект."
+            }
+          ]
+        },
+        {
+          "title": "Разбор компонентов расчёта",
+          "content": "Любой финрасчёт раскладывается на капитал, ставку, срок и регулярные платежи. Изоляция показывает главный драйвер. Кредит со ставкой чуть выше, но куда меньшими комиссиями, может выйти дешевле.",
+          "subs": [
+            {
+              "heading": "Капитал и базы",
+              "text": "Стартовая сумма фундирует расчёт. Калькулятор показывает долю капитала и роста в итоге."
+            },
+            {
+              "heading": "Регулярные платежи",
+              "text": "Регулярные взносы капитализируются вместе с базой. Калькулятор делит разовые и регулярные эффекты."
+            }
+          ]
+        },
+        {
+          "title": "Риск, доходность и реалистичные допущения",
+          "content": "Финрасчёты требуют реалистичных допущений о ставках и риске. Калькулятор {topic} тестирует сценарии их сменой. Консервативная оценка даёт надёжную цель; оптимистичная — потенциал. Планирование диапазоном — признак профи.",
+          "subs": [
+            {
+              "heading": "Консервативные и оптимистичные сценарии",
+              "text": "Считайте с обоими допущениями, чтобы очертить возможные итоги."
+            },
+            {
+              "heading": "Стресс-тест допущений",
+              "text": "А если ставки сменятся или срок вырастет? Стресс-тесты показывают разрывы плана."
+            }
+          ]
+        }
+      ],
+      "health": [
+        {
+          "title": "Ваши цифры в контексте",
+          "content": "Значение {topic} само по себе — лишь часть истории. Важнее сравнение с нормами и динамика. Калькулятор даёт ориентиры по возрасту и полу. Отслеживание {topicLower} в замерах информативнее одиночного значения.",
+          "subs": [
+            {
+              "heading": "Нормы и их смысл",
+              "text": "Здоровые диапазоны разнятся. Калькулятор использует актуальные клинрекомендации для классификации."
+            },
+            {
+              "heading": "Сила длительного отслеживания",
+              "text": "Один замер — снимок. Журнал показывает: {topicLower} стабилен, растёт или падает."
+            }
+          ]
+        },
+        {
+          "title": "Факторы ваших показателей здоровья",
+          "content": "Результат {topic} зависит от изменяемых и неизменных факторов. Изменяемые: питание, активность, сон, стресс, приверженность. Прочие: возраст, генетика, пол. Знание управляемого даёт силу действовать с научными целями.",
+          "subs": [
+            {
+              "heading": "Изменяемое и неизменное",
+              "text": "Сосредоточьтесь на подконтрольном. Калькулятор показывает изменяемые вводы и эффект."
+            },
+            {
+              "heading": "Реалистичные цели",
+              "text": "Калькулятор следит за прогрессом и подстраивает рекомендации под ваш темп."
+            }
+          ]
+        },
+        {
+          "title": "Когда к специалисту",
+          "content": "Онлайн-калькуляторы дополняют, а не заменяют врача. Калькулятор {topic} сигналит о выходе за нормы и советует консультацию, а также готовит к приёму с вопросами и данными.",
+          "subs": [
+            {
+              "heading": "Пороги тревоги",
+              "text": "Калькулятор помечает превышения клинически валидных порогов с рекомендациями."
+            },
+            {
+              "heading": "Подготовка к приёму",
+              "text": "Экспортируйте историю трендов, чтобы поделиться с врачом."
+            }
+          ]
+        }
+      ],
+      "math": [
+        {
+          "title": "Почему это понятие важно",
+          "content": "{topic} пронизывает математику и приложения. Понимание укрепляет базу и готовит к продвинутому. Калькулятор показывает пошаговый вывод, закрепляя математику при каждом использовании.",
+          "subs": [
+            {
+              "heading": "Предпосылки",
+              "text": "Перед {topic} освойте базовые операции. Калькулятор включает их повторение."
+            },
+            {
+              "heading": "Мост к продвинутому",
+              "text": "{topic} фундирует сложные концепции. Прочное понимание ускоряет обучение."
+            }
+          ]
+        },
+        {
+          "title": "Типовые подходы к решению",
+          "content": "Задачи {topic} решаются несколькими методами. Калькулятор показывает результаты рядом для выбора метода. Разные пути дают гибкое понимание.",
+          "subs": [
+            {
+              "heading": "Прямой подход",
+              "text": "Простейший метод применяет центральную формулу напрямую. Подходит в большинстве случаев."
+            },
+            {
+              "heading": "Альтернативные пути",
+              "text": "При экстремальных значениях альтернативные методы точнее."
+            }
+          ]
+        },
+        {
+          "title": "Визуализация связи",
+          "content": "Математика интуитивна в визуализации. Калькулятор {topic} показывает интерактивные графики влияния переменных. Визуальный отклик развивает интуицию быстрее чисел.",
+          "subs": [
+            {
+              "heading": "Интерактивное исследование",
+              "text": "Двигайте ползунки и смотрите обновление графика. Отклик делает связь осязаемой."
+            },
+            {
+              "heading": "Ключевые точки",
+              "text": "График автоматически метит критические точки и границы."
+            }
+          ]
+        }
+      ],
+      "conversion": [
+        {
+          "title": "Почему точность перевода важна",
+          "content": "Перевод единиц обманчиво прост. Съехавшая запятая даёт ошибки на порядки. Калькулятор {topic} применяет верные коэффициенты и чтит значащие цифры. Это критично, где переводы касаются безопасности и затрат.",
+          "subs": [
+            {
+              "heading": "Путаемые пары единиц",
+              "text": "Галлоны US/UK, короткие/длинные тонны, жидкие/сухие унции и чашки — частые путаницы."
+            },
+            {
+              "heading": "Значащие цифры и округление",
+              "text": "Перевод точен лишь как самый неточный ввод. Калькулятор округляет корректно."
+            }
+          ]
+        },
+        {
+          "title": "Коэффициенты и их работа",
+          "content": "Любой перевод использует коэффициент — фиксированное отношение единиц из международных стандартов. Связь всегда линейна: умножьте на коэффициент. Калькулятор хранит сотни коэффициентов, сверенных с NIST и BIPM.",
+          "subs": [
+            {
+              "heading": "Откуда коэффициенты",
+              "text": "Коэффициенты задают международные договоры и органы стандартизации."
+            },
+            {
+              "heading": "Проверка перевода",
+              "text": "Приём: переведите результат обратно в исходную единицу."
+            }
+          ]
+        },
+        {
+          "title": "Реальная цена ошибок перевода",
+          "content": "Ошибки перевода дорого стоят: в 1999 потерян зонд за $125 млн — одна команда считала в империи, другая в метрике. Калькулятор {topic} предупреждает, проверяя единицы и помечая странные итоги.",
+          "subs": [
+            {
+              "heading": "Критичные сценарии",
+              "text": "Авиация, медицина, инженерия и торговля требуют абсолютной точности."
+            },
+            {
+              "heading": "Привычка проверять",
+              "text": "Проверяйте всегда в обратную сторону: итог — в исходную единицу."
+            }
+          ]
+        }
+      ]
+    },
+    "faqPools": {
+      "financial": [
+        {
+          "q": "Какие допущения в расчёте {topic}?",
+          "a": "Калькулятор предполагает стабильные ставки и регулярные платежи. Реальные ставки колеблются: итог — оценка."
+        },
+        {
+          "q": "Как часто пересчитывать {topic}?",
+          "a": "При смене допущений: ставок, доходов, целей. Обзор каждые {v3} месяцев подходит большинству."
+        },
+        {
+          "q": "Какая переменная влияет сильнее всего?",
+          "a": "Обычно горизонт: продление срока меняет итог сильнее любого ввода."
+        },
+        {
+          "q": "Можно ли доверять калькулятору в крупных решениях?",
+          "a": "Да, формулы валидированы. Для ипотеки и пенсии используйте как главную оценку плюс консультацию."
+        }
+      ],
+      "health": [
+        {
+          "q": "Насколько точно измерение {topic}?",
+          "a": "Точность зависит от ввода. Используйте поверенные приборы в стабильных условиях."
+        },
+        {
+          "q": "Как часто измерять {topic}?",
+          "a": "Для трендов — в одно время суток в схожих условиях. Несколько замеров в неделю достаточно."
+        },
+        {
+          "q": "{topic} зависит от возраста и пола?",
+          "a": "Да, нормы различаются. Калькулятор подстраивает ориентиры под ваши данные."
+        },
+        {
+          "q": "Когда к врачу при отклонениях {topic}?",
+          "a": "Если результат вне норм или резко меняется между замерами — консультируйтесь."
+        }
+      ],
+      "math": [
+        {
+          "q": "Что нужно знать для {topic}?",
+          "a": "Прочная арифметика и начала алгебры. Калькулятор включает пошаговые объяснения."
+        },
+        {
+          "q": "Где {topic} вне учёбы?",
+          "a": "{topic} встречается в инженерии, IT, физике, экономике, данных. Фундаментально и широко."
+        },
+        {
+          "q": "Частая ошибка в {topic}?",
+          "a": "Неверная формула или единицы — частые ошибки. Калькулятор проверяет ввод."
+        }
+      ]
+    },
+    "defaultFaqs": [
+      {
+        "q": "Частая ошибка в расчёте {topic}?",
+        "a": "Несогласованные единицы или неверное чтение формулы. Калькулятор проверяет автоматически."
+      },
+      {
+        "q": "Насколько точен калькулятор {topic}?",
+        "a": "Формулы валидированы для {method} результатов. Точность — от качества ввода."
+      },
+      {
+        "q": "Годится для профессиональной работы?",
+        "a": "Да, формулы профессиональные. Для регулируемых отраслей сверяйте сертифицированными инструментами."
+      }
+    ]
   }
 }

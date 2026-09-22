@@ -200,37 +200,46 @@
     "press": "Imprensa"
   },
   "content": {
-    "sectionOverview": "Visão Geral",
-    "sectionHowToUse": "Como Usar",
-    "sectionFormula": "A Fórmula",
-    "sectionExample": "Exemplo",
-    "sectionUseCases": "Casos de Uso",
-    "sectionTips": "Dicas e Melhores Práticas",
-    "sectionRelated": "Ferramentas Relacionadas",
-    "sectionFaq": "FAQ",
-    "whatThisMeans": "O Que Isso Significa",
-    "resultsExplained": "Seus Resultados Explicados",
-    "howItWorks": "Como Funciona?",
-    "educationalGuide": "Guia Educativo",
-    "references": "Referências ({count})",
-    "relatedTopics": "Tópicos Relacionados",
-    "wasThisHelpful": "Este guia foi útil?",
-    "wasCalcHelpful": "Esta calculadora ajudou você?",
-    "realWorldUseCases": "Casos de Uso Reais",
+    "alternatives": "Alternativas a considerar",
+    "browseCollection": "Explore nossa coleção completa de calculadoras de {category} para mais ferramentas e recursos.",
     "commonMistakes": "Erros Comuns a Evitar",
-    "glossary": "Glossário de Termos",
-    "prosCons": "Prós e Contras",
-    "pros": "Prós",
+    "completeGuide": "Guia completo",
     "cons": "Contras",
-    "expertRecommendations": "Recomendações de Especialistas",
-    "whoShouldUse": "Quem Deve Usar Esta Calculadora?",
-    "exploreMoreIn": "Explore Mais em {hubName}",
-    "keyInsights": "Principais Insights",
-    "optimizationSuggestions": "Sugestões de Otimização",
-    "qualityAudit": "Auditoria de Qualidade com IA",
+    "educationalGuide": "Guia Educativo",
     "excellent": "Excelente — supera os padrões do setor",
+    "expertRecommendations": "Recomendações de Especialistas",
+    "expertTips": "Dicas de especialistas para resultados precisos",
+    "exploreMoreIn": "Explore Mais em {hubName}",
+    "factor": "Fator",
+    "glossary": "Glossário de Termos",
     "good": "Bom — pequenas melhorias necessárias",
-    "needsImprovement": "Precisa melhorar"
+    "howItWorks": "Como Funciona?",
+    "keyInsights": "Principais Insights",
+    "manualApproach": "Abordagem manual",
+    "needsImprovement": "Precisa melhorar",
+    "optimizationSuggestions": "Sugestões de Otimização",
+    "ourCalculator": "Nossa calculadora",
+    "pros": "Prós",
+    "prosCons": "Prós e Contras",
+    "qualityAudit": "Auditoria de Qualidade com IA",
+    "realWorldUseCases": "Casos de Uso Reais",
+    "references": "Referências ({count})",
+    "relatedConcepts": "Conceitos relacionados",
+    "relatedTopics": "Tópicos Relacionados",
+    "resultsExplained": "Seus Resultados Explicados",
+    "sectionExample": "Exemplo",
+    "sectionFaq": "FAQ",
+    "sectionFormula": "A Fórmula",
+    "sectionHowToUse": "Como Usar",
+    "sectionOverview": "Visão Geral",
+    "sectionRelated": "Ferramentas Relacionadas",
+    "sectionTips": "Dicas e Melhores Práticas",
+    "sectionUseCases": "Casos de Uso",
+    "viewAll": "Ver tudo em {hubName}",
+    "wasCalcHelpful": "Esta calculadora ajudou você?",
+    "wasThisHelpful": "Este guia foi útil?",
+    "whatThisMeans": "O Que Isso Significa",
+    "whoShouldUse": "Quem Deve Usar Esta Calculadora?"
   },
   "guide": {
     "completeGuide": "Guia completo do {name}",
@@ -2358,257 +2367,454 @@
       "paymentCalculator": "Calculadora de Pagamento"
     },
     "formLabels": {
-      "homePrice": "Preço do Imóvel",
-      "downPayment": "Entrada",
-      "loanTerm": "Prazo do Empréstimo",
-      "interestRate": "Taxa de Juros",
-      "loanAmount": "Valor do Empréstimo",
-      "monthlyPay": "Pagamento Mensal",
-      "salaryAmount": "Valor do Salário",
-      "hoursPerWeek": "Horas por Semana",
-      "daysPerWeek": "Dias por Semana",
-      "holidaysPerYear": "Feriados por Ano",
-      "vacationDaysPerYear": "Dias de Férias por Ano",
-      "pretaxIncome": "Sua renda antes dos impostos",
-      "monthlyDebt": "Seu pagamento mensal de dívidas",
-      "startDate": "Data de Início",
-      "extraPayment": "Pagamento Extra",
-      "principal": "Valor do Empréstimo ($)",
-      "rate": "Taxa de Juros (%)",
-      "term": "Prazo do Empréstimo (anos)",
-      "age": "Idade (anos)",
-      "height": "Altura (cm)",
-      "weight": "Peso (kg)",
-      "gender": "Sexo",
-      "male": "Masculino",
-      "female": "Feminino",
-      "waist": "Cintura (cm)",
-      "hip": "Quadril (cm)",
-      "neck": "Pescoço (cm)",
-      "bodyFat": "Gordura Corporal (%)",
-      "bmrFormula": "Fórmula de BMR",
-      "healthGoal": "Objetivo de Saúde",
-      "activityLevel": "Nível de Atividade",
-      "targetWeightChange": "Alteração de Peso Alvo",
-      "dailyStepGoal": "Meta Diária de Passos",
-      "sleepHours": "Horas de Sono por Noite",
-      "stressLevel": "Nível de Estresse (1-10)",
-      "systolicBP": "Pressão Sistólica (mmHg)",
-      "diastolicBP": "Pressão Diastólica (mmHg)",
-      "calories": "Calorias",
-      "protein": "Proteína (g)",
-      "carbs": "Carboidratos (g)",
-      "fat": "Gordura (g)",
-      "fiber": "Fibra (g)",
-      "sugar": "Açúcar (g)",
-      "sodium": "Sódio (mg)",
-      "waterIntake": "Ingestão de Água (oz)",
-      "hours": "Horas",
-      "minutes": "Minutos",
-      "seconds": "Segundos",
-      "distance": "Distância",
-      "speed": "Velocidade",
-      "temperature": "Temperatura",
-      "length": "Comprimento",
-      "width": "Largura",
-      "height_dim": "Altura",
-      "depth": "Profundidade",
-      "radius": "Raio",
-      "diameter": "Diâmetro",
-      "volume": "Volume",
-      "area": "Área",
-      "frequency": "Frequência",
-      "voltage": "Voltagem",
-      "current": "Corrente (Ampères)",
-      "resistance": "Resistência (Ohms)",
-      "power": "Potência (Watts)",
-      "mass": "Massa",
-      "time": "Tempo",
-      "angle": "Ângulo",
-      "pressure": "Pressão",
-      "energy": "Energia",
-      "force": "Força",
-      "salary_annual": "Salário Anual ($)",
-      "salary_hourly": "Salário por Hora ($)",
-      "salary_weekly": "Pagamento Semanal ($)",
-      "salary_biweekly": "Pagamento Quinzenal ($)",
-      "salary_monthly": "Pagamento Mensal ($)",
       "a": "Distância do apoio esquerdo",
+      "acceleratedBiweekly": "Quinzenal Acelerado",
       "act": "Pontuação do ACT",
       "activities": "Pontuação de atividades extracurriculares (1-10)",
+      "activity": "Activity (0-2)",
+      "activityLevel": "Nível de Atividade",
+      "addedSugar": "Added Sugar (g)",
+      "additionalCosts": "Custos Adicionais",
+      "adjustableRate": "Taxa Variável",
       "admission": "Taxa de admissão (%)",
+      "age": "Idade (anos)",
+      "agitation": "Agitation (0-7)",
       "airfare": "Passagens aéreas ($)",
+      "albumin": "Albumin",
       "alpha": "Coeficiente (α)",
+      "alteredMentalStatus": "Altered Mental Status",
       "amount": "Valor",
+      "angle": "Ângulo",
+      "annualIncome": "Renda Anual",
+      "annually": "Anual",
+      "anxiety": "Anxiety (0-7)",
+      "appearance": "Appearance (0-2)",
+      "area": "Área",
+      "armPeriod": "Período ARM",
+      "ascites": "Ascites",
+      "ascvd": "ASCVD Risk",
       "assignments": "Média de tarefas (%)",
+      "averageHr": "Average HR",
       "avgAssets": "Ativos médios ($)",
       "b": "Largura da seção (b)",
       "balance": "Saldo ($)",
+      "balloonPayment": "Pagamento Balão",
       "basicSupplies": "Materiais básicos por aluno ($)",
+      "bedTime": "Bed Time",
+      "beverage": "Beverage",
+      "bicarbonate": "Bicarbonate (mEq/L)",
+      "bilirubin": "Bilirubin",
       "birth": "Data de nascimento",
+      "biweekly": "Quinzenal",
+      "bmi": "BMI",
+      "bmr": "BMR",
+      "bmrFormula": "Fórmula de BMR",
+      "bodyFat": "Gordura Corporal (%)",
+      "bodyRoundness": "Body Roundness Index",
       "breakM": "Pausa (minutos)",
       "breakMin": "Pausa (min)",
       "breaks": "Minutos de pausa por hora",
+      "bsa": "Body Surface Area",
+      "bun": "BUN (mg/dL)",
       "c": "Capacitância",
+      "calcium": "Calcium (mg)",
+      "caliper": "Skinfold Caliper",
+      "calories": "Calorias",
+      "carb": "Carbs (g)",
+      "carbs": "Carboidratos (g)",
       "cards": "Total de cartões",
+      "cerebrovascular": "Cerebrovascular",
+      "chadsVasc": "CHA₂DS₂-VASc",
       "chars": "Caracteres digitados",
+      "chloride": "Chloride (mEq/L)",
       "classSize": "Tamanho da turma",
+      "climate": "Climate",
       "clockIn": "Entrada",
       "clockOut": "Saída",
+      "closingCosts": "Custos de Fechamento",
+      "compound": "Capitalização",
+      "compoundingFrequency": "Frequência de Capitalização",
+      "conceptionDate": "Conception Date",
       "content": "Pontuação de conteúdo (0-100)",
+      "contributionFrequency": "Frequência de Contribuição",
+      "coping": "How often coping well? (0-3)",
       "correct": "Perguntas corretas",
       "cost": "Custo ($)",
       "count": "Contagem",
       "courses": "Número de cursos",
       "cp": "Química/Física (118-132)",
+      "creatinine": "Creatinine (mg/dL)",
       "creativity": "Criatividade",
+      "creditScore": "Score de Crédito",
       "credits": "Horas de crédito (separadas por vírgulas)",
+      "currency": "Moeda",
+      "current": "Corrente (Ampères)",
+      "currentAge": "Idade Atual",
       "currentAssets": "Ativos circulantes ($)",
       "currentCredits": "Créditos obtidos",
       "currentGpa": "GPA atual",
       "currentLiabilities": "Passivos circulantes ($)",
+      "currentWeight": "Current Weight (kg)",
+      "cycleLength": "Cycle Length (days)",
       "d": "Diâmetro",
       "daily": "Limite diário de estudo",
+      "dailyCalories": "Daily Calories",
+      "dailyStepGoal": "Meta Diária de Passos",
+      "dailySteps": "Daily Steps",
       "date": "Data",
       "days": "Dias",
+      "daysPerWeek": "Dias por Semana",
+      "debtToIncome": "Relação Dívida-Renda",
       "decimal": "Horas decimais",
       "deductible": "Franquia ($)",
+      "deductions": "Deduções",
       "deltaL": "Variação de comprimento",
       "deltaT": "Variação de temperatura",
       "density": "Densidade",
+      "dependents": "Dependentes",
+      "depth": "Profundidade",
       "desired": "Nota final desejada (%)",
+      "diabetes": "Diabetes",
+      "diabetic": "Diabetic",
+      "dialysis": "Dialysis",
+      "diameter": "Diâmetro",
+      "diastolic": "Diastolic BP",
+      "diastolicBP": "Pressão Diastólica (mmHg)",
       "difficulty": "Multiplicador de dificuldade",
       "displacement": "Deslocamento",
+      "distance": "Distância",
+      "dosePerKg": "Dose per kg (mg/kg)",
+      "downPayment": "Entrada",
+      "drinks": "Drinks",
+      "dropFactor": "Drop Factor (gtt/mL)",
+      "dueDate": "Due Date",
+      "duration": "Duration (minutes)",
       "e": "Módulo de Young",
       "earned": "Pontos obtidos",
       "ebit": "EBIT ($)",
       "efc": "Contribuição familiar esperada (EFC)",
       "end": "Data de término",
+      "endDiastolicVolume": "End-Diastolic Volume (mL)",
       "endH": "Hora de término",
       "endM": "Minuto de término",
+      "endSystolicVolume": "End-Systolic Volume (mL)",
+      "energy": "Energia",
       "equipment": "Equipamento (%)",
       "errors": "Erros",
       "exams": "Média de provas (%)",
+      "exerciseHr": "Exercise Heart Rate",
+      "expectedReturn": "Retorno Esperado",
       "expenses": "Despesas mensais ($)",
+      "extraPayment": "Pagamento Extra",
+      "eyeOpening": "Eye Opening (1-4)",
       "faceValue": "Valor nominal ($)",
+      "fat": "Gordura (g)",
       "fees": "Taxas anuais ($)",
+      "female": "Feminino",
+      "ffmi": "Fat-Free Mass Index",
+      "fiO2": "FiO₂ (0.21-1.0)",
+      "fiber": "Fibra (g)",
+      "filingStatus": "Situação Fiscal",
+      "firstHcg": "First HCG Level",
+      "fitnessAge": "Fitness Age",
       "fixedCosts": "Custos fixos ($)",
       "food": "Alimentação mensal ($)",
+      "force": "Força",
+      "formula": "Fórmula",
+      "frameSize": "Frame Size",
+      "framingham": "Framingham Risk",
       "freq": "Frequência",
+      "frequency": "Frequência",
       "from": "De",
       "fromUnit": "De",
+      "fundalHeight": "Fundal Height (cm)",
       "g2": "Nota do curso 2 (%)",
       "gamma": "Razão de calores específicos (γ)",
+      "gcs": "GCS (3-15)",
+      "gender": "Sexo",
+      "glucose": "Glucose (mg/dL)",
       "goal": "Meta",
       "gpa": "Seu GPA",
       "grade": "Nota",
       "grades": "Pontos de nota (separados por vírgulas)",
       "grants": "Bolsas ($/ano)",
+      "grimace": "Grimace (0-2)",
+      "grossIncome": "Renda Bruta",
       "h": "Altura (h)",
       "h1": "Horas 1",
       "h2": "Horas 2",
+      "hcg": "HCG Level",
+      "hdl": "HDL",
+      "healthGoal": "Objetivo de Saúde",
+      "heartAge": "Heart Age",
+      "heartFailure": "Heart Failure",
+      "heartRate": "Heart Rate (bpm)",
+      "height": "Altura (cm)",
+      "height_dim": "Altura",
+      "hematocrit": "Hematocrit (%)",
+      "hip": "Quadril (cm)",
+      "hoaFees": "Condomínio",
+      "holidaysPerYear": "Feriados por Ano",
+      "homePrice": "Preço do Imóvel",
       "honors": "Cursos com honras/AP (separados por vírgulas S/N)",
+      "hours": "Horas",
+      "hoursDrinking": "Hours Drinking",
+      "hoursElapsed": "Hours Elapsed",
       "hoursPerDay": "Horas disponíveis por dia",
       "hoursPerTask": "Horas por tarefa",
+      "hoursPerWeek": "Horas por Semana",
       "housing": "Moradia ($)",
+      "hrAfterMinRest": "HR After 1 Min Rest",
+      "hrZone": "Heart Rate Zone",
+      "hrv": "Heart Rate Variability",
       "humanYears": "Anos humanos",
+      "hypertension": "Hypertension",
       "i": "Momento de inércia (I)",
       "income": "Renda ($)",
+      "inflationRate": "Taxa de Inflação",
+      "infusionTime": "Infusion Time (hours)",
       "initial": "Investimento inicial ($)",
       "inputRpm": "Velocidade de entrada (RPM)",
+      "inr": "INR",
+      "insurance": "Seguro",
+      "intensity": "Intensity (%)",
       "interestExpense": "Despesa com juros ($)",
+      "interestRate": "Taxa de Juros",
+      "iron": "Iron (mg)",
       "k": "Constante da mola",
       "k1": "Constante da mola 1",
       "l": "Indutância",
+      "leanMass": "Lean Body Mass",
+      "length": "Comprimento",
+      "lifeExpectancy": "Expectativa de Vida",
+      "lightActivity": "Light Activity (hours)",
       "listening": "Compreensão oral (0-30)",
+      "liverDisease": "Liver Disease",
+      "lmp": "Last Menstrual Period",
       "load": "Carga",
+      "loanAmount": "Valor do Empréstimo",
+      "loanTerm": "Prazo do Empréstimo",
       "m1": "Min 1",
       "m2": "Min 2",
+      "macro": "Macro Goal",
+      "male": "Masculino",
+      "mass": "Massa",
       "math": "Pontuação de matemática (200-800)",
       "meals": "Refeições ($)",
       "meetings": "Reuniões (h/semana)",
+      "metMinutes": "MET Minutes",
+      "metValue": "MET Value",
       "method": "Método",
       "minGpa": "GPA mínimo exigido",
+      "minutes": "Minutos",
+      "minutesPerSession": "Minutes per Session",
       "mode": "Configuração",
+      "moderateActivity": "Moderate Activity (hours)",
+      "monthly": "Mensal",
+      "monthlyDebt": "Seu pagamento mensal de dívidas",
+      "monthlyIncome": "Renda Mensal",
+      "monthlyPay": "Pagamento Mensal",
+      "monthlyPayment": "Parcela Mensal",
       "months": "Número de meses",
       "motivation": "Avaliação de motivação (%)",
+      "motorResponse": "Motor Response (1-6)",
       "mu": "Viscosidade do fluido (μ)",
       "n": "Coeficiente de Manning (n)",
       "n1": "Espiras primárias",
       "n2": "Espiras secundárias",
+      "napDuration": "Nap Duration (min)",
+      "nausea": "Nausea/Vomiting (0-7)",
+      "navyBf": "Navy Body Fat",
+      "neat": "NEAT",
+      "neck": "Pescoço (cm)",
+      "neoplasm": "Neoplasm",
       "netIncome": "Renda líquida ($)",
+      "newConfusion": "New Confusion",
       "newDaily": "Novos cartões por dia",
+      "nursingHome": "Nursing Home",
+      "obGcs": "OB GCS",
+      "onHtnTreatment": "On HTN Treatment",
+      "orientation": "Orientation (0-4)",
       "origL": "Comprimento original",
       "other": "Outros mensais ($)",
+      "ouncesPerDrink": "Ounces per Drink",
+      "oxygenSaturation": "Oxygen Saturation (%)",
       "p1": "Pressão no ponto 1",
+      "paco2": "PaCO₂ (mmHg)",
       "pages": "Páginas para estudar",
+      "pal": "Physical Activity Level",
+      "pao2": "PaO₂ (mmHg)",
+      "paymentFrequency": "Frequência de Pagamento",
+      "paymentStart": "Data de Início do Pagamento",
+      "payoffDate": "Data de Quitação",
+      "peakHr": "Peak HR",
       "percentile": "Percentil estimado",
       "period": "Período",
+      "periodLength": "Period Length (days)",
+      "ph": "pH",
       "plannedCredits": "Créditos planejados",
+      "pleuralEffusion": "Pleural Effusion",
+      "ponderal": "Ponderal Index",
       "portfolioReturn": "Retorno da carteira %",
+      "power": "Potência (Watts)",
       "pr": "Relação de pressão (P₂/P₁)",
+      "prePregnancyWeight": "Pre-Pregnancy Weight (kg)",
+      "pregWeightGain": "Pregnancy Weight Gain",
+      "pregnant": "Pregnant",
+      "prepayment": "Antecipação",
       "present": "Dias presentes",
+      "pressure": "Pressão",
+      "pretaxIncome": "Sua renda antes dos impostos",
       "price": "Preço ($)",
+      "principal": "Valor do Empréstimo ($)",
+      "principalAndInterest": "Capital e Juros",
       "programFee": "Taxa do programa ($)",
+      "propertyDetails": "Detalhes do Imóvel",
+      "propertyTax": "IPTU",
       "propertyValue": "Valor do imóvel ($)",
+      "protein": "Proteína (g)",
+      "pulse": "Pulse (0-2)",
       "q": "Vazão (Q)",
+      "qt": "QT Interval (ms)",
       "quality": "Pontuação de qualidade (0-100)",
       "quant": "Quantitativo (0-60)",
+      "quarterly": "Trimestral",
       "questions": "Perguntas",
       "r": "Resistência",
+      "radius": "Raio",
       "rank": "Posição na turma (top %)",
+      "rate": "Taxa de Juros (%)",
       "reading": "Pontuação de leitura (200-800)",
+      "recoveryHr": "Recovery Heart Rate",
       "registration": "Inscrição ($)",
       "regular": "Pontos de nota de cursos regulares (separados por vírgulas)",
+      "renalDisease": "Renal Disease",
       "rent": "Aluguel mensal ($)",
       "required": "Frequência exigida (%)",
+      "resistance": "Resistência (Ohms)",
+      "respiration": "Respiration (0-2)",
+      "respiratoryRate": "Respiratory Rate",
+      "restingHr": "Resting HR",
       "retirementAge": "Idade de aposentadoria",
       "revenue": "Receita ($)",
       "rho": "Densidade (ρ)",
       "riskFreeRate": "Taxa livre de risco %",
+      "rmssd": "RMSSD (ms)",
+      "rr": "RR Interval (ms)",
       "sAlt": "Tensão alternada (S_a)",
+      "salaryAmount": "Valor do Salário",
+      "salary_annual": "Salário Anual ($)",
+      "salary_biweekly": "Pagamento Quinzenal ($)",
+      "salary_hourly": "Salário por Hora ($)",
+      "salary_monthly": "Pagamento Mensal ($)",
+      "salary_weekly": "Pagamento Semanal ($)",
       "sat": "Pontuação do SAT",
+      "saturatedFat": "Saturated Fat (g)",
       "savings": "Economias ($/ano)",
+      "savingsRate": "Taxa de Poupança",
       "science": "Ciências (1-36)",
       "score": "Pontuação",
+      "secondHcg": "Second HCG Level",
+      "seconds": "Segundos",
+      "sedentaryHours": "Sedentary (hours)",
+      "serumCreatinine": "Serum Creatinine (mg/dL)",
+      "serumNa": "Serum Na (mEq/L)",
+      "servings": "Servings",
       "shares": "Ações em circulação",
       "size": "Tamanho",
+      "sleep": "Sleep (hours)",
+      "sleepHours": "Horas de Sono por Noite",
+      "smm": "Skeletal Muscle Mass",
+      "smoker": "Smoker",
+      "sodium": "Sódio (mg)",
       "sources": "Número de fontes",
       "span": "Vão da viga",
       "speaking": "Fala (0-30)",
+      "speed": "Velocidade",
       "spending": "Gastos mensais ($)",
+      "standingHours": "Standing Hours",
       "start": "Data de início",
+      "startDate": "Data de Início",
       "startH": "Hora de início",
       "startM": "Minuto de início",
+      "steps": "Steps",
+      "stress": "Stress Level (1-10)",
+      "stressLevel": "Nível de Estresse (1-10)",
+      "stressed": "How often stressed? (0-3)",
+      "strokeTia": "Stroke/TIA",
+      "strokeVolume": "Stroke Volume (mL)",
       "students": "Alunos",
       "studyHrs": "Total de horas de estudo necessárias",
       "subjects": "Disciplinas",
+      "sugar": "Açúcar (g)",
+      "sunExposure": "Sun Exposure",
       "supplies": "Materiais ($/ano)",
+      "sweats": "Sweats (0-7)",
+      "systolic": "Systolic BP",
+      "systolicBP": "Pressão Sistólica (mmHg)",
       "t": "Espessura da placa",
       "t1": "Temperatura de entrada (T₁)",
       "t1H": "Horas 1",
       "target": "Data alvo",
+      "targetHr": "Target Heart Rate",
+      "targetWeightChange": "Alteração de Peso Alvo",
       "tasks": "Número de tarefas",
       "taxRate": "Taxa de imposto %",
+      "tdee": "TDEE",
+      "temperature": "Temperatura",
+      "term": "Prazo do Empréstimo (anos)",
       "thickness": "Espessura",
+      "time": "Tempo",
       "to": "Para",
+      "toUnit": "Para",
       "topics": "Tópicos a cobrir",
       "total": "Total de pontos possíveis",
+      "totalBurnSurfaceArea": "Total Burn Surface Area (%)",
+      "totalCost": "Custo Total",
       "totalDebt": "Dívida total ($)",
-      "toUnit": "Para",
+      "totalInterest": "Juros Totais",
+      "totalMonthly": "Total Mensal",
       "transport": "Transporte mensal ($)",
       "travel": "Despesas de viagem ($)",
+      "treatedForHtn": "Treated for HTN",
+      "tremor": "Tremor (0-7)",
+      "trimp": "Training Impulse",
       "tuition": "Mensalidade anual ($)",
       "type": "Tipo",
+      "unableToControl": "How often unable to control? (0-3)",
+      "unit": "Unidade",
       "units": "Unidades",
+      "urineCreatinine": "Urine Creatinine (mg/dL)",
+      "urineNa": "Urine Na (mEq/L)",
       "v1": "Tensão primária",
+      "vacationDaysPerYear": "Dias de Férias por Ano",
       "value": "Valor",
+      "vascularDisease": "Vascular Disease",
       "velocity": "Velocidade",
       "verbal": "Verbal (0-60)",
+      "verbalResponse": "Verbal Response (1-5)",
+      "vigorousActivity": "Vigorous Activity (hours)",
       "visa": "Visto/seguro ($)",
+      "vitaminD": "Vitamin D (IU)",
+      "vo2": "VO2 Max",
+      "voltage": "Voltagem",
+      "volume": "Volume",
+      "waist": "Cintura (cm)",
       "wakeH": "Hora de acordar",
       "wakeM": "Minuto de acordar",
+      "wakeTime": "Wake Time",
+      "walkingHours": "Walking Hours",
+      "waterIntake": "Ingestão de Água (oz)",
+      "waterNeeds": "Water Needs (oz)",
+      "weekOfGestation": "Week of Gestation",
+      "weekdaySleep": "Weekday Sleep (hours)",
+      "weekendSleep": "Weekend Sleep (hours)",
       "weeks": "Número de semanas",
+      "weight": "Peso (kg)",
+      "whr": "Waist-to-Hip Ratio",
+      "whtr": "Waist-to-Height Ratio",
+      "width": "Largura",
+      "withdrawalRate": "Taxa de Saque",
       "words": "Palavras lidas",
       "writing": "Pontuação de redação (200-800)",
       "year": "Ano",
@@ -3215,5 +3421,2203 @@
     "whatThisMeans": "O Que Isso Significa",
     "rateStars": "{count, plural, one {Avaliar com {count} estrela} other {Avaliar com {count} estrelas}}",
     "ratingsCount": "{count, plural, one {# avaliação} other {# avaliações}}"
+  },
+  "contentEngine": {
+    "whatIs": "A {title} é uma ferramenta online gratuita que ajuda você a {keyPhrase}. Projetada para {persona}, oferece resultados precisos na hora. Esteja você {activity}, esta calculadora simplifica cálculos complexos para que você foque em {goal}.",
+    "audience": {
+      "financial": {
+        "persona": "um comprador de imóvel, investidor ou planejador financeiro",
+        "activity": "gerenciando suas finanças pessoais",
+        "goal": "tomar decisões financeiras informadas e construir patrimônio duradouro"
+      },
+      "health": {
+        "persona": "alguém focado em saúde e bem-estar",
+        "activity": "acompanhando suas métricas de saúde",
+        "goal": "entender seu corpo e melhorar seu bem-estar"
+      },
+      "math": {
+        "persona": "um estudante, professor ou profissional",
+        "activity": "resolvendo problemas matemáticos",
+        "goal": "obter cálculos precisos e entender conceitos matemáticos"
+      },
+      "conversion": {
+        "persona": "um viajante, cozinheiro, engenheiro ou estudante",
+        "activity": "convertendo entre unidades diferentes",
+        "goal": "obter conversões precisas na hora"
+      },
+      "date-time": {
+        "persona": "um gerente de projetos, organizador de eventos ou mente curiosa",
+        "activity": "calculando datas e períodos",
+        "goal": "gerenciar seu tempo com eficácia"
+      },
+      "construction": {
+        "persona": "um empreiteiro, arquiteto ou entusiasta de bricolagem",
+        "activity": "planejando projetos de construção",
+        "goal": "estimar materiais e custos com precisão"
+      },
+      "statistics": {
+        "persona": "um pesquisador, analista ou cientista de dados",
+        "activity": "analisando conjuntos de dados",
+        "goal": "entender padrões e extrair conclusões relevantes"
+      },
+      "education": {
+        "persona": "um estudante, professor ou orientador acadêmico",
+        "activity": "acompanhando o desempenho escolar",
+        "goal": "melhorar notas e planejar metas educacionais"
+      },
+      "physics": {
+        "persona": "um estudante, engenheiro ou entusiasta de ciências",
+        "activity": "resolvendo problemas de física",
+        "goal": "entender leis físicas e suas aplicações práticas"
+      },
+      "chemistry": {
+        "persona": "um químico, estudante ou técnico de laboratório",
+        "activity": "realizando cálculos químicos",
+        "goal": "obter resultados precisos para experimentos"
+      },
+      "engineering": {
+        "persona": "um engenheiro, designer ou profissional técnico",
+        "activity": "resolvendo problemas de engenharia",
+        "goal": "projetar sistemas seguros e eficientes"
+      },
+      "everyday": {
+        "persona": "qualquer pessoa gerenciando tarefas e decisões diárias",
+        "activity": "fazendo cálculos cotidianos",
+        "goal": "economizar tempo e decidir melhor no dia a dia"
+      },
+      "food": {
+        "persona": "um cozinheiro caseiro, chef ou entusiasta de nutrição",
+        "activity": "preparando e planejando refeições",
+        "goal": "criar comida deliciosa e nutritiva com confiança"
+      },
+      "biology": {
+        "persona": "um biólogo, estudante ou entusiasta de ciências",
+        "activity": "estudando organismos vivos",
+        "goal": "entender processos e relações biológicas"
+      },
+      "ecology": {
+        "persona": "um cientista ambiental, estudante ou conservacionista",
+        "activity": "estudando ecossistemas e impacto ambiental",
+        "goal": "entender e proteger nosso meio ambiente"
+      },
+      "sports": {
+        "persona": "um atleta, treinador ou entusiasta de fitness",
+        "activity": "otimizando o desempenho esportivo",
+        "goal": "melhorar o condicionamento, acompanhar o progresso e prevenir lesões"
+      }
+    },
+    "adjectives": {
+      "financial": "Financeira",
+      "health": "de Saúde",
+      "math": "Matemática",
+      "conversion": "de Conversão",
+      "date-time": "de Gestão do Tempo",
+      "construction": "de Construção",
+      "statistics": "Estatística",
+      "education": "Educacional",
+      "physics": "Física",
+      "chemistry": "Química",
+      "engineering": "de Engenharia",
+      "everyday": "de Produtividade",
+      "food": "Culinária",
+      "biology": "Biológica",
+      "ecology": "Ambiental",
+      "sports": "Esportiva"
+    },
+    "useCases": {
+      "financial": [
+        {
+          "title": "Planejar uma estratégia de {topicLower}",
+          "description": "Use a calculadora de {topicLower} para modelar cenários financeiros e achar a abordagem ideal."
+        },
+        {
+          "title": "Comparar opções de {topicLower}",
+          "description": "Insira variáveis lado a lado para comparar resultados e escolher a melhor opção."
+        },
+        {
+          "title": "Orçar seu {topicLower}",
+          "description": "Incorpore cálculos de {topicLower} ao plano financeiro geral com precisão."
+        },
+        {
+          "title": "Fins educacionais",
+          "description": "Aprenda como {topicLower} funciona testando valores e observando efeitos."
+        }
+      ],
+      "health": [
+        {
+          "title": "Acompanhar seu {topicLower}",
+          "description": "Monitore seu {topicLower} ao longo do tempo para identificar tendências e decidir melhor."
+        },
+        {
+          "title": "Definir metas de {topicLower}",
+          "description": "Estabeleça metas de saúde realistas com base nas suas métricas atuais."
+        },
+        {
+          "title": "Consultar profissionais",
+          "description": "Compartilhe resultados de {topicLower} com profissionais de saúde."
+        },
+        {
+          "title": "Educação em saúde",
+          "description": "Entenda o que {topicLower} significa e sua relação com bem-estar e prevenção."
+        }
+      ],
+      "math": [
+        {
+          "title": "Resolver problemas de {topicLower}",
+          "description": "Calcule valores de {topicLower} para tarefas, projetos ou contas pessoais."
+        },
+        {
+          "title": "Conferir seu trabalho",
+          "description": "Verifique cálculos manuais antes de entregar tarefas ou decidir."
+        },
+        {
+          "title": "Ensinar {topicLower}",
+          "description": "Use a calculadora como apoio didático para conceitos e aplicações reais."
+        },
+        {
+          "title": "Matemática aplicada",
+          "description": "Aplique {topicLower} a orçamento, construção ou análise de dados."
+        }
+      ],
+      "conversion": [
+        {
+          "title": "Viagens internacionais",
+          "description": "Converta moedas, temperaturas e medidas viajando ao exterior."
+        },
+        {
+          "title": "Culinária e confeitaria",
+          "description": "Converta entre unidades métricas e imperiais para receitas do mundo todo."
+        },
+        {
+          "title": "Trabalho acadêmico e profissional",
+          "description": "Garanta conversões precisas em pesquisa, projetos e tarefas."
+        },
+        {
+          "title": "Compras online",
+          "description": "Compare especificações em sistemas de unidades diferentes comprando internacionalmente."
+        }
+      ],
+      "date-time": [
+        {
+          "title": "Planejamento de projetos",
+          "description": "Calcule durações, prazos e marcos com precisão."
+        },
+        {
+          "title": "Coordenação de eventos",
+          "description": "Determine o tempo exato entre datas para planejar eventos."
+        },
+        {
+          "title": "Idades e aniversários",
+          "description": "Calcule idades exatas, aniversários e tempo desde eventos importantes."
+        },
+        {
+          "title": "Gestão de prazos",
+          "description": "Acompanhe contratos, pagamentos e entregas com precisão."
+        }
+      ],
+      "construction": [
+        {
+          "title": "Estimativa de projetos",
+          "description": "Calcule necessidades de {topicLower} antes de comprar materiais, evitando desperdício e faltas."
+        },
+        {
+          "title": "Planejamento de custos",
+          "description": "Orce seu projeto com precisão calculando quantidades e custos."
+        },
+        {
+          "title": "Comunicação com empreiteiros",
+          "description": "Forneça especificações precisas e verifique orçamentos."
+        },
+        {
+          "title": "Bricolagem e reforma",
+          "description": "Planeje reformas com confiança usando medidas precisas."
+        }
+      ],
+      "statistics": [
+        {
+          "title": "Análise de dados",
+          "description": "Aplique cálculos de {topicLower} a pesquisas, experimentos ou métricas."
+        },
+        {
+          "title": "Projetos de pesquisa",
+          "description": "Use a calculadora em pesquisa com análise estatística e testes de hipóteses."
+        },
+        {
+          "title": "Controle de qualidade",
+          "description": "Monitore a qualidade via controle estatístico de processos."
+        },
+        {
+          "title": "Tomada de decisão",
+          "description": "Use insights estatísticos para decisões baseadas em dados."
+        }
+      ],
+      "education": [
+        {
+          "title": "Planejamento escolar",
+          "description": "Calcule {topicLower} para planejar sua trajetória e metas de notas realistas."
+        },
+        {
+          "title": "Candidaturas universitárias",
+          "description": "Determine sua média para candidaturas e bolsas."
+        },
+        {
+          "title": "Acompanhar progresso",
+          "description": "Monitore seu desempenho no semestre e ajuste estratégias de estudo."
+        },
+        {
+          "title": "Diálogo pais-professores",
+          "description": "Compartilhe métricas para planejamento educacional colaborativo."
+        }
+      ],
+      "physics": [
+        {
+          "title": "Tarefas e provas",
+          "description": "Resolva problemas de {topicLower} rápido e confira seu trabalho."
+        },
+        {
+          "title": "Experimentos",
+          "description": "Calcule valores teóricos e compare com resultados experimentais."
+        },
+        {
+          "title": "Aplicações de engenharia",
+          "description": "Aplique princípios de {topicLower} ao projeto e análise reais."
+        },
+        {
+          "title": "Entender fenômenos naturais",
+          "description": "Explore como {topicLower} rege do movimento planetário às partículas."
+        }
+      ],
+      "chemistry": [
+        {
+          "title": "Trabalho de laboratório",
+          "description": "Faça cálculos de {topicLower} precisos para experimentos e análises."
+        },
+        {
+          "title": "Tarefas e estudo",
+          "description": "Confira sua lição de química e entenda relações entre quantidades."
+        },
+        {
+          "title": "Processos industriais",
+          "description": "Calcule {topicLower} para fabricação, qualidade e otimização."
+        },
+        {
+          "title": "Planejamento de segurança",
+          "description": "Determine concentrações seguras e parâmetros antes de experimentar."
+        }
+      ],
+      "engineering": [
+        {
+          "title": "Projeto e análise",
+          "description": "Calcule {topicLower} para projetos garantindo segurança e eficiência."
+        },
+        {
+          "title": "Prototipagem",
+          "description": "Verifique parâmetros de {topicLower} antes de prototipar para reduzir custos."
+        },
+        {
+          "title": "Verificação de conformidade",
+          "description": "Garanta que cálculos de {topicLower} cumpram normas e regulamentos."
+        },
+        {
+          "title": "Solução de problemas",
+          "description": "Diagnostique problemas de {topicLower} em sistemas existentes."
+        }
+      ],
+      "everyday": [
+        {
+          "title": "Decisões diárias",
+          "description": "Use cálculos de {topicLower} para escolhas mais inteligentes no dia a dia."
+        },
+        {
+          "title": "Compras e orçamento",
+          "description": "Calcule {topicLower} para melhores decisões ao comprar ou gerenciar a casa."
+        },
+        {
+          "title": "Gestão do tempo",
+          "description": "Aplique {topicLower} para planejar sua agenda com eficácia."
+        },
+        {
+          "title": "Aprender por curiosidade",
+          "description": "Sacie sua curiosidade sobre {topicLower} e sua aplicação diária."
+        }
+      ],
+      "food": [
+        {
+          "title": "Ajustar receitas",
+          "description": "Ajuste medidas de {topicLower} conforme as porções necessárias."
+        },
+        {
+          "title": "Planejamento nutricional",
+          "description": "Registre {topicLower} para cumprir metas dietéticas e nutricionais."
+        },
+        {
+          "title": "Preparo de refeições",
+          "description": "Calcule {topicLower} para preparo eficiente e compras otimizadas."
+        },
+        {
+          "title": "Restrições dietéticas",
+          "description": "Ajuste {topicLower} para dietas com pouco sódio, açúcar ou sem glúten."
+        }
+      ],
+      "biology": [
+        {
+          "title": "Pesquisa e análise",
+          "description": "Calcule {topicLower} para pesquisa biológica, campo e laboratório."
+        },
+        {
+          "title": "Estudo acadêmico",
+          "description": "Entenda conceitos de {topicLower} com cálculo prático."
+        },
+        {
+          "title": "Aplicações de saúde",
+          "description": "Aplique cálculos de {topicLower} na clínica para diagnóstico e tratamento."
+        },
+        {
+          "title": "Monitoramento ambiental",
+          "description": "Use {topicLower} para indicadores biológicos da saúde do ecossistema."
+        }
+      ],
+      "ecology": [
+        {
+          "title": "Avaliação ambiental",
+          "description": "Calcule {topicLower} para avaliar impacto ambiental e saúde do ecossistema."
+        },
+        {
+          "title": "Planejamento de conservação",
+          "description": "Use dados de {topicLower} para estratégias de conservação e recursos."
+        },
+        {
+          "title": "Pesquisa acadêmica",
+          "description": "Aplique cálculos de {topicLower} em pesquisa ecológica e campo."
+        },
+        {
+          "title": "Relatórios de sustentabilidade",
+          "description": "Gere métricas de {topicLower} para sustentabilidade e conformidade."
+        }
+      ],
+      "sports": [
+        {
+          "title": "Otimizar o treino",
+          "description": "Calcule {topicLower} para otimizar sua rotina e obter melhores resultados."
+        },
+        {
+          "title": "Acompanhar desempenho",
+          "description": "Monitore mudanças de {topicLower} para medir progresso e ajustar metas."
+        },
+        {
+          "title": "Preparar competições",
+          "description": "Use dados de {topicLower} para competições e estratégias."
+        },
+        {
+          "title": "Prevenir lesões",
+          "description": "Registre métricas de {topicLower} para identificar riscos e adaptar o treino."
+        }
+      ]
+    },
+    "mistakes": {
+      "financial": [
+        {
+          "mistake": "Ignorar taxas e custos de transação",
+          "solution": "Inclua sempre taxas, comissões e impostos para resultados realistas."
+        },
+        {
+          "mistake": "Usar taxas nominais em vez de efetivas",
+          "solution": "Use taxas anuais efetivas que refletem a capitalização, não nominais."
+        },
+        {
+          "mistake": "Não ajustar pela inflação",
+          "solution": "Use retornos reais (ajustados) em projeções longas para manter o poder de compra."
+        },
+        {
+          "mistake": "Esquecer a frequência de capitalização",
+          "solution": "Verifique se os juros capitalizam anual, mensal ou diariamente."
+        }
+      ],
+      "health": [
+        {
+          "mistake": "Usar medidas imprecisas",
+          "solution": "Meça altura, peso e métricas no mesmo horário com equipamentos calibrados."
+        },
+        {
+          "mistake": "Ignorar a variabilidade individual",
+          "solution": "Médias populacionais são só referência. Resultados variam por genética e estilo de vida."
+        },
+        {
+          "mistake": "Interpretar resultados como diagnóstico",
+          "solution": "Calculadoras dão estimativas, não diagnósticos. Consulte um profissional."
+        },
+        {
+          "mistake": "Esquecer o nível de atividade",
+          "solution": "Inclua dados precisos de atividade para evitar super ou subestimativas."
+        }
+      ],
+      "math": [
+        {
+          "mistake": "Ordem errada das operações",
+          "solution": "Siga PEMDAS (parênteses, expoentes, multiplicação/divisão, soma/subtração)."
+        },
+        {
+          "mistake": "Arredondar cedo demais",
+          "solution": "Mantenha precisão total nos cálculos intermediários; arredonde só o final."
+        },
+        {
+          "mistake": "Misturar unidades",
+          "solution": "Converta todos os valores para as mesmas unidades antes de calcular."
+        },
+        {
+          "mistake": "Esquecer casos especiais",
+          "solution": "Verifique divisões por zero, raízes negativas e casos-limite."
+        }
+      ],
+      "conversion": [
+        {
+          "mistake": "Confundir galões US e UK",
+          "solution": "Verifique qual galão sua fonte usa: US (3,785 L) ou imperial (4,546 L). 20% de diferença."
+        },
+        {
+          "mistake": "Ignorar algarismos significativos",
+          "solution": "Seu resultado só pode ser tão preciso quanto sua medida menos precisa."
+        },
+        {
+          "mistake": "Misturar toneladas curtas e longas",
+          "solution": "Confirme se são toneladas curtas US, longas UK ou métricas."
+        },
+        {
+          "mistake": "Esquecer o deslocamento de temperatura",
+          "solution": "Conversões de temperatura não são proporcionais: some o deslocamento antes de escalar."
+        }
+      ],
+      "date-time": [
+        {
+          "mistake": "Esquecer anos bissextos",
+          "solution": "Períodos sobre fevereiro bissexto têm um dia extra. A calculadora gerencia isso."
+        },
+        {
+          "mistake": "Ignorar fusos horários",
+          "solution": "Converta ambos os horários para UTC primeiro para evitar erros."
+        },
+        {
+          "mistake": "Erros de contagem inclusiva/exclusiva",
+          "solution": "Decida se as datas inicial e final contam. Padrão: diferença exclusiva."
+        },
+        {
+          "mistake": "Esquecer o horário de verão",
+          "solution": "Mudanças de horário adicionam ou removem uma hora. Verifique datas próximas."
+        }
+      ],
+      "construction": [
+        {
+          "mistake": "Esquecer o fator de desperdício",
+          "solution": "Adicione 10-15% de material extra para cortes e erros. A calculadora inclui."
+        },
+        {
+          "mistake": "Misturar pés e metros",
+          "solution": "Converta todas as medidas para um só sistema antes de calcular áreas ou volumes."
+        },
+        {
+          "mistake": "Ignorar a espessura do material",
+          "solution": "Subtraia juntas, argamassa ou molduras nas dimensões internas."
+        },
+        {
+          "mistake": "Subestimar mão de obra",
+          "solution": "Materiais são só parte do custo. Inclua mão de obra, licenças e imprevistos."
+        }
+      ],
+      "statistics": [
+        {
+          "mistake": "Confundir correlação com causalidade",
+          "solution": "Correlação forte não prova causa. Considere variáveis ocultas."
+        },
+        {
+          "mistake": "Usar a média com dados assimétricos",
+          "solution": "Com outliers ou assimetria, a mediana representa melhor o centro."
+        },
+        {
+          "mistake": "Ignorar o tamanho da amostra",
+          "solution": "Amostras pequenas dão resultados instáveis. Mais dados reduzem o erro."
+        },
+        {
+          "mistake": "Interpretar mal o valor p",
+          "solution": "Valor p pequeno não mede o tamanho do efeito, só a evidência contra H0."
+        }
+      ],
+      "education": [
+        {
+          "mistake": "Não ponderar por créditos",
+          "solution": "Um A em disciplina de 4 créditos vale mais que em 1 crédito. Use média ponderada."
+        },
+        {
+          "mistake": "Misturar escalas de nota",
+          "solution": "Não combine porcentagens, letras e GPA 4.0 sem converter para escala comum."
+        },
+        {
+          "mistake": "Ignorar disciplinas trancadas",
+          "solution": "Verifique a política da instituição: alguns trancamentos afetam a média."
+        },
+        {
+          "mistake": "Arredondar médias parciais",
+          "solution": "Mantenha decimais nas parciais; arredondar cedo pode mudar sua nota final."
+        }
+      ],
+      "physics": [
+        {
+          "mistake": "Misturar unidades SI e imperiais",
+          "solution": "Converta tudo para um sistema consistente (idealmente SI) antes das fórmulas."
+        },
+        {
+          "mistake": "Esquecer a direção vetorial",
+          "solution": "Força, velocidade e aceleração têm direção. Use sinais corretamente."
+        },
+        {
+          "mistake": "Ignorar atrito e resistência",
+          "solution": "Modelos ideais omitem atrito. Inclua esses fatores para resultados reais."
+        },
+        {
+          "mistake": "Confundir massa e peso",
+          "solution": "Massa (kg) é constante; peso (N) depende da gravidade local."
+        }
+      ],
+      "chemistry": [
+        {
+          "mistake": "Não balancear a equação",
+          "solution": "Balanceie sempre a equação química antes da estequiometria."
+        },
+        {
+          "mistake": "Confundir molaridade e molalidade",
+          "solution": "Molaridade é mols por litro de solução; molalidade é mols por kg de solvente."
+        },
+        {
+          "mistake": "Usar massas atômicas desatualizadas",
+          "solution": "Use massas padrão IUPAC atuais. A calculadora as inclui."
+        },
+        {
+          "mistake": "Ignorar significativos no laboratório",
+          "solution": "Reporte resultados com a precisão do seu instrumento menos preciso."
+        }
+      ],
+      "engineering": [
+        {
+          "mistake": "Omitir o fator de segurança",
+          "solution": "Aplique sempre o fator exigido pela norma para sua aplicação."
+        },
+        {
+          "mistake": "Misturar sistemas de unidades",
+          "solution": "Um erro de unidades perdeu a Mars Climate Orbiter (US$125M). Confira duas vezes."
+        },
+        {
+          "mistake": "Ignorar tolerâncias",
+          "solution": "Projete considerando tolerâncias de fabricação, não só valores nominais."
+        },
+        {
+          "mistake": "Extrapolar fora da faixa válida",
+          "solution": "Fórmulas empíricas só valem na faixa calibrada. Não extrapole."
+        }
+      ],
+      "everyday": [
+        {
+          "mistake": "Esquecer impostos e gorjetas",
+          "solution": "Some impostos sobre vendas e gorjetas ao estimar custos de compras ou restaurantes."
+        },
+        {
+          "mistake": "Confiar em desconto sobre preço inflado",
+          "solution": "Verifique o preço original real antes de comemorar um «descontão»."
+        },
+        {
+          "mistake": "Ignorar assinaturas acumuladas",
+          "solution": "Some todas as cobranças mensais: valores pequenos se acumulam rápido."
+        },
+        {
+          "mistake": "Arredondar sempre para baixo",
+          "solution": "Ao orçar, arredonde gastos para cima para manter margem de segurança."
+        }
+      ],
+      "food": [
+        {
+          "mistake": "Medir farinha por volume",
+          "solution": "Pese a farinha em gramas: uma xícara pode variar 20% conforme compactação."
+        },
+        {
+          "mistake": "Não ajustar para altitude",
+          "solution": "Em altitude, reduza fermento e açúcar; aumente líquidos e temperatura."
+        },
+        {
+          "mistake": "Ignorar a tara",
+          "solution": "Subtraia o peso do recipiente para medidas líquidas exatas."
+        },
+        {
+          "mistake": "Escalar tempos linearmente",
+          "solution": "Dobrar uma receita não dobra o tempo de forno. Ajuste e confira com termômetro."
+        }
+      ],
+      "biology": [
+        {
+          "mistake": "Confundir genótipo e fenótipo",
+          "solution": "Genótipo é a constituição genética; fenótipo inclui influência ambiental."
+        },
+        {
+          "mistake": "Ignorar tamanho amostral em campo",
+          "solution": "Observações isoladas não representam populações. Amostre adequadamente."
+        },
+        {
+          "mistake": "Misturar unidades de concentração",
+          "solution": "Confirme molaridade, mg/dL, ppm ou outras unidades antes de comparar."
+        },
+        {
+          "mistake": "Esquecer controles experimentais",
+          "solution": "Sem grupo controle não há como atribuir efeitos à sua variável."
+        }
+      ],
+      "ecology": [
+        {
+          "mistake": "Confundir pegada de carbono e ecológica",
+          "solution": "Carbono mede GEE; a ecológica inclui terra, água e recursos totais."
+        },
+        {
+          "mistake": "Ignorar variação sazonal",
+          "solution": "Medições ecológicas variam por estação. Amostre em vários momentos do ano."
+        },
+        {
+          "mistake": "Extrapolar um local para a região",
+          "solution": "Ecossistemas variam espacialmente. Use vários pontos representativos."
+        },
+        {
+          "mistake": "Esquecer equivalentes de CO₂",
+          "solution": "Converta metano e óxido nitroso em equivalentes de CO₂ para totais comparáveis."
+        }
+      ],
+      "sports": [
+        {
+          "mistake": "Usar 220-idade sem ajustar",
+          "solution": "220-idade tem ±12 bpm de erro. Use testes ou fórmulas ajustadas ao seu nível."
+        },
+        {
+          "mistake": "Ignorar dias de recuperação",
+          "solution": "O progresso acontece na recuperação. Programe descanso entre sessões intensas."
+        },
+        {
+          "mistake": "Comparar VO₂ sem normalizar",
+          "solution": "Expresse o VO₂ em ml/kg/min para comparações justas entre atletas."
+        },
+        {
+          "mistake": "Aumentar carga rápido demais",
+          "solution": "Regra dos 10%: não aumente volume ou intensidade mais de 10% por semana."
+        }
+      ]
+    },
+    "pros": [
+      "Resultados instantâneos de {topic} sem cálculos manuais",
+      "Fórmulas {adj} integradas e validadas por profissionais",
+      "Gráficos interativos e visuais para melhor compreensão",
+      "Grátis, sem cadastro nem downloads",
+      "Funciona em qualquer dispositivo com internet"
+    ],
+    "cons": [
+      "Requer conexão com a internet",
+      "Resultados são estimativas baseadas nos dados e premissas informados",
+      "Limitado a tipos de cálculo e parâmetros predefinidos",
+      "Não substitui orientação profissional em decisões críticas"
+    ],
+    "alternatives": [
+      {
+        "name": "Planilha manual de {topic}",
+        "description": "Crie sua própria calculadora de {topic} no Excel ou Google Sheets. Personalização total, mas exige fórmulas e tempo."
+      },
+      {
+        "name": "Outras ferramentas de {topic} online",
+        "description": "Outras calculadoras gratuitas de {topic} podem ter funções básicas. Compare recursos e precisão."
+      },
+      {
+        "name": "Software profissional {adj}",
+        "description": "Software profissional avançado com recursos ampliados de {topic}. Ideal para uso frequente ou complexo, geralmente pago."
+      }
+    ],
+    "recommendations": [
+      "Para resultados de {topic} mais precisos, meça ou verifique todos os valores antes de inseri-los.",
+      "Use Salvar Cenário para comparar vários cenários de {topic} lado a lado e achar a melhor abordagem.",
+      "Recalcule {topic} regularmente conforme suas circunstâncias mudarem.",
+      "Combine dados de {topic} com nossas outras calculadoras para uma análise completa.",
+      "Compartilhe seus resultados de {topic} com profissionais relevantes para orientação personalizada."
+    ],
+    "audiences": {
+      "financial": [
+        "Compradores de imóveis",
+        "Investidores",
+        "Planejadores financeiros",
+        "Estudantes",
+        "Pequenos empresários"
+      ],
+      "health": [
+        "Pessoas que cuidam da saúde",
+        "Entusiastas de fitness",
+        "Profissionais de saúde",
+        "Nutricionistas",
+        "Personal trainers"
+      ],
+      "math": [
+        "Estudantes",
+        "Professores",
+        "Engenheiros",
+        "Cientistas",
+        "Profissionais"
+      ],
+      "conversion": [
+        "Viajantes",
+        "Cozinheiros",
+        "Engenheiros",
+        "Estudantes",
+        "Compradores online"
+      ],
+      "date-time": [
+        "Gerentes de projeto",
+        "Organizadores de eventos",
+        "Desenvolvedores",
+        "Pesquisadores",
+        "Profissionais de RH"
+      ],
+      "construction": [
+        "Empreiteiros",
+        "Arquitetos",
+        "Entusiastas de bricolagem",
+        "Proprietários",
+        "Construtores"
+      ],
+      "statistics": [
+        "Pesquisadores",
+        "Analistas de dados",
+        "Estudantes",
+        "Analistas de negócios",
+        "Responsáveis pela qualidade"
+      ],
+      "education": [
+        "Estudantes",
+        "Professores",
+        "Orientadores acadêmicos",
+        "Pais",
+        "Administradores"
+      ],
+      "physics": [
+        "Estudantes",
+        "Engenheiros",
+        "Professores de física",
+        "Pesquisadores",
+        "Entusiastas de ciências"
+      ],
+      "chemistry": [
+        "Químicos",
+        "Técnicos de laboratório",
+        "Estudantes",
+        "Pesquisadores",
+        "Cientistas industriais"
+      ],
+      "engineering": [
+        "Engenheiros",
+        "Designers",
+        "Gerentes técnicos",
+        "Estudantes",
+        "Garantia da qualidade"
+      ],
+      "everyday": [
+        "Consumidores",
+        "Compradores",
+        "Planejadores",
+        "Poupadores",
+        "Quem decide todo dia"
+      ],
+      "food": [
+        "Cozinheiros caseiros",
+        "Chefs",
+        "Nutricionistas",
+        "Planejadores de refeições",
+        "Padeiros"
+      ],
+      "biology": [
+        "Biólogos",
+        "Estudantes",
+        "Pesquisadores",
+        "Profissionais de saúde",
+        "Cientistas ambientais"
+      ],
+      "ecology": [
+        "Cientistas ambientais",
+        "Conservacionistas",
+        "Estudantes",
+        "Formuladores de políticas",
+        "Pesquisadores"
+      ],
+      "sports": [
+        "Atletas",
+        "Treinadores",
+        "Personal trainers",
+        "Cientistas do esporte",
+        "Entusiastas de fitness"
+      ]
+    },
+    "glossary": {
+      "financial": [
+        {
+          "term": "Capital",
+          "definition": "Quantia original emprestada ou investida, sem incluir juros."
+        },
+        {
+          "term": "Juros compostos",
+          "definition": "Juros calculados sobre o capital inicial e os juros acumulados de períodos anteriores."
+        },
+        {
+          "term": "TAE (Taxa Anual Efetiva)",
+          "definition": "Custo anual do empréstimo incluindo juros e taxas, expresso em porcentagem."
+        },
+        {
+          "term": "Amortização",
+          "definition": "Distribuição de um empréstimo em uma série de pagamentos fixos ao longo do tempo."
+        },
+        {
+          "term": "Inflação",
+          "definition": "Taxa de alta geral dos preços, reduzindo o poder de compra com o tempo."
+        },
+        {
+          "term": "Liquidez",
+          "definition": "Rapidez com que um ativo vira dinheiro sem perda significativa de valor."
+        },
+        {
+          "term": "Diversificação",
+          "definition": "Distribuir investimentos entre ativos diferentes para reduzir o risco total."
+        },
+        {
+          "term": "Patrimônio líquido",
+          "definition": "Ativos totais menos passivos totais; representa a saúde financeira geral."
+        }
+      ],
+      "health": [
+        {
+          "term": "IMC (Índice de Massa Corporal)",
+          "definition": "Medida de gordura corporal baseada em altura e peso, usada como triagem de faixas de peso."
+        },
+        {
+          "term": "TMB (Taxa Metabólica Basal)",
+          "definition": "Calorias que o corpo queima em repouso para funções vitais básicas."
+        },
+        {
+          "term": "GET (Gasto Energético Total)",
+          "definition": "Calorias totais queimadas por dia incluindo TMB, exercício e atividades."
+        },
+        {
+          "term": "Macronutrientes",
+          "definition": "Nutrientes exigidos em grandes quantidades: carboidratos, proteínas e gorduras energéticas."
+        },
+        {
+          "term": "Gordura corporal (%)",
+          "definition": "Proporção de massa gorda na massa total; indicador-chave de forma e saúde."
+        },
+        {
+          "term": "Zona de frequência cardíaca",
+          "definition": "Faixa percentual da FC máxima para intensidades específicas de exercício."
+        }
+      ],
+      "math": [
+        {
+          "term": "Porcentagem",
+          "definition": "Fração ou razão expressa como parte de 100, denotada pelo símbolo %."
+        },
+        {
+          "term": "Razão",
+          "definition": "Comparação de duas quantidades mostrando o tamanho relativo de uma à outra."
+        },
+        {
+          "term": "Média",
+          "definition": "Média aritmética de um conjunto: soma dividida pela contagem."
+        },
+        {
+          "term": "Mediana",
+          "definition": "Valor central de um conjunto ordenado, dividindo-o em duas metades iguais."
+        },
+        {
+          "term": "Desvio padrão",
+          "definition": "Medida da dispersão dos valores em torno da média."
+        },
+        {
+          "term": "Expoente",
+          "definition": "Número indicando quantas vezes uma base é multiplicada por si mesma."
+        }
+      ],
+      "conversion": [
+        {
+          "term": "Fator de conversão",
+          "definition": "Multiplicador para converter uma quantidade de uma unidade a outra."
+        },
+        {
+          "term": "Unidades SI",
+          "definition": "O Sistema Internacional de Unidades; o sistema métrico moderno mundial."
+        },
+        {
+          "term": "Sistema imperial",
+          "definition": "Sistema tradicional dos EUA e Reino Unido: polegadas, pés, libras e galões."
+        },
+        {
+          "term": "Algarismos significativos",
+          "definition": "Dígitos de um número com informação relevante sobre sua precisão."
+        },
+        {
+          "term": "Unidade base",
+          "definition": "Unidade fundamental definida por um padrão, da qual derivam outras."
+        }
+      ],
+      "date-time": [
+        {
+          "term": "UTC (Tempo Universal Coordenado)",
+          "definition": "O padrão horário principal pelo qual o mundo regula relógios e horas."
+        },
+        {
+          "term": "Ano bissexto",
+          "definition": "Ano com 366 dias, a cada 4 anos, para sincronizar o calendário ao ano solar."
+        },
+        {
+          "term": "Horário de verão",
+          "definition": "Prática de adiantar relógios nos meses quentes para estender a luz da tarde."
+        },
+        {
+          "term": "Timestamp Unix",
+          "definition": "Segundos decorridos desde 1º de janeiro de 1970, 00:00:00 UTC."
+        },
+        {
+          "term": "ISO 8601",
+          "definition": "Padrão internacional para datas e horas: AAAA-MM-DDTHH:mm:ssZ."
+        }
+      ],
+      "construction": [
+        {
+          "term": "Metragem em pés quadrados",
+          "definition": "Área medida em pés quadrados: comprimento vezes largura."
+        },
+        {
+          "term": "Parede estrutural",
+          "definition": "Parede que suporta o peso da estrutura acima, telhado e andares."
+        },
+        {
+          "term": "PSI (libras por polegada quadrada)",
+          "definition": "Unidade de pressão para resistência do concreto e tolerância de materiais."
+        },
+        {
+          "term": "Valor R",
+          "definition": "Medida de resistência térmica do isolamento ao fluxo de calor."
+        },
+        {
+          "term": "Vão",
+          "definition": "Distância entre suportes estruturais como vigas e treliças."
+        }
+      ],
+      "statistics": [
+        {
+          "term": "População",
+          "definition": "O grupo completo que um estudo estatístico analisa."
+        },
+        {
+          "term": "Amostra",
+          "definition": "Subconjunto da população selecionado para representá-la na análise."
+        },
+        {
+          "term": "Correlação",
+          "definition": "Medida estatística do grau de relação entre duas variáveis."
+        },
+        {
+          "term": "Valor p",
+          "definition": "Probabilidade de resultados tão extremos quanto os observados, sob a hipótese nula."
+        },
+        {
+          "term": "Distribuição normal",
+          "definition": "Distribuição simétrica em sino onde a maioria dos valores se agrupa na média."
+        },
+        {
+          "term": "Variância",
+          "definition": "Média dos desvios ao quadrado em relação à média; mede a dispersão."
+        }
+      ],
+      "education": [
+        {
+          "term": "GPA (média de notas)",
+          "definition": "Representação numérica do desempenho calculada com notas e créditos."
+        },
+        {
+          "term": "Hora de crédito",
+          "definition": "Unidade de carga acadêmica: cerca de uma hora de aula semanal por semestre."
+        },
+        {
+          "term": "GPA ponderado",
+          "definition": "Cálculo com pontos extras para cursos avançados, AP ou IB."
+        },
+        {
+          "term": "Percentil",
+          "definition": "Nota abaixo da qual cai uma dada porcentagem de candidatos."
+        },
+        {
+          "term": "Prova padronizada",
+          "definition": "Exame uniforme aplicado e corrigido consistentemente para comparar candidatos."
+        }
+      ],
+      "physics": [
+        {
+          "term": "Leis de Newton",
+          "definition": "Três leis fundamentais da relação entre movimento e forças."
+        },
+        {
+          "term": "Energia cinética",
+          "definition": "Energia de um objeto por seu movimento, calculada como ½mv²."
+        },
+        {
+          "term": "Energia potencial",
+          "definition": "Energia armazenada conforme posição ou configuração do objeto."
+        },
+        {
+          "term": "Aceleração",
+          "definition": "Taxa de variação da velocidade no tempo, medida em m/s²."
+        },
+        {
+          "term": "Quantidade de movimento",
+          "definition": "Produto de massa e velocidade; conservada em sistemas fechados."
+        },
+        {
+          "term": "Comprimento de onda",
+          "definition": "Distância entre picos sucessivos de uma onda, inversa à frequência."
+        }
+      ],
+      "chemistry": [
+        {
+          "term": "Mol",
+          "definition": "Unidade com 6,022 × 10²³ partículas (número de Avogadro) para quantificar substâncias."
+        },
+        {
+          "term": "Molaridade",
+          "definition": "Concentração em mols de soluto por litro de solução (mol/L)."
+        },
+        {
+          "term": "Estequiometria",
+          "definition": "Cálculo de reagentes e produtos com equações balanceadas."
+        },
+        {
+          "term": "pH",
+          "definition": "Medida da concentração de íons hidrogênio: acidez (pH < 7) ou alcalinidade (pH > 7)."
+        },
+        {
+          "term": "Número de Avogadro",
+          "definition": "6,022 × 10²³: partículas em um mol de substância."
+        }
+      ],
+      "engineering": [
+        {
+          "term": "Torque",
+          "definition": "Força de torção que causa rotação: força × distância ao pivô."
+        },
+        {
+          "term": "Tensão",
+          "definition": "Força por unidade de área no material, em pascals (Pa) ou psi."
+        },
+        {
+          "term": "Deformação",
+          "definition": "Deformação do material em relação ao comprimento original sob tensão."
+        },
+        {
+          "term": "Fator de segurança",
+          "definition": "Razão entre resistência última do material e tensão admissível."
+        },
+        {
+          "term": "Módulo de elasticidade",
+          "definition": "Medida da rigidez do material contra deformação elástica."
+        }
+      ],
+      "everyday": [
+        {
+          "term": "Preço promocional",
+          "definition": "Preço reduzido após aplicar desconto ao preço original."
+        },
+        {
+          "term": "Imposto sobre vendas",
+          "definition": "Imposto sobre o consumo na venda de bens e serviços."
+        },
+        {
+          "term": "Taxa de crescimento anual composta",
+          "definition": "Taxa média anual de crescimento de um investimento por mais de um ano."
+        },
+        {
+          "term": "Retorno sobre investimento",
+          "definition": "Razão entre lucro líquido e custo do investimento, em porcentagem."
+        }
+      ],
+      "food": [
+        {
+          "term": "Tara",
+          "definition": "Peso do recipiente vazio subtraído do bruto para o peso líquido do ingrediente."
+        },
+        {
+          "term": "Rendimento (%)",
+          "definition": "Porção comestível após aparar, cozinhar ou processar."
+        },
+        {
+          "term": "Percentual do padeiro",
+          "definition": "Método de expressar proporções em relação ao peso da farinha."
+        },
+        {
+          "term": "Densidade calórica",
+          "definition": "Calorias por grama de alimento; usada no planejamento dietético."
+        }
+      ],
+      "biology": [
+        {
+          "term": "Genótipo",
+          "definition": "Constituição genética: alelos herdados de ambos os pais."
+        },
+        {
+          "term": "Fenótipo",
+          "definition": "Características físicas observáveis do genótipo e interação ambiental."
+        },
+        {
+          "term": "Frequência alélica",
+          "definition": "Frequência relativa de uma variante gênica no pool gênico."
+        },
+        {
+          "term": "Capacidade de suporte",
+          "definition": "Tamanho máximo populacional sustentável indefinidamente pelo ambiente."
+        },
+        {
+          "term": "Índice de biodiversidade",
+          "definition": "Medida quantitativa da diversidade combinando riqueza e uniformidade."
+        }
+      ],
+      "ecology": [
+        {
+          "term": "Pegada de carbono",
+          "definition": "Emissões totais de GEE de indivíduo, organização ou produto, em equivalentes de CO₂."
+        },
+        {
+          "term": "Nicho ecológico",
+          "definition": "Papel e posição da espécie no ambiente, incluindo recursos e interações."
+        },
+        {
+          "term": "Nível trófico",
+          "definition": "Posição do organismo na cadeia alimentar, de produtores a predadores de topo."
+        },
+        {
+          "term": "Biomassa",
+          "definition": "Massa total de organismos vivos em área ou volume dados em dado momento."
+        },
+        {
+          "term": "Serviços ecossistêmicos",
+          "definition": "Benefícios humanos dos ecossistemas: provisão, regulação, suporte e cultura."
+        }
+      ],
+      "sports": [
+        {
+          "term": "VO₂ máx",
+          "definition": "Taxa máxima de consumo de oxigênio em exercício intenso; mede resistência aeróbica."
+        },
+        {
+          "term": "Reserva de FC",
+          "definition": "Diferença entre FC máxima e de repouso; usada nas zonas de treino."
+        },
+        {
+          "term": "Uma repetição máxima (1RM)",
+          "definition": "Peso máximo levantado em uma repetição completa do exercício."
+        },
+        {
+          "term": "Limiar anaeróbico",
+          "definition": "Intensidade em que o lactato se acumula mais rápido do que é removido."
+        },
+        {
+          "term": "Déficit calórico",
+          "definition": "Consumir menos calorias do que se gasta, levando à perda de peso."
+        }
+      ]
+    },
+    "concepts": {
+      "financial": [
+        "Juros compostos",
+        "Inflação",
+        "Gestão de riscos",
+        "Alocação de ativos",
+        "Planejamento tributário",
+        "Planejamento da aposentadoria",
+        "Diversificação",
+        "Valor do dinheiro no tempo",
+        "Amortização"
+      ],
+      "health": [
+        "Composição corporal",
+        "Macronutrientes",
+        "Saúde cardiovascular",
+        "Taxa metabólica",
+        "Hidratação",
+        "Qualidade do sono",
+        "Gestão do estresse",
+        "Diretrizes de atividade física"
+      ],
+      "math": [
+        "Álgebra",
+        "Cálculo",
+        "Geometria",
+        "Trigonometria",
+        "Estatística",
+        "Teoria dos números",
+        "Matemática discreta",
+        "Álgebra linear"
+      ],
+      "conversion": [
+        "Sistema métrico",
+        "Sistema imperial",
+        "Escalas de temperatura",
+        "Câmbio de moedas",
+        "Unidades de armazenamento",
+        "Fusos horários",
+        "Medidas de ângulos"
+      ],
+      "date-time": [
+        "Fusos horários",
+        "Calendários",
+        "Tempo astronômico",
+        "Timestamp Unix",
+        "ISO 8601",
+        "Horário de verão",
+        "Segundos intercalados"
+      ],
+      "construction": [
+        "Engenharia estrutural",
+        "Ciência dos materiais",
+        "Códigos de construção",
+        "Gestão de projetos",
+        "Topografia",
+        "Projetos HVAC",
+        "Encanamento"
+      ],
+      "statistics": [
+        "Teoria da probabilidade",
+        "Análise de regressão",
+        "Testes de hipóteses",
+        "Estatística bayesiana",
+        "Séries temporais",
+        "Planejamento experimental"
+      ],
+      "education": [
+        "Teorias da aprendizagem",
+        "Desenho curricular",
+        "Psicologia educacional",
+        "Métodos de avaliação",
+        "Técnicas de estudo",
+        "Planejamento de carreira"
+      ],
+      "physics": [
+        "Mecânica clássica",
+        "Termodinâmica",
+        "Eletromagnetismo",
+        "Física quântica",
+        "Relatividade",
+        "Dinâmica dos fluidos",
+        "Óptica"
+      ],
+      "chemistry": [
+        "Química orgânica",
+        "Química inorgânica",
+        "Físico-química",
+        "Química analítica",
+        "Bioquímica",
+        "Termoquímica"
+      ],
+      "engineering": [
+        "Engenharia mecânica",
+        "Engenharia civil",
+        "Engenharia elétrica",
+        "Engenharia química",
+        "Engenharia de software",
+        "Projeto de sistemas"
+      ],
+      "everyday": [
+        "Finanças pessoais",
+        "Manutenção da casa",
+        "Gestão do tempo",
+        "Culinária",
+        "Estratégias de compra",
+        "Saúde e bem-estar"
+      ],
+      "food": [
+        "Ciência da nutrição",
+        "Artes culinárias",
+        "Química dos alimentos",
+        "Diretrizes dietéticas",
+        "Planejamento de refeições",
+        "Segurança alimentar"
+      ],
+      "biology": [
+        "Biologia celular",
+        "Genética",
+        "Evolução",
+        "Ecologia",
+        "Biologia molecular",
+        "Fisiologia",
+        "Microbiologia"
+      ],
+      "ecology": [
+        "Ciências ambientais",
+        "Biologia da conservação",
+        "Ciência climática",
+        "Desenvolvimento sustentável",
+        "Política ambiental",
+        "Restauração ecológica"
+      ],
+      "sports": [
+        "Fisiologia do exercício",
+        "Nutrição esportiva",
+        "Biomecânica",
+        "Psicologia do esporte",
+        "Teoria do treino",
+        "Prevenção de lesões"
+      ]
+    },
+    "comparisons": {
+      "financial": [
+        {
+          "title": "Cálculo manual de {topic} vs nossa calculadora",
+          "items": [
+            {
+              "label": "Velocidade",
+              "manual": "Minutos a horas por cálculo",
+              "calculator": "Resultados instantâneos em milissegundos"
+            },
+            {
+              "label": "Precisão",
+              "manual": "Sujeito a erros aritméticos e de fórmulas",
+              "calculator": "Precisão garantida com fórmulas validadas"
+            },
+            {
+              "label": "Complexidade",
+              "manual": "Exige entender fórmulas financeiras",
+              "calculator": "Sem necessidade de fórmulas"
+            },
+            {
+              "label": "Teste de cenários",
+              "manual": "Recalcular cada cenário toma tempo",
+              "calculator": "Ajuste valores e compare na hora"
+            },
+            {
+              "label": "Visualização",
+              "manual": "Criar gráficos manualmente na planilha",
+              "calculator": "Gráficos integrados e visuais"
+            }
+          ],
+          "summary": "Nossa calculadora de {topic} elimina erros manuais e reduz o tempo de minutos a segundos, com visuais imbatíveis."
+        },
+        {
+          "title": "Calculadora de {topic} vs planilha",
+          "items": [
+            {
+              "label": "Configuração",
+              "manual": "Exige montar e verificar fórmulas",
+              "calculator": "Pronta para usar com lógica embutida"
+            },
+            {
+              "label": "Detecção de erros",
+              "manual": "Erros de planilha comuns e difíceis de achar",
+              "calculator": "Validação evita erros comuns"
+            },
+            {
+              "label": "Portabilidade",
+              "manual": "Presa a software ou arquivos específicos",
+              "calculator": "Acesso de qualquer dispositivo com internet"
+            },
+            {
+              "label": "Atualizações",
+              "manual": "Atualizações manuais de fórmulas",
+              "calculator": "Sempre atualizada com os métodos mais recentes"
+            }
+          ],
+          "summary": "Planilhas são flexíveis, mas nossa calculadora de {topic} é mais rápida, com menos erros e acesso total."
+        }
+      ],
+      "health": [
+        {
+          "title": "Cálculo manual de {topic} vs nossa calculadora",
+          "items": [
+            {
+              "label": "Complexidade",
+              "manual": "Várias fórmulas com variáveis diferentes",
+              "calculator": "Seleção automática conforme seus dados"
+            },
+            {
+              "label": "Conversão de unidades",
+              "manual": "Conversão manual métrico/imperial",
+              "calculator": "Conversão automática com seletor"
+            },
+            {
+              "label": "Interpretação",
+              "manual": "Exige referências externas para entender",
+              "calculator": "Interpretação e contexto integrados"
+            },
+            {
+              "label": "Acompanhamento",
+              "manual": "Sem registro integrado ao longo do tempo",
+              "calculator": "Salve cenários e compare resultados"
+            }
+          ],
+          "summary": "Nossa calculadora de {topic} simplifica avaliações de saúde automatizando fórmulas e interpretando na hora."
+        }
+      ],
+      "math": [
+        {
+          "title": "Cálculo manual de {topic} vs nossa calculadora",
+          "items": [
+            {
+              "label": "Velocidade",
+              "manual": "Conta manual passo a passo",
+              "calculator": "Resultados instantâneos"
+            },
+            {
+              "label": "Verificação",
+              "manual": "Difícil conferir sem refazer tudo",
+              "calculator": "Copie e compartilhe para verificar"
+            },
+            {
+              "label": "Ajuda a aprender",
+              "manual": "Precisa saber a fórmula antes",
+              "calculator": "Mostra fórmula e passos para aprender"
+            }
+          ],
+          "summary": "Nossa calculadora de {topic} confere seu trabalho na hora e explica os princípios matemáticos."
+        }
+      ],
+      "conversion": [
+        {
+          "title": "Conversão manual de {topic} vs nossa calculadora",
+          "items": [
+            {
+              "label": "Fatores de conversão",
+              "manual": "Pesquisar e aplicar os fatores certos",
+              "calculator": "Banco de dados de conversão integrado"
+            },
+            {
+              "label": "Precisão",
+              "manual": "Erros de arredondamento se acumulam",
+              "calculator": "Cálculos de alta precisão sempre"
+            },
+            {
+              "label": "Bidirecional",
+              "manual": "Conversão inversa calculada à parte",
+              "calculator": "Conversão bidirecional instantânea"
+            }
+          ],
+          "summary": "Nosso conversor de {topic} elimina pesquisas e erros com resultados precisos e instantâneos."
+        }
+      ],
+      "date-time": [
+        {
+          "title": "Cálculo manual de {topic} vs nossa calculadora",
+          "items": [
+            {
+              "label": "Anos bissextos",
+              "manual": "Controle manual de bissextos",
+              "calculator": "Lógica de calendário automática"
+            },
+            {
+              "label": "Fusos horários",
+              "manual": "Deslocamentos manuais complexos",
+              "calculator": "Simples seleção de fuso"
+            },
+            {
+              "label": "Precisão",
+              "manual": "Erros de ±1 dia comuns",
+              "calculator": "Aritmética de datas precisa"
+            }
+          ],
+          "summary": "Nossa calculadora de {topic} trata automaticamente todos os casos-limite do calendário."
+        }
+      ],
+      "construction": [
+        {
+          "title": "Estimativa manual de {topic} vs nossa calculadora",
+          "items": [
+            {
+              "label": "Desperdício",
+              "manual": "Fácil esquecer o fator de perda",
+              "calculator": "Cálculo integrado de desperdício"
+            },
+            {
+              "label": "Conversões",
+              "manual": "Converter entre sistemas de medida",
+              "calculator": "Todas as conversões automáticas"
+            },
+            {
+              "label": "Atualizar custos",
+              "manual": "Pesquisar preços atuais manualmente",
+              "calculator": "Atualize preços e recalcule na hora"
+            }
+          ],
+          "summary": "Nossa calculadora de {topic} economiza horas de estimativa manual e reduz erros caros de pedido."
+        }
+      ],
+      "statistics": [
+        {
+          "title": "Análise manual de {topic} vs nossa calculadora",
+          "items": [
+            {
+              "label": "Tempo de conta",
+              "manual": "Cálculos manuais tediosos",
+              "calculator": "Contas estatísticas instantâneas"
+            },
+            {
+              "label": "Escolha da fórmula",
+              "manual": "Escolher o teste estatístico certo",
+              "calculator": "Aplicação guiada de fórmulas"
+            },
+            {
+              "label": "Visualização",
+              "manual": "Criar gráficos separadamente",
+              "calculator": "Visualização integrada"
+            }
+          ],
+          "summary": "Nossa calculadora de {topic} transforma o tedioso trabalho estatístico em insights visuais e instantâneos."
+        }
+      ],
+      "education": [
+        {
+          "title": "Cálculo manual de {topic} vs nossa calculadora",
+          "items": [
+            {
+              "label": "Ponderação",
+              "manual": "Médias ponderadas manuais complexas",
+              "calculator": "Cálculos automáticos por créditos"
+            },
+            {
+              "label": "Cenários",
+              "manual": "Análise de cenários lenta",
+              "calculator": "Projeção de notas instantânea"
+            },
+            {
+              "label": "Conversão de escalas",
+              "manual": "Conhecer diferentes escalas de nota",
+              "calculator": "Vários sistemas de nota suportados"
+            }
+          ],
+          "summary": "Nossa calculadora de {topic} elimina a complexidade das notas para focar na melhora escolar."
+        }
+      ],
+      "physics": [
+        {
+          "title": "Cálculo manual de {topic} vs nossa calculadora",
+          "items": [
+            {
+              "label": "Aplicar fórmulas",
+              "manual": "Lembrar e aplicar a fórmula certa",
+              "calculator": "Escolha o conceito, digite, receba a resposta"
+            },
+            {
+              "label": "Gerenciar unidades",
+              "manual": "Conversão SI manual exigida",
+              "calculator": "Gestão automática de unidades"
+            },
+            {
+              "label": "Verificação",
+              "manual": "Difícil localizar erros",
+              "calculator": "Detalhamento etapa por etapa"
+            }
+          ],
+          "summary": "Nossa calculadora de {topic} ajuda a verificar seu trabalho e entender a resolução."
+        }
+      ],
+      "chemistry": [
+        {
+          "title": "Cálculo manual de {topic} vs nossa calculadora",
+          "items": [
+            {
+              "label": "Massas atômicas",
+              "manual": "Consultar a tabela periódica",
+              "calculator": "Banco de massas atômicas integrado"
+            },
+            {
+              "label": "Conversão de unidades",
+              "manual": "Conversão manual molaridade/molalidade",
+              "calculator": "Unidades de concentração automáticas"
+            },
+            {
+              "label": "Propenso a erros",
+              "manual": "Pequenos erros se acumulam em várias etapas",
+              "calculator": "Validação a cada etapa"
+            }
+          ],
+          "summary": "Nossa calculadora de {topic} reduz erros de laboratório e acelera o preparo experimental."
+        }
+      ],
+      "engineering": [
+        {
+          "title": "Cálculo manual de {topic} vs nossa calculadora",
+          "items": [
+            {
+              "label": "Conformidade",
+              "manual": "Consultar normas manualmente",
+              "calculator": "Normas e fórmulas do setor integradas"
+            },
+            {
+              "label": "Velocidade de iteração",
+              "manual": "Ciclo de projeto lento",
+              "calculator": "Ajuste instantâneo de parâmetros"
+            },
+            {
+              "label": "Documentação",
+              "manual": "Documentar cálculos separadamente",
+              "calculator": "Exporte e compartilhe facilmente"
+            }
+          ],
+          "summary": "Nossa calculadora de {topic} acelera ciclos de projeto mantendo precisão profissional."
+        }
+      ],
+      "everyday": [
+        {
+          "title": "Cálculo manual de {topic} vs nossa calculadora",
+          "items": [
+            {
+              "label": "Conta de cabeça",
+              "manual": "Aproximações com possíveis erros",
+              "calculator": "Resultados exatos sempre"
+            },
+            {
+              "label": "Atualizar taxas",
+              "manual": "Acompanhar mudanças manualmente",
+              "calculator": "Atualize com as taxas vigentes"
+            },
+            {
+              "label": "Velocidade",
+              "manual": "Leva tempo resolver de cabeça",
+              "calculator": "Resultados instantâneos"
+            }
+          ],
+          "summary": "Nossa calculadora de {topic} ajuda em melhores decisões diárias com contas precisas e instantâneas."
+        }
+      ],
+      "food": [
+        {
+          "title": "Cálculo manual de {topic} vs nossa calculadora",
+          "items": [
+            {
+              "label": "Proporções",
+              "manual": "Escala proporcional manual",
+              "calculator": "Escala automática com conversão"
+            },
+            {
+              "label": "Contas nutricionais",
+              "manual": "Pesquisar e calcular nutrição por porção",
+              "calculator": "Detalhamento nutricional instantâneo"
+            },
+            {
+              "label": "Ajustes de lote",
+              "manual": "Recálculos de lote lentos",
+              "calculator": "Ajuste porções e tudo atualiza"
+            }
+          ],
+          "summary": "Nossa calculadora de {topic} tira a adivinhação do ajuste de receitas e do planejamento nutricional."
+        }
+      ],
+      "biology": [
+        {
+          "title": "Cálculo manual de {topic} vs nossa calculadora",
+          "items": [
+            {
+              "label": "Processar dados",
+              "manual": "Entrada e conta manuais",
+              "calculator": "Computação e análise automáticas"
+            },
+            {
+              "label": "Análise estatística",
+              "manual": "Exige ferramentas separadas",
+              "calculator": "Estatística biológica integrada"
+            },
+            {
+              "label": "Repetibilidade",
+              "manual": "Difícil replicar contas manuais",
+              "calculator": "Resultados consistentes sempre"
+            }
+          ],
+          "summary": "Nossa calculadora de {topic} agiliza a análise de dados biológicos com menos tempo e mais precisão."
+        }
+      ],
+      "ecology": [
+        {
+          "title": "Cálculo manual de {topic} vs nossa calculadora",
+          "items": [
+            {
+              "label": "Fórmulas complexas",
+              "manual": "Várias fórmulas interligadas",
+              "calculator": "Cadeia de cálculo integrada"
+            },
+            {
+              "label": "Gerenciar dados",
+              "manual": "Dados espalhados em fontes",
+              "calculator": "Entradas e saídas centralizadas"
+            },
+            {
+              "label": "Modelar cenários",
+              "manual": "Análise lenta de cenários",
+              "calculator": "Comparação rápida de cenários"
+            }
+          ],
+          "summary": "Nossa calculadora de {topic} torna a análise ambiental acessível, precisa e repetível."
+        }
+      ],
+      "sports": [
+        {
+          "title": "Cálculo manual de {topic} vs nossa calculadora",
+          "items": [
+            {
+              "label": "Saber fórmulas",
+              "manual": "Conhecer fórmulas da ciência do esporte",
+              "calculator": "Só digite suas métricas"
+            },
+            {
+              "label": "Acompanhar progresso",
+              "manual": "Registro e conta manuais",
+              "calculator": "Registre e compare o desempenho"
+            },
+            {
+              "label": "Precisão",
+              "manual": "Erros de arredondamento em várias etapas",
+              "calculator": "Contas precisas do atleta"
+            }
+          ],
+          "summary": "Nossa calculadora de {topic} ajuda atletas e técnicos a decidir com dados, sem expertise científica."
+        }
+      ]
+    },
+    "domainCtx": {
+      "financial": {
+        "whatLabel": "métrica financeira",
+        "whyImportant": "De hipotecas a retornos, acertar os números pode significar milhares em economia ou ganhos.",
+        "formulaLead": "A fórmula financeira central",
+        "appFocus": "crescimento de carteira, amortização e aposentadoria",
+        "methodLabel": "fórmulas financeiras",
+        "precisionContext": "precisão ao centavo",
+        "tipArea": "taxas de juros e períodos de capitalização",
+        "riskLabel": "financeiro"
+      },
+      "health": {
+        "whatLabel": "métrica de saúde",
+        "whyImportant": "Seus números de saúde são sinais vitais do seu bem-estar geral.",
+        "formulaLead": "A base fisiológica",
+        "appFocus": "acompanhamento fitness, avaliações médicas e bem-estar",
+        "methodLabel": "fórmulas fisiológicas",
+        "precisionContext": "relevância clínica",
+        "tipArea": "condições e momento da medição",
+        "riskLabel": "de saúde"
+      },
+      "math": {
+        "whatLabel": "conceito matemático",
+        "whyImportant": "Entender as fórmulas abre uma compreensão mais profunda do mundo.",
+        "formulaLead": "A expressão matemática fundamental",
+        "appFocus": "resolução escolar, projeto de engenharia e pesquisa",
+        "methodLabel": "métodos matemáticos",
+        "precisionContext": "a precisão decimal necessária",
+        "tipArea": "premissas e casos-limite",
+        "riskLabel": "numérico"
+      },
+      "conversion": {
+        "whatLabel": "conversão de unidades",
+        "whyImportant": "Uma conversão errada pode arruinar uma receita ou comprometer uma estrutura.",
+        "formulaLead": "A relação de conversão",
+        "appFocus": "viagens, receitas, especificações e dados científicos",
+        "methodLabel": "fatores de conversão",
+        "precisionContext": "os algarismos significativos adequados",
+        "tipArea": "consistência de unidades e arredondamento",
+        "riskLabel": "de conversão"
+      },
+      "date-time": {
+        "whatLabel": "cálculo de tempo",
+        "whyImportant": "Calcular durações e prazos com precisão ajuda a planejar com eficácia.",
+        "formulaLead": "A aritmética do tempo",
+        "appFocus": "cronogramas, eventos e gestão de prazos",
+        "methodLabel": "matemática do calendário",
+        "precisionContext": "o dia ou a hora",
+        "tipArea": "fusos horários e horário de verão",
+        "riskLabel": "de programação"
+      },
+      "construction": {
+        "whatLabel": "medição de construção",
+        "whyImportant": "Estimativas precisas evitam retrabalho caro e garantem conformidade.",
+        "formulaLead": "A fórmula da engenharia de construção",
+        "appFocus": "estimativa de materiais, projeto estrutural e códigos",
+        "methodLabel": "normas de construção",
+        "precisionContext": "uma fração de polegada",
+        "tipArea": "fatores de desperdício e códigos locais",
+        "riskLabel": "estrutural"
+      },
+      "statistics": {
+        "whatLabel": "medida estatística",
+        "whyImportant": "Escolher o método certo determina a validade das suas conclusões.",
+        "formulaLead": "A fórmula estatística",
+        "appFocus": "testes de hipóteses, análise de dados e validação",
+        "methodLabel": "métodos estatísticos",
+        "precisionContext": "o intervalo de confiança",
+        "tipArea": "tamanho amostral e distribuição",
+        "riskLabel": "estatístico"
+      },
+      "education": {
+        "whatLabel": "métrica educacional",
+        "whyImportant": "Medições educacionais ajudam a acompanhar o progresso e achar melhorias.",
+        "formulaLead": "A fórmula de avaliação educacional",
+        "appFocus": "notas, avaliação da aprendizagem e progresso",
+        "methodLabel": "padrões educacionais",
+        "precisionContext": "a rubrica de avaliação",
+        "tipArea": "curvas de nota e ponderação",
+        "riskLabel": "acadêmico"
+      },
+      "physics": {
+        "whatLabel": "grandeza física",
+        "whyImportant": "Cálculos de física descrevem as leis fundamentais do universo.",
+        "formulaLead": "A equação física",
+        "appFocus": "mecânica, eletromagnetismo, termodinâmica e quântica",
+        "methodLabel": "constantes físicas",
+        "precisionContext": "os algarismos significativos adequados",
+        "tipArea": "sistemas de unidades (SI vs imperial) e erro de medição",
+        "riskLabel": "físico"
+      },
+      "chemistry": {
+        "whatLabel": "grandeza química",
+        "whyImportant": "Cálculos químicos precisos são críticos para laboratório, farmácia e meio ambiente.",
+        "formulaLead": "A relação química",
+        "appFocus": "estequiometria, preparo de soluções e rendimentos",
+        "methodLabel": "princípios químicos",
+        "precisionContext": "a precisão molar",
+        "tipArea": "temperatura, pressão e pureza dos reagentes",
+        "riskLabel": "químico"
+      },
+      "engineering": {
+        "whatLabel": "parâmetro de engenharia",
+        "whyImportant": "Cálculos de engenharia garantem estruturas de pé, circuitos funcionando e sistemas seguros.",
+        "formulaLead": "A fórmula de projeto",
+        "appFocus": "análise estrutural, circuitos e otimização",
+        "methodLabel": "normas de engenharia",
+        "precisionContext": "a tolerância de projeto",
+        "tipArea": "fatores de segurança, materiais e normas",
+        "riskLabel": "de engenharia"
+      },
+      "everyday": {
+        "whatLabel": "cálculo cotidiano",
+        "whyImportant": "Acertar nas contas diárias economiza dinheiro, tempo e dor de cabeça.",
+        "formulaLead": "A fórmula prática",
+        "appFocus": "orçamentos, compras, planejamento e casa",
+        "methodLabel": "matemática cotidiana",
+        "precisionContext": "uma margem prática",
+        "tipArea": "estimar vs calcular com precisão",
+        "riskLabel": "prático"
+      },
+      "food": {
+        "whatLabel": "medida culinária",
+        "whyImportant": "Medidas precisas garantem resultados consistentes sempre.",
+        "formulaLead": "A proporção culinária",
+        "appFocus": "receitas, nutrição e proporções de confeitaria",
+        "methodLabel": "padrões culinários",
+        "precisionContext": "um grama ou colher",
+        "tipArea": "densidade de ingredientes e substituições",
+        "riskLabel": "culinário"
+      },
+      "biology": {
+        "whatLabel": "parâmetro biológico",
+        "whyImportant": "Cálculos biológicos permitem avanços em medicina, agricultura e conservação.",
+        "formulaLead": "A relação biológica",
+        "appFocus": "populações, dosagens e taxas de crescimento",
+        "methodLabel": "ensaios biológicos",
+        "precisionContext": "o limiar biológico relevante",
+        "tipArea": "condições experimentais e controles",
+        "riskLabel": "biológico"
+      },
+      "ecology": {
+        "whatLabel": "indicador ecológico",
+        "whyImportant": "Cálculos ecológicos são essenciais para gestão ambiental informada.",
+        "formulaLead": "O modelo ecológico",
+        "appFocus": "pegada de carbono, recursos e conservação",
+        "methodLabel": "métricas ambientais",
+        "precisionContext": "a relevância ecológica",
+        "tipArea": "variação sazonal e coleta de dados",
+        "riskLabel": "ambiental"
+      },
+      "sports": {
+        "whatLabel": "métrica esportiva",
+        "whyImportant": "Atletas e técnicos dependem de métricas para treinar melhor e prevenir lesões.",
+        "formulaLead": "A fórmula da ciência do esporte",
+        "appFocus": "desempenho, carga de treino e lesões",
+        "methodLabel": "padrões da ciência do esporte",
+        "precisionContext": "um progresso relevante",
+        "tipArea": "variação individual e recuperação",
+        "riskLabel": "esportivo"
+      }
+    },
+    "longFormFixed": {
+      "guideTitle": "Guia completo de {topic}",
+      "guideContent": "{description} Este guia explica os conceitos centrais, a matemática do cálculo e como aplicar os resultados em situações reais. Seja você novo em {topicLower} ou buscando aprofundar, encontrará ideias práticas e explicações claras.",
+      "howCalcTitle": "Como {topic} é calculado",
+      "howCalcContent": "O cálculo de {topic} segue um processo sistemático para resultados confiáveis e repetíveis. Entendê-lo ajuda a usar a calculadora com eficácia e interpretar resultados com confiança.",
+      "coreFormula": "A fórmula central: {formula}",
+      "coreLogic": "A lógica central do cálculo",
+      "coreFormulaText": "A fórmula {formula} é a base desta calculadora. Cada variável representa um dado que você informa. A relação entre elas determina seu resultado.",
+      "coreLogicText": "A calculadora aplica {method} estabelecidos aos seus dados. Cada etapa se baseia na anterior, com valores intermediários visíveis.",
+      "inputReq": "Dados necessários",
+      "inputReqText": "Você precisa de {v3} dados-chave para um cálculo completo. Parâmetros opcionais refinam cenários específicos.",
+      "processing": "Processamento e validação",
+      "processingText": "Antes de calcular, a calculadora verifica faixas aceitáveis e consistência de unidades. Dados incomuns são sinalizados para revisão.",
+      "tipsTitle": "Dicas de especialistas para resultados precisos",
+      "tipsContent": "Siga estas recomendações para os resultados mais confiáveis da calculadora de {topic} e evite armadilhas comuns.",
+      "doubleCheck": "Confira {method}",
+      "doubleCheckText": "Erros de digitação são a fonte mais comum de imprecisão. Verifique cada valor contra sua fonte ou medição.",
+      "whatIf": "Teste vários cenários hipotéticos",
+      "whatIfText": "Teste ao menos {v3} combinações de valores para entender a sensibilidade do resultado a cada variável.",
+      "benchmarks": "Compare com referências",
+      "benchmarksText": "A calculadora oferece faixas de referência do setor para situar rapidamente seu resultado.",
+      "walkTitle": "Exemplo: calcular {topic} passo a passo",
+      "walkContent": "Vamos trabalhar um exemplo prático com valores realistas. Este passo a passo mostra exatamente como a calculadora de {topic} processa seus dados até o resultado final.",
+      "walkSetup": "Começar com o valor {v1}",
+      "walkSetupText": "Comece inserindo {v1} como dado principal. Deixe os secundários no padrão. A calculadora valida e prepara a fórmula.",
+      "walkAdjust": "Ajustar para {v2}",
+      "walkAdjustText": "Mude o dado principal para {v2}. Observe a mudança em tempo real, prova da sensibilidade do cálculo.",
+      "walkInterpret": "Interpretar o resultado final",
+      "walkInterpretText": "O valor calculado representa seu {topicLower} sob as premissas dadas. Compare com as faixas exibidas. Dentro da faixa esperada, seu cenário está normal.",
+      "faqTitle": "Perguntas frequentes",
+      "faqContent": "Perguntas comuns sobre {topic} e como esta calculadora as trata.",
+      "defaultDeepTitle": "Por dentro do cálculo de {topic}",
+      "defaultDeepContent": "A calculadora de {topic} combina {v3} variáveis-chave em fórmula precisa e fácil. Cada dado segue {method} estabelecidos. Etapas: coleta, validação, computação e apresentação."
+    },
+    "deep": {
+      "financial": [
+        {
+          "title": "Como tempo e taxas definem seu resultado financeiro",
+          "content": "O cálculo de {topic} é sensível a dois dados críticos: horizonte temporal e taxa. Pequenos ajustes geram resultados muito diferentes, pois fórmulas financeiras usam relações exponenciais. Entender isso ajuda a priorizar quais variáveis negociar ou otimizar.",
+          "subs": [
+            {
+              "heading": "O valor do dinheiro no tempo",
+              "text": "O tempo é a variável mais poderosa nas contas financeiras. A calculadora mostra exatamente como o tempo capitaliza ou desconta seus resultados."
+            },
+            {
+              "heading": "Sensibilidade a taxas",
+              "text": "Meio ponto percentual na taxa vira dinheiro de verdade. Ajuste taxas e veja o impacto na hora."
+            }
+          ]
+        },
+        {
+          "title": "Decompor os componentes do seu cálculo",
+          "content": "Todo cálculo financeiro se decompõe em capital base, taxa, prazo e aportes recorrentes. Isolar cada componente revela o fator dominante. Um empréstimo com taxa um pouco maior mas tarifas bem menores pode sair mais barato no total.",
+          "subs": [
+            {
+              "heading": "Capital e valores base",
+              "text": "O valor inicial fundamenta seu cálculo. A calculadora mostra a fatia do resultado vinda do capital vs do crescimento."
+            },
+            {
+              "heading": "Aportes recorrentes",
+              "text": "Adições regulares capitalizam junto ao capital. A calculadora separa efeitos únicos dos recorrentes."
+            }
+          ]
+        },
+        {
+          "title": "Risco, retorno e premissas realistas",
+          "content": "Contas financeiras exigem premissas realistas sobre taxas e risco. A calculadora de {topic} testa cenários ajustando premissas. Estimativa conservadora dá meta segura; otimista mostra o potencial. Planejar por faixas é marca do planejamento profissional.",
+          "subs": [
+            {
+              "heading": "Cenários conservadores vs otimistas",
+              "text": "Rode o cálculo com premissas conservadoras e otimistas para balizar resultados possíveis."
+            },
+            {
+              "heading": "Testar suas premissas",
+              "text": "E se as taxas mudarem ou o prazo estender? Testes de estresse revelam cenários que quebram seu plano."
+            }
+          ]
+        }
+      ],
+      "health": [
+        {
+          "title": "Entender seus números em contexto",
+          "content": "Um valor de {topic} sozinho conta só parte da história. Comparar com faixas de referência e acompanhar no tempo importa mais. A calculadora oferece referências por idade, sexo e fatores. Registrar seu {topicLower} em medições seguidas dá uma tendência muito mais informativa que um dado isolado.",
+          "subs": [
+            {
+              "heading": "Faixas de referência e significado",
+              "text": "Faixas saudáveis variam por população. A calculadora usa diretrizes clínicas atuais para classificar seu resultado."
+            },
+            {
+              "heading": "A força do acompanhamento longitudinal",
+              "text": "Uma medição isolada é uma foto. O registro revela se seu {topicLower} está estável, melhorando ou piorando."
+            }
+          ]
+        },
+        {
+          "title": "Fatores que influenciam suas métricas de saúde",
+          "content": "Seu resultado de {topic} depende de fatores modificáveis e não modificáveis. Modificáveis: dieta, atividade, sono, estresse, adesão a remédios. Outros: idade, genética, sexo. Saber o que dá para mudar empodera agir com metas realistas baseadas em ciência.",
+          "subs": [
+            {
+              "heading": "Fatores modificáveis ou não",
+              "text": "Foque energia no que está sob seu controle. A calculadora mostra dados modificáveis e o impacto estimado."
+            },
+            {
+              "heading": "Metas realistas de melhora",
+              "text": "A calculadora registra seu progresso e ajusta recomendações ao seu ritmo."
+            }
+          ]
+        },
+        {
+          "title": "Quando buscar orientação profissional",
+          "content": "Calculadoras online complementam, não substituem, o médico. A calculadora de {topic} sinaliza resultados fora das faixas saudáveis e sugere consulta. Também oferece recursos para preparar consultas com perguntas e dados relevantes.",
+          "subs": [
+            {
+              "heading": "Limiares de alerta",
+              "text": "A calculadora sinaliza resultados acima de limiares validados, com sugestões de acompanhamento."
+            },
+            {
+              "heading": "Preparar sua consulta",
+              "text": "Exporte seu histórico de tendências para compartilhar com seu profissional de saúde."
+            }
+          ]
+        }
+      ],
+      "math": [
+        {
+          "title": "Por que este conceito matemático importa",
+          "content": "{topic} atravessa a matemática e suas aplicações. Entendê-lo fortalece sua base e prepara para temas avançados. A calculadora mostra a derivação passo a passo, reforçando a matemática a cada uso.",
+          "subs": [
+            {
+              "heading": "Pré-requisitos",
+              "text": "Antes de {topic}, domine as operações básicas. A calculadora inclui revisão desses fundamentos."
+            },
+            {
+              "heading": "Ponte para temas avançados",
+              "text": "{topic} fundamenta conceitos avançados. Entendê-lo bem acelera o aprendizado posterior."
+            }
+          ]
+        },
+        {
+          "title": "Abordagens comuns de resolução",
+          "content": "Vários métodos resolvem problemas de {topic}, cada um com forças. A calculadora mostra resultados lado a lado para escolher o método adequado. Ver vários caminhos desenvolve compreensão mais flexível.",
+          "subs": [
+            {
+              "heading": "A abordagem direta",
+              "text": "O método simples aplica a fórmula central diretamente. Serve na maioria dos casos."
+            },
+            {
+              "heading": "Caminhos alternativos",
+              "text": "Com valores extremos ou restrições, métodos alternativos dão resultados mais precisos."
+            }
+          ]
+        },
+        {
+          "title": "Visualizar a relação matemática",
+          "content": "A matemática fica intuitiva ao visualizar. A calculadora de {topic} inclui gráficos interativos do efeito de cada variável. Esse retorno visual desenvolve intuição mais rápido que só números.",
+          "subs": [
+            {
+              "heading": "Exploração interativa",
+              "text": "Ajuste controles e veja o gráfico atualizar. O retorno em tempo real torna a relação tangível."
+            },
+            {
+              "heading": "Pontos matemáticos-chave",
+              "text": "O gráfico rotula automaticamente pontos críticos, valores e condições de contorno."
+            }
+          ]
+        }
+      ],
+      "conversion": [
+        {
+          "title": "Por que a precisão importa na conversão",
+          "content": "Converter unidades é enganosamente simples. Uma vírgula deslocada gera resultados errados por ordens de magnitude. A calculadora de {topic} aplica o fator certo por unidades e respeita significativos. Esse rigor é crítico quando conversões afetam segurança, conformidade ou custos.",
+          "subs": [
+            {
+              "heading": "Pares de unidades confundidos",
+              "text": "Galões US vs UK, toneladas curtas vs longas, onças fluidas vs secas e xícaras métricas vs imperiais estão entre as confusões frequentes."
+            },
+            {
+              "heading": "Significativos e arredondamento",
+              "text": "Uma conversão só é precisa quanto seu dado menos preciso. A calculadora arredonda corretamente."
+            }
+          ]
+        },
+        {
+          "title": "Fatores de conversão e funcionamento",
+          "content": "Toda conversão usa um fator: razão fixa entre duas unidades vinda de padrões internacionais. A relação é sempre linear: multiplique pelo fator. A calculadora guarda centenas de fatores verificados contra NIST e BIPM.",
+          "subs": [
+            {
+              "heading": "Origem dos fatores",
+              "text": "Fatores vêm de tratados internacionais e organismos de normalização a partir de constantes físicas."
+            },
+            {
+              "heading": "Verificar sua conversão",
+              "text": "Truque: reconverta o resultado à unidade original. A calculadora facilita essa verificação."
+            }
+          ]
+        },
+        {
+          "title": "O impacto real dos erros de conversão",
+          "content": "Erros de conversão têm consequências reais: em 1999 perdeu-se uma sonda a Marte de US$125M porque uma equipe usava imperial e outra métrico. A calculadora de {topic} previne validando unidades e sinalizando resultados incomuns.",
+          "subs": [
+            {
+              "heading": "Cenários críticos",
+              "text": "Aviação, medicina, engenharia e comércio exigem precisão absoluta."
+            },
+            {
+              "heading": "O hábito de verificar",
+              "text": "Verifique sempre no reverso: reconverta o resultado à unidade original."
+            }
+          ]
+        }
+      ]
+    },
+    "faqPools": {
+      "financial": [
+        {
+          "q": "Quais premissas o cálculo de {topic} assume?",
+          "a": "A calculadora assume taxas constantes e pagamentos regulares no prazo. Taxas reais flutuam: veja o resultado como estimativa em condições estáveis."
+        },
+        {
+          "q": "Com que frequência recalcular {topic}?",
+          "a": "Recalcule quando premissas mudarem: taxas, renda ou metas. Revisão a cada {v3} meses serve na maioria dos casos."
+        },
+        {
+          "q": "Qual variável mais influencia {topic}?",
+          "a": "O horizonte temporal costuma ter o maior efeito. Estender o prazo muda o resultado mais que qualquer outro dado."
+        },
+        {
+          "q": "Posso confiar nesta calculadora em decisões grandes?",
+          "a": "Sim, usa fórmulas validadas. Para hipotecas ou aposentadoria, use como estimativa principal com orientação profissional."
+        }
+      ],
+      "health": [
+        {
+          "q": "Qual a precisão da medição de {topic}?",
+          "a": "A precisão depende dos seus dados. Use equipamentos calibrados em condições consistentes. Certa variação entre leituras é normal."
+        },
+        {
+          "q": "Com que frequência medir {topic}?",
+          "a": "Para tendências, meça no mesmo horário em condições similares. Algumas medições por semana bastam na maioria dos casos."
+        },
+        {
+          "q": "{topic} varia por idade ou sexo?",
+          "a": "Sim, faixas de referência diferem por demografia. A calculadora ajusta referências aos seus dados."
+        },
+        {
+          "q": "Quando buscar atendimento por {topic} anormal?",
+          "a": "Se o resultado exceder referências ou mudar bruscamente entre medições seguidas, consulte um profissional."
+        }
+      ],
+      "math": [
+        {
+          "q": "Quais pré-requisitos para {topic}?",
+          "a": "Base sólida de aritmética e introdução à álgebra é recomendada. A calculadora inclui explicações passo a passo."
+        },
+        {
+          "q": "Onde {topic} serve fora da sala?",
+          "a": "{topic} aparece em engenharia, computação, física, economia e dados. Conceito fundamental e amplo."
+        },
+        {
+          "q": "Qual o erro mais comum em {topic}?",
+          "a": "Aplicar mal a fórmula ou usar unidades erradas são os erros frequentes. A calculadora valida dados."
+        }
+      ]
+    },
+    "defaultFaqs": [
+      {
+        "q": "Qual o erro mais comum no cálculo de {topic}?",
+        "a": "Unidades inconsistentes ou leitura errada da fórmula causam a maioria dos erros. A calculadora valida automaticamente."
+      },
+      {
+        "q": "Qual a precisão desta calculadora de {topic}?",
+        "a": "Usa fórmulas validadas para resultados {method}. A precisão depende da qualidade dos seus dados."
+      },
+      {
+        "q": "Posso usar no trabalho profissional?",
+        "a": "Sim, usa fórmulas profissionais. Para setores regulados, confira resultados críticos com ferramentas certificadas."
+      }
+    ]
   }
 }

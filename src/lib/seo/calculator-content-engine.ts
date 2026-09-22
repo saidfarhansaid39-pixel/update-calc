@@ -51,6 +51,63 @@ export interface CalculatorContent {
   longFormArticle?: LongFormSection[]
 }
 
+/* ────────── Locale dictionary (partial overrides; missing tables fall back to EN) ────────── */
+
+export interface ContentEngineDict {
+  whatIs?: string
+  audience?: Record<string, { persona: string; activity: string; goal: string }>
+  useCases?: Record<string, { title: string; description: string }[]>
+  mistakes?: Record<string, { mistake: string; solution: string }[]>
+  glossary?: Record<string, { term: string; definition: string }[]>
+  concepts?: Record<string, string[]>
+  comparisons?: Record<string, { title: string; items: { label: string; manual: string; calculator: string }[]; summary: string }[]>
+  pros?: string[]
+  cons?: string[]
+  alternatives?: { name: string; description: string }[]
+  recommendations?: string[]
+  audiences?: Record<string, string[]>
+  adjectives?: Record<string, string>
+  domainCtx?: Record<string, DomainCtx>
+  longFormFixed?: {
+    guideTitle: string; guideContent: string
+    howCalcTitle: string; howCalcContent: string
+    coreFormula: string; coreLogic: string; coreFormulaText: string; coreLogicText: string
+    inputReq: string; inputReqText: string
+    processing: string; processingText: string
+    tipsTitle: string; tipsContent: string
+    doubleCheck: string; doubleCheckText: string
+    whatIf: string; whatIfText: string
+    benchmarks: string; benchmarksText: string
+    walkTitle: string; walkContent: string
+    walkSetup: string; walkSetupText: string
+    walkAdjust: string; walkAdjustText: string
+    walkInterpret: string; walkInterpretText: string
+    faqTitle: string; faqContent: string
+    defaultDeepTitle: string; defaultDeepContent: string
+  }
+  deep?: Record<string, { title: string; content: string; subs: { heading: string; text: string }[] }[]>
+  faqPools?: Record<string, { q: string; a: string }[]>
+  defaultFaqs?: { q: string; a: string }[]
+}
+
+/** Fill {placeholders} in a translated template string. Unknown keys are left intact. */
+export function fillTemplate(s: string, params: Record<string, string>): string {
+  let out = s
+  for (const [k, v] of Object.entries(params)) out = out.split(`{${k}}`).join(v)
+  return out
+}
+
+export interface DomainCtx {
+  whatLabel: string
+  whyImportant: string
+  formulaLead: string
+  appFocus: string
+  methodLabel: string
+  precisionContext: string
+  tipArea: string
+  riskLabel: string
+}
+
 function capitalize(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
@@ -730,10 +787,11 @@ export const longFormArticlesReady: Promise<void> = import('./content-articles')
   .then(m => { _longFormArticles = { ...m.default } })
   .catch(() => { _longFormArticles = {} })
 
-function generateCategoryLongForm(calculator: CalculatorEntry): LongFormSection[] {
+function generateCategoryLongForm(calculator: CalculatorEntry, dict?: ContentEngineDict): LongFormSection[] {
   const topic = extractTopic(calculator.title)
   const { category, description, formulaSource: formula, keywords = [] } = calculator
-  const adj = getHubAdjective(category)
+  const cat = category as string
+  const adj = dict?.adjectives?.[cat] ?? getHubAdjective(category)
   const slug = calculator.slug
 
   // Deterministic seed from slug for content variation
@@ -744,16 +802,6 @@ function generateCategoryLongForm(calculator: CalculatorEntry): LongFormSection[
   const exampleVal2 = (seed % 9000 + 1000).toString()
   const exampleVal3 = (seed % 12 + 3).toString()
 
-  interface DomainCtx {
-    whatLabel: string
-    whyImportant: string
-    formulaLead: string
-    appFocus: string
-    methodLabel: string
-    precisionContext: string
-    tipArea: string
-    riskLabel: string
-  }
   const domainCtx: Record<string, DomainCtx> = {
     financial: { whatLabel: 'financial metric', whyImportant: 'From mortgage rates to investment returns, getting the numbers right can mean thousands of dollars in savings or earnings.', formulaLead: 'The core financial formula', appFocus: 'portfolio growth, loan amortization, and retirement planning', methodLabel: 'financial formulas', precisionContext: 'penny-accurate', tipArea: 'interest rates and compounding periods', riskLabel: 'financial' },
     health: { whatLabel: 'health metric', whyImportant: 'Your health numbers are vital signs of your overall wellness.', formulaLead: 'The physiological basis', appFocus: 'fitness tracking, medical assessments, and wellness planning', methodLabel: 'physiological formulas', precisionContext: 'clinically meaningful', tipArea: 'measurement conditions and timing', riskLabel: 'health' },
@@ -773,11 +821,27 @@ function generateCategoryLongForm(calculator: CalculatorEntry): LongFormSection[
     sports: { whatLabel: 'athletic metric', whyImportant: 'Athletes and coaches rely on performance metrics to train smarter and prevent injuries.', formulaLead: 'The sports science formula', appFocus: 'performance tracking, training load management, and injury prevention', methodLabel: 'sports science standards', precisionContext: 'a meaningful performance increment', tipArea: 'individual variation and recovery periods', riskLabel: 'athletic' },
   }
 
-  const ctx = domainCtx[category]
+  const ctx = dict?.domainCtx?.[cat] ?? domainCtx[category]
+
+  // Locale fill params (locale templates use {topic} {topicLower} {adj} {v1} {v2} {v3} {description} {formula} {method})
+  const LP = {
+    topic, topicLower: topic.toLowerCase(), adj,
+    v1: exampleVal1, v2: exampleVal2, v3: exampleVal3,
+    description, formula: formula || '', method: ctx.methodLabel,
+  }
 
   // Category-specific deep-dive section with unique angles
   const categorySpecificSection = (): LongFormSection => {
     const choice = seed % 3
+    const deepVariants = dict?.deep?.[cat]
+    if (deepVariants && deepVariants.length > 0) {
+      const dv = deepVariants[choice % deepVariants.length]
+      return {
+        title: fillTemplate(dv.title, LP),
+        content: fillTemplate(dv.content, LP),
+        subsections: dv.subs.map(s => ({ heading: fillTemplate(s.heading, LP), text: fillTemplate(s.text, LP) })),
+      }
+    }
     switch (category) {
       case 'financial': {
         if (choice === 0) return { title: 'How Time and Rates Shape Your Financial Outcome', content: `The ${topic} calculation is sensitive to two critical inputs: the time horizon and the rate of change. Even small adjustments to either parameter produce dramatically different outcomes. For example, a ${exampleVal2} unit difference in the principal or term can change your total cost by hundreds of dollars over the life of the calculation. This is because financial formulas use exponential or multiplicative relationships rather than simple addition. Understanding this sensitivity helps you prioritize which variables to negotiate or optimize. The most successful financial strategies focus on the inputs that have the largest multiplier effect on the final result.`, subsections: [{ heading: 'The Time Value of Money Applied', text: `Time is the most powerful variable in financial calculations. A ${exampleVal3}-year difference in term length can alter your payment by ${(parseInt(exampleVal2)/10).toFixed(0)}% or more. The calculator illustrates exactly how time compounds or discounts your financial outcomes.` }, { heading: 'Rate Sensitivity Analysis', text: `A half-percentage-point change in your interest rate or return rate translates into real money. The calculator lets you toggle rates in ${exampleVal1} basis point increments to see the dollar impact instantly.` }] }
@@ -823,57 +887,58 @@ function generateCategoryLongForm(calculator: CalculatorEntry): LongFormSection[
       { q: `What is the most common mistake when calculating ${topic}?`, a: `Misapplying the formula or using incorrect units are the most frequent errors. The calculator validates inputs to catch these before computing.` },
     ],
   }
-  const defaultFaqs = [
+  const defaultFaqs = dict?.defaultFaqs?.length ? dict.defaultFaqs : [
     { q: `What is the most common mistake in ${topic} calculation?`, a: `Using inconsistent units or misreading the formula produces the most errors. The calculator validates inputs automatically to catch these issues.` },
     { q: `How accurate is this ${topic} calculator?`, a: `The calculator uses validated formulas for ${ctx.precisionContext} results. Your result's accuracy depends primarily on the quality of your input data.` },
     { q: `Can I use this calculator for professional work?`, a: `Yes, it employs professional-grade formulas. For regulated industries, verify critical results with certified tools as an additional check.` },
   ]
-  const pool = faqPools[category] || defaultFaqs
+  const pool = dict?.faqPools?.[cat]?.length ? dict.faqPools[cat] : (faqPools[category] || defaultFaqs)
   const faqItems = []
   for (let i = 0; i < Math.min(3, pool.length); i++) {
     const idx = (seed + i * 17) % pool.length
-    faqItems.push({ heading: pool[idx].q, text: pool[idx].a })
+    faqItems.push({ heading: fillTemplate(pool[idx].q, LP), text: fillTemplate(pool[idx].a, LP) })
   }
 
   // Build example walkthrough with calculator-specific numbers
+  const LF = dict?.longFormFixed
   const exampleSec = {
-    title: `Walkthrough: Calculating ${topic} Step by Step`,
-    content: `Let us work through a practical example using realistic values. This step-by-step walkthrough shows exactly how the ${topic} calculator processes your inputs to produce the final result. Follow along with your own numbers to see how the calculation applies to your situation.`,
+    title: LF?.walkTitle ? fillTemplate(LF.walkTitle, LP) : `Walkthrough: Calculating ${topic} Step by Step`,
+    content: LF?.walkContent ? fillTemplate(LF.walkContent, LP) : `Let us work through a practical example using realistic values. This step-by-step walkthrough shows exactly how the ${topic} calculator processes your inputs to produce the final result. Follow along with your own numbers to see how the calculation applies to your situation.`,
     subsections: [
-      { heading: `Setting Up with Value ${exampleVal1}`, text: `Start by entering ${exampleVal1} as your primary input. Set secondary parameters to their defaults. The calculator validates these inputs and prepares the formula. The intermediate result at this stage is ${(parseInt(exampleVal1)*(seed%20+80)/100).toFixed(1)}.` },
-      { heading: `Adjusting to ${exampleVal2}`, text: `Change the primary input to ${exampleVal2}. Observe how the output changes in real time. The difference between the two results is ${(parseInt(exampleVal2)-parseInt(exampleVal1))} units, demonstrating the sensitivity of the calculation to this variable.` },
-      { heading: 'Interpreting the Final Result', text: `The calculated value represents your ${topic.toLowerCase()} under the given assumptions. Compare it to the reference ranges displayed alongside the result. If the value falls within the expected range (typically between ${(parseInt(exampleVal1)*0.8).toFixed(0)} and ${(parseInt(exampleVal2)*1.2).toFixed(0)}), your scenario aligns with normal parameters.` },
+      { heading: LF?.walkSetup ? fillTemplate(LF.walkSetup, LP) : `Setting Up with Value ${exampleVal1}`, text: LF?.walkSetupText ? fillTemplate(LF.walkSetupText, LP) : `Start by entering ${exampleVal1} as your primary input. Set secondary parameters to their defaults. The calculator validates these inputs and prepares the formula. The intermediate result at this stage is ${(parseInt(exampleVal1)*(seed%20+80)/100).toFixed(1)}.` },
+      { heading: LF?.walkAdjust ? fillTemplate(LF.walkAdjust, LP) : `Adjusting to ${exampleVal2}`, text: LF?.walkAdjustText ? fillTemplate(LF.walkAdjustText, LP) : `Change the primary input to ${exampleVal2}. Observe how the output changes in real time. The difference between the two results is ${(parseInt(exampleVal2)-parseInt(exampleVal1))} units, demonstrating the sensitivity of the calculation to this variable.` },
+      { heading: LF?.walkInterpret ? fillTemplate(LF.walkInterpret, LP) : 'Interpreting the Final Result', text: LF?.walkInterpretText ? fillTemplate(LF.walkInterpretText, LP) : `The calculated value represents your ${topic.toLowerCase()} under the given assumptions. Compare it to the reference ranges displayed alongside the result. If the value falls within the expected range (typically between ${(parseInt(exampleVal1)*0.8).toFixed(0)} and ${(parseInt(exampleVal2)*1.2).toFixed(0)}), your scenario aligns with normal parameters.` },
     ],
   }
 
   const sections: LongFormSection[] = [
     {
-      title: `A Complete Guide to ${topic}`,
-      content: `${description} This guide explains the core concepts, the mathematics behind the calculation, and how to apply the results in real-world situations. Whether you are new to ${topic.toLowerCase()} or looking to deepen your understanding, you will find practical insights and clear explanations throughout.`,
+      title: LF?.guideTitle ? fillTemplate(LF.guideTitle, LP) : `A Complete Guide to ${topic}`,
+      content: LF?.guideContent ? fillTemplate(LF.guideContent, LP) : `${description} This guide explains the core concepts, the mathematics behind the calculation, and how to apply the results in real-world situations. Whether you are new to ${topic.toLowerCase()} or looking to deepen your understanding, you will find practical insights and clear explanations throughout.`,
     },
     {
-      title: `How ${topic} Is Calculated`,
-      content: `The ${topic} calculation follows a systematic process designed to produce reliable, repeatable results. Understanding this process helps you use the calculator more effectively and interpret results with confidence.`,
+      title: LF?.howCalcTitle ? fillTemplate(LF.howCalcTitle, LP) : `How ${topic} Is Calculated`,
+      content: LF?.howCalcContent ? fillTemplate(LF.howCalcContent, LP) : `The ${topic} calculation follows a systematic process designed to produce reliable, repeatable results. Understanding this process helps you use the calculator more effectively and interpret results with confidence.`,
       subsections: [
-        { heading: formula ? `The Core Formula: ${formula}` : 'The Core Calculation Logic', text: formula ? `The formula ${formula} is the foundation of this calculator. Each variable represents a specific input that you provide. The relationship between them determines your result.` : `The calculator applies established ${ctx.methodLabel} to your inputs. Each step builds on the previous one, with intermediate values displayed for verification.` },
-        { heading: 'Input Requirements', text: `You need ${exampleVal3} key inputs for a complete calculation. Optional parameters allow fine-tuning for specific scenarios. The calculator guides you through each input with clear labels and format hints.` },
-        { heading: 'Processing and Validation', text: `Before computing, the calculator validates that all inputs are within acceptable ranges and that units are consistent. If an input is unusual (e.g., ${exampleVal2} units where ${exampleVal1} is typical), the calculator flags it for review.` },
+        { heading: formula ? (LF?.coreFormula ? fillTemplate(LF.coreFormula, LP) : `The Core Formula: ${formula}`) : (LF?.coreLogic ? fillTemplate(LF.coreLogic, LP) : 'The Core Calculation Logic'), text: formula ? (LF?.coreFormulaText ? fillTemplate(LF.coreFormulaText, LP) : `The formula ${formula} is the foundation of this calculator. Each variable represents a specific input that you provide. The relationship between them determines your result.`) : (LF?.coreLogicText ? fillTemplate(LF.coreLogicText, LP) : `The calculator applies established ${ctx.methodLabel} to your inputs. Each step builds on the previous one, with intermediate values displayed for verification.`) },
+        { heading: LF?.inputReq ? fillTemplate(LF.inputReq, LP) : 'Input Requirements', text: LF?.inputReqText ? fillTemplate(LF.inputReqText, LP) : `You need ${exampleVal3} key inputs for a complete calculation. Optional parameters allow fine-tuning for specific scenarios. The calculator guides you through each input with clear labels and format hints.` },
+        { heading: LF?.processing ? fillTemplate(LF.processing, LP) : 'Processing and Validation', text: LF?.processingText ? fillTemplate(LF.processingText, LP) : `Before computing, the calculator validates that all inputs are within acceptable ranges and that units are consistent. If an input is unusual (e.g., ${exampleVal2} units where ${exampleVal1} is typical), the calculator flags it for review.` },
       ],
     },
     categorySpecificSection(),
     {
-      title: 'Expert Tips for Accurate Results',
-      content: `Follow these recommendations to get the most reliable results from the ${topic} calculator and avoid common pitfalls that can skew your calculations.`,
+      title: LF?.tipsTitle ? fillTemplate(LF.tipsTitle, LP) : 'Expert Tips for Accurate Results',
+      content: LF?.tipsContent ? fillTemplate(LF.tipsContent, LP) : `Follow these recommendations to get the most reliable results from the ${topic} calculator and avoid common pitfalls that can skew your calculations.`,
       subsections: [
-        { heading: `Double-Check ${ctx.tipArea}`, text: `Errors in ${ctx.tipArea.toLowerCase()} are the most common source of inaccuracy. Verify each input against its source document or measurement. A ${exampleVal1}-unit mistake here can change the result by ${(parseInt(exampleVal1)*2).toFixed(0)} units.` },
-        { heading: 'Run Multiple What-If Scenarios', text: `Test at least ${exampleVal3} different combinations of inputs to understand how sensitive the result is to each variable. This sensitivity analysis reveals which inputs matter most for your specific case.` },
-        { heading: 'Compare Against Benchmarks', text: `The calculator provides reference ranges based on industry standards. Compare your result against these benchmarks to quickly assess whether it falls within expected parameters.` },
+        { heading: LF?.doubleCheck ? fillTemplate(LF.doubleCheck, LP) : `Double-Check ${ctx.tipArea}`, text: LF?.doubleCheckText ? fillTemplate(LF.doubleCheckText, LP) : `Errors in ${ctx.tipArea.toLowerCase()} are the most common source of inaccuracy. Verify each input against its source document or measurement. A ${exampleVal1}-unit mistake here can change the result by ${(parseInt(exampleVal1)*2).toFixed(0)} units.` },
+        { heading: LF?.whatIf ? fillTemplate(LF.whatIf, LP) : 'Run Multiple What-If Scenarios', text: LF?.whatIfText ? fillTemplate(LF.whatIfText, LP) : `Test at least ${exampleVal3} different combinations of inputs to understand how sensitive the result is to each variable. This sensitivity analysis reveals which inputs matter most for your specific case.` },
+        { heading: LF?.benchmarks ? fillTemplate(LF.benchmarks, LP) : 'Compare Against Benchmarks', text: LF?.benchmarksText ? fillTemplate(LF.benchmarksText, LP) : `The calculator provides reference ranges based on industry standards. Compare your result against these benchmarks to quickly assess whether it falls within expected parameters.` },
       ],
     },
     exampleSec,
     {
-      title: 'Frequently Asked Questions',
-      content: `Common questions about ${topic} and how this calculator handles them.`,
+      title: LF?.faqTitle ? fillTemplate(LF.faqTitle, LP) : 'Frequently Asked Questions',
+      content: LF?.faqContent ? fillTemplate(LF.faqContent, LP) : `Common questions about ${topic} and how this calculator handles them.`,
       subsections: faqItems,
     },
   ]
@@ -883,8 +948,11 @@ function generateCategoryLongForm(calculator: CalculatorEntry): LongFormSection[
 
 /* ──────────────────────── Main Generator ──────────────────────── */
 
-export function generateCalculatorContent(calc: CalculatorEntry): CalculatorContent {
+export function generateCalculatorContent(calc: CalculatorEntry, dict?: ContentEngineDict): CalculatorContent {
   const topic = extractTopic(calc.title)
+  const P = { topic, topicLower: topic.toLowerCase() }
+  const cat = calc.category as string
+  const adj = dict?.adjectives?.[cat] ?? getHubAdjective(calc.category)
 
   const categoryUseCases = useCaseTemplates[calc.category]
   const categoryMistakes = commonMistakes[calc.category]
@@ -892,34 +960,65 @@ export function generateCalculatorContent(calc: CalculatorEntry): CalculatorCont
   const categoryConcepts = relatedConcepts[calc.category]
   const categoryComparisons = comparisonTemplates[calc.category]
 
-  const whatIs = buildWhatIs(calc)
-  const useCases = categoryUseCases ? categoryUseCases(topic, calc) : []
-  const commonMistakesList = pickNBySlug(categoryMistakes, calc.slug, 4)
-  const glossary = pickNBySlug(categoryGlossary, calc.slug, 6)
-  const relatedConceptsList = pickNBySlug(categoryConcepts, calc.slug, 6)
-  const comparisons = categoryComparisons ? categoryComparisons(topic) : []
+  const whatIs = dict?.whatIs
+    ? fillTemplate(dict.whatIs, {
+        title: calc.title,
+        topic,
+        keyPhrase: calc.description.length > 20
+          ? calc.description.charAt(0).toLowerCase() + calc.description.slice(1)
+          : `calculate and analyze ${topic}`,
+        persona: dict.audience?.[cat]?.persona ?? categoryAudience[calc.category].persona,
+        activity: dict.audience?.[cat]?.activity ?? categoryAudience[calc.category].activity,
+        goal: dict.audience?.[cat]?.goal ?? categoryAudience[calc.category].goal,
+      })
+    : buildWhatIs(calc)
+  const useCases = dict?.useCases?.[cat]?.length
+    ? dict.useCases[cat].map(u => ({ title: fillTemplate(u.title, P), description: fillTemplate(u.description, P) }))
+    : categoryUseCases ? categoryUseCases(topic, calc) : []
+  const commonMistakesList = dict?.mistakes?.[cat]?.length
+    ? pickNBySlug(dict.mistakes[cat].map(m => ({ mistake: fillTemplate(m.mistake, P), solution: fillTemplate(m.solution, P) })), calc.slug, 4)
+    : pickNBySlug(categoryMistakes, calc.slug, 4)
+  const glossary = dict?.glossary?.[cat]?.length
+    ? pickNBySlug(dict.glossary[cat], calc.slug, 6)
+    : pickNBySlug(categoryGlossary, calc.slug, 6)
+  const relatedConceptsList = dict?.concepts?.[cat]?.length
+    ? pickNBySlug(dict.concepts[cat], calc.slug, 6)
+    : pickNBySlug(categoryConcepts, calc.slug, 6)
+  const comparisons = dict?.comparisons?.[cat]?.length
+    ? dict.comparisons[cat].map(c => ({
+        title: fillTemplate(c.title, P),
+        items: c.items.map(i => ({ label: i.label, manual: fillTemplate(i.manual, P), calculator: fillTemplate(i.calculator, P) })),
+        summary: fillTemplate(c.summary, P),
+      }))
+    : categoryComparisons ? categoryComparisons(topic) : []
   const prosCons: ProsCons = {
-    pros: [
+    pros: (dict?.pros?.length ? dict.pros : [
       `Instant ${topic} results with no manual calculation required`,
       `Built-in ${getHubAdjective(calc.category).toLowerCase()} formulas validated by professionals`,
       `Interactive charts and visual breakdowns for better understanding`,
       `Free to use with no registration or download needed`,
       `Works on any device with internet access`,
-    ],
-    cons: [
+    ]).map(s => fillTemplate(s, { ...P, adj: adj.toLowerCase() })),
+    cons: (dict?.cons?.length ? dict.cons : [
       `Requires internet connection for access`,
       `Results are estimates based on provided inputs and assumptions`,
       `Limited to predefined calculation types and parameters`,
       `Should not replace professional advice for critical decisions`,
-    ],
+    ]).map(s => fillTemplate(s, P)),
   }
-  const alternatives = buildAlternatives(calc)
-  const expertRecommendations = buildExpertRecommendations(calc)
-  const relevantAudience = buildRelevantAudience(calc)
+  const alternatives = dict?.alternatives?.length
+    ? dict.alternatives.map(a => ({ name: fillTemplate(a.name, { ...P, category: cat, adj }), description: fillTemplate(a.description, { ...P, category: cat, adj }) }))
+    : buildAlternatives(calc)
+  const expertRecommendations = dict?.recommendations?.length
+    ? dict.recommendations.map(r => fillTemplate(r, P))
+    : buildExpertRecommendations(calc)
+  const relevantAudience = dict?.audiences?.[cat]?.length
+    ? dict.audiences[cat]
+    : buildRelevantAudience(calc)
 
   const slugKey = calc.slug.replace(/-calculator$/, '')
   const longForm = _longFormArticles[calc.slug] || _longFormArticles[slugKey]
-    || generateCategoryLongForm(calc)
+    || generateCategoryLongForm(calc, dict)
 
   return {
     whatIs,

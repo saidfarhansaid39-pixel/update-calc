@@ -13,7 +13,7 @@ import {
   Heart, Gauge, ChevronUp, ChevronDown, AlertTriangle
 } from 'lucide-react'
 import { SchemaMarkup, calculatorSchema, faqSchema, howToSchema, breadcrumbListSchema } from '@/components/SchemaMarkup'
-import { generateCalculatorContent, longFormArticlesReady } from '@/lib/seo/calculator-content-engine'
+import { generateCalculatorContent, longFormArticlesReady, type ContentEngineDict } from '@/lib/seo/calculator-content-engine'
 import { InformationalSection } from '@/components/content/InformationalSection'
 import { CommercialSection } from '@/components/content/CommercialSection'
 import { NavigationalSection } from '@/components/content/NavigationalSection'
@@ -322,6 +322,7 @@ export function PremiumCalculatorShell({
 }: PremiumCalculatorShellProps) {
   const locale = useLocale()
   const t = useTranslations('calculatorUI')
+  const tce = useTranslations('contentEngine')
   const { user: authUser } = useAuth()
   const unitOptions = useMemo(() => [
     { value: 'metric' as UnitSystem, label: t('shell.unitMetric') },
@@ -522,10 +523,22 @@ export function PremiumCalculatorShell({
     })()
   }, [relatedSlugs, locale])
 
-  const calcContent = useMemo(() => generateCalculatorContent({
-    ...calculator,
-    category: calculator.category as CalculatorEntry['category'],
-  } as CalculatorEntry), [calculator, articleTick])
+  const calcContent = useMemo(() => {
+    let dict: ContentEngineDict | undefined
+    try {
+      const pick = (k: string) => { try { return tce.raw(k) } catch { return undefined } }
+      const d: ContentEngineDict = {}
+      for (const k of ['whatIs', 'audience', 'useCases', 'mistakes', 'glossary', 'concepts', 'comparisons', 'pros', 'cons', 'alternatives', 'recommendations', 'audiences', 'adjectives', 'domainCtx', 'longFormFixed', 'deep', 'faqPools', 'defaultFaqs'] as const) {
+        const v = pick(k)
+        if (v !== undefined) (d as Record<string, unknown>)[k] = v
+      }
+      if (Object.keys(d).length > 0) dict = d
+    } catch { dict = undefined }
+    return generateCalculatorContent({
+      ...calculator,
+      category: calculator.category as CalculatorEntry['category'],
+    } as CalculatorEntry, dict)
+  }, [calculator, articleTick, tce, locale])
 
   const HubIcon = hubIcons[calculator.category] || Zap
   const hubTheme = getHubTheme(calculator.hubSlug || calculator.category)
