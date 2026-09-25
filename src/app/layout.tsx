@@ -144,7 +144,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           foundingDate: '2025',
           vatID: 'US-EIN',
         }} />
-        <ClientLocaleWrapper initialMessages={messages}>
+        <ClientLocaleWrapper initialMessages={messages} initialLocale={locale}>
           <ServiceWorkerRegister />
           <a
             href="#main-content"

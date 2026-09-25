@@ -3,8 +3,8 @@
 import { useState, useEffect, ReactNode } from 'react'
 import { NextIntlClientProvider } from 'next-intl'
 
-export function ClientLocaleWrapper({ children, initialMessages }: { children: ReactNode, initialMessages: Record<string, any> }) {
-  const [locale, setLocale] = useState('en')
+export function ClientLocaleWrapper({ children, initialMessages, initialLocale }: { children: ReactNode, initialMessages: Record<string, any>, initialLocale?: string }) {
+  const [locale, setLocale] = useState(initialLocale || 'en')
   const [messages, setMessages] = useState(initialMessages)
 
   useEffect(() => {
