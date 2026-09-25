@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
-import { useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { ArrowLeftRight, DollarSign } from 'lucide-react';
 import { CurrencyForm } from '@/components/calculator/CurrencyForm';
 import { CurrencyTables } from '@/components/calculator/CurrencyTables';
@@ -22,6 +22,7 @@ const calcMeta = {
 };
 
 export function CurrencyCalculator() {
+  const th = useTranslations('hubs');
   const locale = useLocale();
   const [liveAmount, setLiveAmount] = useState("100");
   const [liveFrom, setLiveFrom] = useState("USD");
@@ -118,7 +119,7 @@ export function CurrencyCalculator() {
   return (
     <>
       <PremiumCalculatorShell
-        calculator={calcMeta}
+        calculator={{...calcMeta, hubName: th(calcMeta.hubSlug)}}
         form={
           <CurrencyForm 
             state={state} 

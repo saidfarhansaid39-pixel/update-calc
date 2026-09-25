@@ -181,7 +181,7 @@ export function GuideSection({ locale, t, th, calculator, showContent, onToggleC
         description: calculator.description,
         url: `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}`,
         category: calculator.hubName,
-        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
         applicationCategory: applicationCategory,
         operatingSystem: 'Web',
         browserRequirements: 'Requires JavaScript',
@@ -211,7 +211,6 @@ export function GuideSection({ locale, t, th, calculator, showContent, onToggleC
         url: `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}`,
         applicationCategory: applicationCategory,
         operatingSystem: 'Web',
-        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       }} />
       {useCases && useCases.length > 0 && <SchemaMarkup type="ItemList" data={{
         itemListElement: useCases.slice(0, 5).map((uc, i) => ({

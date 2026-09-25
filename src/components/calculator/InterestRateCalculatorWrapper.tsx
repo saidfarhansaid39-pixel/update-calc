@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { DollarSign, Percent, Landmark } from 'lucide-react';
 import { InterestRateForm } from '@/components/calculator/InterestRateForm';
 import { InterestRateResults } from '@/components/calculator/InterestRateResults';
@@ -21,6 +21,7 @@ const calcMeta = {
 };
 
 export function InterestRateCalculatorWrapper() {
+  const th = useTranslations('hubs');
   const locale = useLocale();
   const [loanAmount, setLoanAmount] = useState("32,000");
   const [years, setYears] = useState("3");
@@ -124,7 +125,7 @@ export function InterestRateCalculatorWrapper() {
 
   return (
     <PremiumCalculatorShell
-      calculator={calcMeta}
+      calculator={{...calcMeta, hubName: th(calcMeta.hubSlug)}}
       form={<InterestRateForm state={state} setters={setters} handleCalculate={calculate} handleClear={handleClear} />}
       result={result}
       subCalcs={subCalcs}

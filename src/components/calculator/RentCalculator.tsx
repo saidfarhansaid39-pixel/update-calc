@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { DollarSign, Home, Percent, Calendar } from 'lucide-react';
 import { RentForm } from '@/components/calculator/RentForm';
 import { RentResults } from '@/components/calculator/RentResults';
@@ -21,6 +21,7 @@ const calcMeta = {
 };
 
 export function RentCalculator() {
+  const th = useTranslations('hubs');
   const locale = useLocale();
   const [income, setIncome] = useState("80,000");
   const [incomeFrequency, setIncomeFrequency] = useState("per year");
@@ -123,7 +124,7 @@ export function RentCalculator() {
 
   return (
     <PremiumCalculatorShell
-      calculator={calcMeta}
+      calculator={{...calcMeta, hubName: th(calcMeta.hubSlug)}}
       form={<RentForm state={state} setters={setters} handleCalculate={calculate} handleClear={handleClear} />}
       result={<RentResults results={results} />}
       subCalcs={subCalcs}

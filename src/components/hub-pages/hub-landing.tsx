@@ -4,7 +4,7 @@ import { notFound, permanentRedirect } from 'next/navigation'
 import { Calculator, DollarSign, Heart, Sigma, ArrowLeftRight, Calendar, Hammer, BarChart3, GraduationCap, Atom, FlaskConical, Cog, Globe, UtensilsCrossed, Dna, TreePine, Trophy, ChevronLeft, ChevronRight } from 'lucide-react'
 import { getHubMeta, isValidHubSlug, getAllHubSlugs } from '@/lib/hub-data'
 import { getHubTheme } from '@/lib/hub-themes'
-import { getRelatedHubs } from '@/lib/hub-relations'
+import { getRelatedHubs, getRelatedCalculators } from '@/lib/hub-relations'
 import { HubNav } from '@/components/hub/HubNav'
 import { HubIcon } from '@/components/hub/HubIcon'
 import { SchemaMarkup, breadcrumbListSchema } from '@/components/SchemaMarkup'
@@ -179,7 +179,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
    const tch = await getTranslations('calculatorUI.chrome.hubLanding')
   const Icon = hubIcons[hubSlug] || Calculator
   const theme = getHubTheme(hubSlug)
-  const hubTitle = th(hubSlug)
+  const hubTitle = th(hubSlug) || meta.title
   const hubDescription = meta.description
   const calculators = meta.calculators
 
@@ -212,6 +212,47 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
   const relatedHubs = getRelatedHubs(hubSlug)
     .filter((s) => isValidHubSlug(s))
     .map((s) => ({ slug: s, name: th(s), count: countByHub[s] || 0 }))
+
+  // Compute calculator-level related calculators within the same hub,
+  // ranked by: same category, shared keywords, complementary calculations
+  const relatedCalculators = (() => {
+    const calculatorsInHub = meta.calculators || []
+    // Get current hub's category context from hub metadata
+    const hubCategory = hubSlug // Use hub slug as context
+
+    // Score each calculator by relevance
+    const scored = calculatorsInHub
+      .map((calc: any) => {
+        // Skip calculators with empty titles
+        if (!calc.title) return { calculator: calc, score: 0 }
+
+        let score = 0
+        const titleLower = calc.title.toLowerCase()
+
+        // 1. Category match (calculators in same hub category)
+        if (calc.hubSlug === hubSlug) score += 3
+
+        // 2. Keyword relevance (calculators with keywords matching hub theme)
+        const hubKeywords = getHubTheme(hubSlug)?.accentRgb || ''
+        // Simple: calculators with more letters matching hub name get higher score
+        const hubNameLower = hubSlug.replace('-', ' ')
+        if (titleLower.includes(hubNameLower)) score += 2
+
+        // 3. Calculator type/tier bonus
+        if (calc.tier === 'tier3') score += 1
+        if (calc.tier === 'tier2') score += 0.5
+
+        // 4. Exclude the current hub's most popular calculators from dominating
+        // (already represented in the hub header stats)
+
+        return { calculator: calc, score }
+      })
+      .filter((s: any) => s.score > 0)
+      .sort((a: any, b: any) => b.score - a.score)
+      .slice(0, 5) // Top 5 related calculators
+
+    return scored
+  })()
 
   const hubUrl = locale === 'en' ? `${siteUrl}/${hubSlug}` : `${siteUrl}/${locale}/${hubSlug}`
   const collectionPageSchema = {

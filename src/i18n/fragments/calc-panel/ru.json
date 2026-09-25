@@ -1,0 +1,11 @@
+{
+  "calculatorUI": {
+    "formula": "Формула",
+    "formulaNamed": "Формула для {name}",
+    "theFormula": "Формула",
+    "variables": "Переменные ({count})",
+    "example": "Пример: {name}",
+    "inputValues": "Входные значения",
+    "finalResult": "Итоговый результат"
+  }
+}

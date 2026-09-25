@@ -1,0 +1,11 @@
+{
+  "calculatorUI": {
+    "formula": "الصيغة",
+    "formulaNamed": "الصيغة التي وراء {name}",
+    "theFormula": "الصيغة",
+    "variables": "المتغيرات ({count})",
+    "example": "مثال: {name}",
+    "inputValues": "قيم الإدخال",
+    "finalResult": "النتيجة النهائية"
+  }
+}

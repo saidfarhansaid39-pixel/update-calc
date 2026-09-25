@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
-import { useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { DollarSign, Percent, Calendar } from 'lucide-react';
 import { EstateTaxForm } from '@/components/calculator/EstateTaxForm';
 import { EstateTaxResults } from '@/components/calculator/EstateTaxResults';
@@ -21,6 +21,7 @@ const calcMeta = {
 };
 
 export function EstateTaxCalculator() {
+  const th = useTranslations('hubs');
   const locale = useLocale();
   // Assets
   const [residence, setResidence] = useState("0");
@@ -125,7 +126,7 @@ export function EstateTaxCalculator() {
 
   return (
     <PremiumCalculatorShell
-      calculator={calcMeta}
+      calculator={{...calcMeta, hubName: th(calcMeta.hubSlug)}}
       form={<EstateTaxForm state={state} setters={setters} handleCalculate={calculate} handleClear={handleClear} />}
       result={<EstateTaxResults results={results} />}
       subCalcs={subCalcs}

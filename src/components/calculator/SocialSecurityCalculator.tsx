@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { Calendar, TrendingUp, Users, DollarSign } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { SocialSecurityForm1 } from '@/components/calculator/SocialSecurityForm1';
 import { SocialSecurityForm2 } from '@/components/calculator/SocialSecurityForm2';
 import { SocialSecurityResults } from '@/components/calculator/SocialSecurityResults';
@@ -23,6 +24,7 @@ const calcMeta = {
 };
 
 export function SocialSecurityCalculator() {
+  const th = useTranslations('hubs');
   // Form 1 State
   const [birthYear, setBirthYear] = useState("1970");
   const [lifeExpectancy, setLifeExpectancy] = useState("83");
@@ -207,7 +209,7 @@ export function SocialSecurityCalculator() {
   return (
     <>
       <PremiumCalculatorShell
-        calculator={calcMeta}
+        calculator={{...calcMeta, hubName: th(calcMeta.hubSlug)}}
         form={
           <div>
             <SocialSecurityForm1 

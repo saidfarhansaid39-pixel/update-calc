@@ -1621,7 +1621,19 @@
     "sciIntro": "Precisa de um cálculo rápido? Use nossa calculadora científica integrada com trigonometria, logaritmos, potências e constantes.",
     "sciNote": "Alterne entre os modos Básico e Científico. Ela está sempre disponível no canto inferior direito de todas as páginas.",
     "seoTitle": "Calculadora Online Gratuita para Cada Necessidade",
-    "seoIntro": "Procurando uma calculadora online confiável? Calculat oferece mais de 4.270 calculadoras online gratuitas para finanças, saúde, matemática, ciências, construção e vida cotidiana. Cada calculadora online fornece resultados instantâneos com explicações passo a passo e fórmulas revisadas por especialistas."
+    "seoIntro": "Procurando uma calculadora online confiável? Calculat oferece mais de 4.270 calculadoras online gratuitas para finanças, saúde, matemática, ciências, construção e vida cotidiana. Cada calculadora online fornece resultados instantâneos com explicações passo a passo e fórmulas revisadas por especialistas.",
+    "faqQ1": "Qual é a melhor calculadora online para finanças?",
+    "faqA1": "A Calculat oferece mais de 500 calculadoras financeiras online, incluindo hipotecas, empréstimos, investimentos, aposentadoria e impostos. Cada uma fornece resultados instantâneos com explicações passo a passo e fórmulas revisadas por especialistas.",
+    "faqQ2": "Esta calculadora online é gratuita?",
+    "faqA2": "Sim, a Calculat é 100% gratuita. Todas as 4.270+ calculadoras online estão disponíveis sem cadastro, sem anúncios e sem taxas ocultas. Use nossa calculadora online quantas vezes precisar.",
+    "faqQ3": "Posso usar esta calculadora online no meu celular?",
+    "faqA3": "Claro. Nossa calculadora online é totalmente responsiva e funciona perfeitamente em celulares, tablets e computadores. Cada calculadora se adapta ao tamanho da sua tela.",
+    "faqQ4": "Quão precisa é esta calculadora online?",
+    "faqA4": "Nossas calculadoras online usam fórmulas padrão do setor e são precisas até 15 casas decimais. Cada calculadora é revisada por especialistas qualificados (CFA, MD, PE, PhD).",
+    "seoCardSuffix": "online",
+    "seoCard1Desc": "Calculadoras de hipoteca, empréstimo, investimento, aposentadoria e impostos. Obtenha resultados instantâneos com nossa calculadora financeira online.",
+    "seoCard2Desc": "Calculadoras de IMC, TMB, calorias, gordura corporal e gravidez. Métricas de saúde precisas com nossa calculadora online.",
+    "seoCard3Desc": "Calculadoras de álgebra, geometria, estatísticas e conversão. Resolva qualquer problema com nossa calculadora matemática online."
   },
   "extraFields": {
     "activity_job": "Nível de Atividade no Trabalho",
@@ -3255,7 +3267,14 @@
         "tocFormulaCalculation": "Fórmula e cálculo",
         "home": "Início"
       }
-    }
+    },
+    "formula": "A fórmula",
+    "formulaNamed": "A fórmula por trás de {name}",
+    "theFormula": "A fórmula",
+    "variables": "Variáveis ({count})",
+    "example": "Exemplo: {name}",
+    "inputValues": "Valores de entrada",
+    "finalResult": "Resultado final"
   },
   "articles": {
     "section_headings": {
@@ -3420,7 +3439,19 @@
     "calculationSteps": "Etapas do Cálculo",
     "whatThisMeans": "O Que Isso Significa",
     "rateStars": "{count, plural, one {Avaliar com {count} estrela} other {Avaliar com {count} estrelas}}",
-    "ratingsCount": "{count, plural, one {# avaliação} other {# avaliações}}"
+    "ratingsCount": "{count, plural, one {# avaliação} other {# avaliações}}",
+    "locale": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ru": "Русский",
+      "ar": "العربية",
+      "hi": "हिन्दी",
+      "ja": "日本語",
+      "zh-CN": "中文"
+    }
   },
   "contentEngine": {
     "whatIs": "A {title} é uma ferramenta online gratuita que ajuda você a {keyPhrase}. Projetada para {persona}, oferece resultados precisos na hora. Esteja você {activity}, esta calculadora simplifica cálculos complexos para que você foque em {goal}.",

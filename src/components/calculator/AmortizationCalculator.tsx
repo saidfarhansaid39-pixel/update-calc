@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
-import { useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { DollarSign, Calendar, PieChart, Landmark } from 'lucide-react';
 import { AmortizationForm } from '@/components/calculator/AmortizationForm';
 import { AmortizationResults } from '@/components/calculator/AmortizationResults';
@@ -36,6 +36,7 @@ function breakDownYear(principal: number, monthlyRate: number, payment: number, 
 }
 
 export function AmortizationCalculator() {
+  const th = useTranslations('hubs');
   const locale = useLocale();
   const [loanAmount, setLoanAmount] = useState("200,000");
   const [loanTermYears, setLoanTermYears] = useState("15");
@@ -104,7 +105,7 @@ export function AmortizationCalculator() {
 
   return (
     <PremiumCalculatorShell
-      calculator={calcMeta}
+      calculator={{...calcMeta, hubName: th(calcMeta.hubSlug)}}
       form={<AmortizationForm state={state} setters={setters} />}
       result={result}
       subCalcs={subCalcs}

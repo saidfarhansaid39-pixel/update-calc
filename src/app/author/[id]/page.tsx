@@ -3,6 +3,7 @@ import { Link } from '@/lib/navigation'
 import { SchemaMarkup, breadcrumbListSchema } from '@/components/SchemaMarkup'
 import { AUTHORS, AUTHOR_LIST } from '@/lib/authors'
 import { calculatorRegistry } from '@calcuniverse/calculator-registry'
+import { getTranslations } from 'next-intl/server'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculat.online'
 
@@ -32,23 +33,10 @@ export default async function AuthorPage({ params }: { params: Promise<{ id: str
   const author = AUTHORS[id]
   if (!author) notFound()
 
-  const hubLabels: Record<string, string> = {
-    'financial-calculators': 'Financial Calculators',
-    'health-calculators': 'Health Calculators',
-    'math-calculators': 'Math Calculators',
-    'conversion-calculators': 'Conversion Calculators',
-    'date-time-calculators': 'Date & Time Calculators',
-    'construction-calculators': 'Construction Calculators',
-    'statistics-calculators': 'Statistics Calculators',
-    'education-calculators': 'Education Calculators',
-    'physics-calculators': 'Physics Calculators',
-    'chemistry-calculators': 'Chemistry Calculators',
-    'engineering-calculators': 'Engineering Calculators',
-    'everyday-calculators': 'Everyday Calculators',
-    'food-calculators': 'Food Calculators',
-    'biology-calculators': 'Biology Calculators',
-    'ecology-calculators': 'Ecology Calculators',
-    'sports-calculators': 'Sports Calculators',
+  const th = await getTranslations('hubs')
+  const hubLabels: Record<string, string> = {}
+  for (const slug of ['financial-calculators','health-calculators','math-calculators','conversion-calculators','date-time-calculators','construction-calculators','statistics-calculators','education-calculators','physics-calculators','chemistry-calculators','engineering-calculators','everyday-calculators','food-calculators','biology-calculators','ecology-calculators','sports-calculators']) {
+    hubLabels[slug] = th(slug) || slug
   }
 
   const calculators = calculatorRegistry

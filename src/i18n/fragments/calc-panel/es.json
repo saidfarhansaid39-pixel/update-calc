@@ -1,0 +1,11 @@
+{
+  "calculatorUI": {
+    "formula": "La fórmula",
+    "formulaNamed": "La fórmula detrás de {name}",
+    "theFormula": "La fórmula",
+    "variables": "Variables ({count})",
+    "example": "Ejemplo: {name}",
+    "inputValues": "Valores de entrada",
+    "finalResult": "Resultado final"
+  }
+}

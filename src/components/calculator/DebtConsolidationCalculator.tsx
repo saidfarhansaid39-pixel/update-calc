@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
-import { useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { DollarSign, TrendingDown, PiggyBank } from 'lucide-react';
 import { DebtConsolidationForm } from '@/components/calculator/DebtConsolidationForm';
 import { DebtConsolidationResults } from '@/components/calculator/DebtConsolidationResults';
@@ -21,6 +21,7 @@ const calcMeta = {
 };
 
 export function DebtConsolidationCalculator() {
+  const th = useTranslations('hubs');
   const locale = useLocale();
   const [cards, setCards] = useState([
     { name: "Credit card 1", balance: "10,000", payment: "260", rate: "17.99" },
@@ -182,7 +183,7 @@ export function DebtConsolidationCalculator() {
 
   return (
     <PremiumCalculatorShell
-      calculator={calcMeta}
+      calculator={{...calcMeta, hubName: th(calcMeta.hubSlug)}}
       form={<DebtConsolidationForm state={state} setters={setters} handleCalculate={calculate} handleClear={handleClear} />}
       result={<DebtConsolidationResults results={results} />}
       subCalcs={subCalcs}

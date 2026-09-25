@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
-import { useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { DollarSign, Car, Percent } from 'lucide-react';
 import { AutoLoanForm } from '@/components/calculator/AutoLoanForm';
 import { AutoLoanResults } from '@/components/calculator/AutoLoanResults';
@@ -21,6 +21,7 @@ const calcMeta = {
 };
 
 export function AutoLoanCalculator() {
+  const th = useTranslations('hubs');
   const locale = useLocale();
   const [autoPrice, setAutoPrice] = useState("50,000");
   const [loanTerm, setLoanTerm] = useState("60");
@@ -104,7 +105,7 @@ export function AutoLoanCalculator() {
 
   return (
     <PremiumCalculatorShell
-      calculator={calcMeta}
+      calculator={{...calcMeta, hubName: th(calcMeta.hubSlug)}}
       form={<AutoLoanForm state={state} setters={setters} />}
       result={<AutoLoanResults totalLoanAmount={principal} salesTax={tax} upfrontPayment={upfront} totalPayments={totalPay} totalInterest={totalInt} totalCost={totalCostOverall} monthlyPayment={monthly} />}
       subCalcs={subCalcs}

@@ -36,7 +36,7 @@ export default async function AboutPage() {
   const hubTitleMap: Record<string, string> = {}
   await Promise.all(
     hubSlugs.map(async (slug) => {
-      const meta = await getHubMeta(slug)
+      const meta = await getHubMeta(slug, locale)
       hubTitleMap[slug] = meta ? meta.title : slug
     })
   )

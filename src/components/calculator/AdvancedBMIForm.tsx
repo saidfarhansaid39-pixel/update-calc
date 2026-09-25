@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { useTranslations } from 'next-intl';
+import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+import { AmortizationSchedule } from '@/components/calc-panel/AmortizationSchedule';
 
 export default function AdvancedBMIForm() {
   const t = useTranslations('calculatorUI');

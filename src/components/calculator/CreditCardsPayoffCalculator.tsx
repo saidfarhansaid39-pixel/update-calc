@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
-import { useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { CreditCard, DollarSign, Clock } from 'lucide-react';
 import { CreditCardsPayoffForm } from '@/components/calculator/CreditCardsPayoffForm';
 import { CreditCardsPayoffResults } from '@/components/calculator/CreditCardsPayoffResults';
@@ -20,6 +20,7 @@ const calcMeta = {
 };
 
 export function CreditCardsPayoffCalculator() {
+  const th = useTranslations('hubs');
   const locale = useLocale();
   const [budget, setBudget] = useState("500");
   const [cards, setCards] = useState([
@@ -174,7 +175,7 @@ export function CreditCardsPayoffCalculator() {
 
   return (
     <PremiumCalculatorShell
-      calculator={calcMeta}
+      calculator={{...calcMeta, hubName: th(calcMeta.hubSlug)}}
       form={<CreditCardsPayoffForm state={state} setters={setters} handleCalculate={calculate} handleClear={handleClear} />}
       result={<CreditCardsPayoffResults results={results} />}
       subCalcs={subCalcs}

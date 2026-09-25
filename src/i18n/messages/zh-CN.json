@@ -1621,7 +1621,19 @@
     "sciIntro": "需要快速计算？使用我们内置的科学计算器，支持三角函数、对数、幂和常数。",
     "sciNote": "可在基础与科学模式之间切换。它始终位于每个页面的右下角。",
     "seoTitle": "满足各种需求的免费在线计算器",
-    "seoIntro": "正在寻找可靠的在线计算器？Calculat提供超过4,270个免费在线计算器，涵盖金融、健康、数学、科学、建筑和日常生活。每个在线计算器都提供专家审核的公式和分步说明，即刻获取结果。"
+    "seoIntro": "正在寻找可靠的在线计算器？Calculat提供超过4,270个免费在线计算器，涵盖金融、健康、数学、科学、建筑和日常生活。每个在线计算器都提供专家审核的公式和分步说明，即刻获取结果。",
+    "faqQ1": "哪个在线计算器最适合理财？",
+    "faqA1": "Calculat 提供超过 500 个金融在线计算器，包括房贷、贷款、投资、退休和税收计算器。每个计算器都提供即时结果、分步说明和专家审核的公式。",
+    "faqQ2": "这个在线计算器免费吗？",
+    "faqA2": "是的，Calculat 100% 免费。所有 4,270+ 个在线计算器无需注册、无广告、无隐藏费用，尽管使用。",
+    "faqQ3": "我可以在手机上使用这个在线计算器吗？",
+    "faqA3": "当然可以。我们的在线计算器完全响应式，在手机、平板和台式机上都运行完美，会自动适应您的屏幕尺寸。",
+    "faqQ4": "你的在线计算器有多精确？",
+    "faqA4": "我们的在线计算器采用行业标准公式，精确到小数点后 15 位。每个计算器都经过合格专家（CFA、MD、PE、PhD）审核。",
+    "seoCardSuffix": "在线",
+    "seoCard1Desc": "房贷、贷款、投资、退休和税收计算器。通过我们的在线金融计算器即时获得结果。",
+    "seoCard2Desc": "BMI、基础代谢、卡路里、体脂和怀孕计算器。通过我们的在线计算器获得准确的健康数据。",
+    "seoCard3Desc": "代数、几何、统计和单位换算计算器。用我们的在线数学计算器解决任何问题。"
   },
   "extraFields": {
     "activity_job": "工作活动水平",
@@ -3255,7 +3267,14 @@
         "tocFormulaCalculation": "公式与计算",
         "home": "首页"
       }
-    }
+    },
+    "formula": "计算公式",
+    "formulaNamed": "{name} 的计算公式",
+    "theFormula": "计算公式",
+    "variables": "变量 ({count})",
+    "example": "示例：{name}",
+    "inputValues": "输入值",
+    "finalResult": "最终结果"
   },
   "articles": {
     "section_headings": {
@@ -3420,7 +3439,19 @@
     "calculationSteps": "计算步骤",
     "whatThisMeans": "这意味着什么",
     "rateStars": "{count, plural, other {评价 {count} 星}}",
-    "ratingsCount": "{count, plural, other {# 条评分}}"
+    "ratingsCount": "{count, plural, other {# 条评分}}",
+    "locale": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ru": "Русский",
+      "ar": "العربية",
+      "hi": "हिन्दी",
+      "ja": "日本語",
+      "zh-CN": "中文"
+    }
   },
   "contentEngine": {
     "whatIs": "{title}是一款免费在线工具，可帮助您{keyPhrase}。专为{persona}设计，即时提供准确结果。无论您{activity}，本计算器都能简化复杂计算，让您专注于{goal}。",
@@ -3671,6 +3702,1953 @@
         "运动科学家",
         "健身爱好者"
       ]
-    }
+    },
+    "useCases": {
+      "financial": [
+        {
+          "title": "规划{topicLower}策略",
+          "description": "用{topicLower}计算器模拟不同财务情景，找到最适合您情况的方法。"
+        },
+        {
+          "title": "比较{topicLower}方案",
+          "description": "并排输入不同变量，比较结果并选择最优方案。"
+        },
+        {
+          "title": "编制{topicLower}预算",
+          "description": "将{topicLower}计算纳入整体财务规划，确保准确完整。"
+        },
+        {
+          "title": "学习用途",
+          "description": "尝试不同输入、观察结果变化，学习{topicLower}的原理。"
+        }
+      ],
+      "health": [
+        {
+          "title": "记录您的{topicLower}",
+          "description": "长期跟踪{topicLower}，发现趋势并做出明智的健康决策。"
+        },
+        {
+          "title": "设定{topicLower}目标",
+          "description": "根据当前指标设定切合实际的健康目标。"
+        },
+        {
+          "title": "咨询专业人士",
+          "description": "将{topicLower}结果分享给医生，获得更准确的咨询。"
+        },
+        {
+          "title": "健康教育",
+          "description": "了解{topicLower}的含义及其与健康预防的关系。"
+        }
+      ],
+      "math": [
+        {
+          "title": "解答{topicLower}问题",
+          "description": "为作业、工作或个人计算快速求出{topicLower}值。"
+        },
+        {
+          "title": "验算",
+          "description": "提交作业前验证手算结果。"
+        },
+        {
+          "title": "讲授{topicLower}",
+          "description": "将计算器用作教具，演示概念与实际应用。"
+        },
+        {
+          "title": "应用数学",
+          "description": "将{topicLower}用于预算、建筑或数据分析。"
+        }
+      ],
+      "conversion": [
+        {
+          "title": "国际旅行",
+          "description": "出国时换算货币、温度和度量。"
+        },
+        {
+          "title": "烹饪烘焙",
+          "description": "为世界各地的食谱在公制与英制间换算。"
+        },
+        {
+          "title": "学业与工作",
+          "description": "在研究、项目和作业中保证精确换算。"
+        },
+        {
+          "title": "网购",
+          "description": "海淘时比较不同单位制的产品规格。"
+        }
+      ],
+      "date-time": [
+        {
+          "title": "项目规划",
+          "description": "精确计算工期、截止日期和里程碑。"
+        },
+        {
+          "title": "活动协调",
+          "description": "算出日期间的确切时间以安排活动。"
+        },
+        {
+          "title": "年龄与纪念日",
+          "description": "计算确切年龄及重要事件至今的时间。"
+        },
+        {
+          "title": "商务期限",
+          "description": "精确跟踪合同、付款和交货期。"
+        }
+      ],
+      "construction": [
+        {
+          "title": "工程估算",
+          "description": "购料前算出{topicLower}需求，避免浪费和短缺。"
+        },
+        {
+          "title": "成本规划",
+          "description": "算出用料和费用，精确编制工程预算。"
+        },
+        {
+          "title": "与承包商沟通",
+          "description": "提供精确规格并核验报价。"
+        },
+        {
+          "title": "家装",
+          "description": "用精确尺寸自信地规划装修改造。"
+        }
+      ],
+      "statistics": [
+        {
+          "title": "数据分析",
+          "description": "将{topicLower}计算用于问卷、实验或业务指标。"
+        },
+        {
+          "title": "研究项目",
+          "description": "在需要统计分析的研究中使用计算器。"
+        },
+        {
+          "title": "质量控制",
+          "description": "通过统计过程控制监控生产质量。"
+        },
+        {
+          "title": "决策",
+          "description": "用统计洞察做出数据驱动的决策。"
+        }
+      ],
+      "education": [
+        {
+          "title": "学业规划",
+          "description": "算出{topicLower}以规划学业和设定切实的成绩目标。"
+        },
+        {
+          "title": "升学申请",
+          "description": "算出平均绩点用于申请和奖学金。"
+        },
+        {
+          "title": "跟踪进步",
+          "description": "学期中监控表现并调整学习策略。"
+        },
+        {
+          "title": "家校沟通",
+          "description": "分享计算指标，协同规划教育。"
+        }
+      ],
+      "physics": [
+        {
+          "title": "作业与考试",
+          "description": "快速解答{topicLower}问题并验算。"
+        },
+        {
+          "title": "实验",
+          "description": "算出理论值并与实验结果比较。"
+        },
+        {
+          "title": "工程应用",
+          "description": "将{topicLower}原理用于实际设计分析。"
+        },
+        {
+          "title": "理解自然现象",
+          "description": "探索{topicLower}如何主宰从行星到粒子的运动。"
+        }
+      ],
+      "chemistry": [
+        {
+          "title": "实验工作",
+          "description": "为实验进行精确的{topicLower}计算。"
+        },
+        {
+          "title": "作业与学习",
+          "description": "核对化学作业，理解各量之间的关系。"
+        },
+        {
+          "title": "工业流程",
+          "description": "为制造和质检算出{topicLower}。"
+        },
+        {
+          "title": "安全规划",
+          "description": "实验前确定安全的浓度参数。"
+        }
+      ],
+      "engineering": [
+        {
+          "title": "设计与分析",
+          "description": "算出{topicLower}，确保安全高效。"
+        },
+        {
+          "title": "原型制作",
+          "description": "打样前验证{topicLower}参数以降低成本。"
+        },
+        {
+          "title": "合规检查",
+          "description": "确保{topicLower}计算符合标准规范。"
+        },
+        {
+          "title": "故障诊断",
+          "description": "诊断现有系统的{topicLower}问题。"
+        }
+      ],
+      "everyday": [
+        {
+          "title": "日常决策",
+          "description": "用{topicLower}计算做出更明智的日常选择。"
+        },
+        {
+          "title": "购物与预算",
+          "description": "算出{topicLower}，购物管家更精明。"
+        },
+        {
+          "title": "时间管理",
+          "description": "将{topicLower}用于高效安排日程。"
+        },
+        {
+          "title": "学习与好奇",
+          "description": "满足对{topicLower}的好奇并用于生活。"
+        }
+      ],
+      "food": [
+        {
+          "title": "调整食谱",
+          "description": "按份数调整{topicLower}用量。"
+        },
+        {
+          "title": "营养规划",
+          "description": "记录{topicLower}以达成饮食目标。"
+        },
+        {
+          "title": "备餐",
+          "description": "算出{topicLower}以高效备餐采购。"
+        },
+        {
+          "title": "饮食限制",
+          "description": "为低钠、无麸质等需求调整{topicLower}。"
+        }
+      ],
+      "biology": [
+        {
+          "title": "研究与分析",
+          "description": "为生物研究、野外和实验算出{topicLower}。"
+        },
+        {
+          "title": "学术学习",
+          "description": "通过实际计算理解{topicLower}概念。"
+        },
+        {
+          "title": "医疗应用",
+          "description": "在临床将{topicLower}计算用于诊断。"
+        },
+        {
+          "title": "环境监测",
+          "description": "用{topicLower}指示生态系统健康。"
+        }
+      ],
+      "ecology": [
+        {
+          "title": "环境评估",
+          "description": "算出{topicLower}以评估环境影响。"
+        },
+        {
+          "title": "保护规划",
+          "description": "用{topicLower}数据制定保护策略。"
+        },
+        {
+          "title": "学术研究",
+          "description": "在生态研究中应用{topicLower}计算。"
+        },
+        {
+          "title": "可持续报告",
+          "description": "生成{topicLower}指标用于可持续评估。"
+        }
+      ],
+      "sports": [
+        {
+          "title": "优化训练",
+          "description": "算出{topicLower}以优化训练计划。"
+        },
+        {
+          "title": "跟踪表现",
+          "description": "跟踪{topicLower}变化以衡量进步。"
+        },
+        {
+          "title": "备赛",
+          "description": "用{topicLower}数据备战并制定策略。"
+        },
+        {
+          "title": "预防损伤",
+          "description": "记录{topicLower}指标以发现损伤风险。"
+        }
+      ]
+    },
+    "mistakes": {
+      "financial": [
+        {
+          "mistake": "忽略手续费和交易成本",
+          "solution": "务必计入所有费用和税费，结果才切合实际。"
+        },
+        {
+          "mistake": "用名义利率而非实际利率",
+          "solution": "采用反映复利的实际年利率，而非名义利率。"
+        },
+        {
+          "mistake": "不考虑通胀",
+          "solution": "长期预测请用实际(剔除通胀)收益，保持购买力。"
+        },
+        {
+          "mistake": "忘记复利频率",
+          "solution": "确认利息按年、按月还是按日复利。"
+        }
+      ],
+      "health": [
+        {
+          "mistake": "使用不准的测量值",
+          "solution": "每天同一时间用校准过的器具测量。"
+        },
+        {
+          "mistake": "忽视个体差异",
+          "solution": "人群均值仅供参考；结果因基因和生活方式而异。"
+        },
+        {
+          "mistake": "把结果当诊断",
+          "solution": "计算器给出的是估算而非诊断，请咨询医生。"
+        },
+        {
+          "mistake": "忘记活动水平",
+          "solution": "输入准确的活动数据，避免高估或低估。"
+        }
+      ],
+      "math": [
+        {
+          "mistake": "运算顺序错误",
+          "solution": "严格遵守括号、指数、乘除、加减的顺序。"
+        },
+        {
+          "mistake": "过早四舍五入",
+          "solution": "中间步骤保持全精度，只对最终结果取整。"
+        },
+        {
+          "mistake": "混用单位",
+          "solution": "计算前将所有数值统一为相同单位。"
+        },
+        {
+          "mistake": "忘记特殊情形",
+          "solution": "检查除零和负数开方等边界情形。"
+        }
+      ],
+      "conversion": [
+        {
+          "mistake": "混淆美制与英制加仑",
+          "solution": "确认是美制(3.785升)还是英制(4.546升)，相差20%。"
+        },
+        {
+          "mistake": "忽视有效数字",
+          "solution": "结果只与最不精确的测量值一样精确。"
+        },
+        {
+          "mistake": "混淆短吨与长吨",
+          "solution": "确认是美制短吨、英制长吨还是公吨。"
+        },
+        {
+          "mistake": "忘记温度零点",
+          "solution": "温度换算不成比例：先加零点再缩放。"
+        }
+      ],
+      "date-time": [
+        {
+          "mistake": "忘记闰年",
+          "solution": "跨闰年2月的时段多出一天，计算器会自动处理。"
+        },
+        {
+          "mistake": "忽视时区",
+          "solution": "先把两地时间都转为UTC，避免偏移错误。"
+        },
+        {
+          "mistake": "起止是否计入",
+          "solution": "明确起止日期是否计入，默认按不计入计算差值。"
+        },
+        {
+          "mistake": "忘记夏令时",
+          "solution": "切换会增减一小时，临近日期请核对。"
+        }
+      ],
+      "construction": [
+        {
+          "mistake": "忘记损耗系数",
+          "solution": "多备10-15%材料应对切割和误差，计算器已计入。"
+        },
+        {
+          "mistake": "英尺米混用",
+          "solution": "算面积体积前统一为一种计量制。"
+        },
+        {
+          "mistake": "忽视材料厚度",
+          "solution": "算内部尺寸时扣除接缝和边框厚度。"
+        },
+        {
+          "mistake": "低估人工费",
+          "solution": "材料只是成本一部分，还要计人工和许可。"
+        }
+      ],
+      "statistics": [
+        {
+          "mistake": "把相关当因果",
+          "solution": "强相关不证明因果，请考虑隐藏变量。"
+        },
+        {
+          "mistake": "偏态数据用均值",
+          "solution": "有异常值时中位数更能代表中心。"
+        },
+        {
+          "mistake": "忽视样本量",
+          "solution": "小样本不稳定，数据越多误差越小。"
+        },
+        {
+          "mistake": "误读p值",
+          "solution": "小p值不度量效应大小，只说明反对原假设的证据。"
+        }
+      ],
+      "education": [
+        {
+          "mistake": "不按学分加权",
+          "solution": "4学分课的A比1学分课分量重，请用加权平均。"
+        },
+        {
+          "mistake": "混用评分制",
+          "solution": "百分制、字母制、4.0制换算统一后再合并。"
+        },
+        {
+          "mistake": "忘记退课影响",
+          "solution": "查清学校政策：部分退课会影响平均绩点。"
+        },
+        {
+          "mistake": "过早取整",
+          "solution": "保留小数；过早取整可能改变最终等级。"
+        }
+      ],
+      "physics": [
+        {
+          "mistake": "混用国际与英制单位",
+          "solution": "套公式前统一为一种单位制(建议国际制)。"
+        },
+        {
+          "mistake": "忘记矢量方向",
+          "solution": "力、速度有方向，注意正负号。"
+        },
+        {
+          "mistake": "忽视摩擦",
+          "solution": "理想模型省略摩擦，实际结果请计入。"
+        },
+        {
+          "mistake": "混淆质量与重量",
+          "solution": "质量(kg)恒定；重量(N)随重力变化。"
+        }
+      ],
+      "chemistry": [
+        {
+          "mistake": "方程式未配平",
+          "solution": "计算前务必配平化学方程式。"
+        },
+        {
+          "mistake": "混淆摩尔浓度与质量摩尔浓度",
+          "solution": "前者每升溶液的摩尔数，后者每千克溶剂的摩尔数。"
+        },
+        {
+          "mistake": "用过时原子量",
+          "solution": "采用现行标准原子量，计算器已内置。"
+        },
+        {
+          "mistake": "忽视有效数字",
+          "solution": "按最不精确仪器的精度报告结果。"
+        }
+      ],
+      "engineering": [
+        {
+          "mistake": "省略安全系数",
+          "solution": "务必采用规范要求的安全系数。"
+        },
+        {
+          "mistake": "混用单位制",
+          "solution": "单位错误曾导致1.25亿美元火星探测器损失，请复核。"
+        },
+        {
+          "mistake": "忽视公差",
+          "solution": "按制造公差而非标称值设计。"
+        },
+        {
+          "mistake": "超出有效范围外推",
+          "solution": "经验公式仅在标定范围内有效。"
+        }
+      ],
+      "everyday": [
+        {
+          "mistake": "忘记税和小费",
+          "solution": "估算购物餐饮总价时加上销售税和小费。"
+        },
+        {
+          "mistake": "轻信虚高折扣",
+          "solution": "庆祝大折扣前先核实真实原价。"
+        },
+        {
+          "mistake": "忽视累积订阅",
+          "solution": "把每月扣费都加起来：小钱积累很快。"
+        },
+        {
+          "mistake": "永远向下取整",
+          "solution": "做预算时把支出向上取整以留余量。"
+        }
+      ],
+      "food": [
+        {
+          "mistake": "用量杯量面粉",
+          "solution": "面粉请按克称量：一杯因压实可差20%。"
+        },
+        {
+          "mistake": "不按海拔调整",
+          "solution": "高海拔地区减少酵母糖分、增加液体。"
+        },
+        {
+          "mistake": "忘记去皮重",
+          "solution": "减去容器重量才是准确净重。"
+        },
+        {
+          "mistake": "时间线性翻倍",
+          "solution": "配方翻倍不等于时间翻倍，请用温度计确认。"
+        }
+      ],
+      "biology": [
+        {
+          "mistake": "混淆基因型与表现型",
+          "solution": "基因型是遗传构成，表现型还包含环境影响。"
+        },
+        {
+          "mistake": "忽视野外样本量",
+          "solution": "孤立观察不代表种群。"
+        },
+        {
+          "mistake": "混用浓度单位",
+          "solution": "比较前确认摩尔浓度或毫克/分升。"
+        },
+        {
+          "mistake": "忘记实验对照",
+          "solution": "没有对照组就无法归因。"
+        }
+      ],
+      "ecology": [
+        {
+          "mistake": "混淆碳足迹与生态足迹",
+          "solution": "碳足迹计量温室气体，生态足迹还包括土地和水。"
+        },
+        {
+          "mistake": "忽视季节变化",
+          "solution": "生态测量有季节性，一年多次采样。"
+        },
+        {
+          "mistake": "以单点推全区",
+          "solution": "生态系统空间各异，请用多个代表点。"
+        },
+        {
+          "mistake": "忘记CO₂当量",
+          "solution": "把甲烷等换算为CO₂当量再汇总。"
+        }
+      ],
+      "sports": [
+        {
+          "mistake": "照搬220-年龄公式",
+          "solution": "误差±12次/分，请用适合水平的测试。"
+        },
+        {
+          "mistake": "忽视恢复日",
+          "solution": "进步发生在恢复期，高强度间要休息。"
+        },
+        {
+          "mistake": "VO₂不标准化就比较",
+          "solution": "用毫升/千克/分钟表示才公平。"
+        },
+        {
+          "mistake": "加量太快",
+          "solution": "10%原则：每周增量不超10%。"
+        }
+      ]
+    },
+    "glossary": {
+      "financial": [
+        {
+          "term": "本金",
+          "definition": "不含利息的借入或投资原始金额。"
+        },
+        {
+          "term": "复利",
+          "definition": "按本金及以往利息计算的利息。"
+        },
+        {
+          "term": "年利率(APR)",
+          "definition": "含利息费用的年借款成本(百分比)。"
+        },
+        {
+          "term": "摊销",
+          "definition": "将贷款分摊为一系列固定还款的过程。"
+        },
+        {
+          "term": "通胀",
+          "definition": "物价总水平上涨率，会削弱购买力。"
+        },
+        {
+          "term": "流动性",
+          "definition": "资产无大损变现的速度。"
+        },
+        {
+          "term": "分散投资",
+          "definition": "分散到不同资产以降低组合风险。"
+        },
+        {
+          "term": "净资产",
+          "definition": "总资产减总负债，整体财务健康度。"
+        }
+      ],
+      "health": [
+        {
+          "term": "BMI(体重指数)",
+          "definition": "按身高体重估算体脂，用于体重分级。"
+        },
+        {
+          "term": "基础代谢(BMR)",
+          "definition": "静息维持生命消耗的热量。"
+        },
+        {
+          "term": "每日总耗能(TDEE)",
+          "definition": "含基础代谢、运动和日常的全天热量。"
+        },
+        {
+          "term": "宏量营养素",
+          "definition": "大量需要的营养：碳水、蛋白、脂肪。"
+        },
+        {
+          "term": "体脂率",
+          "definition": "脂肪占体重的比例，体能健康指标。"
+        },
+        {
+          "term": "心率区间",
+          "definition": "最大心率的百分比范围，用于目标强度。"
+        }
+      ],
+      "math": [
+        {
+          "term": "百分比",
+          "definition": "以100为分母的分数，用%表示。"
+        },
+        {
+          "term": "比率",
+          "definition": "两量相对大小的比较。"
+        },
+        {
+          "term": "均值",
+          "definition": "一组数的算术平均：总和除以个数。"
+        },
+        {
+          "term": "中位数",
+          "definition": "排序集合的中间值，将其二等分。"
+        },
+        {
+          "term": "标准差",
+          "definition": "数值围绕均值离散程度的度量。"
+        },
+        {
+          "term": "指数",
+          "definition": "底数自乘次数。"
+        }
+      ],
+      "conversion": [
+        {
+          "term": "换算系数",
+          "definition": "将量从一单位换为另一单位的乘数。"
+        },
+        {
+          "term": "国际单位制",
+          "definition": "国际单位体系，即现代公制。"
+        },
+        {
+          "term": "英制",
+          "definition": "美英传统体系：英寸、英尺、磅、加仑。"
+        },
+        {
+          "term": "有效数字",
+          "definition": "数字中承载精度信息的数位。"
+        },
+        {
+          "term": "基本单位",
+          "definition": "标准定义的基础单位，其他由此导出。"
+        }
+      ],
+      "date-time": [
+        {
+          "term": "UTC(协调世界时)",
+          "definition": "世界校钟的一级时间标准。"
+        },
+        {
+          "term": "闰年",
+          "definition": "366天的年份，每4年一次以同步历法。"
+        },
+        {
+          "term": "夏令时",
+          "definition": "暖季拨快时钟以延长傍晚光照。"
+        },
+        {
+          "term": "Unix时间戳",
+          "definition": "自1970年1月1日UTC起的秒数。"
+        },
+        {
+          "term": "ISO 8601",
+          "definition": "日期时间表示的国际标准。"
+        }
+      ],
+      "construction": [
+        {
+          "term": "平方英尺",
+          "definition": "平方英尺计的面积：长乘宽。"
+        },
+        {
+          "term": "承重墙",
+          "definition": "承担上部结构重量的墙体。"
+        },
+        {
+          "term": "PSI(磅/平方英寸)",
+          "definition": "混凝土强度等的压力单位。"
+        },
+        {
+          "term": "R值",
+          "definition": "保温材料热阻的度量。"
+        },
+        {
+          "term": "跨度",
+          "definition": "支撑构件之间的距离。"
+        }
+      ],
+      "statistics": [
+        {
+          "term": "总体",
+          "definition": "统计研究的完整对象群。"
+        },
+        {
+          "term": "样本",
+          "definition": "代表总体的抽取子集。"
+        },
+        {
+          "term": "相关性",
+          "definition": "两变量关联程度的统计量。"
+        },
+        {
+          "term": "p值",
+          "definition": "原假设下出现同等极端结果的概率。"
+        },
+        {
+          "term": "正态分布",
+          "definition": "左右对称的钟形分布，多数值聚在均值。"
+        },
+        {
+          "term": "方差",
+          "definition": "离均差平方的均值，离散度量。"
+        }
+      ],
+      "education": [
+        {
+          "term": "GPA(平均绩点)",
+          "definition": "由成绩学分算出的学业数值。"
+        },
+        {
+          "term": "学分",
+          "definition": "每学期每周课时的学业单位。"
+        },
+        {
+          "term": "加权GPA",
+          "definition": "给高阶课程加分的GPA算法。"
+        },
+        {
+          "term": "百分位",
+          "definition": "低于该分的人数占比对应的分数。"
+        },
+        {
+          "term": "标准化考试",
+          "definition": "统一实施以便比较的考试。"
+        }
+      ],
+      "physics": [
+        {
+          "term": "牛顿定律",
+          "definition": "运动与力关系的三大定律。"
+        },
+        {
+          "term": "动能",
+          "definition": "物体因运动具有的能量：½mv²。"
+        },
+        {
+          "term": "势能",
+          "definition": "按位置储存的能量。"
+        },
+        {
+          "term": "加速度",
+          "definition": "单位时间速度变化率(m/s²)。"
+        },
+        {
+          "term": "动量",
+          "definition": "质量与速度之积，闭系中守恒。"
+        },
+        {
+          "term": "波长",
+          "definition": "连续波峰间距，与频率成反比。"
+        }
+      ],
+      "chemistry": [
+        {
+          "term": "摩尔",
+          "definition": "6.022×10²³个粒子的单位，用于物质量。"
+        },
+        {
+          "term": "摩尔浓度",
+          "definition": "每升溶液溶质摩尔数(mol/L)。"
+        },
+        {
+          "term": "化学计量",
+          "definition": "按配平方程式算反应物与产物。"
+        },
+        {
+          "term": "pH",
+          "definition": "氢离子浓度：酸性(pH<7)或碱性。"
+        },
+        {
+          "term": "阿伏伽德罗数",
+          "definition": "6.022×10²³：一摩尔的粒子数。"
+        }
+      ],
+      "engineering": [
+        {
+          "term": "扭矩",
+          "definition": "致转动的扭力：力×力臂。"
+        },
+        {
+          "term": "应力",
+          "definition": "材料内单位面积受力(帕)。"
+        },
+        {
+          "term": "应变",
+          "definition": "受力下相对原长的变形。"
+        },
+        {
+          "term": "安全系数",
+          "definition": "极限强度与许用应力之比。"
+        },
+        {
+          "term": "弹性模量",
+          "definition": "抗弹性变形的刚度度量。"
+        }
+      ],
+      "everyday": [
+        {
+          "term": "促销价",
+          "definition": "折扣后的降低售价。"
+        },
+        {
+          "term": "销售税",
+          "definition": "对商品服务销售征的消费税。"
+        },
+        {
+          "term": "年均增长率",
+          "definition": "一年以上投资的年均增长率。"
+        },
+        {
+          "term": "投资回报率",
+          "definition": "净利润与成本之比(百分比)。"
+        }
+      ],
+      "food": [
+        {
+          "term": "皮重",
+          "definition": "为得净重从总量扣除的容器重。"
+        },
+        {
+          "term": "出成率(%)",
+          "definition": "修整烹饪后的可食部分。"
+        },
+        {
+          "term": "面包师百分比",
+          "definition": "相对面粉重的配比表示法。"
+        },
+        {
+          "term": "热量密度",
+          "definition": "每克食物热量，用于膳食规划。"
+        }
+      ],
+      "biology": [
+        {
+          "term": "基因型",
+          "definition": "来自双亲的遗传构成。"
+        },
+        {
+          "term": "表现型",
+          "definition": "基因型加环境的可观察特征。"
+        },
+        {
+          "term": "等位基因频率",
+          "definition": "基因库中基因变体的相对频率。"
+        },
+        {
+          "term": "环境容纳量",
+          "definition": "环境可持续的最大种群数。"
+        },
+        {
+          "term": "多样性指数",
+          "definition": "物种多样性的定量尺度。"
+        }
+      ],
+      "ecology": [
+        {
+          "term": "碳足迹",
+          "definition": "个人产品的温室气体总量(CO₂当量)。"
+        },
+        {
+          "term": "生态位",
+          "definition": "物种在环境中的角色与资源利用。"
+        },
+        {
+          "term": "营养级",
+          "definition": "食物链中的位置：生产者到顶级。"
+        },
+        {
+          "term": "生物量",
+          "definition": "区域内生物的总质量。"
+        },
+        {
+          "term": "生态系统服务",
+          "definition": "供给、调节等生态惠益。"
+        }
+      ],
+      "sports": [
+        {
+          "term": "VO₂max",
+          "definition": "剧烈运动最大摄氧量，有氧耐力指标。"
+        },
+        {
+          "term": "心率储备",
+          "definition": "最大与静息之差，用于区间计算。"
+        },
+        {
+          "term": "1RM",
+          "definition": "一次完整举起的最大重量。"
+        },
+        {
+          "term": "无氧阈",
+          "definition": "乳酸堆积快于清除的强度。"
+        },
+        {
+          "term": "热量缺口",
+          "definition": "摄入少于消耗——体重下降。"
+        }
+      ]
+    },
+    "concepts": {
+      "financial": [
+        "复利",
+        "通胀",
+        "风险管理",
+        "资产配置",
+        "税务规划",
+        "退休规划",
+        "分散投资",
+        "货币时间价值",
+        "摊销"
+      ],
+      "health": [
+        "身体成分",
+        "宏量营养素",
+        "心血管健康",
+        "代谢率",
+        "补水",
+        "睡眠质量",
+        "压力管理",
+        "活动指南"
+      ],
+      "math": [
+        "代数",
+        "微积分",
+        "几何",
+        "三角",
+        "统计",
+        "数论",
+        "离散数学",
+        "线性代数"
+      ],
+      "conversion": [
+        "公制",
+        "英制",
+        "温标",
+        "汇率",
+        "存储单位",
+        "时区",
+        "角度制"
+      ],
+      "date-time": [
+        "时区",
+        "历法",
+        "天文时",
+        "Unix时间戳",
+        "ISO 8601",
+        "夏令时",
+        "闰秒"
+      ],
+      "construction": [
+        "结构工程",
+        "材料科学",
+        "建筑规范",
+        "项目管理",
+        "测量",
+        "暖通设计",
+        "管道"
+      ],
+      "statistics": [
+        "概率论",
+        "回归分析",
+        "假设检验",
+        "贝叶斯统计",
+        "时间序列",
+        "实验设计"
+      ],
+      "education": [
+        "学习理论",
+        "课程设计",
+        "教育心理",
+        "评估方法",
+        "学习技巧",
+        "职业规划"
+      ],
+      "physics": [
+        "经典力学",
+        "热力学",
+        "电磁学",
+        "量子物理",
+        "相对论",
+        "流体力学",
+        "光学"
+      ],
+      "chemistry": [
+        "有机化学",
+        "无机化学",
+        "物理化学",
+        "分析化学",
+        "生物化学",
+        "热化学"
+      ],
+      "engineering": [
+        "机械",
+        "土木",
+        "电气",
+        "化工",
+        "软件",
+        "系统设计"
+      ],
+      "everyday": [
+        "个人理财",
+        "居家维护",
+        "时间管理",
+        "烹饪",
+        "购物策略",
+        "健康"
+      ],
+      "food": [
+        "营养科学",
+        "烹饪艺术",
+        "食品化学",
+        "膳食指南",
+        "备餐规划",
+        "食品安全"
+      ],
+      "biology": [
+        "细胞生物",
+        "遗传",
+        "进化",
+        "生态",
+        "分子生物",
+        "生理",
+        "微生物"
+      ],
+      "ecology": [
+        "环境科学",
+        "保护生物",
+        "气候科学",
+        "可持续发展",
+        "环境政策",
+        "生态修复"
+      ],
+      "sports": [
+        "运动生理",
+        "运动营养",
+        "生物力学",
+        "运动心理",
+        "训练理论",
+        "损伤预防"
+      ]
+    },
+    "comparisons": {
+      "financial": [
+        {
+          "title": "手算{topic}与本计算器",
+          "items": [
+            {
+              "label": "速度",
+              "manual": "每次几分钟到几小时",
+              "calculator": "毫秒级即时出结果"
+            },
+            {
+              "label": "精度",
+              "manual": "易有算术和公式错误",
+              "calculator": "验证公式保证精确"
+            },
+            {
+              "label": "复杂度",
+              "manual": "需懂金融公式",
+              "calculator": "无需公式知识"
+            },
+            {
+              "label": "试算",
+              "manual": "逐个重算耗时",
+              "calculator": "改输入即时比较"
+            },
+            {
+              "label": "可视化",
+              "manual": "需在表格中手工制图",
+              "calculator": "内置图表与可视化拆解"
+            }
+          ],
+          "summary": "{topic}计算器消除手算错误，将耗时从分钟降到秒，还有手工无法企及的可视化。"
+        },
+        {
+          "title": "{topic}计算器与电子表格",
+          "items": [
+            {
+              "label": "配置",
+              "manual": "需搭建验证公式",
+              "calculator": "内置逻辑开箱即用"
+            },
+            {
+              "label": "查错",
+              "manual": "表格错误常见难查",
+              "calculator": "输入校验防常见错误"
+            },
+            {
+              "label": "便携",
+              "manual": "绑定特定软件文件",
+              "calculator": "联网设备随时可用"
+            },
+            {
+              "label": "更新",
+              "manual": "公式需手工更新",
+              "calculator": "始终采用最新算法"
+            }
+          ],
+          "summary": "表格虽灵活，但专用{topic}计算器配置更快、错误更少、随处可用。"
+        }
+      ],
+      "health": [
+        {
+          "title": "手算{topic}与本计算器",
+          "items": [
+            {
+              "label": "公式复杂度",
+              "manual": "多公式多变量",
+              "calculator": "按输入自动选公式"
+            },
+            {
+              "label": "单位换算",
+              "manual": "公制英制手工换算",
+              "calculator": "带切换的自动换算"
+            },
+            {
+              "label": "解读",
+              "manual": "需查外部资料才懂",
+              "calculator": "内置解读与背景"
+            },
+            {
+              "label": "跟踪",
+              "manual": "无内置长期跟踪",
+              "calculator": "保存方案并比较"
+            }
+          ],
+          "summary": "{topic}计算器自动套用复杂公式并即时解读，让健康评估更简单。"
+        }
+      ],
+      "math": [
+        {
+          "title": "手算{topic}与本计算器",
+          "items": [
+            {
+              "label": "速度",
+              "manual": "逐步手算",
+              "calculator": "即时出结果"
+            },
+            {
+              "label": "验证",
+              "manual": "不重算难验证",
+              "calculator": "复制分享即可验证"
+            },
+            {
+              "label": "助学",
+              "manual": "需先懂公式",
+              "calculator": "展示公式步骤助学"
+            }
+          ],
+          "summary": "{topic}计算器即时验算，并讲解背后的数学原理。"
+        }
+      ],
+      "conversion": [
+        {
+          "title": "手工{topic}换算与本计算器",
+          "items": [
+            {
+              "label": "换算系数",
+              "manual": "查找并套用正确系数",
+              "calculator": "内置权威换算库"
+            },
+            {
+              "label": "精度",
+              "manual": "舍入误差累积",
+              "calculator": "全程高精度计算"
+            },
+            {
+              "label": "双向",
+              "manual": "逆换算需另算",
+              "calculator": "即时双向换算"
+            }
+          ],
+          "summary": "{topic}换算器省去查找和误差，各单位制即时高精度出结果。"
+        }
+      ],
+      "date-time": [
+        {
+          "title": "手算{topic}与本计算器",
+          "items": [
+            {
+              "label": "闰年",
+              "manual": "手工跟踪闰年",
+              "calculator": "自动日历逻辑"
+            },
+            {
+              "label": "时区",
+              "manual": "复杂手工偏移",
+              "calculator": "简单选择时区"
+            },
+            {
+              "label": "精度",
+              "manual": "差一天的错误常见",
+              "calculator": "精确日期算术"
+            }
+          ],
+          "summary": "{topic}计算器自动处理所有日历边界，杜绝常见手算错误。"
+        }
+      ],
+      "construction": [
+        {
+          "title": "手工{topic}估算与本计算器",
+          "items": [
+            {
+              "label": "材料损耗",
+              "manual": "易忘损耗系数",
+              "calculator": "内置损耗率计算"
+            },
+            {
+              "label": "单位换算",
+              "manual": "需在计量制间换算",
+              "calculator": "全部自动换算"
+            },
+            {
+              "label": "单价",
+              "manual": "手工查现行单价",
+              "calculator": "更新单价即时重算"
+            }
+          ],
+          "summary": "{topic}计算器省去数小时手工估算，减少高价订货失误。"
+        }
+      ],
+      "statistics": [
+        {
+          "title": "手工{topic}分析与本计算器",
+          "items": [
+            {
+              "label": "计算时间",
+              "manual": "繁琐手算",
+              "calculator": "即时统计计算"
+            },
+            {
+              "label": "选公式",
+              "manual": "选对统计检验",
+              "calculator": "公式向导式套用"
+            },
+            {
+              "label": "可视化",
+              "manual": "图表另行制作",
+              "calculator": "内置数据可视化"
+            }
+          ],
+          "summary": "{topic}计算器把繁琐统计变成即时可视的洞察。"
+        }
+      ],
+      "education": [
+        {
+          "title": "手算{topic}与本计算器",
+          "items": [
+            {
+              "label": "加权",
+              "manual": "复杂手工加权平均",
+              "calculator": "按学分自动加权"
+            },
+            {
+              "label": "试算",
+              "manual": "缓慢的假设分析",
+              "calculator": "即时成绩预测"
+            },
+            {
+              "label": "换制",
+              "manual": "要懂各种评分制",
+              "calculator": "支持多种评分制"
+            }
+          ],
+          "summary": "{topic}计算器消除成绩计算的复杂，让您专注提分。"
+        }
+      ],
+      "physics": [
+        {
+          "title": "手算{topic}与本计算器",
+          "items": [
+            {
+              "label": "套公式",
+              "manual": "回忆并套用正确公式",
+              "calculator": "选概念输数值即得答案"
+            },
+            {
+              "label": "单位",
+              "manual": "需手工国际单位换算",
+              "calculator": "自动单位管理"
+            },
+            {
+              "label": "验证",
+              "manual": "难定位错误",
+              "calculator": "分步拆解展示"
+            }
+          ],
+          "summary": "{topic}计算器帮您验算并理解解题过程。"
+        }
+      ],
+      "chemistry": [
+        {
+          "title": "手算{topic}与本计算器",
+          "items": [
+            {
+              "label": "原子量",
+              "manual": "查元素周期表",
+              "calculator": "内置原子量库"
+            },
+            {
+              "label": "单位",
+              "manual": "手工浓度换算",
+              "calculator": "自动浓度单位"
+            },
+            {
+              "label": "误差",
+              "manual": "小误差多步累积",
+              "calculator": "每步都校验"
+            }
+          ],
+          "summary": "{topic}计算器减少实验误差，加速实验准备。"
+        }
+      ],
+      "engineering": [
+        {
+          "title": "手算{topic}与本计算器",
+          "items": [
+            {
+              "label": "合规",
+              "manual": "手工查规范",
+              "calculator": "内置行业规范公式"
+            },
+            {
+              "label": "迭代速度",
+              "manual": "设计周期慢",
+              "calculator": "参数即时调整"
+            },
+            {
+              "label": "文档",
+              "manual": "计算另行存档",
+              "calculator": "轻松导出分享"
+            }
+          ],
+          "summary": "{topic}计算器在保持专业精度的同时加速设计周期。"
+        }
+      ],
+      "everyday": [
+        {
+          "title": "手算{topic}与本计算器",
+          "items": [
+            {
+              "label": "心算",
+              "manual": "估算可能出错",
+              "calculator": "每次都精确"
+            },
+            {
+              "label": "费率",
+              "manual": "手工跟踪变化",
+              "calculator": "按现行费率更新输入"
+            },
+            {
+              "label": "速度",
+              "manual": "心算花时间",
+              "calculator": "即时出结果"
+            }
+          ],
+          "summary": "{topic}计算器用精确即时的计算帮您做好日常决策。"
+        }
+      ],
+      "food": [
+        {
+          "title": "手算{topic}与本计算器",
+          "items": [
+            {
+              "label": "配比",
+              "manual": "手工按比例缩放",
+              "calculator": "带换算自动缩放"
+            },
+            {
+              "label": "营养",
+              "manual": "查资料算每份营养",
+              "calculator": "即时营养拆解"
+            },
+            {
+              "label": "批量",
+              "manual": "批量重算缓慢",
+              "calculator": "改份数全部更新"
+            }
+          ],
+          "summary": "{topic}计算器让调方和营养规划不再靠猜。"
+        }
+      ],
+      "biology": [
+        {
+          "title": "手算{topic}与本计算器",
+          "items": [
+            {
+              "label": "数据处理",
+              "manual": "手工录入计算",
+              "calculator": "自动计算分析"
+            },
+            {
+              "label": "统计",
+              "manual": "需另用统计工具",
+              "calculator": "内置生物统计"
+            },
+            {
+              "label": "可重复",
+              "manual": "手算难复现",
+              "calculator": "每次结果一致"
+            }
+          ],
+          "summary": "{topic}计算器加速生物数据分析，省时更准确。"
+        }
+      ],
+      "ecology": [
+        {
+          "title": "手算{topic}与本计算器",
+          "items": [
+            {
+              "label": "复杂公式",
+              "manual": "多公式互联",
+              "calculator": "一体化计算链"
+            },
+            {
+              "label": "数据",
+              "manual": "数据散落各处",
+              "calculator": "输入输出集中"
+            },
+            {
+              "label": "情景",
+              "manual": "假设分析缓慢",
+              "calculator": "快速情景比较"
+            }
+          ],
+          "summary": "{topic}计算器让环境分析易得、准确、可重复。"
+        }
+      ],
+      "sports": [
+        {
+          "title": "手算{topic}与本计算器",
+          "items": [
+            {
+              "label": "公式知识",
+              "manual": "要懂运动科学公式",
+              "calculator": "只需输入指标"
+            },
+            {
+              "label": "跟踪",
+              "manual": "手工记录计算",
+              "calculator": "记录比较表现"
+            },
+            {
+              "label": "精度",
+              "manual": "多步舍入误差",
+              "calculator": "针对运动员的精确计算"
+            }
+          ],
+          "summary": "{topic}计算器让教练无需专业背景也能数据化决策。"
+        }
+      ]
+    },
+    "domainCtx": {
+      "financial": {
+        "whatLabel": "金融指标",
+        "whyImportant": "从房贷到收益，算准数字意味着数千的节省或收益。",
+        "formulaLead": "核心金融公式",
+        "appFocus": "组合增长、贷款摊销与退休规划",
+        "methodLabel": "金融公式",
+        "precisionContext": "精确到分",
+        "tipArea": "利率与复利周期",
+        "riskLabel": "金融"
+      },
+      "health": {
+        "whatLabel": "健康指标",
+        "whyImportant": "您的健康数字是整体状况的生命体征。",
+        "formulaLead": "生理学基础",
+        "appFocus": "体能跟踪、体检与健康管理",
+        "methodLabel": "生理公式",
+        "precisionContext": "临床意义",
+        "tipArea": "测量条件与时间",
+        "riskLabel": "健康"
+      },
+      "math": {
+        "whatLabel": "数学概念",
+        "whyImportant": "理解公式能更深刻地认识世界。",
+        "formulaLead": "基础数学表达式",
+        "appFocus": "学业解题、工程设计与科研",
+        "methodLabel": "数学方法",
+        "precisionContext": "所需的小数精度",
+        "tipArea": "假设与边界情形",
+        "riskLabel": "数值"
+      },
+      "conversion": {
+        "whatLabel": "单位换算",
+        "whyImportant": "一次错换可能毁掉食谱或危及结构。",
+        "formulaLead": "换算关系",
+        "appFocus": "旅行、食谱、规格与科研数据",
+        "methodLabel": "换算系数",
+        "precisionContext": "合适的有效数字",
+        "tipArea": "单位一致与取整",
+        "riskLabel": "换算"
+      },
+      "date-time": {
+        "whatLabel": "时间计算",
+        "whyImportant": "算准时长和期限有助于高效规划。",
+        "formulaLead": "时间算术",
+        "appFocus": "项目排期、活动与期限管理",
+        "methodLabel": "日历数学",
+        "precisionContext": "某天或某小时",
+        "tipArea": "时区与夏令时",
+        "riskLabel": "排期"
+      },
+      "construction": {
+        "whatLabel": "建筑测量",
+        "whyImportant": "精确估算避免高成本返工并确保合规。",
+        "formulaLead": "建筑工程公式",
+        "appFocus": "材料估算、结构与规范",
+        "methodLabel": "建筑标准",
+        "precisionContext": "一英寸的零头",
+        "tipArea": "损耗系数与地方法规",
+        "riskLabel": "结构"
+      },
+      "statistics": {
+        "whatLabel": "统计量",
+        "whyImportant": "选对方法决定结论是否成立。",
+        "formulaLead": "统计公式",
+        "appFocus": "假设检验、数据分析",
+        "methodLabel": "统计方法",
+        "precisionContext": "置信区间",
+        "tipArea": "样本量与分布",
+        "riskLabel": "统计"
+      },
+      "education": {
+        "whatLabel": "教育指标",
+        "whyImportant": "教育测量有助于跟踪进步。",
+        "formulaLead": "教育评估公式",
+        "appFocus": "成绩、学业评估与进步",
+        "methodLabel": "教育标准",
+        "precisionContext": "评分细则",
+        "tipArea": "成绩曲线与加权",
+        "riskLabel": "学业"
+      },
+      "physics": {
+        "whatLabel": "物理量",
+        "whyImportant": "物理计算描述宇宙基本定律。",
+        "formulaLead": "物理方程",
+        "appFocus": "力学、电磁、热学与量子",
+        "methodLabel": "物理常数",
+        "precisionContext": "合适的有效数字",
+        "tipArea": "单位制与测量误差",
+        "riskLabel": "物理"
+      },
+      "chemistry": {
+        "whatLabel": "化学量",
+        "whyImportant": "精确化学计算对实验、医药、环境至关重要。",
+        "formulaLead": "化学关系",
+        "appFocus": "计量、溶液与收率",
+        "methodLabel": "化学原理",
+        "precisionContext": "摩尔精度",
+        "tipArea": "温度、压力与试剂纯度",
+        "riskLabel": "化学"
+      },
+      "engineering": {
+        "whatLabel": "工程参数",
+        "whyImportant": "工程计算保障建筑、电路、系统安全。",
+        "formulaLead": "设计公式",
+        "appFocus": "结构分析、电路与优化",
+        "methodLabel": "工程规范",
+        "precisionContext": "设计公差",
+        "tipArea": "安全系数、材料与规范",
+        "riskLabel": "工程"
+      },
+      "everyday": {
+        "whatLabel": "日常计算",
+        "whyImportant": "算准日常账能省钱省时。",
+        "formulaLead": "实用公式",
+        "appFocus": "预算、购物、计划与居家",
+        "methodLabel": "日常数学",
+        "precisionContext": "实用的余量",
+        "tipArea": "估算与精算",
+        "riskLabel": "实用"
+      },
+      "food": {
+        "whatLabel": "烹饪度量",
+        "whyImportant": "精确度量保证每次结果稳定。",
+        "formulaLead": "烹饪比例",
+        "appFocus": "食谱、营养与烘焙配比",
+        "methodLabel": "烹饪标准",
+        "precisionContext": "一克或一勺",
+        "tipArea": "食材密度与替代比",
+        "riskLabel": "烹饪"
+      },
+      "biology": {
+        "whatLabel": "生物参数",
+        "whyImportant": "生物计算推动医药、农业与保护。",
+        "formulaLead": "生物关系",
+        "appFocus": "种群、剂量与增长率",
+        "methodLabel": "生物方法",
+        "precisionContext": "生物学显著阈值",
+        "tipArea": "实验条件与对照",
+        "riskLabel": "生物"
+      },
+      "ecology": {
+        "whatLabel": "生态指标",
+        "whyImportant": "生态计算是明智环境管理的基础。",
+        "formulaLead": "生态模型",
+        "appFocus": "碳足迹、资源与保护",
+        "methodLabel": "环境指标",
+        "precisionContext": "生态学意义",
+        "tipArea": "季节变化与数据采集",
+        "riskLabel": "生态"
+      },
+      "sports": {
+        "whatLabel": "运动指标",
+        "whyImportant": "运动员和教练靠指标科学训练。",
+        "formulaLead": "运动科学公式",
+        "appFocus": "成绩、负荷与损伤",
+        "methodLabel": "运动科学标准",
+        "precisionContext": "有意义的进步幅度",
+        "tipArea": "个体差异与恢复",
+        "riskLabel": "运动"
+      }
+    },
+    "longFormFixed": {
+      "guideTitle": "{topic}完整指南",
+      "guideContent": "{description} 本指南讲解核心概念、计算数学及结果的实际应用。无论初识{topicLower}还是深化理解，都能获得实用见解。",
+      "howCalcTitle": "{topic}如何计算",
+      "howCalcContent": "{topic}计算遵循系统流程，得出可靠可重复的结果。理解它有助于高效使用计算器。",
+      "coreFormula": "核心公式：{formula}",
+      "coreLogic": "计算核心逻辑",
+      "coreFormulaText": "公式{formula}是本计算器的基础。每个变量都是您的输入，它们的关系决定结果。",
+      "coreLogicText": "计算器将成熟{method}用于您的输入，每步承接上步，中间值可见。",
+      "inputReq": "输入要求",
+      "inputReqText": "完整计算需要{v3}个关键输入，可选参数可微调特殊情景。",
+      "processing": "处理与校验",
+      "processingText": "计算前校验可接受范围与单位一致性，异常输入会被标出。",
+      "tipsTitle": "获得准确结果的专家提示",
+      "tipsContent": "遵循这些建议可获得{topic}计算器最可靠的结果并避开常见误区。",
+      "doubleCheck": "复核{method}",
+      "doubleCheckText": "输入错误是最常见的误差来源，请对照来源核对每个值。",
+      "whatIf": "多试几种假设情景",
+      "whatIfText": "至少试{v3}种输入组合，了解结果对各变量的敏感度。",
+      "benchmarks": "对照基准",
+      "benchmarksText": "计算器提供行业基准范围，帮您快速评估结果。",
+      "walkTitle": "示例：逐步算出{topic}",
+      "walkContent": "用切实数值走一遍实例：{topic}计算器如何把输入处理为最终结果。",
+      "walkSetup": "以{v1}起步",
+      "walkSetupText": "以{v1}为主要输入开始，次要参数保持默认，计算器校验并准备公式。",
+      "walkAdjust": "调到{v2}",
+      "walkAdjustText": "把主要输入改为{v2}，观察实时变化，证明计算的敏感度。",
+      "walkInterpret": "解读最终结果",
+      "walkInterpretText": "算出值即假设下您的{topicLower}，请对照显示范围。若在预期内则情景正常。",
+      "faqTitle": "常见问题",
+      "faqContent": "关于{topic}的常见问题及本计算器的处理。",
+      "defaultDeepTitle": "{topic}计算内幕",
+      "defaultDeepContent": "{topic}计算器把{v3}个关键变量结合为精确易用的公式，每个输入遵循成熟{method}。流程：采集、校验、计算、展示。"
+    },
+    "deep": {
+      "financial": [
+        {
+          "title": "时间与利率如何塑造财务结果",
+          "content": "{topic}计算对两个输入敏感：期限与利率。微调会带来迥异结果，因为金融公式呈指数关系。理解这点有助于确定谈判变量的优先级。",
+          "subs": [
+            {
+              "heading": "货币的时间价值",
+              "text": "时间是财务计算中最强的变量，计算器清楚展示时间如何复利或贴现结果。"
+            },
+            {
+              "heading": "利率敏感度",
+              "text": "半个百分点就是真金白银，调利率即时看金额影响。"
+            }
+          ]
+        },
+        {
+          "title": "拆解计算的组成部分",
+          "content": "任何财务计算都可拆为本金、利率、期限和定投。拆开各部分即可看出主因。利率略高但费用大低的贷款，总额可能更便宜。",
+          "subs": [
+            {
+              "heading": "本金与基数",
+              "text": "初始金额是计算基础，计算器展示结果中本金与增长各占多少。"
+            },
+            {
+              "heading": "定投",
+              "text": "定期追加与本金一同复利，计算器区分单次与持续效应。"
+            }
+          ]
+        },
+        {
+          "title": "风险、收益与 切实 假设",
+          "content": "财务计算需要对利率风险的切实假设。{topic}计算器通过调整切实假设来试情景。保守估计给出安全目标，乐观估计展示潜力，按区间规划才是专业标志。",
+          "subs": [
+            {
+              "heading": "保守与乐观情景",
+              "text": "用两种假设各算一遍，框定可能结果。"
+            },
+            {
+              "heading": "假设的压力测试",
+              "text": "利率变了或期限延长会怎样？压力测试揭示计划的断裂点。"
+            }
+          ]
+        }
+      ],
+      "health": [
+        {
+          "title": "在背景中理解您的数字",
+          "content": "单个{topic}值只讲了一半故事。与参照范围比较及随时间变化更重要。计算器按年龄性别给参照，连续记录{topicLower}比孤立数值更有信息量。",
+          "subs": [
+            {
+              "heading": "参照范围与含义",
+              "text": "健康范围因人群而异，计算器用现行临床指南分类结果。"
+            },
+            {
+              "heading": "纵向跟踪的力量",
+              "text": "单次测量是快照，记录揭示{topicLower}是稳定、改善还是恶化。"
+            }
+          ]
+        },
+        {
+          "title": "影响健康指标的因素",
+          "content": "{topic}结果取决于可改与不可改因素。可改：饮食、活动、睡眠、压力、用药依从；其他：年龄、基因、性别。知道能改什么，才能定出科学可行的目标。",
+          "subs": [
+            {
+              "heading": "可改与不可改",
+              "text": "把精力放在可控项，计算器展示可改输入及每项影响。"
+            },
+            {
+              "heading": "切实改善目标",
+              "text": "计算器跟踪进度并按您的节奏调整建议。"
+            }
+          ]
+        },
+        {
+          "title": "何时寻求专业意见",
+          "content": "在线计算器补充而非替代医生。{topic}计算器标出超健康范围的结果并建议就诊，还帮您备好问题资料去看诊。",
+          "subs": [
+            {
+              "heading": "预警阈值",
+              "text": "计算器标出超临床阈值的结果并给出随访建议。"
+            },
+            {
+              "heading": "看诊准备",
+              "text": "导出趋势历史与医生分享。"
+            }
+          ]
+        }
+      ],
+      "math": [
+        {
+          "title": "这个数学概念为何重要",
+          "content": "{topic}贯穿数学及其应用。理解它能夯实基础并为进阶做准备。计算器展示逐步推导，每用一次就巩固一遍数学。",
+          "subs": [
+            {
+              "heading": "前置知识",
+              "text": "{topic}之前先掌握基本运算，计算器附带这些复习。"
+            },
+            {
+              "heading": "通往进阶的桥",
+              "text": "{topic}是高级概念的基础，吃透了后续学得更快。"
+            }
+          ]
+        },
+        {
+          "title": "常见解法",
+          "content": "{topic}问题有多种解法。计算器并排展示结果以便选用合适方法，多条路径带来更灵活的理解。",
+          "subs": [
+            {
+              "heading": "直接法",
+              "text": "最简方法直接套用核心公式，多数情形适用。"
+            },
+            {
+              "heading": "替代路径",
+              "text": "极值下替代方法更精确。"
+            }
+          ]
+        },
+        {
+          "title": "把数学关系画出来",
+          "content": "数学一画就直观。{topic}计算器含各变量影响的交互图，视觉反馈比纯数字更快建立直觉。",
+          "subs": [
+            {
+              "heading": "交互探索",
+              "text": "拖控件看图更新，实时反馈让关系具体可感。"
+            },
+            {
+              "heading": "关键点",
+              "text": "图表自动标注临界点与数值。"
+            }
+          ]
+        }
+      ],
+      "conversion": [
+        {
+          "title": "换算为何要精确",
+          "content": "单位换算看似简单，小数点错一位误差可达数量级。{topic}计算器按单位套正确系数并遵守有效数字。换算涉及安全成本时这点至关重要。",
+          "subs": [
+            {
+              "heading": "易混单位对",
+              "text": "美英加仑、长短吨、液量干量盎司、公英制杯是最常见的混淆。"
+            },
+            {
+              "heading": "有效数字与取整",
+              "text": "换算只与最不精确的输入一样精确，计算器会正确取整。"
+            }
+          ]
+        },
+        {
+          "title": "系数及原理",
+          "content": "每次换算都用系数：国际标准规定的两单位固定比。关系恒线性：乘以系数即可。计算器存有经NIST BIPM验证的数百系数。",
+          "subs": [
+            {
+              "heading": "系数来源",
+              "text": "系数由国际条约和标准机构按物理常数制定。"
+            },
+            {
+              "heading": "验证换算",
+              "text": "诀窍：把结果换回原单位验算一遍。"
+            }
+          ]
+        },
+        {
+          "title": "换算错误的现实代价",
+          "content": "换算错误代价真实：1999年一队用英制一队用公制，丢了1.25亿美元火星探测器。{topic}计算器校验单位并标出异常结果来预防。",
+          "subs": [
+            {
+              "heading": "关键场景",
+              "text": "航空医疗工程贸易要求绝对精确。"
+            },
+            {
+              "heading": "养成验算习惯",
+              "text": "永远反向验证：把结果换回原单位。"
+            }
+          ]
+        }
+      ]
+    },
+    "faqPools": {
+      "financial": [
+        {
+          "q": "{topic}计算做了哪些假设？",
+          "a": "计算器假设利率恒定、付款规律，实际利率会波动，请把结果视为稳定条件下的估算。"
+        },
+        {
+          "q": "多久重算一次{topic}？",
+          "a": "假设变化就重算：利率、收入或目标变了；多数情形{v3}个月复核一次合适。"
+        },
+        {
+          "q": "哪个变量影响{topic}最大？",
+          "a": "期限通常影响最大，延长期限比任何单个输入改变都大。"
+        },
+        {
+          "q": "大事决策能信这个计算器吗？",
+          "a": "公式经过验证可以信，房贷养老请以它为主估算并结合专业建议。"
+        }
+      ],
+      "health": [
+        {
+          "q": "{topic}测量有多准？",
+          "a": "精度取决于输入，请用校准器具在稳定条件下测量。"
+        },
+        {
+          "q": "多久测一次{topic}？",
+          "a": "看趋势请每天同时同条件测量，每周测几次多数情形够用。"
+        },
+        {
+          "q": "{topic}因年龄性别而异吗？",
+          "a": "参照范围确有差异，计算器会按您的数据调整。"
+        },
+        {
+          "q": "{topic}异常何时就医？",
+          "a": "结果超参照或连续测量间骤变，请咨询医生。"
+        }
+      ],
+      "math": [
+        {
+          "q": "{topic}需要什么基础？",
+          "a": "建议扎实的算术和代数入门，计算器附带分步讲解。"
+        },
+        {
+          "q": "课堂外{topic}有何用？",
+          "a": "{topic}见于工程、计算、物理、经济和数据，基础而广谱。"
+        },
+        {
+          "q": "{topic}最常见的错？",
+          "a": "套错公式或用错单位最常见，计算器会校验输入。"
+        }
+      ]
+    },
+    "defaultFaqs": [
+      {
+        "q": "{topic}计算最常见的错？",
+        "a": "单位不一致或读错公式占大头，计算器会自动校验。"
+      },
+      {
+        "q": "本{topic}计算器多准？",
+        "a": "公式验证充分，结果{method}，精度取决于输入质量。"
+      },
+      {
+        "q": "能用于专业工作吗？",
+        "a": "公式是专业级的，受监管行业请再用认证工具复核关键结果。"
+      }
+    ]
   }
 }

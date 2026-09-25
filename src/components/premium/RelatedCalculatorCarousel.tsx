@@ -5,33 +5,28 @@ import { Link } from '@/lib/navigation'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 import { useLocale } from 'next-intl'
-import { getLocalizedCalculator } from '@/lib/localized-registry'
 
 export interface RelatedCalculatorCarouselProps {
-  calculators: CalculatorEntry[]
-  hubPath: string
-  title?: string
+  currentCalcSlug: string
+  hubSlug: string
 }
 
-export function RelatedCalculatorCarousel({ calculators, hubPath, title }: RelatedCalculatorCarouselProps) {
+export function RelatedCalculatorCarousel({ currentCalcSlug, hubSlug }: RelatedCalculatorCarouselProps) {
   const locale = useLocale()
   const scrollRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
   const dragStart = useRef({ x: 0, scrollLeft: 0 })
-  const [localizedMap, setLocalizedMap] = useState<Map<string, CalculatorEntry>>(new Map())
+  const [calculators, setCalculators] = useState<CalculatorEntry[]>([])
 
   useEffect(() => {
-    (async () => {
-      const map = new Map<string, CalculatorEntry>()
-      await Promise.all(calculators.map(async (calc) => {
-        const localized = await getLocalizedCalculator(calc.slug, locale)
-        if (localized) map.set(calc.slug, localized)
-      }))
-      setLocalizedMap(map)
+    ;(async () => {
+      const { getLocalizedCalculatorsByHub } = await import('@/lib/localized-registry')
+      const calcs = await getLocalizedCalculatorsByHub(hubSlug, locale)
+      setCalculators(calcs.filter(c => c.slug !== currentCalcSlug).slice(0, 10))
     })()
-  }, [calculators, locale])
+  }, [hubSlug, currentCalcSlug, locale])
 
   const updateScrollState = useCallback(() => {
     const el = scrollRef.current
@@ -85,9 +80,6 @@ export function RelatedCalculatorCarousel({ calculators, hubPath, title }: Relat
 
   return (
     <div className="relative">
-      {title && (
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{title}</h2>
-      )}
       <div className="relative group">
         {canScrollLeft && (
           <button
@@ -107,26 +99,23 @@ export function RelatedCalculatorCarousel({ calculators, hubPath, title }: Relat
           onMouseMove={handleMouseMove}
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {calculators.map((calc) => {
-            const localized = localizedMap.get(calc.slug) ?? calc
-            return (
+          {calculators.map((calc) => (
             <Link
               key={calc.slug}
-              href={`/${hubPath}/${calc.slug}`}
+              href={`/${hubSlug}/${calc.slug}`}
               className="flex-shrink-0 w-52 p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-[#06b6d4] dark:hover:border-[#06b6d4] transition-all hover:shadow-md group/card"
             >
               <p className="text-sm font-medium text-gray-900 dark:text-white group-hover/card:text-[#06b6d4] transition-colors line-clamp-1">
-                {localized.title}
+                {calc.title}
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1.5 line-clamp-2 leading-relaxed">
-                {localized.description}
+                {calc.description}
               </p>
               <span className="inline-block mt-2 text-[10px] font-medium text-[#06b6d4] opacity-0 group-hover/card:opacity-100 transition-opacity">
                 Calculate now →
               </span>
             </Link>
-            )
-          })}
+          ))}
         </div>
         {canScrollRight && (
           <button

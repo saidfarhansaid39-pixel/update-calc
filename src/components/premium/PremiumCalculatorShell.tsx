@@ -56,6 +56,7 @@ import { ExtraFieldsProvider } from '@/lib/context/ExtraFieldsContext'
 import { CurrencyProvider } from '@/lib/context/CurrencyContext'
 import { useAutoSave } from '@/lib/hooks/useAutoSave'
 import { useLocale, useTranslations } from 'next-intl'
+import { Link } from '@/lib/navigation'
 import { getLocalizedCalculator } from '@/lib/localized-registry'
 
 import { CalculatorRating } from '@/components/rating/CalculatorRating'
@@ -257,13 +258,13 @@ function BreadcrumbNav({ items, accent }: { items: { label: string; href: string
               </svg>
             )}
             {i < items.length - 1 ? (
-              <a
+              <Link
                 href={item.href}
                 className="hover:text-primary dark:hover:text-primary transition-colors"
                 style={accent && i === 1 ? { color: accent, fontWeight: 500 } : undefined}
               >
                 {item.label}
-              </a>
+              </Link>
             ) : (
               <span className="text-gray-600 dark:text-gray-300 font-medium" aria-current="page">{item.label}</span>
             )}
@@ -322,7 +323,11 @@ export function PremiumCalculatorShell({
 }: PremiumCalculatorShellProps) {
   const locale = useLocale()
   const t = useTranslations('calculatorUI')
+  const th = useTranslations('hubs')
   const tce = useTranslations('contentEngine')
+  // Localized hub name for breadcrumbs + structured data (falls back to registry English)
+  const hubName = th(calculator.hubSlug as any) || calculator.hubName
+  const siteUrl = locale === 'en' ? 'https://www.calculat.online' : `https://www.calculat.online/${locale}`
   const { user: authUser } = useAuth()
   const unitOptions = useMemo(() => [
     { value: 'metric' as UnitSystem, label: t('shell.unitMetric') },
@@ -708,14 +713,14 @@ export function PremiumCalculatorShell({
       title={calculator.title}
       breadcrumbs={[
         { label: t('shell.home'), href: '/' },
-        { label: calculator.hubName, href: `/${calculator.hubSlug}` },
+        { label: hubName, href: `/${calculator.hubSlug}` },
         { label: calculator.title, href: `/${calculator.hubSlug}/${calculator.slug}` },
       ]}
     >
       <div className="space-y-6 pb-24 sm:pb-0" style={{ '--hub-accent': hubTheme.accent } as React.CSSProperties}>
         <BreadcrumbNav accent={hubTheme.accent} items={[
           { label: t('shell.home'), href: '/' },
-          { label: calculator.hubName, href: `/${calculator.hubSlug}` },
+          { label: hubName, href: `/${calculator.hubSlug}` },
           { label: calculator.title, href: `/${calculator.hubSlug}/${calculator.slug}` },
         ]} />
 
@@ -1212,7 +1217,7 @@ export function PremiumCalculatorShell({
         <CommercialSection title={calculator.title} content={calcContent} />
 
         {/* Navigational Section (Audience, Hub, Related Links) */}
-        <NavigationalSection calculator={calculator} content={calcContent} />
+        <NavigationalSection calculator={{ ...calculator, hubName }} content={calcContent} />
 
         {/* Educational Content (collapsible) */}
         <div id="guide" className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
@@ -1300,12 +1305,12 @@ export function PremiumCalculatorShell({
             </div>
           )}
 
-          <SchemaMarkup type="WebApplication" data={{
+          <SchemaMarkup type="WebApplication" locale={locale} data={{
             name: calculator.title,
             description: calculator.description,
-            url: `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}`,
-            category: calculator.hubName,
-            offers: { '@type': 'Offer', price: '0', priceCurrency: currency, availability: 'https://schema.org/InStock' },
+            url: `${siteUrl}/${calculator.hubSlug}/${calculator.slug}`,
+            category: hubName,
+            offers: { '@type': 'Offer', price: '0', priceCurrency: currency },
             applicationCategory: (() => {
               const map: Record<string, string> = { financial: 'FinanceApplication', health: 'HealthApplication', math: 'ScienceApplication', conversion: 'UtilitiesApplication', construction: 'BusinessApplication', statistics: 'DataAnalysisApplication', education: 'EducationalApplication', physics: 'ScienceApplication', chemistry: 'ScienceApplication', engineering: 'EngineeringApplication', everyday: 'LifestyleApplication', food: 'LifestyleApplication', biology: 'ScienceApplication', ecology: 'ScienceApplication', sports: 'SportsApplication', 'date-time': 'UtilitiesApplication' }
               return map[calculator.hubSlug] || 'UtilitiesApplication'
@@ -1326,16 +1331,16 @@ export function PremiumCalculatorShell({
               acceptedAnswer: { '@type': 'Answer', text: f.answer },
             })),
           }} />}
-          {steps && steps.length > 0 && <SchemaMarkup type="HowTo" data={howToSchema(steps)} />}
-          <SchemaMarkup type="BreadcrumbList" data={breadcrumbListSchema([
-            { name: t('shell.home'), url: `https://www.calculat.online` },
-            { name: calculator.hubName, url: `https://www.calculat.online/${calculator.hubSlug}` },
-            { name: calculator.title, url: `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}` },
-          ])} />
-          <SchemaMarkup type="WebApplication" data={{
+          {steps && steps.length > 0 && <SchemaMarkup type="HowTo" locale={locale} data={howToSchema(steps)} />}
+          <SchemaMarkup type="BreadcrumbList" locale={locale} data={breadcrumbListSchema([
+            { name: t('shell.home'), url: siteUrl },
+            { name: hubName, url: `${siteUrl}/${calculator.hubSlug}` },
+            { name: calculator.title, url: `${siteUrl}/${calculator.hubSlug}/${calculator.slug}` },
+          ], locale)} />
+          <SchemaMarkup type="WebApplication" locale={locale} data={{
             name: calculator.title,
             description: calculator.description,
-            url: `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}`,
+            url: `${siteUrl}/${calculator.hubSlug}/${calculator.slug}`,
             applicationCategory: (() => {
               const map: Record<string, string> = { financial: 'FinanceApplication', health: 'HealthApplication', math: 'ScienceApplication', conversion: 'UtilitiesApplication', construction: 'BusinessApplication', statistics: 'DataAnalysisApplication', education: 'EducationalApplication', physics: 'ScienceApplication', chemistry: 'ScienceApplication', engineering: 'EngineeringApplication', everyday: 'LifestyleApplication', food: 'LifestyleApplication', biology: 'ScienceApplication', ecology: 'ScienceApplication', sports: 'SportsApplication', 'date-time': 'UtilitiesApplication' }
               return map[calculator.hubSlug] || 'UtilitiesApplication'
@@ -1404,15 +1409,14 @@ export function PremiumCalculatorShell({
         )}
 
         {/* Internal Linking Grid (replaces old Related Calculators) */}
-        <InternalLinkingGrid calculator={calculator} />
+        <InternalLinkingGrid calculatorData={{ title: calculator.title, hub: calculator.hubSlug, tier: calculator.tier }} />
 
         {/* Related Calculators Carousel */}
         {relatedCalculators.length > 0 && (
           <div className="card-handcrafted p-4 sm:p-6">
             <RelatedCalculatorCarousel
-              calculators={relatedCalculators}
-              hubPath={calculator.hubSlug}
-              title={t('shell.relatedCalculators')}
+              currentCalcSlug={calculator.slug}
+              hubSlug={calculator.hubSlug}
             />
           </div>
         )}

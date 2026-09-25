@@ -21,6 +21,7 @@ const calcMeta = {
 };
 
 export function MortgageCalculatorWrapper() {
+  const th = useTranslations('hubs');
   const t = useTranslations('calculatorUI');
   const locale = useLocale();
   const [homePrice, setHomePrice] = useState("400,000");
@@ -137,7 +138,7 @@ export function MortgageCalculatorWrapper() {
 
   return (
     <PremiumCalculatorShell
-      calculator={calcMeta}
+      calculator={{...calcMeta, hubName: th(calcMeta.hubSlug)}}
       form={<MortgageForm state={state} setters={setters} />}
       result={result}
       subCalcs={subCalcs}

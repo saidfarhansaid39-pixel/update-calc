@@ -19,40 +19,38 @@ const hubPaths: Record<string, string> = {
 }
 
 interface InternalLinkingGridProps {
-  calculator: {
-    slug: string
+  calculatorData: {
     title: string
-    category: string
-    hubSlug: string
-    hubName: string
-    keywords: string[]
+    hub: string
+    tier?: string
   }
 }
 
-export function InternalLinkingGrid({ calculator }: InternalLinkingGridProps) {
+export function InternalLinkingGrid({ calculatorData }: InternalLinkingGridProps) {
   const locale = useLocale()
   const th = useTranslations('hubs')
   const [localizedTitles, setLocalizedTitles] = useState<Record<string, string>>({})
   const [localizedDescriptions, setLocalizedDescriptions] = useState<Record<string, string>>({})
+  const { title, hub, tier } = calculatorData
 
   const links = useMemo(() => {
     const all = calculatorRegistry
-    const sameCategory = all.filter(c => c.category === calculator.category && c.slug !== calculator.slug)
-    const hubPath = hubPaths[calculator.category] || calculator.hubSlug
+    const sameCategory = all.filter(c => c.hubSlug === hub && c.slug !== title.toLowerCase().replace(/\s+/g, '-'))
+    const hubPath = hub
     const hubPage = `/${hubPath}`
     // "Related calculators" — closest matches within the same hub.
     const relatedDetail = sameCategory.slice(0, 4)
     // "Popular in {hub}" — a broader spread of the hub's calculators.
     const popular = sameCategory.slice(0, 6)
     // "You might also like" — cross-category discovery from other hubs.
-    const otherCategory = all.filter(c => c.category !== calculator.category && !/\d$/.test(c.slug))
-    const seedNum = calculator.slug.split('').reduce((a, c) => a + c.charCodeAt(0), 0)
+    const otherCategory = all.filter(c => c.hubSlug !== hub && !/\d$/.test(c.slug))
+    const seedNum = title.split('').reduce((a, c) => a + c.charCodeAt(0), 0)
     const youMightLike = otherCategory.length
       ? Array.from({ length: Math.min(6, otherCategory.length) }, (_, i) =>
           otherCategory[(seedNum + i * 97) % otherCategory.length])
       : []
     return { popular, hubPath, hubPage, relatedDetail, youMightLike, all, sameCategory }
-  }, [calculator])
+  }, [hub, title])
 
   const displayEntries = useMemo(() => {
     if (!links) return []
@@ -96,7 +94,7 @@ export function InternalLinkingGrid({ calculator }: InternalLinkingGridProps) {
       <div className="bg-gradient-to-r from-[#1a3a8a]/5 to-transparent rounded-2xl border border-[#1a3a8a]/20 p-5">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-semibold text-gray-900 dark:text-white">{th(calculator.hubSlug)}</p>
+            <p className="text-sm font-semibold text-gray-900 dark:text-white">{th(hub)}</p>
             <p className="text-xs text-gray-500 dark:text-gray-400">View all {links.sameCategory.length + 1} calculators in this category</p>
           </div>
           <Link href={links.hubPage} rel="bookmark" className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#1a3a8a] text-white rounded-lg text-sm font-medium hover:bg-[#0a1d4f] transition-colors">
@@ -129,7 +127,7 @@ export function InternalLinkingGrid({ calculator }: InternalLinkingGridProps) {
         <div>
           <div className="flex items-center gap-1.5 mb-3">
             <TrendingUp className="w-4 h-4 text-gray-400" />
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Popular in {th(calculator.hubSlug)}</p>
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Popular in {th(hub)}</p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
             {links.popular.map(c => (
@@ -171,16 +169,12 @@ export function InternalLinkingGrid({ calculator }: InternalLinkingGridProps) {
             Home
           </Link>
           <Link href={links.hubPage} rel="bookmark" className="px-2.5 py-1.5 text-xs bg-gray-50 dark:bg-gray-900 rounded-lg text-gray-600 dark:text-gray-400 hover:text-[#1a3a8a] hover:bg-[#1a3a8a]/5 transition-colors border border-gray-100 dark:border-gray-800">
-            All {th(calculator.hubSlug)}
+            All {th(hub)}
           </Link>
           <Link href="/about" rel="bookmark" className="px-2.5 py-1.5 text-xs bg-gray-50 dark:bg-gray-900 rounded-lg text-gray-600 dark:text-gray-400 hover:text-[#1a3a8a] hover:bg-[#1a3a8a]/5 transition-colors border border-gray-100 dark:border-gray-800">
             About Us
           </Link>
-          {calculator.keywords.slice(0, 4).map(kw => (
-            <span key={kw} className="px-2.5 py-1.5 text-xs bg-gray-50 dark:bg-gray-900 rounded-lg text-gray-400 border border-gray-100 dark:border-gray-800">
-              {kw}
-            </span>
-          ))}
+          {tier && <span key={tier} className="px-2.5 py-1.5 text-xs bg-gray-50 dark:bg-gray-900 rounded-lg text-gray-400 border border-gray-100 dark:border-gray-800">{tier}</span>}
           {links.popular.slice(0, 3).map(c => (
             <Link key={c.slug} href={`/${links.hubPath}/${c.slug}`} rel="bookmark"
               className="px-2.5 py-1.5 text-xs bg-gray-50 dark:bg-gray-900 rounded-lg text-gray-600 dark:text-gray-400 hover:text-[#1a3a8a] transition-colors border border-gray-100 dark:border-gray-800">

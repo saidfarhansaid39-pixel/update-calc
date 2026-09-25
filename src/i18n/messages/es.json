@@ -1621,7 +1621,19 @@
     "sciIntro": "¿Necesitas un cálculo rápido? Usa nuestra calculadora científica integrada con trigonometría, logaritmos, potencias y constantes.",
     "sciNote": "Cambia entre modos Básico y Científico. Está siempre disponible en la esquina inferior derecha de cada página.",
     "seoTitle": "Calculadora Online Gratis para Cada Necesidad",
-    "seoIntro": "¿Buscas una calculadora online confiable? Calculat ofrece más de 4.270 calculadoras online gratuitas para finanzas, salud, matemáticas, ciencias, construcción y vida cotidiana. Cada calculadora online proporciona resultados instantáneos con explicaciones paso a paso y fórmulas revisadas por expertos."
+    "seoIntro": "¿Buscas una calculadora online confiable? Calculat ofrece más de 4.270 calculadoras online gratuitas para finanzas, salud, matemáticas, ciencias, construcción y vida cotidiana. Cada calculadora online proporciona resultados instantáneos con explicaciones paso a paso y fórmulas revisadas por expertos.",
+    "faqQ1": "¿Cuál es la mejor calculadora en línea para finanzas?",
+    "faqA1": "Calculat ofrece más de 500 calculadoras financieras en línea, incluidas calculadoras de hipoteca, préstamos, inversión, jubilación e impuestos. Cada una ofrece resultados instantáneos con explicaciones paso a paso y fórmulas revisadas por expertos.",
+    "faqQ2": "¿Esta calculadora en línea es gratis?",
+    "faqA2": "Sí, Calculat es 100 % gratuita. Las 4.270+ calculadoras en línea están disponibles sin registro, sin anuncios y sin costos ocultos. Use nuestra calculadora en línea las veces que quiera.",
+    "faqQ3": "¿Puedo usar esta calculadora en línea en mi teléfono?",
+    "faqA3": "Por supuesto. Nuestra calculadora en línea es totalmente responsiva y funciona perfectamente en teléfonos, tabletas y escritorios. Cada calculadora se adapta al tamaño de su pantalla.",
+    "faqQ4": "¿Qué tan precisa es esta calculadora en línea?",
+    "faqA4": "Nuestras calculadoras en línea usan fórmulas estándar de la industria y son precisas hasta 15 decimales. Cada calculadora es revisada por expertos cualificados (CFA, MD, PE, PhD).",
+    "seoCardSuffix": "en línea",
+    "seoCard1Desc": "Calculadoras de hipoteca, préstamo, inversión, jubilación e impuestos. Obtenga resultados instantáneos con nuestra calculadora financiera en línea.",
+    "seoCard2Desc": "Calculadoras de IMC, TMB, calorías, grasa corporal y embarazo. Métricas de salud precisas con nuestra calculadora en línea.",
+    "seoCard3Desc": "Calculadoras de álgebra, geometría, estadísticas y conversión. Resuelva cualquier problema con nuestra calculadora matemática en línea."
   },
   "extraFields": {
     "activity_job": "Nivel de actividad laboral",
@@ -3255,7 +3267,14 @@
         "tocFormulaCalculation": "Fórmula y cálculo",
         "home": "Inicio"
       }
-    }
+    },
+    "formula": "La fórmula",
+    "formulaNamed": "La fórmula detrás de {name}",
+    "theFormula": "La fórmula",
+    "variables": "Variables ({count})",
+    "example": "Ejemplo: {name}",
+    "inputValues": "Valores de entrada",
+    "finalResult": "Resultado final"
   },
   "articles": {
     "section_headings": {
@@ -3420,7 +3439,19 @@
     "calculationSteps": "Pasos del Cálculo",
     "whatThisMeans": "Qué Significa Esto",
     "rateStars": "{count, plural, one {Valorar con {count} estrella} other {Valorar con {count} estrellas}}",
-    "ratingsCount": "{count, plural, one {# valoración} other {# valoraciones}}"
+    "ratingsCount": "{count, plural, one {# valoración} other {# valoraciones}}",
+    "locale": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ru": "Русский",
+      "ar": "العربية",
+      "hi": "हिन्दी",
+      "ja": "日本語",
+      "zh-CN": "中文"
+    }
   },
   "contentEngine": {
     "whatIs": "La {title} es una herramienta en línea gratuita que te ayuda a {keyPhrase}. Diseñada para {persona}, ofrece resultados precisos al instante. Ya sea que estés {activity}, esta calculadora simplifica los cálculos complejos para que puedas concentrarte en {goal}.",

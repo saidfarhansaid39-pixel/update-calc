@@ -1621,7 +1621,19 @@
     "sciIntro": "Sie brauchen eine schnelle Berechnung? Nutzen Sie unseren integrierten wissenschaftlichen Rechner mit Trigonometrie, Logarithmen, Potenzen und Konstanten.",
     "sciNote": "Wechseln Sie zwischen den Modi Standard und Wissenschaftlich. Er ist auf jeder Seite unten rechts verfügbar.",
     "seoTitle": "Kostenloser Online-Rechner für Jeden Bedarf",
-    "seoIntro": "Sie suchen einen zuverlässigen Online-Rechner? Calculat bietet über 4.270 kostenlose Online-Rechner für Finanzen, Gesundheit, Mathematik, Wissenschaft, Bauwesen und Alltag. Jeder Online-Rechner liefert sofortige Ergebnisse mit schrittweisen Erklärungen und von Experten überprüften Formeln."
+    "seoIntro": "Sie suchen einen zuverlässigen Online-Rechner? Calculat bietet über 4.270 kostenlose Online-Rechner für Finanzen, Gesundheit, Mathematik, Wissenschaft, Bauwesen und Alltag. Jeder Online-Rechner liefert sofortige Ergebnisse mit schrittweisen Erklärungen und von Experten überprüften Formeln.",
+    "faqQ1": "Welcher Online-Rechner ist der beste für Finanzen?",
+    "faqA1": "Calculat bietet über 500 Finanzrechner online, darunter Rechner für Hypotheken, Kredite, Investitionen, Altersvorsorge und Steuern. Jeder liefert sofortige Ergebnisse mit Schritt-für-Schritt-Erklärungen und expertengeprüften Formeln.",
+    "faqQ2": "Ist dieser Online-Rechner kostenlos?",
+    "faqA2": "Ja, Calculat ist 100 % kostenlos. Alle 4.270+ Online-Rechner sind ohne Anmeldung, ohne Werbung und ohne versteckte Gebühren nutzbar. Verwenden Sie unseren Online-Rechner so oft Sie möchten.",
+    "faqQ3": "Kann ich diesen Online-Rechner auf meinem Handy nutzen?",
+    "faqA3": "Selbstverständlich. Unser Online-Rechner ist vollständig responsiv und funktioniert perfekt auf Handys, Tablets und Desktops. Jeder Online-Rechner passt sich Ihrer Bildschirmgröße an.",
+    "faqQ4": "Wie genau ist dieser Online-Rechner?",
+    "faqA4": "Unsere Online-Rechner verwenden branchenübliche Formeln und sind auf 15 Nachkommastellen genau. Jeder Online-Rechner wird von qualifizierten Experten (CFA, MD, PE, PhD) geprüft.",
+    "seoCardSuffix": "Online",
+    "seoCard1Desc": "Rechner für Hypotheken, Kredite, Investitionen, Altersvorsorge und Steuern. Sofortige Ergebnisse mit unserem Finanzrechner online.",
+    "seoCard2Desc": "Rechner für BMI, BMR, Kalorien, Körperfett und Schwangerschaft. Genaue Gesundheitswerte mit unserem Online-Rechner.",
+    "seoCard3Desc": "Rechner für Algebra, Geometrie, Statistik und Umrechnung. Lösen Sie jedes Problem mit unserem Mathematik-Rechner online."
   },
   "extraFields": {
     "activity_job": "Aktivitätsniveau bei der Arbeit",
@@ -3255,7 +3267,14 @@
         "tocFormulaCalculation": "Formel & Berechnung",
         "home": "Startseite"
       }
-    }
+    },
+    "formula": "Die Formel",
+    "formulaNamed": "Die Formel hinter {name}",
+    "theFormula": "Die Formel",
+    "variables": "Variablen ({count})",
+    "example": "Beispiel: {name}",
+    "inputValues": "Eingabewerte",
+    "finalResult": "Endergebnis"
   },
   "articles": {
     "section_headings": {
@@ -3420,7 +3439,19 @@
     "calculationSteps": "Berechnungsschritte",
     "whatThisMeans": "Was das bedeutet",
     "rateStars": "{count, plural, one {Mit {count} Stern bewerten} other {Mit {count} Sternen bewerten}}",
-    "ratingsCount": "{count, plural, one {# Bewertung} other {# Bewertungen}}"
+    "ratingsCount": "{count, plural, one {# Bewertung} other {# Bewertungen}}",
+    "locale": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ru": "Русский",
+      "ar": "العربية",
+      "hi": "हिन्दी",
+      "ja": "日本語",
+      "zh-CN": "中文"
+    }
   },
   "contentEngine": {
     "whatIs": "Der {title} ist ein kostenloses Online-Tool, das Ihnen hilft, {keyPhrase}. Entwickelt für {persona}, liefert er sofort präzise Ergebnisse. Egal ob Sie {activity}, dieser Rechner vereinfacht komplexe Berechnungen, damit Sie sich auf {goal} konzentrieren können.",

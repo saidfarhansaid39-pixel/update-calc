@@ -1621,7 +1621,19 @@
     "sciIntro": "すぐに計算したいですか？三角関数、対数、累乗、定数を備えた内蔵の関数電卓をご利用ください。",
     "sciNote": "基本モードと関数電卓モードを切り替えられます。各ページの右下に常に表示されます。",
     "seoTitle": "すべてのニーズに対応する無料オンライン計算機",
-    "seoIntro": "信頼できるオンライン計算機をお探しですか？Calculatは、金融、健康、数学、科学、建築、日常生活のための4,270以上の無料オンライン計算機を提供しています。すべてのオンライン計算機は、ステップバイステップの説明と専門家による検証済みの数式で即座に結果を表示します。"
+    "seoIntro": "信頼できるオンライン計算機をお探しですか？Calculatは、金融、健康、数学、科学、建築、日常生活のための4,270以上の無料オンライン計算機を提供しています。すべてのオンライン計算機は、ステップバイステップの説明と専門家による検証済みの数式で即座に結果を表示します。",
+    "faqQ1": "ファイナンスに最適なオンライン計算機はどれですか？",
+    "faqA1": "Calculatでは、住宅ローン・ローン・投資・退職・税金の計算機を含む500以上の金融系オンライン計算機を提供しています。いずれも専門家が監修した数式とステップ解説つきで、すぐに結果が得られます。",
+    "faqQ2": "このオンライン計算機は無料ですか？",
+    "faqA2": "はい、Calculatは100%無料です。4,270以上のオンライン計算機を、登録・広告・隠れた費用なしでご利用いただけます。必要なだけ自由にお使いください。",
+    "faqQ3": "スマートフォンでこのオンライン計算機を使えますか？",
+    "faqA3": "もちろん。オンライン計算機は完全にレスポンシブで、スマートフォン・タブレット・デスクトップで美しく動作します。画面サイズに合わせて自動的に適応します。",
+    "faqQ4": "このオンライン計算機の精度はどのくらいですか？",
+    "faqA4": "業界標準の数式を使用し、小数点以下15桁まで正確です。各計算機は有資格の専門家（CFA、MD、PE、PhD）がレビューしています。",
+    "seoCardSuffix": "オンライン",
+    "seoCard1Desc": "住宅ローン・ローン・投資・退職・税金の計算機。金融系オンライン計算機ですぐに結果が得られます。",
+    "seoCard2Desc": "BMI・BMR・カロリー・体脂肪・妊娠の計算機。健康系オンライン計算機で正確な数値を計測。",
+    "seoCard3Desc": "代数・幾何・統計・単位換算の計算機。数学系オンライン計算機であらゆる問題を解決。"
   },
   "extraFields": {
     "activity_job": "仕事の活動レベル",
@@ -3255,7 +3267,14 @@
         "tocFormulaCalculation": "計算式と計算",
         "home": "ホーム"
       }
-    }
+    },
+    "formula": "計算式",
+    "formulaNamed": "{name} の計算式",
+    "theFormula": "計算式",
+    "variables": "変数 ({count})",
+    "example": "例: {name}",
+    "inputValues": "入力値",
+    "finalResult": "最終結果"
   },
   "articles": {
     "section_headings": {
@@ -3420,7 +3439,19 @@
     "calculationSteps": "計算手順",
     "whatThisMeans": "これが意味するもの",
     "rateStars": "{count, plural, other {{count} つ星で評価}}",
-    "ratingsCount": "{count, plural, other {# 件の評価}}"
+    "ratingsCount": "{count, plural, other {# 件の評価}}",
+    "locale": {
+      "en": "English",
+      "es": "Español",
+      "fr": "Français",
+      "de": "Deutsch",
+      "pt": "Português",
+      "ru": "Русский",
+      "ar": "العربية",
+      "hi": "हिन्दी",
+      "ja": "日本語",
+      "zh-CN": "中文"
+    }
   },
   "contentEngine": {
     "whatIs": "{title}は{keyPhrase}のための無料オンラインツールです。{persona}向けに設計され、瞬時に正確な結果を提供します。{activity}場合でも、この計算機が複雑な計算を簡素化し、{goal}に集中できます。",
@@ -3671,6 +3702,1953 @@
         "スポーツ学者",
         "愛好家"
       ]
-    }
+    },
+    "useCases": {
+      "financial": [
+        {
+          "title": "{topicLower}戦略の立案",
+          "description": "{topicLower}計算機で様々な金融シナリオをモデル化し、最適な方法を見つける。"
+        },
+        {
+          "title": "{topicLower}選択肢の比較",
+          "description": "異なる変数を並べて結果を比較し、最良の選択肢を選ぶ。"
+        },
+        {
+          "title": "{topicLower}の予算化",
+          "description": "{topicLower}計算を全体の資金計画に組み込み正確性を確保。"
+        },
+        {
+          "title": "学習目的",
+          "description": "様々な入力を試して結果への影響を見ながら{topicLower}の仕組みを学ぶ。"
+        }
+      ],
+      "health": [
+        {
+          "title": "{topicLower}の記録",
+          "description": "{topicLower}を継続記録して傾向を把握し、健康判断に活かす。"
+        },
+        {
+          "title": "{topicLower}目標の設定",
+          "description": "現在の測定値に基づき現実的な健康目標を設定。"
+        },
+        {
+          "title": "専門家への相談",
+          "description": "{topicLower}の結果を医療職と共有し、より良い相談に。"
+        },
+        {
+          "title": "健康教育",
+          "description": "{topicLower}の意味と健康・予防との関係を理解する。"
+        }
+      ],
+      "math": [
+        {
+          "title": "{topicLower}問題の解決",
+          "description": "宿題や仕事、私用に{topicLower}の値を素早く計算。"
+        },
+        {
+          "title": "答え合わせ",
+          "description": "提出前に手計算を検証する。"
+        },
+        {
+          "title": "{topicLower}の指導",
+          "description": "概念と実応用の教材として計算機を活用。"
+        },
+        {
+          "title": "応用数学",
+          "description": "{topicLower}を予算・建設・データ分析に活かす。"
+        }
+      ],
+      "conversion": [
+        {
+          "title": "海外旅行",
+          "description": "海外で通貨・温度・長さを換算する。"
+        },
+        {
+          "title": "料理と製菓",
+          "description": "世界のレシピ向けに メートル法・ヤードポンド法を相互換算。"
+        },
+        {
+          "title": "学業と仕事",
+          "description": "研究や課題で正確な単位換算を確保。"
+        },
+        {
+          "title": "ネット通販",
+          "description": "国際購入時に単位系の異なる仕様を比較。"
+        }
+      ],
+      "date-time": [
+        {
+          "title": "工程計画",
+          "description": "工期・期限・マイルストーンを正確に算出。"
+        },
+        {
+          "title": "行事調整",
+          "description": "日付間の正確な期間を算出し行事を計画。"
+        },
+        {
+          "title": "年齢と記念日",
+          "description": "正確な年齢や出来事からの経過時間を算出。"
+        },
+        {
+          "title": "業務期限の管理",
+          "description": "契約・支払・納期を正確に管理。"
+        }
+      ],
+      "construction": [
+        {
+          "title": "工事見積",
+          "description": "資材購入前に{topicLower}所要量を算出し無駄と不足を防止。"
+        },
+        {
+          "title": "原価計画",
+          "description": "数量と費用を算出して正確に予算化。"
+        },
+        {
+          "title": "業者との打合せ",
+          "description": "正確な仕様を提示し見積を検証。"
+        },
+        {
+          "title": "DIY改修",
+          "description": "正確な寸法で自信を持って改修を計画。"
+        }
+      ],
+      "statistics": [
+        {
+          "title": "データ分析",
+          "description": "調査・実験・指標に{topicLower}計算を適用。"
+        },
+        {
+          "title": "研究課題",
+          "description": "統計分析が必要な研究に計算機を活用。"
+        },
+        {
+          "title": "品質管理",
+          "description": "統計的工程管理で生産品質を監視。"
+        },
+        {
+          "title": "意思決定",
+          "description": "データに基づく判断に統計的知見を活用。"
+        }
+      ],
+      "education": [
+        {
+          "title": "学習計画",
+          "description": "{topicLower}を算出して進路と現実的な目標を設定。"
+        },
+        {
+          "title": "進学出願",
+          "description": "出願や奨学金向けに平均点を算出。"
+        },
+        {
+          "title": "進捗管理",
+          "description": "学期中の成績を追跡し学習法を調整。"
+        },
+        {
+          "title": "保護者との連携",
+          "description": "算出指標を共有し協働で教育計画。"
+        }
+      ],
+      "physics": [
+        {
+          "title": "宿題と試験",
+          "description": "{topicLower}問題を速く解き答え合わせ。"
+        },
+        {
+          "title": "実験",
+          "description": "理論値を算出し実験結果と比較。"
+        },
+        {
+          "title": "工学応用",
+          "description": "{topicLower}原理を実際の設計に応用。"
+        },
+        {
+          "title": "自然現象の理解",
+          "description": "惑星運動から素粒子まで{topicLower}の支配を探る。"
+        }
+      ],
+      "chemistry": [
+        {
+          "title": "実験作業",
+          "description": "実験向けに正確な{topicLower}計算を実施。"
+        },
+        {
+          "title": "宿題と学習",
+          "description": "化学の宿題を確認し量の関係を理解。"
+        },
+        {
+          "title": "工業プロセス",
+          "description": "製造・品質向けに{topicLower}を算出。"
+        },
+        {
+          "title": "安全管理",
+          "description": "実験前に安全な濃度を決定。"
+        }
+      ],
+      "engineering": [
+        {
+          "title": "設計と解析",
+          "description": "安全・効率確保のため{topicLower}を算出。"
+        },
+        {
+          "title": "試作",
+          "description": "試作前に{topicLower}諸元を検証し費用削減。"
+        },
+        {
+          "title": "適合確認",
+          "description": "{topicLower}計算が規格に適合することを確認。"
+        },
+        {
+          "title": "不具合診断",
+          "description": "既存設備の{topicLower}問題を診断。"
+        }
+      ],
+      "everyday": [
+        {
+          "title": "日常の判断",
+          "description": "賢い日常判断に{topicLower}計算を活用。"
+        },
+        {
+          "title": "買物と家計",
+          "description": "買物や家計管理に{topicLower}を算出。"
+        },
+        {
+          "title": "時間管理",
+          "description": "予定作りに{topicLower}を効果的に応用。"
+        },
+        {
+          "title": "学びと好奇心",
+          "description": "{topicLower}への好奇心を満たし日常に活かす。"
+        }
+      ],
+      "food": [
+        {
+          "title": "レシピ調整",
+          "description": "食数に応じて{topicLower}分量を調整。"
+        },
+        {
+          "title": "栄養計画",
+          "description": "食事目標向けに{topicLower}を記録。"
+        },
+        {
+          "title": "作り置き",
+          "description": "効率的な調理と買物のため{topicLower}を算出。"
+        },
+        {
+          "title": "食事制限",
+          "description": "減塩・グルテンフリー向けに{topicLower}を調整。"
+        }
+      ],
+      "biology": [
+        {
+          "title": "研究と解析",
+          "description": "生物研究・野外・実験向けに{topicLower}を算出。"
+        },
+        {
+          "title": "学術研究",
+          "description": "実践計算で{topicLower}概念を理解。"
+        },
+        {
+          "title": "医療応用",
+          "description": "診断向けに臨床で{topicLower}計算を応用。"
+        },
+        {
+          "title": "環境観測",
+          "description": "生態系健全性の指標に{topicLower}を活用。"
+        }
+      ],
+      "ecology": [
+        {
+          "title": "環境評価",
+          "description": "環境影響把握のため{topicLower}を算出。"
+        },
+        {
+          "title": "保全計画",
+          "description": "保全戦略に{topicLower}データを活用。"
+        },
+        {
+          "title": "学術研究",
+          "description": "生態研究に{topicLower}計算を適用。"
+        },
+        {
+          "title": "持続可能性報告",
+          "description": "持続可能性向け{topicLower}指標を作成。"
+        }
+      ],
+      "sports": [
+        {
+          "title": "練習の最適化",
+          "description": "練習計画改善のため{topicLower}を算出。"
+        },
+        {
+          "title": "成績記録",
+          "description": "進捗測定のため{topicLower}変化を追跡。"
+        },
+        {
+          "title": "大会準備",
+          "description": "大会に向け{topicLower}データを活用。"
+        },
+        {
+          "title": "怪我予防",
+          "description": "傷害リスク把握に{topicLower}指標を記録。"
+        }
+      ]
+    },
+    "mistakes": {
+      "financial": [
+        {
+          "mistake": "手数料・諸費用の見落とし",
+          "solution": "現実的な結果のため全手数料・税金を必ず含める。"
+        },
+        {
+          "mistake": "名目金利のまま使用",
+          "solution": "複利を反映した実効年利を使う。"
+        },
+        {
+          "mistake": "物価上昇の未調整",
+          "solution": "長期予測には実質(物価調整後)利回りを使う。"
+        },
+        {
+          "mistake": "複利頻度の失念",
+          "solution": "年・月・日のいずれで複利化されるか確認。"
+        }
+      ],
+      "health": [
+        {
+          "mistake": "不正確な測定値",
+          "solution": "同時間帯に校正済み機器で測定。"
+        },
+        {
+          "mistake": "個人差の無視",
+          "solution": "平均値は目安のみ。結果は遺伝や生活で変わる。"
+        },
+        {
+          "mistake": "結果を診断と解釈",
+          "solution": "計算機は推定値であり診断ではない。専門家に相談。"
+        },
+        {
+          "mistake": "活動量の失念",
+          "solution": "正確な活動データを入れて過大・過小評価を防止。"
+        }
+      ],
+      "math": [
+        {
+          "mistake": "演算順序の誤り",
+          "solution": "括弧・指数・乗除・加減の順序を厳守。"
+        },
+        {
+          "mistake": "早すぎる丸め",
+          "solution": "途中は全精度を保ち最終結果のみ丸める。"
+        },
+        {
+          "mistake": "単位の混在",
+          "solution": "計算前に全値を同一単位に統一。"
+        },
+        {
+          "mistake": "特殊ケースの失念",
+          "solution": "ゼロ除算や負の平方根を確認。"
+        }
+      ],
+      "conversion": [
+        {
+          "mistake": "米英ガロンの混同",
+          "solution": "米(3.785L)か英(4.546L)か確認。20%違う。"
+        },
+        {
+          "mistake": "有効数字の無視",
+          "solution": "結果は最も粗い測定値までしか正確にならない。"
+        },
+        {
+          "mistake": "トンの混同",
+          "solution": "米ショート・英ロング・メートル法のいずれか確認。"
+        },
+        {
+          "mistake": "温度オフセットの失念",
+          "solution": "温度換算は比例しない。先にオフセットを加える。"
+        }
+      ],
+      "date-time": [
+        {
+          "mistake": "うるう年の失念",
+          "solution": "うるう年2月を含む期間は1日長い。"
+        },
+        {
+          "mistake": "時間帯の無視",
+          "solution": "まず両時刻をUTCに直して誤差防止。"
+        },
+        {
+          "mistake": "両端含め方の誤り",
+          "solution": "開始・終了日を含むか決める。"
+        },
+        {
+          "mistake": "夏時間の失念",
+          "solution": "切替で1時間増減。近接日は確認。"
+        }
+      ],
+      "construction": [
+        {
+          "mistake": "端材率の失念",
+          "solution": "切断・誤差用に10-15%多めに材料を用意。"
+        },
+        {
+          "mistake": "フィートとメートルの混在",
+          "solution": "面積計算前に全寸法を一方式に統一。"
+        },
+        {
+          "mistake": "材料厚の無視",
+          "solution": "内寸では目地や枠の厚みを差し引く。"
+        },
+        {
+          "mistake": "人件費の過小評価",
+          "solution": "材料は費用の一部。人工・許可も加える。"
+        }
+      ],
+      "statistics": [
+        {
+          "mistake": "相関と因果の混同",
+          "solution": "強い相関は原因を証明しない。隠れた変数を検討。"
+        },
+        {
+          "mistake": "歪んだデータに平均値",
+          "solution": "外れ値がある場合、中央値が中心を表す。"
+        },
+        {
+          "mistake": "標本数の無視",
+          "solution": "小標本は不安定。データが多いほど誤差小。"
+        },
+        {
+          "mistake": "p値の誤解",
+          "solution": "小さいp値は効果量ではなく帰無仮説への反証を示す。"
+        }
+      ],
+      "education": [
+        {
+          "mistake": "単位加重の失念",
+          "solution": "4単位のAは1単位より重い。加重平均を使う。"
+        },
+        {
+          "mistake": "評価尺度の混在",
+          "solution": "百分率・字母・4.0を通さずに混ぜない。"
+        },
+        {
+          "mistake": "取消科目の失念",
+          "solution": "学校規定を確認。一部取消は平均に影響。"
+        },
+        {
+          "mistake": "途中平均の丸め",
+          "solution": "小数を保持。早い丸めは最終評価を変える。"
+        }
+      ],
+      "physics": [
+        {
+          "mistake": "SIとヤードポンドの混在",
+          "solution": "式の前に全て一方式(SI推奨)に統一。"
+        },
+        {
+          "mistake": "ベクトル向きの失念",
+          "solution": "力・速度に向きがある。符号に注意。"
+        },
+        {
+          "mistake": "摩擦の無視",
+          "solution": "理想モデルは摩擦を省く。実際には加える。"
+        },
+        {
+          "mistake": "質量と重量の混同",
+          "solution": "質量(kg)は一定。重量(N)は重力依存。"
+        }
+      ],
+      "chemistry": [
+        {
+          "mistake": "反応式の未整理",
+          "solution": "計算前に化学反応式を必ず整理。"
+        },
+        {
+          "mistake": "モル濃度と質量モル濃度の混同",
+          "solution": "モル濃度は溶液1L当たり。質量モル濃度は溶媒1kg当たり。"
+        },
+        {
+          "mistake": "古い原子量",
+          "solution": "現行標準原子量を使う。本機に内蔵。"
+        },
+        {
+          "mistake": "有効数字の無視",
+          "solution": "最も粗い器具の精度で結果を示す。"
+        }
+      ],
+      "engineering": [
+        {
+          "mistake": "安全率の省略",
+          "solution": "用途の規格安全率を必ず適用。"
+        },
+        {
+          "mistake": "単位系の混在",
+          "solution": "単位ミスで火星探査機($125M)を喪失。二重確認。"
+        },
+        {
+          "mistake": "公差の無視",
+          "solution": "呼び値でなく製造公差で設計。"
+        },
+        {
+          "mistake": "有効範囲外の外挿",
+          "solution": "経験式は校正範囲内でのみ有効。"
+        }
+      ],
+      "everyday": [
+        {
+          "mistake": "税・チップの失念",
+          "solution": "総額見積に消費税とチップを加える。"
+        },
+        {
+          "mistake": "吊り上げ価格の割引",
+          "solution": "大幅「割引」の前に真の定価を確認。"
+        },
+        {
+          "mistake": "積み重なる定額課金",
+          "solution": "月額引落を全て合計。小額は速く積もる。"
+        },
+        {
+          "mistake": "常に切捨て",
+          "solution": "予算では支出を切上げて余裕を確保。"
+        }
+      ],
+      "food": [
+        {
+          "mistake": "体積で粉を量る",
+          "solution": "粉はグラムで計量。カップは詰め方で20%変わる。"
+        },
+        {
+          "mistake": "標高調整なし",
+          "solution": "高地ではイースト・砂糖を減らし水分を増やす。"
+        },
+        {
+          "mistake": "風袋の失念",
+          "solution": "正味のため容器質量を差し引く。"
+        },
+        {
+          "mistake": "時間の線形拡大",
+          "solution": "倍量でも時間は倍にならない。温度計で確認。"
+        }
+      ],
+      "biology": [
+        {
+          "mistake": "遺伝子型と表現型の混同",
+          "solution": "遺伝子型は遺伝構成。表現型は環境を含む。"
+        },
+        {
+          "mistake": "野外標本数の無視",
+          "solution": "単独観察は集団を表さない。"
+        },
+        {
+          "mistake": "濃度単位の混在",
+          "solution": "比較前に単位を確認。"
+        },
+        {
+          "mistake": "対照実験の失念",
+          "solution": "対照群なしに効果を要因に帰せない。"
+        }
+      ],
+      "ecology": [
+        {
+          "mistake": "炭素と生態フットプリントの混同",
+          "solution": "炭素は温室効果ガス。生態は土地・水を含む。"
+        },
+        {
+          "mistake": "季節変動の無視",
+          "solution": "生態測定は季節性あり。年数回採取。"
+        },
+        {
+          "mistake": "一地点の一般化",
+          "solution": "生態系は空間的に異なる。複数代表地点で。"
+        },
+        {
+          "mistake": "CO₂換算の失念",
+          "solution": "メタン等をCO₂換算して合計。"
+        }
+      ],
+      "sports": [
+        {
+          "mistake": "220-年齢の無調整",
+          "solution": "誤差±12bpm。水準に応じた検査を用いる。"
+        },
+        {
+          "mistake": "休息日の無視",
+          "solution": "成長は休息中に起こる。強度の間に休息を。"
+        },
+        {
+          "mistake": "VO₂の無正規化比較",
+          "solution": "公平比較のためml/kg/分で表す。"
+        },
+        {
+          "mistake": "急な負荷増加",
+          "solution": "10%則。週10%超の増加は避ける。"
+        }
+      ]
+    },
+    "glossary": {
+      "financial": [
+        {
+          "term": "元本",
+          "definition": "利息を除く借入・投資の当初金額。"
+        },
+        {
+          "term": "複利",
+          "definition": "元本と既往の利息に対する利息。"
+        },
+        {
+          "term": "年率(APR)",
+          "definition": "利息・手数料込みの年間借入コスト(%)。"
+        },
+        {
+          "term": "償却",
+          "definition": "借入を一定返済の連続に分ける過程。"
+        },
+        {
+          "term": "物価上昇",
+          "definition": "一般物価の上昇率。購買力を目減りさせる。"
+        },
+        {
+          "term": "流動性",
+          "definition": "資産が大きく損せず現金化できる速さ。"
+        },
+        {
+          "term": "分散",
+          "definition": "異なる資産への配分で全体リスクを低減。"
+        },
+        {
+          "term": "純資産",
+          "definition": "総資産から負債を引いた額。財務健全性。"
+        }
+      ],
+      "health": [
+        {
+          "term": "BMI",
+          "definition": "身長体重に基づく体脂肪目安。体重区分に利用。"
+        },
+        {
+          "term": "基礎代謝(BMR)",
+          "definition": "安静時に生命維持で消費するカロリー。"
+        },
+        {
+          "term": "総消費(TDEE)",
+          "definition": "基礎代謝・運動・日常含む1日の消費。"
+        },
+        {
+          "term": "三大栄養素",
+          "definition": "多量に要する栄養素。炭水化物・蛋白質・脂質。"
+        },
+        {
+          "term": "体脂肪率",
+          "definition": "全体に占める脂肪の割合。体力の指標。"
+        },
+        {
+          "term": "心拍ゾーン",
+          "definition": "最大心拍に対する割合域。強度目標に利用。"
+        }
+      ],
+      "math": [
+        {
+          "term": "百分率",
+          "definition": "100を分母とする分数。%記号で表す。"
+        },
+        {
+          "term": "比率",
+          "definition": "二量の相対的大きさの比較。"
+        },
+        {
+          "term": "平均",
+          "definition": "数値群の算術平均。合計を個数で割る。"
+        },
+        {
+          "term": "中央値",
+          "definition": "整列集合の中央値。二等分する。"
+        },
+        {
+          "term": "標準偏差",
+          "definition": "平均周りのばらつきの尺度。"
+        },
+        {
+          "term": "指数",
+          "definition": "底を何回掛けるか示す数。"
+        }
+      ],
+      "conversion": [
+        {
+          "term": "換算係数",
+          "definition": "量を単位間で換える乗数。"
+        },
+        {
+          "term": "SI単位",
+          "definition": "国際単位系。世界のメートル法体系。"
+        },
+        {
+          "term": "ヤードポンド法",
+          "definition": "米英の伝統体系。インチ・フィート・ポンド・ガロン。"
+        },
+        {
+          "term": "有効数字",
+          "definition": "数の精度情報を担う数字。"
+        },
+        {
+          "term": "基本単位",
+          "definition": "標準で定める基礎単位。他の派生元。"
+        }
+      ],
+      "date-time": [
+        {
+          "term": "UTC",
+          "definition": "世界の時計を律する一次標準時。"
+        },
+        {
+          "term": "うるう年",
+          "definition": "366日の年。4年毎に暦を太陽年に同期。"
+        },
+        {
+          "term": "夏時間",
+          "definition": "暖候期に時計を進め夕刻を延ばす慣行。"
+        },
+        {
+          "term": "UNIX時刻",
+          "definition": "1970年1月1日UTCからの秒数。"
+        },
+        {
+          "term": "ISO 8601",
+          "definition": "日時表記の国際規格。"
+        }
+      ],
+      "construction": [
+        {
+          "term": "平方フィート",
+          "definition": "平方フィートの面積。縦×横。"
+        },
+        {
+          "term": "耐力壁",
+          "definition": "上部構造の荷重を支える壁。"
+        },
+        {
+          "term": "PSI",
+          "definition": "コンクリ強度等の圧力単位。"
+        },
+        {
+          "term": "R値",
+          "definition": "断熱の熱抵抗の尺度。"
+        },
+        {
+          "term": "スパン",
+          "definition": "支持点間の距離。"
+        }
+      ],
+      "statistics": [
+        {
+          "term": "母集団",
+          "definition": "統計が分析する全体群。"
+        },
+        {
+          "term": "標本",
+          "definition": "代表として選ぶ母集団の部分集合。"
+        },
+        {
+          "term": "相関",
+          "definition": "二変数の関係度の統計量。"
+        },
+        {
+          "term": "p値",
+          "definition": "帰無仮説下で同等以上に極端な結果の確率。"
+        },
+        {
+          "term": "正規分布",
+          "definition": "左右対称の釣鐘分布。多くは平均付近。"
+        },
+        {
+          "term": "分散",
+          "definition": "平均からの二乗偏差の平均。"
+        }
+      ],
+      "education": [
+        {
+          "term": "GPA",
+          "definition": "成績と単位からの学業数値。"
+        },
+        {
+          "term": "単位数",
+          "definition": "学期毎の週授業時間の学業単位。"
+        },
+        {
+          "term": "加重GPA",
+          "definition": "上級科目に加点するGPA算出。"
+        },
+        {
+          "term": "百分位",
+          "definition": "受験者の何%を下回るかの値。"
+        },
+        {
+          "term": "標準試験",
+          "definition": "比較のため一律実施の試験。"
+        }
+      ],
+      "physics": [
+        {
+          "term": "ニュートン法則",
+          "definition": "運動と力の関係の三法則。"
+        },
+        {
+          "term": "運動エネルギー",
+          "definition": "運動による物体のエネルギー。½mv²。"
+        },
+        {
+          "term": "位置エネルギー",
+          "definition": "位置に蓄えるエネルギー。"
+        },
+        {
+          "term": "加速度",
+          "definition": "時間当たり速度変化率(m/s²)。"
+        },
+        {
+          "term": "運動量",
+          "definition": "質量と速度の積。閉系で保存。"
+        },
+        {
+          "term": "波長",
+          "definition": "連続する波峰の距離。周波数と逆関係。"
+        }
+      ],
+      "chemistry": [
+        {
+          "term": "モル",
+          "definition": "6.022×10²³個の単位。物質量に利用。"
+        },
+        {
+          "term": "モル濃度",
+          "definition": "溶液1L当たり溶質モル数(mol/L)。"
+        },
+        {
+          "term": "化学量論",
+          "definition": "整理式による反応物・生成物の計算。"
+        },
+        {
+          "term": "pH",
+          "definition": "水素イオン濃度。酸性(pH<7)・塩基性。"
+        },
+        {
+          "term": "アボガドロ数",
+          "definition": "6.022×10²³。1モルの粒子数。"
+        }
+      ],
+      "engineering": [
+        {
+          "term": "トルク",
+          "definition": "回転させるねじり力。力×腕。"
+        },
+        {
+          "term": "応力",
+          "definition": "材料内の単位面積当たり力(Pa)。"
+        },
+        {
+          "term": "ひずみ",
+          "definition": "応力下の元長さに対する変形。"
+        },
+        {
+          "term": "安全率",
+          "definition": "極限強度と許容応力の比。"
+        },
+        {
+          "term": "弾性率",
+          "definition": "弾性変形への抵抗の尺度。"
+        }
+      ],
+      "everyday": [
+        {
+          "term": "特売価格",
+          "definition": "割引後の下げた品価。"
+        },
+        {
+          "term": "売上税",
+          "definition": "物品役務販売への消費税。"
+        },
+        {
+          "term": "年平均成長率",
+          "definition": "1年超の投資の平均年成長率。"
+        },
+        {
+          "term": "投資収益率",
+          "definition": "純益の費用に対する比(%)。"
+        }
+      ],
+      "food": [
+        {
+          "term": "風袋",
+          "definition": "正味のため総量から引く容器質量。"
+        },
+        {
+          "term": "歩留り(%)",
+          "definition": "下処理・加熱後の可食部。"
+        },
+        {
+          "term": "ベーカーズ%",
+          "definition": "粉質量に対する配合比の表し方。"
+        },
+        {
+          "term": "カロリー密度",
+          "definition": "食品1g当たりカロリー。献立に利用。"
+        }
+      ],
+      "biology": [
+        {
+          "term": "遺伝子型",
+          "definition": "両親からの遺伝構成。"
+        },
+        {
+          "term": "表現型",
+          "definition": "遺伝子型と環境による観察可能な特徴。"
+        },
+        {
+          "term": "対立遺伝子頻度",
+          "definition": "集団遺伝子プールの変異の相対頻度。"
+        },
+        {
+          "term": "環境収容力",
+          "definition": "環境が持続できる最大個体数。"
+        },
+        {
+          "term": "多様度指数",
+          "definition": "種多様性の定量尺度。"
+        }
+      ],
+      "ecology": [
+        {
+          "term": "炭素足跡",
+          "definition": "個人・製品の総排出をCO₂換算で。"
+        },
+        {
+          "term": "生態的地位",
+          "definition": "環境での種の役割・資源利用。"
+        },
+        {
+          "term": "栄養段階",
+          "definition": "食物連鎖での位置。生産者から頂点へ。"
+        },
+        {
+          "term": "バイオマス",
+          "definition": "域内の生物の総質量。"
+        },
+        {
+          "term": "生態系サービス",
+          "definition": "供給・調整など生態系の恵み。"
+        }
+      ],
+      "sports": [
+        {
+          "term": "VO₂max",
+          "definition": "強運動時の最大酸素摂取。有酸素持久の指標。"
+        },
+        {
+          "term": "心拍予備",
+          "definition": "最大と安静の差。ゾーン算出に利用。"
+        },
+        {
+          "term": "1RM",
+          "definition": "完全1回挙上できる最大重量。"
+        },
+        {
+          "term": "無酸素閾値",
+          "definition": "乳酸蓄積が除去を上回る強度。"
+        },
+        {
+          "term": "カロリー不足",
+          "definition": "消費より少ない摂取。減量に至る。"
+        }
+      ]
+    },
+    "concepts": {
+      "financial": [
+        "複利",
+        "物価上昇",
+        "リスク管理",
+        "資産配分",
+        "税務計画",
+        "退職計画",
+        "分散",
+        "貨幣の時間価値",
+        "償却"
+      ],
+      "health": [
+        "体組成",
+        "三大栄養素",
+        "心血管の健康",
+        "代謝",
+        "水分補給",
+        "睡眠の質",
+        "ストレス管理",
+        "活動指針"
+      ],
+      "math": [
+        "代数",
+        "微積分",
+        "幾何",
+        "三角法",
+        "統計",
+        "数論",
+        "離散数学",
+        "線形代数"
+      ],
+      "conversion": [
+        "メートル法",
+        "ヤードポンド法",
+        "温度目盛",
+        "為替",
+        "記憶単位",
+        "時間帯",
+        "角度測定"
+      ],
+      "date-time": [
+        "時間帯",
+        "暦法",
+        "天文時",
+        "UNIX時刻",
+        "ISO 8601",
+        "夏時間",
+        "うるう秒"
+      ],
+      "construction": [
+        "構造工学",
+        "材料科学",
+        "建築基準",
+        "工程管理",
+        "測量",
+        "空調設計",
+        "配管"
+      ],
+      "statistics": [
+        "確率論",
+        "回帰分析",
+        "仮説検定",
+        "ベイズ統計",
+        "時系列",
+        "実験計画"
+      ],
+      "education": [
+        "学習理論",
+        "課程設計",
+        "教育心理",
+        "評価法",
+        "学習技法",
+        "進路計画"
+      ],
+      "physics": [
+        "古典力学",
+        "熱力学",
+        "電磁気",
+        "量子物理",
+        "相対性",
+        "流体力学",
+        "光学"
+      ],
+      "chemistry": [
+        "有機化学",
+        "無機化学",
+        "物理化学",
+        "分析化学",
+        "生化学",
+        "熱化学"
+      ],
+      "engineering": [
+        "機械",
+        "土木",
+        "電気",
+        "化学",
+        "ソフト",
+        "システム設計"
+      ],
+      "everyday": [
+        "家計",
+        "住まい管理",
+        "時間管理",
+        "料理",
+        "買物術",
+        "健康"
+      ],
+      "food": [
+        "栄養科学",
+        "調理芸術",
+        "食品化学",
+        "食事指針",
+        "献立計画",
+        "食品安全"
+      ],
+      "biology": [
+        "細胞生物",
+        "遺伝",
+        "進化",
+        "生態",
+        "分子生物",
+        "生理",
+        "微生物"
+      ],
+      "ecology": [
+        "環境科学",
+        "保全生物",
+        "気候科学",
+        "持続可能開発",
+        "環境政策",
+        "生態復元"
+      ],
+      "sports": [
+        "運動生理",
+        "スポーツ栄養",
+        "バイオメカ",
+        "スポーツ心理",
+        "練習理論",
+        "傷害予防"
+      ]
+    },
+    "comparisons": {
+      "financial": [
+        {
+          "title": "手計算の{topic}と当計算機",
+          "items": [
+            {
+              "label": "速度",
+              "manual": "1件に数分〜数時間",
+              "calculator": "ミリ秒で即結果"
+            },
+            {
+              "label": "精度",
+              "manual": "暗算・式の誤りがち",
+              "calculator": "検証済み式で精度保証"
+            },
+            {
+              "label": "複雑さ",
+              "manual": "金融式の理解が必要",
+              "calculator": "式の知識不要"
+            },
+            {
+              "label": "試算",
+              "manual": "毎回の再計算に時間",
+              "calculator": "入力変更し即比較"
+            },
+            {
+              "label": "可視化",
+              "manual": "表計算で手作り図が必要",
+              "calculator": "内蔵図と視覚内訳"
+            }
+          ],
+          "summary": "{topic}計算機は手計算の誤りを除き時間を分から秒へ短縮し、手にはない可視化を提供。"
+        },
+        {
+          "title": "{topic}計算機と表計算",
+          "items": [
+            {
+              "label": "準備",
+              "manual": "式の構築と検証が必要",
+              "calculator": "組込済みですぐ利用可"
+            },
+            {
+              "label": "誤り検出",
+              "manual": "表計算誤りは多発し発見困難",
+              "calculator": "入力検証で一般誤りを防止"
+            },
+            {
+              "label": "携帯性",
+              "manual": "特定ソフトや書類に依存",
+              "calculator": "接続端末からどこでも利用"
+            },
+            {
+              "label": "更新",
+              "manual": "式の手動更新が必要",
+              "calculator": "常に最新計算法に更新"
+            }
+          ],
+          "summary": "表計算は柔軟だが専用{topic}計算機は準備が速く誤り少なく常時利用可。"
+        }
+      ],
+      "health": [
+        {
+          "title": "手計算の{topic}と当計算機",
+          "items": [
+            {
+              "label": "式の複雑さ",
+              "manual": "変数の異なる複数式",
+              "calculator": "入力に応じ自動選択"
+            },
+            {
+              "label": "単位換算",
+              "manual": "手動のメートル法・ヤードポンド法換算",
+              "calculator": "切替付き自動換算"
+            },
+            {
+              "label": "解釈",
+              "manual": "理解に外部資料が必要",
+              "calculator": "解釈と背景を内蔵"
+            },
+            {
+              "label": "記録",
+              "manual": "経時記録の組込なし",
+              "calculator": "保存し結果を比較"
+            }
+          ],
+          "summary": "{topic}計算機は複雑式を自動化し結果を即解釈して健康評価を簡素化。"
+        }
+      ],
+      "math": [
+        {
+          "title": "手計算の{topic}と当計算機",
+          "items": [
+            {
+              "label": "速度",
+              "manual": "段階的手計算",
+              "calculator": "即結果"
+            },
+            {
+              "label": "検証",
+              "manual": "やり直しなしに検証困難",
+              "calculator": "複写共有で検証"
+            },
+            {
+              "label": "学習支援",
+              "manual": "式の事前知識が必要",
+              "calculator": "学習用に式と手順を表示"
+            }
+          ],
+          "summary": "{topic}計算機は作業を即検証し数学原理を解説。"
+        }
+      ],
+      "conversion": [
+        {
+          "title": "手動の{topic}換算と当計算機",
+          "items": [
+            {
+              "label": "換算係数",
+              "manual": "正係数を調べて適用",
+              "calculator": "内蔵の信頼 DB"
+            },
+            {
+              "label": "精度",
+              "manual": "丸め誤差が蓄積",
+              "calculator": "通して高精度計算"
+            },
+            {
+              "label": "双方向",
+              "manual": "逆換算は別途算出",
+              "calculator": "即双方向換算"
+            }
+          ],
+          "summary": "{topic}変換機は調査と誤りを除き即時の精密結果を提供。"
+        }
+      ],
+      "date-time": [
+        {
+          "title": "手計算の{topic}と当計算機",
+          "items": [
+            {
+              "label": "うるう年",
+              "manual": "手動のうるう管理",
+              "calculator": "自動暦処理"
+            },
+            {
+              "label": "時間帯",
+              "manual": "複雑な手動時差",
+              "calculator": "簡単な帯選択"
+            },
+            {
+              "label": "精度",
+              "manual": "±1日の誤り多発",
+              "calculator": "精密な日付算術"
+            }
+          ],
+          "summary": "{topic}計算機は暦の例外を自動処理。"
+        }
+      ],
+      "construction": [
+        {
+          "title": "手見積の{topic}と当計算機",
+          "items": [
+            {
+              "label": "端材",
+              "manual": "端材率を忘れがち",
+              "calculator": "内蔵の端材率算出"
+            },
+            {
+              "label": "換算",
+              "manual": "計量系間の換算",
+              "calculator": "全換算は自動"
+            },
+            {
+              "label": "単価",
+              "manual": "現単価を手動調査",
+              "calculator": "単価更新し即再計算"
+            }
+          ],
+          "summary": "{topic}計算機は手見積の時間を省き高額な発注誤りを削減。"
+        }
+      ],
+      "statistics": [
+        {
+          "title": "手作業の{topic}解析と当計算機",
+          "items": [
+            {
+              "label": "計算時間",
+              "manual": "骨の折れる手計算",
+              "calculator": "即時の統計計算"
+            },
+            {
+              "label": "式選択",
+              "manual": "正検定の選択",
+              "calculator": "案内付き式適用"
+            },
+            {
+              "label": "可視化",
+              "manual": "図は別途作成",
+              "calculator": "内蔵の可視化"
+            }
+          ],
+          "summary": "{topic}計算機は骨の折れる統計を即時の視覚知見に変換。"
+        }
+      ],
+      "education": [
+        {
+          "title": "手計算の{topic}と当計算機",
+          "items": [
+            {
+              "label": "加重",
+              "manual": "複雑な手動加重平均",
+              "calculator": "単位に応じ自動算出"
+            },
+            {
+              "label": "試算",
+              "manual": "遅い仮定分析",
+              "calculator": "即時の成績予測"
+            },
+            {
+              "label": "尺度",
+              "manual": "異なる評価尺度の知識",
+              "calculator": "複数制度に対応"
+            }
+          ],
+          "summary": "{topic}計算機は成績算出の複雑さを除き向上に集中。"
+        }
+      ],
+      "physics": [
+        {
+          "title": "手計算の{topic}と当計算機",
+          "items": [
+            {
+              "label": "式適用",
+              "manual": "正しい式を想起し適用",
+              "calculator": "概念選択し入力すれば回答"
+            },
+            {
+              "label": "単位",
+              "manual": "手動SI換算が必要",
+              "calculator": "自動単位管理"
+            },
+            {
+              "label": "検証",
+              "manual": "誤箇所の特定困難",
+              "calculator": "段階内訳を表示"
+            }
+          ],
+          "summary": "{topic}計算機は作業検証と解法理解を支援。"
+        }
+      ],
+      "chemistry": [
+        {
+          "title": "手計算の{topic}と当計算機",
+          "items": [
+            {
+              "label": "原子量",
+              "manual": "周期表を参照",
+              "calculator": "内蔵の原子量 DB"
+            },
+            {
+              "label": "単位",
+              "manual": "手動の濃度換算",
+              "calculator": "自動の濃度単位"
+            },
+            {
+              "label": "誤り",
+              "manual": "小誤差が多段階で蓄積",
+              "calculator": "各段階で検証"
+            }
+          ],
+          "summary": "{topic}計算機は実験誤りを減らし準備を加速。"
+        }
+      ],
+      "engineering": [
+        {
+          "title": "手計算の{topic}と当計算機",
+          "items": [
+            {
+              "label": "適合",
+              "manual": "規格の手動参照",
+              "calculator": "業界規格と式を内蔵"
+            },
+            {
+              "label": "反復速度",
+              "manual": "遅い設計工程",
+              "calculator": "即時の諸元調整"
+            },
+            {
+              "label": "文書化",
+              "manual": "計算の別途文書化",
+              "calculator": "容易に書出し共有"
+            }
+          ],
+          "summary": "{topic}計算機は専門精度で設計工程を加速。"
+        }
+      ],
+      "everyday": [
+        {
+          "title": "手計算の{topic}と当計算機",
+          "items": [
+            {
+              "label": "暗算",
+              "manual": "誤りがちな概算",
+              "calculator": "常に正確な結果"
+            },
+            {
+              "label": "料率",
+              "manual": "変動の手動追跡",
+              "calculator": "現行料率に入力変更"
+            },
+            {
+              "label": "速度",
+              "manual": "暗算に時間",
+              "calculator": "即結果"
+            }
+          ],
+          "summary": "{topic}計算機は正確即時な計算で日常判断を改善。"
+        }
+      ],
+      "food": [
+        {
+          "title": "手計算の{topic}と当計算機",
+          "items": [
+            {
+              "label": "配合",
+              "manual": "手動の比例拡縮",
+              "calculator": "換算付き自動拡縮"
+            },
+            {
+              "label": "栄養計算",
+              "manual": "1食分を調べて算出",
+              "calculator": "即時の栄養内訳"
+            },
+            {
+              "label": "量調整",
+              "manual": "遅い量の再計算",
+              "calculator": "食数変更ですべて更新"
+            }
+          ],
+          "summary": "{topic}計算機は分量調整の推測を除去。"
+        }
+      ],
+      "biology": [
+        {
+          "title": "手計算の{topic}と当計算機",
+          "items": [
+            {
+              "label": "処理",
+              "manual": "手入力と手計算",
+              "calculator": "自動計算と解析"
+            },
+            {
+              "label": "統計",
+              "manual": "別道具が必要",
+              "calculator": "内蔵の生物統計"
+            },
+            {
+              "label": "再現性",
+              "manual": "手計算の再現困難",
+              "calculator": "常に一貫した結果"
+            }
+          ],
+          "summary": "{topic}計算機は生物データ解析を高速高精度化。"
+        }
+      ],
+      "ecology": [
+        {
+          "title": "手計算の{topic}と当計算機",
+          "items": [
+            {
+              "label": "複雑式",
+              "manual": "相互連結の複数式",
+              "calculator": "統合計算連鎖"
+            },
+            {
+              "label": "資料",
+              "manual": "分散した情報源",
+              "calculator": "集約した入出力"
+            },
+            {
+              "label": "試算",
+              "manual": "遅い仮定分析",
+              "calculator": "迅速な比較"
+            }
+          ],
+          "summary": "{topic}計算機は環境解析を身近・正確・再現可能に。"
+        }
+      ],
+      "sports": [
+        {
+          "title": "手計算の{topic}と当計算機",
+          "items": [
+            {
+              "label": "式知識",
+              "manual": "スポーツ科学式の知識",
+              "calculator": "指標を入力するだけ"
+            },
+            {
+              "label": "記録",
+              "manual": "手記録と手計算",
+              "calculator": "成績を記録比較"
+            },
+            {
+              "label": "精度",
+              "manual": "多段階の丸め誤差",
+              "calculator": "選手別の精密計算"
+            }
+          ],
+          "summary": "{topic}計算機は専門知識なしにデータ主導の指導を支援。"
+        }
+      ]
+    },
+    "domainCtx": {
+      "financial": {
+        "whatLabel": "金融指標",
+        "whyImportant": "住宅ローンから利回りまで、正確な数値は数千の節約や利益を意味する。",
+        "formulaLead": "中心となる金融式",
+        "appFocus": "資産成長・返済・退職計画",
+        "methodLabel": "金融式",
+        "precisionContext": "セント単位の精度",
+        "tipArea": "金利と複利期間",
+        "riskLabel": "金融"
+      },
+      "health": {
+        "whatLabel": "健康指標",
+        "whyImportant": "健康数値は全身状態のバイタルサイン。",
+        "formulaLead": "生理学的基礎",
+        "appFocus": "体力記録・健康診断・健全",
+        "methodLabel": "生理式",
+        "precisionContext": "臨床的意義",
+        "tipArea": "測定条件と時刻",
+        "riskLabel": "健康"
+      },
+      "math": {
+        "whatLabel": "数学概念",
+        "whyImportant": "式の理解は世界の深い理解を開く。",
+        "formulaLead": "基礎の数式",
+        "appFocus": "学業・設計・研究",
+        "methodLabel": "数学手法",
+        "precisionContext": "必要な小数精度",
+        "tipArea": "仮定と境界例",
+        "riskLabel": "数値"
+      },
+      "conversion": {
+        "whatLabel": "単位換算",
+        "whyImportant": "誤換算は調理を台無しにし構造を危うくする。",
+        "formulaLead": "換算関係",
+        "appFocus": "旅行・調理・仕様・資料",
+        "methodLabel": "換算係数",
+        "precisionContext": "適切な有効数字",
+        "tipArea": "単位一貫と丸め",
+        "riskLabel": "換算"
+      },
+      "date-time": {
+        "whatLabel": "時間計算",
+        "whyImportant": "期間と期限の正確な算出は計画に役立つ。",
+        "formulaLead": "時間算術",
+        "appFocus": "工程・行事・期限管理",
+        "methodLabel": "暦の数学",
+        "precisionContext": "日または時",
+        "tipArea": "時間帯と夏時間",
+        "riskLabel": "計画"
+      },
+      "construction": {
+        "whatLabel": "建設測定",
+        "whyImportant": "正確な見積は手戻りを防ぎ適合を確保。",
+        "formulaLead": "建設工学式",
+        "appFocus": "資材見積・構造・基準",
+        "methodLabel": "建築基準",
+        "precisionContext": "インチの分数",
+        "tipArea": "端材率と地域基準",
+        "riskLabel": "構造"
+      },
+      "statistics": {
+        "whatLabel": "統計量",
+        "whyImportant": "正しい手法の選択が結論の妥当性を決める。",
+        "formulaLead": "統計式",
+        "appFocus": "仮説検定・データ分析",
+        "methodLabel": "統計手法",
+        "precisionContext": "信頼区間",
+        "tipArea": "標本数と分布",
+        "riskLabel": "統計"
+      },
+      "education": {
+        "whatLabel": "教育指標",
+        "whyImportant": "教育測定は進捗把握に役立つ。",
+        "formulaLead": "教育評価式",
+        "appFocus": "成績・学習評価・進捗",
+        "methodLabel": "教育基準",
+        "precisionContext": "評価基準",
+        "tipArea": "成績分布と加重",
+        "riskLabel": "学業"
+      },
+      "physics": {
+        "whatLabel": "物理量",
+        "whyImportant": "物理計算は宇宙の基本法則を表す。",
+        "formulaLead": "物理方程式",
+        "appFocus": "力学・電磁気・熱・量子",
+        "methodLabel": "物理定数",
+        "precisionContext": "適切な有効数字",
+        "tipArea": "単位系と測定誤差",
+        "riskLabel": "物理"
+      },
+      "chemistry": {
+        "whatLabel": "化学量",
+        "whyImportant": "正確な化学計算は実験・医薬・環境に重要。",
+        "formulaLead": "化学関係",
+        "appFocus": "量論・溶液・収率",
+        "methodLabel": "化学原理",
+        "precisionContext": "モル精度",
+        "tipArea": "温度・圧力・試薬純度",
+        "riskLabel": "化学"
+      },
+      "engineering": {
+        "whatLabel": "工学諸元",
+        "whyImportant": "工学計算は構造・回路・設備を安全に保つ。",
+        "formulaLead": "設計式",
+        "appFocus": "構造解析・回路・最適化",
+        "methodLabel": "工学規格",
+        "precisionContext": "設計公差",
+        "tipArea": "安全率・材料・規格",
+        "riskLabel": "工学"
+      },
+      "everyday": {
+        "whatLabel": "日常計算",
+        "whyImportant": "正しい日常計算は金・時間の節約になる。",
+        "formulaLead": "実用式",
+        "appFocus": "家計・買物・計画・住まい",
+        "methodLabel": "日常の数学",
+        "precisionContext": "実用的な余裕",
+        "tipArea": "概算と精算",
+        "riskLabel": "実用"
+      },
+      "food": {
+        "whatLabel": "調理計量",
+        "whyImportant": "正確な計量は毎回安定した結果を生む。",
+        "formulaLead": "調理比",
+        "appFocus": "調理・栄養・製菓比",
+        "methodLabel": "調理基準",
+        "precisionContext": "グラムや匙",
+        "tipArea": "材料密度と代替比",
+        "riskLabel": "調理"
+      },
+      "biology": {
+        "whatLabel": "生物諸元",
+        "whyImportant": "生物計算は医療・農業・保全を進める。",
+        "formulaLead": "生物関係",
+        "appFocus": "個体群・用量・成長率",
+        "methodLabel": "生物手法",
+        "precisionContext": "生物学的有意域",
+        "tipArea": "実験条件と対照",
+        "riskLabel": "生物"
+      },
+      "ecology": {
+        "whatLabel": "生態指標",
+        "whyImportant": "生態計算は賢明な環境管理に必須。",
+        "formulaLead": "生態類型",
+        "appFocus": "炭素・資源・保全",
+        "methodLabel": "環境指標",
+        "precisionContext": "生態学的意義",
+        "tipArea": "季節変動と資料収集",
+        "riskLabel": "環境"
+      },
+      "sports": {
+        "whatLabel": "競技指標",
+        "whyImportant": "選手と指導者は賢い練習に指標を頼る。",
+        "formulaLead": "スポーツ科学式",
+        "appFocus": "成績・負荷・傷害",
+        "methodLabel": "スポーツ科学基準",
+        "precisionContext": "有意な向上幅",
+        "tipArea": "個人差と回復",
+        "riskLabel": "競技"
+      }
+    },
+    "longFormFixed": {
+      "guideTitle": "{topic}完全案内",
+      "guideContent": "{description} 本案内は中心概念・計算の数学・結果の実応用を解説。{topicLower}初心者にも理解深化にも実践知見を提供。",
+      "howCalcTitle": "{topic}の算出法",
+      "howCalcContent": "{topic}計算は信頼できる再現可能な結果のため系統手順に従う。理解は計算機の効果利用に役立つ。",
+      "coreFormula": "中心式:{formula}",
+      "coreLogic": "計算の中心理論",
+      "coreFormulaText": "式{formula}が本機の基礎。各変数は入力値。関係が結果を決める。",
+      "coreLogicText": "本機は確立{method}を入力に適用。各段階は前段に積み上がり中間値を表示。",
+      "inputReq": "入力要件",
+      "inputReqText": "完全計算に{v3}の主要入力が必要。任意項目で特殊筋を調整。",
+      "processing": "処理と検証",
+      "processingText": "計算前に許容範囲と単位一貫を検証。異常入力は審査用に標示。",
+      "tipsTitle": "正確な結果の専門助言",
+      "tipsContent": "{topic}計算機の最良結果のため推奨に従い落とし穴を回避。",
+      "doubleCheck": "{method}を再確認",
+      "doubleCheckText": "入力誤りが不正確さの主因。各値を原典と照合。",
+      "whatIf": "複数の仮定筋を試す",
+      "whatIfText": "少なくとも{v3}通りの組合せを試し各変数の感度を理解。",
+      "benchmarks": "基準と比較",
+      "benchmarksText": "業界基準の参照域を提供し結果を迅速評価。",
+      "walkTitle": "例:{topic}を段階算出",
+      "walkContent": "現実値で実践例を辿る。{topic}計算機が入力から最終結果まで処理する筋を示す。",
+      "walkSetup": "値{v1}で開始",
+      "walkSetupText": "主入力に{v1}を入力。副は初期値のまま。本機は検証し式を準備。",
+      "walkAdjust": "{v2}に調整",
+      "walkAdjustText": "主入力を{v2}に変更。実時間の変化を観察。感度の証左。",
+      "walkInterpret": "最終結果の解釈",
+      "walkInterpretText": "算出値は仮定下の{topicLower}。表示域と比較。期待域内なら正常。",
+      "faqTitle": "よくある質問",
+      "faqContent": "{topic}の常见問と本機の対応。",
+      "defaultDeepTitle": "{topic}計算の内側",
+      "defaultDeepContent": "{topic}計算機は{v3}の主要変数を正確平易な式に結合。各入力は確立{method}に従う。段階:収集・検証・計算・表示。"
+    },
+    "deep": {
+      "financial": [
+        {
+          "title": "時間と利率が金融結果を形作る",
+          "content": "{topic}計算は二入力に敏感。期間と利率。小調整が大きく異なる結果を生む。金融式は指数関数的ゆえ。理解は交渉変数の優先に役立つ。",
+          "subs": [
+            {
+              "heading": "貨幣の時間価値",
+              "text": "時間は金融計算の最強変数。本機は時間が結果を複利化・割引する様を明示。"
+            },
+            {
+              "heading": "利率感度",
+              "text": "0.5ポイントは現実の金。即時に影響を表示。"
+            }
+          ]
+        },
+        {
+          "title": "計算の構成要素を分解",
+          "content": "金融計算は元本・利率・期間・定期的払込に分解。各要素の分離が主因を明示。利率やや高くとも手数料大幅安なら総額で安い場合あり。",
+          "subs": [
+            {
+              "heading": "元本と基礎額",
+              "text": "当初額が計算の基礎。本機は元本分と成長分を表示。"
+            },
+            {
+              "heading": "定期的払込",
+              "text": "定期的加算は元本と複利化。本機は単発と継続効果を分離。"
+            }
+          ]
+        },
+        {
+          "title": "危険・収益と現実仮定",
+          "content": "金融計算は利率危険の現実仮定を要する。{topic}計算機は仮定変更で筋を試す。慎重見積は安全目標。楽観は可能性。幅計画が専門の証。",
+          "subs": [
+            {
+              "heading": "慎重と楽観の筋",
+              "text": "両仮定で算出し可能結果を並置。"
+            },
+            {
+              "heading": "仮定の耐性試験",
+              "text": "利率変動や期間延長なら?耐性試験は計画の破綻筋を明示。"
+            }
+          ]
+        }
+      ],
+      "health": [
+        {
+          "title": "背景で数値を理解",
+          "content": "単独の{topic}値は物語の半分。参照域との比較と経時変化が重要。本機は年齢性別の参照を提供。連続測定の{topicLower}追跡は単値より有益な傾向を与える。",
+          "subs": [
+            {
+              "heading": "参照域と意味",
+              "text": "健全域は集団で異なる。本機は現行指針で結果を分類。"
+            },
+            {
+              "heading": "縦断追跡の力",
+              "text": "単測定は写真。記録は{topicLower}の安定・改善・悪化を明示。"
+            }
+          ]
+        },
+        {
+          "title": "健康指標の要因",
+          "content": "{topic}結果は可変・不変要因に依存。可変:食事・活動・睡眠・緊張・服薬。不変:年齢・遺伝・性。変えられる物の把握が科学目標で行動を促す。",
+          "subs": [
+            {
+              "heading": "可変と不変",
+              "text": "制御下に注力。本機は可変入力と効果を示す。"
+            },
+            {
+              "heading": "現実改善目標",
+              "text": "本機は進捗を追跡し速度に応じ推奨を調整。"
+            }
+          ]
+        },
+        {
+          "title": "専門相談の時期",
+          "content": "オンライン計算機は医師を補い代替しない。{topic}計算機は健全域外に信号し相談を提案。質問資料で受診準備も支援。",
+          "subs": [
+            {
+              "heading": "警戒域",
+              "text": "本機は検証域超えを標示し追跡を提案。"
+            },
+            {
+              "heading": "受診準備",
+              "text": "傾向履歴を書出し医療職と共有。"
+            }
+          ]
+        }
+      ],
+      "math": [
+        {
+          "title": "この数学概念の意義",
+          "content": "{topic}は数学と応用を貫く。理解は基礎を固め上級に備える。本機は段階導出を示し使う度に数学を定着。",
+          "subs": [
+            {
+              "heading": "前提",
+              "text": "{topic}前に基本演算を習得。本機は復習を含む。"
+            },
+            {
+              "heading": "上級への橋",
+              "text": "{topic}は上級概念の基礎。良理解は後の学習を加速。"
+            }
+          ]
+        },
+        {
+          "title": "一般的な解法",
+          "content": "{topic}問題は複数法で解ける。本機は結果を並置し適法選択を支援。複数経路は柔軟な理解を育てる。",
+          "subs": [
+            {
+              "heading": "直接法",
+              "text": "最簡法は中心式を直接適用。多くに適合。"
+            },
+            {
+              "heading": "代替経路",
+              "text": "極値では代替法がより精密。"
+            }
+          ]
+        },
+        {
+          "title": "数学関係の可視化",
+          "content": "数学は見ると直観的。{topic}計算機は各変数の影響図を含む。視覚応答は数字のみより速く直観を育てる。",
+          "subs": [
+            {
+              "heading": "対話探索",
+              "text": "操作し図の更新を見る。実時間応答が関係を具体化。"
+            },
+            {
+              "heading": "要点",
+              "text": "図は要点と値を自動表示。"
+            }
+          ]
+        }
+      ],
+      "conversion": [
+        {
+          "title": "換算に精度が要る理由",
+          "content": "単位換算は見かけ単純。小数ずれは桁違いの誤りを生む。{topic}計算機は正係数を適用し有効数字を守る。安全費用に関わる際に重要。",
+          "subs": [
+            {
+              "heading": "混同組",
+              "text": "米英ガロン・短長トン・液量と乾燥オンス・メートル法とヤードポンド法のカップが頻繁な混同。"
+            },
+            {
+              "heading": "有効数字と丸め",
+              "text": "換算は粗い入力までしか正確にならない。本機は正しく丸める。"
+            }
+          ]
+        },
+        {
+          "title": "係数と仕組み",
+          "content": "換算は係数を用いる。国際標準の二単位間固定比。関係は常に線形。係数を掛ける。本機はNIST BIPM検証の数百係数を格納。",
+          "subs": [
+            {
+              "heading": "係数の由来",
+              "text": "係数は国際条約と規格機関が物理定数から定める。"
+            },
+            {
+              "heading": "換算の検証",
+              "text": "技。結果を元単位に戻して検証。"
+            }
+          ]
+        },
+        {
+          "title": "換算誤りの現実影響",
+          "content": "換算誤りは現実の帰結あり。1999年$125M探査機を喪失。一方はヤードポンド法、他方はメートル法。{topic}計算機は単位検証と異常標示で予防。",
+          "subs": [
+            {
+              "heading": "重大筋",
+              "text": "航空医療工学貿易は絶対精度を要する。"
+            },
+            {
+              "heading": "検証習慣",
+              "text": "常に逆検証。結果を元単位に戻す。"
+            }
+          ]
+        }
+      ]
+    },
+    "faqPools": {
+      "financial": [
+        {
+          "q": "{topic}計算の仮定は?",
+          "a": "本機は安定利率と定期的払込を仮定。実際は変動。結果は推定と見る。"
+        },
+        {
+          "q": "{topic}再計算の頻度は?",
+          "a": "仮定変更時に再計算。利率・収入・目標。{v3}月毎の見直しが大方に適合。"
+        },
+        {
+          "q": "{topic}に最影響の変数は?",
+          "a": "期間が通常最大効果。期間延長はいずれの入力より結果を変える。"
+        },
+        {
+          "q": "重大決定に本機を信頼できる?",
+          "a": "検証式ゆえ可能。住宅退職には主推定とし助言と併用。"
+        }
+      ],
+      "health": [
+        {
+          "q": "{topic}測定の精度は?",
+          "a": "精度は入力依存。校正器具で安定条件に。"
+        },
+        {
+          "q": "{topic}測定の頻度は?",
+          "a": "傾向用に同時刻同条件に。週数回で大方に十分。"
+        },
+        {
+          "q": "{topic}は年齢性別で変わる?",
+          "a": "参照域は異なる。本機は資料に応じ調整。"
+        },
+        {
+          "q": "異常{topic}で受診時期は?",
+          "a": "参照超えや連続急変なら専門家に相談。"
+        }
+      ],
+      "math": [
+        {
+          "q": "{topic}の前提は?",
+          "a": "堅い算数と代数入門を推奨。本機は段階解説を含む。"
+        },
+        {
+          "q": "教外で{topic}は?",
+          "a": "{topic}は工学計算物理経済資料に出現。基礎的で広範。"
+        },
+        {
+          "q": "{topic}のよくある誤りは?",
+          "a": "式の誤用や単位誤りが頻発。本機は入力を検証。"
+        }
+      ]
+    },
+    "defaultFaqs": [
+      {
+        "q": "{topic}計算のよくある誤りは?",
+        "a": "不整合単位や式の誤読が大半。本機は自動検証。"
+      },
+      {
+        "q": "本{topic}計算機の精度は?",
+        "a": "検証式で{method}結果。精度は入力品質依存。"
+      },
+      {
+        "q": "専門業務に使える?",
+        "a": "専門式ゆえ可能。規制業では認証具で確認。"
+      }
+    ]
   }
 }

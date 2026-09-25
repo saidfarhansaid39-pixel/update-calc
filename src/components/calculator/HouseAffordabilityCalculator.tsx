@@ -22,6 +22,7 @@ const calcMeta = {
 };
 
 export function HouseAffordabilityCalculator() {
+  const th = useTranslations('hubs');
   const t = useTranslations('calculatorUI');
   const locale = useLocale();
   // Form 1 State
@@ -261,7 +262,7 @@ export function HouseAffordabilityCalculator() {
 
   return (
     <PremiumCalculatorShell
-      calculator={calcMeta}
+      calculator={{...calcMeta, hubName: th(calcMeta.hubSlug)}}
       form={<>
         <HouseAffordabilityForm1 
           state={state1} 

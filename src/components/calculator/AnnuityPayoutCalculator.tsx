@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
-import { useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { DollarSign, Calendar, PiggyBank } from 'lucide-react';
 import { AnnuityForm } from '@/components/calculator/AnnuityForm';
 import { AnnuityResults } from '@/components/calculator/AnnuityResults';
@@ -21,6 +21,7 @@ const calcMeta = {
 };
 
 export function AnnuityPayoutCalculator() {
+  const th = useTranslations('hubs');
   const locale = useLocale();
   const [mode, setMode] = useState<'length' | 'payment'>('length');
   
@@ -149,7 +150,7 @@ export function AnnuityPayoutCalculator() {
 
   return (
     <PremiumCalculatorShell
-      calculator={calcMeta}
+      calculator={{...calcMeta, hubName: th(calcMeta.hubSlug)}}
       form={<AnnuityForm state={state} setters={setters} handleCalculate={calculate} handleClear={handleClear} />}
       result={<AnnuityResults results={results} />}
       subCalcs={subCalcs}

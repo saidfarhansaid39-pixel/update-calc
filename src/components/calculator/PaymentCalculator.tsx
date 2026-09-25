@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
-import { useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { DollarSign, Calendar, Percent } from 'lucide-react';
 import { PaymentForm } from '@/components/calculator/PaymentForm';
 import { PaymentResults } from '@/components/calculator/PaymentResults';
@@ -21,6 +21,7 @@ const calcMeta = {
 };
 
 export function PaymentCalculator() {
+  const th = useTranslations('hubs');
   const locale = useLocale();
   const [activeTab, setActiveTab] = useState('fixedTerm');
   
@@ -114,7 +115,7 @@ export function PaymentCalculator() {
 
   return (
     <PremiumCalculatorShell
-      calculator={calcMeta}
+      calculator={{...calcMeta, hubName: th(calcMeta.hubSlug)}}
       form={<PaymentForm state={state} setters={setters} activeTab={activeTab} setActiveTab={setActiveTab} />}
       result={<PaymentResults loanAmount={p} totalPayments={totalPayments} totalInterest={totalInterest} monthlyPayment={computedMonthly} numMonths={computedMonths} />}
       subCalcs={subCalcs}

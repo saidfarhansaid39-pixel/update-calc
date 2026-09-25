@@ -111,7 +111,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <meta name="theme-color" content="#1a3a8a" />
         <meta name="google-site-verification" content="6JE119hbevVMs4yAVVaMZlrdiM3GLm4TwEsO3IwfitQ" />
         {process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION && (
-          <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION} />
+          <>
+            <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION} />
+            <meta name="google-adsense-account" content="ca-pub-6655074936089316" />
+          </>
         )}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -163,7 +166,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Analytics />
         </Suspense>
         <WebVitals />
-      </body>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6655074936089316"
+     crossOrigin="anonymous"></script>
+</body>
     </html>
   )
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Clock, Calendar, Wallet, DollarSign } from 'lucide-react';
 import { SalaryForm } from '@/components/calculator/SalaryForm';
 import { SalaryResults } from '@/components/calculator/SalaryResults';
@@ -21,6 +21,7 @@ const calcMeta = {
 };
 
 export function SalaryCalculator() {
+  const th = useTranslations('hubs');
   const locale = useLocale();
   const [salaryAmount, setSalaryAmount] = useState("50");
   const [salaryType, setSalaryType] = useState("Hour");
@@ -197,7 +198,7 @@ export function SalaryCalculator() {
 
   return (
     <PremiumCalculatorShell
-      calculator={calcMeta}
+      calculator={{...calcMeta, hubName: th(calcMeta.hubSlug)}}
       form={<SalaryForm state={state} setters={setters} handleCalculate={calculate} handleClear={handleClear} />}
       result={result}
       subCalcs={subCalcs}

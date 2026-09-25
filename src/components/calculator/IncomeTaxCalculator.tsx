@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
-import { useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { DollarSign, Receipt } from 'lucide-react';
 import { IncomeTaxForm } from '@/components/calculator/IncomeTaxForm';
 import { IncomeTaxResults } from '@/components/calculator/IncomeTaxResults';
@@ -22,6 +22,7 @@ const calcMeta = {
 };
 
 export function IncomeTaxCalculator() {
+  const th = useTranslations('hubs');
   const locale = useLocale();
   const [wages, setWages] = useState("80,000");
   const [fedWithheld, setFedWithheld] = useState("9,000");
@@ -109,7 +110,7 @@ export function IncomeTaxCalculator() {
   return (
     <>
       <PremiumCalculatorShell
-        calculator={calcMeta}
+        calculator={{...calcMeta, hubName: th(calcMeta.hubSlug)}}
         form={<IncomeTaxForm state={state} setters={setters} handleCalculate={handleCalculate} handleClear={handleClear} />}
         result={result}
         subCalcs={subCalcs}

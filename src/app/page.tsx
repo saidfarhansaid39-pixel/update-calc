@@ -101,8 +101,10 @@ export default async function Home() {
     'body-fat-calculator',
     'age-difference-calculator',
   ]
-  const popular = POPULAR_SLUGS.map((slug) => regBySlug.get(slug))
-    .filter(Boolean)
+  const { getLocalizedCalculator } = await import('@/lib/localized-registry')
+  const popular = (await Promise.all(POPULAR_SLUGS.map(async (slug) =>
+    (await getLocalizedCalculator(slug, locale)) || regBySlug.get(slug)
+  ))).filter(Boolean)
     .map((c: any) => ({ slug: c.slug, hubSlug: c.hubSlug, title: c.title, desc: c.description || '' }))
 
   const trending = [
@@ -121,10 +123,10 @@ export default async function Home() {
       />
       <SchemaMarkup type="Organization" data={organizationSchema(locale)} locale={locale} />
       <SchemaMarkup type="FAQPage" data={faqSchema([
-        { question: 'What is the best calculator online for finance?', answer: 'Calculat offers over 500 financial calculators online including mortgage, loan, investment, retirement, and tax calculators. Each provides instant results with step-by-step explanations and expert-reviewed formulas.' },
-        { question: 'Is this calculator online free to use?', answer: 'Yes, Calculat is 100% free. All 4,270+ calculators online are available without sign-up, no ads, and no hidden fees. Use our calculator online as much as you need.' },
-        { question: 'Can I use this calculator online on my phone?', answer: 'Absolutely. Our calculator online is fully responsive and works perfectly on phones, tablets, and desktops. Every calculator online adapts to your screen size.' },
-        { question: 'How accurate is your calculator online?', answer: 'Our calculators online use industry-standard formulas and are accurate to 15 decimal places. Each calculator online is reviewed by qualified experts (CFA, MD, PE, PhD) for accuracy.' },
+        { question: t('faqQ1'), answer: t('faqA1') },
+        { question: t('faqQ2'), answer: t('faqA2') },
+        { question: t('faqQ3'), answer: t('faqA3') },
+        { question: t('faqQ4'), answer: t('faqA4') },
       ])} />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-white via-[#e0e7ff]/10 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
@@ -177,9 +179,9 @@ export default async function Home() {
           </p>
           <div className="grid sm:grid-cols-3 gap-4 text-left">
             {[
-              { title: 'Finance Calculators Online', desc: 'Mortgage, loan, investment, retirement, and tax calculators. Get instant results with our finance calculator online.' },
-              { title: 'Health Calculators Online', desc: 'BMI, BMR, calorie, body fat, and pregnancy calculators. Accurate health metrics from our calculator online.' },
-              { title: 'Math Calculators Online', desc: 'Algebra, geometry, statistics, and conversion calculators. Solve any problem with our math calculator online.' },
+              { title: `${th('financial-calculators')} ${t('seoCardSuffix')}`, desc: t('seoCard1Desc') },
+              { title: `${th('health-calculators')} ${t('seoCardSuffix')}`, desc: t('seoCard2Desc') },
+              { title: `${th('math-calculators')} ${t('seoCardSuffix')}`, desc: t('seoCard3Desc') },
             ].map((item, i) => (
               <div key={i} className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 border border-gray-100 dark:border-gray-700">
                 <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-2">{item.title}</h3>

@@ -5,6 +5,10 @@ import { useTranslations, useLocale } from 'next-intl';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
 import { AmortizationSchedule } from '@/components/calc-panel/AmortizationSchedule';
 import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation';
+import { ExampleSection } from '@/components/calc-panel/ExampleSection';
+import { FormulaSection } from '@/components/calc-panel/FormulaSection';
+import { RelatedCalculatorCarousel } from '@/components/premium/RelatedCalculatorCarousel';
+import { InternalLinkingGrid } from '@/components/premium/InternalLinkingGrid';
 
 export function MortgageResults({ 
   homePrice, 
@@ -142,6 +146,41 @@ export function MortgageResults({
           currencySymbol="$"
         />
       </div>
+
+      {/* Trust disclaimer for financial calculators */}
+      <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+        <p className="text-xs text-gray-500 dark:text-gray-400">
+          Mortgage calculations use the standard amortization formula: M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1 ] where M = monthly payment, P = loan principal, i = monthly interest rate, and n = number of payments. Results are estimates based on input values.
+        </p>
+        <p className="mt-2 text-[10px] font-medium px-2 py-1 rounded bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+          This calculator is for informational purposes only and not a substitute for professional financial advice. Consult a qualified financial advisor for personalized guidance.
+        </p>
+      </div>
+
+      {/* Educational panels - seo.txt #22, #30-31 */}
+      <ExampleSection
+        calculationTitle="Mortgage Payment Calculation"
+        formula="M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1 ]"
+        exampleInput={{ principal: 300000, annualInterestRate: 4.5, years: 30 }}
+        exampleResult={{ monthlyPayment: 1520.06, totalPayment: 547221.76, totalInterest: 247221.76 }}
+      />
+      <FormulaSection
+        formula="M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1 ]"
+        variables={{
+          M: "Monthly mortgage payment",
+          P: "Loan principal amount",
+          i: "Monthly interest rate (annual rate ÷ 12)",
+          n: "Total number of payments (years × 12)"
+        }}
+        description="Standard fixed-rate mortgage amortization formula. Calculates monthly payment based on principal, interest rate, and loan term."
+      />
+      <RelatedCalculatorCarousel
+        currentCalcSlug="mortgage-calculator"
+        hubSlug="financial-calculators"
+      />
+      <InternalLinkingGrid
+        calculatorData={{ title: "Mortgage Calculator", hub: "financial-calculators", tier: "tier3" }}
+      />
     </div>
   );
 }

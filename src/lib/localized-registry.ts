@@ -62,7 +62,21 @@ export async function getLocalizedHubMeta(hubSlug: string, locale: string): Prom
   const { calculatorRegistry } = await getRegistry()
   const calculators = await getLocalizedCalculatorsByHub(hubSlug, locale)
   const meta = calculatorRegistry.find(c => c.hubSlug === hubSlug)
-  const title = hubSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+  
+  // Load locale-specific hub title from translation files
+  let title = hubSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+  if (locale && locale !== 'en') {
+    try {
+      const messages = (await import(`@/i18n/messages/${locale}.json`)).default
+      const hubs = (messages as any).hubs
+      if (hubs && hubs[hubSlug]) {
+        title = hubs[hubSlug]
+      }
+    } catch {
+      // Fall back to slug-derived title
+    }
+  }
+  
   return {
     slug: hubSlug,
     title: title,
