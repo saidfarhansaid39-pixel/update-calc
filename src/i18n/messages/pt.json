@@ -109,7 +109,23 @@
     "name_sports": "Esportes",
     "desc_sports": "Corrida, ciclismo, força, frequência cardíaca, fitness",
     "emptyTitle": "Ainda não há calculadoras",
-    "emptyMessage": "Ainda estamos a construir esta categoria. Veja todas as calculadoras ou volte ao início para explorar outras."
+    "emptyMessage": "Ainda estamos a construir esta categoria. Veja todas as calculadoras ou volte ao início para explorar outras.",
+    "financial-calculators-desc": "Calculadoras financeiras gratuitas para financiamento, empréstimos, investimentos, aposentadoria, impostos e mais. Planeje suas finanças com precisão.",
+    "health-calculators-desc": "Calculadoras de saúde gratuitas para IMC, calorias, gordura corporal, gravidez, frequência cardíaca e mais. Acompanhe sua jornada fitness.",
+    "math-calculators-desc": "Calculadoras matemáticas gratuitas para álgebra, geometria, trigonometria, estatística e mais. Resolva problemas instantaneamente.",
+    "conversion-calculators-desc": "Calculadoras de conversão gratuitas para comprimento, peso, volume, temperatura, moeda e mais. Converta unidades instantaneamente.",
+    "date-time-calculators-desc": "Calculadoras de data e hora gratuitas para duração, idade, números de semana e mais. Calcule datas e horas com precisão.",
+    "construction-calculators-desc": "Calculadoras de construção gratuitas para concreto, telhado, tinta, piso e mais. Estime materiais e custos.",
+    "statistics-calculators-desc": "Calculadoras estatísticas gratuitas para média, mediana, moda, desvio padrão e mais. Analise dados com facilidade.",
+    "education-calculators-desc": "Calculadoras educacionais gratuitas para notas, média, pontuações e mais. Acompanhe o desempenho acadêmico.",
+    "physics-calculators-desc": "Calculadoras de física gratuitas para velocidade, aceleração, força, energia e mais. Resolva problemas de física instantaneamente.",
+    "chemistry-calculators-desc": "Calculadoras de química gratuitas para massa molar, pH, diluição, estequiometria e mais. Domine conceitos de química.",
+    "engineering-calculators-desc": "Calculadoras de engenharia gratuitas para flexão de vigas, análise de treliças, momento de inércia e mais. Projete com confiança.",
+    "everyday-calculators-desc": "Calculadoras do dia a dia gratuitas para gorjeta, descontos, combustível, eletricidade e mais. Simplifique decisões diárias.",
+    "food-calculators-desc": "Calculadoras alimentares gratuitas para receitas, nutrição, conversões culinárias e mais. Cozinhe e coma melhor.",
+    "biology-calculators-desc": "Calculadoras de biologia gratuitas para divisão celular, genética, crescimento populacional e mais. Explore as ciências da vida.",
+    "ecology-calculators-desc": "Calculadoras de ecologia gratuitas para pegada de carbono, biodiversidade, uso da água e mais. Entenda seu impacto ambiental.",
+    "sports-calculators-desc": "Calculadoras esportivas gratuitas para ritmo, frequência cardíaca, VO2 máx, zonas de treino e mais. Otimize seu desempenho."
   },
   "actions": {
     "calculate": "Calcular",
@@ -185,7 +201,8 @@
     "errorOccurred": "Ocorreu um erro inesperado. Tente novamente ou volte.",
     "tryAgain": "Tentar novamente",
     "searchNoResults": "Nenhuma calculadora encontrada para \"{query}\"",
-    "searchNoResultsHint": "Tente um termo de pesquisa diferente ou navegue pelas calculadoras por categoria."
+    "searchNoResultsHint": "Tente um termo de pesquisa diferente ou navegue pelas calculadoras por categoria.",
+    "jsRequired": "Esta calculadora interativa requer JavaScript. Ative JavaScript nas configurações do seu navegador para calcular resultados, ver gráficos e usar todos os recursos, incluindo comparação de cenários, exportação e histórico."
   },
   "seo": {
     "siteTitle": "Calculat — A Plataforma de Calculadoras Mais Inteligente do Mundo",
@@ -2891,7 +2908,10 @@
         "toUse": "Para usar",
         "popularVariations": "Variações populares",
         "exploreRelatedHubs": "Explore hubs relacionados",
-        "calculatorCount": "{count} calculadoras"
+        "calculatorCount": "{count} calculadoras",
+        "descSuffix": "Calculadoras gratuitas on-line.",
+        "exploreBelow": "Explore nossas calculadoras gratuitas on-line abaixo.",
+        "metaPage": "— Página {page}"
       },
       "calculatorPage": {
         "home": "Início",
@@ -5650,5 +5670,19 @@
         "a": "Sim, usa fórmulas profissionais. Para setores regulados, confira resultados críticos com ferramentas certificadas."
       }
     ]
+  },
+  "internalLinks": {
+    "viewAll": "Ver todos os {count} calculadores desta categoria",
+    "browseAll": "Ver todos",
+    "related": "Calculadores relacionados",
+    "popularIn": "Populares em {hub}",
+    "youMightAlsoLike": "Você também pode gostar",
+    "quickLinks": "Links rápidos",
+    "home": "Início",
+    "allHub": "Todas as {hub}",
+    "aboutUs": "Sobre nós",
+    "linkCount": "{count} links internos nesta página",
+    "relatedCalcSchema": "Calculadores relacionados",
+    "relatedFromOthers": "Calculadores relacionados de outras categorias"
   }
 }

@@ -1,9 +1,11 @@
 import dynamic from 'next/dynamic'
+import { useTranslations } from 'next-intl'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 
 export type GenericCalculatorComponent = React.ComponentType<{ calculator: CalculatorEntry }>
 
 function LoadingFallback() {
+  const t = useTranslations('common')
   return (
     <>
       <div className="animate-pulse space-y-4 p-6">
@@ -14,7 +16,7 @@ function LoadingFallback() {
         <div className="h-20 bg-gray-200 dark:bg-gray-700 rounded" />
       </div>
       <noscript className="block p-4 text-sm text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700">
-        This interactive calculator requires JavaScript. Enable JavaScript in your browser settings to calculate results, view charts, and use all features including scenario comparison, export, and history.
+        {t('jsRequired')}
       </noscript>
     </>
   )

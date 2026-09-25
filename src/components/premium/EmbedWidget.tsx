@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { Code2, Copy, Check } from 'lucide-react'
 
 interface EmbedWidgetProps {
@@ -18,8 +18,10 @@ export function EmbedWidget({ slug, title, hubSlug }: EmbedWidgetProps) {
   const [copied, setCopied] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const t = useTranslations('calculatorUI')
+  const locale = useLocale()
 
-  const embedCode = `<iframe src="https://www.calculat.online/${hubSlug}/${slug}" width="100%" height="600" frameborder="0" title="${title.replace(/"/g, '&quot;')}"></iframe>`
+  const origin = locale === 'en' ? 'https://www.calculat.online' : `https://www.calculat.online/${locale}`
+  const embedCode = `<iframe src="${origin}/${hubSlug}/${slug}" width="100%" height="600" frameborder="0" title="${title.replace(/"/g, '&quot;')}"></iframe>`
 
   useEffect(() => {
     function handleMouseDown(e: MouseEvent) {

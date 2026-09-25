@@ -347,8 +347,8 @@ export function PremiumCalculatorShell({
   const [extraFieldValues, setExtraFieldValues] = useState<Record<string, string>>({})
   const shareUrl = useMemo(() => {
     if (typeof window !== 'undefined') return window.location.href
-    return `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}`
-  }, [calculator.hubSlug, calculator.slug])
+    return `${siteUrl}/${calculator.hubSlug}/${calculator.slug}`
+  }, [calculator.hubSlug, calculator.slug, siteUrl])
 
   React.useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 300)

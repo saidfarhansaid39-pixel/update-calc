@@ -1,0 +1,29 @@
+{
+  "hubs": {
+    "financial-calculators-desc": "Free financial calculators for mortgage, loans, investments, retirement, taxes and more. Plan your finances with precision.",
+    "health-calculators-desc": "Free health calculators for BMI, calories, body fat, pregnancy, heart rate, and more. Track your fitness journey.",
+    "math-calculators-desc": "Free math calculators for algebra, geometry, trigonometry, statistics, and more. Solve complex problems instantly.",
+    "conversion-calculators-desc": "Free conversion calculators for length, weight, volume, temperature, currency, and more. Convert between units instantly.",
+    "date-time-calculators-desc": "Free date and time calculators for duration, age, week numbers, and more. Calculate dates and times with precision.",
+    "construction-calculators-desc": "Free construction calculators for concrete, roofing, paint, flooring, and more. Estimate materials and costs.",
+    "statistics-calculators-desc": "Free statistics calculators for mean, median, mode, standard deviation, and more. Analyze data with ease.",
+    "education-calculators-desc": "Free education calculators for grade, GPA, test scores, and more. Track academic performance.",
+    "physics-calculators-desc": "Free physics calculators for velocity, acceleration, force, energy, and more. Solve physics problems instantly.",
+    "chemistry-calculators-desc": "Free chemistry calculators for molar mass, pH, dilution, stoichiometry, and more. Master chemistry concepts.",
+    "engineering-calculators-desc": "Free engineering calculators for beam deflection, truss analysis, moment of inertia, and more. Design with confidence.",
+    "everyday-calculators-desc": "Free everyday calculators for tips, discounts, fuel, electricity, and more. Simplify daily decisions.",
+    "food-calculators-desc": "Free food calculators for recipes, nutrition, cooking conversions, and more. Cook and eat smarter.",
+    "biology-calculators-desc": "Free biology calculators for cell division, genetics, population growth, and more. Explore life sciences.",
+    "ecology-calculators-desc": "Free ecology calculators for carbon footprint, biodiversity, water usage, and more. Understand your environmental impact.",
+    "sports-calculators-desc": "Free sports calculators for pace, heart rate, VO2 max, training zones, and more. Optimize your performance."
+  },
+  "calculatorUI": {
+    "chrome": {
+      "hubLanding": {
+        "descSuffix": "Free calculator online tools.",
+        "exploreBelow": "Explore our free calculator online tools below.",
+        "metaPage": "— Page {page}"
+      }
+    }
+  }
+}

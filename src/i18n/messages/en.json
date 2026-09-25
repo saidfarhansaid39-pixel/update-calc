@@ -109,7 +109,23 @@
     "name_sports": "Sports",
     "desc_sports": "Running, cycling, strength, heart rate, fitness",
     "emptyTitle": "No calculators yet",
-    "emptyMessage": "We're still building this category. Browse all calculators or head back home to explore others."
+    "emptyMessage": "We're still building this category. Browse all calculators or head back home to explore others.",
+    "financial-calculators-desc": "Free financial calculators for mortgage, loans, investments, retirement, taxes and more. Plan your finances with precision.",
+    "health-calculators-desc": "Free health calculators for BMI, calories, body fat, pregnancy, heart rate, and more. Track your fitness journey.",
+    "math-calculators-desc": "Free math calculators for algebra, geometry, trigonometry, statistics, and more. Solve complex problems instantly.",
+    "conversion-calculators-desc": "Free conversion calculators for length, weight, volume, temperature, currency, and more. Convert between units instantly.",
+    "date-time-calculators-desc": "Free date and time calculators for duration, age, week numbers, and more. Calculate dates and times with precision.",
+    "construction-calculators-desc": "Free construction calculators for concrete, roofing, paint, flooring, and more. Estimate materials and costs.",
+    "statistics-calculators-desc": "Free statistics calculators for mean, median, mode, standard deviation, and more. Analyze data with ease.",
+    "education-calculators-desc": "Free education calculators for grade, GPA, test scores, and more. Track academic performance.",
+    "physics-calculators-desc": "Free physics calculators for velocity, acceleration, force, energy, and more. Solve physics problems instantly.",
+    "chemistry-calculators-desc": "Free chemistry calculators for molar mass, pH, dilution, stoichiometry, and more. Master chemistry concepts.",
+    "engineering-calculators-desc": "Free engineering calculators for beam deflection, truss analysis, moment of inertia, and more. Design with confidence.",
+    "everyday-calculators-desc": "Free everyday calculators for tips, discounts, fuel, electricity, and more. Simplify daily decisions.",
+    "food-calculators-desc": "Free food calculators for recipes, nutrition, cooking conversions, and more. Cook and eat smarter.",
+    "biology-calculators-desc": "Free biology calculators for cell division, genetics, population growth, and more. Explore life sciences.",
+    "ecology-calculators-desc": "Free ecology calculators for carbon footprint, biodiversity, water usage, and more. Understand your environmental impact.",
+    "sports-calculators-desc": "Free sports calculators for pace, heart rate, VO2 max, training zones, and more. Optimize your performance."
   },
   "actions": {
     "calculate": "Calculate",
@@ -185,7 +201,8 @@
     "errorOccurred": "An unexpected error occurred. Please try again or go back.",
     "tryAgain": "Try again",
     "searchNoResults": "No calculators found for \"{query}\"",
-    "searchNoResultsHint": "Try a different search term or browse calculators by category."
+    "searchNoResultsHint": "Try a different search term or browse calculators by category.",
+    "jsRequired": "This interactive calculator requires JavaScript. Enable JavaScript in your browser settings to calculate results, view charts, and use all features including scenario comparison, export, and history."
   },
   "seo": {
     "siteTitle": "Calculat — The World's Smartest Calculator Platform",
@@ -3003,7 +3020,10 @@
         "toUse": "To Use",
         "popularVariations": "Popular Variations",
         "exploreRelatedHubs": "Explore related hubs",
-        "calculatorCount": "{count} calculators"
+        "calculatorCount": "{count} calculators",
+        "descSuffix": "Free calculator online tools.",
+        "exploreBelow": "Explore our free calculator online tools below.",
+        "metaPage": "— Page {page}"
       },
       "calculatorPage": {
         "home": "Home",
@@ -3453,5 +3473,19 @@
       "zh-CN": "中文"
     }
   },
-  "contentEngine": {}
+  "contentEngine": {},
+  "internalLinks": {
+    "viewAll": "View all {count} calculators in this category",
+    "browseAll": "Browse All",
+    "related": "Related calculators",
+    "popularIn": "Popular in {hub}",
+    "youMightAlsoLike": "You might also like",
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "allHub": "All {hub}",
+    "aboutUs": "About Us",
+    "linkCount": "{count} internal links on this page",
+    "relatedCalcSchema": "Related Calculators",
+    "relatedFromOthers": "Related Calculators from Other Categories"
+  }
 }

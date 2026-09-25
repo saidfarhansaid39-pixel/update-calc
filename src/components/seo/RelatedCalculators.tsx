@@ -38,6 +38,7 @@ export async function RelatedCalculators({ calculator, max = 6 }: RelatedCalcula
   const locale = await getLocale()
   const t = (await import('next-intl/server')).getTranslations
   const th = await t('hubs')
+  const ti = await t('internalLinks')
   const { calculatorRegistry } = await import('@calcuniverse/calculator-registry')
   const candidates = calculatorRegistry
     .filter(c => c.hubSlug !== calculator.hubSlug && c.slug !== calculator.slug && !/\d$/.test(c.slug))
@@ -63,7 +64,7 @@ export async function RelatedCalculators({ calculator, max = 6 }: RelatedCalcula
   const localePrefix = locale === 'en' ? '' : `/${locale}`
 
   const itemListSchema = {
-    name: 'Related Calculators',
+    name: ti('relatedCalcSchema'),
     itemListElement: candidates.map(({ calc: c }, i) => ({
       '@type': 'ListItem',
       position: i + 1,
@@ -77,7 +78,7 @@ export async function RelatedCalculators({ calculator, max = 6 }: RelatedCalcula
       <SchemaMarkup type="ItemList" data={itemListSchema} locale={locale} />
       <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4 flex items-center gap-2">
         <span className="inline-block h-4 w-1 rounded-full" style={{ backgroundColor: accent }} aria-hidden="true" />
-        Related Calculators from Other Categories
+        {ti('relatedFromOthers')}
       </h2>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {localizedEntries.map((localized, i) => (

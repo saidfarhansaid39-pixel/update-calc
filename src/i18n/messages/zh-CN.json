@@ -109,7 +109,23 @@
     "name_sports": "体育",
     "desc_sports": "跑步、骑行、力量、心率、健身",
     "emptyTitle": "暂无计算器",
-    "emptyMessage": "我们仍在完善这一类别。您可以浏览所有计算器，或返回首页探索其他内容。"
+    "emptyMessage": "我们仍在完善这一类别。您可以浏览所有计算器，或返回首页探索其他内容。",
+    "financial-calculators-desc": "免费的金融计算器，涵盖抵押贷款、贷款、投资、退休、税务等。精准规划您的财务。",
+    "health-calculators-desc": "免费的健康计算器，涵盖BMI、卡路里、体脂、孕期、心率等。追踪您的健身历程。",
+    "math-calculators-desc": "免费的数学计算器，涵盖代数、几何、三角学、统计等。即时解决复杂问题。",
+    "conversion-calculators-desc": "免费的单位换算器，涵盖长度、重量、体积、温度、货币等。即时换算单位。",
+    "date-time-calculators-desc": "免费的日期时间计算器，涵盖时长、年龄、周数等。精准计算日期和时间。",
+    "construction-calculators-desc": "免费的建筑计算器，涵盖混凝土、屋顶、油漆、地板等。估算材料和成本。",
+    "statistics-calculators-desc": "免费的统计计算器，涵盖平均数、中位数、众数、标准差等。轻松分析数据。",
+    "education-calculators-desc": "免费的教育计算器，涵盖成绩、GPA、考试分数等。追踪学业表现。",
+    "physics-calculators-desc": "免费的物理计算器，涵盖速度、加速度、力、能量等。即时解决物理问题。",
+    "chemistry-calculators-desc": "免费的化学计算器，涵盖摩尔质量、pH、稀释、化学计量等。掌握化学概念。",
+    "engineering-calculators-desc": "免费的工程计算器，涵盖梁挠度、桁架分析、转动惯量等。自信地完成设计。",
+    "everyday-calculators-desc": "免费的日常计算器，涵盖小费、折扣、燃油、电费等。简化日常决策。",
+    "food-calculators-desc": "免费的食品计算器，涵盖食谱、营养、烹饪换算等。更聪明地烹饪和饮食。",
+    "biology-calculators-desc": "免费的生物计算器，涵盖细胞分裂、遗传学、人口增长等。探索生命科学。",
+    "ecology-calculators-desc": "免费的生态计算器，涵盖碳足迹、生物多样性、用水量等。了解您的环境影响。",
+    "sports-calculators-desc": "免费的体育计算器，涵盖配速、心率、最大摄氧量、训练区间等。优化您的表现。"
   },
   "actions": {
     "calculate": "计算",
@@ -185,7 +201,8 @@
     "errorOccurred": "发生意外错误。请重试或返回上一页。",
     "tryAgain": "重试",
     "searchNoResults": "未找到与“{query}”相关的计算器",
-    "searchNoResultsHint": "请尝试其他搜索词，或按类别浏览计算器。"
+    "searchNoResultsHint": "请尝试其他搜索词，或按类别浏览计算器。",
+    "jsRequired": "此交互式计算器需要 JavaScript。请在浏览器设置中启用 JavaScript，以计算结果、查看图表并使用包括场景对比、导出和历史记录在内的所有功能。"
   },
   "seo": {
     "siteTitle": "Calculat — 世界上最智能的计算器平台",
@@ -2891,7 +2908,10 @@
         "toUse": "使用",
         "popularVariations": "热门变体",
         "exploreRelatedHubs": "探索相关分类",
-        "calculatorCount": "{count} 个计算器"
+        "calculatorCount": "{count} 个计算器",
+        "descSuffix": "免费在线计算器。",
+        "exploreBelow": "浏览下方我们的免费在线计算器。",
+        "metaPage": "— 第 {page} 页"
       },
       "calculatorPage": {
         "home": "首页",
@@ -5650,5 +5670,19 @@
         "a": "公式是专业级的，受监管行业请再用认证工具复核关键结果。"
       }
     ]
+  },
+  "internalLinks": {
+    "viewAll": "查看该类别的全部 {count} 个计算器",
+    "browseAll": "查看全部",
+    "related": "相关计算器",
+    "popularIn": "{hub}热门",
+    "youMightAlsoLike": "您可能还喜欢",
+    "quickLinks": "快捷链接",
+    "home": "首页",
+    "allHub": "全部{hub}",
+    "aboutUs": "关于我们",
+    "linkCount": "本页有 {count} 个内部链接",
+    "relatedCalcSchema": "相关计算器",
+    "relatedFromOthers": "其他类别的相关计算器"
   }
 }

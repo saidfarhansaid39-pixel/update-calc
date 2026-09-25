@@ -1,0 +1,19 @@
+{
+  "internalLinks": {
+    "viewAll": "View all {count} calculators in this category",
+    "browseAll": "Browse All",
+    "related": "Related calculators",
+    "popularIn": "Popular in {hub}",
+    "youMightAlsoLike": "You might also like",
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "allHub": "All {hub}",
+    "aboutUs": "About Us",
+    "linkCount": "{count} internal links on this page",
+    "relatedCalcSchema": "Related Calculators",
+    "relatedFromOthers": "Related Calculators from Other Categories"
+  },
+  "common": {
+    "jsRequired": "This interactive calculator requires JavaScript. Enable JavaScript in your browser settings to calculate results, view charts, and use all features including scenario comparison, export, and history."
+  }
+}

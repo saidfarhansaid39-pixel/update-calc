@@ -109,7 +109,23 @@
     "name_sports": "スポーツ",
     "desc_sports": "ランニング、サイクリング、筋力、心拍数、フィットネス",
     "emptyTitle": "計算ツールはまだありません",
-    "emptyMessage": "このカテゴリは作成中です。すべての計算ツールを閲覧するか、ホームに戻って他のカテゴリをご覧ください。"
+    "emptyMessage": "このカテゴリは作成中です。すべての計算ツールを閲覧するか、ホームに戻って他のカテゴリをご覧ください。",
+    "financial-calculators-desc": "住宅ローン、ローン、投資、退職、税金などの無料の金融計算ツール。お金の計画を精密に。",
+    "health-calculators-desc": "BMI、カロリー、体脂肪、妊娠、心拍数などの無料の健康計算ツール。フィットネスの記録を追跡。",
+    "math-calculators-desc": "代数、幾何、三角法、統計などの無料の数学計算ツール。問題を即座に解決。",
+    "conversion-calculators-desc": "長さ、重さ、体積、温度、通貨などの無料の単位換算ツール。単位をすぐに変換。",
+    "date-time-calculators-desc": "期間、年齢、週番号などの無料の日付・時刻計算ツール。日時を精密に計算。",
+    "construction-calculators-desc": "コンクリート、屋根、塗装、床材などの無料の建築計算ツール。素材と費用を見積もり。",
+    "statistics-calculators-desc": "平均、中央値、最頻値、標準偏差などの無料の統計計算ツール。データ分析を簡単に。",
+    "education-calculators-desc": "成績、GPA、テストスコアなどの無料の教育計算ツール。学業成績を追跡。",
+    "physics-calculators-desc": "速度、加速度、力、エネルギーなどの無料の物理計算ツール。物理問題を即座に解決。",
+    "chemistry-calculators-desc": "モル質量、pH、希釈、化学計算などの無料の化学計算ツール。化学の概念をマスター。",
+    "engineering-calculators-desc": "梁のたわみ、トラス解析、断面二次モーメントなどの無料の工学計算ツール。自信を持って設計。",
+    "everyday-calculators-desc": "チップ、割引、燃料、電気代などの無料の日常計算ツール。毎日の判断をシンプルに。",
+    "food-calculators-desc": "レシピ、栄養、調理単位換算などの無料の食品計算ツール。もっと賢く料理・食事。",
+    "biology-calculators-desc": "細胞分裂、遺伝学、人口増加などの無料の生物学計算ツール。生命科学を探究。",
+    "ecology-calculators-desc": "カーボンフットプリント、生物多様性、水使用量などの無料の環境計算ツール。環境への影響を理解。",
+    "sports-calculators-desc": "ペース、心拍数、VO2マックス、トレーニングゾーンなどの無料のスポーツ計算ツール。パフォーマンスを最適化。"
   },
   "actions": {
     "calculate": "計算",
@@ -185,7 +201,8 @@
     "errorOccurred": "予期しないエラーが発生しました。もう一度お試しいただくか、前のページに戻ってください。",
     "tryAgain": "再試行",
     "searchNoResults": "「{query}」に一致する計算ツールが見つかりませんでした",
-    "searchNoResultsHint": "別の検索語をお試しいただくか、カテゴリ別に計算ツールを閲覧してください。"
+    "searchNoResultsHint": "別の検索語をお試しいただくか、カテゴリ別に計算ツールを閲覧してください。",
+    "jsRequired": "このインタラクティブな計算ツールには JavaScript が必要です。JavaScript を有効にすると、結果の計算、グラフの表示、シナリオ比較・エクスポート・履歴を含むすべての機能をご利用いただけます。"
   },
   "seo": {
     "siteTitle": "Calculat — 世界で最もスマートな電卓プラットフォーム",
@@ -2891,7 +2908,10 @@
         "toUse": "利用可能",
         "popularVariations": "人気のバリエーション",
         "exploreRelatedHubs": "関連カテゴリを見る",
-        "calculatorCount": "{count} 個の計算ツール"
+        "calculatorCount": "{count} 個の計算ツール",
+        "descSuffix": "無料のオンライン計算ツール。",
+        "exploreBelow": "下記で無料のオンライン計算ツールをご利用ください。",
+        "metaPage": "— ページ {page}"
       },
       "calculatorPage": {
         "home": "ホーム",
@@ -5650,5 +5670,19 @@
         "a": "専門式ゆえ可能。規制業では認証具で確認。"
       }
     ]
+  },
+  "internalLinks": {
+    "viewAll": "このカテゴリの全 {count} 個の計算ツールを見る",
+    "browseAll": "すべて表示",
+    "related": "関連する計算ツール",
+    "popularIn": "{hub}の人気",
+    "youMightAlsoLike": "あなたへのおすすめ",
+    "quickLinks": "クイックリンク",
+    "home": "ホーム",
+    "allHub": "すべての{hub}",
+    "aboutUs": "私たちについて",
+    "linkCount": "このページの内部リンク {count} 件",
+    "relatedCalcSchema": "関連する計算ツール",
+    "relatedFromOthers": "他のカテゴリの関連計算ツール"
   }
 }

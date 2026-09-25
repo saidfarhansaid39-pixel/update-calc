@@ -29,9 +29,10 @@ interface InternalLinkingGridProps {
 export function InternalLinkingGrid({ calculatorData }: InternalLinkingGridProps) {
   const locale = useLocale()
   const th = useTranslations('hubs')
+  const ti = useTranslations('internalLinks')
   const [localizedTitles, setLocalizedTitles] = useState<Record<string, string>>({})
   const [localizedDescriptions, setLocalizedDescriptions] = useState<Record<string, string>>({})
-  const { title, hub, tier } = calculatorData
+  const { title, hub } = calculatorData
 
   const links = useMemo(() => {
     const all = calculatorRegistry
@@ -95,10 +96,10 @@ export function InternalLinkingGrid({ calculatorData }: InternalLinkingGridProps
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-semibold text-gray-900 dark:text-white">{th(hub)}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">View all {links.sameCategory.length + 1} calculators in this category</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{ti('viewAll', { count: links.sameCategory.length + 1 })}</p>
           </div>
           <Link href={links.hubPage} rel="bookmark" className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#1a3a8a] text-white rounded-lg text-sm font-medium hover:bg-[#0a1d4f] transition-colors">
-            Browse All <ArrowRight className="w-4 h-4" />
+            {ti('browseAll')} <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>
@@ -108,14 +109,16 @@ export function InternalLinkingGrid({ calculatorData }: InternalLinkingGridProps
         <div>
           <div className="flex items-center gap-1.5 mb-3">
             <List className="w-4 h-4 text-gray-400" />
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Related calculators</p>
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">{ti('related')}</p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
             {links.relatedDetail.map(c => (
               <Link key={c.slug} href={`/${links.hubPath}/${c.slug}`} rel="bookmark"
                 className="px-3 py-2.5 bg-white dark:bg-gray-800 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#1a3a8a]/5 hover:text-[#1a3a8a] transition-colors border border-gray-200 dark:border-gray-700 shadow-sm">
                 <p className="font-medium truncate">{localizedCalc(c).title}</p>
-                <p className="text-[10px] text-gray-400 mt-0.5 line-clamp-1">{localizedCalc(c).description}</p>
+                {locale === 'en' && (
+                  <p className="text-[10px] text-gray-400 mt-0.5 line-clamp-1">{localizedCalc(c).description}</p>
+                )}
               </Link>
             ))}
           </div>
@@ -127,7 +130,7 @@ export function InternalLinkingGrid({ calculatorData }: InternalLinkingGridProps
         <div>
           <div className="flex items-center gap-1.5 mb-3">
             <TrendingUp className="w-4 h-4 text-gray-400" />
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Popular in {th(hub)}</p>
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">{ti('popularIn', { hub: th(hub) })}</p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
             {links.popular.map(c => (
@@ -145,7 +148,7 @@ export function InternalLinkingGrid({ calculatorData }: InternalLinkingGridProps
         <div>
           <div className="flex items-center gap-1.5 mb-3">
             <Grid3X3 className="w-4 h-4 text-gray-400" />
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">You might also like</p>
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">{ti('youMightAlsoLike')}</p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
             {links.youMightLike.map(c => (
@@ -162,19 +165,18 @@ export function InternalLinkingGrid({ calculatorData }: InternalLinkingGridProps
       <div>
         <div className="flex items-center gap-1.5 mb-3">
           <Hash className="w-4 h-4 text-gray-400" />
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Quick Links</p>
+          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">{ti('quickLinks')}</p>
         </div>
         <div className="flex flex-wrap gap-1.5">
           <Link href="/" rel="bookmark" className="px-2.5 py-1.5 text-xs bg-gray-50 dark:bg-gray-900 rounded-lg text-gray-600 dark:text-gray-400 hover:text-[#1a3a8a] hover:bg-[#1a3a8a]/5 transition-colors border border-gray-100 dark:border-gray-800">
-            Home
+            {ti('home')}
           </Link>
           <Link href={links.hubPage} rel="bookmark" className="px-2.5 py-1.5 text-xs bg-gray-50 dark:bg-gray-900 rounded-lg text-gray-600 dark:text-gray-400 hover:text-[#1a3a8a] hover:bg-[#1a3a8a]/5 transition-colors border border-gray-100 dark:border-gray-800">
-            All {th(hub)}
+            {ti('allHub', { hub: th(hub) })}
           </Link>
           <Link href="/about" rel="bookmark" className="px-2.5 py-1.5 text-xs bg-gray-50 dark:bg-gray-900 rounded-lg text-gray-600 dark:text-gray-400 hover:text-[#1a3a8a] hover:bg-[#1a3a8a]/5 transition-colors border border-gray-100 dark:border-gray-800">
-            About Us
+            {ti('aboutUs')}
           </Link>
-          {tier && <span key={tier} className="px-2.5 py-1.5 text-xs bg-gray-50 dark:bg-gray-900 rounded-lg text-gray-400 border border-gray-100 dark:border-gray-800">{tier}</span>}
           {links.popular.slice(0, 3).map(c => (
             <Link key={c.slug} href={`/${links.hubPath}/${c.slug}`} rel="bookmark"
               className="px-2.5 py-1.5 text-xs bg-gray-50 dark:bg-gray-900 rounded-lg text-gray-600 dark:text-gray-400 hover:text-[#1a3a8a] transition-colors border border-gray-100 dark:border-gray-800">
@@ -183,7 +185,7 @@ export function InternalLinkingGrid({ calculatorData }: InternalLinkingGridProps
           ))}
         </div>
         <p className="text-[10px] text-gray-400 mt-2">
-          {linkCount} internal links on this page
+          {ti('linkCount', { count: linkCount })}
         </p>
       </div>
     </div>

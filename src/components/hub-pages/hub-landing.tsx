@@ -132,15 +132,18 @@ export function generateHubStaticParams() {
 
 export async function generateHubLandingMetadata(hubSlug: string, page: number = 1) {
   const locale = await getLocale()
+  const th = await getTranslations('hubs')
+  const tch = await getTranslations('calculatorUI.chrome.hubLanding')
   const meta = await getHubMeta(hubSlug, locale)
   if (!meta) return { title: 'Calculators' }
   const totalPages = Math.ceil(meta.calculators.length / PER_PAGE)
   const url = page === 1
     ? (locale === 'en' ? `${siteUrl}/${hubSlug}` : `${siteUrl}/${locale}/${hubSlug}`)
     : (locale === 'en' ? `${siteUrl}/${hubSlug}?page=${page}` : `${siteUrl}/${locale}/${hubSlug}?page=${page}`)
-  const rawTitle = page === 1 ? `${meta.title} Online` : `${meta.title} Online — Page ${page}`
+  const rawTitle = page === 1 ? `${meta.title} Online` : `${meta.title} Online ${tch('metaPage', { page })}`
   const title = rawTitle.length > 60 ? rawTitle.substring(0, 57).replace(/\s+\S*$/, '') + '...' : `${rawTitle} | Calculat`
-  const desc = meta.description.length > 155 ? meta.description.substring(0, 152).replace(/\s+\S*$/, '') + '...' : `${meta.description} Free calculator online tools.`
+  const hubDesc = th(`${hubSlug}-desc`) || meta.description
+  const desc = hubDesc.length > 155 ? hubDesc.substring(0, 152).replace(/\s+\S*$/, '') + '...' : `${hubDesc} ${tch('descSuffix')}`
   const robots = page === 1 ? { index: true, follow: true } as const : { index: false, follow: true } as const
   return {
     title,
@@ -180,7 +183,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
   const Icon = hubIcons[hubSlug] || Calculator
   const theme = getHubTheme(hubSlug)
   const hubTitle = th(hubSlug) || meta.title
-  const hubDescription = meta.description
+  const hubDescription = th(`${hubSlug}-desc`) || meta.description
   const calculators = meta.calculators
 
   const manualCalcs = calculators.filter((c: CalculatorEntry) => !/\d$/.test(c.slug))
@@ -294,7 +297,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
             </div>
             <div className="min-w-0">
               <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">{hubTitle} Online</h1>
-              <p className="text-base sm:text-lg text-white/90 max-w-2xl">{hubDescription} Explore our free calculator online tools below.</p>
+              <p className="text-base sm:text-lg text-white/90 max-w-2xl">{hubDescription} {tch('exploreBelow')}</p>
             </div>
           </div>
         </div>
@@ -372,7 +375,9 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-semibold text-gray-900 dark:text-white text-sm transition-colors group-hover:text-[color:var(--hub-accent)]">{calc.title}</h3>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">{calc.description}</p>
+                    {locale === 'en' && (
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">{calc.description}</p>
+                    )}
                     <div className="flex items-center gap-2 mt-2">
                       <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${getTierColor(calc.tier)}`}>
                         {getTierLabel(calc.tier, tch)}

@@ -179,7 +179,7 @@ export function GuideSection({ locale, t, th, calculator, showContent, onToggleC
       <SchemaMarkup type="WebApplication" data={{
         name: calculator.title,
         description: calculator.description,
-        url: `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}`,
+        url: `https://www.calculat.online${locale === 'en' ? '' : `/${locale}`}/${calculator.hubSlug}/${calculator.slug}`,
         category: calculator.hubName,
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
         applicationCategory: applicationCategory,
@@ -208,7 +208,7 @@ export function GuideSection({ locale, t, th, calculator, showContent, onToggleC
       <SchemaMarkup type="WebApplication" data={{
         name: calculator.title,
         description: calculator.description,
-        url: `https://www.calculat.online/${calculator.hubSlug}/${calculator.slug}`,
+        url: `https://www.calculat.online${locale === 'en' ? '' : `/${locale}`}/${calculator.hubSlug}/${calculator.slug}`,
         applicationCategory: applicationCategory,
         operatingSystem: 'Web',
       }} />
