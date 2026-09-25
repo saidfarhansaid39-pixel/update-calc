@@ -16,13 +16,15 @@ async function cluster() {
   return _clusterMod
 }
 import { getLocale, getTranslations } from 'next-intl/server'
-import { buildHreflang } from '@/lib/buildHreflang'
+import { hubPath, hubSuffix, calcPath, calcSuffix, hubHreflangs } from '@/lib/slug-paths'
 
 const siteUrl = 'https://www.calculat.online'
 const PER_PAGE = 60
 
-function PaginationBar({ page, totalPages, hubSlug, t }: { page: number; totalPages: number; hubSlug: string; t: (key: string) => string }) {
+function PaginationBar({ page, totalPages, hubSlug, locale, t }: { page: number; totalPages: number; hubSlug: string; locale: string; t: (key: string) => string }) {
   if (totalPages <= 1) return null
+  // Locale SUFFIX only — next-intl <Link> prefixes the current locale itself.
+  const base = hubSuffix(locale, hubSlug)
   const pages: (number | '...')[] = []
   for (let i = 1; i <= totalPages; i++) {
     if (i === 1 || i === totalPages || Math.abs(i - page) <= 2) {
@@ -35,7 +37,7 @@ function PaginationBar({ page, totalPages, hubSlug, t }: { page: number; totalPa
     <nav aria-label={t('paginationAria')} className="flex items-center justify-center gap-1.5 mt-8 mb-4">
       {page > 1 && (
         <Link
-          href={page === 2 ? `/${hubSlug}` : `/${hubSlug}?page=${page - 1}`}
+          href={page === 2 ? base : `${base}?page=${page - 1}`}
           className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#1a3a8a] hover:text-white dark:hover:bg-[#06b6d4] transition-colors"
         >
           <ChevronLeft className="w-4 h-4" />
@@ -48,7 +50,7 @@ function PaginationBar({ page, totalPages, hubSlug, t }: { page: number; totalPa
         ) : (
           <Link
             key={p}
-            href={p === 1 ? `/${hubSlug}` : `/${hubSlug}?page=${p}`}
+            href={p === 1 ? base : `${base}?page=${p}`}
             className={`w-9 h-9 flex items-center justify-center text-sm font-medium rounded-lg transition-colors ${
               p === page
                 ? 'bg-[#1a3a8a] text-white'
@@ -61,7 +63,7 @@ function PaginationBar({ page, totalPages, hubSlug, t }: { page: number; totalPa
       )}
       {page < totalPages && (
         <Link
-          href={`/${hubSlug}?page=${page + 1}`}
+          href={`${base}?page=${page + 1}`}
           className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#1a3a8a] hover:text-white dark:hover:bg-[#06b6d4] transition-colors"
         >
           {t('next')}
@@ -137,9 +139,8 @@ export async function generateHubLandingMetadata(hubSlug: string, page: number =
   const meta = await getHubMeta(hubSlug, locale)
   if (!meta) return { title: 'Calculators' }
   const totalPages = Math.ceil(meta.calculators.length / PER_PAGE)
-  const url = page === 1
-    ? (locale === 'en' ? `${siteUrl}/${hubSlug}` : `${siteUrl}/${locale}/${hubSlug}`)
-    : (locale === 'en' ? `${siteUrl}/${hubSlug}?page=${page}` : `${siteUrl}/${locale}/${hubSlug}?page=${page}`)
+  const base = `${siteUrl}${hubPath(locale, hubSlug)}`
+  const url = page === 1 ? base : `${base}?page=${page}`
   const rawTitle = page === 1 ? `${meta.title} Online` : `${meta.title} Online ${tch('metaPage', { page })}`
   const title = rawTitle.length > 60 ? rawTitle.substring(0, 57).replace(/\s+\S*$/, '') + '...' : `${rawTitle} | Calculat`
   const hubDesc = th(`${hubSlug}-desc`) || meta.description
@@ -149,8 +150,8 @@ export async function generateHubLandingMetadata(hubSlug: string, page: number =
     title,
     description: desc,
     alternates: {
-      canonical: page === 1 ? url : (locale === 'en' ? `${siteUrl}/${hubSlug}` : `${siteUrl}/${locale}/${hubSlug}`),
-      languages: buildHreflang(`/${hubSlug}`),
+      canonical: page === 1 ? url : base,
+      languages: hubHreflangs(hubSlug),
     },
     openGraph: {
       title,
@@ -189,7 +190,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
   const manualCalcs = calculators.filter((c: CalculatorEntry) => !/\d$/.test(c.slug))
   const totalPages = Math.ceil(manualCalcs.length / PER_PAGE)
   if (totalPages >= 1 && page > totalPages) {
-    permanentRedirect(locale === 'en' ? `/${hubSlug}` : `/${locale}/${hubSlug}`)
+    permanentRedirect(encodeURI(hubPath(locale, hubSlug)))
   }
   const start = (page - 1) * PER_PAGE
   const manualPageCalcs = manualCalcs.slice(start, start + PER_PAGE)
@@ -257,7 +258,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
     return scored
   })()
 
-  const hubUrl = locale === 'en' ? `${siteUrl}/${hubSlug}` : `${siteUrl}/${locale}/${hubSlug}`
+  const hubUrl = `${siteUrl}${hubPath(locale, hubSlug)}`
   const collectionPageSchema = {
     name: hubTitle,
     description: hubDescription,
@@ -267,7 +268,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
       itemListElement: manualPageCalcs.map((calc: CalculatorEntry, index: number) => ({
         '@type': 'ListItem',
         position: start + index + 1,
-        url: locale === 'en' ? `${siteUrl}/${hubSlug}/${calc.slug}` : `${siteUrl}/${locale}/${hubSlug}/${calc.slug}`,
+        url: `${siteUrl}${calcPath(locale, calc.hubSlug || hubSlug, calc.slug)}`,
         name: calc.title,
       })),
     },
@@ -334,7 +335,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
                   return (
                     <Link
                       key={cs}
-                      href={`/${hubSlug}/${cs}`}
+                      href={calcSuffix(locale, hubSlug, cs)}
                       className="text-xs px-3 py-1.5 rounded-full bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-colors border border-gray-200 dark:border-gray-600"
                     >
                       {entry.variant.title}
@@ -365,7 +366,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
             return (
               <Link
                 key={calc.slug}
-                href={`/${hubSlug}/${calc.slug}`}
+                href={calcSuffix(locale, hubSlug, calc.slug)}
                 className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 border-l-4 rounded-xl p-5 hover:shadow-md transition-all hover:-translate-y-0.5"
                 style={{ borderLeftColor: theme.accent }}
               >
@@ -394,7 +395,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
         </div>
         )}
 
-        <PaginationBar page={page} totalPages={totalPages} hubSlug={hubSlug} t={tch} />
+        <PaginationBar page={page} totalPages={totalPages} hubSlug={hubSlug} locale={locale} t={tch} />
 
         {relatedHubs.length > 0 && (
           <section className="mt-12">
@@ -407,7 +408,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
                 return (
                   <Link
                     key={hub.slug}
-                    href={`/${hub.slug}`}
+                    href={hubSuffix(locale, hub.slug)}
                     className="group flex items-center gap-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-4 hover:shadow-md transition-all hover:-translate-y-0.5 border-l-4"
                     style={{ borderLeftColor: theme.accent }}
                   >

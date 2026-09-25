@@ -1,6 +1,7 @@
-import { notFound } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 import { setRequestLocale } from 'next-intl/server'
-import { isValidHubSlug, findCalculator } from '@/lib/hub-data'
+import { findCalculator } from '@/lib/hub-data'
+import { resolveHubSlug, resolveCalcSlug, localizedHub } from '@/lib/slug-paths'
 import { AUTHORS } from '@/lib/authors'
 import { CalculatorPageContent, generateCalculatorMetadata } from '@/components/hub-pages/calculator-page-content'
 import { HubLandingContent, generateHubLandingMetadata } from '@/components/hub-pages/hub-landing'
@@ -56,7 +57,8 @@ export async function generateStaticParams() {
 
   for (const hub of hubs) {
     for (const locale of locales) {
-      params.push({ slug: [locale, hub] })
+      // Pre-render the translated path (the canonical English form 301s to it)
+      params.push({ slug: [locale, localizedHub(locale, hub)] })
     }
   }
 
@@ -98,11 +100,40 @@ function stripLocale(slug: string[]): string[] {
   return slug
 }
 
+// Route params can arrive percent-encoded in the page component (while
+// generateMetadata receives them already decoded) — e.g. /ar/%D8%AD... .
+// Decode defensively so slug-map lookups always compare plain text; this is
+// an identity transform for segments without '%' (already-decoded or ASCII).
+function decodeSeg(s: string): string {
+  if (!s.includes('%')) return s
+  try { return decodeURIComponent(s) } catch { return s }
+}
+
+function decodeSlug(slug: string[]): string[] {
+  return slug.map(decodeSeg)
+}
+
 function getLocaleFromSlug(slug: string[]): string {
   if (slug.length > 0 && VALID_LOCALES.includes(slug[0])) {
     return slug[0]
   }
   return 'en'
+}
+
+// Preserve the query string (e.g. ?page=2) across the canonical→translated redirect.
+// The path is percent-encoded first: Location headers must be ASCII, and localized
+// slugs (e.g. /ja/健康計算ツール) are raw non-ASCII, which makes Node/Vercel reject
+// the header with a 500. Query strings from URLSearchParams are already encoded.
+function withQuery(path: string, sp: { [key: string]: string | string[] | undefined }): string {
+  const encPath = encodeURI(path)
+  const q = new URLSearchParams()
+  for (const [k, v] of Object.entries(sp || {})) {
+    if (v === undefined) continue
+    if (Array.isArray(v)) v.forEach(x => q.append(k, x))
+    else q.append(k, v)
+  }
+  const s = q.toString()
+  return s ? `${encPath}?${s}` : encPath
 }
 
 const LOCALE_TITLES: Record<string, string> = {
@@ -132,7 +163,8 @@ const LOCALE_DESCRIPTIONS: Record<string, string> = {
 }
 
 export async function generateMetadata({ params, searchParams }: { params: Promise<{ slug: string[] }>, searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
-  const { slug: rawSlug } = await params
+  const { slug: rawSlugEnc } = await params
+  const rawSlug = decodeSlug(rawSlugEnc)
   const locale = getLocaleFromSlug(rawSlug)
   setRequestLocale(locale)
   const slug = stripLocale(rawSlug)
@@ -182,10 +214,11 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
         }
       }
     }
-    if (!isValidHubSlug(slug[0])) notFound()
+    const hubRes = resolveHubSlug(locale, slug[0])
+    if (!hubRes) notFound()
     const sp = await searchParams
     const metadataPage = Math.max(1, parseInt(sp.page as string) || 1)
-    return generateHubLandingMetadata(slug[0], metadataPage)
+    return generateHubLandingMetadata(hubRes.canonical, metadataPage)
   }
   if (slug[0] === 'author') {
     const meta = await genAuthorMeta({ params: Promise.resolve({ id: slug[1] }) })
@@ -195,12 +228,15 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
     }
   }
   if (slug.length !== 2) notFound()
-  if (!isValidHubSlug(slug[0])) notFound()
-  return generateCalculatorMetadata(slug[0], slug[1])
+  const metaHubRes = resolveHubSlug(locale, slug[0])
+  if (!metaHubRes) notFound()
+  const metaCalcRes = resolveCalcSlug(locale, metaHubRes.canonical, slug[1])
+  return generateCalculatorMetadata(metaHubRes.canonical, metaCalcRes.canonical)
 }
 
 export default async function CatchAllPage({ params, searchParams }: { params: Promise<{ slug: string[] }>, searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
-  const { slug: rawSlug } = await params
+  const { slug: rawSlugEnc } = await params
+  const rawSlug = decodeSlug(rawSlugEnc)
   const locale = getLocaleFromSlug(rawSlug)
   setRequestLocale(locale)
   const slug = stripLocale(rawSlug)
@@ -214,17 +250,28 @@ export default async function CatchAllPage({ params, searchParams }: { params: P
       const Page = STATIC_PAGES[slug[0]]
       return <Page />
     }
-    if (!isValidHubSlug(slug[0])) notFound()
-    return <HubLandingContent hubSlug={slug[0]} searchParams={searchParams} />
+    const hubRes = resolveHubSlug(locale, slug[0])
+    if (!hubRes) notFound()
+    if (locale !== 'en' && slug[0] !== hubRes.localized) {
+      const sp = await searchParams
+      permanentRedirect(withQuery(`/${locale}/${hubRes.localized}`, sp))
+    }
+    return <HubLandingContent hubSlug={hubRes.canonical} searchParams={searchParams} />
   }
 
   if (slug[0] === 'author') {
     return <AuthorPage params={Promise.resolve({ id: slug[1] })} />
   }
   if (slug.length !== 2) notFound()
-  if (!isValidHubSlug(slug[0])) notFound()
-  if (/\d$/.test(slug[1])) notFound()
-  const calc = await findCalculator(slug[1], slug[0])
+  const hubRes = resolveHubSlug(locale, slug[0])
+  if (!hubRes) notFound()
+  const calcRes = resolveCalcSlug(locale, hubRes.canonical, slug[1])
+  if (/\d$/.test(calcRes.canonical)) notFound()
+  const calc = await findCalculator(calcRes.canonical, hubRes.canonical)
   if (!calc) notFound()
-  return <CalculatorPageContent hubSlug={slug[0]} slug={slug[1]} />
+  if (locale !== 'en' && (slug[0] !== hubRes.localized || slug[1] !== calcRes.localized)) {
+    const sp = await searchParams
+    permanentRedirect(withQuery(`/${locale}/${hubRes.localized}/${calcRes.localized}`, sp))
+  }
+  return <CalculatorPageContent hubSlug={hubRes.canonical} slug={calcRes.canonical} />
 }

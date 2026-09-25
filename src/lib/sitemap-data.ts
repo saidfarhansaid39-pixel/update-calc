@@ -3,6 +3,7 @@ import { getAllClusterSlugs, getClusterBySlug } from '@/lib/seo-clusters'
 import { routing, isoLangs } from '@/i18n/routing'
 import { getReviewedDate } from '@/lib/trust'
 import { AUTHORS } from '@/lib/authors'
+import { hubSuffix, calcSuffix } from '@/lib/slug-paths'
 
 export const siteUrl = 'https://www.calculat.online'
 
@@ -59,12 +60,16 @@ function localeUrl(locale: string, path: string): string {
   return locale === defaultLocale ? `${siteUrl}${path}` : `${siteUrl}/${locale}${path}`
 }
 
-function alternatesFor(path: string, localized = true): Record<string, string> {
+// `pathFor` (optional) maps the canonical path to the translated path suffix
+// for a given locale — used for hub/calculator URLs, which are localized per
+// locale while English stays at the canonical form.
+function alternatesFor(path: string, localized = true, pathFor?: (l: string) => string): Record<string, string> {
   const clean = path === '/' ? '' : path
   const langs: Record<string, string> = { 'x-default': `${siteUrl}${clean}` }
   if (localized) {
     for (const locale of locales) {
-      langs[isoLangs[locale]] = localeUrl(locale, clean)
+      const p = pathFor ? pathFor(locale) : clean
+      langs[isoLangs[locale]] = localeUrl(locale, p)
     }
   } else {
     langs[isoLangs[defaultLocale]] = localeUrl(defaultLocale, clean)
@@ -89,13 +94,14 @@ const englishOnlyStaticPages = new Set([
   ...Object.keys(AUTHORS).map(id => `/author/${id}`),
 ])
 
-function entriesForPath(locale: string, path: string, opts: EntryOpts, localized = true): SitemapEntry {
+function entriesForPath(locale: string, path: string, opts: EntryOpts, localized = true, pathFor?: (l: string) => string): SitemapEntry {
+  const ownPath = pathFor ? pathFor(locale) : path
   return {
-    url: localeUrl(locale, path),
+    url: localeUrl(locale, ownPath),
     lastModified: opts.lastModified || BUILD_DATE,
     changeFrequency: opts.changeFrequency,
     priority: opts.priority,
-    alternates: { languages: alternatesFor(path, localized) },
+    alternates: { languages: alternatesFor(pathFor ? pathFor(defaultLocale) : path, localized, pathFor) },
   }
 }
 
@@ -131,7 +137,7 @@ export async function buildSitemapEntries(id: string): Promise<SitemapEntry[]> {
     entries.push(entriesForPath(locale, `/${hub}`, {
       changeFrequency: 'weekly',
       priority: 0.8,
-    }))
+    }, true, (l) => hubSuffix(l, hub)))
   }
 
   const filteredCalcs = calculatorRegistry.filter(c => !/\d$/.test(c.slug))
@@ -144,7 +150,7 @@ export async function buildSitemapEntries(id: string): Promise<SitemapEntry[]> {
       changeFrequency: 'monthly',
       priority,
       lastModified: new Date(reviewedDate),
-    }))
+    }, true, (l) => calcSuffix(l, calc.hubSlug, calc.slug)))
   }
 
   const clusterPaths: string[] = []
@@ -163,11 +169,12 @@ export async function buildSitemapEntries(id: string): Promise<SitemapEntry[]> {
   for (const path of clusterPaths) {
     const match = path.match(/^\/([^/]+)\/([^/]+)$/)
     const lastModified = match ? new Date(getReviewedDate(match[1], match[2])) : BUILD_DATE
+    const [clusterHub, clusterSlug] = match ? [match[1], match[2]] : ['', '']
     entries.push(entriesForPath(locale, path, {
       changeFrequency: 'weekly',
       priority: 0.5,
       lastModified,
-    }))
+    }, true, match ? (l) => calcSuffix(l, clusterHub, clusterSlug) : undefined))
   }
 
   return entries

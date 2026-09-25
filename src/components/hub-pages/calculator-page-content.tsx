@@ -9,7 +9,7 @@ import { RelatedCalculatorCarousel } from '@/components/premium/RelatedCalculato
 import { InternalLinkingGrid } from '@/components/premium/InternalLinkingGrid'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
-import { buildHreflang } from '@/lib/buildHreflang'
+import { calcPath, hubPath, calcHreflangs } from '@/lib/slug-paths'
 import { getReviewedDate, getReviewKind } from '@/lib/trust'
 import { getAuthorForHub } from '@/lib/authors'
 import { SchemaMarkup, breadcrumbListSchema } from '@/components/SchemaMarkup'
@@ -40,7 +40,7 @@ function CalculatorPageSchema({ hubSlug, slug, hubTitle, title, description, loc
   locale: string
   homeName: string
 }) {
-  const url = pageUrl(locale, `/${hubSlug}/${slug}`)
+  const url = `${siteUrl}${calcPath(locale, hubSlug, slug)}`
   const reviewed = getReviewedDate(hubSlug, slug)
   const reviewer = REVIEWER_NAMES[getReviewKind(hubSlug)] || REVIEWER_NAMES.expert
   const author = getAuthorForHub(hubSlug)
@@ -51,7 +51,7 @@ function CalculatorPageSchema({ hubSlug, slug, hubTitle, title, description, loc
         locale={locale}
         data={breadcrumbListSchema([
           { name: homeName, url: pageUrl(locale, '') || pageUrl(locale, '/') },
-          { name: hubTitle, url: pageUrl(locale, `/${hubSlug}`) },
+          { name: hubTitle, url: `${siteUrl}${hubPath(locale, hubSlug)}` },
           { name: title, url },
         ], locale)}
       />
@@ -172,12 +172,12 @@ export async function generateCalculatorMetadata(hubSlug: string, slug: string) 
   const actualHubSlug = calc.hubSlug || hubSlug
   const title = calc.title.length > 45 ? calc.title : `${calc.title} | Calculat`
   const description = calc.description.length > 155 ? calc.description.substring(0, 152).replace(/\s+\S*$/, '') + '...' : calc.description
-  const url = locale === 'en' ? `${siteUrl}/${actualHubSlug}/${slug}` : `${siteUrl}/${locale}/${actualHubSlug}/${slug}`
+  const url = `${siteUrl}${calcPath(locale, actualHubSlug, slug)}`
   const localeStr = ogLocale(locale)
   return {
     title,
     description,
-    alternates: { canonical: url, languages: buildHreflang(`/${actualHubSlug}/${slug}`) },
+    alternates: { canonical: url, languages: calcHreflangs(actualHubSlug, slug) },
     openGraph: { title, description, url, siteName: 'Calculat', type: 'website', locale: localeStr, alternateLocale: ogAlternateLocales(locale), images: [{ url: `${siteUrl}/api/og/${slug}?locale=${locale}`, width: 1200, height: 630, alt: description }] },
     twitter: { card: 'summary_large_image', title, description, images: [`${siteUrl}/api/og/${slug}?locale=${locale}`] },
     robots: { index: true, follow: true },
@@ -245,8 +245,7 @@ export async function CalculatorPageContent({ hubSlug, slug }: { hubSlug: string
   const calc = await findCalculator(slug, hubSlug, locale) || (await import('@calcuniverse/calculator-registry')).financialCalculators.find(c => c.slug === slug) || meta.calculators.find(c => c.slug === slug)
   if (!calc) notFound()
   if (calc.hubSlug !== hubSlug) {
-    const correctPath = locale === 'en' ? `/${calc.hubSlug}/${slug}` : `/${locale}/${calc.hubSlug}/${slug}`
-    permanentRedirect(correctPath)
+    permanentRedirect(encodeURI(calcPath(locale, calc.hubSlug, slug)))
   }
 
   const isMortgage = slug === 'mortgage-calculator'
