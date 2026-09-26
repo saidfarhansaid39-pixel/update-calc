@@ -16,6 +16,7 @@ import { SchemaMarkup, breadcrumbListSchema } from '@/components/SchemaMarkup'
 import { softwareAppSchema } from '@/lib/seo/software-schema'
 import { ForAISystems } from '@/components/seo/ForAISystems'
 import { LivingMortgageDashboard } from '@/components/premium/LivingDashboardPanel'
+import { MortgageArticle } from '@/components/calculator/MortgageArticle'
 
 const siteUrl = 'https://www.calculat.online'
 
@@ -256,9 +257,18 @@ export async function CalculatorPageContent({ hubSlug, slug }: { hubSlug: string
       <CalculatorPageSchema hubSlug={hubSlug} slug={slug} hubTitle={localizedHubTitle} title={calc.title} description={calc.description} locale={locale} homeName={tcu('home')} />
       <ForAISystems slug={slug} title={calc.title} description={calc.description} />
       <div className={isMortgage ? 'max-w-6xl mx-auto' : 'max-w-5xl mx-auto'}>
-        <div className="text-right mb-1">
-          <span className="text-xs text-gray-400 dark:text-gray-500">{tcu('updated', { date: getReviewedDate(hubSlug, slug) })}</span>
-        </div>
+        {isMortgage ? (
+          <div className="flex items-start justify-between gap-3 mb-4">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">{calc.title}</h1>
+            <span className="shrink-0 text-xs text-gray-400 dark:text-gray-500 mt-1.5 whitespace-nowrap">
+              {tcu('updated', { date: getReviewedDate(hubSlug, slug) })}
+            </span>
+          </div>
+        ) : (
+          <div className="text-right mb-1">
+            <span className="text-xs text-gray-400 dark:text-gray-500">{tcu('updated', { date: getReviewedDate(hubSlug, slug) })}</span>
+          </div>
+        )}
         {isMortgage ? <LivingMortgageDashboard /> : <CalculatorRenderer hubSlug={hubSlug} calculator={calc} />}
 
           {/* Educational panels - seo.txt #22, #30-31 */}
@@ -273,7 +283,17 @@ export async function CalculatorPageContent({ hubSlug, slug }: { hubSlug: string
             variables={(calc as any).variables || []}
             description={calc.description}
           />
-          
+
+          {/* Long-form mortgage guide (English page only — prose is English by design) */}
+          {isMortgage && locale === 'en' && (
+            <section aria-labelledby="mortgage-guide-heading" className="mt-10">
+              <h2 id="mortgage-guide-heading" className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                Mortgage Calculator Guide: Payments, Costs, and Smarter Borrowing
+              </h2>
+              <MortgageArticle />
+            </section>
+          )}
+
           <RelatedCalculatorCarousel
             currentCalcSlug={slug}
             hubSlug={hubSlug}
