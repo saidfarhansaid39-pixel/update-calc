@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { calculateRetirement } from '@/engines/finance/investment';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function RetirementCalculatorForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [currentAge, setCurrentAge] = useState<number>(30);
   const [retirementAge, setRetirementAge] = useState<number>(65);
@@ -47,7 +49,7 @@ export default function RetirementCalculatorForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Current Savings ($)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Current Savings ({currencySymbol})</label>
           <input
             type="number"
             value={currentSavings}
@@ -57,7 +59,7 @@ export default function RetirementCalculatorForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Monthly Contribution ($)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Monthly Contribution ({currencySymbol})</label>
           <input
             type="number"
             value={monthlyContribution}
@@ -79,7 +81,7 @@ export default function RetirementCalculatorForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Desired Monthly Spending ($)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Desired Monthly Spending ({currencySymbol})</label>
           <input
             type="number"
             value={monthlySpending}
@@ -96,11 +98,11 @@ export default function RetirementCalculatorForm() {
           <div className="grid md:grid-cols-3 gap-4">
             <div className="bg-white p-4 rounded shadow-sm">
               <h4 className="font-medium text-gray-600 mb-2">At Retirement</h4>
-              <p className="text-2xl font-bold text-green-600">${result.totalAtRetirement.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-green-600">{currencySymbol}{result.totalAtRetirement.toLocaleString()}</p>
             </div>
             <div className="bg-white p-4 rounded shadow-sm">
               <h4 className="font-medium text-gray-600 mb-2">Monthly Income</h4>
-              <p className="text-2xl font-bold text-green-600">${result.monthlyIncome.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-green-600">{currencySymbol}{result.monthlyIncome.toLocaleString()}</p>
             </div>
             <div className="bg-white p-4 rounded shadow-sm">
               <h4 className="font-medium text-gray-600 mb-2">Funds Last</h4>

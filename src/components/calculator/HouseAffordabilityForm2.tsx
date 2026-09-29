@@ -3,8 +3,10 @@
 import React from 'react';
 import { HelpCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function HouseAffordabilityForm2({ state, setters, handleCalculate, handleClear }: any) {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   return (
     <div className="w-full font-sans text-[13px] text-gray-800">
@@ -17,7 +19,7 @@ export function HouseAffordabilityForm2({ state, setters, handleCalculate, handl
           </label>
           <div className="flex items-center gap-2 flex-wrap">
             <div className="flex items-center">
-              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
               <input 
                 type="text" 
                 className="border border-gray-400 w-[120px] px-1 h-[28px]" 
@@ -60,7 +62,7 @@ export function HouseAffordabilityForm2({ state, setters, handleCalculate, handl
             />
             <select className="border border-gray-400 ml-1 h-[28px] px-1" value={state.downPaymentType} onChange={e => setters.setDownPaymentType(e.target.value)}>
               <option>%</option>
-              <option>$</option>
+              <option>{currencySymbol}</option>
             </select>
           </div>
 
@@ -88,7 +90,7 @@ export function HouseAffordabilityForm2({ state, setters, handleCalculate, handl
                   />
                   <select className="border border-gray-400 ml-1 h-[28px] px-1" value={state.propertyTaxType} onChange={e => setters.setPropertyTaxType(e.target.value)} disabled={!state.includeTax}>
                     <option>%</option>
-                    <option>$</option>
+                    <option>{currencySymbol}</option>
                   </select>
                 </div>
                 <span>per year</span>
@@ -106,7 +108,7 @@ export function HouseAffordabilityForm2({ state, setters, handleCalculate, handl
                   />
                   <select className="border border-gray-400 ml-1 h-[28px] px-1" value={state.hoaType} onChange={e => setters.setHoaType(e.target.value)} disabled={!state.includeTax}>
                     <option>%</option>
-                    <option>$</option>
+                    <option>{currencySymbol}</option>
                   </select>
                 </div>
                 <span>per year</span>
@@ -124,7 +126,7 @@ export function HouseAffordabilityForm2({ state, setters, handleCalculate, handl
                   />
                   <select className="border border-gray-400 ml-1 h-[28px] px-1" value={state.insuranceType} onChange={e => setters.setInsuranceType(e.target.value)} disabled={!state.includeTax}>
                     <option>%</option>
-                    <option>$</option>
+                    <option>{currencySymbol}</option>
                   </select>
                 </div>
                 <span>per year</span>
@@ -142,7 +144,7 @@ export function HouseAffordabilityForm2({ state, setters, handleCalculate, handl
                   />
                   <select className="border border-gray-400 ml-1 h-[28px] px-1" value={state.maintenanceType} onChange={e => setters.setMaintenanceType(e.target.value)} disabled={!state.includeTax}>
                     <option>%</option>
-                    <option>$</option>
+                    <option>{currencySymbol}</option>
                   </select>
                 </div>
                 <span>per year</span>

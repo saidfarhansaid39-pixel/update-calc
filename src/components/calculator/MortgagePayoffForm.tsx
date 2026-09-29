@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function MortgagePayoffForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [principal, setPrincipal] = useState<number>(300000);
   const [rate, setRate] = useState<number>(6.5);
@@ -66,16 +68,16 @@ export default function MortgagePayoffForm() {
           <div className="bg-green-50 border border-green-200 rounded p-4">
             <h3 className="font-bold text-lg text-gray-800 mb-3">{t('sections.payoffSummary')}</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="bg-white p-3 rounded"><p className="text-sm text-gray-500">{t('results.monthlyPayment')}</p><p className="text-xl font-bold">${result.monthlyPayment.toLocaleString()}</p></div>
+              <div className="bg-white p-3 rounded"><p className="text-sm text-gray-500">{t('results.monthlyPayment')}</p><p className="text-xl font-bold">{currencySymbol}{result.monthlyPayment.toLocaleString()}</p></div>
               <div className="bg-white p-3 rounded"><p className="text-sm text-gray-500">Payoff Time</p><p className="text-xl font-bold text-green-600">{result.years} years</p></div>
-              <div className="bg-white p-3 rounded"><p className="text-sm text-gray-500">{t('results.totalInterest')}</p><p className="text-xl font-bold text-red-600">${result.totalInterest.toLocaleString()}</p></div>
-              <div className="bg-white p-3 rounded"><p className="text-sm text-gray-500">Interest Saved</p><p className="text-xl font-bold text-green-600">${result.savings.toLocaleString()}</p></div>
+              <div className="bg-white p-3 rounded"><p className="text-sm text-gray-500">{t('results.totalInterest')}</p><p className="text-xl font-bold text-red-600">{currencySymbol}{result.totalInterest.toLocaleString()}</p></div>
+              <div className="bg-white p-3 rounded"><p className="text-sm text-gray-500">Interest Saved</p><p className="text-xl font-bold text-green-600">{currencySymbol}{result.savings.toLocaleString()}</p></div>
             </div>
           </div>
           
           {extraPayment > 0 && (
             <div className="bg-blue-50 border border-blue-200 rounded p-4">
-              <p className="text-blue-800 font-medium">Adding ${extraPayment}/month saves ${result.savings.toLocaleString()} in interest and pays off {term - Math.floor(result.months/12)} years early!</p>
+              <p className="text-blue-800 font-medium">Adding {currencySymbol}{extraPayment}/month saves {currencySymbol}{result.savings.toLocaleString()} in interest and pays off {term - Math.floor(result.months/12)} years early!</p>
             </div>
           )}
 
@@ -99,9 +101,9 @@ export default function MortgagePayoffForm() {
                     return (
                       <tr key={row.month} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                         <td className="border p-2">Year {Math.floor(yearNum)}</td>
-                        <td className="border p-2 text-right">${Math.round(row.balance).toLocaleString()}</td>
-                        <td className="border p-2 text-right">${Math.round(row.totalInterest).toLocaleString()}</td>
-                        <td className="border p-2 text-right">${Math.round(principal - row.balance).toLocaleString()}</td>
+                        <td className="border p-2 text-right">{currencySymbol}{Math.round(row.balance).toLocaleString()}</td>
+                        <td className="border p-2 text-right">{currencySymbol}{Math.round(row.totalInterest).toLocaleString()}</td>
+                        <td className="border p-2 text-right">{currencySymbol}{Math.round(principal - row.balance).toLocaleString()}</td>
                       </tr>
                     );
                   })}

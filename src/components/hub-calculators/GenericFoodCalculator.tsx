@@ -178,10 +178,12 @@ interface FieldDef {
 import { calcDefs } from './food'
 import type { CalcDef } from '@/lib/generic-fallback'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
+import { useCurrency, subMoney } from '@/lib/context/CurrencyContext'
 
 type Props = { calculator: CalculatorEntry }
 
 export function GenericFoodCalculator({ calculator }: Props) {
+  const { currencySymbol } = useCurrency()
   const calcType = calcTypeMap[calculator.slug]
   const def = calcType ? calcDefs[calcType] : (buildGenericDef(calculator) as unknown as CalcDef)
 
@@ -288,9 +290,9 @@ export function GenericFoodCalculator({ calculator }: Props) {
   const copyResultText = useMemo(() => {
     const lines: string[] = [calculator.title]
     Object.entries(v).filter(([, val]) => val).forEach(([k, val]) => lines.push(`${k}: ${val}`))
-    if (resultData) lines.push(`Result: ${Number(resultData.result).toFixed(2)} ${resultData.unit}`)
+    if (resultData) lines.push(subMoney(`Result: ${Number(resultData.result).toFixed(2)} ${resultData.unit}`, currencySymbol))
     return lines.join('\n')
-  }, [calculator.title, v, resultData])
+  }, [calculator.title, v, resultData, currencySymbol])
 
   const presets = def?.presets || []
   const applyPreset = useCallback((preset: { label: string; values: Record<string, string> }) => {
@@ -304,7 +306,7 @@ export function GenericFoodCalculator({ calculator }: Props) {
     const slug = calculator.slug
     const val = typeof resultData.result === 'number' ? resultData.result : parseFloat(String(resultData.result))
     if (isNaN(val) || val <= 0) return null
-    const u = resultData.unit || ''
+    const u = subMoney(resultData.unit || '', currencySymbol)
     if (slug.includes('calorie') || slug.includes('daily-cal') || slug.includes('cal-per-day')) {
       const cat = val < 1600 ? 'low' : val < 2000 ? 'moderate' : val < 2500 ? 'standard' : val < 3000 ? 'high' : 'very high'
       return <div className={`text-xs font-medium mt-1 ${cat === 'standard' ? 'text-emerald-600' : cat === 'low' || cat === 'very high' ? 'text-amber-600' : 'text-blue-600'}`}>{val.toFixed(0)} {u} — {cat === 'low' ? 'Below average intake' : cat === 'moderate' ? 'Slightly below average' : cat === 'standard' ? 'Within the typical adult range' : cat === 'high' ? 'Above average — active individuals may need this' : 'Very high — consult a professional'}.</div>
@@ -361,13 +363,13 @@ export function GenericFoodCalculator({ calculator }: Props) {
       return <div className="text-xs text-emerald-600 font-medium mt-1">{val.toFixed(1)} {u} — Baker's percentages: ingredient weight relative to flour (100%). Hydration 60-75% is typical.</div>
     }
     if (slug.includes('recipe-cost') || slug.includes('food-cost') || slug.includes('meal-cost') || slug.includes('serving')) {
-      return <div className="text-xs text-amber-600 font-medium mt-1">${val.toFixed(2)} {u} — Cost per serving. Compare with restaurant prices: home cooking typically saves 60%.</div>
+      return <div className="text-xs text-amber-600 font-medium mt-1">{currencySymbol}{val.toFixed(2)} — Cost per serving. Compare with restaurant prices: home cooking typically saves 60%.</div>
     }
     if (slug.includes('temp') || slug.includes('oven') || slug.includes('cooking-time') || slug.includes('convection') || slug.includes('air-fryer')) {
       return <div className="text-xs text-blue-600 font-medium mt-1">{val.toFixed(0)} {u} — Convection: reduce temp by 25°F or time by 25% vs conventional recipes.</div>
     }
     return <div className="text-xs text-gray-500 italic mt-1">{val.toFixed(1)} {u} — Values based on general guidelines. Individual needs may vary.</div>
-  }, [resultData, calculator.slug])
+  }, [resultData, calculator.slug, currencySymbol])
 
   const foodAuthor = { name: 'Chef Maria Rossi', photoUrl: 'https://i.pravatar.cc/150?u=chef-maria', credential: 'RD, CPT', title: 'Registered Dietitian & Culinary Expert', linkedIn: 'https://www.linkedin.com/in/maria-rossi-food' }
   const foodReferences = [
@@ -384,7 +386,7 @@ export function GenericFoodCalculator({ calculator }: Props) {
             <>
               <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
                 <p className="text-xs text-gray-500 dark:text-gray-400">{resultData.label}</p>
-                <p className="text-3xl font-bold text-[#06b6d4]">{Number(resultData.result).toFixed(resultData.unit === '$' ? 2 : resultData.unit === '%' ? 1 : resultData.unit === 'kcal/day' || resultData.unit === 'kcal' || resultData.unit === 'min' || resultData.unit === 'g' || resultData.unit === 'meals' ? 0 : 2)} <span className="text-sm font-normal text-gray-500">{resultData.unit}</span></p>
+                <p className="text-3xl font-bold text-[#06b6d4]">{Number(resultData.result).toFixed(resultData.unit === '$' ? 2 : resultData.unit === '%' ? 1 : resultData.unit === 'kcal/day' || resultData.unit === 'kcal' || resultData.unit === 'min' || resultData.unit === 'g' || resultData.unit === 'meals' ? 0 : 2)} <span className="text-sm font-normal text-gray-500">{subMoney(resultData.unit, currencySymbol)}</span></p>
                 {foodInterpretation}
               </div>
               {(resultData.steps ?? []).length > 0 && (
@@ -393,7 +395,7 @@ export function GenericFoodCalculator({ calculator }: Props) {
                   <div className="space-y-1.5">
                     {(resultData.steps ?? []).map((s, i) => (
                       <p key={i} className={`text-xs text-left ${s.label.includes('??') ? 'text-amber-600 dark:text-amber-400 font-medium' : 'text-gray-600 dark:text-gray-400'}`}>
-                        <span className="text-[#06b6d4] font-medium">{i + 1}.</span> {s.label}: <span className="text-gray-800 dark:text-gray-200">{s.value}</span>
+                        <span className="text-[#06b6d4] font-medium">{i + 1}.</span> {s.label}: <span className="text-gray-800 dark:text-gray-200">{subMoney(s.value, currencySymbol)}</span>
                       </p>
                     ))}
                   </div>

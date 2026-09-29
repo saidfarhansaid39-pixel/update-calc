@@ -8,6 +8,7 @@ import { RentResults } from '@/components/calculator/RentResults';
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
 import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 const calcMeta = {
   slug: 'rent-calculator',
@@ -21,6 +22,7 @@ const calcMeta = {
 };
 
 export function RentCalculator() {
+  const { currency } = useCurrency()
   const th = useTranslations('hubs');
   const locale = useLocale();
   const [income, setIncome] = useState("80,000");
@@ -104,23 +106,23 @@ export function RentCalculator() {
     return (
       <SubCalcGrid>
         <SubCalcPanel title="Rent Affordability Breakdown" icon={Home} defaultOpen results={[
-          { label: 'Conservative Budget (25% rule)', value: formatCurrency(results.conservative, 'USD', locale), badge: 'positive' },
-          { label: 'Recommended Budget (30% rule)', value: formatCurrency(results.recommended, 'USD', locale) },
-          { label: 'Maximum Budget (DTI limit)', value: formatCurrency(results.maximum, 'USD', locale), badge: 'info' },
+          { label: 'Conservative Budget (25% rule)', value: formatCurrency(results.conservative, currency, locale), badge: 'positive' },
+          { label: 'Recommended Budget (30% rule)', value: formatCurrency(results.recommended, currency, locale) },
+          { label: 'Maximum Budget (DTI limit)', value: formatCurrency(results.maximum, currency, locale), badge: 'info' },
         ]} />
         <SubCalcPanel title="Total Over Time" icon={Calendar} results={[
-          { label: 'Annual Rent (recommended)', value: formatCurrency(annualRecommended, 'USD', locale) },
-          { label: '5-Year Total', value: formatCurrency(totalFiveYear, 'USD', locale) },
-          { label: '10-Year Total', value: formatCurrency(totalTenYear, 'USD', locale) },
+          { label: 'Annual Rent (recommended)', value: formatCurrency(annualRecommended, currency, locale) },
+          { label: '5-Year Total', value: formatCurrency(totalFiveYear, currency, locale) },
+          { label: '10-Year Total', value: formatCurrency(totalTenYear, currency, locale) },
         ]} />
         <SubCalcPanel title="Debt & Opportunity Cost" icon={Percent} results={[
           { label: 'Debt-to-Income Ratio', value: `${(dtiRatio * 100).toFixed(1)}%`, badge: dtiRatio > 0.43 ? 'negative' : 'info' },
-          { label: 'Monthly Gross Income', value: formatCurrency(monthlyGross, 'USD', locale) },
-          { label: 'Est. Annual Opportunity Cost', value: formatCurrency(opportunityCostAnnual, 'USD', locale) },
+          { label: 'Monthly Gross Income', value: formatCurrency(monthlyGross, currency, locale) },
+          { label: 'Est. Annual Opportunity Cost', value: formatCurrency(opportunityCostAnnual, currency, locale) },
         ]} />
       </SubCalcGrid>
     );
-  }, [results, monthlyGross, debt, locale]);
+  }, [results, monthlyGross, debt, locale, currency]);
 
   return (
     <PremiumCalculatorShell

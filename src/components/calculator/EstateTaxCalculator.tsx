@@ -8,6 +8,7 @@ import { EstateTaxResults } from '@/components/calculator/EstateTaxResults';
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
 import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 const calcMeta = {
   slug: 'estate-tax-calculator',
@@ -21,6 +22,7 @@ const calcMeta = {
 };
 
 export function EstateTaxCalculator() {
+  const { currency } = useCurrency()
   const th = useTranslations('hubs');
   const locale = useLocale();
   // Assets
@@ -105,16 +107,16 @@ export function EstateTaxCalculator() {
     return (
       <SubCalcGrid>
         <SubCalcPanel title="Estate Value Summary" icon={DollarSign} defaultOpen results={[
-          { label: 'Gross Estate Value', value: formatCurrency(results.grossEstate, 'USD', locale) },
-          { label: 'Total Deductions', value: formatCurrency(results.totalDeductions, 'USD', locale), badge: 'positive' },
-          { label: 'Lifetime Gifts', value: formatCurrency(results.giftedAmount, 'USD', locale) },
-          { label: 'Total Taxable Estate', value: formatCurrency(results.taxableEstate, 'USD', locale), badge: 'info' },
+          { label: 'Gross Estate Value', value: formatCurrency(results.grossEstate, currency, locale) },
+          { label: 'Total Deductions', value: formatCurrency(results.totalDeductions, currency, locale), badge: 'positive' },
+          { label: 'Lifetime Gifts', value: formatCurrency(results.giftedAmount, currency, locale) },
+          { label: 'Total Taxable Estate', value: formatCurrency(results.taxableEstate, currency, locale), badge: 'info' },
         ]} />
         <SubCalcPanel title="Federal Tax Calculation" icon={Percent} results={[
-          { label: 'Federal Exemption (2026)', value: formatCurrency(results.exemption, 'USD', locale) },
-          { label: 'Amount Subject to Tax', value: formatCurrency(taxableAfterExemption, 'USD', locale), badge: taxableAfterExemption > 0 ? 'negative' : 'positive' },
+          { label: 'Federal Exemption (2026)', value: formatCurrency(results.exemption, currency, locale) },
+          { label: 'Amount Subject to Tax', value: formatCurrency(taxableAfterExemption, currency, locale), badge: taxableAfterExemption > 0 ? 'negative' : 'positive' },
           { label: 'Federal Estate Tax Rate', value: '40%' },
-          { label: 'Estimated Tax Due', value: formatCurrency(results.estimatedTax, 'USD', locale), badge: results.estimatedTax > 0 ? 'negative' : 'positive' },
+          { label: 'Estimated Tax Due', value: formatCurrency(results.estimatedTax, currency, locale), badge: results.estimatedTax > 0 ? 'negative' : 'positive' },
         ]} />
         <SubCalcPanel title="Tax Analysis" icon={Calendar} results={[
           { label: 'Effective Tax Rate', value: `${effectiveRate.toFixed(2)}%`, description: 'Percentage of gross estate owed in federal tax' },
@@ -122,7 +124,7 @@ export function EstateTaxCalculator() {
         ]} />
       </SubCalcGrid>
     );
-  }, [results, locale]);
+  }, [results, locale, currency]);
 
   return (
     <PremiumCalculatorShell

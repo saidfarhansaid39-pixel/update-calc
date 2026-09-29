@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function MonthlyToBiweeklyForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [monthly, setMonthly] = useState<number>(4000);
   const [result, setResult] = useState<any>(null);
@@ -20,8 +22,8 @@ export default function MonthlyToBiweeklyForm() {
       <button onClick={calculate} className="bg-blue-600 text-white px-6 py-2 rounded">{t('buttons.calculate')}</button>
       {result && (
         <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white mt-6">
-          <p className="text-3xl font-bold">${result.biweekly}/biweekly</p>
-          <p className="text-sm mt-2">Annual: ${Number(result.annual).toLocaleString()}</p>
+          <p className="text-3xl font-bold">{currencySymbol}{result.biweekly}/biweekly</p>
+          <p className="text-sm mt-2">Annual: {currencySymbol}{Number(result.annual).toLocaleString()}</p>
         </div>
       )}
     </div>

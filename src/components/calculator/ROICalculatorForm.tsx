@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function ROICalculatorForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [initialInvestment, setInitialInvestment] = useState<number>(10000);
   const [finalValue, setFinalValue] = useState<number>(15000);
@@ -21,11 +23,11 @@ export default function ROICalculatorForm() {
     <div className="space-y-6">
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Initial Investment ($)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Initial Investment ({currencySymbol})</label>
           <input type="number" value={initialInvestment} onChange={(e) => setInitialInvestment(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Final Value ($)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Final Value ({currencySymbol})</label>
           <input type="number" value={finalValue} onChange={(e) => setFinalValue(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded" />
         </div>
         <div>
@@ -48,7 +50,7 @@ export default function ROICalculatorForm() {
               </tr>
               <tr>
                 <td className="py-2 text-gray-600">Total Profit</td>
-                <td className="py-2 text-right text-gray-700 font-bold">${result.profit.toLocaleString()}</td>
+                <td className="py-2 text-right text-gray-700 font-bold">{currencySymbol}{result.profit.toLocaleString()}</td>
               </tr>
             </tbody>
           </table>

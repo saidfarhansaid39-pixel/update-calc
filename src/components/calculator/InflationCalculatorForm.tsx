@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function InflationCalculatorForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [currentAmount, setCurrentAmount] = useState<number>(10000);
   const [inflationRate, setInflationRate] = useState<number>(3);
@@ -25,7 +27,7 @@ export default function InflationCalculatorForm() {
   return (
     <div className="space-y-6">
       <div className="grid md:grid-cols-3 gap-6">
-        <div><label className="block text-sm font-medium text-gray-700 mb-1">Current Amount ($)</label>
+        <div><label className="block text-sm font-medium text-gray-700 mb-1">Current Amount ({currencySymbol})</label>
           <input type="number" value={currentAmount} onChange={(e) => setCurrentAmount(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded" /></div>
         <div><label className="block text-sm font-medium text-gray-700 mb-1">Inflation Rate (%/year)</label>
           <input type="number" step="0.1" value={inflationRate} onChange={(e) => setInflationRate(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded" /></div>
@@ -37,9 +39,9 @@ export default function InflationCalculatorForm() {
         <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded">
           <h3 className="font-bold text-lg text-gray-800 mb-3">{t('sections.results')}</h3>
           <div className="grid md:grid-cols-3 gap-4">
-            <div className="bg-white p-3 rounded text-center"><p className="text-sm text-gray-500">Future Amount Needed</p><p className="text-2xl font-bold text-red-600">${result.futureAmount.toLocaleString()}</p></div>
-            <div className="bg-white p-3 rounded text-center"><p className="text-sm text-gray-500">Value Lost to Inflation</p><p className="text-2xl font-bold text-red-600">${result.lostValue.toLocaleString()}</p></div>
-            <div className="bg-white p-3 rounded text-center"><p className="text-sm text-gray-500">Current Purchasing Power</p><p className="text-2xl font-bold text-gray-700">${result.purchasingPower.toLocaleString()}</p></div>
+            <div className="bg-white p-3 rounded text-center"><p className="text-sm text-gray-500">Future Amount Needed</p><p className="text-2xl font-bold text-red-600">{currencySymbol}{result.futureAmount.toLocaleString()}</p></div>
+            <div className="bg-white p-3 rounded text-center"><p className="text-sm text-gray-500">Value Lost to Inflation</p><p className="text-2xl font-bold text-red-600">{currencySymbol}{result.lostValue.toLocaleString()}</p></div>
+            <div className="bg-white p-3 rounded text-center"><p className="text-sm text-gray-500">Current Purchasing Power</p><p className="text-2xl font-bold text-gray-700">{currencySymbol}{result.purchasingPower.toLocaleString()}</p></div>
           </div>
         </div>
       )}

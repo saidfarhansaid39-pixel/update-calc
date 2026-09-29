@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function FutureValueAnnuityForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [pmt, setPmt] = useState<number>(500);
   const [rate, setRate] = useState<number>(6);
@@ -37,8 +39,8 @@ export default function FutureValueAnnuityForm() {
       <button onClick={calculate} className="bg-teal-600 text-white px-6 py-2 rounded">{t('buttons.calculate')}</button>
       {result && (
         <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white mt-6">
-          <p className="text-4xl font-bold">${Number(result.fv).toLocaleString()}</p>
-          <p className="text-sm mt-2">Contributions: ${Number(result.totalContributions).toLocaleString()} | Interest: ${Number(result.interestEarned).toLocaleString()}</p>
+          <p className="text-4xl font-bold">{currencySymbol}{Number(result.fv).toLocaleString()}</p>
+          <p className="text-sm mt-2">Contributions: {currencySymbol}{Number(result.totalContributions).toLocaleString()} | Interest: {currencySymbol}{Number(result.interestEarned).toLocaleString()}</p>
         </div>
       )}
     </div>

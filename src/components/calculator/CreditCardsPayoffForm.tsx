@@ -3,8 +3,10 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function CreditCardsPayoffForm({ state, setters, handleCalculate, handleClear }: any) {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const handleCardChange = (index: number, field: string, value: string) => {
     const newCards = [...state.cards];
@@ -34,7 +36,7 @@ export function CreditCardsPayoffForm({ state, setters, handleCalculate, handleC
         <div className="flex items-center mb-4">
           <label className="font-bold mr-2">Monthly budget set aside for credit cards:</label>
           <div className="flex items-center bg-white border border-gray-400">
-            <span className="px-1 bg-gray-100 border-r border-gray-400">$</span>
+            <span className="px-1 bg-gray-100 border-r border-gray-400">{currencySymbol}</span>
             <input 
               type="text" 
               className="w-[80px] px-1 h-[26px] outline-none" 
@@ -70,7 +72,7 @@ export function CreditCardsPayoffForm({ state, setters, handleCalculate, handleC
                 </td>
                 <td className="px-1 py-0.5">
                   <div className="flex items-center bg-white border border-gray-400 w-[90px]">
-                    <span className="px-1 bg-gray-100 border-r border-gray-400">$</span>
+                    <span className="px-1 bg-gray-100 border-r border-gray-400">{currencySymbol}</span>
                     <input 
                       type="text" 
                       className="w-full px-1 h-[24px] outline-none"
@@ -81,7 +83,7 @@ export function CreditCardsPayoffForm({ state, setters, handleCalculate, handleC
                 </td>
                 <td className="px-1 py-0.5">
                   <div className="flex items-center bg-white border border-gray-400 w-[70px]">
-                    <span className="px-1 bg-gray-100 border-r border-gray-400">$</span>
+                    <span className="px-1 bg-gray-100 border-r border-gray-400">{currencySymbol}</span>
                     <input 
                       type="text" 
                       className="w-full px-1 h-[24px] outline-none"

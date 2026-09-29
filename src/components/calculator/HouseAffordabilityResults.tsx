@@ -4,8 +4,10 @@ import React from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
 import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function HouseAffordabilityResults({ results }: any) {
+  const { currency } = useCurrency()
   const t = useTranslations('calculatorUI');
   const locale = useLocale();
   if (!results) return null;
@@ -23,19 +25,19 @@ export function HouseAffordabilityResults({ results }: any) {
           <tbody>
             <tr className="border-b border-gray-300 bg-gray-50">
               <td className="p-3 text-left font-bold text-lg">{t('results.homePrice')}</td>
-              <td className="p-3 text-right font-bold text-lg text-green-700">{formatCurrency(results.homePrice, 'USD', locale)}</td>
+              <td className="p-3 text-right font-bold text-lg text-green-700">{formatCurrency(results.homePrice, currency, locale)}</td>
             </tr>
             <tr className="border-b border-gray-300">
               <td className="p-2 text-left">Loan Amount</td>
-              <td className="p-2 text-right">{formatCurrency(results.loanAmount, 'USD', locale)}</td>
+              <td className="p-2 text-right">{formatCurrency(results.loanAmount, currency, locale)}</td>
             </tr>
             <tr className="border-b border-gray-300 bg-gray-50">
               <td className="p-2 text-left">Down Payment</td>
-              <td className="p-2 text-right">{formatCurrency(results.downPayment, 'USD', locale)} ({downPct.toFixed(1)}%)</td>
+              <td className="p-2 text-right">{formatCurrency(results.downPayment, currency, locale)} ({downPct.toFixed(1)}%)</td>
             </tr>
             <tr>
               <td className="p-2 text-left font-bold">{t('results.monthlyHousingCost')}</td>
-              <td className="p-2 text-right font-bold">{formatCurrency(results.monthlyCost, 'USD', locale)}</td>
+              <td className="p-2 text-right font-bold">{formatCurrency(results.monthlyCost, currency, locale)}</td>
             </tr>
           </tbody>
         </table>
@@ -44,19 +46,19 @@ export function HouseAffordabilityResults({ results }: any) {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">{t('results.homePrice')}</p>
-            <p className="text-sm font-bold text-gray-900">{formatCurrency(results.homePrice, 'USD', locale)}</p>
+            <p className="text-sm font-bold text-gray-900">{formatCurrency(results.homePrice, currency, locale)}</p>
           </div>
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">{t('results.downPayment')}</p>
-            <p className="text-sm font-bold text-blue-600">{formatCurrency(results.downPayment, 'USD', locale)} ({downPct.toFixed(1)}%)</p>
+            <p className="text-sm font-bold text-blue-600">{formatCurrency(results.downPayment, currency, locale)} ({downPct.toFixed(1)}%)</p>
           </div>
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">{t('results.loanAmount')}</p>
-            <p className="text-sm font-bold text-gray-900">{formatCurrency(results.loanAmount, 'USD', locale)}</p>
+            <p className="text-sm font-bold text-gray-900">{formatCurrency(results.loanAmount, currency, locale)}</p>
           </div>
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">{t('results.monthlyHousingCost')}</p>
-            <p className="text-sm font-bold text-[#d62828]">{formatCurrency(results.monthlyCost, 'USD', locale)}</p>
+            <p className="text-sm font-bold text-[#d62828]">{formatCurrency(results.monthlyCost, currency, locale)}</p>
           </div>
         </div>
 
@@ -69,7 +71,6 @@ export function HouseAffordabilityResults({ results }: any) {
             wants: 0,
             savings: 0,
           }}
-          currencySymbol="$"
         />
       </div>
     </div>

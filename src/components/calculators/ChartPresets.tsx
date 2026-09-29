@@ -10,7 +10,7 @@ interface ChartProps {
 }
 
 export function CalculatorPieChart({ data, colors = ['#1f77b4', '#8ebf42'] }: ChartProps) {
-  const formatCurrency = useCurrencyFormat('USD');
+  const formatCurrency = useCurrencyFormat();
   
   return (
     <div className="h-[120px] my-2 flex justify-center">

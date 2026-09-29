@@ -4,8 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { Input, Button, FormGroup, FormPanel } from '@/components/CalculatorFormElements';
 import { generateAmortizationSchedule } from '@/lib/calculators/amortizationEngine';
 import { useCurrencyFormat } from '@/lib/hooks/useCurrencyFormat';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function RefinanceForm() {
+  const { currencySymbol } = useCurrency()
   const [inputs, setInputs] = useState({
     originalAmount: 250000,
     originalTerm: 30,
@@ -67,7 +69,7 @@ export function RefinanceForm() {
     handleCalculate();
   }, []);
 
-  const formatCurrency = useCurrencyFormat('USD');
+  const formatCurrency = useCurrencyFormat();
 
     const handleClear = () => { setResults(null); };
   return (
@@ -76,7 +78,7 @@ export function RefinanceForm() {
         <div className="w-[380px]">
           <FormPanel header="Current Loan">
             <FormGroup label="Original Amount">
-              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">$</span>
+              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">{currencySymbol}</span>
               <Input type="number" value={inputs.originalAmount} onChange={(e) => handleNumChange(e, 'originalAmount')} className="w-[120px]" />
             </FormGroup>
             <FormGroup label="Original Term">
@@ -103,7 +105,7 @@ export function RefinanceForm() {
               <span className="px-1">%</span>
             </FormGroup>
             <FormGroup label="Refinance Fees">
-              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">$</span>
+              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">{currencySymbol}</span>
               <Input type="number" value={inputs.fees} onChange={(e) => handleNumChange(e, 'fees')} className="w-[120px]" />
             </FormGroup>
             <div className="my-3 pl-[140px] flex items-center gap-1">

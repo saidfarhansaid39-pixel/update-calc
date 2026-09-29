@@ -8,6 +8,7 @@ import { AmortizationResults } from '@/components/calculator/AmortizationResults
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
 import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 const calcMeta = {
   slug: 'amortization-calculator',
@@ -36,6 +37,7 @@ function breakDownYear(principal: number, monthlyRate: number, payment: number, 
 }
 
 export function AmortizationCalculator() {
+  const { currency } = useCurrency()
   const th = useTranslations('hubs');
   const locale = useLocale();
   const [loanAmount, setLoanAmount] = useState("200,000");
@@ -77,21 +79,21 @@ export function AmortizationCalculator() {
     return (
       <SubCalcGrid>
         <SubCalcPanel title="Payment Summary" icon={DollarSign} results={[
-          { label: 'Monthly Payment', value: formatCurrency(computedMonthly, 'USD', locale) },
-          { label: 'Total Interest', value: formatCurrency(totalInterest, 'USD', locale), badge: 'negative' },
-          { label: 'Total Cost', value: formatCurrency(totalPayments, 'USD', locale) },
+          { label: 'Monthly Payment', value: formatCurrency(computedMonthly, currency, locale) },
+          { label: 'Total Interest', value: formatCurrency(totalInterest, currency, locale), badge: 'negative' },
+          { label: 'Total Cost', value: formatCurrency(totalPayments, currency, locale) },
         ]} />
         <SubCalcPanel title="Payoff Info" icon={Calendar} results={[
           { label: 'Payoff Period', value: `${Math.floor(computedMonths / 12)}yr ${computedMonths % 12}mo`, badge: 'info' },
         ]} />
         <SubCalcPanel title="Yearly Breakdown" icon={PieChart} results={[
-          { label: 'Year 1', value: `P: ${formatCurrency(y1.principalTotal, 'USD', locale)} / I: ${formatCurrency(y1.interestTotal, 'USD', locale)}` },
-          { label: 'Year 5', value: `P: ${formatCurrency(y5.principalTotal, 'USD', locale)} / I: ${formatCurrency(y5.interestTotal, 'USD', locale)}` },
-          { label: 'Year 10', value: `P: ${formatCurrency(y10.principalTotal, 'USD', locale)} / I: ${formatCurrency(y10.interestTotal, 'USD', locale)}` },
+          { label: 'Year 1', value: `P: ${formatCurrency(y1.principalTotal, currency, locale)} / I: ${formatCurrency(y1.interestTotal, currency, locale)}` },
+          { label: 'Year 5', value: `P: ${formatCurrency(y5.principalTotal, currency, locale)} / I: ${formatCurrency(y5.interestTotal, currency, locale)}` },
+          { label: 'Year 10', value: `P: ${formatCurrency(y10.principalTotal, currency, locale)} / I: ${formatCurrency(y10.interestTotal, currency, locale)}` },
         ]} />
       </SubCalcGrid>
     );
-  }, [p, i, computedMonthly, computedMonths, totalInterest, totalPayments, locale]);
+  }, [p, i, computedMonthly, computedMonths, totalInterest, totalPayments, locale, currency]);
 
   const result = (
     <AmortizationResults 

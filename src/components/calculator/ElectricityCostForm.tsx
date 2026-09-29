@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function ElectricityCostForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [watts, setWatts] = useState<number>(1000);
   const [hours, setHours] = useState<number>(1);
@@ -23,13 +25,13 @@ export default function ElectricityCostForm() {
           <input type="number" value={watts} onChange={(e) => setWatts(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
         <div><label className="block text-sm text-gray-700 mb-1">Hours/Day</label>
           <input type="number" value={hours} onChange={(e) => setHours(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
-        <div><label className="block text-sm text-gray-700 mb-1">Rate ($/kWh)</label>
+        <div><label className="block text-sm text-gray-700 mb-1">Rate ({currencySymbol}/kWh)</label>
           <input type="number" step="0.01" value={rate} onChange={(e) => setRate(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
       </div>
       {result && (
         <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl p-6 text-white mt-6">
-          <p className="text-3xl font-bold">${result.cost}</p>
-          <p className="text-sm mt-2">{result.kwh} kWh | Monthly: ${result.monthly}</p>
+          <p className="text-3xl font-bold">{currencySymbol}{result.cost}</p>
+          <p className="text-sm mt-2">{result.kwh} kWh | Monthly: {currencySymbol}{result.monthly}</p>
         </div>
       )}
     </div>

@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area, ReferenceLine } from 'recharts';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function AdvancedRetirementForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [currentAge, setCurrentAge] = useState<number>(30);
   const [retirementAge, setRetirementAge] = useState<number>(65);
@@ -160,8 +162,8 @@ export default function AdvancedRetirementForm() {
             <>
               <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white shadow-xl">
                 <p className="text-green-100 text-sm mb-1">At Retirement (Age {retirementAge})</p>
-                <p className="text-5xl font-bold mb-2">${results.balanceAtRetirement.toLocaleString()}</p>
-                <p className="text-green-100">4% Safe Withdrawal: ${results.safeWithdrawalAnnual.toLocaleString()}/year</p>
+                <p className="text-5xl font-bold mb-2">{currencySymbol}{results.balanceAtRetirement.toLocaleString()}</p>
+                <p className="text-green-100">4% Safe Withdrawal: {currencySymbol}{results.safeWithdrawalAnnual.toLocaleString()}/year</p>
               </div>
 
               <div className="bg-white rounded-xl p-5 shadow-sm border">
@@ -171,8 +173,8 @@ export default function AdvancedRetirementForm() {
                     <AreaChart data={chartData}>
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis dataKey="age" />
-                      <YAxis tickFormatter={(v) => `$${(v/1000).toFixed(0)}k`} />
-                      <Tooltip formatter={(v: number) => `$${v.toLocaleString()}`} />
+                      <YAxis tickFormatter={(v) => `${currencySymbol}${(v/1000).toFixed(0)}k`} />
+                      <Tooltip formatter={(v: number) => `${currencySymbol}${v.toLocaleString()}`} />
                       <Legend />
                       <Area type="monotone" dataKey="balance" stroke="#22c55e" fill="#22c55e" fillOpacity={0.6} name="Balance" />
                       <ReferenceLine x={retirementAge} stroke="#ef4444" strokeDasharray="5 5" label="Retirement" />
@@ -190,19 +192,19 @@ export default function AdvancedRetirementForm() {
                 <div className="space-y-4">
                   <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
                     <span className="text-green-700">4% Rule Withdrawal</span>
-                    <span className="font-bold text-green-700">${results.withdrawalAmount.toLocaleString()}</span>
+                    <span className="font-bold text-green-700">{currencySymbol}{results.withdrawalAmount.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
                     <span className="text-blue-700">Social Security</span>
-                    <span className="font-bold text-blue-700">${Math.round(socialSecurity / 12).toLocaleString()}</span>
+                    <span className="font-bold text-blue-700">{currencySymbol}{Math.round(socialSecurity / 12).toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
                     <span className="text-purple-700">Pension</span>
-                    <span className="font-bold text-purple-700">${Math.round(pension / 12).toLocaleString()}</span>
+                    <span className="font-bold text-purple-700">{currencySymbol}{Math.round(pension / 12).toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between items-center p-3 bg-gray-100 rounded-lg font-bold">
                     <span>Total Monthly Income</span>
-                    <span className="text-green-600">${results.monthlyIncome.toLocaleString()}</span>
+                    <span className="text-green-600">{currencySymbol}{results.monthlyIncome.toLocaleString()}</span>
                   </div>
                 </div>
               </div>
@@ -213,14 +215,14 @@ export default function AdvancedRetirementForm() {
                   <div>
                     <div className="flex justify-between text-sm mb-1">
                       <span>Current Monthly Income</span>
-                      <span>${Math.round(currentIncome / 12).toLocaleString()}</span>
+                      <span>{currencySymbol}{Math.round(currentIncome / 12).toLocaleString()}</span>
                     </div>
                     <div className="h-2 bg-gray-100 rounded-full"><div className="h-full bg-green-500 rounded-full" style={{ width: '100%' }}></div></div>
                   </div>
                   <div>
                     <div className="flex justify-between text-sm mb-1">
                       <span>Retirement Monthly Income</span>
-                      <span>${results.monthlyIncome.toLocaleString()}</span>
+                      <span>{currencySymbol}{results.monthlyIncome.toLocaleString()}</span>
                     </div>
                     <div className="h-2 bg-gray-100 rounded-full"><div className="h-full bg-blue-500 rounded-full" style={{ width: `${(results.monthlyIncome / (currentIncome/12)) * 100}%` }}></div></div>
                   </div>
@@ -248,7 +250,7 @@ export default function AdvancedRetirementForm() {
                     <div key={i} className="p-4 bg-gray-50 rounded-lg">
                       <h4 className="font-semibold text-gray-800">{scenario.label}</h4>
                       <p className="text-sm text-gray-600 mt-1">{scenario.desc}</p>
-                      <p className="text-green-600 font-bold mt-2">+${benefit.toLocaleString()}/year</p>
+                      <p className="text-green-600 font-bold mt-2">+{currencySymbol}{benefit.toLocaleString()}/year</p>
                     </div>
                   );
                 })}
@@ -265,7 +267,7 @@ export default function AdvancedRetirementForm() {
           {ageGroups.map((group, i) => (
             <div key={i} className="text-center p-3 bg-gray-50 rounded-lg">
               <p className="text-sm font-medium text-gray-800">{group.range}</p>
-              <p className="text-lg font-bold text-green-600">${(group.avg / 1000).toFixed(0)}k</p>
+              <p className="text-lg font-bold text-green-600">{currencySymbol}{(group.avg / 1000).toFixed(0)}k</p>
               <p className="text-xs text-gray-500">{group.desc}</p>
             </div>
           ))}

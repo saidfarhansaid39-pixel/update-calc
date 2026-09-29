@@ -3,8 +3,10 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function DebtConsolidationForm({ state, setters, handleCalculate, handleClear }: any) {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const handleCardChange = (index: number, field: string, value: string) => {
     const newCards = [...state.cards];
@@ -55,7 +57,7 @@ export function DebtConsolidationForm({ state, setters, handleCalculate, handleC
                 </td>
                 <td className="px-1 py-0.5">
                   <div className="flex items-center bg-white border border-gray-400 w-full min-w-[70px]">
-                    <span className="px-1 bg-gray-100 border-r border-gray-400 leading-[24px]">$</span>
+                    <span className="px-1 bg-gray-100 border-r border-gray-400 leading-[24px]">{currencySymbol}</span>
                     <input 
                       type="text" 
                       className="w-full px-1 h-[24px] outline-none"
@@ -66,7 +68,7 @@ export function DebtConsolidationForm({ state, setters, handleCalculate, handleC
                 </td>
                 <td className="px-1 py-0.5">
                   <div className="flex items-center bg-white border border-gray-400 w-full min-w-[70px]">
-                    <span className="px-1 bg-gray-100 border-r border-gray-400 leading-[24px]">$</span>
+                    <span className="px-1 bg-gray-100 border-r border-gray-400 leading-[24px]">{currencySymbol}</span>
                     <input 
                       type="text" 
                       className="w-full px-1 h-[24px] outline-none"
@@ -103,7 +105,7 @@ export function DebtConsolidationForm({ state, setters, handleCalculate, handleC
         <div className="grid grid-cols-[120px_1fr] gap-y-2 items-center max-w-[300px] pl-2">
           <label>Loan amount</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
             <input 
               type="text" 
               className="border border-gray-400 w-[100px] px-1 h-[28px]" 
@@ -159,7 +161,7 @@ export function DebtConsolidationForm({ state, setters, handleCalculate, handleC
               onChange={e => setters.setLoanFeeType(e.target.value)}
             >
               <option value="%">%</option>
-              <option value="$">$</option>
+              <option value="$">{currencySymbol}</option>
             </select>
           </div>
         </div>

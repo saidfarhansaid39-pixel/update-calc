@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { calculateSavings } from '@/engines/finance/investment';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function SavingsCalculatorForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [initialDeposit, setInitialDeposit] = useState<number>(5000);
   const [monthlyDeposit, setMonthlyDeposit] = useState<number>(200);
@@ -21,7 +23,7 @@ export default function SavingsCalculatorForm() {
     <div className="space-y-6">
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Initial Deposit ($)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Initial Deposit ({currencySymbol})</label>
           <input
             type="number"
             value={initialDeposit}
@@ -31,7 +33,7 @@ export default function SavingsCalculatorForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Monthly Deposit ($)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Monthly Deposit ({currencySymbol})</label>
           <input
             type="number"
             value={monthlyDeposit}
@@ -69,15 +71,15 @@ export default function SavingsCalculatorForm() {
           <div className="grid md:grid-cols-3 gap-4">
             <div className="bg-white p-4 rounded shadow-sm">
               <h4 className="font-medium text-gray-600 mb-2">Total Savings</h4>
-              <p className="text-2xl font-bold text-green-600">${result.futureValue.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-green-600">{currencySymbol}{result.futureValue.toLocaleString()}</p>
             </div>
             <div className="bg-white p-4 rounded shadow-sm">
               <h4 className="font-medium text-gray-600 mb-2">Total Interest Earned</h4>
-              <p className="text-2xl font-bold text-green-600">${result.totalInterest.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-green-600">{currencySymbol}{result.totalInterest.toLocaleString()}</p>
             </div>
             <div className="bg-white p-4 rounded shadow-sm">
               <h4 className="font-medium text-gray-600 mb-2">Total Deposited</h4>
-              <p className="text-2xl font-bold text-gray-700">${result.totalContributions.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-gray-700">{currencySymbol}{result.totalContributions.toLocaleString()}</p>
             </div>
           </div>
         </div>

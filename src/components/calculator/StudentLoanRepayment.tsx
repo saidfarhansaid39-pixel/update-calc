@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Save } from 'lucide-react';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function StudentLoanRepayment() {
+  const { currencySymbol } = useCurrency()
   const [balance, setBalance] = useState("30,000");
   const [payment, setPayment] = useState("350");
   const [rate, setRate] = useState("6.8");
@@ -105,13 +107,13 @@ export function StudentLoanRepayment() {
               
               <label>Loan Balance</label>
               <div className="flex items-center bg-white border border-gray-400">
-                <span className="px-2 bg-gray-100 border-r border-gray-400">$</span>
+                <span className="px-2 bg-gray-100 border-r border-gray-400">{currencySymbol}</span>
                 <input type="text" className="w-full px-1 py-0.5 outline-none" value={balance} onChange={e => setBalance(e.target.value)} />
               </div>
 
               <label>Monthly Payment</label>
               <div className="flex items-center bg-white border border-gray-400">
-                <span className="px-2 bg-gray-100 border-r border-gray-400">$</span>
+                <span className="px-2 bg-gray-100 border-r border-gray-400">{currencySymbol}</span>
                 <input type="text" className="w-full px-1 py-0.5 outline-none" value={payment} onChange={e => setPayment(e.target.value)} />
                 <span className="px-2 bg-gray-100 border-l border-gray-400">/month</span>
               </div>
@@ -137,19 +139,19 @@ export function StudentLoanRepayment() {
                   <div>Repayment with extra payments</div>
                   <div className="grid grid-cols-[80px_1fr] gap-1 mt-1 items-center">
                     <div className="flex items-center bg-white border border-gray-400">
-                      <span className="px-1 bg-gray-100 border-r border-gray-400">$</span>
+                      <span className="px-1 bg-gray-100 border-r border-gray-400">{currencySymbol}</span>
                       <input type="text" className="w-full px-1 py-0.5 outline-none" value={extraMonth} onChange={e => setExtraMonth(e.target.value)} disabled={option !== 'extra'} />
                     </div>
                     <span>per month</span>
 
                     <div className="flex items-center bg-white border border-gray-400">
-                      <span className="px-1 bg-gray-100 border-r border-gray-400">$</span>
+                      <span className="px-1 bg-gray-100 border-r border-gray-400">{currencySymbol}</span>
                       <input type="text" className="w-full px-1 py-0.5 outline-none" value={extraYear} onChange={e => setExtraYear(e.target.value)} disabled={option !== 'extra'} />
                     </div>
                     <span>per year</span>
 
                     <div className="flex items-center bg-white border border-gray-400">
-                      <span className="px-1 bg-gray-100 border-r border-gray-400">$</span>
+                      <span className="px-1 bg-gray-100 border-r border-gray-400">{currencySymbol}</span>
                       <input type="text" className="w-full px-1 py-0.5 outline-none" value={extraOnce} onChange={e => setExtraOnce(e.target.value)} disabled={option !== 'extra'} />
                     </div>
                     <span>one time</span>
@@ -189,7 +191,7 @@ export function StudentLoanRepayment() {
                   
                   {results.option === 'extra' && (
                     <p className="mb-4">
-                      The remaining term of the loan is {results.formatTime(results.base.months)}. By paying an extra ${results.extM.toFixed(2)} per month, the loan will be paid off in {results.formatTime(results.current.months)}. It is <strong>{results.formatTime(results.timeSaved)} earlier</strong>. This results in savings of <strong>${results.savings.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong> in interest payments.
+                      The remaining term of the loan is {results.formatTime(results.base.months)}. By paying an extra {currencySymbol}{results.extM.toFixed(2)} per month, the loan will be paid off in {results.formatTime(results.current.months)}. It is <strong>{results.formatTime(results.timeSaved)} earlier</strong>. This results in savings of <strong>{currencySymbol}{results.savings.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong> in interest payments.
                     </p>
                   )}
                   {results.option === 'normal' && (
@@ -199,18 +201,18 @@ export function StudentLoanRepayment() {
                   )}
                   {results.option === 'altogether' && (
                     <p className="mb-4">
-                      By paying off the loan altogether, you save <strong>${results.savings.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong> in interest.
+                      By paying off the loan altogether, you save <strong>{currencySymbol}{results.savings.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong> in interest.
                     </p>
                   )}
 
                   {results.option === 'extra' && (
                     <>
-                      <h4 className="font-bold mb-1">If Pay Extra ${results.extM.toFixed(2)} per month</h4>
+                      <h4 className="font-bold mb-1">If Pay Extra {currencySymbol}{results.extM.toFixed(2)} per month</h4>
                       <table className="w-full text-left border-collapse mb-4">
                         <tbody>
                           <tr className="bg-gray-100 border-b border-white"><td className="p-1">Remaining Term</td><td className="p-1 text-right">{results.formatTime(results.current.months)}</td></tr>
-                          <tr className="bg-gray-200 border-b border-white"><td className="p-1">Total Payments</td><td className="p-1 text-right">${results.current.totalPayment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>
-                          <tr className="bg-gray-100"><td className="p-1">Total Interest</td><td className="p-1 text-right">${results.current.totalInt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>
+                          <tr className="bg-gray-200 border-b border-white"><td className="p-1">Total Payments</td><td className="p-1 text-right">{currencySymbol}{results.current.totalPayment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>
+                          <tr className="bg-gray-100"><td className="p-1">Total Interest</td><td className="p-1 text-right">{currencySymbol}{results.current.totalInt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>
                         </tbody>
                       </table>
                     </>
@@ -220,8 +222,8 @@ export function StudentLoanRepayment() {
                   <table className="w-full text-left border-collapse">
                     <tbody>
                       <tr className="bg-gray-100 border-b border-white"><td className="p-1">Remaining Term</td><td className="p-1 text-right">{results.formatTime(results.base.months)}</td></tr>
-                      <tr className="bg-gray-200 border-b border-white"><td className="p-1">Total Payments</td><td className="p-1 text-right">${results.base.totalPayment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>
-                      <tr className="bg-gray-100"><td className="p-1">Total Interest</td><td className="p-1 text-right">${results.base.totalInt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>
+                      <tr className="bg-gray-200 border-b border-white"><td className="p-1">Total Payments</td><td className="p-1 text-right">{currencySymbol}{results.base.totalPayment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>
+                      <tr className="bg-gray-100"><td className="p-1">Total Interest</td><td className="p-1 text-right">{currencySymbol}{results.base.totalInt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>
                     </tbody>
                   </table>
 

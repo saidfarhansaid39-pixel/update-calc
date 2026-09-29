@@ -3,10 +3,12 @@
 import { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 type ContributionTiming = 'end' | 'beginning';
 
 export default function AdvancedCompoundInterestForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [initialInvestment, setInitialInvestment] = useState<number>(10000);
   const [regularContribution, setRegularContribution] = useState<number>(500);
@@ -118,14 +120,14 @@ export default function AdvancedCompoundInterestForm() {
 
   const copyResults = () => {
     const text = `Compound Interest Results:
-Initial Investment: $${initialInvestment.toLocaleString()}
-Regular Contribution: $${regularContribution.toLocaleString()}/month
+Initial Investment: ${currencySymbol}${initialInvestment.toLocaleString()}
+Regular Contribution: ${currencySymbol}${regularContribution.toLocaleString()}/month
 Interest Rate: ${interestRate}%
 Years: ${years}
-Future Value: $${results?.futureValue.toLocaleString()}
-Total Contributions: $${results?.totalContributed.toLocaleString()}
-Total Interest: $${results?.totalInterest.toLocaleString()}
-Inflation Adjusted: $${results?.inflationAdjustedValue.toLocaleString()}`;
+Future Value: ${currencySymbol}${results?.futureValue.toLocaleString()}
+Total Contributions: ${currencySymbol}${results?.totalContributed.toLocaleString()}
+Total Interest: ${currencySymbol}${results?.totalInterest.toLocaleString()}
+Inflation Adjusted: ${currencySymbol}${results?.inflationAdjustedValue.toLocaleString()}`;
     navigator.clipboard.writeText(text);
   };
 
@@ -151,7 +153,7 @@ Inflation Adjusted: $${results?.inflationAdjustedValue.toLocaleString()}`;
         <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
           <label className="block text-sm font-semibold text-gray-700 mb-2">💰 Initial Investment</label>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">{currencySymbol}</span>
             <input type="number" value={initialInvestment} onChange={(e) => setInitialInvestment(Number(e.target.value))}
               className="w-full pl-8 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500" />
           </div>
@@ -163,7 +165,7 @@ Inflation Adjusted: $${results?.inflationAdjustedValue.toLocaleString()}`;
           <label className="block text-sm font-semibold text-gray-700 mb-2">📈 Regular Contribution</label>
           <div className="flex gap-2">
             <div className="relative flex-1">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">{currencySymbol}</span>
               <input type="number" value={regularContribution} onChange={(e) => setRegularContribution(Number(e.target.value))}
                 className="w-full pl-8 pr-4 py-3 border border-gray-200 rounded-lg" />
             </div>
@@ -271,15 +273,15 @@ Inflation Adjusted: $${results?.inflationAdjustedValue.toLocaleString()}`;
           <div className="grid lg:grid-cols-3 gap-4">
             <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white shadow-xl">
               <p className="text-green-100 text-sm font-medium mb-1">Future Value</p>
-              <p className="text-4xl font-bold mb-2">${results.futureValue.toLocaleString()}</p>
+              <p className="text-4xl font-bold mb-2">{currencySymbol}{results.futureValue.toLocaleString()}</p>
               <p className="text-green-100 text-sm">in {years} years</p>
             </div>
             
             <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
               <h3 className="font-semibold text-gray-800 mb-3">📊 Summary</h3>
               <div className="space-y-2 text-sm">
-                <div className="flex justify-between"><span className="text-gray-500">Total Contributed</span><span className="font-medium">${results.totalContributed.toLocaleString()}</span></div>
-                <div className="flex justify-between"><span className="text-gray-500">Total Interest</span><span className="font-medium text-green-600">${results.totalInterest.toLocaleString()}</span></div>
+                <div className="flex justify-between"><span className="text-gray-500">Total Contributed</span><span className="font-medium">{currencySymbol}{results.totalContributed.toLocaleString()}</span></div>
+                <div className="flex justify-between"><span className="text-gray-500">Total Interest</span><span className="font-medium text-green-600">{currencySymbol}{results.totalInterest.toLocaleString()}</span></div>
                 <div className="flex justify-between"><span className="text-gray-500">Interest as % of Contrib.</span><span className="font-medium">{results.effectiveRate}%</span></div>
               </div>
             </div>
@@ -305,8 +307,8 @@ Inflation Adjusted: $${results?.inflationAdjustedValue.toLocaleString()}`;
                     <AreaChart data={yearlyData}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                       <XAxis dataKey="yearLabel" tick={{ fontSize: 11 }} />
-                      <YAxis tickFormatter={(v) => `$${(v/1000).toFixed(0)}k`} tick={{ fontSize: 11 }} />
-                      <Tooltip formatter={(v: number) => `$${v.toLocaleString()}`} />
+                      <YAxis tickFormatter={(v) => `${currencySymbol}${(v/1000).toFixed(0)}k`} tick={{ fontSize: 11 }} />
+                      <Tooltip formatter={(v: number) => `${currencySymbol}${v.toLocaleString()}`} />
                       <Legend />
                       <Area type="monotone" dataKey="balance" stackId="1" stroke="#22c55e" fill="#22c55e" fillOpacity={0.6} name="Total Balance" />
                       <Area type="monotone" dataKey="totalContributed" stackId="2" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.6} name="Contributions" />
@@ -322,8 +324,8 @@ Inflation Adjusted: $${results?.inflationAdjustedValue.toLocaleString()}`;
                     <AreaChart data={yearlyData}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                       <XAxis dataKey="yearLabel" tick={{ fontSize: 11 }} />
-                      <YAxis tickFormatter={(v) => `$${(v/1000).toFixed(0)}k`} tick={{ fontSize: 11 }} />
-                      <Tooltip formatter={(v: number) => `$${v.toLocaleString()}`} />
+                      <YAxis tickFormatter={(v) => `${currencySymbol}${(v/1000).toFixed(0)}k`} tick={{ fontSize: 11 }} />
+                      <Tooltip formatter={(v: number) => `${currencySymbol}${v.toLocaleString()}`} />
                       <Legend />
                       <Area type="monotone" dataKey="totalInterest" stroke="#ef4444" fill="#ef4444" fillOpacity={0.6} name="Interest Earned" />
                       <Area type="monotone" dataKey="totalContributed" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.6} name="Your Contributions" />
@@ -352,10 +354,10 @@ Inflation Adjusted: $${results?.inflationAdjustedValue.toLocaleString()}`;
                   {yearlyData.map((row, i) => (
                     <tr key={i} className="border-t hover:bg-gray-50">
                       <td className="p-3 font-medium">{row.yearLabel}</td>
-                      <td className="p-3 text-right text-green-600 font-medium">${row.balance.toLocaleString()}</td>
-                      <td className="p-3 text-right">${row.totalContributed.toLocaleString()}</td>
-                      <td className="p-3 text-right text-red-500">${row.totalInterest.toLocaleString()}</td>
-                      {showAdjustForInflation && <td className="p-3 text-right text-gray-500">${row.inflationAdjusted.toLocaleString()}</td>}
+                      <td className="p-3 text-right text-green-600 font-medium">{currencySymbol}{row.balance.toLocaleString()}</td>
+                      <td className="p-3 text-right">{currencySymbol}{row.totalContributed.toLocaleString()}</td>
+                      <td className="p-3 text-right text-red-500">{currencySymbol}{row.totalInterest.toLocaleString()}</td>
+                      {showAdjustForInflation && <td className="p-3 text-right text-gray-500">{currencySymbol}{row.inflationAdjusted.toLocaleString()}</td>}
                     </tr>
                   ))}
                 </tbody>
@@ -372,7 +374,7 @@ Inflation Adjusted: $${results?.inflationAdjustedValue.toLocaleString()}`;
                   <div>
                     <div className="flex justify-between mb-1">
                       <span className="text-gray-600">Initial Investment</span>
-                      <span className="font-medium">${initialInvestment.toLocaleString()}</span>
+                      <span className="font-medium">{currencySymbol}{initialInvestment.toLocaleString()}</span>
                     </div>
                     <div className="h-3 bg-gray-100 rounded-full">
                       <div className="h-full bg-blue-500 rounded-full" style={{ width: `${(initialInvestment / results.futureValue) * 100}%` }}></div>
@@ -381,7 +383,7 @@ Inflation Adjusted: $${results?.inflationAdjustedValue.toLocaleString()}`;
                   <div>
                     <div className="flex justify-between mb-1">
                       <span className="text-gray-600">Regular Contributions</span>
-                      <span className="font-medium">${(results.totalContributed - initialInvestment).toLocaleString()}</span>
+                      <span className="font-medium">{currencySymbol}{(results.totalContributed - initialInvestment).toLocaleString()}</span>
                     </div>
                     <div className="h-3 bg-gray-100 rounded-full">
                       <div className="h-full bg-purple-500 rounded-full" style={{ width: `${((results.totalContributed - initialInvestment) / results.futureValue) * 100}%` }}></div>
@@ -390,7 +392,7 @@ Inflation Adjusted: $${results?.inflationAdjustedValue.toLocaleString()}`;
                   <div>
                     <div className="flex justify-between mb-1">
                       <span className="text-gray-600">Interest Earned</span>
-                      <span className="font-medium text-green-600">${results.totalInterest.toLocaleString()}</span>
+                      <span className="font-medium text-green-600">{currencySymbol}{results.totalInterest.toLocaleString()}</span>
                     </div>
                     <div className="h-3 bg-gray-100 rounded-full">
                       <div className="h-full bg-green-500 rounded-full" style={{ width: `${(results.totalInterest / results.futureValue) * 100}%` }}></div>
@@ -413,7 +415,7 @@ Inflation Adjusted: $${results?.inflationAdjustedValue.toLocaleString()}`;
                   {showAdjustForInflation && (
                     <div className="p-3 bg-yellow-50 rounded-lg">
                       <p className="text-sm text-yellow-700">Inflation Adjusted Value</p>
-                      <p className="text-2xl font-bold text-yellow-700">${results.inflationAdjustedValue.toLocaleString()}</p>
+                      <p className="text-2xl font-bold text-yellow-700">{currencySymbol}{results.inflationAdjustedValue.toLocaleString()}</p>
                       <p className="text-xs text-yellow-600">Purchasing power in today's dollars</p>
                     </div>
                   )}
@@ -432,7 +434,7 @@ Inflation Adjusted: $${results?.inflationAdjustedValue.toLocaleString()}`;
         </div>
         <div className="mt-4 grid md:grid-cols-4 gap-4 text-sm">
           <div><span className="font-semibold">A</span> = Final Amount</div>
-          <div><span className="font-semibold">P</span> = Principal (${initialInvestment})</div>
+          <div><span className="font-semibold">P</span> = Principal ({currencySymbol}{initialInvestment})</div>
           <div><span className="font-semibold">r</span> = Annual Rate ({interestRate}%)</div>
           <div><span className="font-semibold">n</span> = Compounds/Year ({compoundFrequency === 'monthly' ? '12' : '4'})</div>
           <div><span className="font-semibold">t</span> = Time ({years} years)</div>

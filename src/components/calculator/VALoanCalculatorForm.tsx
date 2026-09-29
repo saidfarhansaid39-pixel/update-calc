@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function VALoanCalculatorForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [homePrice, setHomePrice] = useState<number>(300000);
   const [downPayment, setDownPayment] = useState<number>(0);
@@ -48,12 +50,12 @@ export default function VALoanCalculatorForm() {
         <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded">
           <h3 className="font-bold text-lg text-gray-800 mb-3">VA Loan Summary</h3>
           <div className="grid md:grid-cols-2 gap-4">
-            <div><p className="text-sm text-gray-500">Base Loan</p><p className="text-xl font-bold">${result.loanAmount.toLocaleString()}</p></div>
-            <div><p className="text-sm text-gray-500">Funding Fee (2.233%)</p><p className="text-xl font-bold">${result.fundingFee.toLocaleString()}</p></div>
+            <div><p className="text-sm text-gray-500">Base Loan</p><p className="text-xl font-bold">{currencySymbol}{result.loanAmount.toLocaleString()}</p></div>
+            <div><p className="text-sm text-gray-500">Funding Fee (2.233%)</p><p className="text-xl font-bold">{currencySymbol}{result.fundingFee.toLocaleString()}</p></div>
           </div>
           <div className="mt-4 p-3 bg-white rounded">
             <p className="text-sm text-gray-500">{t('results.monthlyPayment')}</p>
-            <p className="text-3xl font-bold text-green-600">${result.monthlyPayment.toLocaleString()}</p>
+            <p className="text-3xl font-bold text-green-600">{currencySymbol}{result.monthlyPayment.toLocaleString()}</p>
           </div>
         </div>
       )}

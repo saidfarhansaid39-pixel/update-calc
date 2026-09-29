@@ -8,6 +8,7 @@ import { InterestRateResults } from '@/components/calculator/InterestRateResults
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
 import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 const calcMeta = {
   slug: 'interest-rate-calculator',
@@ -21,6 +22,7 @@ const calcMeta = {
 };
 
 export function InterestRateCalculatorWrapper() {
+  const { currency } = useCurrency()
   const th = useTranslations('hubs');
   const locale = useLocale();
   const [loanAmount, setLoanAmount] = useState("32,000");
@@ -110,16 +112,16 @@ export function InterestRateCalculatorWrapper() {
   const subCalcs = useMemo(() => (
     <SubCalcGrid>
       <SubCalcPanel title="Payment Summary" icon={DollarSign} results={[
-        { label: 'Monthly Payment', value: formatCurrency(pmt, 'USD', locale) },
-        { label: 'Total Payment', value: formatCurrency(totalPaymentsDerived, 'USD', locale) },
-        { label: 'Total Interest', value: formatCurrency(totalInterestDerived, 'USD', locale), badge: 'negative' },
+        { label: 'Monthly Payment', value: formatCurrency(pmt, currency, locale) },
+        { label: 'Total Payment', value: formatCurrency(totalPaymentsDerived, currency, locale) },
+        { label: 'Total Interest', value: formatCurrency(totalInterestDerived, currency, locale), badge: 'negative' },
       ]} />
       <SubCalcPanel title="Rates" icon={Percent} defaultOpen results={[
         { label: 'Effective Annual Rate', value: `${annualRate.toFixed(3)}%`, badge: 'info' },
         { label: 'APY', value: `${apy.toFixed(3)}%`, badge: 'info' },
       ]} />
     </SubCalcGrid>
-  ), [pmt, totalPaymentsDerived, totalInterestDerived, annualRate, apy, locale]);
+  ), [pmt, totalPaymentsDerived, totalInterestDerived, annualRate, apy, locale, currency]);
 
   const result = results ? <InterestRateResults results={results} /> : null;
 

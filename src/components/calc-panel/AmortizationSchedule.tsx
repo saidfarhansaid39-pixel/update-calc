@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from 'react'
 import { ChevronDown, ChevronUp, Calendar } from 'lucide-react'
 import { DynamicAmortizationChart } from '@/components/premium/DynamicCharts'
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 interface AmortizationRow {
   period: number
@@ -109,9 +110,12 @@ export function AmortizationSchedule(props: AmortizationScheduleProps) {
     periodsPerYear = 12,
     extraPayment = 0,
     monthlyFees = 0,
-    currencySymbol = '$',
+    currencySymbol: currencySymbolOverride,
     startDate = new Date(),
   } = props
+
+  const { currencySymbol: selectedSymbol } = useCurrency()
+  const currencySymbol = currencySymbolOverride ?? selectedSymbol
 
   const [showMonthly, setShowMonthly] = useState(false)
   const extraPerPeriod = periodsPerYear === 26 ? extraPayment / 2 : extraPayment

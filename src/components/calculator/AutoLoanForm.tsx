@@ -3,8 +3,10 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function AutoLoanForm({ state, setters }: any) {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   return (
     <div className="w-full font-sans text-[13px] text-gray-800">
@@ -24,7 +26,7 @@ export function AutoLoanForm({ state, setters }: any) {
         <div className="grid grid-cols-[140px_1fr] gap-y-2 items-center">
           <label className="text-right pr-2">Auto Price</label>
           <div className="flex">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
             <input 
               type="text" 
               className="border border-gray-400 w-[120px] px-1 h-[28px]" 
@@ -57,7 +59,7 @@ export function AutoLoanForm({ state, setters }: any) {
 
           <label className="text-right pr-2 flex justify-end items-center gap-1">Cash Incentives <span className="text-gray-400 border border-gray-400 rounded-full w-3 h-3 flex items-center justify-center text-[9px]">?</span></label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
             <input 
               type="text" 
               className="border border-gray-400 w-[100px] px-1 h-[28px]" 
@@ -68,7 +70,7 @@ export function AutoLoanForm({ state, setters }: any) {
 
           <label className="text-right pr-2 flex justify-end items-center gap-1">Down Payment <span className="text-gray-400 border border-gray-400 rounded-full w-3 h-3 flex items-center justify-center text-[9px]">?</span></label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
             <input 
               type="text" 
               className="border border-gray-400 w-[100px] px-1 h-[28px]" 
@@ -79,7 +81,7 @@ export function AutoLoanForm({ state, setters }: any) {
 
           <label className="text-right pr-2 flex justify-end items-center gap-1">Trade-in Value <span className="text-gray-400 border border-gray-400 rounded-full w-3 h-3 flex items-center justify-center text-[9px]">?</span></label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
             <input 
               type="text" 
               className="border border-gray-400 w-[100px] px-1 h-[28px]" 
@@ -90,7 +92,7 @@ export function AutoLoanForm({ state, setters }: any) {
 
           <label className="text-right pr-2 flex justify-end items-center gap-1">Amount Owed<br/>on Trade-in <span className="text-gray-400 border border-gray-400 rounded-full w-3 h-3 flex items-center justify-center text-[9px]">?</span></label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
             <input 
               type="text" 
               className="border border-gray-400 w-[100px] px-1 h-[28px]" 
@@ -117,7 +119,7 @@ export function AutoLoanForm({ state, setters }: any) {
 
           <label className="text-right pr-2 flex justify-end items-center gap-1">Title, Registration<br/>and Other Fees <span className="text-gray-400 border border-gray-400 rounded-full w-3 h-3 flex items-center justify-center text-[9px]">?</span></label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
             <input 
               type="text" 
               className="border border-gray-400 w-[100px] px-1 h-[28px]" 

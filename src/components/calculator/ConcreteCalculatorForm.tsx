@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function ConcreteCalculatorForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [length, setLength] = useState<number>(10);
   const [width, setWidth] = useState<number>(10);
@@ -30,7 +32,7 @@ export default function ConcreteCalculatorForm() {
           <input type="number" value={width} onChange={(e) => setWidth(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded" /></div>
         <div><label className="block text-sm font-medium text-gray-700 mb-1">Depth (inches)</label>
           <input type="number" value={depth} onChange={(e) => setDepth(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded" /></div>
-        <div><label className="block text-sm font-medium text-gray-700 mb-1">Price per Cubic Yard ($)</label>
+        <div><label className="block text-sm font-medium text-gray-700 mb-1">Price per Cubic Yard ({currencySymbol})</label>
           <input type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded" /></div>
       </div>
 
@@ -42,7 +44,7 @@ export default function ConcreteCalculatorForm() {
             <div className="bg-white p-3 rounded"><p className="text-sm text-gray-500">Cubic Yards</p><p className="text-xl font-bold">{result.cubicYards}</p></div>
             <div className="bg-white p-3 rounded"><p className="text-sm text-gray-500">60lb Bags Needed</p><p className="text-xl font-bold">{result.bags60lb}</p></div>
             <div className="bg-white p-3 rounded"><p className="text-sm text-gray-500">80lb Bags Needed</p><p className="text-xl font-bold">{result.bags80lb}</p></div>
-            <div className="bg-white p-3 rounded col-span-2 lg:col-span-1"><p className="text-sm text-gray-500">Estimated Cost</p><p className="text-2xl font-bold text-green-600">${result.totalCost}</p></div>
+            <div className="bg-white p-3 rounded col-span-2 lg:col-span-1"><p className="text-sm text-gray-500">Estimated Cost</p><p className="text-2xl font-bold text-green-600">{currencySymbol}{result.totalCost}</p></div>
           </div>
         </div>
       )}

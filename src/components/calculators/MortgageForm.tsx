@@ -5,10 +5,12 @@ import { Input, Select, Button, FormGroup, FormPanel } from '@/components/Calcul
 import { calculateMortgage, MortgageInputs, MortgageResults } from '@/lib/calculators/mortgage';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { useCurrencyFormat } from '@/lib/hooks/useCurrencyFormat';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 const COLORS = ['#2ca02c', '#1f77b4', '#ff7f0e', '#d62728']; // Green, Blue, Orange, Red (Approximated from screenshot)
 
 export function MortgageForm() {
+  const { currencySymbol } = useCurrency()
   const [inputs, setInputs] = useState<MortgageInputs>({
     homePrice: 400000,
     downPaymentPercent: 20,
@@ -41,7 +43,7 @@ export function MortgageForm() {
     handleCalculate(); // Calculate on mount
   }, []);
 
-  const formatCurrency = useCurrencyFormat('USD');
+  const formatCurrency = useCurrencyFormat();
   const formatPercent = (val: number) => (val * 100).toFixed(0) + '%';
 
   const chartData = results ? [
@@ -56,14 +58,14 @@ export function MortgageForm() {
     <div className="flex flex-col gap-6 font-sans text-[13px] text-[#333333]">
       <FormPanel header="Modify the values and click the Calculate button to use">
         <FormGroup label="Home Price">
-          <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[2px]">$</span>
+          <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[2px]">{currencySymbol}</span>
           <Input type="number" value={inputs.homePrice} onChange={(e) => handleNumChange(e, 'homePrice')} className="w-[120px]" />
         </FormGroup>
         
         <FormGroup label="Down Payment">
           <Input type="number" value={inputs.downPaymentPercent} onChange={(e) => handleNumChange(e, 'downPaymentPercent')} className="w-[50px]" />
           <span className="px-1">%</span>
-          <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[2px]">$</span>
+          <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[2px]">{currencySymbol}</span>
           <Input type="number" value={inputs.homePrice * (inputs.downPaymentPercent / 100)} readOnly className="w-[80px] bg-[#f8f8f8]" />
         </FormGroup>
         
@@ -105,13 +107,13 @@ export function MortgageForm() {
             <FormGroup label="Property Taxes">
               <Input type="number" value={inputs.propertyTaxPercent} onChange={(e) => handleNumChange(e, 'propertyTaxPercent')} className="w-[50px]" step="0.1" />
               <span className="px-1">%</span>
-              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[2px]">$</span>
+              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[2px]">{currencySymbol}</span>
               <Input type="number" value={(inputs.homePrice * (inputs.propertyTaxPercent / 100)).toFixed(0)} readOnly className="w-[80px] bg-[#f8f8f8]" />
               <span className="px-1 text-gray-500">/yr</span>
             </FormGroup>
             
             <FormGroup label="Home Insurance">
-              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[2px]">$</span>
+              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[2px]">{currencySymbol}</span>
               <Input type="number" value={inputs.homeInsuranceYearly} onChange={(e) => handleNumChange(e, 'homeInsuranceYearly')} className="w-[80px]" />
               <span className="px-1 text-gray-500">/yr</span>
             </FormGroup>
@@ -119,19 +121,19 @@ export function MortgageForm() {
             <FormGroup label="PMI Insurance">
               <Input type="number" value={inputs.pmiPercent} onChange={(e) => handleNumChange(e, 'pmiPercent')} className="w-[50px]" step="0.1" />
               <span className="px-1">%</span>
-              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[2px]">$</span>
+              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[2px]">{currencySymbol}</span>
               <Input type="number" value={((inputs.homePrice * (1 - inputs.downPaymentPercent/100)) * (inputs.pmiPercent / 100)).toFixed(0)} readOnly className="w-[80px] bg-[#f8f8f8]" />
               <span className="px-1 text-gray-500">/yr</span>
             </FormGroup>
             
             <FormGroup label="HOA Fee">
-              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[2px]">$</span>
+              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[2px]">{currencySymbol}</span>
               <Input type="number" value={inputs.hoaFeeMonthly} onChange={(e) => handleNumChange(e, 'hoaFeeMonthly')} className="w-[80px]" />
               <span className="px-1 text-gray-500">/mo</span>
             </FormGroup>
             
             <FormGroup label="Other Costs">
-              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[2px]">$</span>
+              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[2px]">{currencySymbol}</span>
               <Input type="number" value={inputs.otherCostsYearly} onChange={(e) => handleNumChange(e, 'otherCostsYearly')} className="w-[80px]" />
               <span className="px-1 text-gray-500">/yr</span>
             </FormGroup>

@@ -8,6 +8,7 @@ import { PaymentResults } from '@/components/calculator/PaymentResults';
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
 import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 const calcMeta = {
   slug: 'payment-calculator',
@@ -21,6 +22,7 @@ const calcMeta = {
 };
 
 export function PaymentCalculator() {
+  const { currency, currencySymbol } = useCurrency()
   const th = useTranslations('hubs');
   const locale = useLocale();
   const [activeTab, setActiveTab] = useState('fixedTerm');
@@ -95,23 +97,23 @@ export function PaymentCalculator() {
     return (
       <SubCalcGrid>
         <SubCalcPanel title="Payment Summary" icon={DollarSign} defaultOpen results={[
-          { label: 'Monthly Payment', value: formatCurrency(computedMonthly, 'USD', locale), badge: 'info' },
-          { label: 'Total Payments', value: formatCurrency(totalPayments, 'USD', locale) },
-          { label: 'Total Interest', value: formatCurrency(totalInterest, 'USD', locale), badge: 'negative' },
+          { label: 'Monthly Payment', value: formatCurrency(computedMonthly, currency, locale), badge: 'info' },
+          { label: 'Total Payments', value: formatCurrency(totalPayments, currency, locale) },
+          { label: 'Total Interest', value: formatCurrency(totalInterest, currency, locale), badge: 'negative' },
         ]} />
         <SubCalcPanel title="Loan Details" icon={Calendar} results={[
-          { label: 'Loan Amount', value: formatCurrency(p, 'USD', locale) },
+          { label: 'Loan Amount', value: formatCurrency(p, currency, locale) },
           { label: 'Payoff Period', value: `${computedMonths} months (${(computedMonths / 12).toFixed(1)} years)` },
         ]} />
         {amortSchedule.length > 0 && (
           <SubCalcPanel title="Amortization Schedule (Yearly)" icon={Percent} defaultOpen results={amortSchedule.slice(0, Math.min(15, amortSchedule.length)).map(row => ({
             label: `Year ${row.year}`,
-            value: `P: $${row.principalPaid.toLocaleString()} | I: $${row.interestPaid.toLocaleString()} | Bal: $${Math.round(row.balance).toLocaleString()}`,
+            value: `P: ${currencySymbol}${row.principalPaid.toLocaleString()} | I: ${currencySymbol}${row.interestPaid.toLocaleString()} | Bal: ${currencySymbol}${Math.round(row.balance).toLocaleString()}`,
           }))} />
         )}
       </SubCalcGrid>
     );
-  }, [computedMonthly, totalPayments, totalInterest, p, computedMonths, locale, amortSchedule]);
+  }, [computedMonthly, totalPayments, totalInterest, p, computedMonths, locale, amortSchedule, currencySymbol, currency]);
 
   return (
     <PremiumCalculatorShell

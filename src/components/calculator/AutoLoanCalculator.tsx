@@ -8,6 +8,7 @@ import { AutoLoanResults } from '@/components/calculator/AutoLoanResults';
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
 import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 const calcMeta = {
   slug: 'auto-loan-calculator',
@@ -21,6 +22,7 @@ const calcMeta = {
 };
 
 export function AutoLoanCalculator() {
+  const { currency } = useCurrency()
   const th = useTranslations('hubs');
   const locale = useLocale();
   const [autoPrice, setAutoPrice] = useState("50,000");
@@ -88,20 +90,20 @@ export function AutoLoanCalculator() {
     return (
       <SubCalcGrid>
         <SubCalcPanel title="Payment Breakdown" icon={DollarSign} defaultOpen results={[
-          { label: 'Monthly Payment', value: formatCurrency(monthly, 'USD', locale), badge: 'info' },
-          { label: 'Total of Payments', value: formatCurrency(totalPay, 'USD', locale) },
-          { label: 'Total Interest', value: formatCurrency(totalInt, 'USD', locale), badge: 'negative' },
+          { label: 'Monthly Payment', value: formatCurrency(monthly, currency, locale), badge: 'info' },
+          { label: 'Total of Payments', value: formatCurrency(totalPay, currency, locale) },
+          { label: 'Total Interest', value: formatCurrency(totalInt, currency, locale), badge: 'negative' },
         ]} />
         <SubCalcPanel title="Cost Details" icon={Car} results={[
-          { label: 'Vehicle Price', value: formatCurrency(price, 'USD', locale) },
-          { label: 'Down Payment', value: formatCurrency(down, 'USD', locale) },
-          { label: 'Trade-In Value', value: formatCurrency(tradeIn, 'USD', locale) },
-          { label: 'Sales Tax', value: formatCurrency(tax, 'USD', locale) },
-          { label: 'Total Cost', value: formatCurrency(totalCostOverall, 'USD', locale), badge: 'positive' },
+          { label: 'Vehicle Price', value: formatCurrency(price, currency, locale) },
+          { label: 'Down Payment', value: formatCurrency(down, currency, locale) },
+          { label: 'Trade-In Value', value: formatCurrency(tradeIn, currency, locale) },
+          { label: 'Sales Tax', value: formatCurrency(tax, currency, locale) },
+          { label: 'Total Cost', value: formatCurrency(totalCostOverall, currency, locale), badge: 'positive' },
         ]} />
       </SubCalcGrid>
     );
-  }, [monthly, totalPay, totalInt, price, down, tradeIn, tax, totalCostOverall, locale]);
+  }, [monthly, totalPay, totalInt, price, down, tradeIn, tax, totalCostOverall, locale, currency]);
 
   return (
     <PremiumCalculatorShell

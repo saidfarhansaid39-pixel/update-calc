@@ -18,8 +18,10 @@ interface FieldDef {
 }
 import { calcDefs } from './physics'
 import type { CalcDef } from '@/lib/generic-fallback'
+import { useCurrency, subMoney } from '@/lib/context/CurrencyContext'
 
 export function GenericPhysicsCalculator({ calculator }: Props) {
+  const { currencySymbol } = useCurrency()
   const def = calcDefs[calculator.slug] || (buildGenericDef(calculator) as unknown as CalcDef)
   const schema = def?.schema || z.object({ val1: z.string().min(1, 'Required').refine(v => !isNaN(parseFloat(v)), 'Must be a number') })
   const defaults = def?.fields.reduce((acc, f) => {
@@ -123,17 +125,17 @@ export function GenericPhysicsCalculator({ calculator }: Props) {
       <div className="text-center space-y-4">
         <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
           <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
-          <p className="text-3xl font-bold text-[#06b6d4]">{typeof res.result === 'number' ? res.result.toFixed(4) : res.result} {res.unit}</p>
+          <p className="text-3xl font-bold text-[#06b6d4]">{typeof res.result === 'number' ? res.result.toFixed(4) : res.result} {subMoney(res.unit, currencySymbol)}</p>
           {physicsInterpretation}
         </div>
         <div className="border-t border-gray-200 dark:border-gray-700 pt-4 text-xs text-gray-400 space-y-1">
           {(res.steps ?? []).map((step, i) => (
-            <p key={i}><strong>{step.label}:</strong> {step.value}</p>
+            <p key={i}><strong>{step.label}:</strong> {subMoney(step.value, currencySymbol)}</p>
           ))}
         </div>
       </div>
     )
-  }, [def, res, physicsInterpretation])
+  }, [def, res, physicsInterpretation, currencySymbol])
 
   const formContent = useMemo(() => {
     return <FieldsByMode fields={def.fields} useSlider={useSlider} lockedFields={lockedFields} toggleLock={toggleLock} />

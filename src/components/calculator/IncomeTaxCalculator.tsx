@@ -9,6 +9,7 @@ import { IncomeTaxArticle } from '@/components/calculator/IncomeTaxArticle';
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
 import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 const calcMeta = {
   slug: 'income-tax-calculator',
@@ -22,6 +23,7 @@ const calcMeta = {
 };
 
 export function IncomeTaxCalculator() {
+  const { currency } = useCurrency()
   const th = useTranslations('hubs');
   const locale = useLocale();
   const [wages, setWages] = useState("80,000");
@@ -82,21 +84,21 @@ export function IncomeTaxCalculator() {
     return (
       <SubCalcGrid>
         <SubCalcPanel title="Income Summary" icon={DollarSign} defaultOpen results={[
-          { label: 'Gross Income', value: formatCurrency(w, 'USD', locale) },
-          { label: 'Standard Deduction', value: formatCurrency(14600, 'USD', locale), badge: 'info' },
-          { label: 'Taxable Income', value: formatCurrency(Math.max(taxable, 0), 'USD', locale) },
-          { label: 'Take-Home Pay', value: formatCurrency(takeHome, 'USD', locale), badge: 'positive' },
+          { label: 'Gross Income', value: formatCurrency(w, currency, locale) },
+          { label: 'Standard Deduction', value: formatCurrency(14600, currency, locale), badge: 'info' },
+          { label: 'Taxable Income', value: formatCurrency(Math.max(taxable, 0), currency, locale) },
+          { label: 'Take-Home Pay', value: formatCurrency(takeHome, currency, locale), badge: 'positive' },
         ]} />
         <SubCalcPanel title="Tax Breakdown" icon={Receipt} results={[
-          { label: 'Total Federal Tax', value: formatCurrency(taxOwed, 'USD', locale), badge: 'negative' },
+          { label: 'Total Federal Tax', value: formatCurrency(taxOwed, currency, locale), badge: 'negative' },
           { label: 'Effective Tax Rate', value: `${effectiveRate.toFixed(2)}%` },
           { label: 'Marginal Tax Rate', value: `${marginalRate}%`, badge: 'info' },
-          { label: 'Taxes Withheld', value: formatCurrency(fw, 'USD', locale) },
-          { label: isRefund ? 'Estimated Refund' : 'Amount You Owe', value: formatCurrency(Math.abs(refundOrOwed), 'USD', locale), badge: isRefund ? 'positive' : 'negative' },
+          { label: 'Taxes Withheld', value: formatCurrency(fw, currency, locale) },
+          { label: isRefund ? 'Estimated Refund' : 'Amount You Owe', value: formatCurrency(Math.abs(refundOrOwed), currency, locale), badge: isRefund ? 'positive' : 'negative' },
         ]} />
       </SubCalcGrid>
     );
-  }, [w, taxable, taxOwed, effectiveRate, marginalRate, takeHome, fw, refundOrOwed, isRefund, locale]);
+  }, [w, taxable, taxOwed, effectiveRate, marginalRate, takeHome, fw, refundOrOwed, isRefund, locale, currency]);
 
   const result = showResults ? (
     <IncomeTaxResults 

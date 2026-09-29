@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function DiscountSavingsForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [original, setOriginal] = useState<number>(100);
   const [discount, setDiscount] = useState<number>(25);
@@ -18,7 +20,7 @@ export default function DiscountSavingsForm() {
   return (
     <div className="space-y-6">
       <div className="grid md:grid-cols-2 gap-4">
-        <div><label className="block text-sm text-gray-700 mb-1">Original Price ($)</label>
+        <div><label className="block text-sm text-gray-700 mb-1">Original Price ({currencySymbol})</label>
           <input type="number" value={original} onChange={(e) => setOriginal(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
         <div><label className="block text-sm text-gray-700 mb-1">Discount (%)</label>
           <input type="number" value={discount} onChange={(e) => setDiscount(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
@@ -26,8 +28,8 @@ export default function DiscountSavingsForm() {
       <button onClick={calculate} className="bg-red-600 text-white px-6 py-2 rounded">{t('buttons.calculate')}</button>
       {result && (
         <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-2xl p-6 text-white mt-6">
-          <p className="text-4xl font-bold">${result.final}</p>
-          <p className="text-sm mt-2">You save: ${result.savings}</p>
+          <p className="text-4xl font-bold">{currencySymbol}{result.final}</p>
+          <p className="text-sm mt-2">You save: {currencySymbol}{result.savings}</p>
         </div>
       )}
     </div>

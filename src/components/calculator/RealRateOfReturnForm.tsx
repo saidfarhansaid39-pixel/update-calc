@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function RealRateOfReturnForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [investment, setInvestment] = useState<number>(10000);
   const [final, setFinal] = useState<number>(15000);
@@ -19,9 +21,9 @@ export default function RealRateOfReturnForm() {
   return (
     <div className="space-y-6">
       <div className="grid md:grid-cols-3 gap-4">
-        <div><label className="block text-sm text-gray-700 mb-1">Initial Investment ($)</label>
+        <div><label className="block text-sm text-gray-700 mb-1">Initial Investment ({currencySymbol})</label>
           <input type="number" value={investment} onChange={(e) => setInvestment(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
-        <div><label className="block text-sm text-gray-700 mb-1">Final Value ($)</label>
+        <div><label className="block text-sm text-gray-700 mb-1">Final Value ({currencySymbol})</label>
           <input type="number" value={final} onChange={(e) => setFinal(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
         <div><label className="block text-sm text-gray-700 mb-1">Years</label>
           <input type="number" value={years} onChange={(e) => setYears(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>

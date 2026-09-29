@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function HourlyWageForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [annual, setAnnual] = useState<number>(50000);
   const [hours, setHours] = useState<number>(40);
@@ -30,8 +32,8 @@ export default function HourlyWageForm() {
       <button onClick={calculate} className="bg-blue-600 text-white px-6 py-2 rounded">{t('buttons.calculate')}</button>
       {result && (
         <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white mt-6">
-          <p className="text-3xl font-bold">${result.hourly}/hour</p>
-          <p className="text-sm mt-2">Monthly: ${result.monthly} | Weekly: ${result.weekly}</p>
+          <p className="text-3xl font-bold">{currencySymbol}{result.hourly}/hour</p>
+          <p className="text-sm mt-2">Monthly: {currencySymbol}{result.monthly} | Weekly: {currencySymbol}{result.weekly}</p>
         </div>
       )}
     </div>

@@ -218,12 +218,14 @@ interface FieldDef {
 }
 import { calcDefs } from './sports'
 import type { CalcDef } from '@/lib/generic-fallback'
+import { useCurrency, subMoney } from '@/lib/context/CurrencyContext'
 
 type Props = { calculator: CalculatorEntry }
 
 const calcAliases: Record<string, string> = {}
 
 export function GenericSportsCalculator({ calculator }: Props) {
+  const { currencySymbol } = useCurrency()
   const resolvedSlug = calcAliases[calculator.slug] || calculator.slug
   const def = calcDefs[resolvedSlug] || (buildGenericDef(calculator) as unknown as CalcDef)
 
@@ -377,7 +379,7 @@ export function GenericSportsCalculator({ calculator }: Props) {
             <>
               <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
                 <p className="text-xs text-gray-500 dark:text-gray-400">{resultData.label}</p>
-                <p className="text-3xl font-bold text-[#06b6d4]">{typeof resultData.result === 'number' ? (resultData.result % 1 === 0 ? resultData.result.toFixed(0) : resultData.result.toFixed(2)) : resultData.result} <span className="text-sm font-normal text-gray-500">{resultData.unit}</span></p>
+                <p className="text-3xl font-bold text-[#06b6d4]">{typeof resultData.result === 'number' ? (resultData.result % 1 === 0 ? resultData.result.toFixed(0) : resultData.result.toFixed(2)) : resultData.result} <span className="text-sm font-normal text-gray-500">{subMoney(resultData.unit, currencySymbol)}</span></p>
                 {sportsInterpretation}
               </div>
               {(resultData.steps ?? []).length > 0 && (
@@ -386,7 +388,7 @@ export function GenericSportsCalculator({ calculator }: Props) {
                   <div className="space-y-1.5">
                     {(resultData.steps ?? []).filter(s => s.label).map((s, i) => (
                       <p key={i} className="text-xs text-left text-gray-600 dark:text-gray-400">
-                        <span className="text-[#06b6d4] font-medium">{i + 1}.</span> {s.label}: <span className="text-gray-800 dark:text-gray-200">{s.value}</span>
+                        <span className="text-[#06b6d4] font-medium">{i + 1}.</span> {s.label}: <span className="text-gray-800 dark:text-gray-200">{subMoney(s.value, currencySymbol)}</span>
                       </p>
                     ))}
                   </div>
@@ -400,7 +402,7 @@ export function GenericSportsCalculator({ calculator }: Props) {
             </div>
           )}
         </div>
-      } lockedFields={lockedFields} onExtraFieldsChange={setExtraFields} inputs={watchedInputs} showTabs={true} useSlider={useSlider} onToggleSlider={() => setUseSlider(!useSlider)} onSaveScenario={saveScenario} onExportCSV={exportCSV} unitSystem={unitSystem} onUnitChange={setUnitSystem} presets={presets} onPresetApply={applyPreset} formula={resultData?.steps?.map(s => s.value).join(' ? ') || ''} interpretation={def.description} author={sportsAuthor} reviewer={{ name: 'Dr. Sarah Chen', photoUrl: 'https://i.pravatar.cc/150?u=sarah-chen', credential: 'PhD, FACSM', title: 'Professor of Exercise Physiology', linkedIn: 'https://www.linkedin.com/in/sarah-chen-sports' }} references={sportsReferences} example={sportsExample.length > 0 ? sportsExample : undefined} userCount={12450} charts={chartData.length > 0 ? <DynamicHealthBarChart data={chartData} /> : undefined} onReset={() => {
+      } lockedFields={lockedFields} onExtraFieldsChange={setExtraFields} inputs={watchedInputs} showTabs={true} useSlider={useSlider} onToggleSlider={() => setUseSlider(!useSlider)} onSaveScenario={saveScenario} onExportCSV={exportCSV} unitSystem={unitSystem} onUnitChange={setUnitSystem} presets={presets} onPresetApply={applyPreset} formula={subMoney(resultData?.steps?.map(s => s.value).join(' ? ') || '', currencySymbol)} interpretation={def.description} author={sportsAuthor} reviewer={{ name: 'Dr. Sarah Chen', photoUrl: 'https://i.pravatar.cc/150?u=sarah-chen', credential: 'PhD, FACSM', title: 'Professor of Exercise Physiology', linkedIn: 'https://www.linkedin.com/in/sarah-chen-sports' }} references={sportsReferences} example={sportsExample.length > 0 ? sportsExample : undefined} userCount={12450} charts={chartData.length > 0 ? <DynamicHealthBarChart data={chartData} /> : undefined} onReset={() => {
   const locked = Object.fromEntries(Array.from(lockedFields).map(key => [key, form.getValues(key)]))
   form.reset(defaultVals)
   Object.entries(locked).forEach(([key, value]) => {

@@ -9,6 +9,7 @@ import { FieldsByMode } from '@/lib/calc-field-helper'
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic'
 import { DynamicHealthBarChart } from '@/components/premium/DynamicCharts'
 import { buildGenericDef } from '@/lib/generic-fallback'
+import { useCurrency, subMoney } from '@/lib/context/CurrencyContext'
 
 type FieldDef = { name: string; label: string; type?: 'number' | 'select'; min?: number; max?: number; step?: number | string; placeholder?: string; options?: { label: string; value: string }[] }
 
@@ -405,6 +406,7 @@ function FallbackEducation({ calculator }: Props) {
 }
 
 export function GenericEducationCalculator({ calculator }: Props) {
+  const { currencySymbol } = useCurrency()
   let calcDef = calcDefs[calculator.slug]
   if (!calcDef) calcDef = buildGenericDef(calculator) as unknown as CalcDef
   const [useSlider, setUseSlider] = useState(true)
@@ -440,7 +442,7 @@ export function GenericEducationCalculator({ calculator }: Props) {
       <div className="text-center space-y-4">
         <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
           <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
-          <p className="text-3xl font-bold text-[#06b6d4]">{displayVal} {res.unit}</p>
+          <p className="text-3xl font-bold text-[#06b6d4]">{displayVal} {subMoney(res.unit, currencySymbol)}</p>
           {getEducationInterpretation(calculator.slug, res.result)}
         </div>
         {res.steps.length > 0 && (
@@ -449,14 +451,14 @@ export function GenericEducationCalculator({ calculator }: Props) {
             {res.steps.map((step, i) => (
               <div key={i} className="flex items-start gap-2">
                 <span className="flex-shrink-0 w-4 h-4 rounded-full bg-[#1a3a8a]/10 text-[#06b6d4] flex items-center justify-center text-[10px] font-medium mt-0.5">{i + 1}</span>
-                <span>{typeof step === 'string' ? step : `${step.label}: ${step.value}`}</span>
+                <span>{subMoney(typeof step === 'string' ? step : `${step.label}: ${step.value}`, currencySymbol)}</span>
               </div>
             ))}
           </div>
         )}
       </div>
     )
-  }, [v, calcDef])
+  }, [v, calcDef, currencySymbol])
   const copyResultText = useMemo(() => { const lines: string[] = [calculator.title]; Object.entries(v).filter(([, val]) => val).forEach(([k, val]) => lines.push(`${k}: ${val}`)); return lines.join('\n') }, [calculator.title, v])
   const presets = calcDef?.presets || []
   const applyPreset = useCallback((preset: { label: string; values: Record<string, string> }) => {

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 type LoanType = 'purchase' | 'refinance' | 'cashout';
 type PaymentFrequency = 'monthly' | 'biweekly' | 'weekly';
@@ -16,6 +17,7 @@ interface AmortizationRow {
 }
 
 export default function AdvancedMortgageForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [loanType, setLoanType] = useState<LoanType>('purchase');
   const [homePrice, setHomePrice] = useState<number>(350000);
@@ -150,12 +152,12 @@ export default function AdvancedMortgageForm() {
 
   const copyResults = () => {
     const text = `Mortgage Summary:
-Loan Amount: $${result?.loanAmount.toLocaleString()}
+Loan Amount: ${currencySymbol}${result?.loanAmount.toLocaleString()}
 Interest Rate: ${interestRate}%
 Term: ${loanTerm} years
-Monthly Payment: $${result?.totalMonthly.toLocaleString()}
-Total Interest: $${result?.totalInterest.toLocaleString()}
-Total Cost: $${result?.totalCost.toLocaleString()}`;
+Monthly Payment: ${currencySymbol}${result?.totalMonthly.toLocaleString()}
+Total Interest: ${currencySymbol}${result?.totalInterest.toLocaleString()}
+Total Cost: ${currencySymbol}${result?.totalCost.toLocaleString()}`;
     navigator.clipboard.writeText(text);
   };
 
@@ -176,7 +178,7 @@ Total Cost: $${result?.totalCost.toLocaleString()}`;
         <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
           <label className="block text-sm font-semibold text-gray-700 mb-2">🏠 Home Price</label>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">{currencySymbol}</span>
             <input type="number" value={homePrice} onChange={(e) => setHomePrice(Number(e.target.value))}
               className="w-full pl-8 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all" />
           </div>
@@ -188,7 +190,7 @@ Total Cost: $${result?.totalCost.toLocaleString()}`;
           <label className="block text-sm font-semibold text-gray-700 mb-2">💵 Down Payment</label>
           <div className="flex gap-2">
             <div className="relative flex-1">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">{currencySymbol}</span>
               <input type="number" value={downPayment} onChange={(e) => setDownPayment(Number(e.target.value))}
                 className="w-full pl-8 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500" />
             </div>
@@ -235,7 +237,7 @@ Total Cost: $${result?.totalCost.toLocaleString()}`;
         <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
           <label className="block text-sm font-semibold text-gray-700 mb-2">🔒 Home Insurance (Yearly)</label>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">{currencySymbol}</span>
             <input type="number" value={insurance} onChange={(e) => setInsurance(Number(e.target.value))}
               className="w-full pl-8 pr-4 py-3 border border-gray-200 rounded-lg" />
           </div>
@@ -251,12 +253,12 @@ Total Cost: $${result?.totalCost.toLocaleString()}`;
             <span className="text-sm text-gray-700">Include Taxes & Insurance</span>
           </label>
           <label className="flex items-center gap-2 cursor-pointer">
-            <span className="text-sm text-gray-700">PMI: $</span>
+            <span className="text-sm text-gray-700">PMI: {currencySymbol}</span>
             <input type="number" value={pmi} onChange={(e) => setPmi(Number(e.target.value))}
               className="w-20 px-2 py-1 border rounded" />
           </label>
           <label className="flex items-center gap-2 cursor-pointer">
-            <span className="text-sm text-gray-700">HOA: $</span>
+            <span className="text-sm text-gray-700">HOA: {currencySymbol}</span>
             <input type="number" value={hoa} onChange={(e) => setHoa(Number(e.target.value))}
               className="w-20 px-2 py-1 border rounded" />
           </label>
@@ -291,19 +293,19 @@ Total Cost: $${result?.totalCost.toLocaleString()}`;
               {/* Main Result Card */}
               <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white shadow-xl">
                 <p className="text-green-100 text-sm font-medium mb-1">Estimated Monthly Payment</p>
-                <p className="text-5xl font-bold mb-4">${result.totalMonthly.toLocaleString()}</p>
+                <p className="text-5xl font-bold mb-4">{currencySymbol}{result.totalMonthly.toLocaleString()}</p>
                 <div className="grid grid-cols-3 gap-4 text-sm">
                   <div className="bg-white/20 rounded-lg p-3">
                     <p className="text-green-100">Principal & Interest</p>
-                    <p className="font-bold">${result.monthlyPayment}</p>
+                    <p className="font-bold">{currencySymbol}{result.monthlyPayment}</p>
                   </div>
                   <div className="bg-white/20 rounded-lg p-3">
                     <p className="text-green-100">Taxes</p>
-                    <p className="font-bold">${result.monthlyPropertyTax}</p>
+                    <p className="font-bold">{currencySymbol}{result.monthlyPropertyTax}</p>
                   </div>
                   <div className="bg-white/20 rounded-lg p-3">
                     <p className="text-green-100">Insurance</p>
-                    <p className="font-bold">${result.monthlyInsurance}</p>
+                    <p className="font-bold">{currencySymbol}{result.monthlyInsurance}</p>
                   </div>
                 </div>
               </div>
@@ -319,20 +321,20 @@ Total Cost: $${result?.totalCost.toLocaleString()}`;
                     </div>
                   </div>
                   <div className="space-y-3 text-sm">
-                    <div className="flex justify-between"><span className="text-gray-500">Home Price</span><span className="font-medium">${homePrice.toLocaleString()}</span></div>
-                    <div className="flex justify-between"><span className="text-gray-500">Down Payment</span><span className="font-medium">${downPayment.toLocaleString()} ({downPaymentPercent}%)</span></div>
-                    <div className="flex justify-between"><span className="text-gray-500">Loan Amount</span><span className="font-medium">${result.loanAmount.toLocaleString()}</span></div>
+                    <div className="flex justify-between"><span className="text-gray-500">Home Price</span><span className="font-medium">{currencySymbol}{homePrice.toLocaleString()}</span></div>
+                    <div className="flex justify-between"><span className="text-gray-500">Down Payment</span><span className="font-medium">{currencySymbol}{downPayment.toLocaleString()} ({downPaymentPercent}%)</span></div>
+                    <div className="flex justify-between"><span className="text-gray-500">Loan Amount</span><span className="font-medium">{currencySymbol}{result.loanAmount.toLocaleString()}</span></div>
                     <div className="flex justify-between"><span className="text-gray-500">Interest Rate</span><span className="font-medium">{interestRate}%</span></div>
                     <div className="flex justify-between"><span className="text-gray-500">Loan Term</span><span className="font-medium">{loanTerm} years</span></div>
-                    <div className="flex justify-between"><span className="text-gray-500">Upfront Costs</span><span className="font-medium">${result.upfrontCosts.toLocaleString()}</span></div>
+                    <div className="flex justify-between"><span className="text-gray-500">Upfront Costs</span><span className="font-medium">{currencySymbol}{result.upfrontCosts.toLocaleString()}</span></div>
                   </div>
                 </div>
 
                 <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
                   <h3 className="font-semibold text-gray-800 mb-3">💰 Cost Breakdown</h3>
                   <div className="space-y-3 text-sm">
-                    <div className="flex justify-between"><span className="text-gray-500">Total Interest</span><span className="font-medium text-red-500">${result.totalInterest.toLocaleString()}</span></div>
-                    <div className="flex justify-between"><span className="text-gray-500">Total Cost</span><span className="font-medium">${result.totalCost.toLocaleString()}</span></div>
+                    <div className="flex justify-between"><span className="text-gray-500">Total Interest</span><span className="font-medium text-red-500">{currencySymbol}{result.totalInterest.toLocaleString()}</span></div>
+                    <div className="flex justify-between"><span className="text-gray-500">Total Cost</span><span className="font-medium">{currencySymbol}{result.totalCost.toLocaleString()}</span></div>
                   </div>
                 </div>
               </div>
@@ -349,8 +351,8 @@ Total Cost: $${result?.totalCost.toLocaleString()}`;
                     <LineChart data={chartData}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                       <XAxis dataKey="year" tick={{ fontSize: 12 }} />
-                      <YAxis tick={{ fontSize: 12 }} tickFormatter={(v) => `$${v/1000}k`} />
-                      <Tooltip formatter={(v: number) => `$${v.toLocaleString()}`} />
+                      <YAxis tick={{ fontSize: 12 }} tickFormatter={(v) => `${currencySymbol}${v/1000}k`} />
+                      <Tooltip formatter={(v: number) => `${currencySymbol}${v.toLocaleString()}`} />
                       <Legend />
                       <Line type="monotone" dataKey="principal" stroke="#22c55e" strokeWidth={2} dot={false} name="Principal" />
                       <Line type="monotone" dataKey="interest" stroke="#ef4444" strokeWidth={2} dot={false} name="Interest" />
@@ -368,7 +370,7 @@ Total Cost: $${result?.totalCost.toLocaleString()}`;
                       <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>
                         {pieData.map((entry, index) => (<Cell key={index} fill={entry.color} />))}
                       </Pie>
-                      <Tooltip formatter={(v: number) => `$${v.toLocaleString()}`} />
+                      <Tooltip formatter={(v: number) => `${currencySymbol}${v.toLocaleString()}`} />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
@@ -392,7 +394,7 @@ Total Cost: $${result?.totalCost.toLocaleString()}`;
                     <div className="flex-1">
                       <div className="flex justify-between mb-1">
                         <span className="text-sm text-gray-600">{item.label}</span>
-                        <span className="font-medium">${item.value.toLocaleString()}</span>
+                        <span className="font-medium">{currencySymbol}{item.value.toLocaleString()}</span>
                       </div>
                       <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                         <div className={`h-full ${item.color} rounded-full`} style={{ width: `${(item.value / result.totalMonthly) * 100}%` }}></div>
@@ -402,7 +404,7 @@ Total Cost: $${result?.totalCost.toLocaleString()}`;
                 ))}
                 <div className="pt-4 border-t flex justify-between text-lg font-bold">
                   <span>Total Monthly Payment</span>
-                  <span className="text-green-600">${result.totalMonthly.toLocaleString()}</span>
+                  <span className="text-green-600">{currencySymbol}{result.totalMonthly.toLocaleString()}</span>
                 </div>
               </div>
             </div>
@@ -424,8 +426,8 @@ Total Cost: $${result?.totalCost.toLocaleString()}`;
                     <div key={i} className={`p-4 rounded-lg border-2 ${i === 1 ? 'border-green-500 bg-green-50' : 'border-gray-200'}`}>
                       <p className="text-sm text-gray-500 mb-1">{scenario.label}</p>
                       <p className="text-2xl font-bold text-gray-800">{scenario.rate}%</p>
-                      <p className="text-lg font-semibold text-green-600 mt-2">${Math.round(monthlyP).toLocaleString()}/mo</p>
-                      <p className="text-sm text-gray-500">Total Interest: ${Math.round(totalInterest).toLocaleString()}</p>
+                      <p className="text-lg font-semibold text-green-600 mt-2">{currencySymbol}{Math.round(monthlyP).toLocaleString()}/mo</p>
+                      <p className="text-sm text-gray-500">Total Interest: {currencySymbol}{Math.round(totalInterest).toLocaleString()}</p>
                     </div>
                   );
                 })}
@@ -456,10 +458,10 @@ Total Cost: $${result?.totalCost.toLocaleString()}`;
                     {(showAmortization ? amortization : amortization.slice(0, 24)).map((row, i) => (
                       <tr key={i} className="border-t hover:bg-gray-50">
                         <td className="p-3">{row.month}</td>
-                        <td className="p-3 text-right">${row.payment.toFixed(2)}</td>
-                        <td className="p-3 text-right text-green-600">${row.principal.toFixed(2)}</td>
-                        <td className="p-3 text-right text-red-500">${row.interest.toFixed(2)}</td>
-                        <td className="p-3 text-right">${row.balance.toFixed(2)}</td>
+                        <td className="p-3 text-right">{currencySymbol}{row.payment.toFixed(2)}</td>
+                        <td className="p-3 text-right text-green-600">{currencySymbol}{row.principal.toFixed(2)}</td>
+                        <td className="p-3 text-right text-red-500">{currencySymbol}{row.interest.toFixed(2)}</td>
+                        <td className="p-3 text-right">{currencySymbol}{row.balance.toFixed(2)}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -481,7 +483,7 @@ Total Cost: $${result?.totalCost.toLocaleString()}`;
         </div>
         <div className="mt-4 grid md:grid-cols-4 gap-4 text-sm">
           <div><span className="font-semibold">M</span> = Monthly payment</div>
-          <div><span className="font-semibold">P</span> = Principal (${result?.loanAmount.toLocaleString()})</div>
+          <div><span className="font-semibold">P</span> = Principal ({currencySymbol}{result?.loanAmount.toLocaleString()})</div>
           <div><span className="font-semibold">r</span> = Monthly rate ({interestRate}%/12 = {(interestRate/12).toFixed(4)}%)</div>
           <div><span className="font-semibold">n</span> = Total payments ({loanTerm * 12})</div>
         </div>

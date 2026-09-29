@@ -8,6 +8,7 @@ import { DebtConsolidationResults } from '@/components/calculator/DebtConsolidat
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
 import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 const calcMeta = {
   slug: 'debt-consolidation-calculator',
@@ -21,6 +22,7 @@ const calcMeta = {
 };
 
 export function DebtConsolidationCalculator() {
+  const { currency } = useCurrency()
   const th = useTranslations('hubs');
   const locale = useLocale();
   const [cards, setCards] = useState([
@@ -166,20 +168,20 @@ export function DebtConsolidationCalculator() {
     return (
       <SubCalcGrid>
         <SubCalcPanel title="Comparison Summary" icon={TrendingDown} defaultOpen results={[
-          { label: 'Current Monthly Payment', value: formatCurrency(results.oldDebts.monthlyPayment, 'USD', locale) },
-          { label: 'New Monthly Payment', value: formatCurrency(results.newLoan.monthlyPayment, 'USD', locale) },
-          { label: 'Monthly Difference', value: isRecommended ? `Save ${formatCurrency(results.savings.monthlyPayment, 'USD', locale)}` : `Extra ${formatCurrency(Math.abs(results.savings.monthlyPayment), 'USD', locale)}`, badge: isRecommended ? 'positive' : 'negative' },
-          { label: 'Total Interest Savings', value: isRecommended ? formatCurrency(results.savings.totalInterest, 'USD', locale) : `Costs ${formatCurrency(Math.abs(results.savings.totalInterest), 'USD', locale)} more`, badge: isRecommended ? 'positive' : 'negative' },
+          { label: 'Current Monthly Payment', value: formatCurrency(results.oldDebts.monthlyPayment, currency, locale) },
+          { label: 'New Monthly Payment', value: formatCurrency(results.newLoan.monthlyPayment, currency, locale) },
+          { label: 'Monthly Difference', value: isRecommended ? `Save ${formatCurrency(results.savings.monthlyPayment, currency, locale)}` : `Extra ${formatCurrency(Math.abs(results.savings.monthlyPayment), currency, locale)}`, badge: isRecommended ? 'positive' : 'negative' },
+          { label: 'Total Interest Savings', value: isRecommended ? formatCurrency(results.savings.totalInterest, currency, locale) : `Costs ${formatCurrency(Math.abs(results.savings.totalInterest), currency, locale)} more`, badge: isRecommended ? 'positive' : 'negative' },
         ]} />
         <SubCalcPanel title="Loan Details" icon={PiggyBank} results={[
-          { label: 'New Loan Amount', value: formatCurrency(results.newLoan.principal, 'USD', locale) },
+          { label: 'New Loan Amount', value: formatCurrency(results.newLoan.principal, currency, locale) },
           { label: 'Loan Term', value: `${results.newLoan.months} months` },
-          { label: 'Upfront Fee', value: formatCurrency(results.newLoan.fee, 'USD', locale), badge: 'negative' },
+          { label: 'Upfront Fee', value: formatCurrency(results.newLoan.fee, currency, locale), badge: 'negative' },
           { label: 'Time Saved', value: results.savings.months > 0 ? `${results.savings.months} months sooner` : `${Math.abs(results.savings.months)} months longer` },
         ]} />
       </SubCalcGrid>
     );
-  }, [results, locale]);
+  }, [results, locale, currency]);
 
   return (
     <PremiumCalculatorShell

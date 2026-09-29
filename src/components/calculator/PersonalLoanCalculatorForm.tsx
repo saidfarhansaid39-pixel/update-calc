@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function PersonalLoanCalculatorForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [amount, setAmount] = useState<number>(10000);
   const [term, setTerm] = useState<number>(36);
@@ -31,8 +33,8 @@ export default function PersonalLoanCalculatorForm() {
       {result && (
         <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl p-6 text-white mt-6">
           <p className="text-indigo-100 text-sm">{t('results.monthlyPayment')}</p>
-          <p className="text-4xl font-bold">${result.payment.toLocaleString()}</p>
-          <div className="mt-4 text-sm"><p>Total: ${result.total.toLocaleString()} | Interest: ${result.interest.toLocaleString()}</p></div>
+          <p className="text-4xl font-bold">{currencySymbol}{result.payment.toLocaleString()}</p>
+          <div className="mt-4 text-sm"><p>Total: {currencySymbol}{result.total.toLocaleString()} | Interest: {currencySymbol}{result.interest.toLocaleString()}</p></div>
         </div>
       )}
     </div>

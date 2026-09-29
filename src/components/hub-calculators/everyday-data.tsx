@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { z } from 'zod'
+import { useCurrency, subMoney } from '@/lib/context/CurrencyContext'
 
 export function numField(label: string, min?: number, max?: number) {
   const range = min !== undefined && max !== undefined ? `Must be ${min}-${max}`
@@ -16,21 +17,23 @@ export const sel = (opts: string[]) => z.enum(opts as [string, ...string[]])
 export const yesno = z.enum(['yes', 'no'])
 
 function SimpleResult({ label, value, unit }: { label: string; value: number | string; unit?: string }) {
+  const { currencySymbol } = useCurrency()
   return (
     <div className="text-center space-y-1">
       <p className="text-sm text-gray-500 dark:text-gray-400">{label}</p>
-      <p className="text-3xl font-bold text-[#06b6d4]">{typeof value === 'number' ? value.toFixed(2) : value}{unit && <span className="text-lg ml-1">{unit}</span>}</p>
+      <p className="text-3xl font-bold text-[#06b6d4]">{subMoney(typeof value === 'number' ? value.toFixed(2) : value, currencySymbol)}{unit && <span className="text-lg ml-1">{subMoney(unit, currencySymbol)}</span>}</p>
     </div>
   )
 }
 
 function MultiResult({ items }: { items: { label: string; value: number | string; unit?: string }[] }) {
+  const { currencySymbol } = useCurrency()
   return (
     <div className="space-y-3 text-center">
       {items.map((item, i) => (
         <div key={i}>
           <p className="text-sm text-gray-500 dark:text-gray-400">{item.label}</p>
-          <p className="text-xl font-bold text-gray-900 dark:text-white">{typeof item.value === 'number' ? item.value.toFixed(2) : item.value}{item.unit && <span className="text-sm ml-1">{item.unit}</span>}</p>
+          <p className="text-xl font-bold text-gray-900 dark:text-white">{subMoney(typeof item.value === 'number' ? item.value.toFixed(2) : item.value, currencySymbol)}{item.unit && <span className="text-sm ml-1">{subMoney(item.unit, currencySymbol)}</span>}</p>
         </div>
       ))}
     </div>

@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function BalloonLoanForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [principal, setPrincipal] = useState<number>(100000);
   const [rate, setRate] = useState<number>(5);
@@ -23,7 +25,7 @@ export default function BalloonLoanForm() {
   return (
     <div className="space-y-6">
       <div className="grid md:grid-cols-3 gap-4">
-        <div><label className="block text-sm text-gray-700 mb-1">Principal ($)</label>
+        <div><label className="block text-sm text-gray-700 mb-1">Principal ({currencySymbol})</label>
           <input type="number" value={principal} onChange={(e) => setPrincipal(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
         <div><label className="block text-sm text-gray-700 mb-1">Interest Rate (%)</label>
           <input type="number" value={rate} onChange={(e) => setRate(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
@@ -33,8 +35,8 @@ export default function BalloonLoanForm() {
       <button onClick={calculate} className="bg-orange-600 text-white px-6 py-2 rounded">{t('buttons.calculate')}</button>
       {result && (
         <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-6 text-white mt-6">
-          <p className="text-3xl font-bold">${result.monthly}/mo</p>
-          <p className="text-sm mt-2">Balloon: ${result.balloon} | Total Interest: ${result.totalInterest}</p>
+          <p className="text-3xl font-bold">{currencySymbol}{result.monthly}/mo</p>
+          <p className="text-sm mt-2">Balloon: {currencySymbol}{result.balloon} | Total Interest: {currencySymbol}{result.totalInterest}</p>
         </div>
       )}
     </div>

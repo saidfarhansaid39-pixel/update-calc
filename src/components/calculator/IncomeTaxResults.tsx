@@ -4,6 +4,7 @@ import React from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
 import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function IncomeTaxResults({ 
   wages, 
@@ -11,6 +12,7 @@ export function IncomeTaxResults({
   taxOwed,
   effectiveRate
 }: any) {
+  const { currency } = useCurrency()
   const t = useTranslations('calculatorUI');
   const locale = useLocale();
   const isRefund = fedWithheld > taxOwed;
@@ -30,7 +32,7 @@ export function IncomeTaxResults({
     <div className="w-full flex flex-col font-sans text-[13px] text-gray-800 mt-6">
       <div className="bg-[#599e28] text-white p-2 font-bold flex justify-between items-center rounded-t border border-[#3b7b13]">
         <span>{isRefund ? t('results.estimatedTaxRefund') : t('results.estimatedTaxDue')}</span>
-        <span className="text-xl">{formatCurrency(difference, 'USD', locale)}</span>
+        <span className="text-xl">{formatCurrency(difference, currency, locale)}</span>
       </div>
       
       <div className="p-2 border border-gray-300 border-t-0 bg-white space-y-4">
@@ -38,19 +40,19 @@ export function IncomeTaxResults({
           <tbody>
             <tr className="border-b border-gray-300 bg-gray-50">
               <td className="p-2 text-left">Total Income (AGI)</td>
-              <td className="p-2 text-right font-bold">{formatCurrency(wages, 'USD', locale)}</td>
+              <td className="p-2 text-right font-bold">{formatCurrency(wages, currency, locale)}</td>
             </tr>
             <tr className="border-b border-gray-300">
               <td className="p-2 text-left">Estimated Federal Tax Owed</td>
-              <td className="p-2 text-right">{formatCurrency(taxOwed, 'USD', locale)}</td>
+              <td className="p-2 text-right">{formatCurrency(taxOwed, currency, locale)}</td>
             </tr>
             <tr className="border-b border-gray-300 bg-gray-50">
               <td className="p-2 text-left">Taxes Already Withheld</td>
-              <td className="p-2 text-right">{formatCurrency(fedWithheld, 'USD', locale)}</td>
+              <td className="p-2 text-right">{formatCurrency(fedWithheld, currency, locale)}</td>
             </tr>
             <tr className="border-b border-gray-300">
               <td className="p-2 text-left font-bold">{isRefund ? 'Refund Amount' : 'Amount You Owe'}</td>
-              <td className="p-2 text-right font-bold text-red-600">{formatCurrency(difference, 'USD', locale)}</td>
+              <td className="p-2 text-right font-bold text-red-600">{formatCurrency(difference, currency, locale)}</td>
             </tr>
             <tr className="border-b border-gray-300 bg-gray-50">
               <td className="p-2 text-left">Effective Tax Rate</td>
@@ -69,7 +71,6 @@ export function IncomeTaxResults({
         <ResultInterpretation
           type="tax"
           values={{ income: wages, taxOwed, fedWithheld, effectiveRate }}
-          currencySymbol="$"
         />
 
         {/* Tax breakdown chart */}
@@ -90,7 +91,7 @@ export function IncomeTaxResults({
                       style={{ width: `${Math.min(100, pctOfTotal)}%` }}
                     />
                   </div>
-                  <span className="w-20 text-right text-gray-600">{formatCurrency(bracketTax, 'USD', locale)}</span>
+                  <span className="w-20 text-right text-gray-600">{formatCurrency(bracketTax, currency, locale)}</span>
                 </div>
               )
             })}

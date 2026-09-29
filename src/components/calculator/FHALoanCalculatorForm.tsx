@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function FHALoanCalculatorForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [homePrice, setHomePrice] = useState<number>(300000);
   const [downPayment, setDownPayment] = useState<number>(10500);
@@ -51,13 +53,13 @@ export default function FHALoanCalculatorForm() {
         <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded">
           <h3 className="font-bold text-lg text-gray-800 mb-3">FHA Loan Summary</h3>
           <div className="grid md:grid-cols-2 gap-4">
-            <div><p className="text-sm text-gray-500">{t('formLabels.loanAmount')}</p><p className="text-xl font-bold">${result.loanAmount.toLocaleString()}</p></div>
-            <div><p className="text-sm text-gray-500">Upfront MIP (1.75%)</p><p className="text-xl font-bold">${result.upfrontMIP.toLocaleString()}</p></div>
+            <div><p className="text-sm text-gray-500">{t('formLabels.loanAmount')}</p><p className="text-xl font-bold">{currencySymbol}{result.loanAmount.toLocaleString()}</p></div>
+            <div><p className="text-sm text-gray-500">Upfront MIP (1.75%)</p><p className="text-xl font-bold">{currencySymbol}{result.upfrontMIP.toLocaleString()}</p></div>
           </div>
           <div className="mt-4 p-3 bg-white rounded">
             <p className="text-sm text-gray-500">{t('results.monthlyPayment')}</p>
-            <p className="text-3xl font-bold text-green-600">${result.totalMonthly.toLocaleString()}</p>
-            <p className="text-xs text-gray-400">P&I: ${result.monthlyPI} + MIP: ${result.monthlyMIP}</p>
+            <p className="text-3xl font-bold text-green-600">{currencySymbol}{result.totalMonthly.toLocaleString()}</p>
+            <p className="text-xs text-gray-400">P&I: {currencySymbol}{result.monthlyPI} + MIP: {currencySymbol}{result.monthlyMIP}</p>
           </div>
         </div>
       )}

@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function Calculator401KForm() {
+  const { currencySymbol } = useCurrency()
   const [currentAge, setCurrentAge] = useState<number>(30);
   const [retirementAge, setRetirementAge] = useState<number>(65);
   const [currentBalance, setCurrentBalance] = useState<number>(50000);
@@ -46,9 +48,9 @@ export default function Calculator401KForm() {
           <input type="number" value={retirementAge} onChange={(e) => setRetirementAge(Number(e.target.value))} className="w-full p-2 border rounded" /></div>
         <div><label className="block text-sm text-gray-700 mb-1">Current 401(k) Balance</label>
           <input type="number" value={currentBalance} onChange={(e) => setCurrentBalance(Number(e.target.value))} className="w-full p-2 border rounded" /></div>
-        <div><label className="block text-sm text-gray-700 mb-1">Annual Contribution ($)</label>
+        <div><label className="block text-sm text-gray-700 mb-1">Annual Contribution ({currencySymbol})</label>
           <input type="number" value={annualContribution} onChange={(e) => setAnnualContribution(Number(e.target.value))} className="w-full p-2 border rounded" /></div>
-        <div><label className="block text-sm text-gray-700 mb-1">Annual Salary ($)</label>
+        <div><label className="block text-sm text-gray-700 mb-1">Annual Salary ({currencySymbol})</label>
           <input type="number" value={salary} onChange={(e) => setSalary(Number(e.target.value))} className="w-full p-2 border rounded" /></div>
         <div><label className="block text-sm text-gray-700 mb-1">Employer Match (%)</label>
           <input type="number" value={employerMatch} onChange={(e) => setEmployerMatch(Number(e.target.value))} className="w-full p-2 border rounded" /></div>
@@ -59,11 +61,11 @@ export default function Calculator401KForm() {
       {result && (
         <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded">
           <h3 className="font-bold text-xl text-gray-800 mb-4">At Retirement (Age {retirementAge})</h3>
-          <p className="text-4xl font-bold text-green-600 mb-4">${result.balance.toLocaleString()}</p>
+          <p className="text-4xl font-bold text-green-600 mb-4">{currencySymbol}{result.balance.toLocaleString()}</p>
           <div className="grid md:grid-cols-3 gap-4 text-sm">
-            <div><p className="text-gray-500">Your Contributions</p><p className="font-bold">${result.annualContrib.toLocaleString()}/yr</p></div>
-            <div><p className="text-gray-500">Employer Match</p><p className="font-bold">${result.employerContrib.toLocaleString()}/yr</p></div>
-            <div><p className="text-gray-500">Total Interest</p><p className="font-bold text-green-600">${result.totalEarnings.toLocaleString()}</p></div>
+            <div><p className="text-gray-500">Your Contributions</p><p className="font-bold">{currencySymbol}{result.annualContrib.toLocaleString()}/yr</p></div>
+            <div><p className="text-gray-500">Employer Match</p><p className="font-bold">{currencySymbol}{result.employerContrib.toLocaleString()}/yr</p></div>
+            <div><p className="text-gray-500">Total Interest</p><p className="font-bold text-green-600">{currencySymbol}{result.totalEarnings.toLocaleString()}</p></div>
           </div>
         </div>
       )}

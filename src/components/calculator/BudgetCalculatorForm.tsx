@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function BudgetCalculatorForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [income, setIncome] = useState<number>(5000);
   const [housing, setHousing] = useState<number>(1500);
@@ -49,7 +51,7 @@ export default function BudgetCalculatorForm() {
     <div className="space-y-6">
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-green-50 p-4 rounded border border-green-200">
-          <label className="block text-sm font-bold text-green-800 mb-1">Monthly Income ($)</label>
+          <label className="block text-sm font-bold text-green-800 mb-1">Monthly Income ({currencySymbol})</label>
           <input type="number" value={income} onChange={(e) => setIncome(Number(e.target.value))} className="w-full px-3 py-2 border border-green-300 rounded text-xl font-bold" />
         </div>
       </div>
@@ -104,16 +106,16 @@ export default function BudgetCalculatorForm() {
               <tbody>
                 <tr className="border-b">
                   <td className="py-2 font-medium text-gray-700">Monthly Income</td>
-                  <td className="py-2 text-right text-green-700 font-bold">${result.totalIncome.toLocaleString()}</td>
+                  <td className="py-2 text-right text-green-700 font-bold">{currencySymbol}{result.totalIncome.toLocaleString()}</td>
                 </tr>
                 <tr className="border-b">
                   <td className="py-2 text-gray-600">Total Expenses</td>
-                  <td className="py-2 text-right text-gray-700">${result.totalExpenses.toLocaleString()}</td>
+                  <td className="py-2 text-right text-gray-700">{currencySymbol}{result.totalExpenses.toLocaleString()}</td>
                 </tr>
                 <tr className={result.remaining >= 0 ? 'border-b bg-green-100' : 'border-b bg-red-100'}>
                   <td className="py-2 font-medium text-gray-700">Remaining</td>
                   <td className={`py-2 text-right font-bold ${result.remaining >= 0 ? 'text-green-700' : 'text-red-700'}`}>
-                    ${result.remaining.toLocaleString()}
+                    {currencySymbol}{result.remaining.toLocaleString()}
                   </td>
                 </tr>
               </tbody>
@@ -139,7 +141,7 @@ export default function BudgetCalculatorForm() {
                 {result.breakdown.map((item: any) => (
                   <tr key={item.category} className="border-t">
                     <td className="p-3">{item.category}</td>
-                    <td className="p-3 text-right">${item.amount.toLocaleString()}</td>
+                    <td className="p-3 text-right">{currencySymbol}{item.amount.toLocaleString()}</td>
                     <td className="p-3 text-right">{item.percentage.toFixed(1)}%</td>
                   </tr>
                 ))}

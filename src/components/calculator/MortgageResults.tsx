@@ -9,6 +9,7 @@ import { ExampleSection } from '@/components/calc-panel/ExampleSection';
 import { FormulaSection } from '@/components/calc-panel/FormulaSection';
 import { RelatedCalculatorCarousel } from '@/components/premium/RelatedCalculatorCarousel';
 import { InternalLinkingGrid } from '@/components/premium/InternalLinkingGrid';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function MortgageResults({ 
   homePrice, 
@@ -21,6 +22,7 @@ export function MortgageResults({
   homeInsurance,
   otherCosts
 }: any) {
+  const { currency } = useCurrency()
   const t = useTranslations('calculatorUI');
   const locale = useLocale();
   const totalOutOfPocket = monthlyPayment + propertyTax + homeInsurance + otherCosts;
@@ -40,7 +42,7 @@ export function MortgageResults({
     <div className="w-full flex flex-col font-sans">
       <div className="bg-[#599e28] text-white p-2 font-bold flex justify-between items-center rounded-t border border-[#3b7b13]">
         <span>{t('results.monthlyPayLabel')}</span>
-        <span className="text-xl">{formatCurrency(totalOutOfPocket, 'USD', locale)}</span>
+        <span className="text-xl">{formatCurrency(totalOutOfPocket, currency, locale)}</span>
       </div>
 
       <div className="p-2 border border-gray-300 border-t-0 bg-white space-y-4">
@@ -55,28 +57,28 @@ export function MortgageResults({
           <tbody>
             <tr className="border-b border-gray-200">
               <td className="p-1.5 text-left font-bold text-gray-700">Mortgage Payment</td>
-              <td className="p-1.5 text-right font-bold text-gray-700">{formatCurrency(monthlyPayment, 'USD', locale)}</td>
-              <td className="p-1.5 text-right text-gray-700">{formatCurrency(totalPayments, 'USD', locale)}</td>
+              <td className="p-1.5 text-right font-bold text-gray-700">{formatCurrency(monthlyPayment, currency, locale)}</td>
+              <td className="p-1.5 text-right text-gray-700">{formatCurrency(totalPayments, currency, locale)}</td>
             </tr>
             <tr className="border-b border-gray-200">
               <td className="p-1.5 text-left text-gray-600">Property Tax</td>
-              <td className="p-1.5 text-right text-gray-600">{formatCurrency(propertyTax, 'USD', locale)}</td>
-              <td className="p-1.5 text-right text-gray-600">{formatCurrency((propertyTax * 360), 'USD', locale)}</td>
+              <td className="p-1.5 text-right text-gray-600">{formatCurrency(propertyTax, currency, locale)}</td>
+              <td className="p-1.5 text-right text-gray-600">{formatCurrency((propertyTax * 360), currency, locale)}</td>
             </tr>
             <tr className="border-b border-gray-200">
               <td className="p-1.5 text-left text-gray-600">Home Insurance</td>
-              <td className="p-1.5 text-right text-gray-600">{formatCurrency(homeInsurance, 'USD', locale)}</td>
-              <td className="p-1.5 text-right text-gray-600">{formatCurrency((homeInsurance * 360), 'USD', locale)}</td>
+              <td className="p-1.5 text-right text-gray-600">{formatCurrency(homeInsurance, currency, locale)}</td>
+              <td className="p-1.5 text-right text-gray-600">{formatCurrency((homeInsurance * 360), currency, locale)}</td>
             </tr>
             <tr className="border-b border-gray-300">
               <td className="p-1.5 text-left text-gray-600">Other Costs</td>
-              <td className="p-1.5 text-right text-gray-600">{formatCurrency(otherCosts, 'USD', locale)}</td>
-              <td className="p-1.5 text-right text-gray-600">{formatCurrency((otherCosts * 360), 'USD', locale)}</td>
+              <td className="p-1.5 text-right text-gray-600">{formatCurrency(otherCosts, currency, locale)}</td>
+              <td className="p-1.5 text-right text-gray-600">{formatCurrency((otherCosts * 360), currency, locale)}</td>
             </tr>
             <tr className="bg-gray-200 font-bold border-b border-gray-400">
               <td className="p-1.5 text-left text-gray-800">Total Out-of-Pocket</td>
-              <td className="p-1.5 text-right text-gray-800">{formatCurrency(totalOutOfPocket, 'USD', locale)}</td>
-              <td className="p-1.5 text-right text-red-600">{formatCurrency((totalPayments + (propertyTax+homeInsurance+otherCosts)*360), 'USD', locale)}</td>
+              <td className="p-1.5 text-right text-gray-800">{formatCurrency(totalOutOfPocket, currency, locale)}</td>
+              <td className="p-1.5 text-right text-red-600">{formatCurrency((totalPayments + (propertyTax+homeInsurance+otherCosts)*360), currency, locale)}</td>
             </tr>
           </tbody>
         </table>
@@ -85,15 +87,15 @@ export function MortgageResults({
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">House Price</p>
-            <p className="text-sm font-bold text-gray-900">{formatCurrency(homePrice, 'USD', locale)}</p>
+            <p className="text-sm font-bold text-gray-900">{formatCurrency(homePrice, currency, locale)}</p>
           </div>
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">Down Payment</p>
-            <p className="text-sm font-bold text-blue-600">{formatCurrency(downPayment, 'USD', locale)} ({downPct.toFixed(1)}%)</p>
+            <p className="text-sm font-bold text-blue-600">{formatCurrency(downPayment, currency, locale)} ({downPct.toFixed(1)}%)</p>
           </div>
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">Total Interest</p>
-            <p className="text-sm font-bold text-red-600">{formatCurrency(totalInterest, 'USD', locale)}</p>
+            <p className="text-sm font-bold text-red-600">{formatCurrency(totalInterest, currency, locale)}</p>
           </div>
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">Payoff Date</p>
@@ -113,7 +115,6 @@ export function MortgageResults({
             downPaymentPct: downPct,
             term: 30,
           }}
-          currencySymbol="$"
         />
 
         {/* Chart */}
@@ -143,7 +144,6 @@ export function MortgageResults({
           rate={6.5}
           term={30}
           periodsPerYear={12}
-          currencySymbol="$"
         />
       </div>
 

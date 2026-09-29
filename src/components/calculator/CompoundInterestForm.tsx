@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function CompoundInterestForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [initialInvestment, setInitialInvestment] = useState<number>(10000);
   const [annualContribution, setAnnualContribution] = useState<number>(1200);
@@ -79,15 +81,15 @@ export default function CompoundInterestForm() {
     <div className="space-y-6">
       <div className="grid md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Initial Investment ($)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Initial Investment ({currencySymbol})</label>
           <input type="number" value={initialInvestment} onChange={(e) => setInitialInvestment(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded focus:border-green-500" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Annual Contribution ($)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Annual Contribution ({currencySymbol})</label>
           <input type="number" value={annualContribution} onChange={(e) => setAnnualContribution(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded focus:border-green-500" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Monthly Contribution ($)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Monthly Contribution ({currencySymbol})</label>
           <input type="number" value={monthlyContribution} onChange={(e) => setMonthlyContribution(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded focus:border-green-500" />
         </div>
         <div>
@@ -129,19 +131,19 @@ export default function CompoundInterestForm() {
               <tbody>
                 <tr className="border-b">
                   <td className="py-2 font-medium text-gray-700">End Balance</td>
-                  <td className="py-2 text-right text-green-700 font-bold text-xl">${result.endBalance.toLocaleString()}</td>
+                  <td className="py-2 text-right text-green-700 font-bold text-xl">{currencySymbol}{result.endBalance.toLocaleString()}</td>
                 </tr>
                 <tr className="border-b">
                   <td className="py-2 text-gray-600">Starting Amount</td>
-                  <td className="py-2 text-right text-gray-700">${initialInvestment.toLocaleString()}</td>
+                  <td className="py-2 text-right text-gray-700">{currencySymbol}{initialInvestment.toLocaleString()}</td>
                 </tr>
                 <tr className="border-b">
                   <td className="py-2 text-gray-600">Total Contributions</td>
-                  <td className="py-2 text-right text-gray-700">${result.totalContributions.toLocaleString()}</td>
+                  <td className="py-2 text-right text-gray-700">{currencySymbol}{result.totalContributions.toLocaleString()}</td>
                 </tr>
                 <tr>
                   <td className="py-2 text-gray-600">Total Interest</td>
-                  <td className="py-2 text-right text-gray-700">${result.totalInterest.toLocaleString()}</td>
+                  <td className="py-2 text-right text-gray-700">{currencySymbol}{result.totalInterest.toLocaleString()}</td>
                 </tr>
                 <tr className="border-b">
                   <td className="py-2 text-gray-600">Interest as % of Total</td>
@@ -161,13 +163,13 @@ export default function CompoundInterestForm() {
 
           {taxRate > 0 && (
             <div className="bg-gray-50 border border-gray-200 rounded p-4">
-              <p className="font-medium text-gray-700 mb-2">After Tax (at {taxRate}%): ${result.afterTaxBalance.toLocaleString()}</p>
+              <p className="font-medium text-gray-700 mb-2">After Tax (at {taxRate}%): {currencySymbol}{result.afterTaxBalance.toLocaleString()}</p>
             </div>
           )}
 
           {inflationRate > 0 && (
             <div className="bg-yellow-50 border border-yellow-200 rounded p-4">
-              <p className="font-medium text-gray-700">Inflation Adjusted (at {inflationRate}%): ${result.inflationAdjustedBalance.toLocaleString()}</p>
+              <p className="font-medium text-gray-700">Inflation Adjusted (at {inflationRate}%): {currencySymbol}{result.inflationAdjustedBalance.toLocaleString()}</p>
             </div>
           )}
 
@@ -187,10 +189,10 @@ export default function CompoundInterestForm() {
                 {result.yearlyData.filter((_: any, i: number) => i % Math.max(1, Math.floor(years / 10)) === 0 || i === years - 1).map((row: any) => (
                   <tr key={row.year}>
                     <td className="border p-2">{row.year}</td>
-                    <td className="border p-2 text-right">${row.balance.toLocaleString()}</td>
-                    <td className="border p-2 text-right">${row.interest.toLocaleString()}</td>
-                    <td className="border p-2 text-right">${row.contributions.toLocaleString()}</td>
-                    <td className="border p-2 text-right">${initialInvestment.toLocaleString()}</td>
+                    <td className="border p-2 text-right">{currencySymbol}{row.balance.toLocaleString()}</td>
+                    <td className="border p-2 text-right">{currencySymbol}{row.interest.toLocaleString()}</td>
+                    <td className="border p-2 text-right">{currencySymbol}{row.contributions.toLocaleString()}</td>
+                    <td className="border p-2 text-right">{currencySymbol}{initialInvestment.toLocaleString()}</td>
                   </tr>
                 ))}
               </tbody>

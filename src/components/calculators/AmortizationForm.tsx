@@ -5,8 +5,10 @@ import { Input, Button, FormGroup, FormPanel } from '@/components/CalculatorForm
 import { CalculatorPieChart } from '@/components/calculators/ChartPresets';
 import { generateAmortizationSchedule, aggregateAmortizationByYear } from '@/lib/calculators/amortizationEngine';
 import { useCurrencyFormat } from '@/lib/hooks/useCurrencyFormat';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function AmortizationForm() {
+  const { currencySymbol } = useCurrency()
   const [inputs, setInputs] = useState({
     loanAmount: 200000,
     loanTermYears: 15,
@@ -53,7 +55,7 @@ export function AmortizationForm() {
     handleCalculate();
   }, []);
 
-  const formatCurrency = useCurrencyFormat('USD');
+  const formatCurrency = useCurrencyFormat();
 
     const handleClear = () => { setResults(null); };
   return (
@@ -62,7 +64,7 @@ export function AmortizationForm() {
         <div className="w-[340px]">
           <FormPanel header="Modify the values and click the Calculate button to use">
             <FormGroup label="Loan amount">
-              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">$</span>
+              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">{currencySymbol}</span>
               <Input type="number" value={inputs.loanAmount} onChange={(e) => handleNumChange(e, 'loanAmount')} className="w-[120px]" />
             </FormGroup>
             
@@ -85,7 +87,7 @@ export function AmortizationForm() {
 
             {inputs.makeExtraPayments && (
               <FormGroup label="Extra monthly">
-                <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">$</span>
+                <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">{currencySymbol}</span>
                 <Input type="number" value={inputs.extraMonthly} onChange={(e) => handleNumChange(e, 'extraMonthly')} className="w-[120px]" />
               </FormGroup>
             )}

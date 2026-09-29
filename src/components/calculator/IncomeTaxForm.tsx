@@ -3,8 +3,10 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function IncomeTaxForm({ state, setters, handleCalculate, handleClear }: any) {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   return (
     <div className="w-full font-sans text-[13px] text-gray-800">
@@ -55,28 +57,28 @@ export function IncomeTaxForm({ state, setters, handleCalculate, handleClear }: 
 
           <label className="text-left pr-2">Wages, Tips, Other Compensation</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" value={state.wages} onChange={e => setters.setWages(e.target.value)} />
             <span className="ml-2 text-gray-600">(W-2 box 1)</span>
           </div>
 
           <label className="text-left pr-2">Federal Income Tax Withheld</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" value={state.fedWithheld} onChange={e => setters.setFedWithheld(e.target.value)} />
             <span className="ml-2 text-gray-600">(W-2 box 2)</span>
           </div>
 
           <label className="text-left pr-2">State Income Tax Withheld</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
             <span className="ml-2 text-gray-600">(W-2 box 17)</span>
           </div>
 
           <label className="text-left pr-2">Local Income Tax Withheld</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
             <span className="ml-2 text-gray-600">(W-2 box 19)</span>
           </div>
@@ -89,53 +91,53 @@ export function IncomeTaxForm({ state, setters, handleCalculate, handleClear }: 
 
           <label className="text-left pr-2 mt-2">Social Security Income</label>
           <div className="flex items-center mt-2">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
             <span className="ml-2 text-gray-600">SSA-1099, RRB-1099</span>
           </div>
 
           <label className="text-left pr-2">Interest Income</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
             <span className="ml-2 text-gray-600">1099-INT</span>
           </div>
 
           <label className="text-left pr-2">Ordinary Dividends</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
           </div>
 
           <label className="text-left pr-2">Qualified Dividends</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
             <span className="ml-2 text-gray-600">1099-DIV</span>
           </div>
 
           <label className="text-left pr-2">Passive Incomes</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
             <span className="ml-2 text-gray-600">e.g. rentals and real estate, royalties</span>
           </div>
 
           <label className="text-left pr-2">Short-term Capital Gains</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
           </div>
 
           <label className="text-left pr-2">Long-term Capital Gains</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
           </div>
 
           <label className="text-left pr-2">Other Income</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
             <span className="ml-2 text-gray-600 w-[300px] leading-tight">e.g. unemployment pay(1099-G), retirement pay (1099-R)</span>
           </div>
@@ -152,80 +154,80 @@ export function IncomeTaxForm({ state, setters, handleCalculate, handleClear }: 
         <div className="grid grid-cols-[200px_1fr] gap-y-2 items-center">
           <label className="text-left pr-2">Tips Income</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
           </div>
 
           <label className="text-left pr-2">Overtime Income</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
           </div>
 
           <label className="text-left pr-2">Car Loan Interest</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
-            <span className="ml-2 text-gray-600">Max $10,000 for qualified vehicle purchase</span>
+            <span className="ml-2 text-gray-600">Max {currencySymbol}10,000 for qualified vehicle purchase</span>
           </div>
 
           <label className="text-left pr-2">IRA Contributions</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
           </div>
 
           <label className="text-left pr-2">Real Estate Tax</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
           </div>
 
           <label className="text-left pr-2">Mortgage Interest</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
           </div>
 
           <label className="text-left pr-2">Charitable Donations</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
           </div>
 
           <label className="text-left pr-2">Student Loan Interest</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
-            <span className="ml-2 text-gray-600">Max $2,500/Person</span>
+            <span className="ml-2 text-gray-600">Max {currencySymbol}2,500/Person</span>
           </div>
 
           <label className="text-left pr-2">Child & Dependent Care Expense</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
-            <span className="ml-2 text-gray-600">Max $3,000/Person, $6,000 total, up to age 13</span>
+            <span className="ml-2 text-gray-600">Max {currencySymbol}3,000/Person, {currencySymbol}6,000 total, up to age 13</span>
           </div>
 
           <label className="text-left pr-2">College Education Expense</label>
           <div className="flex flex-col space-y-1">
             <div className="flex items-center">
-              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
               <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
               <span className="ml-2 text-gray-600">Student 1</span>
             </div>
             <div className="flex items-center">
-              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
               <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
               <span className="ml-2 text-gray-600">Student 2</span>
             </div>
             <div className="flex items-center">
-              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
               <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
               <span className="ml-2 text-gray-600">Student 3</span>
             </div>
             <div className="flex items-center">
-              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
               <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
               <span className="ml-2 text-gray-600">Student 4</span>
             </div>
@@ -233,7 +235,7 @@ export function IncomeTaxForm({ state, setters, handleCalculate, handleClear }: 
 
           <label className="text-left pr-2 mt-2">Other Deductibles</label>
           <div className="flex items-center mt-2">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[22px]">{currencySymbol}</span>
             <input type="text" className="border border-gray-400 w-[100px] px-1 h-[24px]" defaultValue="0" />
           </div>
         </div>

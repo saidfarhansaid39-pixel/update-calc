@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function DepreciationForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [cost, setCost] = useState<number>(25000);
   const [salvage, setSalvage] = useState<number>(5000);
@@ -29,9 +31,9 @@ export default function DepreciationForm() {
   return (
     <div className="space-y-6">
       <div className="grid md:grid-cols-5 gap-4">
-        <div><label className="block text-sm text-gray-700 mb-1">Cost ($)</label>
+        <div><label className="block text-sm text-gray-700 mb-1">Cost ({currencySymbol})</label>
           <input type="number" value={cost} onChange={(e) => setCost(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
-        <div><label className="block text-sm text-gray-700 mb-1">Salvage Value ($)</label>
+        <div><label className="block text-sm text-gray-700 mb-1">Salvage Value ({currencySymbol})</label>
           <input type="number" value={salvage} onChange={(e) => setSalvage(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
         <div><label className="block text-sm text-gray-700 mb-1">Life (years)</label>
           <input type="number" value={life} onChange={(e) => setLife(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
@@ -45,8 +47,8 @@ export default function DepreciationForm() {
       <button onClick={calculate} className="bg-gray-600 text-white px-6 py-2 rounded">{t('buttons.calculate')}</button>
       {result && (
         <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-2xl p-6 text-white mt-6">
-          <p className="text-3xl font-bold">${result.depreciation}</p>
-          <p className="text-sm mt-2">Book Value: ${result.bookValue}</p>
+          <p className="text-3xl font-bold">{currencySymbol}{result.depreciation}</p>
+          <p className="text-sm mt-2">Book Value: {currencySymbol}{result.bookValue}</p>
         </div>
       )}
     </div>

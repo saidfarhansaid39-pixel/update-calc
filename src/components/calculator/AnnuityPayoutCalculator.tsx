@@ -8,6 +8,7 @@ import { AnnuityResults } from '@/components/calculator/AnnuityResults';
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
 import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 const calcMeta = {
   slug: 'annuity-payout-calculator',
@@ -21,6 +22,7 @@ const calcMeta = {
 };
 
 export function AnnuityPayoutCalculator() {
+  const { currency } = useCurrency()
   const th = useTranslations('hubs');
   const locale = useLocale();
   const [mode, setMode] = useState<'length' | 'payment'>('length');
@@ -134,19 +136,19 @@ export function AnnuityPayoutCalculator() {
     return (
       <SubCalcGrid>
         <SubCalcPanel title="Payout Summary" icon={DollarSign} defaultOpen results={[
-          { label: 'Payment Amount', value: formatCurrency(results.payment, 'USD', locale), badge: 'info' },
+          { label: 'Payment Amount', value: formatCurrency(results.payment, currency, locale), badge: 'info' },
           { label: 'Payment Frequency', value: results.freqLabel },
-          { label: 'Total Payout', value: formatCurrency(totalPayout, 'USD', locale) },
-          { label: 'Total Interest', value: formatCurrency(results.totalInterest, 'USD', locale), badge: results.totalInterest > 0 ? 'positive' : 'negative' },
+          { label: 'Total Payout', value: formatCurrency(totalPayout, currency, locale) },
+          { label: 'Total Interest', value: formatCurrency(results.totalInterest, currency, locale), badge: results.totalInterest > 0 ? 'positive' : 'negative' },
         ]} />
         <SubCalcPanel title="Duration & Principal" icon={Calendar} results={[
-          { label: 'Starting Principal', value: formatCurrency(results.principal, 'USD', locale) },
+          { label: 'Starting Principal', value: formatCurrency(results.principal, currency, locale) },
           { label: 'Number of Payments', value: String(results.totalPeriods) },
           { label: 'Payout Period', value: `${results.yearsStr} years` },
         ]} />
       </SubCalcGrid>
     );
-  }, [results, locale]);
+  }, [results, locale, currency]);
 
   return (
     <PremiumCalculatorShell

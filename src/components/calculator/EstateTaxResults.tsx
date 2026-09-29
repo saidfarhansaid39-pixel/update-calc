@@ -4,8 +4,10 @@ import React from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
 import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function EstateTaxResults({ results }: any) {
+  const { currency } = useCurrency()
   const t = useTranslations('calculatorUI');
   const locale = useLocale();
   if (!results) return null;
@@ -21,33 +23,33 @@ export function EstateTaxResults({ results }: any) {
           <tbody>
             <tr className="border-b border-gray-300">
               <td className="p-3 text-left">Gross Estate (Sum of Assets)</td>
-              <td className="p-3 text-right">{formatCurrency(results.grossEstate, 'USD', locale)}</td>
+              <td className="p-3 text-right">{formatCurrency(results.grossEstate, currency, locale)}</td>
             </tr>
             <tr className="border-b border-gray-300 bg-gray-50">
               <td className="p-3 text-left">Total Deductions & Liabilities</td>
-              <td className="p-3 text-right">-{formatCurrency(results.totalDeductions, 'USD', locale)}</td>
+              <td className="p-3 text-right">-{formatCurrency(results.totalDeductions, currency, locale)}</td>
             </tr>
             <tr className="border-b border-gray-300">
               <td className="p-3 text-left">Lifetime Gifted Amount</td>
-              <td className="p-3 text-right">+{formatCurrency(results.giftedAmount, 'USD', locale)}</td>
+              <td className="p-3 text-right">+{formatCurrency(results.giftedAmount, currency, locale)}</td>
             </tr>
             <tr className="border-b border-gray-400 bg-gray-100">
               <td className="p-3 text-left font-bold">Total Taxable Estate</td>
-              <td className="p-3 text-right font-bold">{formatCurrency(results.taxableEstate, 'USD', locale)}</td>
+              <td className="p-3 text-right font-bold">{formatCurrency(results.taxableEstate, currency, locale)}</td>
             </tr>
             <tr className="border-b border-gray-300">
               <td className="p-3 text-left text-gray-600">Federal Exemption Applied (2026)</td>
-              <td className="p-3 text-right text-gray-600">-{formatCurrency(results.exemption, 'USD', locale)}</td>
+              <td className="p-3 text-right text-gray-600">-{formatCurrency(results.exemption, currency, locale)}</td>
             </tr>
             {results.taxableEstate > results.exemption && (
               <tr className="border-b border-gray-300 bg-red-50">
                 <td className="p-3 text-left text-red-700">Amount Subject to Tax (40% rate)</td>
-                <td className="p-3 text-right text-red-700">{formatCurrency(results.taxableEstate - results.exemption, 'USD', locale)}</td>
+                <td className="p-3 text-right text-red-700">{formatCurrency(results.taxableEstate - results.exemption, currency, locale)}</td>
               </tr>
             )}
             <tr>
               <td className="p-3 text-left font-bold text-lg text-[#1c4587]">Estimated Federal Estate Tax Due</td>
-              <td className="p-3 text-right font-bold text-lg text-[#1c4587]">{formatCurrency(results.estimatedTax, 'USD', locale)}</td>
+              <td className="p-3 text-right font-bold text-lg text-[#1c4587]">{formatCurrency(results.estimatedTax, currency, locale)}</td>
             </tr>
           </tbody>
         </table>
@@ -60,12 +62,11 @@ export function EstateTaxResults({ results }: any) {
             taxOwed: results.estimatedTax,
             effectiveRate: results.taxableEstate > 0 ? (results.estimatedTax / results.taxableEstate) * 100 : 0,
           }}
-          currencySymbol="$"
         />
 
         {results.estimatedTax === 0 && (
           <div className="mt-4 p-3 bg-green-50 text-green-800 border border-green-200 rounded text-xs leading-relaxed">
-            <strong>Great news!</strong> Your taxable estate is below the {formatCurrency(results.exemption, 'USD', locale)} federal exemption limit for 2026. You likely do not owe any federal estate tax. However, be sure to check your state’s specific inheritance and estate tax laws, as state exemption limits are often much lower.
+            <strong>Great news!</strong> Your taxable estate is below the {formatCurrency(results.exemption, currency, locale)} federal exemption limit for 2026. You likely do not owe any federal estate tax. However, be sure to check your state’s specific inheritance and estate tax laws, as state exemption limits are often much lower.
           </div>
         )}
 

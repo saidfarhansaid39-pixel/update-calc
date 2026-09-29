@@ -20,10 +20,12 @@ interface FieldDef {
 import { calcDefs } from './ecology'
 import type { CalcDef } from '@/lib/generic-fallback'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
+import { useCurrency, subMoney } from '@/lib/context/CurrencyContext'
 
 type Props = { calculator: CalculatorEntry }
 
 export function GenericEcologyCalculator({ calculator }: Props) {
+  const { currencySymbol } = useCurrency()
   const def = calcDefs[calculator.slug] || (buildGenericDef(calculator) as unknown as CalcDef)
   const schema = def?.schema || z.object({
     val1: z.string().min(1, 'Required').refine(v => !isNaN(parseFloat(v)), 'Must be a number'),
@@ -80,17 +82,17 @@ export function GenericEcologyCalculator({ calculator }: Props) {
       <div className="text-center space-y-4">
         <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
           <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
-          <p className="text-3xl font-bold text-[#06b6d4]">{Number(res.result).toFixed(2)} {res.unit}</p>
+          <p className="text-3xl font-bold text-[#06b6d4]">{Number(res.result).toFixed(2)} {subMoney(res.unit, currencySymbol)}</p>
           {ecologyInterpretation}
         </div>
         <div className="border-t border-gray-200 dark:border-gray-700 pt-4 text-xs text-gray-400 space-y-1">
           {(res.steps ?? []).map((step, i) => (
-            <p key={i}><strong>{step.label}:</strong> {step.value}</p>
+            <p key={i}><strong>{step.label}:</strong> {subMoney(step.value, currencySymbol)}</p>
           ))}
         </div>
       </div>
     )
-  }, [def, v, ecologyInterpretation])
+  }, [def, v, ecologyInterpretation, currencySymbol])
 
   const chartData = useMemo(() => {
     if (!def) return []

@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function IRACalculatorForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [iraType, setIraType] = useState<'traditional' | 'roth'>('traditional');
   const [currentAge, setCurrentAge] = useState<number>(30);
@@ -81,11 +83,11 @@ export default function IRACalculatorForm() {
           <input type="number" value={retirementAge} onChange={(e) => setRetirementAge(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded" min="50" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Current Balance ($)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Current Balance ({currencySymbol})</label>
           <input type="number" value={currentBalance} onChange={(e) => setCurrentBalance(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Annual Contribution ($)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Annual Contribution ({currencySymbol})</label>
           <input type="number" value={annualContribution} onChange={(e) => setAnnualContribution(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded" max="6500" />
         </div>
         <div>
@@ -110,24 +112,24 @@ export default function IRACalculatorForm() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="bg-white p-4 rounded shadow-sm">
               <h4 className="font-medium text-gray-600 mb-2">IRA Balance</h4>
-              <p className="text-2xl font-bold text-green-600">${result.futureValue.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-green-600">{currencySymbol}{result.futureValue.toLocaleString()}</p>
             </div>
             <div className="bg-white p-4 rounded shadow-sm">
               <h4 className="font-medium text-gray-600 mb-2">After-Tax Value</h4>
-              <p className="text-2xl font-bold text-green-600">${result.afterTaxValue.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-green-600">{currencySymbol}{result.afterTaxValue.toLocaleString()}</p>
             </div>
             <div className="bg-white p-4 rounded shadow-sm">
               <h4 className="font-medium text-gray-600 mb-2">Total Earnings</h4>
-              <p className="text-2xl font-bold text-gray-700">${result.totalEarnings.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-gray-700">{currencySymbol}{result.totalEarnings.toLocaleString()}</p>
             </div>
             <div className="bg-white p-4 rounded shadow-sm">
               <h4 className="font-medium text-gray-600 mb-2">Est. Monthly Income</h4>
-              <p className="text-2xl font-bold text-gray-700">${result.monthlyIncome.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-gray-700">{currencySymbol}{result.monthlyIncome.toLocaleString()}</p>
             </div>
           </div>
           {iraType === 'roth' && result.taxSavingsNow > 0 && (
             <div className="bg-green-50 p-3 rounded border border-green-200 text-green-800">
-              You save ${result.taxSavingsNow.toLocaleString()} in taxes annually by contributing to Roth IRA
+              You save {currencySymbol}{result.taxSavingsNow.toLocaleString()} in taxes annually by contributing to Roth IRA
             </div>
           )}
         </div>

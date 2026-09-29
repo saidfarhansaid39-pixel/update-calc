@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function RentVsBuyForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [rent, setRent] = useState<number>(2000);
   const [homePrice, setHomePrice] = useState<number>(350000);
@@ -23,7 +25,7 @@ export default function RentVsBuyForm() {
   return (
     <div className="space-y-6">
       <div className="grid md:grid-cols-2 gap-4">
-        <div><label className="block text-sm text-gray-700 mb-1">Monthly Rent ($)</label>
+        <div><label className="block text-sm text-gray-700 mb-1">Monthly Rent ({currencySymbol})</label>
           <input type="number" value={rent} onChange={(e) => setRent(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
         <div><label className="block text-sm text-gray-700 mb-1">{t('formLabels.homePrice')}</label>
           <input type="number" value={homePrice} onChange={(e) => setHomePrice(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
@@ -32,7 +34,7 @@ export default function RentVsBuyForm() {
       {result && (
         <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl p-6 text-white mt-6">
           <p className="text-3xl font-bold">After 5 years: {result.better}</p>
-          <p className="text-sm mt-2">Rent cost: ${result.rent} | Buy cost: ${result.buy}</p>
+          <p className="text-sm mt-2">Rent cost: {currencySymbol}{result.rent} | Buy cost: {currencySymbol}{result.buy}</p>
         </div>
       )}
     </div>

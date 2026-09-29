@@ -8,6 +8,7 @@ import { MortgageResults } from '@/components/calculator/MortgageResults';
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
 import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 const calcMeta = {
   slug: 'mortgage-calculator',
@@ -21,6 +22,7 @@ const calcMeta = {
 };
 
 export function MortgageCalculatorWrapper() {
+  const { currency, currencySymbol } = useCurrency()
   const th = useTranslations('hubs');
   const t = useTranslations('calculatorUI');
   const locale = useLocale();
@@ -106,21 +108,21 @@ export function MortgageCalculatorWrapper() {
     return (
       <SubCalcGrid>
         <SubCalcPanel title="Monthly Payment Breakdown" icon={DollarSign} defaultOpen results={[
-          { label: 'Principal & Interest', value: formatCurrency(monthlyPrincipalAndInterest, 'USD', locale), badge: 'info' },
-          ...(monthlyPropertyTax > 0 ? [{ label: 'Property Tax', value: formatCurrency(monthlyPropertyTax, 'USD', locale) }] : []),
-          ...(monthlyHomeInsurance > 0 ? [{ label: 'Home Insurance', value: formatCurrency(monthlyHomeInsurance, 'USD', locale) }] : []),
-          { label: 'Total Monthly PITI', value: formatCurrency(totalOutOfPocket, 'USD', locale), badge: 'positive' },
+          { label: 'Principal & Interest', value: formatCurrency(monthlyPrincipalAndInterest, currency, locale), badge: 'info' },
+          ...(monthlyPropertyTax > 0 ? [{ label: 'Property Tax', value: formatCurrency(monthlyPropertyTax, currency, locale) }] : []),
+          ...(monthlyHomeInsurance > 0 ? [{ label: 'Home Insurance', value: formatCurrency(monthlyHomeInsurance, currency, locale) }] : []),
+          { label: 'Total Monthly PITI', value: formatCurrency(totalOutOfPocket, currency, locale), badge: 'positive' },
         ]} />
         <SubCalcPanel title="Loan Summary" icon={Home} results={[
-          { label: 'Home Price', value: formatCurrency(hp, 'USD', locale) },
-          { label: 'Down Payment', value: `${formatCurrency(dpDollar, 'USD', locale)} (${downPct.toFixed(1)}%)` },
-          { label: 'Loan Amount', value: formatCurrency(p, 'USD', locale) },
-          { label: 'Total Interest', value: formatCurrency(totalInterest, 'USD', locale), badge: 'negative' },
-          ...(extraPmt > 0 ? [{ label: 'With $' + extraPmt + '/mo extra', value: `Payoff: ${Math.floor(payoffMonths / 12)}yr ${payoffMonths % 12}mo, Interest: ${formatCurrency(payoffInterest, 'USD', locale)}`, badge: 'positive' as const }] : []),
+          { label: 'Home Price', value: formatCurrency(hp, currency, locale) },
+          { label: 'Down Payment', value: `${formatCurrency(dpDollar, currency, locale)} (${downPct.toFixed(1)}%)` },
+          { label: 'Loan Amount', value: formatCurrency(p, currency, locale) },
+          { label: 'Total Interest', value: formatCurrency(totalInterest, currency, locale), badge: 'negative' },
+          ...(extraPmt > 0 ? [{ label: `With ${currencySymbol}${extraPmt}/mo extra`, value: `Payoff: ${Math.floor(payoffMonths / 12)}yr ${payoffMonths % 12}mo, Interest: ${formatCurrency(payoffInterest, currency, locale)}`, badge: 'positive' as const }] : []),
         ]} />
       </SubCalcGrid>
     );
-  }, [monthlyPrincipalAndInterest, monthlyPropertyTax, monthlyHomeInsurance, monthlyOtherCosts, hp, dpDollar, p, totalInterest, locale, extraPmt, payoffMonths, payoffInterest]);
+  }, [monthlyPrincipalAndInterest, monthlyPropertyTax, monthlyHomeInsurance, monthlyOtherCosts, hp, dpDollar, p, totalInterest, locale, extraPmt, payoffMonths, payoffInterest, currency, currencySymbol]);
 
   const result = (
     <MortgageResults 

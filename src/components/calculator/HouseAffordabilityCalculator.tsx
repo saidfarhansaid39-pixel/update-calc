@@ -9,6 +9,7 @@ import { HouseAffordabilityResults } from '@/components/calculator/HouseAffordab
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
 import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 const calcMeta = {
   slug: 'house-affordability-calculator',
@@ -22,6 +23,7 @@ const calcMeta = {
 };
 
 export function HouseAffordabilityCalculator() {
+  const { currency } = useCurrency()
   const th = useTranslations('hubs');
   const t = useTranslations('calculatorUI');
   const locale = useLocale();
@@ -220,7 +222,7 @@ export function HouseAffordabilityCalculator() {
   const subCalcs = useMemo(() => {
     if (!results1 && !results2) return null;
 
-    const cl = (v: number) => formatCurrency(v, 'USD', locale);
+    const cl = (v: number) => formatCurrency(v, currency, locale);
     const hp1 = results1?.homePrice ?? 0;
     const hp2 = results2?.homePrice ?? 0;
     const loan1 = results1?.loanAmount ?? 0;
@@ -258,7 +260,7 @@ export function HouseAffordabilityCalculator() {
         ]} />
       </SubCalcGrid>
     );
-  }, [results1, results2, f1_income, f1_debt, locale]);
+  }, [results1, results2, f1_income, f1_debt, locale, currency]);
 
   return (
     <PremiumCalculatorShell

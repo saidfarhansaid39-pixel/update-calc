@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function HomeAffordabilityForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [annualIncome, setAnnualIncome] = useState<number>(80000);
   const [monthlyDebt, setMonthlyDebt] = useState<number>(500);
@@ -48,7 +50,7 @@ export default function HomeAffordabilityForm() {
   return (
     <div className="space-y-6">
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div><label className="block text-sm font-medium text-gray-700 mb-1">Annual Household Income ($)</label>
+        <div><label className="block text-sm font-medium text-gray-700 mb-1">Annual Household Income ({currencySymbol})</label>
           <input type="number" value={annualIncome} onChange={(e) => setAnnualIncome(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded" /></div>
         <div><label className="block text-sm font-medium text-gray-700 mb-1">{t('formLabels.monthlyDebt')}</label>
           <input type="number" value={monthlyDebt} onChange={(e) => setMonthlyDebt(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded" /></div>
@@ -60,7 +62,7 @@ export default function HomeAffordabilityForm() {
           <input type="number" value={term} onChange={(e) => setTerm(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded" /></div>
         <div><label className="block text-sm font-medium text-gray-700 mb-1">Property Tax Rate (%)</label>
           <input type="number" step="0.1" value={propertyTax} onChange={(e) => setPropertyTax(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded" /></div>
-        <div><label className="block text-sm font-medium text-gray-700 mb-1">Annual Insurance ($)</label>
+        <div><label className="block text-sm font-medium text-gray-700 mb-1">Annual Insurance ({currencySymbol})</label>
           <input type="number" value={insurance} onChange={(e) => setInsurance(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded" /></div>
       </div>
 
@@ -70,19 +72,19 @@ export default function HomeAffordabilityForm() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="bg-white p-4 rounded text-center">
               <p className="text-sm text-gray-500">Maximum Home Price</p>
-              <p className="text-3xl font-bold text-green-600">${result.maxHomePrice.toLocaleString()}</p>
+              <p className="text-3xl font-bold text-green-600">{currencySymbol}{result.maxHomePrice.toLocaleString()}</p>
             </div>
             <div className="bg-white p-4 rounded text-center">
               <p className="text-sm text-gray-500">Maximum Loan</p>
-              <p className="text-2xl font-bold text-gray-700">${result.maxLoan.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-gray-700">{currencySymbol}{result.maxLoan.toLocaleString()}</p>
             </div>
             <div className="bg-white p-4 rounded text-center">
               <p className="text-sm text-gray-500">Monthly P&I Payment</p>
-              <p className="text-2xl font-bold text-gray-700">${result.monthlyPayment.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-gray-700">{currencySymbol}{result.monthlyPayment.toLocaleString()}</p>
             </div>
           </div>
           <div className="mt-4 bg-white p-3 rounded text-sm">
-            <p className="text-gray-600"><strong>Total Monthly Payment:</strong> ${result.totalMonthlyPayment.toLocaleString()} (P&I: ${result.monthlyPayment} + Tax: ${result.propertyTax} + Insurance: ${result.insurance})</p>
+            <p className="text-gray-600"><strong>Total Monthly Payment:</strong> {currencySymbol}{result.totalMonthlyPayment.toLocaleString()} (P&I: {currencySymbol}{result.monthlyPayment} + Tax: {currencySymbol}{result.propertyTax} + Insurance: {currencySymbol}{result.insurance})</p>
           </div>
         </div>
       )}

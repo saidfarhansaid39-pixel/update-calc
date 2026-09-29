@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function PresentValueAnnuityForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [pmt, setPmt] = useState<number>(1000);
   const [rate, setRate] = useState<number>(5);
@@ -23,7 +25,7 @@ export default function PresentValueAnnuityForm() {
   return (
     <div className="space-y-6">
       <div className="grid md:grid-cols-4 gap-4">
-        <div><label className="block text-sm text-gray-700 mb-1">Payment ($/mo)</label>
+        <div><label className="block text-sm text-gray-700 mb-1">Payment ({currencySymbol}/mo)</label>
           <input type="number" value={pmt} onChange={(e) => setPmt(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
         <div><label className="block text-sm text-gray-700 mb-1">{t('formLabels.rate')}</label>
           <input type="number" value={rate} onChange={(e) => setRate(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
@@ -37,8 +39,8 @@ export default function PresentValueAnnuityForm() {
       <button onClick={calculate} className="bg-indigo-600 text-white px-6 py-2 rounded">{t('buttons.calculate')}</button>
       {result && (
         <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl p-6 text-white mt-6">
-          <p className="text-4xl font-bold">${Number(result.pv).toLocaleString()}</p>
-          <p className="text-sm mt-2">Total Payments: ${Number(result.totalPayments).toLocaleString()}</p>
+          <p className="text-4xl font-bold">{currencySymbol}{Number(result.pv).toLocaleString()}</p>
+          <p className="text-sm mt-2">Total Payments: {currencySymbol}{Number(result.totalPayments).toLocaleString()}</p>
         </div>
       )}
     </div>

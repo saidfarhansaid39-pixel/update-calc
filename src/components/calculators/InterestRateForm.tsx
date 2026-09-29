@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Input, Button, FormGroup, FormPanel } from '@/components/CalculatorFormElements';
 import { CalculatorPieChart } from '@/components/calculators/ChartPresets';
 import { useCurrencyFormat } from '@/lib/hooks/useCurrencyFormat';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 function solveForInterestRate(pv: number, pmt: number, n: number): number {
   if (pv <= 0 || pmt <= 0 || n <= 0) return 0;
@@ -29,6 +30,7 @@ function solveForInterestRate(pv: number, pmt: number, n: number): number {
 }
 
 export function InterestRateForm() {
+  const { currencySymbol } = useCurrency()
   const [inputs, setInputs] = useState({
     loanAmount: 10000,
     loanTermYears: 5,
@@ -62,7 +64,7 @@ export function InterestRateForm() {
     handleCalculate();
   }, []);
 
-  const formatCurrency = useCurrencyFormat('USD');
+  const formatCurrency = useCurrencyFormat();
 
     const handleClear = () => { setResults(null); setInputs({ loanAmount: 10000, loanTermYears: 5, loanTermMonths: 0, monthlyPay: 193.33 }); };
   return (
@@ -71,7 +73,7 @@ export function InterestRateForm() {
         <div className="w-[340px]">
           <FormPanel header="Modify the values and click the Calculate button to use">
             <FormGroup label="Loan Amount">
-              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">$</span>
+              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">{currencySymbol}</span>
               <Input type="number" value={inputs.loanAmount} onChange={(e) => handleNumChange(e, 'loanAmount')} className="w-[120px]" />
             </FormGroup>
             
@@ -83,7 +85,7 @@ export function InterestRateForm() {
             </FormGroup>
             
             <FormGroup label="Monthly Pay">
-              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">$</span>
+              <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">{currencySymbol}</span>
               <Input type="number" value={inputs.monthlyPay} onChange={(e) => handleNumChange(e, 'monthlyPay')} className="w-[120px]" step="0.01" />
             </FormGroup>
 

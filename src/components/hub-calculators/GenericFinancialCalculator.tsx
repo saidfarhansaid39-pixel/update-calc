@@ -904,6 +904,7 @@ const profitMarginSchema = z.object({ revenue: num('Revenue ($)'), profit: num('
 const netProfitSchema = z.object({ revenue: num('Total Revenue ($)'), expenses: num('Total Expenses ($)') })
 
 function PaymentResults({ p, r, t }: { p: number; r: number; t: number }) {
+  const { currencySymbol } = useCurrency()
   const monthlyRate = r / 100 / 12
   const numPayments = t * 12
   let monthlyPayment = 0
@@ -936,7 +937,7 @@ function PaymentResults({ p, r, t }: { p: number; r: number; t: number }) {
       {/* Primary result */}
       <div className="text-center">
         <p className="text-sm text-gray-500 dark:text-gray-400">Monthly Payment</p>
-        <p className="text-3xl font-bold text-[#1a3a8a]">${monthlyPayment.toFixed(2)}</p>
+        <p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{monthlyPayment.toFixed(2)}</p>
       </div>
 
       {/* Monthly + Total breakdown table */}
@@ -952,13 +953,13 @@ function PaymentResults({ p, r, t }: { p: number; r: number; t: number }) {
           <tbody>
             <tr className="border-b border-gray-100 dark:border-gray-800">
               <td className="p-2 text-left font-medium text-gray-700 dark:text-gray-300">Principal &amp; Interest</td>
-              <td className="p-2 text-right text-gray-700 dark:text-gray-300">${monthlyPayment.toFixed(2)}</td>
-              <td className="p-2 text-right text-gray-700 dark:text-gray-300">${totalPayment.toFixed(2)}</td>
+              <td className="p-2 text-right text-gray-700 dark:text-gray-300">{currencySymbol}{monthlyPayment.toFixed(2)}</td>
+              <td className="p-2 text-right text-gray-700 dark:text-gray-300">{currencySymbol}{totalPayment.toFixed(2)}</td>
             </tr>
             <tr className="bg-gray-50 dark:bg-gray-800/50 font-semibold border-t-2 border-gray-300 dark:border-gray-600">
               <td className="p-2 text-left text-gray-800 dark:text-gray-200">Total Out-of-Pocket</td>
-              <td className="p-2 text-right text-gray-800 dark:text-gray-200">${monthlyPayment.toFixed(2)}</td>
-              <td className="p-2 text-right text-gray-800 dark:text-gray-200">${totalPayment.toFixed(2)}</td>
+              <td className="p-2 text-right text-gray-800 dark:text-gray-200">{currencySymbol}{monthlyPayment.toFixed(2)}</td>
+              <td className="p-2 text-right text-gray-800 dark:text-gray-200">{currencySymbol}{totalPayment.toFixed(2)}</td>
             </tr>
           </tbody>
         </table>
@@ -968,11 +969,11 @@ function PaymentResults({ p, r, t }: { p: number; r: number; t: number }) {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
           <p className="text-xs text-gray-400">Loan Amount</p>
-          <p className="text-sm font-bold text-gray-900 dark:text-white">${p.toFixed(2)}</p>
+          <p className="text-sm font-bold text-gray-900 dark:text-white">{currencySymbol}{p.toFixed(2)}</p>
         </div>
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
           <p className="text-xs text-gray-400">Total Interest</p>
-          <p className="text-sm font-bold text-[#d62828]">${totalInterest.toFixed(2)}</p>
+          <p className="text-sm font-bold text-[#d62828]">{currencySymbol}{totalInterest.toFixed(2)}</p>
         </div>
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
           <p className="text-xs text-gray-400">Payoff Date</p>
@@ -1014,6 +1015,7 @@ function PaymentResults({ p, r, t }: { p: number; r: number; t: number }) {
 }
 
 function InvestmentResults({ initial, monthly, rate, years, extraFields }: { initial: number; monthly: number; rate: number; years: number; extraFields?: Record<string, string> }) {
+  const { currencySymbol } = useCurrency()
   const n = (v: string | undefined) => { const p = parseFloat(v || ''); return isNaN(p) ? undefined : p }
   const inflationRate = n(extraFields?.extra_inflation_rate)
   const taxRate = n(extraFields?.extra_tax_rate)
@@ -1053,27 +1055,27 @@ function InvestmentResults({ initial, monthly, rate, years, extraFields }: { ini
       <div className="text-center space-y-4">
         <div>
           <p className="text-sm text-gray-500 dark:text-gray-400">Future Value</p>
-          <p className="text-3xl font-bold text-[#1a3a8a]">${futureValue.toFixed(2)}</p>
+          <p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{futureValue.toFixed(2)}</p>
         </div>
         {inflationRate !== undefined && (
           <div>
             <p className="text-sm text-gray-500 dark:text-gray-400">Inflation-Adjusted (Real) Value</p>
-            <p className="text-xl font-bold text-amber-600">${realFutureValue.toFixed(2)}</p>
+            <p className="text-xl font-bold text-amber-600">{currencySymbol}{realFutureValue.toFixed(2)}</p>
           </div>
         )}
         {taxRate !== undefined && (
           <div>
             <p className="text-sm text-gray-500 dark:text-gray-400">After-Tax Value ({taxRate}% rate)</p>
-            <p className="text-xl font-bold text-[#06b6d4]">${afterTaxValue.toFixed(2)}</p>
+            <p className="text-xl font-bold text-[#06b6d4]">{currencySymbol}{afterTaxValue.toFixed(2)}</p>
           </div>
         )}
         <div>
           <p className="text-sm text-gray-500 dark:text-gray-400">Total Contributions</p>
-          <p className="text-xl font-bold text-gray-900 dark:text-white">${totalContributions.toFixed(2)}</p>
+          <p className="text-xl font-bold text-gray-900 dark:text-white">{currencySymbol}{totalContributions.toFixed(2)}</p>
         </div>
         <div>
           <p className="text-sm text-gray-500 dark:text-gray-400">Total Interest</p>
-          <p className="text-xl font-bold text-[#1a3a8a]">${Math.max(0, totalInterest).toFixed(2)}</p>
+          <p className="text-xl font-bold text-[#1a3a8a]">{currencySymbol}{Math.max(0, totalInterest).toFixed(2)}</p>
         </div>
         <div>
           <p className="text-sm text-gray-500 dark:text-gray-400">Return Multiple</p>
@@ -1102,6 +1104,7 @@ function MortgageResults({ price, down, rate, term, propertyTax, homeInsurance, 
   frequency?: string
   extraFields?: Record<string, string>
 }) {
+  const { currencySymbol } = useCurrency()
   const tf = useTranslations('calculatorUI')
   const tl = useCallback((key: string, fallback: string) => {
     try { return tf.has('formLabels.' + key) ? tf('formLabels.' + key) : fallback } catch { return fallback }
@@ -1166,8 +1169,8 @@ function MortgageResults({ price, down, rate, term, propertyTax, homeInsurance, 
       {/* Primary result */}
       <div className="text-center">
         <p className="text-sm text-gray-500 dark:text-gray-400">{paymentLabel}</p>
-        <p className="text-3xl font-bold text-[#1a3a8a]">${periodicPayment.toFixed(2)}</p>
-        {isBiweekly && <p className="text-xs text-gray-400 mt-1">˜ ${monthlyEquivalent.toFixed(2)}/mo equivalent</p>}
+        <p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{periodicPayment.toFixed(2)}</p>
+        {isBiweekly && <p className="text-xs text-gray-400 mt-1">˜ {currencySymbol}{monthlyEquivalent.toFixed(2)}/mo equivalent</p>}
       </div>
 
       {/* Monthly + Total breakdown table */}
@@ -1183,41 +1186,41 @@ function MortgageResults({ price, down, rate, term, propertyTax, homeInsurance, 
           <tbody>
             <tr className="border-b border-gray-100 dark:border-gray-800">
               <td className="p-2 text-left font-medium text-gray-700 dark:text-gray-300">Principal &amp; Interest</td>
-              <td className="p-2 text-right text-gray-700 dark:text-gray-300">${periodicPayment.toFixed(2)}</td>
-              <td className="p-2 text-right text-gray-700 dark:text-gray-300">${totalPayment.toFixed(2)}</td>
+              <td className="p-2 text-right text-gray-700 dark:text-gray-300">{currencySymbol}{periodicPayment.toFixed(2)}</td>
+              <td className="p-2 text-right text-gray-700 dark:text-gray-300">{currencySymbol}{totalPayment.toFixed(2)}</td>
             </tr>
             {propertyTax > 0 && (
               <tr className="border-b border-gray-100 dark:border-gray-800">
                 <td className="p-2 text-left text-gray-600 dark:text-gray-400">Property Tax</td>
-                <td className="p-2 text-right text-gray-600 dark:text-gray-400">${monthlyTax.toFixed(2)}</td>
-                <td className="p-2 text-right text-gray-600 dark:text-gray-400">${(monthlyTax * numPeriods).toFixed(2)}</td>
+                <td className="p-2 text-right text-gray-600 dark:text-gray-400">{currencySymbol}{monthlyTax.toFixed(2)}</td>
+                <td className="p-2 text-right text-gray-600 dark:text-gray-400">{currencySymbol}{(monthlyTax * numPeriods).toFixed(2)}</td>
               </tr>
             )}
             {homeInsurance > 0 && (
               <tr className="border-b border-gray-100 dark:border-gray-800">
                 <td className="p-2 text-left text-gray-600 dark:text-gray-400">Home Insurance</td>
-                <td className="p-2 text-right text-gray-600 dark:text-gray-400">${monthlyInsurance.toFixed(2)}</td>
-                <td className="p-2 text-right text-gray-600 dark:text-gray-400">${(monthlyInsurance * numPeriods).toFixed(2)}</td>
+                <td className="p-2 text-right text-gray-600 dark:text-gray-400">{currencySymbol}{monthlyInsurance.toFixed(2)}</td>
+                <td className="p-2 text-right text-gray-600 dark:text-gray-400">{currencySymbol}{(monthlyInsurance * numPeriods).toFixed(2)}</td>
               </tr>
             )}
             {pmiRate > 0 && (
               <tr className="border-b border-gray-100 dark:border-gray-800">
                 <td className="p-2 text-left text-amber-600">PMI</td>
-                <td className="p-2 text-right text-amber-600">${monthlyPMI.toFixed(2)}</td>
-                <td className="p-2 text-right text-amber-600">${(monthlyPMI * numPeriods).toFixed(2)}</td>
+                <td className="p-2 text-right text-amber-600">{currencySymbol}{monthlyPMI.toFixed(2)}</td>
+                <td className="p-2 text-right text-amber-600">{currencySymbol}{(monthlyPMI * numPeriods).toFixed(2)}</td>
               </tr>
             )}
             {hoa > 0 && (
               <tr className="border-b border-gray-100 dark:border-gray-800">
                 <td className="p-2 text-left text-gray-600 dark:text-gray-400">HOA</td>
-                <td className="p-2 text-right text-gray-600 dark:text-gray-400">${hoa.toFixed(2)}</td>
-                <td className="p-2 text-right text-gray-600 dark:text-gray-400">${(hoa * numPeriods).toFixed(2)}</td>
+                <td className="p-2 text-right text-gray-600 dark:text-gray-400">{currencySymbol}{hoa.toFixed(2)}</td>
+                <td className="p-2 text-right text-gray-600 dark:text-gray-400">{currencySymbol}{(hoa * numPeriods).toFixed(2)}</td>
               </tr>
             )}
             <tr className="bg-gray-50 dark:bg-gray-800/50 font-semibold border-t-2 border-gray-300 dark:border-gray-600">
               <td className="p-2 text-left text-gray-800 dark:text-gray-200">Total Out-of-Pocket</td>
-              <td className="p-2 text-right text-gray-800 dark:text-gray-200">${totalMonthly.toFixed(2)}</td>
-              <td className="p-2 text-right text-[#d62828] font-bold">${(totalPayment + monthlyPITI * numPeriods).toFixed(2)}</td>
+              <td className="p-2 text-right text-gray-800 dark:text-gray-200">{currencySymbol}{totalMonthly.toFixed(2)}</td>
+              <td className="p-2 text-right text-[#d62828] font-bold">{currencySymbol}{(totalPayment + monthlyPITI * numPeriods).toFixed(2)}</td>
             </tr>
           </tbody>
         </table>
@@ -1227,11 +1230,11 @@ function MortgageResults({ price, down, rate, term, propertyTax, homeInsurance, 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
           <p className="text-xs text-gray-400">{tl('loanAmount', 'Loan Amount')}</p>
-          <p className="text-sm font-bold text-gray-900 dark:text-white">${principal.toFixed(2)}</p>
+          <p className="text-sm font-bold text-gray-900 dark:text-white">{currencySymbol}{principal.toFixed(2)}</p>
         </div>
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
           <p className="text-xs text-gray-400">{tl('totalInterest', 'Total Interest')}</p>
-          <p className="text-sm font-bold text-[#d62828]">${totalInterest.toFixed(2)}</p>
+          <p className="text-sm font-bold text-[#d62828]">{currencySymbol}{totalInterest.toFixed(2)}</p>
         </div>
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
           <p className="text-xs text-gray-400">{tl('payoffDate', 'Payoff Date')}</p>
@@ -1239,18 +1242,18 @@ function MortgageResults({ price, down, rate, term, propertyTax, homeInsurance, 
         </div>
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
           <p className="text-xs text-gray-400">{tl('downPayment', 'Down Payment')}</p>
-          <p className="text-sm font-bold text-[#06b6d4]">${down.toFixed(2)} ({downPct.toFixed(1)}%)</p>
+          <p className="text-sm font-bold text-[#06b6d4]">{currencySymbol}{down.toFixed(2)} ({downPct.toFixed(1)}%)</p>
         </div>
       </div>
 
       {periodsPerYear > 12 && (
         <div className="p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
-          <p className="text-sm font-medium text-green-700 dark:text-green-300">{periodsPerYear} payments/year — saves ${(monthlyEquivalent * term * 12 - totalPayment).toFixed(0)} in interest vs monthly</p>
+          <p className="text-sm font-medium text-green-700 dark:text-green-300">{periodsPerYear} payments/year — saves {currencySymbol}{(monthlyEquivalent * term * 12 - totalPayment).toFixed(0)} in interest vs monthly</p>
         </div>
       )}
       {extraPerPeriod > 0 && (
         <div className="p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
-          <p className="text-sm font-medium text-amber-700 dark:text-amber-300">Extra ${extraPerPeriod.toFixed(2)}/{isBiweekly ? '2wks' : 'mo'} saves {numPeriods > 0 ? Math.round(numPeriods - payoffPeriods) : 0} payments & ${(totalPayment - totalWithExtra).toFixed(0)} in interest</p>
+          <p className="text-sm font-medium text-amber-700 dark:text-amber-300">Extra {currencySymbol}{extraPerPeriod.toFixed(2)}/{isBiweekly ? '2wks' : 'mo'} saves {numPeriods > 0 ? Math.round(numPeriods - payoffPeriods) : 0} payments & {currencySymbol}{(totalPayment - totalWithExtra).toFixed(0)} in interest</p>
         </div>
       )}
 
@@ -1288,6 +1291,7 @@ function MortgageResults({ price, down, rate, term, propertyTax, homeInsurance, 
 }
 
 function RetirementResults({ age, retirementAge, savings, monthly, rate, extraFields }: { age: number; retirementAge: number; savings: number; monthly: number; rate: number; extraFields?: Record<string, string> }) {
+  const { currencySymbol } = useCurrency()
   const years = Math.max(0, retirementAge - age)
   const monthlyRate = rate / 100 / 12
   const months = years * 12
@@ -1317,15 +1321,15 @@ function RetirementResults({ age, retirementAge, savings, monthly, rate, extraFi
       <div className="text-center space-y-4">
         <div>
           <p className="text-sm text-gray-500 dark:text-gray-400">Projected Savings at {retirementAge}</p>
-          <p className="text-3xl font-bold text-[#1a3a8a]">${futureValue.toFixed(2)}</p>
+          <p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{futureValue.toFixed(2)}</p>
         </div>
         <div>
           <p className="text-sm text-gray-500 dark:text-gray-400">Est. Annual Income (4% Rule)</p>
-          <p className="text-xl font-bold text-gray-900 dark:text-white">${withdrawalRate.toFixed(2)}/yr</p>
+          <p className="text-xl font-bold text-gray-900 dark:text-white">{currencySymbol}{withdrawalRate.toFixed(2)}/yr</p>
         </div>
         <div>
           <p className="text-sm text-gray-500 dark:text-gray-400">Monthly Contribution</p>
-          <p className="text-xl font-bold text-[#1a3a8a]">${monthly.toFixed(2)}</p>
+          <p className="text-xl font-bold text-[#1a3a8a]">{currencySymbol}{monthly.toFixed(2)}</p>
         </div>
         <div>
           <p className="text-sm text-gray-500 dark:text-gray-400">Years to Retirement</p>
@@ -1342,6 +1346,7 @@ function RetirementResults({ age, retirementAge, savings, monthly, rate, extraFi
 }
 
 function SalaryResults({ amount, period, extraFields }: { amount: number; period: string; extraFields?: Record<string, string> }) {
+  const { currencySymbol } = useCurrency()
   const annualMap: Record<string, number> = {
     hourly: amount * 2080,
     weekly: amount * 52,
@@ -1356,19 +1361,20 @@ function SalaryResults({ amount, period, extraFields }: { amount: number; period
     <div className="space-y-4">
       <div className="text-center">
         <p className="text-sm text-gray-500 dark:text-gray-400">Annual Salary</p>
-        <p className="text-2xl font-bold text-[#1a3a8a]">${annual.toFixed(2)}</p>
+        <p className="text-2xl font-bold text-[#1a3a8a]">{currencySymbol}{annual.toFixed(2)}</p>
       </div>
       <div className="grid grid-cols-3 gap-2">
-        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg"><p className="text-xs text-gray-500">Monthly</p><p className="text-sm font-bold text-gray-900 dark:text-white">${monthly.toFixed(2)}</p></div>
-        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg"><p className="text-xs text-gray-500">Weekly</p><p className="text-sm font-bold text-gray-900 dark:text-white">${weekly.toFixed(2)}</p></div>
-        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg"><p className="text-xs text-gray-500">Hourly</p><p className="text-sm font-bold text-gray-900 dark:text-white">${hourly.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg"><p className="text-xs text-gray-500">Monthly</p><p className="text-sm font-bold text-gray-900 dark:text-white">{currencySymbol}{monthly.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg"><p className="text-xs text-gray-500">Weekly</p><p className="text-sm font-bold text-gray-900 dark:text-white">{currencySymbol}{weekly.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg"><p className="text-xs text-gray-500">Hourly</p><p className="text-sm font-bold text-gray-900 dark:text-white">{currencySymbol}{hourly.toFixed(2)}</p></div>
       </div>
-      <ResultInterpretation type="salary" values={{ hourly, monthly, annual }} currencySymbol="$" />
+      <ResultInterpretation type="salary" values={{ hourly, monthly, annual }} />
     </div>
   )
 }
 
 function DebtResults({ balance, rate, monthly, extraFields }: { balance: number; rate: number; monthly: number; extraFields?: Record<string, string> }) {
+  const { currencySymbol } = useCurrency()
   const monthlyRate = rate / 100 / 12
   let months = 0
   let totalInterest = 0
@@ -1390,16 +1396,17 @@ function DebtResults({ balance, rate, monthly, extraFields }: { balance: number;
     <div className="space-y-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Payoff Time</p><p className="text-sm font-bold text-gray-900 dark:text-white">{months} months ({Math.floor(months / 12)}yr {months % 12}mo)</p></div>
-        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Total Interest</p><p className="text-sm font-bold text-[#d62828]">${totalInterest.toFixed(2)}</p></div>
-        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Total Cost</p><p className="text-sm font-bold text-gray-900 dark:text-white">${(balance + totalInterest).toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Total Interest</p><p className="text-sm font-bold text-[#d62828]">{currencySymbol}{totalInterest.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Total Cost</p><p className="text-sm font-bold text-gray-900 dark:text-white">{currencySymbol}{(balance + totalInterest).toFixed(2)}</p></div>
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Payoff Date</p><p className="text-sm font-bold text-gray-900 dark:text-white">{payoffDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</p></div>
       </div>
-      <ResultInterpretation type="debt" values={{ balance, monthly, totalInterest }} currencySymbol="$" />
+      <ResultInterpretation type="debt" values={{ balance, monthly, totalInterest }} />
     </div>
   )
 }
 
 function BudgetResults({ income, housing, food, transport, utilities, other }: { income: number; housing: number; food: number; transport: number; utilities: number; other: number }) {
+  const { currencySymbol } = useCurrency()
   const totalExpenses = housing + food + transport + utilities + other
   const remaining = income - totalExpenses
   const needs = housing + utilities
@@ -1415,12 +1422,12 @@ function BudgetResults({ income, housing, food, transport, utilities, other }: {
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Total Expenses</p><p className="text-sm font-bold text-gray-900 dark:text-white">${totalExpenses.toFixed(2)}</p></div>
-        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Remaining</p><p className={`text-sm font-bold ${remaining >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>${remaining.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Total Expenses</p><p className="text-sm font-bold text-gray-900 dark:text-white">{currencySymbol}{totalExpenses.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Remaining</p><p className={`text-sm font-bold ${remaining >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{currencySymbol}{remaining.toFixed(2)}</p></div>
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Savings Rate</p><p className="text-sm font-bold text-gray-900 dark:text-white">{income > 0 ? ((remaining / income) * 100).toFixed(1) : 0}%</p></div>
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Needs/Wants/Savings</p><p className="text-sm font-bold text-gray-900 dark:text-white">{income > 0 ? `${((needs/income)*100).toFixed(0)}/${((wants/income)*100).toFixed(0)}/${((savings/income)*100).toFixed(0)}` : '—'}</p></div>
       </div>
-      <ResultInterpretation type="budget" values={{ income, needs, wants, savings }} currencySymbol="$" />
+      <ResultInterpretation type="budget" values={{ income, needs, wants, savings }} />
       {categories.length > 0 && (
         <div className="h-40">
           <ComparisonBarChart data={categories} />
@@ -1431,23 +1438,25 @@ function BudgetResults({ income, housing, food, transport, utilities, other }: {
 }
 
 function TaxResults({ income, rate, extraFields }: { income: number; rate: number; extraFields?: Record<string, string> }) {
+  const { currencySymbol } = useCurrency()
   const tax = income * (rate / 100)
   const afterTax = income - tax
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Tax Amount</p><p className="text-sm font-bold text-[#d62828]">${tax.toFixed(2)}</p></div>
-        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">After-Tax Income</p><p className="text-sm font-bold text-[#1a3a8a]">${afterTax.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Tax Amount</p><p className="text-sm font-bold text-[#d62828]">{currencySymbol}{tax.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">After-Tax Income</p><p className="text-sm font-bold text-[#1a3a8a]">{currencySymbol}{afterTax.toFixed(2)}</p></div>
         <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Effective Rate</p><p className="text-sm font-bold text-gray-900 dark:text-white">{rate}%</p></div>
       </div>
-      <ResultInterpretation type="tax" values={{ income, taxOwed: tax, effectiveRate: rate }} currencySymbol="$" />
+      <ResultInterpretation type="tax" values={{ income, taxOwed: tax, effectiveRate: rate }} />
     </div>
   )
 }
 
 function SimpleInterestResults({ principal, rate, years }: { principal: number; rate: number; years: number }) {
+  const { currencySymbol } = useCurrency()
   const interest = principal * (rate / 100) * years; const total = principal + interest
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Interest Earned</p><p className="text-3xl font-bold text-[#1a3a8a]">${interest.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Total Amount</p><p className="text-xl font-bold text-gray-900">${total.toFixed(2)}</p></div><div className="text-xs text-gray-400">I = ${principal.toFixed(0)} × {rate}% × {years}yr = ${interest.toFixed(2)}<br/>A = ${principal.toFixed(0)} + ${interest.toFixed(2)} = ${total.toFixed(2)}</div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Interest Earned</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{interest.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Total Amount</p><p className="text-xl font-bold text-gray-900">{currencySymbol}{total.toFixed(2)}</p></div><div className="text-xs text-gray-400">I = {currencySymbol}{principal.toFixed(0)} × {rate}% × {years}yr = {currencySymbol}{interest.toFixed(2)}<br/>A = {currencySymbol}{principal.toFixed(0)} + {currencySymbol}{interest.toFixed(2)} = {currencySymbol}{total.toFixed(2)}</div></div>
 }
 function ApyCalcResults({ rate, compound, years }: { rate: number; compound: string; years: number }) {
   const r = rate / 100; const n = compound === 'monthly' ? 12 : compound === 'quarterly' ? 4 : 1
@@ -1455,21 +1464,25 @@ function ApyCalcResults({ rate, compound, years }: { rate: number; compound: str
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">APY</p><p className="text-3xl font-bold text-[#1a3a8a]">{apy.toFixed(3)}%</p></div><div><p className="text-sm text-gray-500">Growth Factor ({years}yr)</p><p className="text-xl font-bold text-gray-900">{(growth).toFixed(4)}x</p></div><div><p className="text-sm text-gray-500">Rule of 72 Doubling</p><p className="text-lg font-bold text-gray-900">~{doublingTime.toFixed(1)} years</p></div></div>
 }
 function FutureValueResults({ present, rate, years, monthlyAdd }: { present: number; rate: number; years: number; monthlyAdd: number }) {
+  const { currencySymbol } = useCurrency()
   const mr = rate / 100 / 12; const m = years * 12; let fv = 0
   if (mr > 0) fv = present * Math.pow(1 + mr, m) + monthlyAdd * ((Math.pow(1 + mr, m) - 1) / mr); else fv = present + monthlyAdd * m
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Future Value</p><p className="text-3xl font-bold text-[#1a3a8a]">${fv.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Total Contributions</p><p className="text-xl font-bold text-gray-900">${(present + monthlyAdd * m).toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Future Value</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{fv.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Total Contributions</p><p className="text-xl font-bold text-gray-900">{currencySymbol}{(present + monthlyAdd * m).toFixed(2)}</p></div></div>
 }
 function PresentValueResults({ present, rate, years }: { present: number; rate: number; years: number }) {
+  const { currencySymbol } = useCurrency()
   const r = rate / 100; const pv = present / Math.pow(1 + r, years)
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Present Value</p><p className="text-3xl font-bold text-[#1a3a8a]">${pv.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Discount Factor</p><p className="text-xl font-bold text-gray-900">{(1 / Math.pow(1 + r, years)).toFixed(4)}</p></div><div className="text-xs text-gray-400">PV = ${present.toFixed(0)} / (1+{rate}%)^{years} = ${pv.toFixed(2)}</div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Present Value</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{pv.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Discount Factor</p><p className="text-xl font-bold text-gray-900">{(1 / Math.pow(1 + r, years)).toFixed(4)}</p></div><div className="text-xs text-gray-400">PV = {currencySymbol}{present.toFixed(0)} / (1+{rate}%)^{years} = {currencySymbol}{pv.toFixed(2)}</div></div>
 }
 function RoiResults({ initial, final, years }: { initial: number; final: number; years: number }) {
+  const { currencySymbol } = useCurrency()
   const roi = ((final - initial) / initial) * 100; const annualRoi = years > 0 ? (Math.pow(final / initial, 1 / years) - 1) * 100 : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total ROI</p><p className="text-3xl font-bold text-[#1a3a8a]">{roi.toFixed(2)}%</p></div><div><p className="text-sm text-gray-500">Annualized (CAGR)</p><p className="text-xl font-bold text-gray-900">{annualRoi.toFixed(2)}%</p></div><div><p className="text-sm text-gray-500">Total Gain</p><p className="text-lg font-bold text-[#06b6d4]">${(final - initial).toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total ROI</p><p className="text-3xl font-bold text-[#1a3a8a]">{roi.toFixed(2)}%</p></div><div><p className="text-sm text-gray-500">Annualized (CAGR)</p><p className="text-xl font-bold text-gray-900">{annualRoi.toFixed(2)}%</p></div><div><p className="text-sm text-gray-500">Total Gain</p><p className="text-lg font-bold text-[#06b6d4]">{currencySymbol}{(final - initial).toFixed(2)}</p></div></div>
 }
 function NpvResults({ initial, cashFlows, rate, years }: { initial: number; cashFlows: number; rate: number; years: number }) {
+  const { currencySymbol } = useCurrency()
   const r = rate / 100; let npv = -initial; for (let y = 1; y <= years; y++) npv += cashFlows / Math.pow(1 + r, y)
-  return <div className="text-center space-y-3"><div><p className={`text-sm ${npv >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>NPV</p><p className={`text-3xl font-bold ${npv >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>${npv.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">{npv >= 0 ? 'Accept investment' : 'Reject investment'}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className={`text-sm ${npv >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>NPV</p><p className={`text-3xl font-bold ${npv >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{currencySymbol}{npv.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">{npv >= 0 ? 'Accept investment' : 'Reject investment'}</p></div></div>
 }
 function IrrResults({ initial, cashFlow, years }: { initial: number; cashFlow: number; years: number }) {
   let irr = 0.1; for (let it = 0; it < 1000; it++) { let npv = -initial; for (let y = 1; y <= years; y++) npv += cashFlow / Math.pow(1 + irr, y); const d = -years * cashFlow / Math.pow(1 + irr, years + 1); if (Math.abs(npv) < 0.001) break; if (d !== 0) irr -= npv / d; if (irr <= 0) { irr = 0.05; break } }
@@ -1480,36 +1493,42 @@ function PaybackResults({ initial, cashFlow }: { initial: number; cashFlow: numb
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Payback Period</p><p className="text-3xl font-bold text-[#1a3a8a]">{payback > 0 ? payback.toFixed(1) : 'N/A'} years</p></div><div><p className="text-sm text-gray-500">{(payback * 12).toFixed(0)} months</p></div></div>
 }
 function BreakEvenResults({ fixedCosts, pricePerUnit, varCostPerUnit }: { fixedCosts: number; pricePerUnit: number; varCostPerUnit: number }) {
+  const { currencySymbol } = useCurrency()
   const cm = pricePerUnit - varCostPerUnit; const beUnits = cm > 0 ? Math.ceil(fixedCosts / cm) : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Break-Even Units</p><p className="text-3xl font-bold text-[#1a3a8a]">{beUnits.toLocaleString()} units</p></div><div><p className="text-sm text-gray-500">Break-Even Revenue</p><p className="text-xl font-bold text-gray-900">${(beUnits * pricePerUnit).toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Contribution Margin</p><p className="text-lg font-bold text-[#06b6d4]">${cm.toFixed(2)}/unit</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Break-Even Units</p><p className="text-3xl font-bold text-[#1a3a8a]">{beUnits.toLocaleString()} units</p></div><div><p className="text-sm text-gray-500">Break-Even Revenue</p><p className="text-xl font-bold text-gray-900">{currencySymbol}{(beUnits * pricePerUnit).toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Contribution Margin</p><p className="text-lg font-bold text-[#06b6d4]">{currencySymbol}{cm.toFixed(2)}/unit</p></div></div>
 }
 function BondYieldResults({ price, faceValue, coupon, years }: { price: number; faceValue: number; coupon: number; years: number }) {
+  const { currencySymbol } = useCurrency()
   const curYield = price > 0 ? (coupon / price) * 100 : 0; const ytm = years > 0 ? ((faceValue - price) / years + coupon) / ((faceValue + price) / 2) * 100 : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Current Yield</p><p className="text-3xl font-bold text-[#1a3a8a]">{curYield.toFixed(2)}%</p></div><div><p className="text-sm text-gray-500">Est. YTM</p><p className="text-xl font-bold text-gray-900">{ytm.toFixed(2)}%</p></div><div><p className="text-sm text-gray-500">Annual Coupon</p><p className="text-lg font-bold text-[#06b6d4]">${coupon.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Current Yield</p><p className="text-3xl font-bold text-[#1a3a8a]">{curYield.toFixed(2)}%</p></div><div><p className="text-sm text-gray-500">Est. YTM</p><p className="text-xl font-bold text-gray-900">{ytm.toFixed(2)}%</p></div><div><p className="text-sm text-gray-500">Annual Coupon</p><p className="text-lg font-bold text-[#06b6d4]">{currencySymbol}{coupon.toFixed(2)}</p></div></div>
 }
 function BondPriceResults({ faceValue, coupon, rate, years }: { faceValue: number; coupon: number; rate: number; years: number }) {
+  const { currencySymbol } = useCurrency()
   const r = rate / 100; let pvC = 0; for (let y = 1; y <= years; y++) pvC += coupon / Math.pow(1 + r, y); const pvF = faceValue / Math.pow(1 + r, years); const bp = pvC + pvF
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Bond Price</p><p className="text-3xl font-bold text-[#1a3a8a]">${bp.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">{bp > faceValue ? 'Premium' : bp < faceValue ? 'Discount' : 'Par'}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Bond Price</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{bp.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">{bp > faceValue ? 'Premium' : bp < faceValue ? 'Discount' : 'Par'}</p></div></div>
 }
 function CouponPaymentResults({ faceValue, couponRate, freq }: { faceValue: number; couponRate: number; freq: string }) {
+  const { currencySymbol } = useCurrency()
   const perYear = freq === 'annual' ? 1 : freq === 'semiannual' ? 2 : 4; const pmt = faceValue * (couponRate / 100) / perYear
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Coupon Payment</p><p className="text-3xl font-bold text-[#1a3a8a]">${pmt.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Annual Income</p><p className="text-xl font-bold text-gray-900">${(pmt * perYear).toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Coupon Payment</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{pmt.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Annual Income</p><p className="text-xl font-bold text-gray-900">{currencySymbol}{(pmt * perYear).toFixed(2)}</p></div></div>
 }
 function TaxEquivYieldResults({ muniYield, taxRate }: { muniYield: number; taxRate: number }) {
   const tey = muniYield / (1 - taxRate / 100)
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Tax-Equivalent Yield</p><p className="text-3xl font-bold text-[#1a3a8a]">{tey.toFixed(3)}%</p></div><div><p className="text-sm text-gray-500">Need {tey.toFixed(2)}% taxable to match {muniYield}% muni at {taxRate}% bracket</p></div></div>
 }
 function DividendYieldResults({ pricePerShare, annualDividend }: { pricePerShare: number; annualDividend: number }) {
+  const { currencySymbol } = useCurrency()
   const y = pricePerShare > 0 ? (annualDividend / pricePerShare) * 100 : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Dividend Yield</p><p className="text-3xl font-bold text-[#1a3a8a]">{y.toFixed(2)}%</p></div><div><p className="text-sm text-gray-500">Annual Income/Share</p><p className="text-xl font-bold text-gray-900">${annualDividend.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Dividend Yield</p><p className="text-3xl font-bold text-[#1a3a8a]">{y.toFixed(2)}%</p></div><div><p className="text-sm text-gray-500">Annual Income/Share</p><p className="text-xl font-bold text-gray-900">{currencySymbol}{annualDividend.toFixed(2)}</p></div></div>
 }
 function DividendPayoutResults({ dividends, netIncome }: { dividends: number; netIncome: number }) {
   const r = netIncome > 0 ? (dividends / netIncome) * 100 : 0
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Payout Ratio</p><p className="text-3xl font-bold text-[#1a3a8a]">{r.toFixed(1)}%</p></div><div><p className="text-sm text-gray-500">Retention Ratio</p><p className="text-xl font-bold text-gray-900">{(100 - r).toFixed(1)}%</p></div></div>
 }
 function EpsResults({ netIncome, shares }: { netIncome: number; shares: number }) {
+  const { currencySymbol } = useCurrency()
   const eps = shares > 0 ? netIncome / shares : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Earnings Per Share</p><p className="text-3xl font-bold text-[#1a3a8a]">${eps.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Earnings Per Share</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{eps.toFixed(2)}</p></div></div>
 }
 function PeResults({ price, eps }: { price: number; eps: number }) {
   const pe = eps > 0 ? price / eps : 0
@@ -1539,16 +1558,19 @@ function RetentionRatioResults({ payoutRatio }: { payoutRatio: number }) {
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Retention Ratio</p><p className="text-3xl font-bold text-[#1a3a8a]">{(100 - payoutRatio).toFixed(1)}%</p></div></div>
 }
 function StockAvgCostResults({ shares, totalCost, newShares, newPrice }: { shares: number; totalCost: number; newShares: number; newPrice: number }) {
+  const { currencySymbol } = useCurrency()
   const oldAvg = shares > 0 ? totalCost / shares : 0; const tshares = shares + newShares; const tcost = totalCost + newShares * newPrice; const navg = tshares > 0 ? tcost / tshares : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">New Average Cost</p><p className="text-3xl font-bold text-[#1a3a8a]">${navg.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Original Avg: ${oldAvg.toFixed(2)} | Total Shares: {tshares}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">New Average Cost</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{navg.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Original Avg: {currencySymbol}{oldAvg.toFixed(2)} | Total Shares: {tshares}</p></div></div>
 }
 function DcaResults({ monthlyInvest, pricePerShare, months }: { monthlyInvest: number; pricePerShare: number; months: number }) {
+  const { currencySymbol } = useCurrency()
   const tshares = pricePerShare > 0 ? (monthlyInvest / pricePerShare) * months : 0; const tInvested = monthlyInvest * months; const avgCost = tshares > 0 ? tInvested / tshares : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Shares Accumulated</p><p className="text-3xl font-bold text-[#1a3a8a]">{tshares.toFixed(4)}</p></div><div><p className="text-sm text-gray-500">Invested: ${tInvested.toFixed(2)} | Avg Cost: ${avgCost.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Shares Accumulated</p><p className="text-3xl font-bold text-[#1a3a8a]">{tshares.toFixed(4)}</p></div><div><p className="text-sm text-gray-500">Invested: {currencySymbol}{tInvested.toFixed(2)} | Avg Cost: {currencySymbol}{avgCost.toFixed(2)}</p></div></div>
 }
 function CostBasisResults({ purchasePrice, shares, commissions }: { purchasePrice: number; shares: number; commissions: number }) {
+  const { currencySymbol } = useCurrency()
   const tc = purchasePrice * shares + commissions
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Cost Basis</p><p className="text-3xl font-bold text-[#1a3a8a]">${tc.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">${(tc / shares).toFixed(2)}/share</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Cost Basis</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{tc.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">{currencySymbol}{(tc / shares).toFixed(2)}/share</p></div></div>
 }
 function PortfolioReturnResults({ return1, weight1, return2, weight2 }: { return1: number; weight1: number; weight2: number; return2: number }) {
   const tw = weight1 + weight2; const w1 = tw > 0 ? weight1 / tw : 0; const w2 = tw > 0 ? weight2 / tw : 0
@@ -1575,8 +1597,9 @@ function RSquaredResults({ correlation }: { correlation: number }) {
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">R-Squared</p><p className="text-3xl font-bold text-[#1a3a8a]">{r2.toFixed(4)}</p></div><div><p className="text-sm text-gray-500">{(r2*100).toFixed(1)}% of variance explained</p></div></div>
 }
 function VaRResults({ portfolioValue, meanReturn, stdDev, confidence }: { portfolioValue: number; meanReturn: number; stdDev: number; confidence: string }) {
+  const { currencySymbol } = useCurrency()
   const z = confidence === '99' ? 2.326 : 1.645; const varPct = meanReturn - z * stdDev; const varAmt = portfolioValue * (varPct / 100)
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">VaR ({confidence}% confidence)</p><p className="text-3xl font-bold text-[#d62828]">${Math.abs(varAmt).toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">VaR ({confidence}% confidence)</p><p className="text-3xl font-bold text-[#d62828]">{currencySymbol}{Math.abs(varAmt).toFixed(2)}</p></div></div>
 }
 function DtiResults({ monthlyDebt, monthlyIncome }: { monthlyDebt: number; monthlyIncome: number }) {
   const dti = monthlyIncome > 0 ? (monthlyDebt / monthlyIncome) * 100 : 0
@@ -1595,8 +1618,9 @@ function CoverageResults({ ebit, interestExpense }: { ebit: number; interestExpe
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Interest Coverage</p><p className={`text-3xl font-bold ${r >= 2 ? 'text-[#1a3a8a]' : 'text-amber-500'}`}>{r.toFixed(2)}x</p></div></div>
 }
 function WorkingCapitalResults({ currentAssets, currentLiabilities }: { currentAssets: number; currentLiabilities: number }) {
+  const { currencySymbol } = useCurrency()
   const wc = currentAssets - currentLiabilities; const cr = currentLiabilities > 0 ? currentAssets / currentLiabilities : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Working Capital</p><p className="text-3xl font-bold text-[#1a3a8a]">${wc.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Current Ratio: {cr.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Working Capital</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{wc.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Current Ratio: {cr.toFixed(2)}</p></div></div>
 }
 function TurnoverResults({ cogs, avgInventory }: { cogs: number; avgInventory: number }) {
   const t = avgInventory > 0 ? cogs / avgInventory : 0; const days = t > 0 ? 365 / t : 0
@@ -1615,23 +1639,27 @@ function DebtRatioResults({ totalDebt, totalEquity, totalAssets }: { totalDebt: 
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">D/E</p><p className="text-2xl font-bold text-[#1a3a8a]">{dte.toFixed(1)}%</p></div><div><p className="text-sm text-gray-500">D/A</p><p className="text-2xl font-bold text-gray-900">{dta.toFixed(1)}%</p></div></div>
 }
 function RentVsBuyResults({ rent, homePrice, downPayment, rate, years, propertyTax }: { rent: number; homePrice: number; downPayment: number; rate: number; years: number; propertyTax: number }) {
+  const { currencySymbol } = useCurrency()
   const principal = homePrice - downPayment; const mr = rate / 100 / 12; const np = years * 12; let mp = 0
   if (mr > 0 && np > 0 && principal > 0) { const f = Math.pow(1 + mr, np); mp = principal * (mr * f) / (f - 1) }
   const totalRent = rent * 12 * years; const totalBuy = mp * np + downPayment + propertyTax * years
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Rent ({years}yr)</p><p className="text-2xl font-bold text-[#d62828]">${totalRent.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Total Buy</p><p className="text-2xl font-bold text-[#1a3a8a]">${totalBuy.toFixed(2)}</p></div><div><p className={`text-sm font-bold ${totalBuy < totalRent ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{totalBuy < totalRent ? 'Buying wins' : 'Renting wins'}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Rent ({years}yr)</p><p className="text-2xl font-bold text-[#d62828]">{currencySymbol}{totalRent.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Total Buy</p><p className="text-2xl font-bold text-[#1a3a8a]">{currencySymbol}{totalBuy.toFixed(2)}</p></div><div><p className={`text-sm font-bold ${totalBuy < totalRent ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{totalBuy < totalRent ? 'Buying wins' : 'Renting wins'}</p></div></div>
 }
 function AffordabilityResults({ income, rate, downPayment, term }: { income: number; rate: number; downPayment: number; term: number }) {
+  const { currencySymbol } = useCurrency()
   const maxPmt = (income / 12) * 0.28; const mr = rate / 100 / 12; const np = term * 12; let maxLoan = 0
   if (mr > 0) maxLoan = maxPmt * ((Math.pow(1 + mr, np) - 1) / (mr * Math.pow(1 + mr, np))); else if (np > 0) maxLoan = maxPmt * np
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Max Home Price</p><p className="text-3xl font-bold text-[#1a3a8a]">${(maxLoan + downPayment).toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Max Loan: ${maxLoan.toFixed(2)} | Max Payment: ${maxPmt.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Max Home Price</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{(maxLoan + downPayment).toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Max Loan: {currencySymbol}{maxLoan.toFixed(2)} | Max Payment: {currencySymbol}{maxPmt.toFixed(2)}</p></div></div>
 }
 function ClosingCostsResults({ homePrice, downPayment }: { homePrice: number; downPayment: number }) {
+  const { currencySymbol } = useCurrency()
   const loan = homePrice - downPayment; const orig = loan * 0.01; const costs = orig + 500 + 1200 + 400 + 800
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Closing Costs</p><p className="text-3xl font-bold text-[#1a3a8a]">${costs.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Closing Costs</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{costs.toFixed(2)}</p></div></div>
 }
 function RentalIncomeResults({ monthlyRent, expenses, downPayment, propertyValue }: { monthlyRent: number; expenses: number; downPayment: number; propertyValue: number }) {
+  const { currencySymbol } = useCurrency()
   const ano = (monthlyRent - expenses) * 12; const cr = propertyValue > 0 ? (ano / propertyValue) * 100 : 0; const coc = downPayment > 0 ? (ano / downPayment) * 100 : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Annual NOI</p><p className="text-2xl font-bold text-[#1a3a8a]">${ano.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Cap Rate: {cr.toFixed(2)}% | CoC: {coc.toFixed(2)}%</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Annual NOI</p><p className="text-2xl font-bold text-[#1a3a8a]">{currencySymbol}{ano.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Cap Rate: {cr.toFixed(2)}% | CoC: {coc.toFixed(2)}%</p></div></div>
 }
 function CapRateResults({ noi, propertyValue }: { noi: number; propertyValue: number }) {
   const r = propertyValue > 0 ? (noi / propertyValue) * 100 : 0
@@ -1642,103 +1670,125 @@ function CashOnCashResults({ annualCashFlow, totalInvested }: { annualCashFlow: 
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Cash-on-Cash Return</p><p className="text-3xl font-bold text-[#1a3a8a]">{r.toFixed(2)}%</p></div></div>
 }
 function NoiResults({ rentalIncome, vacancyRate, operatingExpenses }: { rentalIncome: number; vacancyRate: number; operatingExpenses: number }) {
+  const { currencySymbol } = useCurrency()
   const eff = rentalIncome * (1 - vacancyRate / 100); const noi = eff - operatingExpenses
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Net Operating Income</p><p className="text-3xl font-bold text-[#1a3a8a]">${noi.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Effective Income: ${eff.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Net Operating Income</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{noi.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Effective Income: {currencySymbol}{eff.toFixed(2)}</p></div></div>
 }
 function TaxBracketResults({ income, bracketStart, bracketRate, baseTax }: { income: number; bracketStart: number; bracketRate: number; baseTax: number }) {
+  const { currencySymbol } = useCurrency()
   const marginal = Math.max(0, income - bracketStart) * (bracketRate / 100); const total = baseTax + marginal
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Tax</p><p className="text-3xl font-bold text-[#d62828]">${total.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Marginal Tax: ${marginal.toFixed(2)} | Effective: {income > 0 ? `${(total/income*100).toFixed(2)}%` : 'N/A'}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Tax</p><p className="text-3xl font-bold text-[#d62828]">{currencySymbol}{total.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Marginal Tax: {currencySymbol}{marginal.toFixed(2)} | Effective: {income > 0 ? `${(total/income*100).toFixed(2)}%` : 'N/A'}</p></div></div>
 }
 function MarginalTaxResults({ income, additionalIncome, rate }: { income: number; additionalIncome: number; rate: number }) {
+  const { currencySymbol } = useCurrency()
   const extraTax = additionalIncome * (rate / 100)
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Extra Tax on ${additionalIncome.toFixed(0)}</p><p className="text-3xl font-bold text-[#d62828]">${extraTax.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Extra Tax on {currencySymbol}{additionalIncome.toFixed(0)}</p><p className="text-3xl font-bold text-[#d62828]">{currencySymbol}{extraTax.toFixed(2)}</p></div></div>
 }
 function EffectiveTaxResults({ totalTax, totalIncome }: { totalTax: number; totalIncome: number }) {
   const r = totalIncome > 0 ? (totalTax / totalIncome) * 100 : 0
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Effective Tax Rate</p><p className="text-3xl font-bold text-[#1a3a8a]">{r.toFixed(2)}%</p></div></div>
 }
 function CapitalGainsResults({ costBasis, salePrice, taxRate }: { costBasis: number; salePrice: number; taxRate: number }) {
+  const { currencySymbol } = useCurrency()
   const gain = salePrice - costBasis; const tax = gain > 0 ? gain * (taxRate / 100) : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Capital Gain</p><p className="text-2xl font-bold text-[#1a3a8a]">${gain.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Tax Due</p><p className="text-2xl font-bold text-[#d62828]">${tax.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Capital Gain</p><p className="text-2xl font-bold text-[#1a3a8a]">{currencySymbol}{gain.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Tax Due</p><p className="text-2xl font-bold text-[#d62828]">{currencySymbol}{tax.toFixed(2)}</p></div></div>
 }
 function DividendTaxResults({ dividends, taxRate }: { dividends: number; taxRate: number }) {
+  const { currencySymbol } = useCurrency()
   const tax = dividends * (taxRate / 100)
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Dividend Tax</p><p className="text-3xl font-bold text-[#d62828]">${tax.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">After-Tax: ${(dividends - tax).toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Dividend Tax</p><p className="text-3xl font-bold text-[#d62828]">{currencySymbol}{tax.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">After-Tax: {currencySymbol}{(dividends - tax).toFixed(2)}</p></div></div>
 }
 function SelfEmploymentResults({ netEarnings, expenseRate }: { netEarnings: number; expenseRate: number }) {
+  const { currencySymbol } = useCurrency()
   const taxable = netEarnings * (1 - expenseRate / 100); const seTax = taxable * 0.153
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Self-Employment Tax</p><p className="text-3xl font-bold text-[#d62828]">${seTax.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Taxable Income: ${taxable.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Self-Employment Tax</p><p className="text-3xl font-bold text-[#d62828]">{currencySymbol}{seTax.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Taxable Income: {currencySymbol}{taxable.toFixed(2)}</p></div></div>
 }
 function SalesTaxResults({ price, taxRate }: { price: number; taxRate: number }) {
+  const { currencySymbol } = useCurrency()
   const tax = price * (taxRate / 100)
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Sales Tax</p><p className="text-3xl font-bold text-[#d62828]">${tax.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Total: ${(price + tax).toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Sales Tax</p><p className="text-3xl font-bold text-[#d62828]">{currencySymbol}{tax.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Total: {currencySymbol}{(price + tax).toFixed(2)}</p></div></div>
 }
 function VatResults({ price, vatRate }: { price: number; vatRate: number }) {
+  const { currencySymbol } = useCurrency()
   const vat = price * (vatRate / 100)
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">VAT Amount</p><p className="text-3xl font-bold text-[#d62828]">${vat.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Total: ${(price + vat).toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">VAT Amount</p><p className="text-3xl font-bold text-[#d62828]">{currencySymbol}{vat.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Total: {currencySymbol}{(price + vat).toFixed(2)}</p></div></div>
 }
 function EstateTaxResults({ estateValue, exemption, taxRate }: { estateValue: number; exemption: number; taxRate: number }) {
+  const { currencySymbol } = useCurrency()
   const taxable = Math.max(0, estateValue - exemption); const tax = taxable * (taxRate / 100)
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Taxable Estate</p><p className="text-2xl font-bold text-[#1a3a8a]">${taxable.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Tax Due</p><p className="text-2xl font-bold text-[#d62828]">${tax.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Taxable Estate</p><p className="text-2xl font-bold text-[#1a3a8a]">{currencySymbol}{taxable.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Tax Due</p><p className="text-2xl font-bold text-[#d62828]">{currencySymbol}{tax.toFixed(2)}</p></div></div>
 }
 function TaxRefundResults({ withheld, taxLiability }: { withheld: number; taxLiability: number }) {
+  const { currencySymbol } = useCurrency()
   const diff = withheld - taxLiability
-  return <div className="text-center space-y-3"><div><p className={`text-sm ${diff >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{diff >= 0 ? 'Refund' : 'Amount Due'}</p><p className={`text-3xl font-bold ${diff >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>${Math.abs(diff).toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className={`text-sm ${diff >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{diff >= 0 ? 'Refund' : 'Amount Due'}</p><p className={`text-3xl font-bold ${diff >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{currencySymbol}{Math.abs(diff).toFixed(2)}</p></div></div>
 }
 function ItemizedResults({ income, itemized, standard }: { income: number; itemized: number; standard: number }) {
+  const { currencySymbol } = useCurrency()
   const best = Math.max(itemized, standard); const savings = itemized - standard
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Best Deduction</p><p className="text-3xl font-bold text-[#1a3a8a]">${best.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">{savings > 0 ? `Itemizing saves $${savings.toFixed(2)}` : 'Standard is better'}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Best Deduction</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{best.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">{savings > 0 ? `Itemizing saves ${currencySymbol}${savings.toFixed(2)}` : 'Standard is better'}</p></div></div>
 }
 function AmtResults({ income, exemption, rate }: { income: number; exemption: number; rate: number }) {
+  const { currencySymbol } = useCurrency()
   const ami = Math.max(0, income - exemption); const tax = ami * (rate / 100)
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">AMT Income</p><p className="text-2xl font-bold text-[#1a3a8a]">${ami.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">AMT Tax</p><p className="text-2xl font-bold text-[#d62828]">${tax.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">AMT Income</p><p className="text-2xl font-bold text-[#1a3a8a]">{currencySymbol}{ami.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">AMT Tax</p><p className="text-2xl font-bold text-[#d62828]">{currencySymbol}{tax.toFixed(2)}</p></div></div>
 }
 function CryptoProfitResults({ buyPrice, sellPrice, quantity }: { buyPrice: number; sellPrice: number; quantity: number }) {
+  const { currencySymbol } = useCurrency()
   const pl = (sellPrice - buyPrice) * quantity; const roi = (buyPrice * quantity) > 0 ? (pl / (buyPrice * quantity)) * 100 : 0
-  return <div className="text-center space-y-3"><div><p className={`text-sm ${pl >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>P/L</p><p className={`text-3xl font-bold ${pl >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>${pl.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">ROI: {roi.toFixed(2)}%</p></div></div>
+  return <div className="text-center space-y-3"><div><p className={`text-sm ${pl >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>P/L</p><p className={`text-3xl font-bold ${pl >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{currencySymbol}{pl.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">ROI: {roi.toFixed(2)}%</p></div></div>
 }
 function CryptoMiningResults({ hashRate, power }: { hashRate: number; power: number }) {
   const dkwh = power * 24 / 1000
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Power Usage</p><p className="text-2xl font-bold text-[#1a3a8a]">{power}W ({dkwh.toFixed(1)} kWh/day)</p></div><div><p className="text-sm text-gray-500">{(dkwh * 30).toFixed(0)} kWh/month</p></div></div>
 }
 function CryptoStakingResults({ amount, apy, years }: { amount: number; apy: number; years: number }) {
+  const { currencySymbol } = useCurrency()
   const fv = amount * Math.pow(1 + apy / 100, years); const rewards = fv - amount
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Staking Rewards</p><p className="text-3xl font-bold text-[#1a3a8a]">${rewards.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Future Value: ${fv.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Staking Rewards</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{rewards.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Future Value: {currencySymbol}{fv.toFixed(2)}</p></div></div>
 }
 function ImpermanentLossResults({ priceRatio, investA, investB }: { priceRatio: number; investA: number; investB: number }) {
   const total = investA + investB; const hold = investA * priceRatio + investB; const pool = 2 * Math.sqrt(investA * investB * priceRatio); const il = hold > 0 ? ((pool - hold) / hold) * 100 : 0
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Impermanent Loss</p><p className={`text-3xl font-bold ${il >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{il.toFixed(2)}%</p></div></div>
 }
 function LifeInsuranceResults({ income, years, debts, funeral }: { income: number; years: number; debts: number; funeral: number }) {
+  const { currencySymbol } = useCurrency()
   const total = income * years + debts + funeral
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Insurance Needed</p><p className="text-3xl font-bold text-[#1a3a8a]">${total.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Insurance Needed</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{total.toFixed(2)}</p></div></div>
 }
 function TermVsWholeLifeResults({ age, termPremium, wholePremium, years }: { age: number; termPremium: number; wholePremium: number; years: number }) {
+  const { currencySymbol } = useCurrency()
   const termCost = termPremium * 12 * years; const wholeCost = wholePremium * 12 * years; const diff = wholeCost - termCost
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Term Total Cost</p><p className="text-2xl font-bold text-[#1a3a8a]">${termCost.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Whole Life Total</p><p className="text-2xl font-bold text-amber-500">${wholeCost.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Difference: ${diff.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Term Total Cost</p><p className="text-2xl font-bold text-[#1a3a8a]">{currencySymbol}{termCost.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Whole Life Total</p><p className="text-2xl font-bold text-amber-500">{currencySymbol}{wholeCost.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Difference: {currencySymbol}{diff.toFixed(2)}</p></div></div>
 }
 function DisabilityResults({ income, benefitPct, elimination }: { income: number; benefitPct: number; elimination: number }) {
+  const { currencySymbol } = useCurrency()
   const benefit = income * (benefitPct / 100)
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Monthly Benefit</p><p className="text-3xl font-bold text-[#1a3a8a]">${benefit.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">{elimination}-month elimination period</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Monthly Benefit</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{benefit.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">{elimination}-month elimination period</p></div></div>
 }
 function HomeInsResults({ homeValue, deductible }: { homeValue: number; deductible: number }) {
+  const { currencySymbol } = useCurrency()
   const premium = homeValue * 0.0035
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Est. Annual Premium</p><p className="text-3xl font-bold text-[#1a3a8a]">${premium.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Deductible: ${deductible.toFixed(0)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Est. Annual Premium</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{premium.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Deductible: {currencySymbol}{deductible.toFixed(0)}</p></div></div>
 }
 function AutoInsResults({ carValue, deductible }: { carValue: number; deductible: number }) {
+  const { currencySymbol } = useCurrency()
   const premium = carValue * 0.05
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Est. Annual Premium</p><p className="text-3xl font-bold text-[#1a3a8a]">${premium.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Est. Annual Premium</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{premium.toFixed(2)}</p></div></div>
 }
 function HealthInsCompResults({ premium1, deductible1, oopMax1, premium2, deductible2, oopMax2 }: { premium1: number; deductible1: number; oopMax1: number; premium2: number; deductible2: number; oopMax2: number }) {
+  const { currencySymbol } = useCurrency()
   const total1 = premium1 * 12 + oopMax1; const total2 = premium2 * 12 + oopMax2
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Plan A Worst-Case: ${total1.toFixed(2)}</p><p className="text-sm text-gray-500">Plan B Worst-Case: ${total2.toFixed(2)}</p><p className={`text-lg font-bold ${total1 < total2 ? 'text-[#1a3a8a]' : 'text-amber-500'}`}>{total1 < total2 ? 'Plan A is cheaper' : 'Plan B is cheaper'}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Plan A Worst-Case: {currencySymbol}{total1.toFixed(2)}</p><p className="text-sm text-gray-500">Plan B Worst-Case: {currencySymbol}{total2.toFixed(2)}</p><p className={`text-lg font-bold ${total1 < total2 ? 'text-[#1a3a8a]' : 'text-amber-500'}`}>{total1 < total2 ? 'Plan A is cheaper' : 'Plan B is cheaper'}</p></div></div>
 }
 function DeductibleVsPremiumResults({ lowPremium, lowDeductible, highPremium, highDeductible }: { lowPremium: number; lowDeductible: number; highPremium: number; highDeductible: number }) {
+  const { currencySymbol } = useCurrency()
   const lowTotal = lowPremium * 12 + lowDeductible; const highTotal = highPremium * 12 + highDeductible; const savings = lowTotal - highTotal
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Low Deductible Plan: ${lowTotal.toFixed(2)}</p><p className="text-sm text-gray-500">High Deductible Plan: ${highTotal.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Low Deductible Plan: {currencySymbol}{lowTotal.toFixed(2)}</p><p className="text-sm text-gray-500">High Deductible Plan: {currencySymbol}{highTotal.toFixed(2)}</p></div></div>
 }
 function OopResults({ deductible, coinsurance, oopMax }: { deductible: number; coinsurance: number; oopMax: number }) {
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">OOP Maximum</p><p className="text-3xl font-bold text-[#1a3a8a]">${oopMax.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Deductible: ${deductible.toFixed(0)} | Coinsurance: {coinsurance}%</p></div></div>
+  const { currencySymbol } = useCurrency()
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">OOP Maximum</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{oopMax.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Deductible: {currencySymbol}{deductible.toFixed(0)} | Coinsurance: {coinsurance}%</p></div></div>
 }
 function CreditUtilResults({ totalBalance, totalLimit }: { totalBalance: number; totalLimit: number }) {
   const util = totalLimit > 0 ? (totalBalance / totalLimit) * 100 : 0
@@ -1749,110 +1799,130 @@ function CreditScoreResults({ paymentHistory, utilization, length, mix, inquirie
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Estimated Score</p><p className={`text-3xl font-bold ${score >= 740 ? 'text-[#1a3a8a]' : score >= 670 ? 'text-amber-500' : 'text-[#d62828]'}`}>{score}</p></div></div>
 }
 function BalanceTransferResults({ balance, promoRate, promoMonths, feeRate }: { balance: number; promoRate: number; promoMonths: number; feeRate: number }) {
+  const { currencySymbol } = useCurrency()
   const fee = balance * (feeRate / 100); const mr = promoRate / 100 / 12; let mp = 0
   if (mr > 0 && promoMonths > 0) { const f = Math.pow(1 + mr, promoMonths); mp = balance * (mr * f) / (f - 1) } else if (promoMonths > 0) mp = balance / promoMonths
   const totalCost = mp * promoMonths + fee; const savings = balance * 1.18 - totalCost
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Monthly Payment</p><p className="text-2xl font-bold text-[#1a3a8a]">${mp.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Total Cost: ${totalCost.toFixed(2)} | Savings: ${Math.max(0, savings).toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Monthly Payment</p><p className="text-2xl font-bold text-[#1a3a8a]">{currencySymbol}{mp.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Total Cost: {currencySymbol}{totalCost.toFixed(2)} | Savings: {currencySymbol}{Math.max(0, savings).toFixed(2)}</p></div></div>
 }
 function EmergencyFundResults({ monthlyExpenses, months }: { monthlyExpenses: number; months: number }) {
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Emergency Fund Target</p><p className="text-3xl font-bold text-[#1a3a8a]">${(monthlyExpenses * months).toFixed(2)}</p></div><div><p className="text-sm text-gray-500">{months} months of expenses</p></div></div>
+  const { currencySymbol } = useCurrency()
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Emergency Fund Target</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{(monthlyExpenses * months).toFixed(2)}</p></div><div><p className="text-sm text-gray-500">{months} months of expenses</p></div></div>
 }
 function SinkingFundResults({ goal, rate, years }: { goal: number; rate: number; years: number }) {
+  const { currencySymbol } = useCurrency()
   const mr = rate / 100 / 12; const m = years * 12; let monthly = 0
   if (mr > 0) monthly = goal * (mr / (Math.pow(1 + mr, m) - 1)); else if (m > 0) monthly = goal / m
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Monthly Contribution</p><p className="text-3xl font-bold text-[#1a3a8a]">${monthly.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Monthly Contribution</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{monthly.toFixed(2)}</p></div></div>
 }
 function SavingsGoalResults({ goal, current, rate, years, monthlyAdd }: { goal: number; current: number; rate: number; years: number; monthlyAdd: number }) {
+  const { currencySymbol } = useCurrency()
   const mr = rate / 100 / 12; const m = years * 12; let proj = current
   if (mr > 0) proj = current * Math.pow(1 + mr, m) + monthlyAdd * ((Math.pow(1 + mr, m) - 1) / mr); else proj = current + monthlyAdd * m
   const totalContributions = current + monthlyAdd * m
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Projected</p><p className={`text-sm font-bold ${proj >= goal ? 'text-[#1a3a8a]' : 'text-amber-500'}`}>${proj.toFixed(2)}</p></div>
-        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Goal</p><p className="text-sm font-bold text-gray-900 dark:text-white">${goal.toFixed(2)}</p></div>
-        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Total Contributions</p><p className="text-sm font-bold text-gray-900 dark:text-white">${totalContributions.toFixed(2)}</p></div>
-        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Gap</p><p className={`text-sm font-bold ${proj >= goal ? 'text-green-600' : 'text-[#d62828]'}`}>{proj >= goal ? '$0' : `$${(goal - proj).toFixed(2)}`}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Projected</p><p className={`text-sm font-bold ${proj >= goal ? 'text-[#1a3a8a]' : 'text-amber-500'}`}>{currencySymbol}{proj.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Goal</p><p className="text-sm font-bold text-gray-900 dark:text-white">{currencySymbol}{goal.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Total Contributions</p><p className="text-sm font-bold text-gray-900 dark:text-white">{currencySymbol}{totalContributions.toFixed(2)}</p></div>
+        <div className="p-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"><p className="text-xs text-gray-400">Gap</p><p className={`text-sm font-bold ${proj >= goal ? 'text-green-600' : 'text-[#d62828]'}`}>{proj >= goal ? `${currencySymbol}0` : `${currencySymbol}${(goal - proj).toFixed(2)}`}</p></div>
       </div>
-      <ResultInterpretation type="savings" values={{ goal, current, monthly: monthlyAdd, years }} currencySymbol="$" />
+      <ResultInterpretation type="savings" values={{ goal, current, monthly: monthlyAdd, years }} />
     </div>
   )
 }
 function CollegeSavingsResults({ goal, current, years, rate, monthly }: { goal: number; current: number; years: number; rate: number; monthly: number }) {
+  const { currencySymbol } = useCurrency()
   const mr = rate / 100 / 12; const m = years * 12; let proj = current
   if (mr > 0) proj = current * Math.pow(1 + mr, m) + monthly * ((Math.pow(1 + mr, m) - 1) / mr); else proj = current + monthly * m
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Projected College Fund</p><p className="text-3xl font-bold text-[#1a3a8a]">${proj.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Gap: ${Math.max(0, goal - proj).toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Projected College Fund</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{proj.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Gap: {currencySymbol}{Math.max(0, goal - proj).toFixed(2)}</p></div></div>
 }
 function NetWorthResults({ assets, liabilities }: { assets: number; liabilities: number }) {
+  const { currencySymbol } = useCurrency()
   const nw = assets - liabilities
-  return <div className="text-center space-y-3"><div><p className={`text-sm ${nw >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>Net Worth</p><p className={`text-3xl font-bold ${nw >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>${nw.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className={`text-sm ${nw >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>Net Worth</p><p className={`text-3xl font-bold ${nw >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{currencySymbol}{nw.toFixed(2)}</p></div></div>
 }
 function DebtSnowballResults({ totalDebt, minPayment, extraPayment, rate }: { totalDebt: number; minPayment: number; extraPayment: number; rate: number }) {
+  const { currencySymbol } = useCurrency()
   const totalMonthly = minPayment + extraPayment; const mr = rate / 100 / 12; let m = 0; let r2 = totalDebt; let ti = 0
   if (mr > 0 && totalMonthly > r2 * mr) { while (r2 > 0 && m < 600) { const i = r2 * mr; r2 -= totalMonthly - i; ti += i; m++ } } else { m = Math.ceil(totalDebt / totalMonthly) }
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Payoff Time (Snowball)</p><p className="text-3xl font-bold text-[#1a3a8a]">{m} months</p></div><div><p className="text-sm text-gray-500">Total Interest: ${ti.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Payoff Time (Snowball)</p><p className="text-3xl font-bold text-[#1a3a8a]">{m} months</p></div><div><p className="text-sm text-gray-500">Total Interest: {currencySymbol}{ti.toFixed(2)}</p></div></div>
 }
 function DebtAvalancheResults({ totalDebt, minPayment, extraPayment, rate }: { totalDebt: number; minPayment: number; extraPayment: number; rate: number }) {
+  const { currencySymbol } = useCurrency()
   const totalMonthly = minPayment + extraPayment; const mr = rate / 100 / 12; let m = 0; let r2 = totalDebt; let ti = 0
   if (mr > 0 && totalMonthly > r2 * mr) { while (r2 > 0 && m < 600) { const i = r2 * mr; r2 -= totalMonthly - i; ti += i; m++ } } else { m = Math.ceil(totalDebt / totalMonthly) }
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Payoff Time (Avalanche)</p><p className="text-3xl font-bold text-[#1a3a8a]">{m} months</p></div><div><p className="text-sm text-gray-500">Total Interest: ${ti.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Payoff Time (Avalanche)</p><p className="text-3xl font-bold text-[#1a3a8a]">{m} months</p></div><div><p className="text-sm text-gray-500">Total Interest: {currencySymbol}{ti.toFixed(2)}</p></div></div>
 }
 function DebtPayoffPlanResults({ balance, rate, monthly, goalMonths }: { balance: number; rate: number; monthly: number; goalMonths: number }) {
+  const { currencySymbol } = useCurrency()
   const mr = rate / 100 / 12; let am = 0; let r2 = balance
   if (mr > 0 && monthly > r2 * mr) { while (r2 > 0 && am < 600) { r2 -= monthly - r2 * mr; am++ } } else { am = Math.ceil(balance / monthly) }
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Actual Payoff</p><p className={`text-2xl font-bold ${am <= goalMonths ? 'text-[#1a3a8a]' : 'text-amber-500'}`}>{am} months</p></div><div><p className="text-sm text-gray-500">{am <= goalMonths ? 'On track!' : `Need $${(balance/goalMonths).toFixed(2)}/mo`}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Actual Payoff</p><p className={`text-2xl font-bold ${am <= goalMonths ? 'text-[#1a3a8a]' : 'text-amber-500'}`}>{am} months</p></div><div><p className="text-sm text-gray-500">{am <= goalMonths ? 'On track!' : `Need ${currencySymbol}${(balance/goalMonths).toFixed(2)}/mo`}</p></div></div>
 }
 function ConsolidationSavingsResults({ totalDebt, currentRate, newRate, term }: { totalDebt: number; currentRate: number; newRate: number; term: number }) {
+  const { currencySymbol } = useCurrency()
   const cmr = currentRate / 100 / 12; const nmr = newRate / 100 / 12; const np = term * 12; let cp = 0; let nwp = 0
   if (cmr > 0) { const f = Math.pow(1 + cmr, np); cp = totalDebt * (cmr * f) / (f - 1) }
   if (nmr > 0) { const f = Math.pow(1 + nmr, np); nwp = totalDebt * (nmr * f) / (f - 1) }
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Savings from Consolidation</p><p className="text-3xl font-bold text-[#1a3a8a]">${(cp * np - nwp * np).toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Savings from Consolidation</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{(cp * np - nwp * np).toFixed(2)}</p></div></div>
 }
 function PensionResults({ currentSavings, monthlyContrib, rate, years }: { currentSavings: number; monthlyContrib: number; rate: number; years: number }) {
+  const { currencySymbol } = useCurrency()
   const mr = rate / 100 / 12; const m = years * 12; let fv = currentSavings
   if (mr > 0) fv = currentSavings * Math.pow(1 + mr, m) + monthlyContrib * ((Math.pow(1 + mr, m) - 1) / mr); else fv = currentSavings + monthlyContrib * m
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Projected Balance</p><p className="text-3xl font-bold text-[#1a3a8a]">${fv.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Est. Income/yr (4% Rule): ${(fv*0.04).toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Projected Balance</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{fv.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Est. Income/yr (4% Rule): {currencySymbol}{(fv*0.04).toFixed(2)}</p></div></div>
 }
 function SocialSecurityResults({ age, earnings, retirementAge }: { age: number; earnings: number; retirementAge: number }) {
+  const { currencySymbol } = useCurrency()
   const pia = earnings * 0.35; const penalty = retirementAge < 67 ? (67 - retirementAge) * 0.0667 * pia : 0; const benefit = Math.max(0, retirementAge >= 67 ? pia : pia - penalty)
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Est. Monthly Benefit</p><p className="text-3xl font-bold text-[#1a3a8a]">${benefit.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">At age {retirementAge} ({(retirementAge - age)} years away)</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Est. Monthly Benefit</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{benefit.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">At age {retirementAge} ({(retirementAge - age)} years away)</p></div></div>
 }
 function AnnuityResults({ principal, rate, years }: { principal: number; rate: number; years: number }) {
+  const { currencySymbol } = useCurrency()
   const mr = rate / 100 / 12; const m = years * 12; let pmt = 0
   if (mr > 0) pmt = principal * (mr * Math.pow(1 + mr, m)) / (Math.pow(1 + mr, m) - 1); else if (m > 0) pmt = principal / m
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Monthly Payout</p><p className="text-3xl font-bold text-[#1a3a8a]">${pmt.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">For {years} years | Total: ${(pmt*m).toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Monthly Payout</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{pmt.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">For {years} years | Total: {currencySymbol}{(pmt*m).toFixed(2)}</p></div></div>
 }
 function SafeWithdrawalResults({ savings, withdrawalRate }: { savings: number; withdrawalRate: number }) {
+  const { currencySymbol } = useCurrency()
   const annual = savings * (withdrawalRate / 100); const monthly = annual / 12
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Annual Withdrawal</p><p className="text-3xl font-bold text-[#1a3a8a]">${annual.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Monthly: ${monthly.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Annual Withdrawal</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{annual.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Monthly: {currencySymbol}{monthly.toFixed(2)}</p></div></div>
 }
 function RmdResults({ balance, age }: { balance: number; age: number }) {
+  const { currencySymbol } = useCurrency()
   const le = age >= 95 ? 8.2 : age >= 90 ? 9.6 : age >= 85 ? 11.4 : age >= 80 ? 13.7 : age >= 75 ? 16.7 : age >= 70 ? 20.2 : 25; const rmd = balance / le
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Required Minimum Distribution</p><p className="text-3xl font-bold text-[#1a3a8a]">${rmd.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Life Expectancy Factor: {le.toFixed(1)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Required Minimum Distribution</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{rmd.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Life Expectancy Factor: {le.toFixed(1)}</p></div></div>
 }
 function BusinessValResults({ revenue, ebitda, multiple }: { revenue: number; ebitda: number; multiple: number }) {
+  const { currencySymbol } = useCurrency()
   const ev = ebitda * multiple; const revMultiple = revenue > 0 ? (ev / revenue) : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Enterprise Value</p><p className="text-3xl font-bold text-[#1a3a8a]">${ev.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">EV/Revenue: {revMultiple.toFixed(2)}x</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Enterprise Value</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{ev.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">EV/Revenue: {revMultiple.toFixed(2)}x</p></div></div>
 }
 function StartupCostsResults({ equipment, license, marketing, legal, inventory }: { equipment: number; license: number; marketing: number; legal: number; inventory: number }) {
+  const { currencySymbol } = useCurrency()
   const total = equipment + license + marketing + legal + inventory
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Startup Costs</p><p className="text-3xl font-bold text-[#1a3a8a]">${total.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Startup Costs</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{total.toFixed(2)}</p></div></div>
 }
 function RunwayResults({ cash, monthlyBurn, monthlyRevenue }: { cash: number; monthlyBurn: number; monthlyRevenue: number }) {
   const netBurn = monthlyBurn - monthlyRevenue; const months = netBurn > 0 ? cash / netBurn : Infinity
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Runway</p><p className={`text-3xl font-bold ${months === Infinity ? 'text-[#1a3a8a]' : 'text-amber-500'}`}>{months === Infinity ? 'Profitable' : `${months.toFixed(1)} months`}</p></div></div>
 }
 function BurnRateResults({ startCash, endCash, months }: { startCash: number; endCash: number; months: number }) {
+  const { currencySymbol } = useCurrency()
   const burn = (startCash - endCash) / months
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Monthly Burn Rate</p><p className="text-3xl font-bold text-[#d62828]">${burn.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Monthly Burn Rate</p><p className="text-3xl font-bold text-[#d62828]">{currencySymbol}{burn.toFixed(2)}</p></div></div>
 }
 function CACResults({ salesCost, newCustomers }: { salesCost: number; newCustomers: number }) {
+  const { currencySymbol } = useCurrency()
   const cac = newCustomers > 0 ? salesCost / newCustomers : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Customer Acquisition Cost</p><p className="text-3xl font-bold text-[#1a3a8a]">${cac.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Customer Acquisition Cost</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{cac.toFixed(2)}</p></div></div>
 }
 function LTVCResults({ avgRevenue, churnRate }: { avgRevenue: number; churnRate: number }) {
+  const { currencySymbol } = useCurrency()
   const ltv = churnRate > 0 ? avgRevenue * (1 / (churnRate / 100)) : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Customer LTV</p><p className="text-3xl font-bold text-[#1a3a8a]">${ltv.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Customer LTV</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{ltv.toFixed(2)}</p></div></div>
 }
 function LTVCACRatioResults({ ltv, cac }: { ltv: number; cac: number }) {
   const r = cac > 0 ? ltv / cac : 0
@@ -1863,19 +1933,23 @@ function ChurnResults({ lostCustomers, startCustomers }: { lostCustomers: number
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Churn Rate</p><p className={`text-3xl font-bold ${r <= 5 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{r.toFixed(2)}%</p></div></div>
 }
 function MRRResults({ subscribers, avgPrice }: { subscribers: number; avgPrice: number }) {
+  const { currencySymbol } = useCurrency()
   const mrr = subscribers * avgPrice; const arr = mrr * 12
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Monthly Recurring Revenue</p><p className="text-3xl font-bold text-[#1a3a8a]">${mrr.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">ARR: ${arr.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Monthly Recurring Revenue</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{mrr.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">ARR: {currencySymbol}{arr.toFixed(2)}</p></div></div>
 }
 function ARRResults({ mrr }: { mrr: number }) {
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Annual Recurring Revenue</p><p className="text-3xl font-bold text-[#1a3a8a]">${(mrr * 12).toFixed(2)}</p></div></div>
+  const { currencySymbol } = useCurrency()
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Annual Recurring Revenue</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{(mrr * 12).toFixed(2)}</p></div></div>
 }
 function UnitEconResults({ price, varCost, fixedCost, units }: { price: number; varCost: number; fixedCost: number; units: number }) {
+  const { currencySymbol } = useCurrency()
   const contrib = price - varCost; const totalContrib = contrib * units; const profit = totalContrib - fixedCost; const cmRatio = price > 0 ? (contrib / price) * 100 : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Unit Contribution</p><p className="text-2xl font-bold text-[#1a3a8a]">${contrib.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Total Profit: ${profit.toFixed(2)} | CM Ratio: {cmRatio.toFixed(1)}%</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Unit Contribution</p><p className="text-2xl font-bold text-[#1a3a8a]">{currencySymbol}{contrib.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Total Profit: {currencySymbol}{profit.toFixed(2)} | CM Ratio: {cmRatio.toFixed(1)}%</p></div></div>
 }
 function ContributionMarginResults({ revenue, varCosts }: { revenue: number; varCosts: number }) {
+  const { currencySymbol } = useCurrency()
   const cm = revenue - varCosts; const ratio = revenue > 0 ? (cm / revenue) * 100 : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Contribution Margin</p><p className="text-2xl font-bold text-[#1a3a8a]">${cm.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">CM Ratio: {ratio.toFixed(1)}%</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Contribution Margin</p><p className="text-2xl font-bold text-[#1a3a8a]">{currencySymbol}{cm.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">CM Ratio: {ratio.toFixed(1)}%</p></div></div>
 }
 function OperatingLeverageResults({ revenue, varCosts, fixedCosts }: { revenue: number; varCosts: number; fixedCosts: number }) {
   const contrib = revenue - varCosts; const dol = (contrib) > 0 ? contrib / (contrib - fixedCosts) : 0
@@ -1886,110 +1960,134 @@ function FinLeverageResults({ ebit, interest }: { ebit: number; interest: number
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Degree of Financial Leverage</p><p className="text-3xl font-bold text-[#1a3a8a]">{dfl.toFixed(2)}</p></div></div>
 }
 function CostVolumeResults({ fixedCosts, pricePerUnit, varCostPerUnit, units }: { fixedCosts: number; pricePerUnit: number; varCostPerUnit: number; units: number }) {
+  const { currencySymbol } = useCurrency()
   const cm = pricePerUnit - varCostPerUnit; const be = cm > 0 ? Math.ceil(fixedCosts / cm) : 0; const profit = cm * units - fixedCosts
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Profit at {units} units</p><p className={`text-3xl font-bold ${profit >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>${profit.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">B/E: {be} units | CM: ${cm.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Profit at {units} units</p><p className={`text-3xl font-bold ${profit >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{currencySymbol}{profit.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">B/E: {be} units | CM: {currencySymbol}{cm.toFixed(2)}</p></div></div>
 }
 function MarkupResults({ cost, markup }: { cost: number; markup: number }) {
+  const { currencySymbol } = useCurrency()
   const price = cost * (1 + markup / 100); const profit = price - cost; const margin = price > 0 ? (profit / price) * 100 : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Selling Price</p><p className="text-3xl font-bold text-[#1a3a8a]">${price.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Profit: ${profit.toFixed(2)} | Margin: {margin.toFixed(1)}%</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Selling Price</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{price.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Profit: {currencySymbol}{profit.toFixed(2)} | Margin: {margin.toFixed(1)}%</p></div></div>
 }
 function GrossProfitResults({ revenue, cogs }: { revenue: number; cogs: number }) {
-  return function GrossProfitDisplay() { const gp = revenue - cogs; const gm = revenue > 0 ? (gp / revenue) * 100 : 0; return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Gross Profit</p><p className="text-2xl font-bold text-[#1a3a8a]">${gp.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Gross Margin: {gm.toFixed(1)}%</p></div></div> }
+  const { currencySymbol } = useCurrency()
+  return function GrossProfitDisplay() { const gp = revenue - cogs; const gm = revenue > 0 ? (gp / revenue) * 100 : 0; return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Gross Profit</p><p className="text-2xl font-bold text-[#1a3a8a]">{currencySymbol}{gp.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Gross Margin: {gm.toFixed(1)}%</p></div></div> }
 }
 function ProfitMarginResults({ revenue, profit }: { revenue: number; profit: number }) {
   const pm = revenue > 0 ? (profit / revenue) * 100 : 0
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Profit Margin</p><p className="text-3xl font-bold text-[#1a3a8a]">{pm.toFixed(2)}%</p></div></div>
 }
 function NetProfitResults({ revenue, expenses }: { revenue: number; expenses: number }) {
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Net Profit</p><p className={`text-3xl font-bold ${(revenue - expenses) >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>${(revenue - expenses).toFixed(2)}</p></div></div>
+  const { currencySymbol } = useCurrency()
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Net Profit</p><p className={`text-3xl font-bold ${(revenue - expenses) >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{currencySymbol}{(revenue - expenses).toFixed(2)}</p></div></div>
 }
 function CarAffordResults({ monthlyPayment, rate, term }: { monthlyPayment: number; rate: number; term: number }) {
+  const { currencySymbol } = useCurrency()
   const mr = rate / 100 / 12; let maxLoan = 0
   if (mr > 0) maxLoan = monthlyPayment * ((Math.pow(1 + mr, term) - 1) / (mr * Math.pow(1 + mr, term))); else maxLoan = monthlyPayment * term
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Max Car Loan</p><p className="text-3xl font-bold text-[#1a3a8a]">${maxLoan.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Max Car Loan</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{maxLoan.toFixed(2)}</p></div></div>
 }
 function ChildCareResults({ weeklyCost, weeksPerYear }: { weeklyCost: number; weeksPerYear: number }) {
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Annual Child Care Cost</p><p className="text-3xl font-bold text-[#1a3a8a]">${(weeklyCost * weeksPerYear).toFixed(2)}</p></div></div>
+  const { currencySymbol } = useCurrency()
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Annual Child Care Cost</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{(weeklyCost * weeksPerYear).toFixed(2)}</p></div></div>
 }
 function PetExpenseResults({ food, vet, supplies, other }: { food: number; vet: number; supplies: number; other: number }) {
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Annual Pet Cost</p><p className="text-3xl font-bold text-[#1a3a8a]">${(food + vet + supplies + other).toFixed(2)}</p></div></div>
+  const { currencySymbol } = useCurrency()
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Annual Pet Cost</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{(food + vet + supplies + other).toFixed(2)}</p></div></div>
 }
 function BudgetRuleResults({ income, needs, wants, savings }: { income: number; needs: number; wants: number; savings: number }) {
   const npct = income > 0 ? (needs / income) * 100 : 0; const wpct = income > 0 ? (wants / income) * 100 : 0; const spct = income > 0 ? (savings / income) * 100 : 0
   return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Needs: {npct.toFixed(1)}% | Wants: {wpct.toFixed(1)}% | Savings: {spct.toFixed(1)}%</p></div><div><p className={`${npct <= 50 && spct >= 20 ? 'text-[#1a3a8a]' : 'text-amber-500'} font-bold`}>{npct <= 50 && spct >= 20 ? 'Following 50/30/20 rule!' : 'Adjust your budget'}</p></div></div>
 }
 function ZeroBasedBudgetResults({ income, category1, category2, category3, category4 }: { income: number; category1: number; category2: number; category3: number; category4: number }) {
+  const { currencySymbol } = useCurrency()
   const total = category1 + category2 + category3 + category4; const remaining = income - total
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Allocated</p><p className="text-2xl font-bold text-gray-900">${total.toFixed(2)}</p></div><div><p className={`text-xl font-bold ${remaining === 0 ? 'text-[#1a3a8a]' : 'text-amber-500'}`}>{remaining === 0 ? 'Zero-based! $0 remaining' : `$${remaining.toFixed(2)} remaining`}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Allocated</p><p className="text-2xl font-bold text-gray-900">{currencySymbol}{total.toFixed(2)}</p></div><div><p className={`text-xl font-bold ${remaining === 0 ? 'text-[#1a3a8a]' : 'text-amber-500'}`}>{remaining === 0 ? `Zero-based! ${currencySymbol}0 remaining` : `${currencySymbol}${remaining.toFixed(2)} remaining`}</p></div></div>
 }
 function EnvelopeBudgetResults({ income, envelopes, perEnvelope }: { income: number; envelopes: number; perEnvelope: number }) {
+  const { currencySymbol } = useCurrency()
   const totalBudget = envelopes * perEnvelope; const remaining = income - totalBudget
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Budgeted</p><p className="text-2xl font-bold text-[#1a3a8a]">${totalBudget.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Budgeted</p><p className="text-2xl font-bold text-[#1a3a8a]">{currencySymbol}{totalBudget.toFixed(2)}</p></div></div>
 }
 function PayYourselfFirstResults({ income, savingsPct }: { income: number; savingsPct: number }) {
+  const { currencySymbol } = useCurrency()
   const saveAmt = income * (savingsPct / 100); const spendAmt = income - saveAmt
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Save First</p><p className="text-3xl font-bold text-[#1a3a8a]">${saveAmt.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Remaining to spend: ${spendAmt.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Save First</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{saveAmt.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Remaining to spend: {currencySymbol}{spendAmt.toFixed(2)}</p></div></div>
 }
 function WeddingBudgetResults({ guestCount, budget }: { guestCount: number; budget: number }) {
+  const { currencySymbol } = useCurrency()
   const perGuest = guestCount > 0 ? budget / guestCount : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Budget</p><p className="text-3xl font-bold text-[#1a3a8a]">${budget.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">${perGuest.toFixed(2)} per guest</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Budget</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{budget.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">{currencySymbol}{perGuest.toFixed(2)} per guest</p></div></div>
 }
 function VacationBudgetResults({ transport, lodging, food, activities }: { transport: number; lodging: number; food: number; activities: number }) {
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Vacation Cost</p><p className="text-3xl font-bold text-[#1a3a8a]">${(transport + lodging + food + activities).toFixed(2)}</p></div></div>
+  const { currencySymbol } = useCurrency()
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Vacation Cost</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{(transport + lodging + food + activities).toFixed(2)}</p></div></div>
 }
 function HolidayBudgetResults({ gifts, travel, food, decorations }: { gifts: number; travel: number; food: number; decorations: number }) {
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Holiday Cost</p><p className="text-3xl font-bold text-[#1a3a8a]">${(gifts + travel + food + decorations).toFixed(2)}</p></div></div>
+  const { currencySymbol } = useCurrency()
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Holiday Cost</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{(gifts + travel + food + decorations).toFixed(2)}</p></div></div>
 }
 function GroceryBudgetResults({ householdSize, weeklyTarget }: { householdSize: number; weeklyTarget: number }) {
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Monthly Grocery Budget</p><p className="text-3xl font-bold text-[#1a3a8a]">${(weeklyTarget * 4.33).toFixed(2)}</p></div><div><p className="text-sm text-gray-500">${(weeklyTarget / householdSize).toFixed(2)}/person/week</p></div></div>
+  const { currencySymbol } = useCurrency()
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Monthly Grocery Budget</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{(weeklyTarget * 4.33).toFixed(2)}</p></div><div><p className="text-sm text-gray-500">{currencySymbol}{(weeklyTarget / householdSize).toFixed(2)}/person/week</p></div></div>
 }
 function MonthlyBudgetResults({ income, housing, food, transport, utilities, other }: { income: number; housing: number; food: number; transport: number; utilities: number; other: number }) {
+  const { currencySymbol } = useCurrency()
   const total = housing + food + transport + utilities + other
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Expenses</p><p className="text-2xl font-bold text-gray-900">${total.toFixed(2)}</p></div><div><p className={`text-lg font-bold ${income - total >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>${(income - total).toFixed(2)} remaining</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Expenses</p><p className="text-2xl font-bold text-gray-900">{currencySymbol}{total.toFixed(2)}</p></div><div><p className={`text-lg font-bold ${income - total >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{currencySymbol}{(income - total).toFixed(2)} remaining</p></div></div>
 }
 function AnnualBudgetResults({ income, housing, food, transport, utilities, savings }: { income: number; housing: number; food: number; transport: number; utilities: number; savings: number }) {
+  const { currencySymbol } = useCurrency()
   const total = housing + food + transport + utilities + savings
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Annual</p><p className="text-2xl font-bold text-gray-900">${total.toFixed(2)}</p></div><div><p className={`text-lg font-bold ${income - total >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>${(income - total).toFixed(2)} remaining</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Total Annual</p><p className="text-2xl font-bold text-gray-900">{currencySymbol}{total.toFixed(2)}</p></div><div><p className={`text-lg font-bold ${income - total >= 0 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{currencySymbol}{(income - total).toFixed(2)} remaining</p></div></div>
 }
 function PropertyTaxDeductionResults({ propertyTaxPaid, marginalRate }: { propertyTaxPaid: number; marginalRate: number }) {
+  const { currencySymbol } = useCurrency()
   const savings = propertyTaxPaid * (marginalRate / 100)
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Tax Savings from Deduction</p><p className="text-3xl font-bold text-[#1a3a8a]">${savings.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Tax Savings from Deduction</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{savings.toFixed(2)}</p></div></div>
 }
 function GiftTaxResults({ giftAmount, annualExclusion }: { giftAmount: number; annualExclusion: number }) {
+  const { currencySymbol } = useCurrency()
   const taxable = Math.max(0, giftAmount - annualExclusion)
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Taxable Gift Amount</p><p className={`text-3xl font-bold ${taxable > 0 ? 'text-amber-500' : 'text-[#1a3a8a]'}`}>${taxable.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Taxable Gift Amount</p><p className={`text-3xl font-bold ${taxable > 0 ? 'text-amber-500' : 'text-[#1a3a8a]'}`}>{currencySymbol}{taxable.toFixed(2)}</p></div></div>
 }
 function InheritanceTaxResults({ inheritanceAmount, stateExemption, taxRate }: { inheritanceAmount: number; stateExemption: number; taxRate: number }) {
+  const { currencySymbol } = useCurrency()
   const taxable = Math.max(0, inheritanceAmount - stateExemption); const tax = taxable * (taxRate / 100)
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Inheritance Tax Due</p><p className="text-3xl font-bold text-[#d62828]">${tax.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Inheritance Tax Due</p><p className="text-3xl font-bold text-[#d62828]">{currencySymbol}{tax.toFixed(2)}</p></div></div>
 }
 function SideHustleTaxResults({ income, expenses, otherIncome }: { income: number; expenses: number; otherIncome: number }) {
+  const { currencySymbol } = useCurrency()
   const netBusiness = income - expenses; const totalIncome = netBusiness + otherIncome; const seTax = netBusiness * 0.153; const totalTax = seTax
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Net Business Income</p><p className="text-2xl font-bold text-[#1a3a8a]">${netBusiness.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">SE Tax: ${seTax.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Net Business Income</p><p className="text-2xl font-bold text-[#1a3a8a]">{currencySymbol}{netBusiness.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">SE Tax: {currencySymbol}{seTax.toFixed(2)}</p></div></div>
 }
 function RentIncomeTaxResults({ rentIncome, expenses, depreciation }: { rentIncome: number; expenses: number; depreciation: number }) {
+  const { currencySymbol } = useCurrency()
   const netRental = rentIncome - expenses - depreciation; const tax = netRental > 0 ? netRental * 0.32 : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Net Rental Income</p><p className="text-2xl font-bold text-[#1a3a8a]">${netRental.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Est. Tax: ${tax.toFixed(2)}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Net Rental Income</p><p className="text-2xl font-bold text-[#1a3a8a]">{currencySymbol}{netRental.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Est. Tax: {currencySymbol}{tax.toFixed(2)}</p></div></div>
 }
 function LoanComparisonResults({ amount, rate1, term1, rate2, term2 }: { amount: number; rate1: number; term1: number; rate2: number; term2: number }) {
+  const { currencySymbol } = useCurrency()
   const mr1 = rate1 / 100 / 12; const np1 = term1 * 12; const mr2 = rate2 / 100 / 12; const np2 = term2 * 12
   let p1 = 0; let p2 = 0
   if (mr1 > 0) { const f = Math.pow(1 + mr1, np1); p1 = amount * (mr1 * f) / (f - 1) } else if (np1 > 0) p1 = amount / np1
   if (mr2 > 0) { const f = Math.pow(1 + mr2, np2); p2 = amount * (mr2 * f) / (f - 1) } else if (np2 > 0) p2 = amount / np2
   const t1 = p1 * np1; const t2 = p2 * np2
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Loan 1: ${p1.toFixed(2)}/mo (${t1.toFixed(2)} total)</p><p className="text-sm text-gray-500">Loan 2: ${p2.toFixed(2)}/mo (${t2.toFixed(2)} total)</p><p className={`text-lg font-bold ${t1 < t2 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{t1 < t2 ? 'Loan 1 is cheaper' : 'Loan 2 is cheaper'}</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Loan 1: {currencySymbol}{p1.toFixed(2)}/mo ({currencySymbol}{t1.toFixed(2)} total)</p><p className="text-sm text-gray-500">Loan 2: {currencySymbol}{p2.toFixed(2)}/mo ({currencySymbol}{t2.toFixed(2)} total)</p><p className={`text-lg font-bold ${t1 < t2 ? 'text-[#1a3a8a]' : 'text-[#d62828]'}`}>{t1 < t2 ? 'Loan 1 is cheaper' : 'Loan 2 is cheaper'}</p></div></div>
 }
 function BiweeklyPayResults({ principal, rate, term }: { principal: number; rate: number; term: number }) {
+  const { currencySymbol } = useCurrency()
   const mr = rate / 100 / 12; const np = term * 12; let monthlyPay = 0
   if (mr > 0 && np > 0 && principal > 0) { const f = Math.pow(1 + mr, np); monthlyPay = principal * (mr * f) / (f - 1) } else if (np > 0) monthlyPay = principal / np
   const biweeklyPay = monthlyPay / 2
   const totalMonthly = monthlyPay * np; const biweeklyPayments = term * 26; const totalBiweekly = biweeklyPay * biweeklyPayments
   const interestSaved = totalMonthly - totalBiweekly; const monthsSaved = Math.round(np - (biweeklyPayments / 26 * 12))
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Bi-Weekly Payment</p><p className="text-3xl font-bold text-[#1a3a8a]">${biweeklyPay.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Interest Saved: ${Math.max(0, interestSaved).toFixed(2)} | Payoff: ~{monthsSaved} months sooner</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Bi-Weekly Payment</p><p className="text-3xl font-bold text-[#1a3a8a]">{currencySymbol}{biweeklyPay.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Interest Saved: {currencySymbol}{Math.max(0, interestSaved).toFixed(2)} | Payoff: ~{monthsSaved} months sooner</p></div></div>
 }
 function GrossProfitFunc({ revenue, cogs }: { revenue: number; cogs: number }) {
+  const { currencySymbol } = useCurrency()
   const gp = revenue - cogs; const gm = revenue > 0 ? (gp / revenue) * 100 : 0
-  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Gross Profit</p><p className="text-2xl font-bold text-[#1a3a8a]">${gp.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Gross Margin: {gm.toFixed(1)}%</p></div></div>
+  return <div className="text-center space-y-3"><div><p className="text-sm text-gray-500">Gross Profit</p><p className="text-2xl font-bold text-[#1a3a8a]">{currencySymbol}{gp.toFixed(2)}</p></div><div><p className="text-sm text-gray-500">Gross Margin: {gm.toFixed(1)}%</p></div></div>
 }
 
 interface FieldDef {
@@ -2000,6 +2098,7 @@ import { buildGenericDef } from '@/lib/generic-fallback'
 import { calcDefs } from './financial'
 import type { CalcDef } from '@/lib/generic-fallback'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
+import { useCurrency, subMoney } from '@/lib/context/CurrencyContext'
 
 type Props = { calculator: CalculatorEntry }
 
@@ -2108,6 +2207,7 @@ function getPresets(calcType: string): { label: string; values: Record<string, s
 }
 
 export function GenericFinancialCalculator({ calculator }: Props) {
+  const { currencySymbol } = useCurrency()
   const [unitSystem, setUnitSystem] = useState<UnitSystem>('us')
   const [useSlider, setUseSlider] = useState(true)
   const formSchema = calcSchema(calculator.slug, calculator)
@@ -2165,7 +2265,7 @@ export function GenericFinancialCalculator({ calculator }: Props) {
             <>
               <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
                 <p className="text-xs text-gray-500 dark:text-gray-400">{resultData.label}</p>
-                <p className="text-3xl font-bold text-[#06b6d4]">{val.toFixed(2)} <span className="text-sm font-normal text-gray-500">{resultData.unit}</span></p>
+                <p className="text-3xl font-bold text-[#06b6d4]">{val.toFixed(2)} <span className="text-sm font-normal text-gray-500">{subMoney(resultData.unit, currencySymbol)}</span></p>
                 {getFinInterpretation(calcType)}
               </div>
               {(resultData.steps ?? []).length > 0 && (
@@ -2174,7 +2274,7 @@ export function GenericFinancialCalculator({ calculator }: Props) {
                   <div className="space-y-1.5">
                     {(resultData.steps ?? []).map((s, i) => (
                       <p key={i} className="text-xs text-left text-gray-600 dark:text-gray-400">
-                        <span className="text-[#06b6d4] font-medium">{i + 1}.</span> {s.label}: <span className="text-gray-800 dark:text-gray-200">{s.value}</span>
+                        <span className="text-[#06b6d4] font-medium">{i + 1}.</span> {s.label}: <span className="text-gray-800 dark:text-gray-200">{subMoney(s.value, currencySymbol)}</span>
                       </p>
                     ))}
                   </div>
@@ -2348,7 +2448,7 @@ export function GenericFinancialCalculator({ calculator }: Props) {
     }
     if (alreadyUpgradedTypes.has(calcType)) return inner
     return <>{inner}{getFinInterpretation(calcType)}</>
-  }, [watched, calcType, calcDefForSlug, resultData, extraFields])
+  }, [watched, calcType, calcDefForSlug, resultData, extraFields, currencySymbol])
 
   const field = (name: string, label: string, opts?: { min?: number; max?: number; step?: number; lockable?: boolean; unit?: string }) =>
     useSlider
@@ -2863,9 +2963,9 @@ export function GenericFinancialCalculator({ calculator }: Props) {
     { label: 'Brigham EF, Houston JF. Fundamentals of Financial Management. Cengage. 2019', url: 'https://en.wikipedia.org/wiki/Financial_management' },
   ]
   const mortgageExample = [
-    { label: 'Home: $300,000, Down: $60,000 (20%)', value: 'Loan amount = $240,000' },
-    { label: 'Rate: 6.5%, Term: 30 years', value: 'Monthly P&I = $1,516.96' },
-    { label: 'Plus taxes $300/mo, insurance $100/mo, HOA $200/mo', value: 'Total monthly = $2,116.96' },
+    { label: subMoney('Home: $300,000, Down: $60,000 (20%)', currencySymbol), value: subMoney('Loan amount = $240,000', currencySymbol) },
+    { label: 'Rate: 6.5%, Term: 30 years', value: subMoney('Monthly P&I = $1,516.96', currencySymbol) },
+    { label: subMoney('Plus taxes $300/mo, insurance $100/mo, HOA $200/mo', currencySymbol), value: subMoney('Total monthly = $2,116.96', currencySymbol) },
   ]
 
   const mainValue = useMemo(() => {

@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function DebtToIncomeForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [income, setIncome] = useState<number>(5000);
   const [debts, setDebts] = useState<number>(500);
@@ -38,7 +40,7 @@ export default function DebtToIncomeForm() {
           <p className="text-4xl font-bold">{result.dti}%</p>
           <p className="text-xl mt-2">{result.status}</p>
           <div className="mt-4 text-sm">
-            <p>Max mortgage payment: ${result.maxMortgage}/month</p>
+            <p>Max mortgage payment: {currencySymbol}{result.maxMortgage}/month</p>
           </div>
         </div>
       )}

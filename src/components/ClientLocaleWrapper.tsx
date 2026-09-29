@@ -2,6 +2,8 @@
 
 import { useEffect, ReactNode } from 'react'
 import { NextIntlClientProvider } from 'next-intl'
+import { RegionProvider } from '@/lib/context/CurrencyContext'
+import { localeToCountry, localeToCurrency } from '@/lib/i18n/calculator-i18n'
 
 export function ClientLocaleWrapper({ children, initialMessages, initialLocale }: { children: ReactNode, initialMessages: Record<string, any>, initialLocale?: string }) {
   // The server is the source of truth: the root layout re-runs for every
@@ -20,7 +22,15 @@ export function ClientLocaleWrapper({ children, initialMessages, initialLocale }
 
   return (
     <NextIntlClientProvider locale={locale} messages={initialMessages} timeZone="UTC">
-      {children}
+      {/* Global, persisted country/currency/measurement preference — wraps the
+          whole app so every component (including standalone calculators that
+          render above PremiumCalculatorShell) can read the selection. */}
+      <RegionProvider
+        defaultCountry={localeToCountry(locale)}
+        defaultCurrency={localeToCurrency(locale)}
+      >
+        {children}
+      </RegionProvider>
     </NextIntlClientProvider>
   )
 }

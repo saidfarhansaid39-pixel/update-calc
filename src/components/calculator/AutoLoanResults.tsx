@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
 import { AmortizationSchedule } from '@/components/calc-panel/AmortizationSchedule';
 import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function AutoLoanResults({ 
   totalLoanAmount, 
@@ -15,6 +16,7 @@ export function AutoLoanResults({
   totalCost,
   monthlyPayment
 }: any) {
+  const { currency } = useCurrency()
   const t = useTranslations('calculatorUI');
   const locale = useLocale();
   const principalPercent = (totalLoanAmount / totalPayments) * 100;
@@ -31,7 +33,7 @@ export function AutoLoanResults({
     <div className="w-full flex flex-col font-sans text-[13px] text-gray-800">
       <div className="bg-[#599e28] text-white p-2 font-bold flex justify-between items-center rounded-t border border-[#3b7b13]">
         <span>{t('results.monthlyPayLabel')}</span>
-        <span className="text-xl">{formatCurrency(monthlyPayment, 'USD', locale)}</span>
+        <span className="text-xl">{formatCurrency(monthlyPayment, currency, locale)}</span>
       </div>
       
       <div className="p-2 border border-gray-300 border-t-0 bg-white space-y-4">
@@ -47,23 +49,23 @@ export function AutoLoanResults({
           <tbody>
             <tr className="border-b border-gray-100">
               <td className="p-1.5 text-left font-medium text-gray-700">Principal &amp; Interest</td>
-              <td className="p-1.5 text-right text-gray-700">{formatCurrency(monthlyPayment, 'USD', locale)}</td>
-              <td className="p-1.5 text-right text-gray-700">{formatCurrency(totalPayments, 'USD', locale)}</td>
+              <td className="p-1.5 text-right text-gray-700">{formatCurrency(monthlyPayment, currency, locale)}</td>
+              <td className="p-1.5 text-right text-gray-700">{formatCurrency(totalPayments, currency, locale)}</td>
             </tr>
             <tr className="border-b border-gray-100 bg-gray-50">
               <td className="p-1.5 text-left text-gray-600">Sales Tax</td>
               <td className="p-1.5 text-right text-gray-600">—</td>
-              <td className="p-1.5 text-right text-gray-600">{formatCurrency(salesTax, 'USD', locale)}</td>
+              <td className="p-1.5 text-right text-gray-600">{formatCurrency(salesTax, currency, locale)}</td>
             </tr>
             <tr className="border-b border-gray-100">
               <td className="p-1.5 text-left text-gray-600">Upfront Payment</td>
               <td className="p-1.5 text-right text-gray-600">—</td>
-              <td className="p-1.5 text-right text-gray-600">{formatCurrency(upfrontPayment, 'USD', locale)}</td>
+              <td className="p-1.5 text-right text-gray-600">{formatCurrency(upfrontPayment, currency, locale)}</td>
             </tr>
             <tr className="bg-gray-200 font-bold border-b border-gray-400">
               <td className="p-1.5 text-left text-gray-800">Total Cost</td>
               <td className="p-1.5 text-right text-gray-800">—</td>
-              <td className="p-1.5 text-right text-red-600">{formatCurrency(totalCost, 'USD', locale)}</td>
+              <td className="p-1.5 text-right text-red-600">{formatCurrency(totalCost, currency, locale)}</td>
             </tr>
           </tbody>
         </table>
@@ -72,11 +74,11 @@ export function AutoLoanResults({
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">Loan Amount</p>
-            <p className="text-sm font-bold text-gray-900">{formatCurrency(totalLoanAmount, 'USD', locale)}</p>
+            <p className="text-sm font-bold text-gray-900">{formatCurrency(totalLoanAmount, currency, locale)}</p>
           </div>
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">Total Interest</p>
-            <p className="text-sm font-bold text-red-600">{formatCurrency(totalInterest, 'USD', locale)}</p>
+            <p className="text-sm font-bold text-red-600">{formatCurrency(totalInterest, currency, locale)}</p>
           </div>
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">Payoff Date</p>
@@ -99,7 +101,6 @@ export function AutoLoanResults({
             loanAmount: totalLoanAmount,
             term: termYears,
           }}
-          currencySymbol="$"
         />
 
         {/* Donut chart */}
@@ -139,7 +140,6 @@ export function AutoLoanResults({
             rate={0}
             term={termYears}
             periodsPerYear={12}
-            currencySymbol="$"
           />
         </div>
       </div>

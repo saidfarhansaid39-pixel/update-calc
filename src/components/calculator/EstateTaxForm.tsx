@@ -3,13 +3,15 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 function InputRow({ label, value, setter }: any) {
+  const { currencySymbol } = useCurrency()
   return (
     <div className="grid grid-cols-[1fr_120px] md:grid-cols-[250px_120px] gap-2 items-center mb-2">
       <label className="text-left pr-2 text-[13px]">{label}</label>
       <div className="flex items-center">
-        <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+        <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
         <input 
           type="text" 
           className="border border-gray-400 w-[100px] px-1 h-[28px]" 
@@ -22,6 +24,7 @@ function InputRow({ label, value, setter }: any) {
 }
 
 export function EstateTaxForm({ state, setters, handleCalculate, handleClear }: any) {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
 
   return (
@@ -62,7 +65,7 @@ export function EstateTaxForm({ state, setters, handleCalculate, handleClear }: 
           <div className="grid grid-cols-[1fr_120px] md:grid-cols-[250px_120px] gap-2 items-center mb-2">
             <label className="text-left pr-2 text-[13px]">Total amount you’ve gifted tax free in your lifetime</label>
             <div className="flex items-center">
-              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
               <input 
                 type="text" 
                 className="border border-gray-400 w-[100px] px-1 h-[28px]" 

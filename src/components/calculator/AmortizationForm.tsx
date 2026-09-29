@@ -3,8 +3,10 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function AmortizationForm({ state, setters }: any) {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   return (
     <div className="w-full font-sans text-[13px] text-gray-800">
@@ -19,7 +21,7 @@ export function AmortizationForm({ state, setters }: any) {
         <div className="grid grid-cols-[100px_1fr] gap-y-3 items-center">
           <label className="text-left pr-2">Loan amount</label>
           <div className="flex">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
             <input 
               type="text" 
               className="border border-gray-400 w-[120px] px-1 h-[28px]" 

@@ -15,6 +15,7 @@ import { FieldsByMode } from '@/lib/calc-field-helper'
 import { getEngFormula, engSlugOverrides } from '@/lib/seo/formula-generator'
 import { engineeringSchema } from '@/lib/forms/schemas'
 import { getUnits, toBaseUnit } from '@/lib/units'
+import { useCurrency, subMoney } from '@/lib/context/CurrencyContext'
 
 type CalcType = 'ohms-law' | 'btu' | 'horsepower' | 'resistor' | 'default'
   | 'power' | 'capacitance' | 'inductance' | 'impedance-Z' | 'impedance-rc' | 'impedance-rl' | 'voltage-divider' | 'rc-time-constant' | 'transformer-ratio' | 'duty-cycle' | 'signal-to-noise' | 'decibel'
@@ -3646,6 +3647,7 @@ function getEngineeringInterpretation(slug: string, val?: number | string, unit?
 }
 
 function GenericEngFallback({ calculator }: Props) {
+  const { currencySymbol } = useCurrency()
   const genericDef = useMemo(() => buildGenericDef(calculator) as any, [calculator])
   const [val, setVal] = useState('')
   const [res, setRes] = useState<any>(null)
@@ -3666,7 +3668,7 @@ function GenericEngFallback({ calculator }: Props) {
     <div className="space-y-4">
       <div className="text-center py-4">
         <p className="text-sm text-gray-500 dark:text-gray-400">{res.label}</p>
-        <p className="text-4xl font-bold text-[#06b6d4]">{String(res.result)} {res.unit}</p>
+        <p className="text-4xl font-bold text-[#06b6d4]">{String(res.result)} {subMoney(res.unit, currencySymbol)}</p>
         {getEngineeringInterpretation(calculator.slug, res.result, res.unit)}
       </div>
       {res.steps?.length > 0 && (
@@ -3674,7 +3676,7 @@ function GenericEngFallback({ calculator }: Props) {
           {res.steps.map((s: any, i: number) => (
             <div key={i} className="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-sm">
               <span className="text-gray-600 dark:text-gray-400">{s.label}</span>
-              <span className="font-medium text-gray-900 dark:text-white">{s.value}</span>
+              <span className="font-medium text-gray-900 dark:text-white">{subMoney(s.value, currencySymbol)}</span>
             </div>
           ))}
         </div>
@@ -3691,6 +3693,7 @@ function GenericEngFallback({ calculator }: Props) {
 }
 
 function EngInner({ calculator }: Props) {
+  const { currencySymbol } = useCurrency()
   const calcType = getCalcType(calculator.slug)
   const isNewType = newCalcTypes.has(calcType)
   const def = isNewType ? engCalcDefs[calcType] : undefined
@@ -3817,7 +3820,7 @@ function EngInner({ calculator }: Props) {
               <div className="space-y-1.5">
                 {data.steps.map((s, i) => (
                   <p key={i} className="text-xs text-left text-gray-600 dark:text-gray-400">
-                    <span className="text-[#06b6d4] font-medium">{i + 1}.</span> {s.label}: <span className="text-gray-800 dark:text-gray-200">{s.value}</span>
+                    <span className="text-[#06b6d4] font-medium">{i + 1}.</span> {s.label}: <span className="text-gray-800 dark:text-gray-200">{subMoney(s.value, currencySymbol)}</span>
                   </p>
                 ))}
               </div>
@@ -3827,7 +3830,7 @@ function EngInner({ calculator }: Props) {
       )
     }
     return <OhmsLawResults voltage={parseFloat(v.voltage) || 0} current={parseFloat(v.current) || 0} />
-  }, [v, vals, calcType, fieldUnits, isNewType, def])
+  }, [v, vals, calcType, fieldUnits, isNewType, def, currencySymbol])
 
   const mainValue = useMemo(() => {
     if (calcType === 'btu') {

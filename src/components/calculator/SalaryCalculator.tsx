@@ -8,6 +8,7 @@ import { SalaryResults } from '@/components/calculator/SalaryResults';
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
 import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 const calcMeta = {
   slug: 'salary-calculator',
@@ -21,6 +22,7 @@ const calcMeta = {
 };
 
 export function SalaryCalculator() {
+  const { currency } = useCurrency()
   const th = useTranslations('hubs');
   const locale = useLocale();
   const [salaryAmount, setSalaryAmount] = useState("50");
@@ -167,32 +169,32 @@ export function SalaryCalculator() {
     return (
       <SubCalcGrid>
         <SubCalcPanel title="Hourly Rate" icon={Clock} results={[
-          { label: 'Hourly Rate', value: formatCurrency(unadj.hourly, 'USD', locale), badge: 'info' },
+          { label: 'Hourly Rate', value: formatCurrency(unadj.hourly, currency, locale), badge: 'info' },
         ]} />
         <SubCalcPanel title="Pay Periods (Adjusted)" icon={Calendar} results={[
-          { label: 'Weekly', value: formatCurrency(adj.weekly, 'USD', locale) },
-          { label: 'Bi-Weekly', value: formatCurrency(adj.biWeekly, 'USD', locale) },
-          { label: 'Monthly', value: formatCurrency(adj.monthly, 'USD', locale) },
-          { label: 'Annual', value: formatCurrency(adj.annual, 'USD', locale) },
+          { label: 'Weekly', value: formatCurrency(adj.weekly, currency, locale) },
+          { label: 'Bi-Weekly', value: formatCurrency(adj.biWeekly, currency, locale) },
+          { label: 'Monthly', value: formatCurrency(adj.monthly, currency, locale) },
+          { label: 'Annual', value: formatCurrency(adj.annual, currency, locale) },
         ]} />
         <SubCalcPanel title="Tax Breakdown" icon={DollarSign} results={[
-          { label: 'Federal Income Tax', value: formatCurrency(tax.fedTax, 'USD', locale) },
-          { label: 'FICA (7.65%)', value: formatCurrency(tax.ficaTax, 'USD', locale) },
-          { label: 'State Tax', value: formatCurrency(tax.stTax, 'USD', locale) },
-          { label: 'Total Tax', value: formatCurrency(tax.totalTax, 'USD', locale), badge: 'negative' },
+          { label: 'Federal Income Tax', value: formatCurrency(tax.fedTax, currency, locale) },
+          { label: 'FICA (7.65%)', value: formatCurrency(tax.ficaTax, currency, locale) },
+          { label: 'State Tax', value: formatCurrency(tax.stTax, currency, locale) },
+          { label: 'Total Tax', value: formatCurrency(tax.totalTax, currency, locale), badge: 'negative' },
           { label: 'Effective Tax Rate', value: `${tax.effectiveRate}%` },
           { label: 'Marginal Tax Rate', value: `${tax.marginalRate}%` },
         ]} />
         <SubCalcPanel title="Take-Home Pay" icon={Wallet} results={[
-          { label: 'Net Annual', value: formatCurrency(tax.netAnnual, 'USD', locale), badge: 'positive' },
-          { label: 'Net Monthly', value: formatCurrency(tax.netMonthly, 'USD', locale) },
-          { label: 'Net Bi-Weekly', value: formatCurrency(tax.netBiWeekly, 'USD', locale) },
-          { label: 'Net Weekly', value: formatCurrency(tax.netWeekly, 'USD', locale) },
-          { label: 'Benefit Cost Est. (30%)', value: formatCurrency(benefitCosts, 'USD', locale) },
+          { label: 'Net Annual', value: formatCurrency(tax.netAnnual, currency, locale), badge: 'positive' },
+          { label: 'Net Monthly', value: formatCurrency(tax.netMonthly, currency, locale) },
+          { label: 'Net Bi-Weekly', value: formatCurrency(tax.netBiWeekly, currency, locale) },
+          { label: 'Net Weekly', value: formatCurrency(tax.netWeekly, currency, locale) },
+          { label: 'Benefit Cost Est. (30%)', value: formatCurrency(benefitCosts, currency, locale) },
         ]} />
       </SubCalcGrid>
     );
-  }, [results, locale]);
+  }, [results, locale, currency]);
 
   const result = results ? <SalaryResults results={results} /> : null;
 

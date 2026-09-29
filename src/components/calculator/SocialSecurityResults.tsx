@@ -49,7 +49,6 @@ export function SocialSecurityResults({ results }: any) {
                 lifeExpectancy: results.lifeExpectancy,
                 monthlyBenefit: 0,
               }}
-              currencySymbol="$"
             />
           </div>
         )}
@@ -87,7 +86,6 @@ export function SocialSecurityResults({ results }: any) {
                 lifeExpectancy: results.lifeExpectancy,
                 monthlyBenefit: 0,
               }}
-              currencySymbol="$"
             />
 
             <div className="mt-4 p-3 bg-blue-50 text-blue-900 border border-blue-200 rounded text-xs">

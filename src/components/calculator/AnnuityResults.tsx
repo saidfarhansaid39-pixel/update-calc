@@ -4,8 +4,10 @@ import React from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
 import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function AnnuityResults({ results }: any) {
+  const { currency, currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const locale = useLocale();
   if (!results) return null;
@@ -73,16 +75,16 @@ export function AnnuityResults({ results }: any) {
         <div className="p-4">
           {results.mode === 'length' ? (
             <div className="text-[16px] mb-4">
-              You can withdraw <strong className="text-[#1c4587] text-[18px]">{formatCurrency(results.payment, 'USD', locale)}</strong> {results.freqLabel}.
+              You can withdraw <strong className="text-[#1c4587] text-[18px]">{formatCurrency(results.payment, currency, locale)}</strong> {results.freqLabel}.
             </div>
           ) : (
             <div className="text-[16px] mb-4">
-              You can withdraw <strong className="text-[#1c4587] text-[18px]">{formatCurrency(results.payment, 'USD', locale)}</strong> {results.freqLabel} for <strong className="text-black">{results.totalPeriods}</strong> periods ({results.yearsStr}).
+              You can withdraw <strong className="text-[#1c4587] text-[18px]">{formatCurrency(results.payment, currency, locale)}</strong> {results.freqLabel} for <strong className="text-black">{results.totalPeriods}</strong> periods ({results.yearsStr}).
             </div>
           )}
 
-          <div className="mb-1">Total of {results.totalPeriods} payments: <strong>{formatCurrency(totalPayout, 'USD', locale)}</strong></div>
-          <div className="mb-4">Total interest/return: <strong>{formatCurrency(totalInterest, 'USD', locale)}</strong></div>
+          <div className="mb-1">Total of {results.totalPeriods} payments: <strong>{formatCurrency(totalPayout, currency, locale)}</strong></div>
+          <div className="mb-4">Total interest/return: <strong>{formatCurrency(totalInterest, currency, locale)}</strong></div>
 
           {/* Interpretation */}
           <ResultInterpretation
@@ -93,7 +95,6 @@ export function AnnuityResults({ results }: any) {
               totalInterest,
               years: numYears,
             }}
-            currencySymbol="$"
           />
 
           <div className="flex items-center gap-6 justify-center mt-6">
@@ -131,9 +132,9 @@ export function AnnuityResults({ results }: any) {
             {results.schedule.map((y: any) => (
               <tr key={y.year} className="border-b border-white hover:bg-[#e6e6e6]">
                 <td className="p-1">{y.year}</td>
-                <td className="p-1 text-right">{formatCurrency(y.beginning, 'USD', locale)}</td>
-                <td className="p-1 text-right">{formatCurrency(y.interest, 'USD', locale)}</td>
-                <td className="p-1 text-right">{formatCurrency(y.ending, 'USD', locale)}</td>
+                <td className="p-1 text-right">{formatCurrency(y.beginning, currency, locale)}</td>
+                <td className="p-1 text-right">{formatCurrency(y.interest, currency, locale)}</td>
+                <td className="p-1 text-right">{formatCurrency(y.ending, currency, locale)}</td>
               </tr>
             ))}
           </tbody>
@@ -154,9 +155,9 @@ export function AnnuityResults({ results }: any) {
             <line x1={w/2} y1="0" x2={w/2} y2={h} stroke="#e0e0e0" strokeWidth="1" />
             <line x1={w} y1="0" x2={w} y2={h} stroke="#e0e0e0" strokeWidth="1" />
             
-            <text x="-5" y="5" textAnchor="end" fontSize="10" fill="#666">${(maxVal/1000).toFixed(0)}K</text>
-            <text x="-5" y={h/2 + 5} textAnchor="end" fontSize="10" fill="#666">${((maxVal/2)/1000).toFixed(0)}K</text>
-            <text x="-5" y={h + 5} textAnchor="end" fontSize="10" fill="#666">$0</text>
+            <text x="-5" y="5" textAnchor="end" fontSize="10" fill="#666">{currencySymbol}{(maxVal/1000).toFixed(0)}K</text>
+            <text x="-5" y={h/2 + 5} textAnchor="end" fontSize="10" fill="#666">{currencySymbol}{((maxVal/2)/1000).toFixed(0)}K</text>
+            <text x="-5" y={h + 5} textAnchor="end" fontSize="10" fill="#666">{currencySymbol}0</text>
             
             <text x={0} y={h + 15} textAnchor="middle" fontSize="10" fill="#666">0</text>
             <text x={w/2} y={h + 15} textAnchor="middle" fontSize="10" fill="#666">{(numYears/2).toFixed(1)}</text>

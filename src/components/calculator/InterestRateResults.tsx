@@ -5,8 +5,10 @@ import { useTranslations, useLocale } from 'next-intl';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
 import { AmortizationSchedule } from '@/components/calc-panel/AmortizationSchedule';
 import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function InterestRateResults({ results }: any) {
+  const { currencySymbol, currency } = useCurrency()
   const t = useTranslations('calculatorUI');
   const locale = useLocale();
   if (!results) return null;
@@ -29,7 +31,7 @@ export function InterestRateResults({ results }: any) {
       <div className="flex-1">
         <div className="bg-[#599e28] text-white p-2 font-bold flex justify-between items-center border border-[#3b7b13] rounded-t">
           <span className="text-[15px]">{t('results.resultLabel')}</span>
-          <span className="text-xl">${totalPayments.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+          <span className="text-xl">{currencySymbol}{totalPayments.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
         </div>
         
         <div className="p-2 border border-gray-300 border-t-0 bg-white space-y-4">
@@ -45,18 +47,18 @@ export function InterestRateResults({ results }: any) {
             <tbody>
               <tr className="border-b border-gray-100">
                 <td className="p-1.5 text-left font-medium text-gray-700">Total Payments</td>
-                <td className="p-1.5 text-right text-gray-700">{formatCurrency(totalPayments / months, 'USD', locale)}</td>
-                <td className="p-1.5 text-right text-gray-700">{formatCurrency(totalPayments, 'USD', locale)}</td>
+                <td className="p-1.5 text-right text-gray-700">{formatCurrency(totalPayments / months, currency, locale)}</td>
+                <td className="p-1.5 text-right text-gray-700">{formatCurrency(totalPayments, currency, locale)}</td>
               </tr>
               <tr className="border-b border-gray-100 bg-gray-50">
                 <td className="p-1.5 text-left text-gray-600">Interest</td>
-                <td className="p-1.5 text-right text-gray-600">{formatCurrency(totalInterest / months, 'USD', locale)}</td>
-                <td className="p-1.5 text-right text-gray-600">{formatCurrency(totalInterest, 'USD', locale)}</td>
+                <td className="p-1.5 text-right text-gray-600">{formatCurrency(totalInterest / months, currency, locale)}</td>
+                <td className="p-1.5 text-right text-gray-600">{formatCurrency(totalInterest, currency, locale)}</td>
               </tr>
               <tr className="font-bold border-b border-gray-400 bg-gray-200">
                 <td className="p-1.5 text-left text-gray-800">Total of {months} monthly payments</td>
-                <td className="p-1.5 text-right text-gray-800">{formatCurrency(totalPayments / months, 'USD', locale)}</td>
-                <td className="p-1.5 text-right text-red-600">{formatCurrency(totalPayments, 'USD', locale)}</td>
+                <td className="p-1.5 text-right text-gray-800">{formatCurrency(totalPayments / months, currency, locale)}</td>
+                <td className="p-1.5 text-right text-red-600">{formatCurrency(totalPayments, currency, locale)}</td>
               </tr>
             </tbody>
           </table>
@@ -69,7 +71,7 @@ export function InterestRateResults({ results }: any) {
             </div>
             <div className="p-2 bg-white rounded-lg border border-gray-200">
               <p className="text-xs text-gray-400">Total Interest</p>
-              <p className="text-sm font-bold text-red-600">{formatCurrency(totalInterest, 'USD', locale)}</p>
+              <p className="text-sm font-bold text-red-600">{formatCurrency(totalInterest, currency, locale)}</p>
             </div>
             <div className="p-2 bg-white rounded-lg border border-gray-200">
               <p className="text-xs text-gray-400">Payoff Date</p>
@@ -92,7 +94,6 @@ export function InterestRateResults({ results }: any) {
               loanAmount: totalPayments - totalInterest,
               term: termYears,
             }}
-            currencySymbol="$"
           />
 
           {/* SVG Charts */}
@@ -115,10 +116,10 @@ export function InterestRateResults({ results }: any) {
                    <div className="flex items-center gap-1"><div className="w-2 h-2 bg-[#16a34a]"></div>Payment</div>
                 </div>
                 <div className="absolute -left-8 top-0 text-[10px] text-gray-500 h-full flex flex-col justify-between items-end pb-4">
-                  <span>$30K</span>
-                  <span>$20K</span>
-                  <span>$10K</span>
-                  <span>$0</span>
+                  <span>{currencySymbol}30K</span>
+                  <span>{currencySymbol}20K</span>
+                  <span>{currencySymbol}10K</span>
+                  <span>{currencySymbol}0</span>
                 </div>
                 <div className="absolute -bottom-4 left-0 w-full flex justify-between text-[10px] text-gray-500 px-1">
                   <span>0</span>
@@ -164,7 +165,6 @@ export function InterestRateResults({ results }: any) {
               rate={interestRate}
               term={termYears}
               periodsPerYear={12}
-              currencySymbol="$"
             />
           </div>
         </div>

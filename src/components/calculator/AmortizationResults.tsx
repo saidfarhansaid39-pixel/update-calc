@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
 import { AmortizationSchedule } from '@/components/calc-panel/AmortizationSchedule';
 import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function AmortizationResults({ 
   loanAmount, 
@@ -13,6 +14,7 @@ export function AmortizationResults({
   monthlyPayment,
   numMonths
 }: any) {
+  const { currency } = useCurrency()
   const t = useTranslations('calculatorUI');
   const locale = useLocale();
   const principalPercent = (loanAmount / totalPayments) * 100 || 0;
@@ -28,7 +30,7 @@ export function AmortizationResults({
     <div className="w-full flex flex-col font-sans text-[13px] text-gray-800">
       <div className="bg-[#599e28] text-white p-2 font-bold flex justify-between items-center rounded-t border border-[#3b7b13]">
         <span>{t('results.monthlyPayLabel')}</span>
-        <span className="text-xl">{formatCurrency(monthlyPayment, 'USD', locale)}</span>
+        <span className="text-xl">{formatCurrency(monthlyPayment, currency, locale)}</span>
       </div>
       
       <div className="p-2 border border-gray-300 border-t-0 bg-white space-y-4">
@@ -44,8 +46,8 @@ export function AmortizationResults({
           <tbody>
             <tr className="border-b border-gray-100">
               <td className="p-1.5 text-left font-medium text-gray-700">Principal &amp; Interest</td>
-              <td className="p-1.5 text-right text-gray-700">{formatCurrency(monthlyPayment, 'USD', locale)}</td>
-              <td className="p-1.5 text-right text-gray-700">{formatCurrency(totalPayments, 'USD', locale)}</td>
+              <td className="p-1.5 text-right text-gray-700">{formatCurrency(monthlyPayment, currency, locale)}</td>
+              <td className="p-1.5 text-right text-gray-700">{formatCurrency(totalPayments, currency, locale)}</td>
             </tr>
           </tbody>
         </table>
@@ -54,11 +56,11 @@ export function AmortizationResults({
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">Loan Amount</p>
-            <p className="text-sm font-bold text-gray-900">{formatCurrency(loanAmount, 'USD', locale)}</p>
+            <p className="text-sm font-bold text-gray-900">{formatCurrency(loanAmount, currency, locale)}</p>
           </div>
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">Total Interest</p>
-            <p className="text-sm font-bold text-red-600">{formatCurrency(totalInterest, 'USD', locale)}</p>
+            <p className="text-sm font-bold text-red-600">{formatCurrency(totalInterest, currency, locale)}</p>
           </div>
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">Payoff Date</p>
@@ -74,7 +76,6 @@ export function AmortizationResults({
         <ResultInterpretation
           type="loan"
           values={{ monthlyPayment, totalPayments, totalInterest, principal: loanAmount, loanAmount, term: termYears }}
-          currencySymbol="$"
         />
 
         {/* Donut chart */}
@@ -111,7 +112,6 @@ export function AmortizationResults({
             rate={0}
             term={termYears}
             periodsPerYear={12}
-            currencySymbol="$"
           />
         </div>
       </div>

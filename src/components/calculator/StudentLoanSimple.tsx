@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Save } from 'lucide-react';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function StudentLoanSimple() {
+  const { currencySymbol } = useCurrency()
   const [balance, setBalance] = useState("30,000");
   const [term, setTerm] = useState("10");
   const [rate, setRate] = useState("6.8");
@@ -92,7 +94,7 @@ export function StudentLoanSimple() {
               
               <label>Loan Balance</label>
               <div className="flex items-center bg-white border border-gray-400">
-                <span className="px-2 bg-gray-100 border-r border-gray-400">$</span>
+                <span className="px-2 bg-gray-100 border-r border-gray-400">{currencySymbol}</span>
                 <input type="text" className="w-full px-1 py-0.5 outline-none" value={balance} onChange={e => setBalance(e.target.value)} />
               </div>
 
@@ -110,7 +112,7 @@ export function StudentLoanSimple() {
 
               <label>Monthly Payment</label>
               <div className="flex items-center bg-white border border-gray-400">
-                <span className="px-2 bg-gray-100 border-r border-gray-400">$</span>
+                <span className="px-2 bg-gray-100 border-r border-gray-400">{currencySymbol}</span>
                 <input type="text" className="w-full px-1 py-0.5 outline-none" value={payment} onChange={e => setPayment(e.target.value)} />
                 <span className="px-2 bg-gray-100 border-l border-gray-400">/month</span>
               </div>
@@ -141,13 +143,13 @@ export function StudentLoanSimple() {
                 <div className="bg-white border border-gray-300 border-t-0 p-4 leading-relaxed">
                   <div className="grid grid-cols-[120px_1fr] gap-y-1 text-[16px]">
                     <div>Repayment:</div>
-                    <div className="font-bold text-[#599e28]">${results.pmt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}/month</div>
+                    <div className="font-bold text-[#599e28]">{currencySymbol}{results.pmt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}/month</div>
                     
                     <div>Total Interest:</div>
-                    <div>${results.totalInterest.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                    <div>{currencySymbol}{results.totalInterest.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
                     
                     <div>Total Payments:</div>
-                    <div>${results.totalPayment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                    <div>{currencySymbol}{results.totalPayment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
                   </div>
 
                   <div className="mt-6 flex items-center justify-center gap-6">

@@ -1,8 +1,10 @@
 "use client";
 
 import React from 'react';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function SocialSecurityForm2({ state, setters, handleCalculate, handleClear }: any) {
+  const { currencySymbol } = useCurrency()
   return (
     <div className="w-full font-sans text-[13px] text-gray-800">
       <div className="bg-[#f0f0f0] p-4 border border-gray-300 rounded">
@@ -22,7 +24,7 @@ export function SocialSecurityForm2({ state, setters, handleCalculate, handleCle
 
           <label className="text-left pr-2">Monthly payment</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
             <input 
               type="text" 
               className="border border-gray-400 w-[80px] px-1 h-[28px]" 
@@ -46,7 +48,7 @@ export function SocialSecurityForm2({ state, setters, handleCalculate, handleCle
 
           <label className="text-left pr-2">Monthly payment</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
             <input 
               type="text" 
               className="border border-gray-400 w-[80px] px-1 h-[28px]" 

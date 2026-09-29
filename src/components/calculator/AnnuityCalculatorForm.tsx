@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function AnnuityCalculatorForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [type, setType] = useState<'deferred' | 'immediate'>('deferred');
   const [premium, setPremium] = useState<number>(100000);
@@ -61,14 +63,14 @@ export default function AnnuityCalculatorForm() {
         <div className="grid md:grid-cols-2 gap-6 mt-6">
           <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white">
             <p className="text-green-100 text-sm">Monthly Payout</p>
-            <p className="text-4xl font-bold">${result.monthlyPayout.toLocaleString()}</p>
-            <p className="text-green-100 mt-2">${result.annualPayout.toLocaleString()}/year</p>
+            <p className="text-4xl font-bold">{currencySymbol}{result.monthlyPayout.toLocaleString()}</p>
+            <p className="text-green-100 mt-2">{currencySymbol}{result.annualPayout.toLocaleString()}/year</p>
           </div>
           <div className="bg-white p-5 rounded-xl border">
             <h3 className="font-semibold text-gray-800 mb-3">Summary</h3>
             <div className="space-y-2 text-sm">
-              <div className="flex justify-between"><span>Total Payout</span><span className="font-medium">${result.totalPayout.toLocaleString()}</span></div>
-              <div className="flex justify-between"><span>Total Interest</span><span className="font-medium text-green-600">${result.totalInterest.toLocaleString()}</span></div>
+              <div className="flex justify-between"><span>Total Payout</span><span className="font-medium">{currencySymbol}{result.totalPayout.toLocaleString()}</span></div>
+              <div className="flex justify-between"><span>Total Interest</span><span className="font-medium text-green-600">{currencySymbol}{result.totalInterest.toLocaleString()}</span></div>
             </div>
           </div>
         </div>

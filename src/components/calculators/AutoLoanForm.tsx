@@ -5,8 +5,10 @@ import { Input, Select, Button, FormGroup, FormPanel } from '@/components/Calcul
 import { CalculatorPieChart } from '@/components/calculators/ChartPresets';
 import { generateAmortizationSchedule, aggregateAmortizationByYear } from '@/lib/calculators/amortizationEngine';
 import { useCurrencyFormat } from '@/lib/hooks/useCurrencyFormat';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function AutoLoanForm() {
+  const { currencySymbol } = useCurrency()
   const [activeTab, setActiveTab] = useState<'total' | 'monthly'>('total');
   
   const [inputs, setInputs] = useState({
@@ -63,7 +65,7 @@ export function AutoLoanForm() {
     handleCalculate();
   }, []);
 
-  const formatCurrency = useCurrencyFormat('USD');
+  const formatCurrency = useCurrencyFormat();
 
   return (
     <div className="flex flex-col gap-6 font-sans text-[13px] text-[#333333]">
@@ -85,7 +87,7 @@ export function AutoLoanForm() {
       <div className="-mt-6">
         <FormPanel header="Modify the values and click the Calculate button to use">
           <FormGroup label="Auto Price">
-            <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">$</span>
+            <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">{currencySymbol}</span>
             <Input type="number" value={inputs.autoPrice} onChange={(e) => handleNumChange(e, 'autoPrice')} className="w-[120px]" />
           </FormGroup>
           
@@ -101,25 +103,25 @@ export function AutoLoanForm() {
           
           <FormGroup label="Cash Incentives">
             <span className="text-[#888888] cursor-help mr-1">?</span>
-            <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">$</span>
+            <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">{currencySymbol}</span>
             <Input type="number" value={inputs.cashIncentives} onChange={(e) => handleNumChange(e, 'cashIncentives')} className="w-[120px]" />
           </FormGroup>
           
           <FormGroup label="Down Payment">
             <span className="text-[#888888] cursor-help mr-1">?</span>
-            <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">$</span>
+            <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">{currencySymbol}</span>
             <Input type="number" value={inputs.downPayment} onChange={(e) => handleNumChange(e, 'downPayment')} className="w-[120px]" />
           </FormGroup>
           
           <FormGroup label="Trade-in Value">
             <span className="text-[#888888] cursor-help mr-1">?</span>
-            <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">$</span>
+            <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">{currencySymbol}</span>
             <Input type="number" value={inputs.tradeInValue} onChange={(e) => handleNumChange(e, 'tradeInValue')} className="w-[120px]" />
           </FormGroup>
           
           <FormGroup label="Amount Owed on Trade-in">
             <span className="text-[#888888] cursor-help mr-1">?</span>
-            <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">$</span>
+            <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">{currencySymbol}</span>
             <Input type="number" value={inputs.amountOwedOnTradeIn} onChange={(e) => handleNumChange(e, 'amountOwedOnTradeIn')} className="w-[120px]" />
           </FormGroup>
           
@@ -140,7 +142,7 @@ export function AutoLoanForm() {
           
           <FormGroup label="Title, Registration and Other Fees">
             <span className="text-[#888888] cursor-help mr-1">?</span>
-            <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">$</span>
+            <span className="bg-[#e6e6e6] border border-[#cccccc] border-r-0 px-2 py-[1px] h-[22px]">{currencySymbol}</span>
             <Input type="number" value={inputs.fees} onChange={(e) => handleNumChange(e, 'fees')} className="w-[120px]" />
           </FormGroup>
           

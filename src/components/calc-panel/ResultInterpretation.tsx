@@ -2,10 +2,12 @@
 
 import React from 'react'
 import { Lightbulb, TrendingDown, TrendingUp, AlertTriangle } from 'lucide-react'
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 interface ResultInterpretationProps {
   type: 'loan' | 'mortgage' | 'investment' | 'retirement' | 'debt' | 'tax' | 'budget' | 'savings' | 'salary' | 'social_security'
   values: Record<string, number | string>
+  /** Overrides the visitor's selected currency symbol (defaults to context). */
   currencySymbol?: string
 }
 
@@ -17,7 +19,9 @@ function pct(n: number) {
   return `${n.toFixed(1)}%`
 }
 
-export function ResultInterpretation({ type, values, currencySymbol = '$' }: ResultInterpretationProps) {
+export function ResultInterpretation({ type, values, currencySymbol: symbolOverride }: ResultInterpretationProps) {
+  const { currencySymbol: selectedSymbol } = useCurrency()
+  const currencySymbol = symbolOverride ?? selectedSymbol
   const insights: { icon: React.ReactNode; text: string; color: string }[] = []
   const v = values as Record<string, number>
 

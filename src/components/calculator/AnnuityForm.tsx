@@ -2,8 +2,10 @@
 
 import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function AnnuityForm({ state, setters, handleCalculate, handleClear }: any) {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [activeTab, setActiveTab] = useState<'length' | 'payment'>('length');
 
@@ -29,7 +31,7 @@ export function AnnuityForm({ state, setters, handleCalculate, handleClear }: an
         <div className="grid grid-cols-[140px_1fr] gap-y-3 items-center max-w-[350px]">
           <label className="text-left pr-2">Starting principal</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
             <input 
               type="text" 
               className="border border-gray-400 w-[100px] px-1 h-[28px]" 
@@ -66,7 +68,7 @@ export function AnnuityForm({ state, setters, handleCalculate, handleClear }: an
             <>
               <label className="text-left pr-2">Payout amount</label>
               <div className="flex items-center">
-                <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+                <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
                 <input 
                   type="text" 
                   className="border border-gray-400 w-[80px] px-1 h-[28px]" 

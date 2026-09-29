@@ -3,8 +3,10 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function MortgageForm({ state, setters }: any) {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [showMore, setShowMore] = useState(false);
   return (
@@ -20,7 +22,7 @@ export function MortgageForm({ state, setters }: any) {
         <div className="grid grid-cols-[120px_1fr] gap-y-2 items-center">
           <label className="text-right pr-2">{t('formLabels.homePrice')}</label>
           <div className="flex">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
             <input 
               type="text" 
               className="border border-gray-400 w-[120px] px-1 h-[28px]" 
@@ -31,7 +33,7 @@ export function MortgageForm({ state, setters }: any) {
 
           <label className="text-right pr-2">{t('formLabels.downPayment')}</label>
           <div className="flex items-center">
-            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+            <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
             <input 
               type="text" 
               className="border border-gray-400 w-[70px] px-1 h-[28px]" 
@@ -96,13 +98,13 @@ export function MortgageForm({ state, setters }: any) {
             <input type="text" value={state.propertyTaxPercent} onChange={e => setters.setPropertyTaxPercent(e.target.value)} className="border border-gray-400 w-[40px] px-1 h-[28px] text-right" />
             <span className="bg-gray-100 border border-gray-400 px-1">%</span>
             <input type="text" value={state.propertyTaxDollar} readOnly className="border border-gray-400 w-[60px] px-1 h-[28px] bg-gray-100 text-right" />
-            <span className="bg-gray-100 border border-gray-400 px-1">$</span>
+            <span className="bg-gray-100 border border-gray-400 px-1">{currencySymbol}</span>
           </div>
 
           <label className="text-right pr-2">Home Insurance</label>
           <div className="flex items-center gap-1">
             <input type="text" value={state.homeInsurance} onChange={e => setters.setHomeInsurance(e.target.value)} className="border border-gray-400 w-[60px] px-1 h-[28px] text-right" />
-            <span className="bg-gray-100 border border-gray-400 px-1">$</span>
+            <span className="bg-gray-100 border border-gray-400 px-1">{currencySymbol}</span>
           </div>
 
           <label className="text-right pr-2">PMI Insurance</label>
@@ -110,19 +112,19 @@ export function MortgageForm({ state, setters }: any) {
             <input type="text" value="0" readOnly className="border border-gray-400 w-[40px] px-1 h-[28px] text-right" />
             <span className="bg-gray-100 border border-gray-400 px-1">%</span>
             <input type="text" value="0" readOnly className="border border-gray-400 w-[60px] px-1 h-[28px] bg-gray-100 text-right" />
-            <span className="bg-gray-100 border border-gray-400 px-1">$</span>
+            <span className="bg-gray-100 border border-gray-400 px-1">{currencySymbol}</span>
           </div>
 
           <label className="text-right pr-2">HOA Fee</label>
           <div className="flex items-center gap-1">
             <input type="text" value={state.hoaFee} onChange={e => setters.setHoaFee(e.target.value)} className="border border-gray-400 w-[60px] px-1 h-[28px] text-right" />
-            <span className="bg-gray-100 border border-gray-400 px-1">$</span>
+            <span className="bg-gray-100 border border-gray-400 px-1">{currencySymbol}</span>
           </div>
 
           <label className="text-right pr-2">Other Costs</label>
           <div className="flex items-center gap-1">
             <input type="text" value={state.otherCosts} onChange={e => setters.setOtherCosts(e.target.value)} className="border border-gray-400 w-[60px] px-1 h-[28px] text-right" />
-            <span className="bg-gray-100 border border-gray-400 px-1">$</span>
+            <span className="bg-gray-100 border border-gray-400 px-1">{currencySymbol}</span>
           </div>
         </div>
 
@@ -136,7 +138,7 @@ export function MortgageForm({ state, setters }: any) {
           <div className="grid grid-cols-[120px_1fr] gap-y-2 items-center mb-3">
             <label className="text-right pr-2">Extra Monthly Payment</label>
             <div className="flex items-center">
-              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
               <input
                 type="text"
                 className="border border-gray-400 w-[80px] px-1 h-[28px]"

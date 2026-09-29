@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function PresentValueForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [futureValue, setFutureValue] = useState<number>(10000);
   const [rate, setRate] = useState<number>(5);
@@ -22,7 +24,7 @@ export default function PresentValueForm() {
     <div className="space-y-6">
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Future Value ($)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Future Value ({currencySymbol})</label>
           <input type="number" value={futureValue} onChange={(e) => setFutureValue(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded" />
         </div>
         <div>
@@ -51,11 +53,11 @@ export default function PresentValueForm() {
             <tbody>
               <tr className="border-b">
                 <td className="py-2 font-medium text-gray-700">Present Value</td>
-                <td className="py-2 text-right text-green-700 font-bold text-xl">${result.presentValue.toLocaleString(undefined, {maximumFractionDigits: 2})}</td>
+                <td className="py-2 text-right text-green-700 font-bold text-xl">{currencySymbol}{result.presentValue.toLocaleString(undefined, {maximumFractionDigits: 2})}</td>
               </tr>
               <tr>
                 <td className="py-2 text-gray-600">Interest Saved</td>
-                <td className="py-2 text-right text-gray-700">${result.interestSaved.toLocaleString(undefined, {maximumFractionDigits: 2})}</td>
+                <td className="py-2 text-right text-gray-700">{currencySymbol}{result.interestSaved.toLocaleString(undefined, {maximumFractionDigits: 2})}</td>
               </tr>
             </tbody>
           </table>

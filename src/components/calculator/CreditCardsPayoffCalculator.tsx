@@ -7,6 +7,7 @@ import { CreditCardsPayoffForm } from '@/components/calculator/CreditCardsPayoff
 import { CreditCardsPayoffResults } from '@/components/calculator/CreditCardsPayoffResults';
 import { PremiumCalculatorShell } from '@/components/premium/PremiumCalculatorShell.dynamic';
 import { SubCalcPanel, SubCalcGrid } from '@/components/premium/SubCalcPanel';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 const calcMeta = {
   slug: 'credit-cards-payoff-calculator',
@@ -20,6 +21,7 @@ const calcMeta = {
 };
 
 export function CreditCardsPayoffCalculator() {
+  const { currencySymbol } = useCurrency()
   const th = useTranslations('hubs');
   const locale = useLocale();
   const [budget, setBudget] = useState("500");
@@ -156,20 +158,20 @@ export function CreditCardsPayoffCalculator() {
     return (
       <SubCalcGrid>
         <SubCalcPanel title="Payoff Summary" icon={CreditCard} defaultOpen results={[
-          { label: 'Total Debt', value: `$${totalPrincipal.toLocaleString()}`, badge: 'negative' },
-          { label: 'Total Interest Paid', value: `$${results.totalInterest.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`, badge: 'negative' },
-          { label: 'Total Amount Paid', value: `$${results.totalPaid.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}` },
+          { label: 'Total Debt', value: `${currencySymbol}${totalPrincipal.toLocaleString()}`, badge: 'negative' },
+          { label: 'Total Interest Paid', value: `${currencySymbol}${results.totalInterest.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`, badge: 'negative' },
+          { label: 'Total Amount Paid', value: `${currencySymbol}${results.totalPaid.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}` },
           { label: 'Payoff Time', value: `${years > 0 ? `${years}y ` : ''}${months}mo (${results.totalMonths} months)`, badge: 'info' },
         ]} />
         <SubCalcPanel title="Cards Breakdown" icon={DollarSign} results={
           (results.cardStats || []).map((stat: any) => ({
             label: stat.name,
-            value: `${stat.monthsToPayoff} months · $${stat.interestPaid.toLocaleString(undefined, {minimumFractionDigits: 2})} interest`,
+            value: `${stat.monthsToPayoff} months · ${currencySymbol}${stat.interestPaid.toLocaleString(undefined, {minimumFractionDigits: 2})} interest`,
           }))
         } />
       </SubCalcGrid>
     );
-  }, [results, totalPrincipal]);
+  }, [results, totalPrincipal, currencySymbol]);
 
   const mainValue = results ? results.totalInterest : undefined;
 

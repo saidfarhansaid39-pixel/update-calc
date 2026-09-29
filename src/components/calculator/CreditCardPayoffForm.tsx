@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function CreditCardPayoffForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [balance, setBalance] = useState<number>(5000);
   const [rate, setRate] = useState<number>(18);
@@ -27,18 +29,18 @@ export default function CreditCardPayoffForm() {
   return (
     <div className="space-y-6">
       <div className="grid md:grid-cols-3 gap-4">
-        <div><label className="block text-sm text-gray-700 mb-1">Balance ($)</label>
+        <div><label className="block text-sm text-gray-700 mb-1">Balance ({currencySymbol})</label>
           <input type="number" value={balance} onChange={(e) => setBalance(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
         <div><label className="block text-sm text-gray-700 mb-1">APR (%)</label>
           <input type="number" value={rate} onChange={(e) => setRate(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
-        <div><label className="block text-sm text-gray-700 mb-1">Monthly Payment ($)</label>
+        <div><label className="block text-sm text-gray-700 mb-1">Monthly Payment ({currencySymbol})</label>
           <input type="number" value={payment} onChange={(e) => setPayment(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
       </div>
       <button onClick={calculate} className="bg-purple-600 text-white px-6 py-2 rounded">{t('buttons.calculate')}</button>
       {result && (
         <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-6 text-white mt-6">
           <p className="text-3xl font-bold">{result.months} months</p>
-          <p className="text-sm mt-2">Total Interest: ${result.totalInterest} | Payoff: {result.payoffDate}</p>
+          <p className="text-sm mt-2">Total Interest: {currencySymbol}{result.totalInterest} | Payoff: {result.payoffDate}</p>
         </div>
       )}
     </div>

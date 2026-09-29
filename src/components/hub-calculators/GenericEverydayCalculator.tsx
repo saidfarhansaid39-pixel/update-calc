@@ -16,6 +16,7 @@ import { getUnits } from '@/lib/units'
 import { everydayRenderers, everydaySchemas, everydayDefaults, everydayPresets, everydayFormulas, numField, sel, yesno } from './everyday-data'
 import { calcDefs } from './everyday'
 import type { CalcDef } from '@/lib/generic-fallback'
+import { useCurrency, subMoney } from '@/lib/context/CurrencyContext'
 
 type CalcType = 'tip' | 'conversion' | 'default'
   | 'clothing' | 'ring' | 'cooking' | 'water_intake' | 'caffeine' | 'alcohol' | 'bac'
@@ -520,6 +521,7 @@ const passwordSchema = z.object({
 })
 
 function TipResults({ bill, percent, split, roundUp, roundedTip, roundedTotal }: { bill: number; percent: number; split: number; roundUp?: boolean; roundedTip?: number; roundedTotal?: number }) {
+  const { currencySymbol } = useCurrency()
   const tipAmount = bill * (percent / 100)
   const total = bill + tipAmount
   const perPerson = total / split
@@ -528,19 +530,19 @@ function TipResults({ bill, percent, split, roundUp, roundedTip, roundedTotal }:
     <div className="text-center space-y-4">
       <div>
         <p className="text-sm text-gray-500 dark:text-gray-400">Tip Amount</p>
-        <p className="text-3xl font-bold text-[#06b6d4]">${(roundUp && roundedTip !== undefined ? roundedTip : tipAmount).toFixed(2)}</p>
+        <p className="text-3xl font-bold text-[#06b6d4]">{currencySymbol}{(roundUp && roundedTip !== undefined ? roundedTip : tipAmount).toFixed(2)}</p>
       </div>
       <div>
         <p className="text-sm text-gray-500 dark:text-gray-400">Total Bill</p>
-        <p className="text-xl font-bold text-gray-900 dark:text-white">${(roundUp && roundedTotal !== undefined ? roundedTotal : total).toFixed(2)}</p>
+        <p className="text-xl font-bold text-gray-900 dark:text-white">{currencySymbol}{(roundUp && roundedTotal !== undefined ? roundedTotal : total).toFixed(2)}</p>
         {roundUp && roundedTotal !== undefined && roundedTotal > total && (
-          <p className="text-xs text-gray-400 mt-1">Rounded up from ${total.toFixed(2)}</p>
+          <p className="text-xs text-gray-400 mt-1">Rounded up from {currencySymbol}{total.toFixed(2)}</p>
         )}
       </div>
       {split > 1 && (
         <div>
           <p className="text-sm text-gray-500 dark:text-gray-400">Per Person ({split} ways)</p>
-          <p className="text-xl font-bold text-[#06b6d4]">${(roundUp && rPerPerson !== undefined ? rPerPerson : perPerson).toFixed(2)}</p>
+          <p className="text-xl font-bold text-[#06b6d4]">{currencySymbol}{(roundUp && rPerPerson !== undefined ? rPerPerson : perPerson).toFixed(2)}</p>
         </div>
       )}
     </div>
@@ -548,6 +550,7 @@ function TipResults({ bill, percent, split, roundUp, roundedTip, roundedTotal }:
 }
 
 function TipBreakdownChart({ bill, tipAmount, total, split }: { bill: number; tipAmount: number; total: number; split: number }) {
+  const { currencySymbol } = useCurrency()
   const pctBill = (bill / total) * 100
   const pctTip = (tipAmount / total) * 100
   return (
@@ -558,12 +561,12 @@ function TipBreakdownChart({ bill, tipAmount, total, split }: { bill: number; ti
         <div className="bg-amber-400 transition-all" style={{ flex: pctTip }} />
       </div>
       <div className="flex justify-between text-xs">
-        <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-blue-400" /><span className="text-gray-500">Bill (${bill.toFixed(2)})</span></div>
-        <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-amber-400" /><span className="text-gray-500">Tip (${tipAmount.toFixed(2)})</span></div>
+        <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-blue-400" /><span className="text-gray-500">Bill ({currencySymbol}{bill.toFixed(2)})</span></div>
+        <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-amber-400" /><span className="text-gray-500">Tip ({currencySymbol}{tipAmount.toFixed(2)})</span></div>
       </div>
       {split > 1 && (
         <div className="text-xs text-gray-400 text-center">
-          <p>Split {split} ways: <strong className="text-gray-600 dark:text-gray-300">${(total / split).toFixed(2)}</strong> per person</p>
+          <p>Split {split} ways: <strong className="text-gray-600 dark:text-gray-300">{currencySymbol}{(total / split).toFixed(2)}</strong> per person</p>
         </div>
       )}
     </div>
@@ -688,6 +691,7 @@ function getEverydayPresets(type: string): { label: string; values: Record<strin
 }
 
 function GenericEverydayCalculator({ calculator }: Props) {
+  const { currencySymbol } = useCurrency()
   const calcType = getCalcType(calculator.slug)
   const typeKey = knownCalcType(calculator.slug)
   const defaults = calcDefaults(calculator.slug)
@@ -728,7 +732,10 @@ function GenericEverydayCalculator({ calculator }: Props) {
     mode: 'onChange',
   })
 
-  const presets = useMemo(() => getEverydayPresets(calcType), [calcType])
+  const presets = useMemo(
+    () => getEverydayPresets(calcType).map(p => ({ ...p, label: subMoney(p.label, currencySymbol) })),
+    [calcType, currencySymbol]
+  )
   const applyPreset = useCallback((preset: { label: string; values: Record<string, string> }) => {
     Object.entries(preset.values).forEach(([key, value]) => {
       if (!lockedFields.has(key)) form.setValue(key as any, value)
@@ -744,6 +751,7 @@ function GenericEverydayCalculator({ calculator }: Props) {
 
   function getEverydayInterpretation(slug: string, val?: number | string, unit?: string): React.ReactNode {
     if (typeof val === 'string') val = parseFloat(val)
+    unit = subMoney(unit, currencySymbol)
     if (slug.includes('gpa') || slug.includes('grade')) {
       const gpa = val || 0
       const level = gpa >= 3.7 ? 'excellent' : gpa >= 3.0 ? 'good' : gpa >= 2.0 ? 'average' : 'below average'
@@ -755,7 +763,7 @@ function GenericEverydayCalculator({ calculator }: Props) {
     if (slug.includes('snowball') || slug.includes('debt')) return <div className="text-xs text-emerald-600 font-medium mt-1">Snowball: pay smallest debts first for motivation. Avalanche: pay highest interest first for savings.</div>
     if (slug.includes('net-worth')) {
       const nw = val || 0
-      return <div className={`text-xs font-medium mt-1 ${nw >= 0 ? 'text-emerald-600' : 'text-amber-600'}`}>Net worth: ${nw.toLocaleString()} — {nw >= 0 ? 'Positive net worth indicates financial health' : 'Focus on reducing debt and building assets'}.</div>
+      return <div className={`text-xs font-medium mt-1 ${nw >= 0 ? 'text-emerald-600' : 'text-amber-600'}`}>Net worth: {currencySymbol}{nw.toLocaleString()} — {nw >= 0 ? 'Positive net worth indicates financial health' : 'Focus on reducing debt and building assets'}.</div>
     }
     if (slug.includes('emergency-fund')) {
       const months = val || 0
@@ -785,10 +793,10 @@ function GenericEverydayCalculator({ calculator }: Props) {
       return <div className="text-xs text-emerald-600 font-medium mt-1">{val?.toFixed(1)} {unit} — Always buy 10-15% extra for waste and mistakes.</div>
     }
     if (slug.includes('moving') || slug.includes('storage')) {
-      return <div className="text-xs text-amber-600 font-medium mt-1">{val ? `$${val.toFixed(0)}` : ''} — Moving costs vary by distance and volume. Get at least 3 quotes.</div>
+      return <div className="text-xs text-amber-600 font-medium mt-1">{val ? `${currencySymbol}${val.toFixed(0)}` : ''} — Moving costs vary by distance and volume. Get at least 3 quotes.</div>
     }
     if (slug.includes('commute') || slug.includes('fuel') || slug.includes('gas') || slug.includes('toll')) {
-      return <div className="text-xs text-blue-600 font-medium mt-1">{val ? `$${val.toFixed(2)}` : ''} — Track commuting costs. Remote work or transit can save significantly.</div>
+      return <div className="text-xs text-blue-600 font-medium mt-1">{val ? `${currencySymbol}${val.toFixed(2)}` : ''} — Track commuting costs. Remote work or transit can save significantly.</div>
     }
     if (slug.includes('ev') || slug.includes('electric-vehicle')) {
       return <div className="text-xs text-emerald-600 font-medium mt-1">{val?.toFixed(2)} {unit} — EVs cost 3-5x less per mile than gas. Home charging is cheapest.</div>
@@ -814,33 +822,33 @@ function GenericEverydayCalculator({ calculator }: Props) {
       return <div className="text-xs text-blue-600 font-medium mt-1">1 in {val?.toFixed(0) || '?'} chance ({odds}%) — Lottery odds are extremely low. Play for fun, not investment.</div>
     }
     if (slug.includes('unit-price') || slug.includes('price-oz') || slug.includes('price-lb')) {
-      return <div className="text-xs text-emerald-600 font-medium mt-1">{val ? `$${val.toFixed(4)} ${unit}` : ''} — Compare per-unit prices. Larger packages aren't always cheaper.</div>
+      return <div className="text-xs text-emerald-600 font-medium mt-1">{val ? `${currencySymbol}${val.toFixed(4)} ${unit}` : ''} — Compare per-unit prices. Larger packages aren't always cheaper.</div>
     }
     if (slug.includes('gym') || slug.includes('membership')) {
-      return <div className="text-xs text-emerald-600 font-medium mt-1">{val ? `$${val.toFixed(2)}/visit` : ''} — A $50/month gym used 3×/week costs ~$4.17/visit.</div>
+      return <div className="text-xs text-emerald-600 font-medium mt-1">{val ? `${currencySymbol}${val.toFixed(2)}/visit` : ''} — A {currencySymbol}50/month gym used 3×/week costs ~{currencySymbol}4.17/visit.</div>
     }
     if (slug.includes('freelance') || slug.includes('commission') || slug.includes('overtime') || slug.includes('salary-hourly') || slug.includes('hourly-salary')) {
-      return <div className="text-xs text-amber-600 font-medium mt-1">{val ? `$${val.toFixed(2)}` : ''} — Freelancers should set rates 25-30% higher to cover taxes and benefits.</div>
+      return <div className="text-xs text-amber-600 font-medium mt-1">{val ? `${currencySymbol}${val.toFixed(2)}` : ''} — Freelancers should set rates 25-30% higher to cover taxes and benefits.</div>
     }
     if (slug.includes('fee') || slug.includes('paypal') || slug.includes('stripe') || slug.includes('ebay') || slug.includes('etsy') || slug.includes('amazon') || slug.includes('crowdfunding')) {
-      return <div className="text-xs text-blue-600 font-medium mt-1">{val ? `$${val.toFixed(2)}` : ''} — Platform fees reduce net revenue. Factor them into pricing.</div>
+      return <div className="text-xs text-blue-600 font-medium mt-1">{val ? `${currencySymbol}${val.toFixed(2)}` : ''} — Platform fees reduce net revenue. Factor them into pricing.</div>
     }
-    if (slug.includes('fast-food')) return <div className="text-xs text-emerald-600 font-medium mt-1">Fast food averages $5-15/meal. Home cooking costs ~60% less.</div>
+    if (slug.includes('fast-food')) return <div className="text-xs text-emerald-600 font-medium mt-1">Fast food averages {currencySymbol}5-15/meal. Home cooking costs ~60% less.</div>
     if (slug.includes('tire-pressure')) {
       const psi = val || 0
       return <div className={`text-xs font-medium mt-1 ${psi >= 30 && psi <= 35 ? 'text-emerald-600' : 'text-amber-600'}`}>{psi.toFixed(0)} PSI — {psi >= 30 && psi <= 35 ? 'Within typical range (30-35 PSI)' : 'Check manufacturer recommendation (typically 30-35 PSI)'}. Check monthly when cold.</div>
     }
     if (slug.includes('subscription') || slug.includes('streaming')) {
-      return <div className="text-xs text-blue-600 font-medium mt-1">{val ? `$${val.toFixed(2)}/mo` : ''} — Average US household spends ~$50/mo on 3-4 streaming services.</div>
+      return <div className="text-xs text-blue-600 font-medium mt-1">{val ? `${currencySymbol}${val.toFixed(2)}/mo` : ''} — Average US household spends ~{currencySymbol}50/mo on 3-4 streaming services.</div>
     }
     if (slug.includes('diaper') || slug.includes('formula') || slug.includes('baby')) {
-      return <div className="text-xs text-emerald-600 font-medium mt-1">{val ? `$${val.toFixed(0)}` : ''} — First year costs ~$12,000-16,000. Diapers alone are $70-80/month.</div>
+      return <div className="text-xs text-emerald-600 font-medium mt-1">{val ? `${currencySymbol}${val.toFixed(0)}` : ''} — First year costs ~{currencySymbol}12,000-16,000. Diapers alone are {currencySymbol}70-80/month.</div>
     }
     if (slug.includes('soil') || slug.includes('mulch') || slug.includes('compost') || slug.includes('raised-bed')) {
       return <div className="text-xs text-blue-600 font-medium mt-1">{val?.toFixed(1)} {unit} — Measure your space first. Soil is sold in cubic yards or bags.</div>
     }
     if (slug.includes('cooking') || slug.includes('meal-prep') || slug.includes('leftover') || slug.includes('pizza') || slug.includes('coffee-calc')) {
-      return <div className="text-xs text-emerald-600 font-medium mt-1">{val ? `$${val.toFixed(2)}` : ''} — Home cooking saves ~60% vs dining out. Meal prep reduces daily costs.</div>
+      return <div className="text-xs text-emerald-600 font-medium mt-1">{val ? `${currencySymbol}${val.toFixed(2)}` : ''} — Home cooking saves ~60% vs dining out. Meal prep reduces daily costs.</div>
     }
     return null
   }
@@ -859,12 +867,12 @@ function GenericEverydayCalculator({ calculator }: Props) {
         <div className="text-center space-y-4">
           <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
             <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
-            <p className="text-3xl font-bold text-[#06b6d4]">{typeof res.result === 'number' ? res.result.toFixed(4) : res.result} {res.unit}</p>
+            <p className="text-3xl font-bold text-[#06b6d4]">{typeof res.result === 'number' ? res.result.toFixed(4) : res.result} {subMoney(res.unit, currencySymbol)}</p>
             {getEverydayInterpretation(calculator.slug, res.result, res.unit)}
           </div>
           <div className="border-t border-gray-200 dark:border-gray-700 pt-4 text-xs text-gray-400 space-y-1">
             {(res.steps ?? []).map((step, i) => (
-              <p key={i}><strong>{step.label}:</strong> {step.value}</p>
+              <p key={i}><strong>{step.label}:</strong> {subMoney(step.value, currencySymbol)}</p>
             ))}
           </div>
         </div>
@@ -912,7 +920,7 @@ function GenericEverydayCalculator({ calculator }: Props) {
       return <div className="space-y-4">{renderer(parsed)}</div>
     }
     return <ConversionResults value={parseFloat(v.value) || 0} fromUnit={fieldUnits.fromUnit || 'm'} toUnit={fieldUnits.toUnit || 'ft'} />
-  }, [v, calcType, fieldUnits, roundUp, extraFields])
+  }, [v, calcType, fieldUnits, roundUp, extraFields, currencySymbol])
 
   const formField = useCallback((name: string, label: string, opts?: { min?: number; max?: number; step?: number }) =>
     useSlider
@@ -1485,7 +1493,7 @@ function GenericEverydayCalculator({ calculator }: Props) {
     { label: 'NIST. Handbook 44: Specifications for Weights and Measures. 2019', url: 'https://www.nist.gov/pml/owm/handbook-44' },
   ]
   const everydayExample = [
-    { label: 'Tip: $50 bill, 15%, split 1 way', value: 'Tip = $7.50, Total = $57.50' },
+    { label: subMoney('Tip: $50 bill, 15%, split 1 way', currencySymbol), value: subMoney('Tip = $7.50, Total = $57.50', currencySymbol) },
     { label: 'Password: 16 chars, all types', value: '~95�6 possible combinations = very strong' },
   ]
 

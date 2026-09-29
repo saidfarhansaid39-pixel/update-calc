@@ -14,6 +14,7 @@ import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretati
 import { calcDefs } from '@/lib/constructionCalcDefs'
 import { buildGenericDef } from '@/lib/generic-fallback'
 import type { ModeLevel, FieldDef, ResultValue, CalcDef } from '@/lib/constructionCalcDefs/types'
+import { useCurrency, subMoney } from '@/lib/context/CurrencyContext'
 
 
 
@@ -37,6 +38,7 @@ function FallbackConstruction({ calculator }: Props) {
 }
 
 export function GenericConstructionCalculator({ calculator }: Props) {
+  const { currencySymbol } = useCurrency()
   const calcDef = calcDefs[calculator.slug] || (buildGenericDef(calculator) as unknown as CalcDef)
   const [useSlider, setUseSlider] = useState(true)
   const [lockedFields, setLockedFields] = useState<Set<string>>(new Set())
@@ -80,7 +82,7 @@ export function GenericConstructionCalculator({ calculator }: Props) {
       <div className="text-center space-y-4">
         <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
           <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
-          <p className="text-3xl font-bold text-[#06b6d4]">{displayVal} {res.unit}</p>
+          <p className="text-3xl font-bold text-[#06b6d4]">{displayVal} {subMoney(res.unit, currencySymbol)}</p>
           {constructionInterpretation}
         </div>
         {res.steps && res.steps.length > 0 && (
@@ -89,14 +91,14 @@ export function GenericConstructionCalculator({ calculator }: Props) {
             {res.steps.map((step, i) => (
               <div key={i} className="flex items-start gap-2">
                 <span className="flex-shrink-0 w-4 h-4 rounded-full bg-[#1a3a8a]/10 text-[#06b6d4] flex items-center justify-center text-[10px] font-medium mt-0.5">{i + 1}</span>
-                <span>{typeof step === 'string' ? step : `${step.label}: ${step.value}`}</span>
+                <span>{subMoney(typeof step === 'string' ? step : `${step.label}: ${step.value}`, currencySymbol)}</span>
               </div>
             ))}
           </div>
         )}
       </div>
     )
-  }, [v, calcDef, constructionInterpretation])
+  }, [v, calcDef, constructionInterpretation, currencySymbol])
 
   const copyResultText = useMemo(() => {
     const lines: string[] = [calculator.title]

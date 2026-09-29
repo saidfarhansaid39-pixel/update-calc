@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { calculateInvestment, calculateCompoundInterest, calculateSimpleInterest } from '@/engines/finance/investment';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function InvestmentCalculatorForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [calcType, setCalcType] = useState<'investment' | 'compound' | 'simple'>('investment');
   
@@ -54,7 +56,7 @@ export default function InvestmentCalculatorForm() {
       <div className="grid md:grid-cols-2 gap-6">
         {calcType === 'investment' && (
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Initial Investment ($)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Initial Investment ({currencySymbol})</label>
             <input
               type="number"
               value={initialAmount}
@@ -66,7 +68,7 @@ export default function InvestmentCalculatorForm() {
         )}
         {calcType !== 'simple' && (
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Monthly Contribution ($)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Monthly Contribution ({currencySymbol})</label>
             <input
               type="number"
               value={monthlyContribution}
@@ -118,18 +120,18 @@ export default function InvestmentCalculatorForm() {
           <div className="grid md:grid-cols-3 gap-4">
             <div className="bg-white p-4 rounded shadow-sm">
               <h4 className="font-medium text-gray-600 mb-2">{calcType === 'simple' ? 'Final Amount' : 'Future Value'}</h4>
-              <p className="text-2xl font-bold text-green-600">${result.futureValue?.toLocaleString() || result.amount?.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-green-600">{currencySymbol}{result.futureValue?.toLocaleString() || result.amount?.toLocaleString()}</p>
             </div>
             
             <div className="bg-white p-4 rounded shadow-sm">
               <h4 className="font-medium text-gray-600 mb-2">Total Interest</h4>
-              <p className="text-2xl font-bold text-green-600">${result.totalInterest?.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-green-600">{currencySymbol}{result.totalInterest?.toLocaleString()}</p>
             </div>
 
             {calcType === 'investment' && (
               <div className="bg-white p-4 rounded shadow-sm">
                 <h4 className="font-medium text-gray-600 mb-2">Total Contributions</h4>
-                <p className="text-2xl font-bold text-gray-700">${result.totalContributions?.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-gray-700">{currencySymbol}{result.totalContributions?.toLocaleString()}</p>
               </div>
             )}
           </div>
@@ -150,9 +152,9 @@ export default function InvestmentCalculatorForm() {
                   {result.yearlyBreakdown.filter((_: any, i: number) => i % 5 === 0 || i === result.yearlyBreakdown.length - 1).map((row: any) => (
                     <tr key={row.year} className="border-b">
                       <td className="py-2">{row.year}</td>
-                      <td className="text-right">${row.value.toLocaleString()}</td>
-                      <td className="text-right">${row.contributions.toLocaleString()}</td>
-                      <td className="text-right">${row.interest.toLocaleString()}</td>
+                      <td className="text-right">{currencySymbol}{row.value.toLocaleString()}</td>
+                      <td className="text-right">{currencySymbol}{row.contributions.toLocaleString()}</td>
+                      <td className="text-right">{currencySymbol}{row.interest.toLocaleString()}</td>
                     </tr>
                   ))}
                 </tbody>

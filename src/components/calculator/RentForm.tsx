@@ -3,8 +3,10 @@
 import React from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function RentForm({ state, setters, handleCalculate, handleClear }: any) {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   return (
     <div className="w-full font-sans text-[13px] text-gray-800">
@@ -23,7 +25,7 @@ export function RentForm({ state, setters, handleCalculate, handleClear }: any) 
           </label>
           <div className="flex items-center flex-wrap gap-2">
             <div className="flex items-center">
-              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
               <input 
                 type="text" 
                 className="border border-gray-400 w-[120px] px-1 h-[28px]" 
@@ -46,7 +48,7 @@ export function RentForm({ state, setters, handleCalculate, handleClear }: any) 
           </label>
           <div className="flex items-center flex-wrap gap-2">
             <div className="flex items-center">
-              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
               <input 
                 type="text" 
                 className="border border-gray-400 w-[80px] px-1 h-[28px]" 
@@ -62,7 +64,7 @@ export function RentForm({ state, setters, handleCalculate, handleClear }: any) 
           </label>
           <div className="flex items-center flex-wrap gap-2">
             <div className="flex items-center">
-              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">$</span>
+              <span className="border border-gray-400 border-r-0 px-2 bg-gray-100 leading-[26px]">{currencySymbol}</span>
               <input 
                 type="text" 
                 className="border border-gray-400 w-[100px] px-1 h-[28px]" 

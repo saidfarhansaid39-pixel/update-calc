@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Save } from 'lucide-react';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function StudentLoanProjection() {
+  const { currencySymbol } = useCurrency()
   const [toGraduate, setToGraduate] = useState("2");
   const [loanAmount, setLoanAmount] = useState("10,000");
   const [currentBalance, setCurrentBalance] = useState("20,000");
@@ -89,14 +91,14 @@ export function StudentLoanProjection() {
 
               <label>Estimated Loan Amount</label>
               <div className="flex items-center bg-white border border-gray-400">
-                <span className="px-1 bg-gray-100 border-r border-gray-400">$</span>
+                <span className="px-1 bg-gray-100 border-r border-gray-400">{currencySymbol}</span>
                 <input type="text" className="w-full px-1 py-0.5 outline-none" value={loanAmount} onChange={e => setLoanAmount(e.target.value)} />
                 <span className="px-1 bg-gray-100 border-l border-gray-400">/year</span>
               </div>
 
               <label>Current Balance</label>
               <div className="flex items-center bg-white border border-gray-400">
-                <span className="px-2 bg-gray-100 border-r border-gray-400">$</span>
+                <span className="px-2 bg-gray-100 border-r border-gray-400">{currencySymbol}</span>
                 <input type="text" className="w-full px-1 py-0.5 outline-none" value={currentBalance} onChange={e => setCurrentBalance(e.target.value)} />
               </div>
 
@@ -158,19 +160,19 @@ export function StudentLoanProjection() {
               <div className="bg-white border border-gray-300 border-t-0 p-4 leading-relaxed">
                 <div className="grid grid-cols-[160px_1fr] gap-y-1 text-[14px]">
                   <div>Repayment:</div>
-                  <div className="font-bold text-[#599e28]">${results.pmt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}/month</div>
+                  <div className="font-bold text-[#599e28]">{currencySymbol}{results.pmt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}/month</div>
                   
                   <div>Amount Borrowed:</div>
-                  <div>${results.totalBorrowed.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                  <div>{currencySymbol}{results.totalBorrowed.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
                   
                   <div>Balance After Graduation:</div>
-                  <div>${results.balAfterGrad.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                  <div>{currencySymbol}{results.balAfterGrad.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
                   
                   <div>Balance After Grace Period:</div>
-                  <div>${results.balAfterGrace.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                  <div>{currencySymbol}{results.balAfterGrace.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
                   
                   <div>Total Interest:</div>
-                  <div>${results.totalInterest.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                  <div>{currencySymbol}{results.totalInterest.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
                 </div>
 
                 <div className="mt-6 flex items-center justify-center gap-6">

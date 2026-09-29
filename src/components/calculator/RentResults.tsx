@@ -4,8 +4,10 @@ import React from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
 import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function RentResults({ results }: any) {
+  const { currency } = useCurrency()
   const t = useTranslations('calculatorUI');
   const locale = useLocale();
   if (!results) return null;
@@ -45,15 +47,15 @@ export function RentResults({ results }: any) {
           </div>
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">{t('results.recommendedBudget')}</p>
-            <p className="text-sm font-bold text-green-700">{formatCurrency(results.recommended, 'USD', locale)}</p>
+            <p className="text-sm font-bold text-green-700">{formatCurrency(results.recommended, currency, locale)}</p>
           </div>
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">{t('results.conservativeBudget')}</p>
-            <p className="text-sm font-bold text-gray-700">{formatCurrency(results.conservative, 'USD', locale)}</p>
+            <p className="text-sm font-bold text-gray-700">{formatCurrency(results.conservative, currency, locale)}</p>
           </div>
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">{t('results.maximumBudget')}</p>
-            <p className="text-sm font-bold text-red-600">{formatCurrency(results.maximum, 'USD', locale)}</p>
+            <p className="text-sm font-bold text-red-600">{formatCurrency(results.maximum, currency, locale)}</p>
           </div>
         </div>
         
@@ -76,7 +78,7 @@ export function RentResults({ results }: any) {
                 <div className="text-[11px] font-normal text-green-700">{t('results.usingStandard30Rule')}</div>
               </td>
               <td className="p-3 text-right font-bold text-[18px] text-green-700">
-                {formatCurrency(results.recommended, 'USD', locale)}
+                {formatCurrency(results.recommended, currency, locale)}
               </td>
             </tr>
             <tr className="border-b border-gray-200">
@@ -85,7 +87,7 @@ export function RentResults({ results }: any) {
                 <div className="text-[11px] text-gray-500">{t('results.using25Allocation')}</div>
               </td>
               <td className="p-3 text-right font-bold text-[16px] text-gray-700">
-                {formatCurrency(results.conservative, 'USD', locale)}
+                {formatCurrency(results.conservative, currency, locale)}
               </td>
             </tr>
             <tr className="">
@@ -94,7 +96,7 @@ export function RentResults({ results }: any) {
                 <div className="text-[11px] text-red-500">{t('results.maxDtiMinusDebts')}</div>
               </td>
               <td className="p-3 text-right font-bold text-[16px] text-red-600">
-                {formatCurrency(results.maximum, 'USD', locale)}
+                {formatCurrency(results.maximum, currency, locale)}
               </td>
             </tr>
           </tbody>
@@ -109,7 +111,6 @@ export function RentResults({ results }: any) {
             wants: results.maximum - results.recommended,
             savings: results.conservative,
           }}
-          currencySymbol="$"
         />
 
         {results.rentAmount > 0 && results.totalDti > 0 && (

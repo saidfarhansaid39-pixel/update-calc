@@ -4,8 +4,10 @@ import React from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { formatCurrency } from '@/lib/i18n/calculator-i18n';
 import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export function CreditCardsPayoffResults({ results }: any) {
+  const { currency } = useCurrency()
   const t = useTranslations('calculatorUI');
   const locale = useLocale();
   if (!results) return null;
@@ -45,11 +47,11 @@ export function CreditCardsPayoffResults({ results }: any) {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">Total Debt</p>
-            <p className="text-sm font-bold text-gray-900">{formatCurrency(totalPrincipal, 'USD', locale)}</p>
+            <p className="text-sm font-bold text-gray-900">{formatCurrency(totalPrincipal, currency, locale)}</p>
           </div>
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">Total Interest</p>
-            <p className="text-sm font-bold text-red-600">{formatCurrency(totalInterest, 'USD', locale)}</p>
+            <p className="text-sm font-bold text-red-600">{formatCurrency(totalInterest, currency, locale)}</p>
           </div>
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">Payoff Date</p>
@@ -57,7 +59,7 @@ export function CreditCardsPayoffResults({ results }: any) {
           </div>
           <div className="p-2 bg-white rounded-lg border border-gray-200">
             <p className="text-xs text-gray-400">Monthly Payment</p>
-            <p className="text-sm font-bold text-gray-900">{formatCurrency(avgMonthlyPayment, 'USD', locale)}</p>
+            <p className="text-sm font-bold text-gray-900">{formatCurrency(avgMonthlyPayment, currency, locale)}</p>
           </div>
         </div>
 
@@ -69,20 +71,19 @@ export function CreditCardsPayoffResults({ results }: any) {
             monthly: avgMonthlyPayment,
             totalInterest,
           }}
-          currencySymbol="$"
         />
 
         <div className="grid grid-cols-2 gap-4 my-6">
           <div className="bg-[#e4eedb] border border-[#599e28] p-4 text-center rounded">
             <div className="text-[14px] text-gray-700">{t('results.totalInterestPaid')}</div>
             <div className="text-[24px] font-bold text-[#1c4587]">
-              {formatCurrency(totalInterest, 'USD', locale)}
+              {formatCurrency(totalInterest, currency, locale)}
             </div>
           </div>
           <div className="bg-gray-100 border border-gray-300 p-4 text-center rounded">
             <div className="text-[14px] text-gray-700">{t('results.totalAmountPaid')}</div>
             <div className="text-[24px] font-bold text-gray-800">
-              {formatCurrency(totalPaid, 'USD', locale)}
+              {formatCurrency(totalPaid, currency, locale)}
             </div>
           </div>
         </div>
@@ -101,7 +102,7 @@ export function CreditCardsPayoffResults({ results }: any) {
               <tr key={idx} className="border-b border-white hover:bg-[#e6e6e6]">
                 <td className="p-2 font-bold">{stat.name || `Card ${idx + 1}`}</td>
                 <td className="p-2">{stat.monthsToPayoff} months</td>
-                <td className="p-2">{formatCurrency(stat.interestPaid, 'USD', locale)}</td>
+                <td className="p-2">{formatCurrency(stat.interestPaid, currency, locale)}</td>
               </tr>
             ))}
           </tbody>

@@ -67,8 +67,7 @@ export function InvestmentGrowthChart({
   onDotClick?: (point: DataPoint) => void
 }) {
   const t = useTranslations('calculatorUI')
-  const { currencySymbol } = useCurrency()
-  const { currency } = useCurrency()
+  const { currencySymbol, currency } = useCurrency()
   if (data.length === 0) {
     return <div className="w-full min-h-[120px] flex items-center justify-center text-xs text-gray-400 dark:text-gray-500">{t('premium.charts.enterInvestmentDetails')}</div>
   }

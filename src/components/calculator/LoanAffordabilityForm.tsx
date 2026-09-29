@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function LoanAffordabilityForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [income, setIncome] = useState<number>(5000);
   const [expenses, setExpenses] = useState<number>(2000);
@@ -23,9 +25,9 @@ export default function LoanAffordabilityForm() {
   return (
     <div className="space-y-6">
       <div className="grid md:grid-cols-4 gap-4">
-        <div><label className="block text-sm text-gray-700 mb-1">Monthly Income ($)</label>
+        <div><label className="block text-sm text-gray-700 mb-1">Monthly Income ({currencySymbol})</label>
           <input type="number" value={income} onChange={(e) => setIncome(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
-        <div><label className="block text-sm text-gray-700 mb-1">Monthly Expenses ($)</label>
+        <div><label className="block text-sm text-gray-700 mb-1">Monthly Expenses ({currencySymbol})</label>
           <input type="number" value={expenses} onChange={(e) => setExpenses(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
         <div><label className="block text-sm text-gray-700 mb-1">{t('formLabels.rate')}</label>
           <input type="number" value={rate} onChange={(e) => setRate(Number(e.target.value))} className="w-full px-4 py-3 border rounded-lg" /></div>
@@ -35,8 +37,8 @@ export default function LoanAffordabilityForm() {
       <button onClick={calculate} className="bg-blue-600 text-white px-6 py-2 rounded">{t('buttons.calculate')}</button>
       {result && (
         <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white mt-6">
-          <p className="text-3xl font-bold">${Number(result.loan).toLocaleString()}</p>
-          <p className="text-sm mt-2">Max Payment: ${result.payment}/mo</p>
+          <p className="text-3xl font-bold">{currencySymbol}{Number(result.loan).toLocaleString()}</p>
+          <p className="text-sm mt-2">Max Payment: {currencySymbol}{result.payment}/mo</p>
         </div>
       )}
     </div>

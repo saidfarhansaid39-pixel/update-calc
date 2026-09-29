@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function LeaseCalculatorForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [price, setPrice] = useState<number>(40000);
   const [downPayment, setDownPayment] = useState<number>(3000);
@@ -49,10 +51,10 @@ export default function LeaseCalculatorForm() {
       {result && (
         <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-6 text-white mt-6">
           <p className="text-purple-100 text-sm">Monthly Lease Payment</p>
-          <p className="text-4xl font-bold">${result.monthlyPayment.toLocaleString()}</p>
+          <p className="text-4xl font-bold">{currencySymbol}{result.monthlyPayment.toLocaleString()}</p>
           <div className="grid grid-cols-2 gap-4 mt-4 text-sm">
-            <div><p className="text-purple-100">Residual Value</p><p className="font-bold">${result.residualValue.toLocaleString()}</p></div>
-            <div><p className="text-purple-100">Total Lease Cost</p><p className="font-bold">${result.totalLease.toLocaleString()}</p></div>
+            <div><p className="text-purple-100">Residual Value</p><p className="font-bold">{currencySymbol}{result.residualValue.toLocaleString()}</p></div>
+            <div><p className="text-purple-100">Total Lease Cost</p><p className="font-bold">{currencySymbol}{result.totalLease.toLocaleString()}</p></div>
           </div>
         </div>
       )}

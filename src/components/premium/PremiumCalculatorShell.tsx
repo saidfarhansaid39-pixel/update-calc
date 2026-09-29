@@ -50,7 +50,7 @@ import { getRangeConfig } from '@/lib/range-visualizer-config'
 import { getExtraFieldsForCalculator } from '@/lib/extra-field-pools'
 import { getHubTheme } from '@/lib/hub-themes'
 import { ExtraFieldsProvider } from '@/lib/context/ExtraFieldsContext'
-import { CurrencyProvider } from '@/lib/context/CurrencyContext'
+import { useRegion, useCurrency, subMoney } from '@/lib/context/CurrencyContext'
 import { useAutoSave } from '@/lib/hooks/useAutoSave'
 import { useLocale, useTranslations } from 'next-intl'
 import { Link } from '@/lib/navigation'
@@ -62,7 +62,7 @@ import { CalculatorIntro } from '@/components/premium/CalculatorIntro'
 import { CalculatorErrorBoundary, CalculatorEmptyState, CalculatorLoadingSkeleton } from '@/components/premium/CalculatorStates'
 import { generateCalculatorFAQ } from '@/lib/seo/per-calculator-content'
 import type { Currency, MeasurementSystem } from '@/lib/i18n/calculator-i18n'
-import { formatNumber, localeToCountry, localeToCurrency, countryConfigs } from '@/lib/i18n/calculator-i18n'
+import { formatNumber } from '@/lib/i18n/calculator-i18n'
 
 export type UnitSystem = 'metric' | 'imperial' | 'us'
 
@@ -309,7 +309,6 @@ export function PremiumCalculatorShell({
   enhancedExplanation: enhancedExplanationProp,
   formulaVariables, conceptNodes, conceptEdges, processSteps,
   examples, exampleChartType,
-  country: countryProp, currency: currencyProp, measurementSystem: measurementSystemProp,
   onCountryChange, onCurrencyChange, onMeasurementSystemChange,
   onExtraFieldsChange,
   rangeVisualizer,
@@ -368,9 +367,11 @@ export function PremiumCalculatorShell({
     const levels: Record<CalcMode, number> = { basic: 0, advanced: 1, professional: 2, expert: 3 }
     return levels[mode] || 0
   }, [mode])
-  const [country, setCountry] = useState(countryProp || localeToCountry(locale))
-  const [currency, setCurrency] = useState<Currency>(currencyProp || localeToCurrency(locale))
-  const [measSystem, setMeasSystem] = useState<MeasurementSystem>(measurementSystemProp || countryConfigs[countryProp || localeToCountry(locale)]?.measurement || 'metric')
+  // Region/currency selection is a global, persisted preference (RegionProvider
+  // mounted at the app root in ClientLocaleWrapper) so it applies to every
+  // component on the page and survives reloads/navigations.
+  const { country, currency, measurement: measSystem, setCountry, setCurrency, setMeasurement } = useRegion()
+  const { currencySymbol } = useCurrency()
   const [showAudit, setShowAudit] = useState(false)
   const [showBatch, setShowBatch] = useState(false)
   const [showRestore, setShowRestore] = useState(false)
@@ -440,17 +441,17 @@ export function PremiumCalculatorShell({
   const handleCountryChange = useCallback((c: string) => {
     setCountry(c)
     onCountryChange?.(c)
-  }, [onCountryChange])
+  }, [setCountry, onCountryChange])
 
   const handleCurrencyChange = useCallback((c: Currency) => {
     setCurrency(c)
     onCurrencyChange?.(c)
-  }, [onCurrencyChange])
+  }, [setCurrency, onCurrencyChange])
 
   const handleMeasurementChange = useCallback((s: MeasurementSystem) => {
-    setMeasSystem(s)
+    setMeasurement(s)
     onMeasurementSystemChange?.(s)
-  }, [onMeasurementSystemChange])
+  }, [setMeasurement, onMeasurementSystemChange])
 
   React.useEffect(() => {
     onExtraFieldsChange?.(extraFieldValues)
@@ -743,7 +744,6 @@ export function PremiumCalculatorShell({
           </div>
         ) : (
         <CalculatorModeProvider mode={mode}>
-        <CurrencyProvider country={country} currency={currency}>
         <div id="calculator" ref={calcRootRef} className="card-handcrafted p-4 sm:p-6">
           {/* Calculator Mode Toggle */}
           {tierFeatures.modes && (
@@ -873,7 +873,7 @@ export function PremiumCalculatorShell({
           {/* Presets */}
           {presets && presets.length > 0 && onPresetApply && (
             <div className="mt-4">
-              <VisualPresetCards presets={presets} onApply={onPresetApply} />
+              <VisualPresetCards presets={presets.map(p => ({ ...p, label: subMoney(p.label, currencySymbol) }))} onApply={onPresetApply} />
             </div>
           )}
 
@@ -939,7 +939,6 @@ export function PremiumCalculatorShell({
             />
           )}
           </div>
-        </CurrencyProvider>
         </CalculatorModeProvider>
         )}
         </CalculatorErrorBoundary>
@@ -1048,8 +1047,8 @@ export function PremiumCalculatorShell({
                     <div className="flex-1 min-w-0">
                       <p className="text-gray-600 dark:text-gray-400">{step.label}</p>
                       <div className="flex items-center gap-1">
-                        <p className="font-mono font-medium text-gray-900 dark:text-white">{step.value}</p>
-                        <button onClick={() => handleCopyValue(`${step.label}: ${step.value}`, `step-${i}`)} className="p-1 text-gray-400 hover:text-[#06b6d4] transition-colors" aria-label={t('premium.shell.copyStep', { label: step.label })}>
+                        <p className="font-mono font-medium text-gray-900 dark:text-white">{subMoney(step.value, currencySymbol)}</p>
+                        <button onClick={() => handleCopyValue(`${step.label}: ${subMoney(step.value, currencySymbol)}`, `step-${i}`)} className="p-1 text-gray-400 hover:text-[#06b6d4] transition-colors" aria-label={t('premium.shell.copyStep', { label: step.label })}>
                           {copiedValue === `step-${i}` ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                         </button>
                       </div>
@@ -1082,8 +1081,8 @@ export function PremiumCalculatorShell({
                   <div className="flex-1 min-w-0">
                     <p className="text-gray-600 dark:text-gray-400">{step.label}</p>
                     <div className="flex items-center gap-1">
-                      <p className="font-mono font-medium text-gray-900 dark:text-white">{step.value}</p>
-                      <button onClick={() => handleCopyValue(`${step.label}: ${step.value}`, `example-${i}`)} className="p-1 text-gray-400 hover:text-amber-600 transition-colors" aria-label={t('premium.shell.copyStep', { label: step.label })}>
+                      <p className="font-mono font-medium text-gray-900 dark:text-white">{subMoney(step.value, currencySymbol)}</p>
+                      <button onClick={() => handleCopyValue(`${step.label}: ${subMoney(step.value, currencySymbol)}`, `example-${i}`)} className="p-1 text-gray-400 hover:text-amber-600 transition-colors" aria-label={t('premium.shell.copyStep', { label: step.label })}>
                         {copiedValue === `example-${i}` ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                       </button>
                     </div>

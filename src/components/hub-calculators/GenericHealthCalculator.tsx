@@ -1276,8 +1276,10 @@ interface FieldDef {
 }
 import { calcDefs } from './health'
 import type { CalcDef } from '@/lib/generic-fallback'
+import { useCurrency, subMoney } from '@/lib/context/CurrencyContext'
 
 function GenericHealthCalculator({ calculator }: { calculator: CalculatorEntry }) {
+  const { currencySymbol } = useCurrency()
   const [values, setValues] = useState<any>(() => calcDefaults(calculator.slug))
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [result, setResult] = useState<any>(null)
@@ -1606,7 +1608,7 @@ function GenericHealthCalculator({ calculator }: { calculator: CalculatorEntry }
           {result.steps.map((s: any, i: number) => (
             <div key={i} className="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-sm">
               <span className="text-gray-600 dark:text-gray-400">{s.label}</span>
-              <span className="font-medium text-gray-900 dark:text-white">{s.value}</span>
+              <span className="font-medium text-gray-900 dark:text-white">{subMoney(s.value, currencySymbol)}</span>
             </div>
           ))}
         </div>
@@ -1687,6 +1689,7 @@ function GenericHealthCalculator({ calculator }: { calculator: CalculatorEntry }
 }
 
 function HealthCalcDefRenderer({ calculator, def }: { calculator: CalculatorEntry; def: CalcDef }) {
+  const { currencySymbol } = useCurrency()
   const [fieldUnits, setFieldUnits] = useState<Record<string, string>>({})
   const handleUnitChange = useCallback((name: string, unit: string) => {
     setFieldUnits(prev => ({ ...prev, [name]: unit }))
@@ -1760,17 +1763,17 @@ function HealthCalcDefRenderer({ calculator, def }: { calculator: CalculatorEntr
       <div className="text-center space-y-4">
         <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
           <p className="text-xs text-gray-500 dark:text-gray-400">{res.label}</p>
-          <p className="text-3xl font-bold text-[#06b6d4]">{typeof res.result === 'number' ? res.result.toFixed(2) : res.result} {res.unit}</p>
+          <p className="text-3xl font-bold text-[#06b6d4]">{typeof res.result === 'number' ? res.result.toFixed(2) : res.result} {subMoney(res.unit, currencySymbol)}</p>
           {healthInterpretation}
         </div>
         <div className="border-t border-gray-200 dark:border-gray-700 pt-4 text-xs text-gray-400 space-y-1">
           {(res.steps ?? []).map((step, i) => (
-            <p key={i}><strong>{step.label}:</strong> {step.value}</p>
+            <p key={i}><strong>{step.label}:</strong> {subMoney(step.value, currencySymbol)}</p>
           ))}
         </div>
       </div>
     )
-  }, [res, healthInterpretation, calculator.slug])
+  }, [res, healthInterpretation, calculator.slug, currencySymbol])
 
   const mainValue = useMemo(() =>
     typeof res.result === 'number' ? res.result : parseFloat(String(res.result)) || 0

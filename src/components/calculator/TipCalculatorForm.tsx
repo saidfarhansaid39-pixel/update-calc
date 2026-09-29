@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCurrency } from '@/lib/context/CurrencyContext'
 
 export default function TipCalculatorForm() {
+  const { currencySymbol } = useCurrency()
   const t = useTranslations('calculatorUI');
   const [bill, setBill] = useState<number>(50);
   const [tipPercent, setTipPercent] = useState<number>(15);
@@ -21,7 +23,7 @@ export default function TipCalculatorForm() {
     <div className="space-y-6">
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Bill Amount ($)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Bill Amount ({currencySymbol})</label>
           <input type="number" value={bill} onChange={(e) => setBill(Number(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded text-xl" />
         </div>
         <div>
@@ -42,12 +44,12 @@ export default function TipCalculatorForm() {
       {result && (
         <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded space-y-4">
           <div className="grid md:grid-cols-2 gap-4">
-            <div><p className="text-sm text-gray-600">Tip Amount</p><p className="text-xl font-bold text-gray-700">${result.tipAmount.toFixed(2)}</p></div>
-            <div><p className="text-sm text-gray-600">Total</p><p className="text-xl font-bold text-green-700">${result.total.toFixed(2)}</p></div>
+            <div><p className="text-sm text-gray-600">Tip Amount</p><p className="text-xl font-bold text-gray-700">{currencySymbol}{result.tipAmount.toFixed(2)}</p></div>
+            <div><p className="text-sm text-gray-600">Total</p><p className="text-xl font-bold text-green-700">{currencySymbol}{result.total.toFixed(2)}</p></div>
           </div>
           <div className="bg-white p-3 rounded">
             <p className="text-sm text-gray-600">Per Person</p>
-            <p className="text-2xl font-bold text-green-600">${result.perPerson.toFixed(2)}</p>
+            <p className="text-2xl font-bold text-green-600">{currencySymbol}{result.perPerson.toFixed(2)}</p>
           </div>
         </div>
       )}
