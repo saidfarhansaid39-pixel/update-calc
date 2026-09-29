@@ -11,14 +11,19 @@ export default function proxy(request: NextRequest) {
   const segments = pathname.split('/').filter(Boolean)
   const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value
 
-  let detectedLocale: string
-  if (segments.length > 0 && (LOCALES as readonly string[]).includes(segments[0])) {
-    detectedLocale = segments[0]
-  } else if (cookieLocale && (LOCALES as readonly string[]).includes(cookieLocale)) {
-    detectedLocale = cookieLocale
-  } else {
-    detectedLocale = detectLocaleFromAcceptLanguage(request) || routing.defaultLocale
-  }
+  // The locale comes ONLY from an explicit /xx/ URL prefix. Prefixless URLs
+  // (/, /about, /financial-calculators/...) are always English: they are the
+  // canonical English URLs in the hreflang annotations and the EN sitemap, so
+  // they must never be redirected away or rendered in another language based
+  // on Accept-Language or a stored cookie. Without this, a first-time French
+  // visitor was 308'd from / to /fr with no English root left ("the site
+  // opens in French, English doesn't exist"). French and the other 8 locales
+  // live at their own prefixes (/fr, /de, ...) and are chosen explicitly via
+  // the language switcher.
+  const detectedLocale: string =
+    segments.length > 0 && (LOCALES as readonly string[]).includes(segments[0])
+      ? segments[0]
+      : 'en'
 
   if (detectedLocale !== 'en' && !cookieLocale && segments.length > 0 && (LOCALES as readonly string[]).includes(segments[0])) {
     const localeAliases = ALIASES[detectedLocale]
@@ -31,56 +36,17 @@ export default function proxy(request: NextRequest) {
     }
   }
 
-  if (detectedLocale !== 'en' && !cookieLocale && segments.length === 0) {
-    const url = request.nextUrl.clone()
-    url.pathname = `/${detectedLocale}${pathname}`
-    const response = NextResponse.redirect(url)
-    response.cookies.set('NEXT_LOCALE', detectedLocale, { path: '/' })
-    response.headers.set('Content-Language', detectedLocale)
-    return response
-  }
-
   const requestHeaders = new Headers(request.headers)
   requestHeaders.set('x-next-intl-locale', detectedLocale)
 
-  const localeForHeaders = (cookieLocale && segments.length === 0) ? cookieLocale : detectedLocale
   const response = NextResponse.next({ request: { headers: requestHeaders } })
   if (!cookieLocale) {
-    response.cookies.set('NEXT_LOCALE', localeForHeaders, { path: '/' })
+    response.cookies.set('NEXT_LOCALE', detectedLocale, { path: '/' })
   }
   response.headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
-  response.headers.set('Content-Language', localeForHeaders)
+  response.headers.set('Content-Language', detectedLocale)
 
   return response
-}
-
-function detectLocaleFromAcceptLanguage(request: NextRequest): string | null {
-  const acceptLanguage = request.headers.get('Accept-Language')
-  if (!acceptLanguage) return null
-
-  const preferredLocales = acceptLanguage
-    .split(',')
-    .map(entry => {
-      const [lang, q = 'q=1'] = entry.trim().split(';')
-      const quality = parseFloat(q.split('=')[1]) || 1
-      return { lang: lang.trim(), quality }
-    })
-    .sort((a, b) => b.quality - a.quality)
-
-  for (const { lang } of preferredLocales) {
-    if ((LOCALES as readonly string[]).includes(lang)) {
-      return lang
-    }
-  }
-
-  for (const { lang } of preferredLocales) {
-    const base = lang.split('-')[0]
-    if ((LOCALES as readonly string[]).includes(base)) {
-      return base
-    }
-  }
-
-  return null
 }
 
 export const config = {
