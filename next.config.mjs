@@ -61,7 +61,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob: https:",
               "font-src 'self' data: https:",
-              "connect-src 'self' https://open.er-api.com https://financialmodelingprep.com https://*.vercel-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net",
+              "connect-src 'self' https://open.er-api.com https://financialmodelingprep.com https://*.vercel-analytics.com https://*.googlesyndication.com https://googleads.g.doubleclick.net https://*.adtrafficquality.google https://csi.gstatic.com",
               "frame-src 'self' https://googleads.g.doubleclick.net https://*.googlesyndication.com",
               "frame-ancestors *",
               "form-action 'self'",
