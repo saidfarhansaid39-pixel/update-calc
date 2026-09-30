@@ -5,8 +5,8 @@ import { step } from '../../../lib/hub-helpers'
 const calcDef: CalcDef = {
   schema: z.object({ siteA: z.string().min(1).refine(v => v.split(',').every((s:string) => !isNaN(parseFloat(s.trim()))), 'Comma-separated'), siteB: z.string().min(1).refine(v => v.split(',').every((s:string) => !isNaN(parseFloat(s.trim()))), 'Comma-separated') }),
   fields: [
-    { name: 'siteA', label: 'Site A species codes (1 present, 0 absent, CSV)', type: 'number' },
-    { name: 'siteB', label: 'Site B species codes (CSV)', type: 'number' },
+    { name: 'siteA', label: 'Site A species codes (1 present, 0 absent, CSV)', type: 'text' },
+    { name: 'siteB', label: 'Site B species codes (CSV)', type: 'text' },
     ],
   presets: [
     { label: 'Tropical rainforest', values: { species: '45,32,28,15,12,8,6,4,3,2,1' } },

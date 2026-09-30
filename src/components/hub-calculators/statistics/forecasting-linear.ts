@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ values: z.string().min(1, 'Required'), periods: z.string().min(1).refine(v => { const n = parseInt(v); return n >= 1 && n <= 100 }, '1-100') }),
-  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'number', step: 'any' }, { name: 'periods', label: 'Periods to Forecast', type: 'number', min: 1, max: 100, step: '1' }],
+  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'text', step: 'any' }, { name: 'periods', label: 'Periods to Forecast', type: 'number', min: 1, max: 100, step: '1' }],
   compute: (v) => { const nums = parseList(v.values); const h = Math.round(n(v.periods)); if (nums.length < 2 || h === 0) return { result: 'Need ≥2 values and ≥1 period', label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

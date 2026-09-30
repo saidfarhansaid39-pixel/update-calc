@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ a1b1: z.string().min(1, 'Required'), a1b2: z.string().min(1, 'Required'), a2b1: z.string().min(1, 'Required'), a2b2: z.string().min(1, 'Required') }),
-  fields: [{ name: 'a1b1', label: 'A₁B₁ (comma separated)', type: 'number', step: 'any' }, { name: 'a1b2', label: 'A₁B₂ (comma separated)', type: 'number', step: 'any' }, { name: 'a2b1', label: 'A₂B₁ (comma separated)', type: 'number', step: 'any' }, { name: 'a2b2', label: 'A₂B₂ (comma separated)', type: 'number', step: 'any' }],
+  fields: [{ name: 'a1b1', label: 'A₁B₁ (comma separated)', type: 'text', step: 'any' }, { name: 'a1b2', label: 'A₁B₂ (comma separated)', type: 'text', step: 'any' }, { name: 'a2b1', label: 'A₂B₁ (comma separated)', type: 'text', step: 'any' }, { name: 'a2b2', label: 'A₂B₂ (comma separated)', type: 'text', step: 'any' }],
   compute: (v) => { const cells = [[parseList(v.a1b1), parseList(v.a1b2)], [parseList(v.a2b1), parseList(v.a2b2)]]; if (cells.some(row => row.some(c => c.length < 2))) return { result: 'Need ≥2 per cell', label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

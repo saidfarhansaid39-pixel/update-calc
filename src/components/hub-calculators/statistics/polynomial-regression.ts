@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ x: z.string().min(1, 'Required'), y: z.string().min(1, 'Required'), deg: z.string().min(1).refine(v => { const d = parseInt(v); return d >= 2 && d <= 5 }, '2-5') }),
-  fields: [{ name: 'x', label: 'X (comma separated)', type: 'number', step: 'any' }, { name: 'y', label: 'Y (comma separated)', type: 'number', step: 'any' }, { name: 'deg', label: 'Polynomial Degree', type: 'number', min: 2, max: 5, step: '1' }],
+  fields: [{ name: 'x', label: 'X (comma separated)', type: 'text', step: 'any' }, { name: 'y', label: 'Y (comma separated)', type: 'text', step: 'any' }, { name: 'deg', label: 'Polynomial Degree', type: 'number', min: 2, max: 5, step: '1' }],
   compute: (v) => { const x = parseList(v.x); const y = parseList(v.y); const d = Math.round(n(v.deg)); if (x.length !== y.length || x.length < d + 1) return { result: `Need ≥${d + 1} points`, label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

@@ -5,9 +5,9 @@ import { step } from '../../../lib/hub-helpers'
 const calcDef: CalcDef = {
   schema: z.object({ age: z.string().min(1).refine(v => v.split(',').every(s => parseInt(s) >= 0), '≥0 CSV'), survivors: z.string().min(1).refine(v => v.split(',').every(s => parseInt(s) >= 0), '≥0 CSV'), births: z.string().optional() }),
   fields: [
-    { name: 'age', label: 'Age classes (CSV)', type: 'number' },
-    { name: 'survivors', label: 'Survivors per age class (CSV)', type: 'number' },
-    { name: 'births', label: 'Births per age class (CSV, optional)', type: 'number' },
+    { name: 'age', label: 'Age classes (CSV)', type: 'text' },
+    { name: 'survivors', label: 'Survivors per age class (CSV)', type: 'text' },
+    { name: 'births', label: 'Births per age class (CSV, optional)', type: 'text' },
     ],
   presets: [
     { label: 'White-tailed deer (US)', values: { initial: '1000', birthRate: '35', deathRate: '25', years: '10' } },

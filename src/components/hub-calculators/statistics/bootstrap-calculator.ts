@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ values: z.string().min(1, 'Required'), samples: z.string().min(1).refine(v => { const n = parseInt(v); return n >= 100 && n <= 100000 }, '100-100000') }),
-  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'number', step: 'any' }, { name: 'samples', label: 'Bootstrap Samples', type: 'number', min: 100, max: 100000, step: '100' }],
+  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'text', step: 'any' }, { name: 'samples', label: 'Bootstrap Samples', type: 'number', min: 100, max: 100000, step: '100' }],
   compute: (v) => { const nums = parseList(v.values); const B = Math.round(n(v.samples)); if (nums.length === 0 || B === 0) return { result: 0, label: 'Bootstrap Mean', unit: '', steps: [{ label: 'Info', value: 'Enter data to compute bootstrap' }] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

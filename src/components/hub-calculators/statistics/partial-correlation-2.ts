@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ x: z.string().min(1, 'Required'), y: z.string().min(1, 'Required'), z1: z.string().min(1, 'Required'), z2: z.string().min(1, 'Required') }),
-  fields: [{ name: 'x', label: 'X (comma separated)', type: 'number', step: 'any' }, { name: 'y', label: 'Y (comma separated)', type: 'number', step: 'any' }, { name: 'z1', label: 'Z₁ (control, comma sep)', type: 'number', step: 'any' }, { name: 'z2', label: 'Z₂ (control, comma sep)', type: 'number', step: 'any' }],
+  fields: [{ name: 'x', label: 'X (comma separated)', type: 'text', step: 'any' }, { name: 'y', label: 'Y (comma separated)', type: 'text', step: 'any' }, { name: 'z1', label: 'Z₁ (control, comma sep)', type: 'text', step: 'any' }, { name: 'z2', label: 'Z₂ (control, comma sep)', type: 'text', step: 'any' }],
   compute: (v) => { const x = parseList(v.x); const y = parseList(v.y); const z1 = parseList(v.z1); const z2 = parseList(v.z2); if (x.length !== y.length || x.length !== z1.length || x.length !== z2.length || x.length < 4) return { result: 'Need ≥4 obs', label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

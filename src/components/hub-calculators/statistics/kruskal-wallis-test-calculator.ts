@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ group1: z.string().min(1, 'Required'), group2: z.string().min(1, 'Required'), group3: z.string().min(1, 'Required') }),
-  fields: [{ name: 'group1', label: 'Group 1 (comma separated)', type: 'number', step: 'any' }, { name: 'group2', label: 'Group 2 (comma separated)', type: 'number', step: 'any' }, { name: 'group3', label: 'Group 3 (comma separated)', type: 'number', step: 'any' }],
+  fields: [{ name: 'group1', label: 'Group 1 (comma separated)', type: 'text', step: 'any' }, { name: 'group2', label: 'Group 2 (comma separated)', type: 'text', step: 'any' }, { name: 'group3', label: 'Group 3 (comma separated)', type: 'text', step: 'any' }],
   compute: (v) => { const gs = [parseList(v.group1), parseList(v.group2), parseList(v.group3)].filter(g => g.length > 0); if (gs.length < 2) return { result: 'Need ≥2 groups', label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

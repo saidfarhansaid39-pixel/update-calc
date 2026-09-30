@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ thresholds: z.string().min(1, 'Required'), x: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Required'), beta: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Required') }),
-  fields: [{ name: 'thresholds', label: 'Thresholds (comma separated)', type: 'number', step: 'any' }, { name: 'beta', label: 'Coefficient β', type: 'number', step: 'any' }, { name: 'x', label: 'Predictor x', type: 'number', step: 'any' }],
+  fields: [{ name: 'thresholds', label: 'Thresholds (comma separated)', type: 'text', step: 'any' }, { name: 'beta', label: 'Coefficient β', type: 'number', step: 'any' }, { name: 'x', label: 'Predictor x', type: 'number', step: 'any' }],
   compute: (v) => { const thresh = parseList(v.thresholds); const beta = n(v.beta); const x = n(v.x); if (thresh.length < 1) return { result: 'Need ≥1 threshold', label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

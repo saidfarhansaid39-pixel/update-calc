@@ -5,7 +5,7 @@ import { step } from '../../../lib/hub-helpers'
 const calcDef: CalcDef = {
   schema: z.object({ species: z.string().min(1).refine(v => v.split(',').every(s => !isNaN(parseFloat(s.trim()))), 'CSV'), sample: z.string().optional() }),
   fields: [
-    { name: 'species', label: 'Species abundances (comma-separated)', type: 'number' },
+    { name: 'species', label: 'Species abundances (comma-separated)', type: 'text' },
     { name: 'sample', label: 'Rarefaction sample size', type: 'number', min: 1, step: '1' },
     ],
   presets: [

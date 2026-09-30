@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ values: z.string().min(1, 'Required'), type: z.enum(['population', 'sample']).default('sample') }),
-  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'number', step: 'any' }, { name: 'type', label: 'Type', type: 'select', options: [{ label: 'Sample (N-1)', value: 'sample' }, { label: 'Population (N)', value: 'population' }] }],
+  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'text', step: 'any' }, { name: 'type', label: 'Type', type: 'select', options: [{ label: 'Sample (N-1)', value: 'sample' }, { label: 'Population (N)', value: 'population' }] }],
   compute: (v) => {
     const nums = parseList(v.values)
     const N = nums.length

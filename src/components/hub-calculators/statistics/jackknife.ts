@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ values: z.string().min(1, 'Required') }),
-  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'number', step: 'any' }],
+  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'text', step: 'any' }],
   compute: (v) => { const nums = parseList(v.values); if (nums.length < 2) return { result: 'Need ≥2 values', label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

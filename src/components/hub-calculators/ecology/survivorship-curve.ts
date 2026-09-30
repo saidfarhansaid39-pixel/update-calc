@@ -6,7 +6,7 @@ const calcDef: CalcDef = {
   schema: z.object({ initial: z.string().min(1).refine(v => parseInt(v) > 0, '>0'), survivors: z.string().min(1).refine(v => v.split(',').every(s => parseInt(s) >= 0), 'CSV ≥0') }),
   fields: [
     { name: 'initial', label: 'Initial cohort size', type: 'number', min: 1, step: '1' },
-    { name: 'survivors', label: 'Survivors per age interval (CSV)', type: 'number' },
+    { name: 'survivors', label: 'Survivors per age interval (CSV)', type: 'text' },
     ],
   presets: [
     { label: 'White-tailed deer (US)', values: { initial: '1000', birthRate: '35', deathRate: '25', years: '10' } },

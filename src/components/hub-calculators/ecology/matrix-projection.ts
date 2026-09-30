@@ -5,9 +5,9 @@ import { step } from '../../../lib/hub-helpers'
 const calcDef: CalcDef = {
   schema: z.object({ ageClasses: z.string().min(1).refine(v => v.split(',').every(s => !isNaN(parseFloat(s.trim()))), 'CSV'), fertility: z.string().min(1).refine(v => v.split(',').every(s => !isNaN(parseFloat(s.trim()))), 'CSV'), survival: z.string().min(1).refine(v => v.split(',').every(s => !isNaN(parseFloat(s.trim()))), 'CSV'), years: z.string().optional() }),
   fields: [
-    { name: 'ageClasses', label: 'Current counts per age class (CSV)', type: 'number' },
-    { name: 'fertility', label: 'Fertility rates per age class (CSV)', type: 'number' },
-    { name: 'survival', label: 'Survival rates per class (CSV)', type: 'number' },
+    { name: 'ageClasses', label: 'Current counts per age class (CSV)', type: 'text' },
+    { name: 'fertility', label: 'Fertility rates per age class (CSV)', type: 'text' },
+    { name: 'survival', label: 'Survival rates per class (CSV)', type: 'text' },
     { name: 'years', label: 'Projection years (optional)', type: 'number', min: 1, step: '1' },
     ],
   presets: [

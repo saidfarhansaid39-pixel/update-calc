@@ -95,7 +95,9 @@ export function CalculatorFormField({
   const describedBy = [error ? errorId : null, helperText ? helperId : null].filter(Boolean).join(' ') || undefined
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = e.target.value.replace(/,/g, '')
+    // Strip thousands separators only for numeric fields; text fields must
+    // keep commas (CSV list inputs like "45,32,28" depend on them).
+    const raw = type === 'number' ? e.target.value.replace(/,/g, '') : e.target.value
     if (type === 'number' && raw !== '' && isNaN(parseFloat(raw))) return
     field.onChange(raw)
   }, [field, type])

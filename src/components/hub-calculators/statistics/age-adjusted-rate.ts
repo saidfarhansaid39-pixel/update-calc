@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ ageGroups: z.string().min(1, 'Required'), rates: z.string().min(1, 'Required'), stdPop: z.string().min(1, 'Required') }),
-  fields: [{ name: 'ageGroups', label: 'Age Group Labels (comma separated)', type: 'number', step: 'any' }, { name: 'rates', label: 'Crude Rates per group (comma separated)', type: 'number', step: 'any' }, { name: 'stdPop', label: 'Standard Population (comma separated)', type: 'number', step: 'any' }],
+  fields: [{ name: 'ageGroups', label: 'Age Group Labels (comma separated)', type: 'number', step: 'any' }, { name: 'rates', label: 'Crude Rates per group (comma separated)', type: 'text', step: 'any' }, { name: 'stdPop', label: 'Standard Population (comma separated)', type: 'text', step: 'any' }],
   compute: (v) => { const rates = parseList(v.rates); const stdPop = parseList(v.stdPop); if (rates.length !== stdPop.length || rates.length < 1) return { result: 'Mismatched lengths', label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

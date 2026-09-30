@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ values: z.string().min(1, 'Required') }),
-  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'number', step: 'any' }],
+  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'text', step: 'any' }],
   compute: (v) => { const nums = parseList(v.values); const freq: Record<number, number> = {}; nums.forEach(x => { freq[x] = (freq[x] || 0) + 1 }); const maxFreq = Math.max(...Object.values(freq), 0); const modes = Object.entries(freq).filter(([, f]) => f === maxFreq).map(([k]) => Number(k)); return { result: modes.join(', '), label: 'Mode(s)', unit: '', steps: [{ label: 'Values', value: nums.join(', ') }, { label: 'Mode(s)', value: modes.join(', ') || 'None (all unique)' }] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

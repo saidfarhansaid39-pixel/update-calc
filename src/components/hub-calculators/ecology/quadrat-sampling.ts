@@ -5,7 +5,7 @@ import { step } from '../../../lib/hub-helpers'
 const calcDef: CalcDef = {
   schema: z.object({ counts: z.string().min(1).refine(v => v.split(',').every(s => parseInt(s) >= 0), 'CSV ≥0'), quadratSize: z.string().min(1).refine(v => parseFloat(v) > 0, '>0') }),
   fields: [
-    { name: 'counts', label: 'Counts per quadrat (CSV)', type: 'number' },
+    { name: 'counts', label: 'Counts per quadrat (CSV)', type: 'text' },
     { name: 'quadratSize', label: 'Quadrat area (m²)', type: 'number', min: 0.01, step: '0.01' },
     ],
   presets: [

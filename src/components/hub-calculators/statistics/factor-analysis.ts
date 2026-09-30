@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ correlations: z.string().min(1, 'Required'), nFactors: z.string().min(1).refine(v => { const f = parseInt(v); return f >= 1 && f <= 10 }, '1-10') }),
-  fields: [{ name: 'correlations', label: 'Correlation matrix (comma sep, lower triangle)', type: 'number', step: 'any' }, { name: 'nFactors', label: 'Number of Factors', type: 'number', min: 1, max: 10, step: '1' }],
+  fields: [{ name: 'correlations', label: 'Correlation matrix (comma sep, lower triangle)', type: 'text', step: 'any' }, { name: 'nFactors', label: 'Number of Factors', type: 'number', min: 1, max: 10, step: '1' }],
   compute: (v) => { const cors = parseList(v.correlations); const k = Math.round(n(v.nFactors)); if (cors.length < 3) return { result: 'Need ≥3 correlations', label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

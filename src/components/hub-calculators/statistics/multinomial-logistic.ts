@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ coeffs: z.string().min(1, 'Required'), x: z.string().min(1).refine(v => !isNaN(parseFloat(v)), 'Required') }),
-  fields: [{ name: 'coeffs', label: 'Coefficients (comma separated, one per category)', type: 'number', step: 'any' }, { name: 'x', label: 'Predictor x', type: 'number', step: 'any' }],
+  fields: [{ name: 'coeffs', label: 'Coefficients (comma separated, one per category)', type: 'text', step: 'any' }, { name: 'x', label: 'Predictor x', type: 'number', step: 'any' }],
   compute: (v) => { const coeffs = parseList(v.coeffs); const x = n(v.x); if (coeffs.length < 1) return { result: 'Need ≥1 coefficient', label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

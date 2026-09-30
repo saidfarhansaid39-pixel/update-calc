@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ r1: z.string().min(1, 'Required'), r2: z.string().min(1, 'Required'), r3: z.string().min(1, 'Required'), r4: z.string().min(1, 'Required') }),
-  fields: [{ name: 'r1', label: 'Variable 1 (0/1, comma sep)', type: 'number', step: 'any' }, { name: 'r2', label: 'Variable 2 (0/1, comma sep)', type: 'number', step: 'any' }, { name: 'r3', label: 'Variable 3 (0/1, comma sep)', type: 'number', step: 'any' }, { name: 'r4', label: 'Variable 4 (0/1, comma sep)', type: 'number', step: 'any' }],
+  fields: [{ name: 'r1', label: 'Variable 1 (0/1, comma sep)', type: 'text', step: 'any' }, { name: 'r2', label: 'Variable 2 (0/1, comma sep)', type: 'text', step: 'any' }, { name: 'r3', label: 'Variable 3 (0/1, comma sep)', type: 'text', step: 'any' }, { name: 'r4', label: 'Variable 4 (0/1, comma sep)', type: 'text', step: 'any' }],
   compute: (v) => { const vars = [parseList(v.r1), parseList(v.r2), parseList(v.r3), parseList(v.r4)].filter(g => g.length > 0); if (vars.length < 3 || vars.some(g => g.length !== vars[0].length)) return { result: 'Need equal length ≥3 vars', label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

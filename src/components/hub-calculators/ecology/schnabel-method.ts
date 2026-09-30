@@ -5,9 +5,9 @@ import { step } from '../../../lib/hub-helpers'
 const calcDef: CalcDef = {
   schema: z.object({ captures: z.string().min(1).refine(v => v.split(',').every(s => parseInt(s) >= 0), 'CSV ≥0'), recaptures: z.string().min(1).refine(v => v.split(',').every(s => parseInt(s) >= 0), 'CSV ≥0'), marked: z.string().min(1).refine(v => v.split(',').every(s => parseInt(s) >= 0), 'CSV ≥0') }),
   fields: [
-    { name: 'captures', label: 'Captured each session (CSV)', type: 'number' },
-    { name: 'recaptures', label: 'Recaptured each session (CSV)', type: 'number' },
-    { name: 'marked', label: 'Cumulatively marked before (CSV)', type: 'number' },
+    { name: 'captures', label: 'Captured each session (CSV)', type: 'text' },
+    { name: 'recaptures', label: 'Recaptured each session (CSV)', type: 'text' },
+    { name: 'marked', label: 'Cumulatively marked before (CSV)', type: 'text' },
     ],
   presets: [
     { label: 'Small mammal trapping', values: { marked: '40', recaptured: '35', markedInRecapture: '28' } },

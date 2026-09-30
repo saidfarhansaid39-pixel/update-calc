@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ trainLabels: z.string().min(1, 'Required'), testDistances: z.string().min(1, 'Required'), k: z.string().min(1).refine(v => { const k = parseInt(v); return k >= 1 && k <= 20 }, '1-20') }),
-  fields: [{ name: 'trainLabels', label: 'Training Labels (0/1, comma sep)', type: 'number', step: 'any' }, { name: 'testDistances', label: 'Distances to test point (comma sep)', type: 'number', step: 'any' }, { name: 'k', label: 'K neighbors', type: 'number', min: 1, max: 20, step: '1' }],
+  fields: [{ name: 'trainLabels', label: 'Training Labels (0/1, comma sep)', type: 'text', step: 'any' }, { name: 'testDistances', label: 'Distances to test point (comma sep)', type: 'text', step: 'any' }, { name: 'k', label: 'K neighbors', type: 'number', min: 1, max: 20, step: '1' }],
   compute: (v) => { const labels = parseList(v.trainLabels); const dists = parseList(v.testDistances); const k = Math.round(n(v.k)); if (labels.length !== dists.length || labels.length < k) return { result: `Need ≥${k} labeled points`, label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

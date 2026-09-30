@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ values: z.string().min(1, 'Required'), weights: z.string().min(1, 'Required') }),
-  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'number', step: 'any' }, { name: 'weights', label: 'Weights (comma separated)', type: 'number', step: 'any' }],
+  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'text', step: 'any' }, { name: 'weights', label: 'Weights (comma separated)', type: 'text', step: 'any' }],
   compute: (v) => { const vals = parseList(v.values); const wts = parseList(v.weights); if (vals.length !== wts.length) return { result: 'Error: mismatched lengths', label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

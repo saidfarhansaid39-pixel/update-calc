@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ xValues: z.string().min(1, 'Required'), yValues: z.string().min(1, 'Required'), degree: z.string().min(1).refine(v => { const d = parseInt(v); return d >= 2 && d <= 6 }, '2-6') }),
-  fields: [{ name: 'xValues', label: 'X Values (comma separated)', type: 'number', step: 'any' }, { name: 'yValues', label: 'Y Values (comma separated)', type: 'number', step: 'any' }, { name: 'degree', label: 'Polynomial Degree', type: 'number', min: 2, max: 6, step: '1' }],
+  fields: [{ name: 'xValues', label: 'X Values (comma separated)', type: 'text', step: 'any' }, { name: 'yValues', label: 'Y Values (comma separated)', type: 'text', step: 'any' }, { name: 'degree', label: 'Polynomial Degree', type: 'number', min: 2, max: 6, step: '1' }],
   compute: (v) => { const x = parseList(v.xValues); const y = parseList(v.yValues); const deg = Math.round(n(v.degree)); if (x.length !== y.length || x.length < deg + 1) return { result: `Need ≥${deg + 1} pairs`, label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

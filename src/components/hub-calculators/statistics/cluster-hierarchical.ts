@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ distances: z.string().min(1, 'Required'), linkage: z.enum(['single', 'complete', 'average']).default('single') }),
-  fields: [{ name: 'distances', label: 'Distance matrix (lower triangle, comma sep)', type: 'number', step: 'any' }, { name: 'linkage', label: 'Linkage Criterion', type: 'select', options: [{ label: 'Single (min)', value: 'single' }, { label: 'Complete (max)', value: 'complete' }, { label: 'Average', value: 'average' }] }],
+  fields: [{ name: 'distances', label: 'Distance matrix (lower triangle, comma sep)', type: 'text', step: 'any' }, { name: 'linkage', label: 'Linkage Criterion', type: 'select', options: [{ label: 'Single (min)', value: 'single' }, { label: 'Complete (max)', value: 'complete' }, { label: 'Average', value: 'average' }] }],
   compute: (v) => { const dists = parseList(v.distances); const linkage = v.linkage || 'single'; const p = Math.round((1 + Math.sqrt(1 + 8 * dists.length)) / 2); if (p < 2) return { result: `Need ≥2 points (got ${p})`, label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

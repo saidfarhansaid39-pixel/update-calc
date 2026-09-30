@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ values: z.string().min(1, 'Required'), p: z.string().min(1).refine(v => { const n = parseInt(v); return n >= 0 && n <= 5 }, '0-5'), d: z.string().min(1).refine(v => { const n = parseInt(v); return n >= 0 && n <= 2 }, '0-2'), q: z.string().min(1).refine(v => { const n = parseInt(v); return n >= 0 && n <= 5 }, '0-5') }),
-  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'number', step: 'any' }, { name: 'p', label: 'AR order (p)', type: 'number', min: 0, max: 5, step: '1' }, { name: 'd', label: 'Diff order (d)', type: 'number', min: 0, max: 2, step: '1' }, { name: 'q', label: 'MA order (q)', type: 'number', min: 0, max: 5, step: '1' }],
+  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'text', step: 'any' }, { name: 'p', label: 'AR order (p)', type: 'number', min: 0, max: 5, step: '1' }, { name: 'd', label: 'Diff order (d)', type: 'number', min: 0, max: 2, step: '1' }, { name: 'q', label: 'MA order (q)', type: 'number', min: 0, max: 5, step: '1' }],
   compute: (v) => { const nums = parseList(v.values); const p = Math.round(n(v.p)); const d = Math.round(n(v.d)); const q = Math.round(n(v.q)); if (nums.length < p + q + 3) return { result: `Need more data`, label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

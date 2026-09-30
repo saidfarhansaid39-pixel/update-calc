@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ values: z.string().min(1, 'Required') }),
-  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'number', step: 'any' }],
+  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'text', step: 'any' }],
   compute: (v) => { const nums = parseList(v.values); const rms = Math.sqrt(nums.reduce((acc, x) => acc + x * x, 0) / nums.length); return { result: rms, label: 'RMS', unit: '', steps: [{ label: 'Count', value: `${nums.length}` }, { label: 'Sum of squares', value: `${nums.reduce((acc, x) => acc + x * x, 0).toFixed(4)}` }, { label: 'RMS', value: `${rms.toFixed(4)}` }] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

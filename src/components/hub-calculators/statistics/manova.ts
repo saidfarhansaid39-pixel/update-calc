@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ group1: z.string().min(1, 'Required'), group2: z.string().min(1, 'Required'), dv1: z.string().min(1, 'Required'), dv2: z.string().min(1, 'Required') }),
-  fields: [{ name: 'group1', label: 'Group 1 DV1,DV2 (pairs)', type: 'number', step: 'any' }, { name: 'group2', label: 'Group 2 DV1,DV2 (pairs)', type: 'number', step: 'any' }, { name: 'dv1', label: 'DV1 labels (comma sep)', type: 'number', step: 'any' }, { name: 'dv2', label: 'DV2 labels (comma sep)', type: 'number', step: 'any' }],
+  fields: [{ name: 'group1', label: 'Group 1 DV1,DV2 (pairs)', type: 'text', step: 'any' }, { name: 'group2', label: 'Group 2 DV1,DV2 (pairs)', type: 'text', step: 'any' }, { name: 'dv1', label: 'DV1 labels (comma sep)', type: 'number', step: 'any' }, { name: 'dv2', label: 'DV2 labels (comma sep)', type: 'number', step: 'any' }],
   compute: (v) => { const g1 = parseList(v.group1); const g2 = parseList(v.group2); if (g1.length < 2 || g2.length < 2) return { result: 'Need ≥2 per group', label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

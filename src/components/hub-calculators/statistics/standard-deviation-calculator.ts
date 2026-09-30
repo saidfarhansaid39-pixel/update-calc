@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ values: z.string().min(1, 'Required'), type: z.enum(['population', 'sample']).default('sample') }),
-  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'number', step: 'any' }, { name: 'type', label: 'Type', type: 'select', options: [{ label: 'Sample (N-1)', value: 'sample' }, { label: 'Population (N)', value: 'population' }] }],
+  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'text', step: 'any' }, { name: 'type', label: 'Type', type: 'select', options: [{ label: 'Sample (N-1)', value: 'sample' }, { label: 'Population (N)', value: 'population' }] }],
   compute: (v) => { const nums = parseList(v.values); const mean = nums.reduce((a, b) => a + b, 0) / nums.length; const denom = v.type === 'population' ? nums.length : nums.length - 1; const std = denom > 0 ? Math.sqrt(nums.reduce((acc, x) => acc + (x - mean) ** 2, 0) / denom) : 0; return { result: std, label: 'Standard Deviation', unit: '', steps: [{ label: 'Mean', value: `${mean.toFixed(4)}` }, { label: 'Variance', value: `${(std * std).toFixed(4)}` }, { label: 'Std Dev', value: `${std.toFixed(4)}` }] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

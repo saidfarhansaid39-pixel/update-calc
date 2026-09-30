@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ x: z.string().min(1, 'Required'), y: z.string().min(1, 'Required'), lambda: z.string().min(1).refine(v => parseFloat(v) >= 0, '≥0'), alpha: z.string().min(1).refine(v => { const a = parseFloat(v); return a >= 0 && a <= 1 }, '0-1') }),
-  fields: [{ name: 'x', label: 'X (comma separated)', type: 'number', step: 'any' }, { name: 'y', label: 'Y (comma separated)', type: 'number', step: 'any' }, { name: 'lambda', label: 'λ (regularization)', type: 'number', min: 0, step: '0.1' }, { name: 'alpha', label: 'α (mix: 0=Ridge, 1=Lasso)', type: 'number', min: 0, max: 1, step: '0.1' }],
+  fields: [{ name: 'x', label: 'X (comma separated)', type: 'text', step: 'any' }, { name: 'y', label: 'Y (comma separated)', type: 'text', step: 'any' }, { name: 'lambda', label: 'λ (regularization)', type: 'number', min: 0, step: '0.1' }, { name: 'alpha', label: 'α (mix: 0=Ridge, 1=Lasso)', type: 'number', min: 0, max: 1, step: '0.1' }],
   compute: (v) => { const x = parseList(v.x); const y = parseList(v.y); if (x.length !== y.length || x.length < 3) return { result: 'Need ≥3 obs', label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

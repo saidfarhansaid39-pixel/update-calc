@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ values: z.string().min(1, 'Required') }),
-  fields: [{ name: 'values', label: 'Values (comma separated, ordinal)', type: 'number', step: 'any' }],
+  fields: [{ name: 'values', label: 'Values (comma separated, ordinal)', type: 'text', step: 'any' }],
   compute: (v) => { const nums = parseList(v.values).sort((a, b) => a - b); const mid = Math.floor(nums.length / 2); const median = nums.length % 2 === 0 ? (nums[mid - 1] + nums[mid]) / 2 : nums[mid]; const freq: Record<number, number> = {}; nums.forEach(x => { freq[x] = (freq[x] || 0) + 1 }); const maxFreq = Math.max(...Object.values(freq), 0); const modes = Object.entries(freq).filter(([, f]) => f === maxFreq).map(([k]) => Number(k)); return { result: `Median:${median} Mode:${modes.join(',')}`, label: 'Ordinal Measures', unit: '', steps: [{ label: 'Median', value: `${median.toFixed(4)}` }, { label: 'Mode(s)', value: modes.join(', ') || 'None' }, { label: 'Count', value: `${nums.length}` }] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

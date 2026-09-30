@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ g1dv1: z.string().min(1, 'Required'), g1dv2: z.string().min(1, 'Required'), g2dv1: z.string().min(1, 'Required'), g2dv2: z.string().min(1, 'Required') }),
-  fields: [{ name: 'g1dv1', label: 'Group 1, DV1 (comma sep)', type: 'number', step: 'any' }, { name: 'g1dv2', label: 'Group 1, DV2 (comma sep)', type: 'number', step: 'any' }, { name: 'g2dv1', label: 'Group 2, DV1 (comma sep)', type: 'number', step: 'any' }, { name: 'g2dv2', label: 'Group 2, DV2 (comma sep)', type: 'number', step: 'any' }],
+  fields: [{ name: 'g1dv1', label: 'Group 1, DV1 (comma sep)', type: 'text', step: 'any' }, { name: 'g1dv2', label: 'Group 1, DV2 (comma sep)', type: 'text', step: 'any' }, { name: 'g2dv1', label: 'Group 2, DV1 (comma sep)', type: 'text', step: 'any' }, { name: 'g2dv2', label: 'Group 2, DV2 (comma sep)', type: 'text', step: 'any' }],
   compute: (v) => { const g1dv1 = parseList(v.g1dv1); const g1dv2 = parseList(v.g1dv2); const g2dv1 = parseList(v.g2dv1); const g2dv2 = parseList(v.g2dv2); if (g1dv1.length !== g1dv2.length || g2dv1.length !== g2dv2.length || g1dv1.length < 2 || g2dv1.length < 2) return { result: 'Need ≥2 per group, equal DVs', label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

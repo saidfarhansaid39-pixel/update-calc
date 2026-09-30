@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ distances: z.string().min(1, 'Required'), eps: z.string().min(1).refine(v => parseFloat(v) > 0, '>0'), minPts: z.string().min(1).refine(v => parseInt(v) >= 1, '≥1') }),
-  fields: [{ name: 'distances', label: 'Distances to nearest neighbors (comma sep)', type: 'number', step: 'any' }, { name: 'eps', label: 'Epsilon (ε) radius', type: 'number', min: 0.001, step: 'any' }, { name: 'minPts', label: 'Min Points', type: 'number', min: 1, step: '1' }],
+  fields: [{ name: 'distances', label: 'Distances to nearest neighbors (comma sep)', type: 'text', step: 'any' }, { name: 'eps', label: 'Epsilon (ε) radius', type: 'number', min: 0.001, step: 'any' }, { name: 'minPts', label: 'Min Points', type: 'number', min: 1, step: '1' }],
   compute: (v) => { const dists = parseList(v.distances); const eps = n(v.eps); const minPts = Math.round(n(v.minPts)); if (dists.length < 1) return { result: 'Enter distances', label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },

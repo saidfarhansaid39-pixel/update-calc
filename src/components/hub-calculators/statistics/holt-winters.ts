@@ -4,7 +4,7 @@ import type { CalcDef } from '../../../lib/generic-fallback'
 
 const calcDef: CalcDef = {
   schema: z.object({ values: z.string().min(1, 'Required'), period: z.string().min(1).refine(v => { const n = parseInt(v); return n >= 2 && n <= 52 }, '2-52'), periods: z.string().min(1).refine(v => { const n = parseInt(v); return n >= 1 && n <= 52 }, '1-52'), alpha: z.string().min(1).refine(v => { const a = parseFloat(v); return a > 0 && a < 1 }, '0-1') }),
-  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'number', step: 'any' }, { name: 'period', label: 'Seasonal Period', type: 'number', min: 2, max: 52, step: '1' }, { name: 'periods', label: 'Periods to Forecast', type: 'number', min: 1, max: 52, step: '1' }, { name: 'alpha', label: 'Alpha (level)', type: 'number', min: 0.01, max: 0.99, step: '0.05' }],
+  fields: [{ name: 'values', label: 'Values (comma separated)', type: 'text', step: 'any' }, { name: 'period', label: 'Seasonal Period', type: 'number', min: 2, max: 52, step: '1' }, { name: 'periods', label: 'Periods to Forecast', type: 'number', min: 1, max: 52, step: '1' }, { name: 'alpha', label: 'Alpha (level)', type: 'number', min: 0.01, max: 0.99, step: '0.05' }],
   compute: (v) => { const nums = parseList(v.values); const per = Math.round(n(v.period)); const h = Math.round(n(v.periods)); const alpha = n(v.alpha); if (nums.length < Math.max(2, per + 2) || per === 0) return { result: `Need ${Math.max(2, per + 2)}+ values`, label: '', unit: '', steps: [] ,
     extras: [
       { label: "Assumption check", value: "Verify your data meets the assumptions of this test before drawing conclusions." },
