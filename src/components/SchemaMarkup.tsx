@@ -10,10 +10,24 @@ interface SchemaMarkupProps {
 }
 
 export function SchemaMarkup({ type, data, locale = routing.defaultLocale }: SchemaMarkupProps) {
+  // Google validates offer-bearing items (WebApplication/Product/SoftwareApplication)
+  // under Product rich-results rules: `image` is CRITICAL (missing image = invalid
+  // item) and a global identifier (`brand`) is recommended. Inject both centrally
+  // unless the caller supplied its own.
+  const effectiveType = typeof data['@type'] === 'string' ? data['@type'] : type
+  const productLike =
+    Boolean(data.offers) &&
+    (effectiveType === 'WebApplication' ||
+      effectiveType === 'Product' ||
+      effectiveType === 'SoftwareApplication')
   const schema = {
     '@context': 'https://schema.org',
     '@type': type,
     ...data,
+    ...(productLike && !data.image ? { image: `${siteUrl}/og-image.png` } : {}),
+    ...(productLike && !data.brand
+      ? { brand: { '@type': 'Brand', name: 'Calculat' } }
+      : {}),
     inLanguage: locale,
   }
 
