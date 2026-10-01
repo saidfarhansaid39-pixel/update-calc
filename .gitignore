@@ -41,6 +41,7 @@
 
 # Allow root-level doc files
 !/PRD-CalculatorUniverseX.md
+!/UX-AUDIT-REDESIGN-SPEC.md
 !/.vercelignore
 
 # Cloudflare / OpenNext config
