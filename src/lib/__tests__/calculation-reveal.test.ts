@@ -3,6 +3,7 @@ import {
   getCalculationSignature,
   isCalculationStale,
   isDisplayableMainValue,
+  parseChartNumber,
   shouldEnableCalculate,
 } from '@/lib/calculation-reveal'
 
@@ -52,5 +53,24 @@ describe('isCalculationStale', () => {
     expect(isCalculationStale(false, null, 'a')).toBe(false)
     expect(isCalculationStale(true, 'a', 'a')).toBe(false)
     expect(isCalculationStale(true, 'a', 'b')).toBe(true)
+  })
+})
+
+describe('parseChartNumber', () => {
+  it('parses display-formatted money, percents and plain numbers', () => {
+    expect(parseChartNumber('$7,500.00')).toBe(7500)
+    expect(parseChartNumber('1390326.04 $')).toBe(1390326.04)
+    expect(parseChartNumber('22%')).toBe(22)
+    expect(parseChartNumber('3.0000')).toBe(3)
+    expect(parseChartNumber(42)).toBe(42)
+  })
+
+  it('returns null for non-numeric steps', () => {
+    expect(parseChartNumber('See results above')).toBe(null)
+    expect(parseChartNumber('')).toBe(null)
+    expect(parseChartNumber('$')).toBe(null)
+    expect(parseChartNumber(NaN)).toBe(null)
+    expect(parseChartNumber(undefined)).toBe(null)
+    expect(parseChartNumber('May 2026')).toBe(null)
   })
 })

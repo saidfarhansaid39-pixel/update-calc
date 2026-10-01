@@ -175,7 +175,20 @@ export default function GenericChemistryCalculator({ calculator }: Props) {
     { label: 'Brown TE, LeMay HE, Bursten BE, et al. Chemistry: The Central Science. 14th Edition. Pearson. 2017', url: 'https://en.wikipedia.org/wiki/Chemistry:_The_Central_Science' },
     { label: 'Chang R, Overby J. Chemistry. 13th Edition. McGraw-Hill. 2018', url: 'https://en.wikipedia.org/wiki/General_Chemistry_(Chang)' },
   ]
-  const chemExample = { label: calculator.slug, value: 'See results above' }
+  const chemExampleSteps = useMemo(() => {
+    if (!def) return []
+    const vals: Record<string, any> = {}
+    for (const f of def.fields) {
+      const raw = v[f.name]
+      if (f.type === 'number') {
+        vals[f.name] = raw !== undefined && raw !== '' ? Number(raw) : 0
+      } else {
+        vals[f.name] = raw ?? ''
+      }
+    }
+    const res = memoizedCompute(def)(vals)
+    return (res.steps ?? []).map((s: any) => ({ label: String(s.label), value: String(s.value) }))
+  }, [def, v])
 
   return (
     <FormProvider {...form}>
@@ -201,7 +214,7 @@ export default function GenericChemistryCalculator({ calculator }: Props) {
         author={chemAuthor}
         reviewer={chemReviewer}
         references={chemReferences}
-        example={[chemExample]}
+        example={chemExampleSteps.length > 0 ? chemExampleSteps : undefined}
         userCount={7234}
         onReset={() => {
           const locked = Object.fromEntries(

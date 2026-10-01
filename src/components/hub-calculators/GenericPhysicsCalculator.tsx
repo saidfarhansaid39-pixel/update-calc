@@ -173,7 +173,9 @@ export function GenericPhysicsCalculator({ calculator }: Props) {
     { label: 'Young HD, Freedman RA. University Physics with Modern Physics. 15th Edition. Pearson. 2019', url: 'https://en.wikipedia.org/wiki/University_Physics' },
     { label: 'Feynman RP, Leighton RB, Sands M. The Feynman Lectures on Physics. Basic Books. 2011', url: 'https://en.wikipedia.org/wiki/The_Feynman_Lectures_on_Physics' },
   ]
-  const physicsExample = { label: calculator.slug, value: 'See results above' }
+  const physicsExampleSteps = useMemo(() => {
+    return ((res as any)?.steps ?? []).map((s: any) => ({ label: String(s.label), value: String(s.value) }))
+  }, [res])
 
   return (
     <FormProvider {...form}>
@@ -199,7 +201,7 @@ export function GenericPhysicsCalculator({ calculator }: Props) {
         author={physicsAuthor}
         reviewer={physicsReviewer}
         references={physicsReferences}
-        example={[physicsExample]}
+        example={physicsExampleSteps.length > 0 ? physicsExampleSteps : undefined}
         userCount={15234}
         onReset={() => {
           const locked = Object.fromEntries(

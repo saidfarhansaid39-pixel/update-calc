@@ -187,7 +187,20 @@ export function GenericBiologyCalculator({ calculator }: Props) {
     { label: 'Alberts B, et al. Molecular Biology of the Cell. 7th Edition. Garland Science. 2022', url: 'https://www.ncbi.nlm.nih.gov/books/NBK26882/' },
     { label: 'Lodish H, et al. Molecular Cell Biology. 9th Edition. W.H. Freeman. 2021', url: 'https://www.ncbi.nlm.nih.gov/books/NBK21475/' },
   ]
-  const bioExample = { label: calculator.slug, value: 'See results above' }
+  const bioExampleSteps = useMemo(() => {
+    if (!def) return []
+    const vals: Record<string, any> = {}
+    for (const f of def.fields) {
+      const raw = v[f.name]
+      if (f.type === 'number') {
+        vals[f.name] = raw !== undefined && raw !== '' ? Number(raw) : 0
+      } else {
+        vals[f.name] = raw ?? ''
+      }
+    }
+    const res = memoizedCompute(def)(vals)
+    return (res.steps ?? []).map((s: any) => ({ label: String(s.label), value: String(s.value) }))
+  }, [def, v])
 
   return (
     <FormProvider {...form}>
@@ -213,7 +226,7 @@ export function GenericBiologyCalculator({ calculator }: Props) {
         author={bioAuthor}
         reviewer={bioReviewer}
         references={bioReferences}
-        example={[bioExample]}
+        example={bioExampleSteps.length > 0 ? bioExampleSteps : undefined}
         userCount={7234}
         onReset={() => {
   const locked = Object.fromEntries(Array.from(lockedFields).map(key => [key, form.getValues(key)]))

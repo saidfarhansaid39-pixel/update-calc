@@ -12,7 +12,7 @@ import type { UnitSystem } from '@/components/premium/PremiumCalculatorShell'
 import { ModeFieldGroup } from '@/components/premium/ModeFieldGroup'
 import { useTranslations } from 'next-intl'
 import { getFinFormula, finSlugOverrides } from '@/lib/seo/formula-generator'
-import { DynamicLoanDonutChart as LoanDonutChart, DynamicInvestmentGrowthChart as InvestmentGrowthChart, DynamicAmortizationChart as AmortizationChart, DynamicComparisonBarChart as ComparisonBarChart } from '@/components/premium/DynamicCharts'
+import { DynamicLoanDonutChart as LoanDonutChart, DynamicInvestmentGrowthChart as InvestmentGrowthChart, DynamicAmortizationChart as AmortizationChart, DynamicComparisonBarChart as ComparisonBarChart, DynamicHealthBarChart } from '@/components/premium/DynamicCharts'
 import { AmortizationSchedule } from '@/components/calc-panel/AmortizationSchedule'
 import { ResultInterpretation } from '@/components/calc-panel/ResultInterpretation'
 import { loanSchema, investmentSchema, mortgageSchema, retirementSchema } from '@/lib/forms/schemas'
@@ -2099,6 +2099,7 @@ import { calcDefs } from './financial'
 import type { CalcDef } from '@/lib/generic-fallback'
 import type { CalculatorEntry } from '@calcuniverse/calculator-registry'
 import { useCurrency, subMoney } from '@/lib/context/CurrencyContext'
+import { parseChartNumber } from '@/lib/calculation-reveal'
 
 type Props = { calculator: CalculatorEntry }
 
@@ -3170,6 +3171,31 @@ export function GenericFinancialCalculator({ calculator }: Props) {
     }
   }, [watched, calcType, resultData])
 
+  // Real chart data + educational notes derived from the actual computation
+  // (resultData). The one-size-fits-all mortgage example below is kept only
+  // for mortgage-type calculators; other calculators show their computed
+  // steps in the Formula section instead of a duplicated example.
+  const finChartData = useMemo(() => {
+    return (resultData?.steps ?? [])
+      .map(s => {
+        const value = parseChartNumber(s.value)
+        const name = String(s.label)
+        return value === null ? null : { name: name.length > 15 ? name.substring(0, 15) + '…' : name, value }
+      })
+      .filter((d): d is { name: string; value: number } => d !== null)
+      .slice(0, 6)
+  }, [resultData])
+
+  const finExplanation = useMemo(() => {
+    const extras = resultData?.extras
+    if (!extras || extras.length === 0) return undefined
+    return {
+      summary: finMeta.description,
+      details: extras.map(e => `<strong>${e.label}:</strong> ${e.value}`),
+      tips: [] as string[],
+    }
+  }, [resultData, finMeta])
+
   const copyResultText = useMemo(() => {
     const lines: string[] = [calculator.title]
     Object.entries(v).filter(([, val]) => val).forEach(([k, val]) => lines.push(`${k}: ${val}`))
@@ -3191,10 +3217,13 @@ export function GenericFinancialCalculator({ calculator }: Props) {
         onExportCSV={exportCSV}
         formula={finMeta.formula}
         interpretation={finMeta.description}
+        steps={resultData?.steps}
+        charts={finChartData.length > 0 ? <DynamicHealthBarChart data={finChartData} /> : undefined}
+        explanation={finExplanation}
         author={finAuthor}
         reviewer={{ name: 'Sarah Mitchell', photoUrl: 'https://i.pravatar.cc/150?u=jane-doe-cfa', credential: 'CPA', title: 'Tax & Financial Advisor', linkedIn: 'https://www.linkedin.com/in/jane-doe-cfa' }}
         references={finReferences}
-        example={mortgageExample}
+        example={calcType === 'mortgage' ? mortgageExample : undefined}
         userCount={42315}
         onReset={() => {
           const locked = Object.fromEntries(

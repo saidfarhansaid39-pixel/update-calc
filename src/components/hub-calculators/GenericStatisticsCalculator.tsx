@@ -173,7 +173,20 @@ export function GenericStatisticsCalculator({ calculator }: Props) {
     { label: 'Moore DS, McCabe GP, Craig BA. Introduction to the Practice of Statistics. 9th Edition. WH Freeman. 2017', url: 'https://en.wikipedia.org/wiki/Elementary_Statistics_(Triola)' },
     { label: 'Field A. Discovering Statistics Using IBM SPSS Statistics. 5th Edition. SAGE. 2018', url: 'https://en.wikipedia.org/wiki/The_Basic_Practice_of_Statistics' },
   ]
-  const statsExample = { label: calculator.slug, value: 'See results above' }
+  const statsExampleSteps = useMemo(() => {
+    if (!def) return []
+    const vals: Record<string, any> = {}
+    for (const f of def.fields) {
+      const raw = v[f.name]
+      if (f.type === 'number') {
+        vals[f.name] = raw !== undefined && raw !== '' ? Number(raw) : 0
+      } else {
+        vals[f.name] = raw ?? ''
+      }
+    }
+    const res = memoizedCompute(def)(vals)
+    return (res.steps ?? []).map((s: any) => ({ label: String(s.label), value: String(s.value) }))
+  }, [def, v])
 
   return (
     <FormProvider {...form}>
@@ -199,7 +212,7 @@ export function GenericStatisticsCalculator({ calculator }: Props) {
         author={statsAuthor}
         reviewer={{ name: 'Prof. David Kim', photoUrl: 'https://i.pravatar.cc/150?u=brian-phd-statistics', credential: 'PhD', title: 'Data Science Chair', linkedIn: 'https://www.linkedin.com/in/brian-phd-statistics' }}
         references={statsReferences}
-        example={[statsExample]}
+        example={statsExampleSteps.length > 0 ? statsExampleSteps : undefined}
         userCount={12387}
         onReset={() => {
   const locked = Object.fromEntries(Array.from(lockedFields).map(key => [key, form.getValues(key)]))

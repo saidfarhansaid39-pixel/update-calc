@@ -75,3 +75,18 @@ export function isCalculationStale(
 ): boolean {
   return hasCalculated && calculatedSignature !== null && calculatedSignature !== currentSignature
 }
+
+/**
+ * Parses a display value (e.g. `"$7,500.00"`, `"22%"`, `"3.0000"`) into a
+ * chartable number. Strips currency symbols, thousands separators and a
+ * trailing percent sign. Returns null when nothing numeric remains, so chart
+ * builders can drop non-numeric steps (labels, dates, categories).
+ */
+export function parseChartNumber(value: unknown): number | null {
+  if (typeof value === 'number') return Number.isNaN(value) ? null : value
+  if (typeof value !== 'string') return null
+  const cleaned = value.replace(/[$,\s]/g, '').replace(/%$/, '')
+  if (cleaned === '') return null
+  const parsed = parseFloat(cleaned)
+  return Number.isNaN(parsed) ? null : parsed
+}

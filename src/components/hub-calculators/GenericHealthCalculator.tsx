@@ -1338,7 +1338,7 @@ function GenericHealthCalculator({ calculator }: { calculator: CalculatorEntry }
     const extraFormula = extraFields.extra_bmr_formula || 'mifflin'
     const w = num(values.weight); const h = num(values.height); const a = num(values.age)
     let mainVal = mainValue(t, values)
-    const stepsArr: { label: string; value: string }[] = [{ label: 'Base Result', value: String(mainVal) }]
+    const stepsArr: { label: string; value: string }[] = [{ label: 'Base Result', value: typeof mainVal === 'number' ? String(Math.round(mainVal * 10) / 10) : String(mainVal) }]
 
     // Apply alternative BMR formula if selected
     if ((t === 'bmr' || t === 'tdee') && extraFormula !== 'mifflin') {
@@ -1655,7 +1655,7 @@ function GenericHealthCalculator({ calculator }: { calculator: CalculatorEntry }
       useSlider={false}
       onToggleSlider={() => {}}
       formula={formula}
-      interpretation=""
+      interpretation={calculator.description}
       presets={presets}
       onPresetApply={(p) => { 
         const filtered = Object.fromEntries(
@@ -1670,6 +1670,7 @@ function GenericHealthCalculator({ calculator }: { calculator: CalculatorEntry }
       references={healthReferences}
       example={result?.steps}
       userCount={7234}
+      onCalculate={compute}
       onReset={() => { 
         const locked = Object.fromEntries(
           Array.from(lockedFields).map(key => [key, values[key]])
@@ -1844,6 +1845,11 @@ function HealthCalcDefRenderer({ calculator, def }: { calculator: CalculatorEntr
     return lines.join('\n')
   }, [calculator.title, v])
 
+  const healthDefExample = useMemo(() => {
+    const steps = (res.steps ?? []) as { label: string; value: string }[]
+    return steps.map(s => ({ label: String(s.label), value: String(s.value) }))
+  }, [res])
+
   const healthReferences = [
     { label: 'World Health Organization. Health statistics and information systems.', url: 'https://www.who.int/data/gho' },
     { label: 'National Institutes of Health. MedlinePlus health information.', url: 'https://medlineplus.gov/' },
@@ -1876,7 +1882,7 @@ function HealthCalcDefRenderer({ calculator, def }: { calculator: CalculatorEntr
         author={undefined}
         reviewer={undefined}
         references={healthReferences}
-        example={undefined}
+        example={healthDefExample.length > 0 ? healthDefExample : undefined}
         userCount={7234}
         onReset={() => form.reset()}
         copyResultText={copyResultText}
