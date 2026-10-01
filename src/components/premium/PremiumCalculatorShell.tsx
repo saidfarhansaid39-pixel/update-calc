@@ -51,6 +51,7 @@ import { getExtraFieldsForCalculator } from '@/lib/extra-field-pools'
 import { getHubTheme } from '@/lib/hub-themes'
 import { ExtraFieldsProvider } from '@/lib/context/ExtraFieldsContext'
 import { useRegion, useCurrency, subMoney } from '@/lib/context/CurrencyContext'
+import { getCalculationSignature, isCalculationStale, isDisplayableMainValue, shouldEnableCalculate } from '@/lib/calculation-reveal'
 import { useAutoSave } from '@/lib/hooks/useAutoSave'
 import { useLocale, useTranslations } from 'next-intl'
 import { Link } from '@/lib/navigation'
@@ -379,6 +380,15 @@ export function PremiumCalculatorShell({
   const [copiedValue, setCopiedValue] = useState<string | null>(null)
   const { history, addEntry, removeEntry, clearHistory, showHistory, setShowHistory, exportCSV, searchQuery, setSearchQuery, clearConfirm, setClearConfirm, calcStats } = useCalculatorHistory(calculator.slug, calculator.title)
   const calcRootRef = React.useRef<HTMLDivElement>(null)
+  const resultRef = React.useRef<HTMLDivElement>(null)
+  // Whether a computed main value already existed on first render (e.g. pages
+  // with prefilled defaults). State (not a ref) so it can be read during
+  // render. Engines pre-report 0/NaN before the visitor types anything, so
+  // this distinguishes "result appeared after mount" (fallback engines with
+  // their own internal Calculate button) from "pre-existing defaults".
+  const [hadMainValueAtMount] = useState(() => mainValue !== undefined)
+  const [hasCalculated, setHasCalculated] = useState(false)
+  const [calculatedSignature, setCalculatedSignature] = useState<string | null>(null)
   const autoSave = useAutoSave({ slug: calculator.slug })
   const FORM_HISTORY_MAX = 10
   const [formHistory, setFormHistory] = useState<Record<string, string>[]>([])
@@ -402,6 +412,26 @@ export function PremiumCalculatorShell({
     setFormHistoryIndex(prev => Math.min(prev + 1, FORM_HISTORY_MAX - 1))
   }, [inputs, formHistoryIndex])
   const hasInputs = inputs && Object.keys(inputs).length > 0
+  // Click-to-calculate reveal: results, charts and calculation-specific
+  // education stay hidden until the visitor explicitly calculates. Display
+  // preferences are part of the signature so a currency/unit/locale change
+  // marks the shown output as needing a recalculation.
+  const calculationSignature = useMemo(() => getCalculationSignature({
+    inputs,
+    extraFields: extraFieldValues,
+    currency,
+    measurement: measSystem,
+    locale,
+    unitSystem,
+  }), [inputs, extraFieldValues, currency, measSystem, locale, unitSystem])
+  const canCalculate = shouldEnableCalculate(hasInputs, mainValue, hadMainValueAtMount)
+  const needsRecalculation = isCalculationStale(hasCalculated, calculatedSignature, calculationSignature)
+  const displayableMainValue = isDisplayableMainValue(mainValue) ? mainValue : undefined
+  // Fallback engines with their own internal Calculate button (no `inputs`
+  // plumbed through the shell) reveal their output once it appears — derived,
+  // no effect needed.
+  const fallbackHasResult = !hadMainValueAtMount && mainValue !== undefined
+  const outputRevealed = hasCalculated || fallbackHasResult
 
   useEffect(() => {
     if (hasInputs) autoSave.save(inputs!)
@@ -597,21 +627,44 @@ export function PremiumCalculatorShell({
     setScenarios(prev => prev.filter(s => s.id !== id))
   }, [])
 
+  const handleReset = useCallback(() => {
+    onReset?.()
+    // A reset returns the calculator to its pre-calculation state.
+    setHasCalculated(false)
+    setCalculatedSignature(null)
+  }, [onReset])
+
   const handleCalculate = useCallback(() => {
+    // No-op until the visitor provides something to calculate; the buttons
+    // render disabled in that state as well.
+    if (!shouldEnableCalculate(hasInputs, mainValue, hadMainValueAtMount)) return
     if (onCalculate) {
       onCalculate()
-      return
+    } else {
+      const root = calcRootRef.current
+      if (root) {
+        const form = root.querySelector('form')
+        if (form) {
+          (form as HTMLFormElement).requestSubmit?.()
+        } else {
+          const trigger = root.querySelector<HTMLButtonElement>('[data-calculate-trigger]')
+          trigger?.click()
+        }
+      }
     }
-    const root = calcRootRef.current
-    if (!root) return
-    const form = root.querySelector('form')
-    if (form) {
-      (form as HTMLFormElement).requestSubmit?.()
-      return
+    // Reveal the results, charts and calculation-specific education below.
+    // Engines compute live from `inputs`, so this captures the current
+    // output as the explicitly requested calculation.
+    setHasCalculated(true)
+    setCalculatedSignature(calculationSignature)
+    if (typeof window !== 'undefined' && typeof window.requestAnimationFrame === 'function') {
+      window.requestAnimationFrame(() => {
+        resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+    } else {
+      resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
-    const trigger = root.querySelector<HTMLButtonElement>('[data-calculate-trigger]')
-    trigger?.click()
-  }, [onCalculate])
+  }, [onCalculate, hasInputs, mainValue, hadMainValueAtMount, calculationSignature])
 
   React.useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -781,9 +834,27 @@ export function PremiumCalculatorShell({
                 {form}
               </ExtraFieldInjector>
               </ExtraFieldsProvider>
+              {/* Explicit Calculate control: results, charts and calculation
+                  education below stay hidden until the visitor calculates. */}
+              <div className="pt-1">
+                <button
+                  type="button"
+                  onClick={handleCalculate}
+                  disabled={!canCalculate}
+                  aria-label={hasCalculated ? t('shell.recalculate') : t('shell.calculate')}
+                  className={`inline-flex w-full min-h-[48px] items-center justify-center gap-2 rounded-xl px-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:opacity-90 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 bg-gradient-to-br from-[#1a3a8a] to-[#06b6d4]${needsRecalculation ? ' ring-2 ring-offset-2 ring-[#06b6d4] dark:ring-offset-gray-900' : ''}`}
+                >
+                  <Calculator className="h-4 w-4" aria-hidden="true" />
+                  {hasCalculated ? t('shell.recalculate') : t('shell.calculate')}
+                </button>
+                {!outputRevealed && (
+                  <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">{t('shell.howItWorksDefault')}</p>
+                )}
+              </div>
             </div>
-            <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-4 sm:p-6 flex flex-col justify-center max-w-full overflow-x-auto min-h-[180px]">
-              {showTabs && modeLevel >= 1 ? (
+            <div ref={resultRef} className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-4 sm:p-6 flex flex-col justify-center max-w-full overflow-x-auto min-h-[180px] scroll-mt-24">
+              {outputRevealed ? (
+                showTabs && modeLevel >= 1 ? (
                 <ResultTabs
                   mainResult={result}
                   charts={charts}
@@ -792,17 +863,24 @@ export function PremiumCalculatorShell({
                   inputs={inputs}
                   slug={calculator.slug}
                 />
-              ) : (
+                ) : (
                 <div className="space-y-3">
                   {result}
                   <ResultQualityBadge quality={getQualityInfo(calculator.slug, calculator.category)} />
                   <InputRangeValidator ranges={getInputRanges(calculator.slug) || {}} inputs={inputs} />
                 </div>
+                )
+              ) : (
+                <div className="text-center space-y-2 py-6" role="status">
+                  <Calculator className="w-8 h-8 text-gray-300 dark:text-gray-600 mx-auto" aria-hidden="true" />
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('shell.howItWorksDefault')}</p>
+                  <p className="text-xs text-gray-400 dark:text-gray-500">{t('shell.enterValuesAbove')}</p>
+                </div>
               )}
             </div>
           </div>
 
-          {isMortgageOrLoan && inputs && Object.keys(inputs).length > 0 && (
+          {outputRevealed && isMortgageOrLoan && inputs && Object.keys(inputs).length > 0 && (
             <MultiTermComparison
               calculatorType={calculatorType || calculator.slug}
               inputs={inputs}
@@ -810,22 +888,22 @@ export function PremiumCalculatorShell({
             />
           )}
 
-          {charts && !(showTabs && modeLevel >= 1) && (
+          {outputRevealed && charts && !(showTabs && modeLevel >= 1) && (
             <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
               {charts}
             </div>
           )}
 
           {/* Range Visualizer */}
-          {rangeVisualizer && (
+          {outputRevealed && rangeVisualizer && (
             <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
               {rangeVisualizer}
             </div>
           )}
-          {!rangeVisualizer && autoRangeConfig && mainValue !== undefined && (
+          {outputRevealed && !rangeVisualizer && autoRangeConfig && displayableMainValue !== undefined && (
             <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 shadow-sm">
               <RangeVisualizer
-                value={mainValue}
+                value={displayableMainValue}
                 ranges={autoRangeConfig.ranges}
                 label={autoRangeConfig.label}
                 formatValue={autoRangeConfig.formatValue}
@@ -862,10 +940,10 @@ export function PremiumCalculatorShell({
           )}
 
           {/* Extra Field Adjustments */}
-          {Object.keys(extraFieldValues).length > 0 && mainValue !== undefined && (
+          {outputRevealed && Object.keys(extraFieldValues).length > 0 && displayableMainValue !== undefined && (
             <ExtraFieldAdjustments
               hubSlug={calculator.hubSlug}
-              mainValue={mainValue}
+              mainValue={displayableMainValue}
               extraFields={extraFieldValues}
             />
           )}
@@ -893,7 +971,7 @@ export function PremiumCalculatorShell({
                 </div>
               )}
               <ActionToolbar
-                onReset={onReset}
+                onReset={onReset ? handleReset : undefined}
                 onReload={autoSave.hasSavedData ? handleReload : undefined}
                 onUnitChange={onUnitChange as ((unit: string) => void) | undefined}
                 unitOptions={unitOptions}
@@ -1030,8 +1108,8 @@ export function PremiumCalculatorShell({
           <CalculatorRating />
         </div>
 
-        {/* Formula & Step-by-Step */}
-        {modeLevel >= 1 && (formula || (steps && steps.length > 0)) && (
+        {/* Formula & Step-by-Step (revealed by Calculate) */}
+        {outputRevealed && (formula || (steps && steps.length > 0)) && (
           <div id="formula" className="card-handcrafted p-4 sm:p-6">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('shell.headingFormula')}</h2>
             {formula && (
@@ -1060,8 +1138,8 @@ export function PremiumCalculatorShell({
           </div>
         )}
 
-        {/* Educational Charts (Professional+) */}
-        {modeLevel >= 2 && tierFeatures.eduCharts && (formulaVariables || conceptNodes || processSteps) && (
+        {/* Educational Charts (Professional+, revealed by Calculate) */}
+        {outputRevealed && modeLevel >= 2 && tierFeatures.eduCharts && (formulaVariables || conceptNodes || processSteps) && (
           <div id="educational-charts" className="space-y-4 card-handcrafted p-4 sm:p-6">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{t('shell.headingEduVisualizations')}</h2>
             {formulaVariables && <FormulaChart formula={formula || ''} variables={formulaVariables} />}
@@ -1070,8 +1148,8 @@ export function PremiumCalculatorShell({
           </div>
         )}
 
-        {/* Worked Example (Advanced+) */}
-        {modeLevel >= 1 && example && example.length > 0 && (
+        {/* Worked Example (revealed by Calculate) */}
+        {outputRevealed && example && example.length > 0 && (
           <div id="example" className="card-handcrafted p-4 sm:p-6">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('shell.headingExampleCalc')}</h2>
             <div className="space-y-2">
@@ -1093,8 +1171,8 @@ export function PremiumCalculatorShell({
           </div>
         )}
 
-        {/* Example Chart Generator (Professional+) */}
-        {modeLevel >= 2 && tierFeatures.examples && examples && (
+        {/* Example Chart Generator (Professional+, revealed by Calculate) */}
+        {outputRevealed && modeLevel >= 2 && tierFeatures.examples && examples && (
           <div id="examples" className="card-handcrafted p-4 sm:p-6">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('shell.headingExampleCalcs')}</h2>
             <ExampleChartGenerator
@@ -1105,16 +1183,16 @@ export function PremiumCalculatorShell({
           </div>
         )}
 
-        {/* Result Interpretation (Advanced+) */}
-        {modeLevel >= 1 && interpretation && (
+        {/* Result Interpretation (revealed by Calculate) */}
+        {outputRevealed && interpretation && (
           <div id="what-this-means" className="card-handcrafted p-4 sm:p-6">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{t('shell.headingWhatThisMeans')}</h2>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{interpretation}</p>
           </div>
         )}
 
-        {/* Dynamic Explanation (Advanced+) */}
-        {modeLevel >= 1 && explanation && (
+        {/* Dynamic Explanation (revealed by Calculate) */}
+        {outputRevealed && explanation && (
           <div className="card-handcrafted p-4 sm:p-6">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">{t('shell.headingYourResults')}</h2>
             <div className="prose dark:prose-invert max-w-none text-sm">
@@ -1143,8 +1221,8 @@ export function PremiumCalculatorShell({
           </div>
         )}
 
-        {/* Enhanced Result Explanation (Professional+) */}
-        {modeLevel >= 2 && tierFeatures.eduCharts && enhancedExplanationProp && mainValue !== undefined && (
+        {/* Enhanced Result Explanation (Professional+, revealed by Calculate) */}
+        {outputRevealed && modeLevel >= 2 && tierFeatures.eduCharts && enhancedExplanationProp && mainValue !== undefined && (
           <div id="enhanced-results" className="card-handcrafted p-4 sm:p-6">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('shell.headingYourResults')}</h2>
             <EnhancedResultExplanation
@@ -1171,8 +1249,8 @@ export function PremiumCalculatorShell({
           </div>
         )}
 
-        {/* Sub-Calculations (Advanced+) */}
-        {modeLevel >= 1 && subCalcs && (
+        {/* Sub-Calculations (Advanced+, revealed by Calculate) */}
+        {outputRevealed && modeLevel >= 1 && subCalcs && (
           <div className="space-y-3">
             {subCalcs}
           </div>
@@ -1394,11 +1472,11 @@ export function PremiumCalculatorShell({
       <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden border-t border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3">
           <div className="min-w-0 flex-1">
-            {mainValue !== undefined ? (
+            {outputRevealed && displayableMainValue !== undefined ? (
               <div className="min-w-0">
                 <p className="text-[11px] uppercase tracking-wide text-gray-400 dark:text-gray-500">{t('shell.result')}</p>
                 <p className="truncate text-sm font-semibold text-gray-900 dark:text-white">
-                  {calculator.title}: <span className="text-[#1a759f] dark:text-[#06b6d4]" suppressHydrationWarning>{typeof mainValue === 'number' ? mainValue.toLocaleString(undefined, { maximumFractionDigits: 2 }) : mainValue}</span>
+                  {calculator.title}: <span className="text-[#1a759f] dark:text-[#06b6d4]" suppressHydrationWarning>{typeof displayableMainValue === 'number' ? displayableMainValue.toLocaleString(undefined, { maximumFractionDigits: 2 }) : displayableMainValue}</span>
                 </p>
               </div>
             ) : (
@@ -1408,11 +1486,12 @@ export function PremiumCalculatorShell({
           <button
             type="button"
             onClick={handleCalculate}
-            aria-label={mainValue !== undefined ? t('shell.recalculate') : t('shell.calculate')}
-            className="inline-flex touch-target min-w-[44px] flex-shrink-0 items-center justify-center gap-1.5 rounded-xl bg-gradient-to-br from-[#1a3a8a] to-[#06b6d4] px-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:opacity-90 active:scale-[0.98]"
+            disabled={!canCalculate}
+            aria-label={hasCalculated ? t('shell.recalculate') : t('shell.calculate')}
+            className="inline-flex touch-target min-w-[44px] min-h-[48px] flex-shrink-0 items-center justify-center gap-1.5 rounded-xl bg-gradient-to-br from-[#1a3a8a] to-[#06b6d4] px-5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:opacity-90 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Calculator className="h-4 w-4" />
-            {mainValue !== undefined ? t('shell.recalculate') : t('shell.calculate')}
+            {hasCalculated ? t('shell.recalculate') : t('shell.calculate')}
           </button>
         </div>
       </div>
