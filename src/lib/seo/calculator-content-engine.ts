@@ -143,7 +143,38 @@ function capitalize(s: string): string {
 }
 
 function extractTopic(title: string): string {
-  return title.replace(/ calculator$/i, '').trim()
+  // Strip the "calculator" category word in all 10 locales (EN strips only
+  // a trailing " calculator"; ES/FR/PT/DE/RU/... titles lead with it, e.g.
+  // "Calculadora de 401k", "Calculatrice IMC"). Without this, localized
+  // templates render "Calculadora de Calculadora de 401k".
+  const words = [
+    'calculator',
+    'calculadora', 'calculadoras',
+    'calculatrice', 'calculatrices', 'calculateur',
+    'rechner',
+    'калькулятор',
+    'آلة حاسبة', 'حاسبة',
+    'कैलकुलेटर',
+    '計算機', '電卓',
+    '计算器',
+  ].sort((a, b) => b.length - a.length)
+  const escaped = words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+  const pattern = new RegExp(`^(?:${escaped.join('|')})[\\s-]+|[\\s-]+(?:${escaped.join('|')})$`, 'i')
+  let topic = title.trim()
+  const stripped = topic.replace(pattern, '').trim()
+  if (stripped) topic = stripped
+  return topic
+}
+
+/**
+ * Lowercases for mid-sentence slots ({topicLower}) but preserves acronyms
+ * (BMI, IMC, GPA, APR…) so FR/ES templates don't render "votre imc".
+ */
+function smartLower(s: string): string {
+  return s
+    .split(/(\s+)/)
+    .map(token => (/^[^a-z]{2,}$/.test(token) ? token : token.toLowerCase()))
+    .join('')
 }
 
 /** Deterministic pseudo-random based on slug for content variation */
@@ -855,7 +886,7 @@ function generateCategoryLongForm(calculator: CalculatorEntry, dict?: ContentEng
 
   // Locale fill params (locale templates use {topic} {topicLower} {adj} {v1} {v2} {v3} {description} {formula} {method})
   const LP = {
-    topic, topicLower: topic.toLowerCase(), adj,
+    topic, topicLower: smartLower(topic), adj,
     v1: exampleVal1, v2: exampleVal2, v3: exampleVal3,
     description, formula: formula || '', method: ctx.methodLabel,
   }
@@ -879,12 +910,12 @@ function generateCategoryLongForm(calculator: CalculatorEntry, dict?: ContentEng
         return { title: 'Risk, Return, and Realistic Assumptions', content: `Financial calculations require realistic assumptions about rates, returns, and risk. The ${topic} calculator helps you test different scenarios by adjusting these assumptions. A conservative estimate using lower expected returns gives you a safer planning target. An optimistic scenario shows the upside potential. By running both, you can plan for a range of outcomes rather than a single number. This range-based approach is the hallmark of professional financial planning and is built directly into the calculator's comparison features.`, subsections: [{ heading: 'Conservative vs. Optimistic Scenarios', text: `Run the calculation with both conservative (${(parseInt(exampleVal2)*0.7).toFixed(0)} units) and optimistic (${(parseInt(exampleVal2)*1.3).toFixed(0)} units) assumptions to establish a range of possible outcomes. The calculator displays both results side by side.` }, { heading: 'Stress Testing Your Assumptions', text: `What happens if rates change by ${exampleVal1}%? If the timeline extends by ${exampleVal3} periods? Stress testing reveals which scenarios break your plan and where you need contingency strategies.` }] }
       }
       case 'health': {
-        if (choice === 0) return { title: 'Understanding Your Numbers in Context', content: `A ${topic} value on its own tells only part of the story. What matters more is how your number compares to established reference ranges and how it changes over time. For example, a reading of ${exampleVal1} units might be perfectly healthy for one demographic while indicating concern for another. The calculator provides context-specific benchmarks based on age, gender, and other relevant factors. Tracking your ${topic.toLowerCase()} over ${exampleVal3} consecutive measurements gives you a trend line that is far more informative than any single data point.`, subsections: [{ heading: 'Reference Ranges and What They Mean', text: `Healthy ranges vary by population. The calculator uses the latest clinical guidelines to classify your result as low, normal, elevated, or high. Each classification comes with guidance on next steps.` }, { heading: 'The Power of Longitudinal Tracking', text: `A single measurement is a snapshot. Recording results over ${exampleVal3} sessions reveals whether your ${topic.toLowerCase()} is stable, improving, or declining. The calculator includes a tracking history feature for this purpose.` }] }
-        if (choice === 1) return { title: 'Factors That Influence Your Health Metrics', content: `Your ${topic} result is influenced by a combination of modifiable and non-modifiable factors. Modifiable factors include diet, physical activity, sleep, stress, and medication adherence. Non-modifiable factors include age, genetics, and sex. Understanding which factors you can change and by how much empowers you to take action. For instance, improving your ${topic.toLowerCase()} by ${exampleVal1} units might require a combination of dietary changes and increased physical activity over ${exampleVal3} weeks. The calculator helps you set realistic targets based on scientific evidence.`, subsections: [{ heading: 'Modifiable vs. Non-Modifiable Factors', text: `Focus your energy on factors within your control. The calculator shows which inputs are modifiable and provides evidence-based estimates of the impact each change can have on your ${topic.toLowerCase()}.` }, { heading: 'Setting Realistic Improvement Targets', text: `Aim for a ${exampleVal2} unit improvement over ${exampleVal3} months as a starting target. The calculator tracks progress and adjusts recommendations based on your rate of change.` }] }
-        return { title: 'When to Seek Professional Guidance', content: `While online calculators provide valuable insights, they complement rather than replace professional medical advice. The ${topic} calculator includes clear indicators when your result falls outside healthy ranges and suggests when to consult a healthcare provider. For example, if your ${topic.toLowerCase()} reading exceeds ${exampleVal2} units or changes by more than ${exampleVal1} units between measurements, this may warrant professional attention. The calculator also provides educational resources to help you prepare for medical appointments with relevant questions and data.`, subsections: [{ heading: 'Understanding Warning Thresholds', text: `The calculator flags results that exceed clinically validated thresholds. A ${topic.toLowerCase()} of ${exampleVal2} units triggers a caution notice with suggestions for follow-up.` }, { heading: 'Preparing for Your Appointment', text: `Use the calculator's export feature to share your ${exampleVal3}-session trend data with your healthcare provider. This longitudinal data is more useful than isolated readings.` }] }
+        if (choice === 0) return { title: 'Understanding Your Numbers in Context', content: `A ${topic} value on its own tells only part of the story. What matters more is how your number compares to established reference ranges and how it changes over time. For example, a reading of ${exampleVal1} units might be perfectly healthy for one demographic while indicating concern for another. The calculator provides context-specific benchmarks based on age, gender, and other relevant factors. Tracking your ${smartLower(topic)} over ${exampleVal3} consecutive measurements gives you a trend line that is far more informative than any single data point.`, subsections: [{ heading: 'Reference Ranges and What They Mean', text: `Healthy ranges vary by population. The calculator uses the latest clinical guidelines to classify your result as low, normal, elevated, or high. Each classification comes with guidance on next steps.` }, { heading: 'The Power of Longitudinal Tracking', text: `A single measurement is a snapshot. Recording results over ${exampleVal3} sessions reveals whether your ${smartLower(topic)} is stable, improving, or declining. The calculator includes a tracking history feature for this purpose.` }] }
+        if (choice === 1) return { title: 'Factors That Influence Your Health Metrics', content: `Your ${topic} result is influenced by a combination of modifiable and non-modifiable factors. Modifiable factors include diet, physical activity, sleep, stress, and medication adherence. Non-modifiable factors include age, genetics, and sex. Understanding which factors you can change and by how much empowers you to take action. For instance, improving your ${smartLower(topic)} by ${exampleVal1} units might require a combination of dietary changes and increased physical activity over ${exampleVal3} weeks. The calculator helps you set realistic targets based on scientific evidence.`, subsections: [{ heading: 'Modifiable vs. Non-Modifiable Factors', text: `Focus your energy on factors within your control. The calculator shows which inputs are modifiable and provides evidence-based estimates of the impact each change can have on your ${smartLower(topic)}.` }, { heading: 'Setting Realistic Improvement Targets', text: `Aim for a ${exampleVal2} unit improvement over ${exampleVal3} months as a starting target. The calculator tracks progress and adjusts recommendations based on your rate of change.` }] }
+        return { title: 'When to Seek Professional Guidance', content: `While online calculators provide valuable insights, they complement rather than replace professional medical advice. The ${topic} calculator includes clear indicators when your result falls outside healthy ranges and suggests when to consult a healthcare provider. For example, if your ${smartLower(topic)} reading exceeds ${exampleVal2} units or changes by more than ${exampleVal1} units between measurements, this may warrant professional attention. The calculator also provides educational resources to help you prepare for medical appointments with relevant questions and data.`, subsections: [{ heading: 'Understanding Warning Thresholds', text: `The calculator flags results that exceed clinically validated thresholds. A ${smartLower(topic)} of ${exampleVal2} units triggers a caution notice with suggestions for follow-up.` }, { heading: 'Preparing for Your Appointment', text: `Use the calculator's export feature to share your ${exampleVal3}-session trend data with your healthcare provider. This longitudinal data is more useful than isolated readings.` }] }
       }
       case 'math': {
-        if (choice === 0) return { title: 'Why This Mathematical Concept Matters', content: `${topic} appears throughout mathematics and its applications. Understanding this concept strengthens your mathematical foundation and prepares you for more advanced topics. The concept relies on ${exampleVal1} core principles that interact in predictable ways. Mastery of ${topic.toLowerCase()} opens doors to related topics in ${adj} analysis and beyond. The calculator not only computes results but also shows the step-by-step derivation, reinforcing the underlying mathematics with each use.`, subsections: [{ heading: 'Prerequisite Knowledge', text: `Before working with ${topic}, you should be comfortable with ${exampleVal2} core mathematical operations. The calculator includes a prerequisite review section that refreshes these foundational skills.` }, { heading: 'Connection to Advanced Topics', text: `${topic} serves as a building block for more advanced mathematical concepts. Understanding it thoroughly makes subsequent learning more efficient and intuitive.` }] }
+        if (choice === 0) return { title: 'Why This Mathematical Concept Matters', content: `${topic} appears throughout mathematics and its applications. Understanding this concept strengthens your mathematical foundation and prepares you for more advanced topics. The concept relies on ${exampleVal1} core principles that interact in predictable ways. Mastery of ${smartLower(topic)} opens doors to related topics in ${adj} analysis and beyond. The calculator not only computes results but also shows the step-by-step derivation, reinforcing the underlying mathematics with each use.`, subsections: [{ heading: 'Prerequisite Knowledge', text: `Before working with ${topic}, you should be comfortable with ${exampleVal2} core mathematical operations. The calculator includes a prerequisite review section that refreshes these foundational skills.` }, { heading: 'Connection to Advanced Topics', text: `${topic} serves as a building block for more advanced mathematical concepts. Understanding it thoroughly makes subsequent learning more efficient and intuitive.` }] }
         if (choice === 1) return { title: 'Common Approaches to Solving', content: `There are ${exampleVal3} primary methods for solving ${topic} problems, each with its own strengths. The calculator implements all ${exampleVal3} approaches and shows the results side by side. This comparison helps you understand which method is most appropriate for different problem types. The direct method works well for standard cases, while the alternative approaches handle special situations like extreme values or constrained inputs. By seeing multiple solution paths, you develop a more flexible understanding of the concept.`, subsections: [{ heading: 'The Direct Approach', text: `The most straightforward method applies the core formula directly. This works for the majority of cases and is the fastest route to an answer. The calculator shows the direct calculation first.` }, { heading: 'Alternative Solution Paths', text: `When inputs are extreme or constraints apply, alternative methods provide more accurate results. The calculator automatically selects the best method based on your inputs.` }] }
         return { title: 'Visualizing the Mathematical Relationship', content: `Mathematics becomes intuitive when you can visualize it. The ${topic} calculator includes interactive graphs that show how changing one variable affects the result. For example, adjusting the input by ${exampleVal1} units shifts the output along a curve that you can see updating in real time. This visual feedback builds intuition faster than working with numbers alone. The graph highlights key points such as intercepts, asymptotes, and maxima that are mathematically significant.`, subsections: [{ heading: 'Interactive Variable Exploration', text: `Drag the input slider from ${exampleVal1} to ${exampleVal2} units and watch the graph update. This real-time feedback makes the mathematical relationship tangible.` }, { heading: 'Key Mathematical Features', text: `The graph automatically labels critical points including the value at ${exampleVal1} input units, the rate of change at that point, and any boundary conditions that apply.` }] }
       }
@@ -940,14 +971,14 @@ function generateCategoryLongForm(calculator: CalculatorEntry, dict?: ContentEng
     subsections: [
       { heading: LF?.walkSetup ? fillTemplate(LF.walkSetup, LP) : `Setting Up with Value ${exampleVal1}`, text: LF?.walkSetupText ? fillTemplate(LF.walkSetupText, LP) : `Start by entering ${exampleVal1} as your primary input. Set secondary parameters to their defaults. The calculator validates these inputs and prepares the formula. The intermediate result at this stage is ${(parseInt(exampleVal1)*(seed%20+80)/100).toFixed(1)}.` },
       { heading: LF?.walkAdjust ? fillTemplate(LF.walkAdjust, LP) : `Adjusting to ${exampleVal2}`, text: LF?.walkAdjustText ? fillTemplate(LF.walkAdjustText, LP) : `Change the primary input to ${exampleVal2}. Observe how the output changes in real time. The difference between the two results is ${(parseInt(exampleVal2)-parseInt(exampleVal1))} units, demonstrating the sensitivity of the calculation to this variable.` },
-      { heading: LF?.walkInterpret ? fillTemplate(LF.walkInterpret, LP) : 'Interpreting the Final Result', text: LF?.walkInterpretText ? fillTemplate(LF.walkInterpretText, LP) : `The calculated value represents your ${topic.toLowerCase()} under the given assumptions. Compare it to the reference ranges displayed alongside the result. If the value falls within the expected range (typically between ${(parseInt(exampleVal1)*0.8).toFixed(0)} and ${(parseInt(exampleVal2)*1.2).toFixed(0)}), your scenario aligns with normal parameters.` },
+      { heading: LF?.walkInterpret ? fillTemplate(LF.walkInterpret, LP) : 'Interpreting the Final Result', text: LF?.walkInterpretText ? fillTemplate(LF.walkInterpretText, LP) : `The calculated value represents your ${smartLower(topic)} under the given assumptions. Compare it to the reference ranges displayed alongside the result. If the value falls within the expected range (typically between ${(parseInt(exampleVal1)*0.8).toFixed(0)} and ${(parseInt(exampleVal2)*1.2).toFixed(0)}), your scenario aligns with normal parameters.` },
     ],
   }
 
   const sections: LongFormSection[] = [
     {
       title: LF?.guideTitle ? fillTemplate(LF.guideTitle, LP) : `A Complete Guide to ${topic}`,
-      content: LF?.guideContent ? fillTemplate(LF.guideContent, LP) : `${description} This guide explains the core concepts, the mathematics behind the calculation, and how to apply the results in real-world situations. Whether you are new to ${topic.toLowerCase()} or looking to deepen your understanding, you will find practical insights and clear explanations throughout.`,
+      content: LF?.guideContent ? fillTemplate(LF.guideContent, LP) : `${description} This guide explains the core concepts, the mathematics behind the calculation, and how to apply the results in real-world situations. Whether you are new to ${smartLower(topic)} or looking to deepen your understanding, you will find practical insights and clear explanations throughout.`,
     },
     {
       title: LF?.howCalcTitle ? fillTemplate(LF.howCalcTitle, LP) : `How ${topic} Is Calculated`,
@@ -983,7 +1014,7 @@ function generateCategoryLongForm(calculator: CalculatorEntry, dict?: ContentEng
 
 export function generateCalculatorContent(calc: CalculatorEntry, dict?: ContentEngineDict): CalculatorContent {
   const topic = extractTopic(calc.title)
-  const P = { topic, topicLower: topic.toLowerCase() }
+  const P = { topic, topicLower: smartLower(topic) }
   const cat = calc.category as string
   const adj = dict?.adjectives?.[cat] ?? getHubAdjective(calc.category)
 

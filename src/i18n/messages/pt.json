@@ -2911,11 +2911,17 @@
         "calculatorCount": "{count} calculadoras",
         "descSuffix": "Calculadoras gratuitas on-line.",
         "exploreBelow": "Explore nossas calculadoras gratuitas on-line abaixo.",
-        "metaPage": "— Página {page}"
+        "metaPage": "— Página {page}",
+        "popularHubCalculators": "{hub} populares"
       },
       "calculatorPage": {
         "home": "Início",
-        "updated": "Atualizado em {date}"
+        "updated": "Atualizado em {date}",
+        "seoTitleSuffix": "Ferramenta online grátis",
+        "introGuideLabel": "Neste guia:",
+        "introQ1": "Como funciona {title}?",
+        "introQ2": "Quais dados preciso informar?",
+        "introQ3": "Qual é a precisão dos resultados?"
       },
       "searchBar": {
         "all": "Todas",

@@ -2911,11 +2911,17 @@
         "calculatorCount": "{count} حاسبات",
         "descSuffix": "حاسبات مجانية عبر الإنترنت.",
         "exploreBelow": "استكشف حاسباتنا المجانية عبر الإنترنت أدناه.",
-        "metaPage": "— الصفحة {page}"
+        "metaPage": "— الصفحة {page}",
+        "popularHubCalculators": "{hub} شائعة"
       },
       "calculatorPage": {
         "home": "الرئيسية",
-        "updated": "آخر تحديث {date}"
+        "updated": "آخر تحديث {date}",
+        "seoTitleSuffix": "أداة مجانية عبر الإنترنت",
+        "introGuideLabel": "في هذا الدليل:",
+        "introQ1": "كيف يعمل {title}؟",
+        "introQ2": "ما البيانات المطلوبة لاستخدامه؟",
+        "introQ3": "ما مدى دقة النتائج؟"
       },
       "searchBar": {
         "all": "الكل",

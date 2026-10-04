@@ -17,6 +17,7 @@ import { softwareAppSchema } from '@/lib/seo/software-schema'
 import { ForAISystems } from '@/components/seo/ForAISystems'
 import { LivingMortgageDashboard } from '@/components/premium/LivingDashboardPanel'
 import { MortgageArticle } from '@/components/calculator/MortgageArticle'
+import { buildSeoDescription, buildSeoTitle } from '@/lib/seo/seo-meta'
 
 const siteUrl = 'https://www.calculat.online'
 
@@ -152,8 +153,9 @@ export async function generateCalculatorMetadata(hubSlug: string, slug: string) 
         const ct = await getTranslations('clusters')
         const variantTitle = ct(`${slug}_title`) !== `${slug}_title` ? ct(`${slug}_title`) : cluster.variant.title
         const variantDesc = ct(`${slug}_description`) !== `${slug}_description` ? ct(`${slug}_description`) : cluster.variant.description
-        const seoTitle = variantTitle.length > 45 ? variantTitle : `${variantTitle} | Calculat`
-        const seoDesc = variantDesc.length > 155 ? variantDesc.substring(0, 152).replace(/\s+\S*$/, '') + '...' : variantDesc
+        const tSeoCluster = await getTranslations('calculatorUI.chrome.calculatorPage')
+        const seoTitle = buildSeoTitle(variantTitle, tSeoCluster('seoTitleSuffix'))
+        const seoDesc = buildSeoDescription(variantDesc)
         return {
           ...meta,
           title: seoTitle,
@@ -171,8 +173,9 @@ export async function generateCalculatorMetadata(hubSlug: string, slug: string) 
   if (!calc) notFound()
 
   const actualHubSlug = calc.hubSlug || hubSlug
-  const title = calc.title.length > 45 ? calc.title : `${calc.title} | Calculat`
-  const description = calc.description.length > 155 ? calc.description.substring(0, 152).replace(/\s+\S*$/, '') + '...' : calc.description
+  const tSeo = await getTranslations('calculatorUI.chrome.calculatorPage')
+  const title = buildSeoTitle(calc.title, tSeo('seoTitleSuffix'))
+  const description = buildSeoDescription(calc.description)
   const url = `${siteUrl}${calcPath(locale, actualHubSlug, slug)}`
   const localeStr = ogLocale(locale)
   return {

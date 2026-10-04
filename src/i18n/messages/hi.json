@@ -2911,11 +2911,17 @@
         "calculatorCount": "{count} कैलकुलेटर",
         "descSuffix": "मुफ़्त ऑनलाइन कैलकुलेटर।",
         "exploreBelow": "नीचे हमारे मुफ़्त ऑनलाइन कैलकुलेटर देखें।",
-        "metaPage": "— पृष्ठ {page}"
+        "metaPage": "— पृष्ठ {page}",
+        "popularHubCalculators": "लोकप्रिय {hub}"
       },
       "calculatorPage": {
         "home": "मुख्य पृष्ठ",
-        "updated": "अपडेट: {date}"
+        "updated": "अपडेट: {date}",
+        "seoTitleSuffix": "मुफ़्त ऑनलाइन टूल",
+        "introGuideLabel": "इस गाइड में:",
+        "introQ1": "{title} कैसे काम करता है?",
+        "introQ2": "इसे उपयोग करने के लिए कौन-से इनपुट चाहिए?",
+        "introQ3": "परिणाम कितने सटीक हैं?"
       },
       "searchBar": {
         "all": "सभी",

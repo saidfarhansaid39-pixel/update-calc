@@ -15,11 +15,17 @@
         "toUse": "Para usar",
         "popularVariations": "Variações populares",
         "exploreRelatedHubs": "Explore hubs relacionados",
-        "calculatorCount": "{count} calculadoras"
+        "calculatorCount": "{count} calculadoras",
+        "popularHubCalculators": "{hub} populares"
       },
       "calculatorPage": {
         "home": "Início",
-        "updated": "Atualizado em {date}"
+        "updated": "Atualizado em {date}",
+        "seoTitleSuffix": "Ferramenta online grátis",
+        "introGuideLabel": "Neste guia:",
+        "introQ1": "Como funciona {title}?",
+        "introQ2": "Quais dados preciso informar?",
+        "introQ3": "Qual é a precisão dos resultados?"
       },
       "searchBar": {
         "all": "Todas",

@@ -2911,11 +2911,17 @@
         "calculatorCount": "{count} Rechner",
         "descSuffix": "Kostenlose Online-Rechner.",
         "exploreBelow": "Entdecken Sie unsere kostenlosen Online-Rechner unten.",
-        "metaPage": "— Seite {page}"
+        "metaPage": "— Seite {page}",
+        "popularHubCalculators": "Beliebte {hub}"
       },
       "calculatorPage": {
         "home": "Startseite",
-        "updated": "Aktualisiert am {date}"
+        "updated": "Aktualisiert am {date}",
+        "seoTitleSuffix": "Kostenloses Online-Tool",
+        "introGuideLabel": "In dieser Anleitung:",
+        "introQ1": "Wie funktioniert {title}?",
+        "introQ2": "Welche Eingaben werden benötigt?",
+        "introQ3": "Wie genau sind die Ergebnisse?"
       },
       "searchBar": {
         "all": "Alle",

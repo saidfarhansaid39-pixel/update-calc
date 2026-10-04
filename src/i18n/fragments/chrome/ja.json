@@ -15,11 +15,17 @@
         "toUse": "利用可能",
         "popularVariations": "人気のバリエーション",
         "exploreRelatedHubs": "関連カテゴリを見る",
-        "calculatorCount": "{count} 個の計算ツール"
+        "calculatorCount": "{count} 個の計算ツール",
+        "popularHubCalculators": "人気の{hub}"
       },
       "calculatorPage": {
         "home": "ホーム",
-        "updated": "更新日: {date}"
+        "updated": "更新日: {date}",
+        "seoTitleSuffix": "無料オンラインツール",
+        "introGuideLabel": "このガイドでは:",
+        "introQ1": "{title}の使い方は？",
+        "introQ2": "入力に必要な値は？",
+        "introQ3": "結果の精度は？"
       },
       "searchBar": {
         "all": "すべて",

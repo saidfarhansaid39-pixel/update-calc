@@ -2911,11 +2911,17 @@
         "calculatorCount": "{count} 个计算器",
         "descSuffix": "免费在线计算器。",
         "exploreBelow": "浏览下方我们的免费在线计算器。",
-        "metaPage": "— 第 {page} 页"
+        "metaPage": "— 第 {page} 页",
+        "popularHubCalculators": "热门{hub}"
       },
       "calculatorPage": {
         "home": "首页",
-        "updated": "更新于 {date}"
+        "updated": "更新于 {date}",
+        "seoTitleSuffix": "免费在线工具",
+        "introGuideLabel": "本指南包括:",
+        "introQ1": "{title}如何工作？",
+        "introQ2": "需要输入哪些数据？",
+        "introQ3": "结果有多准确？"
       },
       "searchBar": {
         "all": "全部",

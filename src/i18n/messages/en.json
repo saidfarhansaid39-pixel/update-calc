@@ -3023,11 +3023,17 @@
         "calculatorCount": "{count} calculators",
         "descSuffix": "Free calculator online tools.",
         "exploreBelow": "Explore our free calculator online tools below.",
-        "metaPage": "— Page {page}"
+        "metaPage": "— Page {page}",
+        "popularHubCalculators": "Popular {hub}"
       },
       "calculatorPage": {
         "home": "Home",
-        "updated": "Updated {date}"
+        "updated": "Updated {date}",
+        "seoTitleSuffix": "Free Online Tool",
+        "introGuideLabel": "In this guide:",
+        "introQ1": "How does the {title} work?",
+        "introQ2": "What inputs do I need to use it?",
+        "introQ3": "How accurate are the results?"
       },
       "searchBar": {
         "all": "All",

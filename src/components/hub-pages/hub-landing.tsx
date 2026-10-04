@@ -360,6 +360,10 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
             </Link>
           </div>
         ) : (
+        <>
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          {tch('popularHubCalculators', { hub: hubTitle.replace(/\s+Online$/i, '') })}
+        </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {manualPageCalcs.map((calc: CalculatorEntry) => {
             const CalcIcon = getCalcIcon(calc.title)
@@ -393,6 +397,7 @@ export async function HubLandingContent({ hubSlug, searchParams }: { hubSlug: st
             )
           })}
         </div>
+        </>
         )}
 
         <PaginationBar page={page} totalPages={totalPages} hubSlug={hubSlug} locale={locale} t={tch} />

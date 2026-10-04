@@ -15,11 +15,17 @@
         "toUse": "उपयोग हेतु",
         "popularVariations": "लोकप्रिय रूपांतर",
         "exploreRelatedHubs": "संबंधित हब देखें",
-        "calculatorCount": "{count} कैलकुलेटर"
+        "calculatorCount": "{count} कैलकुलेटर",
+        "popularHubCalculators": "लोकप्रिय {hub}"
       },
       "calculatorPage": {
         "home": "मुख्य पृष्ठ",
-        "updated": "अपडेट: {date}"
+        "updated": "अपडेट: {date}",
+        "seoTitleSuffix": "मुफ़्त ऑनलाइन टूल",
+        "introGuideLabel": "इस गाइड में:",
+        "introQ1": "{title} कैसे काम करता है?",
+        "introQ2": "इसे उपयोग करने के लिए कौन-से इनपुट चाहिए?",
+        "introQ3": "परिणाम कितने सटीक हैं?"
       },
       "searchBar": {
         "all": "सभी",

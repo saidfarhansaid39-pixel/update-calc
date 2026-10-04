@@ -15,11 +15,17 @@
         "toUse": "Использование",
         "popularVariations": "Популярные варианты",
         "exploreRelatedHubs": "Изучить смежные категории",
-        "calculatorCount": "{count} калькуляторов"
+        "calculatorCount": "{count} калькуляторов",
+        "popularHubCalculators": "Популярные {hub}"
       },
       "calculatorPage": {
         "home": "Главная",
-        "updated": "Обновлено {date}"
+        "updated": "Обновлено {date}",
+        "seoTitleSuffix": "Бесплатный онлайн-инструмент",
+        "introGuideLabel": "В этом руководстве:",
+        "introQ1": "Как работает {title}?",
+        "introQ2": "Какие данные нужно ввести?",
+        "introQ3": "Насколько точны результаты?"
       },
       "searchBar": {
         "all": "Все",

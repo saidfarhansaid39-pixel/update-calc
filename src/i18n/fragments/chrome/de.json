@@ -15,11 +15,17 @@
         "toUse": "Zur Nutzung",
         "popularVariations": "Beliebte Varianten",
         "exploreRelatedHubs": "Verwandte Themen entdecken",
-        "calculatorCount": "{count} Rechner"
+        "calculatorCount": "{count} Rechner",
+        "popularHubCalculators": "Beliebte {hub}"
       },
       "calculatorPage": {
         "home": "Startseite",
-        "updated": "Aktualisiert am {date}"
+        "updated": "Aktualisiert am {date}",
+        "seoTitleSuffix": "Kostenloses Online-Tool",
+        "introGuideLabel": "In dieser Anleitung:",
+        "introQ1": "Wie funktioniert {title}?",
+        "introQ2": "Welche Eingaben werden benötigt?",
+        "introQ3": "Wie genau sind die Ergebnisse?"
       },
       "searchBar": {
         "all": "Alle",
