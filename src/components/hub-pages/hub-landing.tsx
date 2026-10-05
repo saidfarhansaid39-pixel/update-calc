@@ -38,6 +38,7 @@ function PaginationBar({ page, totalPages, hubSlug, locale, t }: { page: number;
       {page > 1 && (
         <Link
           href={page === 2 ? base : `${base}?page=${page - 1}`}
+          rel="prev"
           className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#1a3a8a] hover:text-white dark:hover:bg-[#06b6d4] transition-colors"
         >
           <ChevronLeft className="w-4 h-4" />
@@ -64,6 +65,7 @@ function PaginationBar({ page, totalPages, hubSlug, locale, t }: { page: number;
       {page < totalPages && (
         <Link
           href={`${base}?page=${page + 1}`}
+          rel="next"
           className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#1a3a8a] hover:text-white dark:hover:bg-[#06b6d4] transition-colors"
         >
           {t('next')}

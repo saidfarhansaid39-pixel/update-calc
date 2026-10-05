@@ -232,13 +232,7 @@ export async function CalculatorPageContent({ hubSlug, slug }: { hubSlug: string
             variables={(clusterCalc as any).variables || []}
             description={clusterCalc.description}
           />
-          <RelatedCalculatorCarousel
-            currentCalcSlug={slug}
-            hubSlug={hubSlug}
-          />
-          <InternalLinkingGrid
-            calculatorData={{ title: clusterCalc.title, hub: hubSlug, tier: (clusterCalc as any).tier || 'tier1' }}
-          />
+          {/* Related modules render once inside the shell (CalculatorRenderer) — not duplicated here. */}
         </div>
       </>
     )
@@ -297,6 +291,10 @@ export async function CalculatorPageContent({ hubSlug, slug }: { hubSlug: string
             </section>
           )}
 
+          {/* Related modules render once inside the shell (CalculatorRenderer).
+              Only the mortgage dashboard (no shell) needs them here. */}
+          {isMortgage && (
+          <>
           <RelatedCalculatorCarousel
             currentCalcSlug={slug}
             hubSlug={hubSlug}
@@ -304,6 +302,8 @@ export async function CalculatorPageContent({ hubSlug, slug }: { hubSlug: string
           <InternalLinkingGrid
             calculatorData={{ title: calc.title, hub: hubSlug, tier: (calc as any).tier || 'tier1' }}
           />
+          </>
+          )}
       </div>
     </>
   )

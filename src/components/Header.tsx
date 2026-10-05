@@ -175,20 +175,19 @@ export function Header() {
                 {t('more')}
                 <ChevronDown className={`w-4 h-4 transition-transform ${moreOpen ? 'rotate-180' : ''}`} />
               </button>
-              {moreOpen && (
-                <div className="absolute right-0 top-full mt-1 w-44 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg py-2 animate-fade-in-down">
-                  {moreLinks.map((link) => (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      onClick={() => { setMoreOpen(false); setMenuOpen(false); }}
-                      className="block px-4 py-2 min-h-[44px] text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
+              {/* Always rendered (hidden when closed) so all hub links exist in the DOM/SSR HTML for crawlers. */}
+              <div className={`absolute right-0 top-full mt-1 w-44 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg py-2 animate-fade-in-down ${moreOpen ? '' : 'hidden'}`}>
+                {moreLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => { setMoreOpen(false); setMenuOpen(false); }}
+                    className="block px-4 py-2 min-h-[44px] text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#1a3a8a] dark:hover:text-[#06b6d4] hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </nav>
 
@@ -275,10 +274,9 @@ export function Header() {
           </div>
         )}
 
-        {/* Mobile Menu */}
-        {menuOpen && (
-          <div id="mobile-menu" ref={mobileMenuRef} className="md:hidden overflow-hidden animate-fade-in-down overscroll-contain">
-            <div className="pb-4 border-t border-gray-200 dark:border-gray-800 pt-4">
+        {/* Mobile Menu — always rendered (hidden when closed) so all links exist in the DOM/SSR HTML for crawlers. */}
+        <div id="mobile-menu" ref={mobileMenuRef} className={`md:hidden overflow-hidden animate-fade-in-down overscroll-contain ${menuOpen ? '' : 'hidden'}`}>
+          <div className="pb-4 border-t border-gray-200 dark:border-gray-800 pt-4">
               <nav aria-label={tc('mobileNav')} className="flex flex-col gap-1">
                 {allLinks.map((link) => (
                   <Link
@@ -329,8 +327,7 @@ export function Header() {
                 </div>
               </nav>
             </div>
-          </div>
-        )}
+        </div>
       </div>
     </header>
   );
