@@ -163,6 +163,11 @@ function extractTopic(title: string): string {
   let topic = title.trim()
   const stripped = topic.replace(pattern, '').trim()
   if (stripped) topic = stripped
+  // Strip leading prepositions/articles left behind (ES "Calculadora de 401k"
+  // → "de 401k" → "401k"; FR "Calculatrice de l'IMC" → "IMC").
+  const prepPattern = /^(?:de la|de l'|de|del|la|el|los|las|al|du|des|au|aux|the|of|der|die|das|den|von|vom|het|на|в|с|со|का|के|की|को|से|的)[\s-]+/i
+  const strippedPrep = topic.replace(prepPattern, '').trim()
+  if (strippedPrep) topic = strippedPrep
   return topic
 }
 
