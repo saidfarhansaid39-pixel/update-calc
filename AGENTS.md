@@ -416,6 +416,13 @@ Rules:
 - **Deploy** — `vercel --prod --yes` CLI detached early (exit 1 lies); deployment `dpl_ETT2FLCTtTa8TGN1prKD2wFGMPso` tracked via `vercel inspect` → Ready, aliased to `https://www.calculat.online`.
 - **Leftover debt (not fixed)** — food `formula='See step-by-step'`, sports step-join formula, engineering-quick `formula=""`/`interpretation=""` still placeholder-grade; dynamic `explanation` auto-fallback still covers pages whose defs lack `extras`.
 
+### Internal Linking Overhaul + Re-score (Oct 5, 2026) — score 74 → **89/100 (A-)**
+- **Fixes** (`a868f96`, 4 files, +34/−77): (1) related grid+carousel render ONCE — removed page-content duplicates (kept shell's; mortgage dashboard keeps its own, has no shell); (2) deleted cross-category "You might also like" block + computation, deduped related⊂popular overlap, quickLinks back to home/hub/about only; (3) "More" menu + mobile menu always rendered, visibility-toggled (`hidden` class) → all 16 hubs in header SSR HTML (was 6); (4) `rel="prev/next"` on hub pagination.
+- **Gates** — typecheck 0; tests 12 files/65 tests; ESLint: only 3 pre-existing Header set-state-in-effect errors; build 779/779 SSG exit 0 (local) + 719/719 remote.
+- **Live verification** — per calculator page: 72→30 links, 20→14 unique, cross-hub 12→**0**, 403b ×8→×2 (grid + carousel, distinct modules), grid labels ×2→×1, "You might also like" gone, 16/16 hubs in header HTML, rel prev/next present, Calculate flow 13/13 intact.
+- **Deploy** — `dpl_F1VPMaVfCkrMHS493A7Uatko9eSC` READY on laasriabderrahim1-8514, aliased to `https://www.calculat.online` (note: domain now served from this account's project).
+- **New breakdown**: sitemap 15 + depth/pagination 15 + health 14 + anchors 15 + silo 15 + nav 10 + freshness 5 = 89. Remaining −11: dead unlinked `/en/*` aliases (−1 health); no FAQPage schema; FR/ES machine descriptions (translation backlog).
+
 ### Keyword SEO Pass: Titles, Headings, Topic Dedup (Oct 4–5, 2026)
 - **Ask** — optimize ALL keywords across URL/title/meta/H1/H2/H3/content.
 - **Audit** (`%TEMP%\opencode\seo-state-probe.cjs`, 7 URLs incl. FR/ES): titles were 25–30 chars with no modifiers ("BMI Calculator | Calculat"); CalculatorIntro h2 repeated the H1 verbatim; ES/FR headings duplicated the category word ("Calculadora de Calculadora de 401k", "Cálculo manual de Calculatrice IMC", "Suivre votre calculatrice imc"); hub landings had a single H2. Already good (untouched): single H1, canonical + 11 hreflangs, OG/Twitter/robots/keywords meta, keyword-rich H3s + comparison H2s, hub titles ≤60, sitemap, localized URL slugs.
